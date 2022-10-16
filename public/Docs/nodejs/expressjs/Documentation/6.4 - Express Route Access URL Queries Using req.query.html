@@ -1,0 +1,208 @@
+<p class="main-title">6.4 - Express Route - Access URL <span class="red bold">Queries String</span> Using <span class="blue bold font-code">req.query</span></p>
+
+<p class="text">
+ <span class="red bold">A Query String</span> is a part of <blue>URL</blue> (Uniform Resource Locater) after the question mark (?). It is meant to send small amounts of
+ information to the server via the <blue>URL</blue>. This property is an object containing a property for each query string parameter in the route. When query parser is
+ set to disabled <span class="red bold font-code">app.set("query parser", false);</span>, it is an empty object <span class="green bold font-code">{}</span>, otherwise it
+ is the result of the configured query parser.
+</p>
+
+<p class="underline-text"># As see the form of string query and how it extracted into an object from req.query :-</p>
+
+<img path="/img/image020.PNG" alt="" id="image" />
+
+<p class="text">
+ Access the <span class="red bold">Query String</span> in the URL. Many times you’ll see functionality for <green>search, filtering, and sorting</green> use query strings
+ The parsing is done by the "querystring" module , which is used by Express.js behind the scenes, without query parsing of some sort we can’t access the
+ <span class="red bold font-code">req.query</span> object. Express.js uses "querystring" parser by default—no extra code is needed
+</p>
+
+<p class="underline-text"># An example of a URL with query strings attached :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  Route path: /?page=2&limit=3
+  Request URL: https://example.com/?page=2&limit=3
+  req.query: { page: 2, limit: 10 }
+  <blue>##################################################################</blue>
+  Route path: /user?id=2&role=admin
+  Request URL: https://example.com/user?id=2&admin=true
+  req.query: { id: 2, admin: true }
+  <blue>##################################################################</blue>
+  Route path: /shop?orderId=4523&car[model]=BMW&car[color]=black&car[price]=45000
+  Request URL: https://example.com/shop?orderId=4523&car[model]=BMW&car[color]=black&car[price]=45000
+  req.query: { orderId: 4523, car: { model: "BMW", color: "Black", price: 45000 } }
+  <blue>##################################################################</blue>
+  Route path: /shop?PaintFor=house&color[]=Black&color[]=Blue&color[]=White
+  Request URL: https://example.com/shop?PaintFor=house&color[]=Black&color[]=Blue&color[]=White
+  req.query: { PaintFor: "house", color: ["Black", "Blue", "White"] }
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">A - Query String within URL key and value</p>
+
+<p class="underline-text"># Examples of Query String :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">> localhost:8080/user?name=Adam&ID=3&role=Admin</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+
+  app.get("/user", (req, res) => {
+    console.log(req.query) // { name: "Adam", ID: 3, role: "admin" }
+    console.log(req.query.name) // Adam
+    console.log(req.query.id) // 3
+    console.log(req.query.role) // Admin
+
+    res.end(req.query) // Error: TypeError [ERR_INVALID_ARG_TYPE]: The "chunk" argument must be of type string or an instance of Buffer or Uint8Array
+    res.end(JSON.stringify(req.query)); // { name: 'adam', id: 3, role: 'admin' }
+    // OR
+    res.send(req.query) // { name: 'adam', id: 3, role: 'admin' }
+  })
+
+  app.listen(3000, () => {
+    console.log("Listening on port 3000")
+  })
+</code></pre>
+</div>
+
+<p class="underline-text"># let's take a close look into request and response headers :-</p>
+
+<img path="/img/image021.png" id="image" alt="" />
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">B - Use Query String to perform Pagination</p>
+
+<p class="underline-text"># Examples of Query String with pagination task :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">> localhost:8080/books?page=2&limit=10</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+
+  app.get("/", async function(req, res) {
+
+    // Access the provided 'page' and 'limt' query parameters
+    let page = req.query.page;
+    let limit = req.query.limit;
+
+    let articles = await Article.findAll().paginate({page: page, limit: limit});
+
+    // Return the articles to the rendering engine
+    res.render("index", { articles: articles });
+  });
+
+  app.listen(8080, function() {
+      console.log("Server is listening on port 8080")
+  });
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">C - Query String As An Objects And Arrays</p>
+
+<p class="underline-text"># Examples of Query String as an object and arrays :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+
+  // http://localhost:3000/shop?order=desc&shoe[color]=blue&shoe[type]=converse 
+  app.get("/shop" , function (req, res) {
+    console.log(req.query); // { order: "desc", shoe: { color: "blue", type: "converse" } } 
+    res.end("ok");
+  });
+
+  // http://localhost:3000/travel?rating[gt]=45
+  app.get("/travel", function (req, res) {
+    console.log(req.query); // { rating: { gt: "45" } } 
+    res.end("ok");
+  });
+
+  // http://localhost:3000/shoes?color[]=blue&color[]=black&color[]=red
+  app.get("/shoes", function (req, res) {
+    console.log(req.query);  // { color: ["blue", "black", "red"]  } 
+    res.end("ok");
+  });
+
+  app.listen(8080, function() {
+      console.log("Server is listening on port 8080")
+  });
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">D - Using "querystring" Module</p>
+
+<p class="underline-text"># An Example of using querystring module :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-js">
+  const querystring = require("querystring");
+
+  const query = querystring.parse("year=2017&month=february");
+  
+  console.log(query); // { year: '2017', month: 'february' }
+  console.log(query.year); // 2017
+  console.log(query.month); // february  
+
+  const qs = querystring.stringify( { name:'Adam', company:'aramco' } );  
+  console.log(qs); // name=Adam&company=aramco
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example 2 of using querystring module :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">> An Example - http://localhost:3000/login?name=lily&age=99</p>
+ <pre><code class="js language-js">
+  const http = require("http");
+  const querystring = require("querystring");
+  
+  http.createServer((req,res)=>{
+      const url  = req.url;
+      console.log( querystring.parse(url)) ; // { '/login?name': 'lily', age: '99' } 
+  }).listen(3000 , () => {  console.log('server is listening . .  .') })  
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example 3 of using querystring and url modules :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const url = require("url");
+  const querystring = require("querystring");
+  
+  let rawUrl = 'https://stackabuse.com/?page=2&limit=3';
+  
+  let parsedUrl = url.parse(rawUrl);
+  let parsedQs = querystring.parse(parsedUrl.query); 
+
+  console.log(parsedQs); // { page: "2", limit: "3" }
+  console.log(parsedUrl); // Output Below
+  ############################################################################
+  {
+    protocol: "https:",
+    slashes: true,
+    auth: null,
+    host: "stackabuse.com",
+    port: null,
+    hostname: "stackabuse.com",
+    hash: null,
+    search: "?page=2&limit=3",
+    query: "page=2&limit=3",
+    pathname: "/",
+    path: "/?page=2&limit=3",
+    href: "https://stackabuse.com/?page=2&limit=3"
+  }
+  ############################################################################
+</code></pre>
+</div>

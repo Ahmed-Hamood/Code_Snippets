@@ -1,0 +1,380 @@
+<p class="main-title">
+ 1.9 - Un-Tracking Files from the Staging Area with <terminal><orange>git rm --cached</orange></terminal> command
+</p>
+
+<!-- #################################################################### -->
+<p class="sub-title">
+ 1. Un-Tracking Files with <terminal><orange>git rm --cached</orange></terminal> command
+</p>
+
+<p class="text">
+ Sometimes, you may commit files by accident in your repository, our files become tracked and presented or added in the staging area ready to be committed. Lets first
+ create some files and learn how to untrack them.
+</p>
+
+<section terminal-content title-header="Create a new file & get Git status" preferred-sign=">" line-num="">
+ <pre>
+  echo "Some Text Here" > other.txt
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+  Untracked files:
+    (use "git add &lt;file>..." to include in what will be committed)
+          <red>other.txt</red>
+  
+  nothing added to commit but untracked files present (use "git add" to track)
+</pre
+ >
+</div>
+
+<p class="text">
+ Our <file>other.txt</file> is an Untracked file to track it we use the <terminal>git add other.txt</terminal> command, to track our file and place it into the staging
+ area, so it can be ready to be committed.
+</p>
+
+<section terminal-content title-header="Staging File and View Staging area list" preferred-sign=">" line-num="">
+ <pre>
+  git add other.txt // Track and add other.txt file to the staging area
+  git ls-files // list all the files and directories in the staging area
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  .gitignore
+  file1.txt
+  other.txt
+</pre
+ >
+</div>
+
+<p class="text">
+ Now, our file has been tracked and ready to be committed, so let commit the changes using the <terminal>git commit -m "New File Added"</terminal> command.
+</p>
+
+<section terminal-content title-header="Commit changes to the repository" preferred-sign=">" line-num="">
+ <pre>
+  git commit -m "Add New File"
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  [master a46224d] Add New File
+  1 file changed, 1 insertion(+)
+  create mode 100644 other.txt
+</pre
+ >
+</div>
+
+<p class="text">
+ Now, every time you compile your code by making some changes, Git will track <file>other.txt</file> file, and stage it and then commit it a long with other files
+ changes. We decided to untrack <file>other.txt</file> file from Git in both <yellow>staging area</yellow> and <yellow>repository</yellow>. We are going to remove this
+ file from the staging area without removing it from the working directory.
+</p>
+
+<div class="text-box note">
+ In old term, we used to call the <blue>"staging area"</blue> as <blue>"index"</blue>, if you take a look at Git Documentation most of the time you will see index.
+</div>
+
+<p class="text">
+ To do that we are going to use <terminal>git rm</terminal> command, with <terminal>--cached</terminal> options, with this option we can remove stuff only from the index,
+ without removing it from the working directory.
+</p>
+
+<section terminal-content title-header="Remove File from the staging area only" preferred-sign=">" line-num="">
+ <pre>
+  git rm other.txt --cached 
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  rm 'other.txt'
+</pre
+ >
+</div>
+
+<p class="text">
+ Now, if you take a look in your staging area using the <terminal>git ls-files</terminal> command, you gonna see that <file>other.txt</file> file has been remove
+ successfully from the staging area. And you still can see it on the working directory.
+</p>
+
+<section terminal-content title-header="List all files from the staging area" preferred-sign=">" line-num="">
+ <pre>
+  git ls-files
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  .gitignore
+  file1.txt
+</pre
+ >
+</div>
+
+<!-- #################################################################### -->
+<p class="sub-title">
+ 2. Ignore Directory after Committing <terminal><orange>git rm --cached -r</orange></terminal> command
+</p>
+
+<p class="text">
+ If you accidentally include a file in your repository and then later added it to <file>.gitignore</file>, git is not going to ignore that. So prove it by creating a new
+ directory called <folder>bin</folder>, this directory will contain our compiled source code.
+</p>
+
+<section terminal-content title-header="Create New Directory and View Git Status" preferred-sign=">" line-num="">
+ <pre>
+  mkdir bin // create bin directory
+  echo "code Line..." > bin/app.bin // create new file inside bin directory
+  git status 
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  Untracked files:
+  (use "git add &lt;file>..." to include in what will be committed)
+        <red>bin/</red>
+</pre
+ >
+</div>
+
+<p class="text">
+ As you see we have a new directory, now we want to accidentally commit <folder>bin</folder> to our repository, open terminal and add all the changes then commit it.
+</p>
+
+<section terminal-content title-header="Add bin to the staging area" preferred-sign=">" line-num="">
+ <pre>
+  git add .
+  git commit -m "add bin directory"
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  [master b4cfe13] add bin directory
+  2 files changed, 1 insertion(+), 1 deletion(-)
+  create mode 100644 bin/app.bin
+</pre
+ >
+</div>
+
+<p class="text">
+ Every time you add or compiled files into the <folder>bin</folder> directory, git will stage the changes and then commit them every time. Why do we have to commit this
+ file every time we compile our application, so we decide to ignore or include the <folder>bin</folder> directory inside <file>.gitignore</file> file.
+</p>
+
+<div class="terminal-output">
+ <pre>
+  ./gitignore
+  ----------------------
+  bin/ <yellow>--> ignore the bin directory with all its content</yellow>
+</pre>
+</div>
+
+<p class="text">Back to out terminal and run <terminal>git status</terminal> command, as you see we have modified <file>.ignore</file> file.</p>
+
+<section terminal-content title-header="Show git status" preferred-sign=">" line-num="">
+ <pre>
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+  Changes not staged for commit:
+    (use "git add &lt;file>..." to update what will be committed)
+    (use "git restore &lt;file>..." to discard changes in working directory)
+          <red>modified:   .gitignore</red>
+
+  no changes added to commit (use "git add" and/or "git commit -a")
+</pre>
+</div>
+
+<p class="text">Now, we stage and commit the changes.</p>
+
+<section terminal-content title-header="Show git status" preferred-sign=">" line-num="">
+ <pre>
+  git add .
+  git commit -m "include /bin in .gitignore"
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  [master 4b47151] include /bin in .gitignore
+  1 file changed, 1 insertion(+), 1 deletion(-)
+</pre
+ >
+</div>
+
+<p class="text">
+ You may think that <red>Git</red> will start ignore the <folder>bin</folder> directory, so let's modify the <file>app.bin</file> file and see what
+ <terminal>git status</terminal> show us.
+</p>
+
+<section terminal-content title-header="Show git status" preferred-sign=">" line-num="">
+ <pre>
+  echo "new binary line" >> bin/app.bin
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+  Changes not staged for commit:
+    (use "git add &lt;file>..." to update what will be committed)
+    (use "git restore &lt;file>..." to discard changes in working directory)
+          <red>modified:   bin/app.bin</red>
+  
+  no changes added to commit (use "git add" and/or "git commit -a")
+</pre>
+</div>
+
+<p class="text">
+ Look git is saying that <file>app.bin</file> file is modified, this mean git didn't ignore the <folder>bin</folder> directory. To solve this problem we need to remove
+ this file from the staging area where all changes ready for the next commit. Lets use <terminal>git ls-files</terminal> command to show the files in our
+ <yellow>staging area</yellow>.
+</p>
+
+<section terminal-content title-header="Show Staging area Files" preferred-sign=">" line-num="">
+ <pre>
+  git ls-files
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  .gitignore
+  bin/app.bin <yellow>&lt;-- as you see bin still here</yellow> 
+  file1.txt
+</pre>
+</div>
+
+<p class="text">
+ As you see the <folder>bin</folder> directory is already in the <yellow>staging area</yellow>, we should remove it here, by using the
+ <terminal>git rm --cached</terminal> command to remove or untrack a file from the <yellow>staging area</yellow> or <yellow>index</yellow>.
+</p>
+
+<section terminal-content title-header="Untrack Folder from the staging area" preferred-sign=">" line-num="">
+ <pre>
+  git rm --cached bin/
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  <red>fatal: not removing 'bin/' recursively without -r</red>
+</pre>
+</div>
+
+<p class="text">
+ We need to add <terminal>-r</terminal> option which allow to remove directory content recursively, this will remove the entire <folder>bin</folder> directory from the
+ staging. area.
+</p>
+
+<section terminal-content title-header="Untrack Folder recursively from the staging area" preferred-sign=">" line-num="">
+ <pre>
+  git rm --cached -r bin/
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  rm 'bin/app.bin'
+</pre
+ >
+</div>
+
+<p class="text">
+ Now, the <folder>bin</folder> directory is completely removed from the <yellow>staging area</yellow>, lets verify this with <terminal>git ls-files</terminal> command, as
+ you see below our <folder>bin</folder> directory is no longer here.
+</p>
+
+<section terminal-content title-header="Show Staging area Files" preferred-sign=">" line-num="">
+ <pre>
+  git ls-files
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  .gitignore
+  file1.txt
+</pre
+ >
+</div>
+
+<section terminal-content title-header="Get Git status" preferred-sign=">" line-num="">
+ <pre>
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+  Changes to be committed:
+    (use "git restore --staged &lt;file>..." to unstage)
+          <green>deleted:    bin/app.bin</green>
+</pre>
+</div>
+
+<p class="text">
+ As you can see the <folder>bin</folder> directory is deleted from our <yellow>staging area</yellow>, so let's commit the change of removing the
+ <folder>bin</folder> directory. After commit, git will no longer going to track the <folder>bin</folder> directory changes.
+</p>
+
+<section terminal-content title-header="Commit changes" preferred-sign=">" line-num="">
+ <pre>
+  git commit -m "Remove the bin directory"
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  [master 1f82db4] Remove the bin directory
+  1 file changed, 1 deletion(-)
+  delete mode 100644 bin/app.bin
+</pre
+ >
+</div>
+
+<section terminal-content title-header="show git status" preferred-sign=">" line-num="">
+ <pre>
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+  nothing to commit, working tree clean 
+</pre
+ >
+</div>

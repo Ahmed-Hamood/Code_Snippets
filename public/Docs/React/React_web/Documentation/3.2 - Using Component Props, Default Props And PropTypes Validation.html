@@ -1,0 +1,1326 @@
+<p class="main-title">
+  3.2 - Using Component Props, Default Props And PropTypes Validation
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">
+  1 - What are Component Props with Examples ?
+</p>
+
+<p class="text">
+  <red>Props</red> is short for properties and they are used to pass data between React components and they are optional and it makes the component dynamic.
+  <red>Props</red> are arguments passed into <blue>React</blue> component, it's similar to function argument in Javascript and Attribute in HTML.
+  <red>Props</red> are properties as a global object or variables which can be used inside a component. To send props into our Component we call
+  our component and pass <green3>Attributes</green3> or <green3>argument</green3> into that component.
+</p>
+
+<p class="underline-text">
+  # The props syntax that we pass data to the component props :-
+</p>
+
+<img path="/img/image013.png"
+  id="image"
+  alt="">
+
+<p class="text">
+  React's data flow between components is uni-directional (from parent to child only). Props Attributes string value wrap around double quotes <code>""</code>,
+  and when assigning number or variable we wrap them a round curly braces <code>{}</code>.
+</p>
+
+<p class="underline-text">
+  # Here is a simple example of passing props to a Function Component :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+  <p class="block-title">➤ ./src/index.js </p>
+  <pre><code class="js language-jsx">
+  import ReactDOM from "react-dom"
+ 
+  const App = () => {
+    const UserId = "4522584"
+
+    return(
+      &lt;div>
+        &lt;h1> Welcome To ReactJS &lt;/h1>
+        &lt;<yellow>UserInfo</yellow> <orange>username</orange>="Adam Sam" <orange>age</orange>={45} <orange>UserId</orange>={UserId} />
+      &lt;/div>
+    )
+  }
+
+  function UserInfo(props) {
+    console.dir(props);  ==> { age: 45, username: "Adam Sam", UserId: "4522584" } 
+    return(
+      &lt;div className="InfoContent" >
+        &lt;p> Username = { props.username } &lt;/p>
+        &lt;p> Age = { props.age } &lt;/p>
+        &lt;p> User ID = { props.UserId } &lt;/p>
+      &lt;/div>
+    )
+  }
+
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+
+<div class="html-block html-text code">
+  <pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div>
+      &lt;h1> Welcome To ReactJS &lt;/h1>
+      &lt;div <blue>class</blue>=<green3>"InfoContent"</green3>>
+        &lt;p> Username = Adam Sam &lt;/p>
+        &lt;p> Age = 45 &lt;/p>
+        &lt;p> User ID = 4522584 &lt;/p>
+      &lt;/div>
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # How Props works :-
+</p>
+
+<img path="/img/image012.PNG"
+  id="image"
+  alt="img">
+
+<p class="text">
+  We have added two Attributes <blue>username</blue>, <blue>age</blue> and <blue>UserId</blue> to <red>UserInfo</red> Component. And then we access all Attributes
+  thru <green3>props</green3> inside our <red>UserInfo</red> Component. As you see <green3>props</green3> output is an object that has all
+  the Attributes that we passed within the <red>UserInfo</red> Component.
+</p>
+
+<p class="underline-text">
+  # An Example of adding props into component within render method :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+  <p class="block-title">➤ ./src/index.js </p>
+  <pre><code class="js language-jsx">
+  import React from "react";
+  import ReactDOM from "react-dom";
+
+  function App(props) {
+    return &lt;h1> hello {props.name} and his age is {props.age} &lt;/h1>; 
+  }
+  
+  ReactDOM.render( &lt;<yellow>App</yellow> <orange>name</orang>="Adam" <orange>age</orang>="45" />, document.getElementById("root") );
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+  <pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;h1> hello Adam and his age is 45 &lt;/h1>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # Assign Component to a variable and pass props into our component and using ternary condition :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+  <p class="block-title">➤ ./src/index.js </p>
+  <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function Welcome(props) {
+    return props.isLogin ? &lt;h1> Welcome Adam &lt;/h1> : &lt;h1> Welcome Anonymous &lt;/h1>
+  }
+  
+  const element = &lt;Welcome <orange>isLogin</orange>={false} />
+  
+  ReactDOM.render(element, document.getElementById("root"))  
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+  <pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;h1> Welcome Anonymous &lt;/h1>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="text">
+  We said in the previous section that components are reusable, and you can render a component many times. Let's say we want to return the same component
+  many time but with different result or outputs. We can achieve that by using props our component can accept attributes that will be pass to your component
+  parameter, then use this parameter into your function component body. Check the following example
+</p>
+
+<p class="underline-text">
+  # Composing Components render components many time with different props :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import ReactDOM from "react-dom"
+
+  function Welcome(props) {
+   return &lt;h1> Hello, {props.name} &lt;/h1>
+  }
+  
+  function App() {
+   return (
+    &lt;div>
+     &lt;<yellow>Welcome</yellow> <orange>name</orange>="Sara" />
+     &lt;<yellow>Welcome</yellow> <orange>name</orange>="Cahal" />
+     &lt;<yellow>Welcome</yellow> <orange>name</orange>="Edite" />
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+<pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div>
+      &lt;h1>Hello, Sara&lt;/h1>
+      &lt;h1>Hello, Cahal&lt;/h1>
+      &lt;h1>Hello, Edite&lt;/h1>
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # Also you can pass components as a props :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function SplitPane(props) {
+   return (
+    &lt;div className="SplitPane">
+     &lt;div className="SplitPane-left" > {props.left} &lt;/div>
+     &lt;div className="SplitPane-right" > {props.right} &lt;/div>
+    &lt;/div>
+   )
+  }
+  
+  const Contacts = () => {
+   return (
+    &lt;div>
+     &lt;h1> All Contacts &lt;/h1>
+    &lt;/div>
+   )
+  }
+  
+  const Chat = () => {
+   return (
+    &lt;div>
+     &lt;h1> Chat popup &lt;/h1>
+    &lt;/div>
+   )
+  }
+  
+  function App() {
+   return &lt;<yellow>SplitPane</yellow> <orange>left</orange>={&lt;<yellow>Contacts</yellow> />} <orange>right</orange>={&lt;<yellow>Chat</yellow> />} />
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+<pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div <blue>class</blue>=<green3>"SplitPane"</green3>>
+      &lt;div <blue>class</blue>=<green3>"SplitPane-left"</green3>>
+        &lt;div>
+          &lt;h1> All Contacts &lt;/h1>
+        &lt;/div>
+      &lt;/div>
+      &lt;div <blue>class</blue>=<green3>"SplitPane-right"</green3>>
+        &lt;div>
+          &lt;h1> Chat popup &lt;/h1>
+        &lt;/div>
+      &lt;/div>
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">
+  2 - Dynamic Data Props <blue>Integer, String, Boolean, Array, Object</blue>
+</p>
+
+<p class="text">
+  You can pass data thur component of any type, by defining a custom attribute and assign to it a value of a dynamic type like <blue>string</blue>, 
+  <blue>number</blue>, <blue>boolean</blue>, <blue>array</blue>, <blue>object</blue> and even <blue>objects within array</blue>. Some of the values 
+  like string need to be assigned or wrapped around single <code>''</code> or double quotes <code>""</code>, but with <blue>numbers</blue>, 
+  <blue>booleans</blue> <blue>array</blue> or <blue>object</blue> we need wo wrap them around curly brackets <code>{}</code> or we call them 
+  in react assigning tem with <blue>JSX</blue> syntax.
+</p>
+
+<p class="text">
+  In the following example we are going to pass some props using wo attributes, the first one value is a string type, and the second attribute will be assigned 
+  to a variable that holds a string do as you wish, look at the following example.
+</p>
+
+<p class="underline-text">
+ # An Example passing attributes As Props :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import ReactDOM from "react-dom"
+
+  function GreetUserPage(props) {
+   return &lt;h1> Welcome, {props.name} &lt;/h1>
+  }
+  
+  function App() {
+   const UserName = "Sally Winter"
+   return (
+    &lt;div>
+     &lt;header>
+      &lt;<yellow>GreetUserPage</yellow> name="Adam Sam" />
+      &lt;<yellow>GreetUserPage</yellow> name={UserName} />
+     &lt;/header>
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+<pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div>
+      &lt;header>
+        &lt;h1> Welcome, Adam Sam &lt;/h1>
+        &lt;h1> Welcome, Sally Winter &lt;/h1>
+      &lt;/header>
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>
+
+
+<p class="text">
+  Here an example with possible types that you can pass thru your component props, we can use them as <blue>placeholders</blue>, <blue>expressions</blue> 
+  and <blue>statement</blue>. We can also loop or map thru an array or use their build in properties for example a length of an array. 
+  Let's look at the following example.
+</p>
+
+<p class="underline-text">
+  # An Example of using all possible types on our props :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  import RandomInfo from "./Components/RandomInfo"
+
+  function App() {
+  const UserName = "Adam Sam"
+  return (
+    &lt;React.Fragment>
+      &lt;RandomInfo
+        <orange>UserName</orange>={UserName}
+        <orange>message</orange>="Welcome to our website"
+        <orange>Age</orange>={33}
+        <orange>Married</orange>={true}
+        <orange>details</orange>={{ Height: 4.52, Width: 2.3 }}
+        <orange>Hobbies</orange>={["football", "Swimming"]}
+        <orange>relatives</orange>={[
+        { firstName: "Jane", lastName: "Smith" },
+        { firstName: "Alex", lastName: "Jones" },
+        { firstName: "May", lastName: "Wong" },
+        ]}
+      />
+    &lt;/React.Fragment>
+  )
+  }
+
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./Components/RandomInfo.js </p>
+<pre><code class="js language-jsx">
+  const RandomInfo = props => {
+    return (
+     &lt;div>
+      &lt;h1> {props.message} &lt;/h1>
+      &lt;p> Username : {props.UserName} &lt;/p>
+      &lt;p> Age : {props.Age} &lt;/p>
+      &lt;p> IsMarried : {props.Married} &lt;/p>
+      &lt;p> details => Height:{props.details.Height}, Width:{props.details.Width} &lt;/p>
+      &lt;p> 
+        Hobbies : {props.Hobbies.map(hobby => hobby + " ")} 
+        &lt;span> - Total {Object.keys(props.Hobbies).length} Hobbies &lt;/span> 
+      &lt;/p>
+      &lt;p> Relatives: &lt;/p>
+      &lt;ul>
+       {props.relatives.map(el => {
+        return (
+         &lt;li>
+          FirstName: {el.firstName}, lastName: {el.lastName}
+         &lt;/li>
+        )
+       })}
+      &lt;/ul>
+     &lt;/div>
+    )
+   }
+   
+   export default RandomInfo   
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+<pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div>
+     &lt;h1> Welcome to our website &lt;/h1>
+     &lt;p> Username : Adam Sam &lt;/p>
+     &lt;p> Age : 33 &lt;/p>
+     &lt;p> IsMarried : &lt;/p>
+     &lt;p> details => Height:4.52, Width:2.3 &lt;/p>
+     &lt;p> Hobbies : football Swimming &lt;span> - Total 2 Hobbies &lt;/span>  &lt;/p>
+     &lt;p> Relatives: &lt;/p>
+     &lt;ul>
+      &lt;li> FirstName: Jane, lastName: Smith &lt;/li>
+      &lt;li> FirstName: Alex, lastName: Jones &lt;/li>
+      &lt;li> FirstName: May, lastName: Wong &lt;/li>
+     &lt;/ul>
+    &lt;/div>
+   &lt;/div>   
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">
+  3 - Using Props to Pass URL and Styles
+</p>
+
+<p class="text">
+  We can also pass styles into a component thru props as string value assigned to class or id attributes, 
+  and also passing object into a style attribute. And also we can pass url path for images or link.
+  Let see the following example.
+</p>
+
+<p class="underline-text">
+  # An Example of passing style and url thru props :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  import PassIntoStyleAttribute from "./Components/PassIntoStyleAttribute"
+  import PassIntoClassAttribute from "./Components/PassIntoClassAttribute"
+
+  function App() {
+    const styles = {
+     backgroundColor: "red",
+     padding: "12px",
+    }
+   
+    return (
+     &lt;React.Fragment>
+      &lt;PassIntoStyleAttribute <orange>styles</orange>={styles} <orange>imgSrc</orange>="./imgs/image983" <orange>ImageStyle</orange>="UserImage" />
+      &lt;PassIntoClassAttribute <orange>StyleName</orange>="mainHeader" <orange>Color</orange>="red" />
+     &lt;/React.Fragment>
+    )
+  }
+   
+   ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./Components/PassIntoStyleAttribute.js </p>
+<pre><code class="js language-jsx">
+  const PassIntoStyleAttribute = props => {
+    return (
+     &lt;div style={props.styles}>
+      &lt;h1> Welcome to our website &lt;/h1>
+      &lt;img src={props.imgSrc} className={props.ImageStyle} />
+     &lt;/div>
+    )
+   }
+   
+  export default PassIntoStyleAttribute   
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./Components/PassIntoStyleAttribute.js </p>
+<pre><code class="js language-jsx">
+  const PassIntoClassAttribute = props => {
+    return (
+     &lt;div>
+      &lt;h1 className={props.StyleName}> Title Here &lt;/h1>
+      &lt;p className={props.Color + "-Box"}> &lt;/p>
+     &lt;/div>
+    )
+   }
+   
+  export default PassIntoClassAttribute   
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+<pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div <blue>style</blue>=<green3>"background-color: red; padding: 12px;"</green3>>
+      &lt;h1> Welcome to our website &lt;/h1>
+      &lt;img path="/imgs/image983" <blue>class</blue>=<green3>"UserImage"</green3>>
+    &lt;/div>
+    &lt;div>
+      &lt;h1 <blue>class</blue>=<green3>"mainHeader"</green3>> Title Here &lt;/h1>
+      &lt;p <blue>class</blue>=<green3>"red-Box"</green3>> &lt;/p>
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>
+
+
+<p class="underline-text">
+  # An Example  :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react";
+  import ReactDOM from "react-dom";
+
+  function Comment(props) {
+    return (
+      &lt;div className={props.Style_name + "_container"}>
+        &lt;h1> Welcome {props.name} &lt;/h1>
+        &lt;a href="/" className={props.Style_Img}>
+          &lt;img
+            src={"/images/default_user_" + props.ImgNo + ".png"}
+            alt=<green4>"user_image"</green4>
+          />
+        &lt;/a>
+      &lt;/div>
+    );
+  }
+
+  function App() {
+    return (
+      &lt;div> 
+        &lt;<yellow>Comment</yellow> name="adam" Style_name="main" Style_Img="user_image" ImgNo="1254" />
+      &lt;/div>
+    );
+  }
+
+  ReactDOM.render(&lt;App />, document.getElementById("root"));
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+<pre><code class="js language-jsx">
+  &lt;div id="root">
+    &lt;div>
+      &lt;div <blue>class</blue>=<green3>"main_container"</green3>>
+        &lt;h1> Welcome adam &lt;/h1>
+        &lt;<red>a</red> href="/" <blue>class</blue>=<green3>"user_image"</green3>>
+          &lt;img src="/images/default_user_1254.png" <blue>alt</blue>=<green3>"user_image"</green3>>
+        &lt;/<red>a</red>>
+      &lt;/div>
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">
+  4 - Pass Event Handler Function into Props 
+</p>
+
+<p class="text">
+  We know that we can pass string, Array or Object data to other components thru props. Also we can pass a callback function to other components 
+  from our parent Component thru props. see the following Examples with functional Components pass callback function into the child component thru props, 
+  then use the callback function to pass data back to the Parent component
+</p>
+
+<p class="underline-text">
+  # An Example of Pass a function as props  :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function App() {
+  const GetUserInput = (name, age) => {
+    console.log(name, age) 
+  }
+  
+   return &lt;<yellow>ChildComponent</yellow> <orange>PassGetUserInput</orange>={GetUserInput} />
+  }
+  
+  function ChildComponent(props) {
+   props.PassGetUserInput("Adam", 12)
+   return &lt;h1> welcome to react &lt;/h1>
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))  
+</code></pre>
+</div>
+
+<p class="text">
+  As We see we invoke a callback function that we pass from parent component into child component, and from child component 
+  we invoke the parent props callback while passing data to parent component
+</p>
+
+<p class="text">
+  We can pass down function as props into a component for assigning into onClick event handler, this approach is useful if you are planning to use 
+  the same component many times and pass one written function to all of them, it will improve the performance instead of writing a function inside each
+  component this will cause a performance issue.
+</p>
+
+<p class="underline-text">
+  # An Example of Pass a function as props  :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const Button = props => {
+   return (
+    &lt;div>
+     &lt;h1> Click the following button : &lt;/h1>
+     &lt;button onClick={props.ClickEvent}> Click Me &lt;/button> // Good Approach
+    &lt;/div>
+   )
+  }
+  
+  function App() {
+
+  // One function to all components 
+   function ClickEvent(e) {
+    alert("Clicked")
+   }
+  
+   return (
+    &lt;div>
+     &lt;<yellow>Button</yellow> ClickEvent={ClickEvent} />
+     &lt;<yellow>Button</yellow> ClickEvent={ClickEvent} />
+     &lt;<yellow>Button</yellow> ClickEvent={ClickEvent} />
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<p class="text">
+  The bad approach is defining the function on the component itself, so every component will have it own function event handler 
+  it will cause a performance issue rendering each component with it own function.
+</p>
+
+<p class="underline-text">
+  # An Example  :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const Button = props => {
+    function ClickEvent(e) {
+     alert("Clicked")
+    }
+
+   return (
+    &lt;div>
+     &lt;h1> Click the following Button : &lt;/h1>
+     &lt;button onClick={ClickEvent}> Click Me &lt;/button>   // Bad Approach 
+    &lt;/div>
+   )
+  }
+  
+  function App() {
+   return (
+    &lt;div>
+     &lt;<yellow>Button</yellow> />
+     &lt;<yellow>Button</yellow> />
+     &lt;<yellow>Button</yellow> />
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">
+  5 - Applying Default Props
+</p>
+
+<p class="text">
+ We can set <blue>Default Props</blue> to make sure we always have some values set for our props. As a fallback value so when props 
+ is missing it displays the fallback value in place of the missing prop. Before <blue>Default Props</blue> we were using the logical 
+ <green3>OR</green3> operator to set the default prop.
+</p>
+
+<p class="underline-text">
+  # Before defaultProps The best approach was using JavaScript's logical OR operator, default parameters :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/Component/Greeting.js </p>
+<pre><code class="js language-jsx">
+  const Greeting = (props) => {
+
+    props.name = props.name || "Anonymous";
+    props.age = props.age || 50;
+
+    return(
+      &lt;div>
+        &lt;h1> Username: { props.name } &lt;/h1>
+        &lt;p> User Age: { props.age } &lt;/p>
+        &lt;p> Subject Content: { props.subject || "NoSubject" } &lt;/p>
+      &lt;/div>
+    )
+  }
+</code></pre>
+</div>
+
+<p class="text">
+  To set <blue>Default Props</blue>, we use the <red>defaultProps</red> property to set the default values of each prop. 
+  if the props property value is passed, it will be changes to your value. We can add <blue>Default Props</blue> 
+  to the component by adding the static property <green3>defaultProps</green3> to the function as the following.
+</p>
+
+<p class="underline-text">
+  # An Example of using defaultprops :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function App(props) {
+    return (
+      &lt;div>
+        &lt;h1> Welcome to { props.title } &lt;/h1>
+        &lt;p> { props.message } &lt;/p>
+        &lt;p> You've got { props.emailsNo } Emails &lt;/p>
+      &lt;/div>
+    );
+  }
+  
+  App.defaultProps = {
+    title: "React", 
+    message: "information about react"
+    emailsNo: 45
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # An Example:-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function App() {
+   return (
+    &lt;React.Fragment>
+     &lt;<yellow>UserInfo</yellow> <orange>username</orange>="Adam" <orange>age</orange>={23} />
+    &lt;/React.Fragment>
+   )
+  }
+  
+  function UserInfo(props) {
+   return (
+    &lt;div>
+     &lt;h1> Username: {props.username} &lt;/h1>
+     &lt;p> Age: {props.age} &lt;/p>
+     &lt;p> isMarried: {props.isMarried} &lt;/p>
+    &lt;/div>
+   )
+  }
+  
+  UserInfo.defaultProps = {
+   username: "Anonymous",
+   age: 100,
+   isMarried: "true",
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+<pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div>
+      &lt;h1> Username: Adam &lt;/h1>
+      &lt;p> Age: 23 &lt;/p>
+      &lt;p> isMarried: true &lt;/p>
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>
+  
+
+
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">
+  6 - Using PropTypes Validation
+</p>
+
+<p class="text">
+  <red>propTypes</red> is Type-checking our props will warn us if we pass a type different from the intended props by the child component.
+  Sending data from one component to another, if a component receives the wrong type of props, it can lead to bugs and unexpected errors in your app.
+</p>
+
+<p class="text">
+  We were passing props from outside of a component and using them inside that component. But did we have checked what type of values we are getting 
+  inside our Component through props? No, we do not. But then also everything worked fine. To make sure that our data that the component receives is 
+  valid we use <blue>PropTypes</blue> validator while exporting a range of validation.
+</p>
+
+<p class="underline-text">
+  # To start using PropTypes we have to import it first :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ An Example </p>
+<pre><code class="js language-jsx">
+  import PropTypes from "prop-types";
+
+  // All following props are optional
+  ComponentExample.propTypes = { 
+    optionalArray: PropTypes.array,
+    optionalBool: PropTypes.bool,
+    optionalFunc: PropTypes.func,
+    optionalNumber: PropTypes.number,
+    optionalObject: PropTypes.object,
+    optionalString: PropTypes.string,
+    optionalSymbol: PropTypes.symbol,
+    optionalElement: PropTypes.element,
+  } 
+  
+  // All following props are required
+  ComponentExample.propTypes = { 
+    RequiredArray: PropTypes.array.isRequired,
+    RequiredBool: PropTypes.bool.isRequired,
+    RequiredFunc: PropTypes.func.isRequired,
+    RequiredNumber: PropTypes.number.isRequired,
+    RequiredObject: PropTypes.object.isRequired,
+    RequiredString: PropTypes.string.isRequired,
+    RequiredElement: PropTypes.symbol.isRequired,
+  } 
+
+  // your props is limited to specific values
+  ComponentExample.propTypes = { 
+    optionalEnum: PropTypes.oneOf(['News', 'Photos']),
+  } 
+  
+  // your props is limited to specific values
+  ComponentExample.propTypes = { 
+    optionalUnion: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+      PropTypes.instanceOf(Message)
+  ]),
+  } 
+
+  // An array of a certain type
+  ComponentExample.propTypes = { 
+    optionalArrayOf: PropTypes.arrayOf(PropTypes.number),
+  } 
+  
+  // The Object must contain the exact properties
+  ComponentExample.propTypes = { 
+    MyObject: PropTypes.exact({
+      name: PropTypes.string.isRequired,
+      quantity: PropTypes.number.isRequired,
+    }),
+  } 
+</code></pre>
+</div>
+
+<p class="sub-sub-title mark">
+  # Examples
+</p>
+
+<p class="underline-text">
+  # An Example 1:-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react";
+  import ReactDOM from "react-dom";
+  import PropTypes from "prop-types";
+  
+  App.propTypes = {
+    title: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
+  };  
+  
+  function App(props) {
+    return (
+      &lt;div>
+        &lt;h1> Welcome to {props.title || "react"} &lt;/h1>
+        &lt;p> {props.message || "More info"} &lt;/p>
+      &lt;/div>
+    );
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"));
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+<pre><code class="js language-jsx">
+  <red>Warning: Failed prop type: The prop `title` is marked as required in `App`, but its value is `undefined`</red>
+  <red>Warning: Failed prop type: The prop `message` is marked as required in `App`, but its value is `undefined`.</red>
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # An Example 2:-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  import PropTypes from "prop-types"
+  
+  function App(props) {
+   return (
+    &lt;div>
+     &lt;h1>
+      {props.arrayProp}
+      &lt;br />
+      {props.stringProp}
+      &lt;br />
+      {props.numberProp}
+      &lt;br />
+      {props.boolProp}
+      &lt;br />
+     &lt;/h1>
+    &lt;/div>
+   )
+  }
+  
+  App.propTypes = {
+   arrayProp: PropTypes.array,
+   stringProp: PropTypes.string,
+   numberProp: PropTypes.number,
+   boolProp: PropTypes.bool,
+  }
+  
+  App.defaultProps = {
+   arrayProp: ["Ram", "Shyam", "Raghav"],
+   stringProp: "GeeksforGeeks",
+   numberProp: 10,
+   boolProp: true,
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))  
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">
+  7 - Props Destructuring And Passing Props using Spread operator
+</p>
+
+<p class="text">
+  The <red>Destructuring</red> was introduced in ES6. It's a JavaScript features that allows us to extract multiple pieces of data 
+  from an array or object and assign them to their own variables. let's see how Destructuring works by the following example.
+</p>
+
+<p class="underline-text">
+  # Example Destructuring Object :-
+</p>
+
+<div class="js-block js-code code">
+<p class="block-title">➤ An Example </p>
+<pre><code class="js language-jsx">
+  <green>// Destructuring Object</green>
+  let MyObject = { one: 1, two: 2, three: 3 }
+  let { one, two, three } = MyObject;
+
+  console.log(one); <green>// output 1</green>
+  console.log(two); <green>// output 2</green>
+  console.log(three); <green>// output 3</green>
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # Example Destructuring Array and spread:-
+</p>
+
+<div class="js-block js-code code">
+<p class="block-title">➤ An Example </p>
+<pre><code class="js language-jsx">
+  <green>// Destructuring Array and spread...</green>
+  let numbers = [1, 2, 3, 4, 5];
+  let [item1, item2, ...items] = numbers;
+
+  console.log(item1); <green>// output 1 </green>
+  console.log(item2); <green>// output 2</green> 
+  console.log(items); <green>// output [3, 4, 5]</green>
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # Example Destructuring Object  :-
+</p>
+
+<div class="js-block js-code code">
+<p class="block-title">➤ An Example </p>
+<pre><code class="js language-jsx">
+  const person = {
+    firstName: "Lindsay",
+    lastName: "Criswell",
+    city: "NYC",
+    code: "002"
+  }
+
+  <green>// Destructuring firstName, lastName, city Only </green>
+  const { firstName, lastName, city } = person;
+
+  console.log(firstName); <green>// firstName</green>
+  console.log(lastName); <green>// lastName</green>
+  console.log(city); <green>// city</green>
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # Example Destructuring Object  :-
+</p>
+
+<div class="js-block js-code code">
+<p class="block-title">➤ An Example </p>
+<pre><code class="js language-jsx">
+  const person = {
+    firstName: "Nick",
+    lastName: "Anderson",
+    age: 35,
+    sex: "M"
+  }
+  
+  const { firstName: first, age, city = "Paris", sex = "F" } = person; 
+  
+  console.log(firstName)  // Undefined -- person.firstName exists BUT the new variable created is named first
+  console.log(first)  <green>// "Nick" -- A new variable first is created and is equal to person.firstName</green>
+  console.log(age)  <green>// 35 -- A new variable age is created and is equal to person.age</green> 
+  console.log(city)  <green>// "Paris" -- A new variable city is created and since person.city is undefined, city is equal to the default value provided "Paris".</green> 
+  console.log(sex)  <green>// "M" -- the default is 'F', but it been assigned to ur value 'M'</green> 
+</code></pre>
+</div>
+
+<p class="text">
+ After understanding how Destructuring works, you can Destructure the props early in the function parameter signature or later.
+ Let's start destructuring our props in the following example.
+</p>
+
+<p class="sub-sub-title mark get-title">
+  A - Destructuring Examples
+</p>
+
+<p class="underline-text">
+  # An Example of Destructuring props  :-
+</p>
+ 
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+
+  // 1. Referencing From Props properties
+  function App(props) {
+  return (
+    &lt;div>
+      &lt;p> id : {props.ID} &lt;/p>
+      &lt;p> name : {props.Name} &lt;/p>
+      &lt;p> Gender : {props.Gender} &lt;/p>
+    &lt;/div>
+  )
+  }
+
+  // 2. Destructuring The Props Properties Within Function Parameter
+  function App( { ID, Name, Gender } ) {
+  return (
+    &lt;div>
+      &lt;p> ID : {ID} &lt;/p>
+      &lt;p> name : {Name} &lt;/p>
+      &lt;p> Gender : {Gender} &lt;/p>
+    &lt;/div>
+  )
+  }
+
+  // 3. Destructuring The Props Inside Function Body
+  function App(props) {
+  const { ID, Name, Gender } = props
+  return (
+    &lt;div>
+      &lt;p> ID : {ID} &lt;/p>
+      &lt;p> name : {Name} &lt;/p>
+      &lt;p> Gender : {Gender} &lt;/p>
+    &lt;/div>
+  )
+  }
+
+  // 4. Destructuring while creating New Variable and assign different name
+  function App(props) {
+  const { ID, Name: username, Gender, Age = 35 } = props
+  return (
+    &lt;div>
+      &lt;p> ID : {ID} &lt;/p>
+      &lt;p> name : {username} &lt;/p>
+      &lt;p> Gender : {Gender} &lt;/p>
+      &lt;p> Gender : {Age} &lt;/p>
+    &lt;/div>
+  )
+  }
+
+  ReactDOM.render(&lt;App <orange>ID</orange>={1} <orange>Name</orange>="Adam" <orange>Gender</orange>="Male" />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # An Example of selective destructuring  :-
+</p>
+ 
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  let UserSelection = {
+   User1: { name: "Adam", age: 45 },
+   User2: { name: "Sally", age: 33 },
+   User3: { name: "Mark", age: 29 },
+  }
+  
+  function App(props) {
+   let { name, age } = props.selections["User1"]
+   return (
+    &lt;h1>
+     Welcome {name} age is {age}
+    &lt;/h1>
+   )
+  }
+  
+  ReactDOM.render(&lt;App <orange>selections</orange>={UserSelection} />, document.getElementById("root"))  
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+<pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;h1> Welcome Adam age is 45 &lt;/h1>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # An Example of Nested Object Destructuring  :-
+</p>
+ 
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  let UserSelection = {
+   info: {
+    name: "Adam",
+    age: 45,
+    gender: 11,
+   },
+   auth: {
+    loggedIn: true,
+    loggingIn: false,
+   },
+  }
+  
+  function User(props) {
+   let { info, auth } = props.data
+  
+   return (
+    &lt;h1>
+     {info.name} is {auth.loggedIn ? "login" : "logout"}
+    &lt;/h1>
+   )
+  }
+  
+  ReactDOM.render(&lt;<yellow>User</yellow> <orange>data</orange>={UserSelection} />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+<pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;h1> Adam is login &lt;/h1>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="sub-sub-title mark get-title">
+  B - Spread Props
+</p>
+
+<p class="text">
+  You can also spread the props attributes to pass in your component call. If you already have props as an object, 
+  and you want to pass it in you component JSX, you can use <code>...</code> as a <blue>spread operator</blue> 
+  to pass the whole props object.
+</p>
+
+<p class="underline-text">
+  # An Example of using spread to pass an attribute as object  :-
+</p>
+ 
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  // Pass props as an attributes 
+  function App1() {
+    return &lt;Greeting <orange>firstName</orange>="Ben" <orange>lastName</orange>="Hector" />;
+  }
+
+  // Pass props as object with spread operator 
+  function App2() {
+    const props = { firstName: "Ben", lastName: "Hector" };
+    return &lt;Greeting {...props} />;
+  }
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # An Example of spread operator  :-
+</p>
+ 
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+
+  let info = { name: "adam", age: 12, gender: "male" }
+  
+  function GreetUser(props) {
+  const { name, gender, age } = props
+  return (
+    &lt;h1>
+      Welcome {name} is {gender}, and your age is {age}
+    &lt;/h1>
+   )
+  }
+
+  function App(props) {
+  return (
+    &lt;div>
+      &lt;GreetUser {...props} />
+      &lt;p> info about MR {props.name}&lt;/p>
+    &lt;/div>
+  )
+  }
+
+  ReactDOM.render(&lt;App {...info} />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+<pre><code class="js language-jsx">
+  &lt;div id="root">
+    &lt;div>
+      &lt;h1>Welcome adam is male, and your age is 12&lt;/h1>
+      &lt;p> info about MR adam&lt;/p>
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # An Example of spread operator  :-
+</p>
+ 
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const Button = props => {
+   const { kind, ...other } = props
+   const myClassName = kind === "primary" ? "PrimaryButton" : "SecondaryButton"
+   console.log(other) // output: {username: "Adam", age: 45, children: "Hello World!"}
+   
+   return &lt;button className={myClassName} {...other} />
+  }
+  
+  const App = () => {
+   return (
+    &lt;div>
+     &lt;<yellow>Button</yellow> kind="primary" username="Adam" age={45}>
+      Hello World!
+     &lt;/<yellow>Button</yellow>>
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+<pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div>
+      &lt;button <blue>class</blue>="PrimaryButton" <blue>username</blue>="Adam" <blue>age</blue>=<green3>"45"</green3>> Hello World! &lt;/button>
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>

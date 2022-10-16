@@ -1,0 +1,176 @@
+/* Coloring */
+
+.js .token.string,
+.js .token.template-punctuation.string {
+ color: #ce9178;
+}
+
+.js .token.comment {
+ color: #999;
+}
+
+.js .token.function-variable,
+.js .token.function,
+.js .token.function-name {
+ color: #dcdca6;
+}
+
+.js .token.keyword {
+ color: #569cd6;
+}
+
+.js .token.builtin {
+ color: #4ec9a7;
+}
+
+.js .token.number {
+ color: #b5ce96;
+}
+
+.js .token.boolean {
+ color: rgb(41, 227, 171);
+}
+.js .token.tag .class-name,
+.js .token.class-name {
+ color: rgb(41, 227, 171);
+}
+
+.js .token.literal-property.property {
+ color: #9cdcfe;
+}
+
+.js .token.operator {
+ color: rgb(219, 219, 219);
+}
+
+.js .token.punctuation,
+.js .punctuation_colons,
+.js .punctuation_semiColons,
+.js .punctuation_dots,
+.js .punctuation_commas {
+ color: rgb(219, 219, 219);
+}
+
+.js .token.punctuation_squareBrackets,
+.js .token.punctuation_curlyBrackets {
+ color: rgb(255, 238, 54);
+}
+
+.js .token.punctuation_parentheses {
+ color: #c586c0;
+}
+
+.js .token.interpolation-punctuation.punctuation {
+ color: #9cdcfe;
+}
+
+.js .token.template-string .interpolation .interpolation-punctuation.punctuation {
+ color: #f5ff9a;
+}
+
+.js .token.parameter {
+ color: rgb(182, 209, 245);
+}
+
+.js .token.regex,
+.js .token.regex-source {
+ color: #f17272cd;
+}
+
+.js .token.regex-flags {
+ color: #569cd6;
+}
+
+.js .token.regex-delimiter {
+ color: #b5ce96;
+}
+
+.js .token.constant {
+ color: #569cd6;
+}
+
+.js .token.tag {
+ color: #569cd6;
+}
+
+.js .token.tag .punctuation,
+.js .token.script.language-javascript .punctuation,
+.js .token.tag .tag .punctuation {
+ color: #b8b8b8;
+}
+
+.js .token.template-string .interpolation .punctuation {
+ color: #eeee;
+}
+
+.js .token.script.language-javascript,
+.js .token.script.language-javascript .parameter {
+ color: rgb(182, 209, 245);
+}
+
+.js .token.script.language-javascript .parameter .punctuation {
+ color: rgb(248, 248, 142);
+}
+
+.js .token.script.language-javascript .punctuation {
+ color: #569cd6;
+}
+
+.js .token.tag .attr-value .punctuation.attr-equals,
+.js .token.script.language-javascript .script-punctuation.punctuation {
+ color: #eeee;
+}
+
+.js .token.attr-name {
+ color: #c5a5c5;
+ /* color: rgb(182, 209, 245); */
+}
+
+.js .token.tag .attr-value .punctuation,
+.js .token.attr-value {
+ color: #ce9178;
+}
+
+.js .token.plain-text {
+ color: #eeee;
+}
+
+/* ############### */
+/* JSON */
+/* ############### */
+
+.json .token.property {
+ color: #50bf98;
+}
+
+.json .token.string {
+ color: #ddd09a;
+}
+
+.json .token.comment {
+ color: #6a696a;
+}
+.json .punctuation_colons,
+.json .punctuation_semiColons,
+.json .punctuation_commas {
+ color: #d5d5d5;
+}
+
+.json .token.punctuation,
+.json .punctuation_dots,
+.json .token.punctuation_squareBrackets,
+.json .token.punctuation_curlyBrackets,
+.json .token.punctuation_parentheses {
+ color: #c9c9c9;
+}
+
+.json .token.operator {
+ color: #a33e56;
+}
+
+.json .token.number {
+ color: #b5ce96;
+}
+.json .token.boolean {
+ color: #94a8f2;
+}

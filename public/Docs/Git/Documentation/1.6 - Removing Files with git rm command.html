@@ -1,0 +1,157 @@
+<p class="main-title">
+ 1.6 - Removing Files with <terminal><orange>git rm files1, file2, ..</orange></terminal> Command
+</p>
+
+<!-- 31:45 -->
+
+<p class="text">
+ Removing a file that you don't need anymore because it contains un-used code, so we remove this file from both working directory and staging area then commit the changes
+ (file remove) into our repository. In here we are going to learn how to remove files from both staging area and repository in one step. First we are going to remove
+ <yellow>file2.txt</yellow>.
+</p>
+
+<section terminal-content title-header="Remove file2.txt from the working directory" preferred-sign=">" line-num="">
+ <pre>
+  rm file2.txt
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+  Changes not staged for commit:
+    (use "git add/rm &lt;file>..." to update what will be committed)
+    (use "git restore &lt;file>..." to discard changes in working directory)
+          <red>deleted:    file2.txt</red>
+  
+  no changes added to commit (use "git add" and/or "git commit -a")
+</pre>
+</div>
+
+<p class="text">
+ As you see above, we have one change that is not staged for commit, we removed <file>file2.txt</file> from our working directory but still exist in the staging area. To
+ confirm that we type <terminal>git ls-files</terminal> command in the terminal, to view all the files in our staging are.
+</p>
+
+<section terminal-content title-header="List all files from the staging area" preferred-sign=">" line-num="">
+ <pre>
+  git ls-files
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  file1.txt
+  file2.txt
+</pre
+ >
+</div>
+
+<p class="text">
+ As you see <file>file2.txt</file> still exist, even though we removed it from our working directory. We can stage and commit our changes using the
+ <terminal>git add file2.txt</terminal> command.
+</p>
+
+<section terminal-content title-header="Commit/snapshot the changes into our repository" preferred-sign=">" line-num="">
+ <pre>
+  git add file2.txt
+</pre
+ >
+</section>
+
+<p class="text">
+ Now, the <file>file2.txt</file> is no longer exist in the staging area, to check that let's run the <terminal>git ls-files</terminal> command in the terminal again and
+ confirm our deletion. Then after that we run <terminal>git status</terminal> command to see that one change is ready to be committed.
+</p>
+
+<section terminal-content title-header="List all files from the staging area" preferred-sign=">" line-num="">
+ <pre>
+  git ls-files
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  file1.txt
+</pre
+ >
+</div>
+
+<section terminal-content title-header="Get Git Status" preferred-sign=">" line-num="">
+ <pre>
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  Changes to be committed:
+  (use "git restore --staged &lt;file>..." to unstage)
+        <red>deleted:   file2.txt</red>
+</pre>
+</div>
+
+<p class="text">
+ The <terminal>git status</terminal> command shows that <file>file2.txt</file> is in the staging area and ready to be committed, so lets commit this change and store it
+ into our repository.
+</p>
+
+<section terminal-content title-header="List all files from the staging area" preferred-sign=">" line-num="">
+ <pre>
+  git commit -m "File2 Removed"
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  [master 8b57f39] Remove File2.txt
+  1 file changed, 1 deletions(-)
+  delete mode 100644 file2.txt 
+</pre
+ >
+</div>
+
+<p class="text">
+ Now, we will learn how to remove a file from both our working directory and staging area, Git gives us a command that does both of these step in one go. To do that we
+ type <terminal>git rm file1.txt</terminal> command.
+</p>
+
+<section terminal-content title-header="List all files from the staging area" preferred-sign=">" line-num="">
+ <pre>
+  git rm file1.txt <green>(Apply this)</green> // remove a single file 
+  git rm file1.txt file2.txt // remove multiple files
+  git rm *.txt // remove all txt files
+</pre>
+</section>
+
+<div class="terminal-output">
+ <pre>
+  rm 'file1.txt'
+</pre
+ >
+</div>
+
+<p class="text">
+ The <yellow>file1.txt</yellow> is now removed from both the working directory as well as the staging area, to confirm that we will use the
+ <terminal>git ls-files</terminal> command, to view all files in the staging area.
+</p>
+
+<section terminal-content title-header="List all files from the staging area" preferred-sign=">" line-num="">
+ <pre>
+  git ls-files
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  No result
+</pre
+ >
+</div>

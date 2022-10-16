@@ -1,0 +1,153 @@
+<p class="main-title">3.7 - Express Top-Level <span class="red bold">app</span> Object - Methods</p>
+
+<!-- ********************************** -->
+<p class="sub-title get-title"><span class="red bold font-code"># app.get('url_path', CallBack)</span> - Later sections</p>
+<p class="sub-title get-title"><span class="red bold font-code"># app.post('url_path', CallBack)</span> - Later sections</p>
+<p class="sub-title get-title"><span class="red bold font-code"># app.put('url_path', CallBack)</span> - Later sections</p>
+<p class="sub-title get-title"><span class="red bold font-code"># app.patch('url_path', CallBack)</span> - Later sections</p>
+<p class="sub-title get-title"><span class="red bold font-code"># app.delete('url_path', CallBack)</span> - Later sections</p>
+<p class="sub-title get-title"><span class="red bold font-code"># app.param('url_path', CallBack)</span> - Later sections</p>
+
+<!-- ********************************** -->
+<p class="sub-title get-title"><span class="red bold font-code"># app.all('url_path', CallBack)</span></p>
+
+<p class="text">
+ This method is like the standard app.METHOD() methods, except it matches all HTTP verbs <span class="red bold">GET, POST, PUT, DELETE, etc..</span>. This app lets us
+ pass in route handlers to handle all request methods.
+</p>
+
+<p class="underline-text"># It takes the following arguments:</p>
+
+<div class="list-content custom">
+ <ul>
+  <li><span class="dark-green underline">path</span> :- it can be a string or regex representing paths or patterns of paths. The default is / .</li>
+  <li>
+   <span class="dark-green underline">callback</span> :- a function to handle requests. It can be a middleware function, a series of them, array of them, or a combination
+   of all of the above
+  </li>
+ </ul>
+</div>
+
+<p class="underline-text"># It takes the following arguments:</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express();
+
+  // Accept any http method GET, POST, PUT, DELETE, etc.. to the "/" route
+  app.all("/", function (req, res, next) {
+    res.send("hi");
+  })
+
+  app.listen(3000, () => console.log("server started"));
+</code></pre>
+</div>
+
+<!-- ********************************** -->
+<p class="sub-title get-title"><span class="red bold font-code"># app.route('url_path')</span></p>
+
+<p class="text">
+ We can use app.route to define route handlers with the given path. Returns an instance of a single route, which you can then use to handle HTTP verbs with optional
+ middleware to avoid duplicate route names
+</p>
+
+<p class="underline-text"># An Example of using app.route to attach many HTTP verbs to a single url route to avoid route duplicate :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+
+  app.route("/")
+    .get((req, res, next) => {
+      res.send("GET request called");
+    })
+    .post((req, res, next) => {
+      res.send("POST request called");
+    })
+    .all((req, res, next) => {
+      res.send("Other requests called");
+  })
+
+  app.listen(3000, () => console.log("server started"));
+</code></pre>
+</div>
+
+<p class="text">
+ Then when a GET request is made to / , we get GET request called . If a POST request is made to / , then we get POST request called . Any other kind of requests to /
+ will get us Other requests called . The order matters since all will handle all kinds of requests. So if we want to listen to specific kinds of requests in addition to
+ other kinds of requests, all should come last.
+</p>
+
+<!-- ********************************** -->
+<p class="sub-title get-title"><span class="red bold font-code"># app.set(name, value)</span> - Previous sections</p>
+<p class="sub-title get-title"><span class="red bold font-code"># app.get(name)</span> - Previous sections</p>
+<p class="sub-title get-title"><span class="red bold font-code"># app.enable(name)</span> - Previous sections</p>
+<p class="sub-title get-title"><span class="red bold font-code"># app.enabled(name)</span> - Previous sections</p>
+<p class="sub-title get-title"><span class="red bold font-code"># app.disable(name)</span> - Previous sections</p>
+<p class="sub-title get-title"><span class="red bold font-code"># app.disabled(name)</span> - Previous sections</p>
+
+<!-- ********************************** -->
+<p class="sub-title get-title"><span class="red bold font-code"># app.engine(), app.render(view, [locals], callback)</span></p>
+
+<p class="text">
+ We can use the app.render method to render HTML of a view via its callback function. It takes an optional parameter that’s an object containing variables for the view.
+</p>
+
+<p class="underline-text"># An Example of using app.render :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+
+  app.engine("ejs", require("ejs").renderFile);
+  app.set("view engine", "ejs");
+
+  app.render("index", { people: ['geddy', 'neil', 'alex'] }, (err, html) => {
+    console.log(html);
+  });
+
+  app.listen(3000, () => console.log("server started"));
+</code></pre>
+</div>
+
+<!-- ********************************** -->
+<p class="sub-title get-title"><span class="red bold font-code"># app.param([name], callback)</span></p>
+
+<p class="text">
+ We use it to trigger the route parameter, where name is the name of the parameter or an array of them, and callback is the callback function. The parameters of the
+ callback function are the request object, the response object, the next middleware, the value of the parameter and the name of the parameter, in that order. The params
+ is just like middleware or it is a middleware you must add <span class="blue bold font-code"> next() </span>
+</p>
+
+<p class="underline-text"># An Example of using app.param :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express(); // the main app
+  
+  app.param("userid", function (req, res, next, id) {
+    console.log(id);
+    next();
+  });
+  
+  app.get("/user", (req, res) => {
+    res.send("ok");
+  });
+  
+  app.get("/user/:userid", (req, res) => {
+    res.send(`params is :- ${req.params.userid}`);
+  });
+  
+  app.listen(3000, () => {
+    console.log("connecting to server ....");
+  });   
+</code></pre>
+</div>

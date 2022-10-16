@@ -1,0 +1,81 @@
+<p class="main-title">
+ 1.5 - Skipping the Staging Area with <terminal><orange>git commit -am ""</orange></terminal> Command
+</p>
+
+<p class="text">
+ We don't always need to stage our changes before <red>committing</red> them into <green>repository</green>, you must know what you are doing, if your changes don't need
+ to be reviewed then do it. As we know the <yellow>staging area</yellow> is place where you want to review your changes before committing them to repository.
+</p>
+
+<p class="text">
+ To skip the <yellow>staging area</yellow>, first let's modify both files <file>file1.txt</file> and <file>file2.txt</file> and then commit them in one step without
+ passing them to the stating area. From the command line we are going to append new line in both files.
+</p>
+
+<section terminal-content title-header="Modify Files and Get the Working Directory Status" preferred-sign=">" line-num="">
+ <pre>
+  echo "Hello, Mr Adam" >> file1.txt  // modify 'file1.txt'  
+  echo "New Information" >> file2.txt   // modify 'file1.txt'  
+  git status // get working directory status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+  Changes not staged for commit:
+    (use "git add &lt;ile>..." to update what will be committed)
+    (use "git restore &lt;ile>..." to discard changes in working directory)
+          <red>modified:   file1.txt</red>
+          <red>modified:   file2.txt</red>
+  
+  no changes added to commit (use "git add" and/or "git commit -a")
+</pre>
+</div>
+
+<img id="image" alt="" path="/img/image022.PNG" alt="" />
+
+<p class="text">
+ Now our working directory have multiple files that been modified or changes and need to be staged for commit. Instead of running <terminal>git add .</terminal> command
+ to commit our changes in two steps, we are going to use the <terminal>git commit -m</terminal> command and supply the option <code>-m</code>, which means commit all
+ modified file into repository.
+</p>
+
+<section terminal-content title-header="Commit all modified file in one step" preferred-sign=">" line-num="">
+ <pre>
+  git commit -a -m "Fix the bug that prevent users from login" // provide the -a option and -m option
+  git commit -am "Fix the bug that prevent users from login"  // combine these two option together
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  [master 8225f98] fixed bug that prevent users
+  2 files changed, 2 insertions(+), 2 deletions(-)
+</pre
+ >
+</div>
+
+<p class="text">
+ As you see we commit our files without staging them or we skipped the <yellow>staging area</yellow> step. Once again do this only if you know what you are doing, but
+ most of the times you are going to stage you code before committing it to the staging area
+</p>
+
+<section terminal-content title-header="Check Working Directory status" preferred-sign=">" line-num="">
+ <pre>
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+  nothing to commit, working tree clean
+</pre
+ >
+</div>
+
+<img id="image" alt="" path="/img/image023.PNG" alt="" />

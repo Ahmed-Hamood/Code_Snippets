@@ -1,0 +1,159 @@
+.css-block {
+ /* width: min(var(--main-doc-content-width), 100%); */
+ width: 100%;
+ max-width: var(--main-doc-content-width);
+ max-height: 500px;
+ overflow: auto;
+ position: relative;
+ /* border-radius: 5px 0 0 5px; */
+ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+ background: var(--styleSheet-block-primary-bg-color);
+ display: block;
+ opacity: 0;
+ animation: var(--pre-block-animation);
+}
+
+.css-block[full-height] {
+ max-height: none;
+}
+
+.css-block .block-header {
+ padding: 10px 12px 10px 8px;
+ font-family: Consolas, monospace, 'Segoe UI', 'Source Sans Pro', sans-serif;
+ top: 0;
+ z-index: 4;
+ position: sticky;
+ background: var(--styleSheet-block-primary-bg-color);
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+ align-items: center;
+}
+
+.css-block .block-header .block-title {
+ font-size: 0.8rem;
+ letter-spacing: 1.2px;
+ font-weight: 400;
+ color: rgb(216, 216, 216);
+ line-height: 1.5;
+ user-select: none;
+}
+
+.css-block .block-header .block-title::after {
+ position: absolute;
+ content: '';
+ height: 1px;
+ border-radius: 50px;
+ width: min(930px, 100%);
+ background: rgba(65, 65, 65, 0.6);
+ left: 0;
+ bottom: 0;
+}
+
+.css-block .block-header .copyCssTextClipboard {
+ width: 25px;
+ height: 25px;
+ position: absolute;
+
+ top: 3rem;
+ right: 0.3rem;
+ z-index: 3;
+ opacity: 0.4;
+ transition: 300ms all;
+ cursor: pointer;
+}
+
+.css-block .block-header .copyCssTextClipboard:hover {
+ opacity: 1;
+}
+
+.css-block .block-header .copyCssTextClipboard.copied {
+ animation-name: FadeInAnimation;
+ animation-duration: 400ms;
+ animation-delay: 250ms;
+}
+
+.css-block .block-header .text-lang {
+ font-size: 1rem;
+ color: #535353;
+ cursor: default;
+ position: relative;
+ user-select: none;
+ transition: 0.3s all;
+}
+
+.css-block .block-header .text-lang:hover {
+ color: rgb(198, 198, 198);
+ opacity: 1;
+}
+
+/* ######## block-content ######## */
+
+.css-block .block-content {
+ display: flex;
+ flex: row nowrap;
+ position: relative;
+ font-size: 1rem;
+ line-height: 1.3rem;
+ /* margin-top: 3px; */
+ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+ /* background: #1e272e; */
+ overflow: hidden;
+}
+
+.css-block .block-content pre {
+ font-size: 0.8rem;
+ font-family: 'JetBrains Mono', 'Consolas', monospace, 'Source Sans Pro', 'Menlo';
+ letter-spacing: 0.02rem;
+ -moz-tab-size: 2;
+ tab-size: 2;
+ font-weight: 500;
+ width: 100%;
+ color: #ce9178;
+ background: var(--styleSheet-block-primary-bg-color);
+ padding: 0.7rem 0;
+ padding-right: 0.294rem;
+ padding-left: 15px;
+ overflow-x: auto;
+ border-radius: 0 0 8px 0;
+}
+
+.css-block .block-content .css-line-num {
+ background: var(--styleSheet-block-primary-bg-color);
+ width: 28px;
+ padding: 0.8rem 0;
+ z-index: 3;
+ user-select: none;
+}
+
+.css-block .block-content .css-line-num li {
+ font-size: 0.8rem;
+ font-family: monospace, 'Source Sans Pro', sans-serif;
+ color: #636363;
+ font-weight: 400;
+ display: block;
+ text-align: center;
+ cursor: default;
+ position: relative;
+ transition: 200ms all;
+ right: -0.352rem;
+ list-style-type: none;
+}
+
+.css-block .block-content .css-line-num li.highlight-line {
+ color: rgb(207, 207, 207);
+}
+
+.css-block .block-content .css-line-num li:hover {
+ color: rgb(214, 214, 214);
+}
+
+@media screen and (max-width: 1000px) {
+ .css-block {
+  /* width: min(var(--main-doc-content-width), 93%); */
+ }
+
+ .tab-content .css-block {
+  /* width: min(var(--main-doc-content-width), 100%); */
+ }
+}

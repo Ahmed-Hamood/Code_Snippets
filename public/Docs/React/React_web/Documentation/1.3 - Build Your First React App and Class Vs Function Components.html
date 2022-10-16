@@ -1,0 +1,559 @@
+<p class="main-title">1.3 - Setup Your React App and <blue>Class</blue> Vs <blue>Function</blue> Components</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">1 - Getting Start With React App</p>
+
+<p class="text">
+ Getting started with react is fairly simple. After it's installed using <console>create-react-app [folder_name]</console> on the command line. It will create your react
+ application project with all necessary functionality you need, already build into the app.
+</p>
+
+<p class="text">
+ First thing we are going to do is clean up your files project and keep some of them, then we are going to start writing code with react. Now go a head and open your
+ project folder in your text editor like <blue>"VSCODE"</blue>. The first thing you want to look at is the file structure. <red>Create-React-App </red> has already
+ installed several files for you, and organized several of them into folders. of them into folders. Your main folders are a <blue>src</blue> folder and a
+ <blue>public</blue> folder. (Don't run your react app yet [Error Run] still we are not done)
+</p>
+
+<p class="underline-text"># The project folder files and directories :-</p>
+
+<img path="/img/image005.PNG" id="image" alt="" />
+
+<p class="text">
+ Your main folders are a src folder and a public folder. Let's clean our react project from un-necessary files something like <green3>"png/svg"</green3>,
+ <green3>"json"</green3>, <green3>"txt"</green3>, <green3>"md"</green3>, <green3>"css"</green3> and delete all javascript files except
+ <green3>"./src/App.js"</green3> (One Component), <green3>"./src/index.js"</green3> (start up file), and keep <green3>"./public/index.html"</green3> file it has the
+ <blue>&lt;div id="root"> &lt;/div></blue>
+ where all of the content will be output. You don’t need to change that, but just know that it’s there.
+</p>
+
+<p class="underline-text"># That's how our final project folder structure will look like after cleanup :-</p>
+
+<img path="/img/image006.PNG" id="image" alt="" />
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">2 - Understand <code>package.json</code> Scripts</p>
+
+<p class="text">
+ If you go to the <red>package.json</red> file, you can see that the <blue>create-react-app</blue> has installed several react scripts for you. We have four main scripts
+ <red>"start"</red>, <red>"build"</red>, <red>"test"</red> and <red>"eject"</red>. We are going to view each script individually, in your project root directory you'll
+ see a <blue>package.json</blue> file content which has all your react scripts as following.
+</p>
+
+<p class="underline-text"># the content of <red>package.json</red> file, where you find your four main scripts :-</p>
+
+<div class="terminal-block terminal code pre-block">
+ <pre><code class="js language-jsx">
+{
+  ....
+  "scripts": {
+    "start": "react-scripts start",  
+    "build": "react-scripts build",  
+    "test": "react-scripts test",  
+    "eject": "react-scripts eject"  
+  }
+  ....
+}
+</code></pre>
+</div>
+
+<p class="text">Now that we know what a script is and where to find them, let’s dive into each one and explain what it does to a React app.</p>
+
+<p class="red bold font-code fz-32 mgb-30">- <code>start</code></p>
+
+<p class="text">
+ The <red>"start"</red> script enables you to start the server on <blue>"development"</blue> NODE_ENV mode. When you run the following command react will open the app on
+ <path>http://localhost:3000</path> to view it in the browser.
+</p>
+
+<p class="underline-text"># the start script enables you to start the server on development mode, using the following command line :-</p>
+
+<div class="terminal-block terminal code pre-block">
+ <pre><code class="js language-jsx">
+> npm start
+</code></pre>
+</div>
+
+<p class="text">
+ The command above will not only start the server, but it will also update live and display the latest change occurs every time you edit your react code. In addition, it
+ will show lint errors on the terminal (console) when it fails to start the server in the form of meaningful error messages.
+</p>
+
+<p class="red bold font-code fz-32 mgb-30">- <code>build</code></p>
+
+<p class="text">
+ After creating several files or components within separate folders. These separate files need to be merged or bundled to be precise in one single file. The
+ <red>"build"</red> command script will build your react project on <blue>"production"</blue> NODE_ENV mode, it ensure that the finished project is bundled, minified and
+ optimized. You must know that the <blue>"development "</blue> mode is not optimized. React create a new folder called <blue>"build"</blue> where all your final project
+ files bundled, optimized and ready for production.
+</p>
+
+<p class="underline-text"># the build script enables you to build your application on production mode :-</p>
+
+<div class="terminal-block terminal code pre-block">
+ <pre><code class="js language-jsx">
+> npm build
+</code></pre>
+</div>
+
+<p class="text">
+ The command above will Builds the app for production to the <blue>"build"</blue> folder. It correctly bundles React in production mode and optimizes the build for the
+ best performance. The build is minified and the filenames include the hashes. Your app is ready to be deployed!
+</p>
+
+<p class="red bold font-code fz-32 mgb-30">- <code>test</code></p>
+
+<p class="text">
+ The <red>create-react-app</red> uses <green3>Jest</green3> as a test runner. The <red>"test"</red> script enables you to launch the test runner in interactive watch
+ mode. We will dive deep into <blue>testing react app</blue> later. But keep in mind that any file with <green3>.test.js</green3> or <green3>.spec.js</green3> extensions
+ will be executed when the script is launched.
+</p>
+
+<p class="underline-text"># the test script can be run on the terminal with the following commands :-</p>
+
+<div class="terminal-block terminal code pre-block">
+ <pre><code class="js language-jsx">
+> npm test
+</code></pre>
+</div>
+
+<p class="red bold font-code fz-32 mgb-30">- <code>eject</code></p>
+
+<p class="text">
+ The <red>create-react-app</red> comes with an excellent configuration that helps you build your react app with the best practices in mind to optimize it. When you run
+ <red>"eject"</red> script it will remove the single build dependency from your project if you are not satisfied with the build tool and configuration choices that
+ <red>create-react-app</red> provides for you. That means it will copy the configuration files and the transitive dependencies <blue>(Webpack, Babel, ESLint etc.)</blue>
+ as dependencies in the package.json file. If you do that, you’ll have to ensure that the dependencies are installed before building your project.
+</p>
+
+<p class="underline-text"># the eject script can be run on the terminal with the following commands :-</p>
+
+<div class="terminal-block terminal code pre-block">
+ <pre><code class="js language-jsx">
+> npm eject
+</code></pre>
+</div>
+
+<p class="text">
+ After running the command above, it won't be possible to run it again since all scripts will be available except the <red>eject</red> one. Use this command only if you
+ need to. Otherwise, stick with the default configuration. It’s better, anyway.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">3 - Building Your First React App</p>
+
+<p class="text">
+ Our react application is almost ready, before we run our react application we need to look at the <green3>./public/index.html</green3> file located in the public folder.
+ If you want to add a style sheet, a bootstrap, fonts, this is where you would add it in <green3>./public/index.html</green3>. You can also change the title here, usually
+ you don't need to touch this file very much.
+</p>
+
+<p class="text">
+ You'll also notice in <green3>index.html</green3> file, the <blue>&div></blue> with the <orange>id</orange> of <red>"root"</red>. This is where all of the content will
+ be output. We will look at our <green3>index.html</green3> file, which is an HTML file that will act as our starting point. There's some many error in our react because
+ of the files that we removed, so you have to clear your <green3>index.html</green3>
+ HTML file page and add the following content if you would like
+</p>
+
+<p class="underline-text"># Add the following code content into your <red>./public/index.html</red> file :-</p>
+
+<div class="html-block html-text code">
+ <p class="block-title">➤ ./public/index.html</p>
+ <pre><code class="js language-jsx">
+  &lt;!<blue>DOCTYPE</blue> html>
+  &lt;html lang="en">
+  
+  &lt;head>
+    &lt;meta charset="utf-8" />
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1" />
+    &lt;meta name="theme-color" content="#000000" />
+    &lt;meta name="description"content="Web site created using create-react-app" />
+    &lt;title>React App&lt;/title>
+  &lt;/head>
+  
+  &lt;body>
+    &lt;noscript> You need to enable JavaScript to run this app. &lt;/noscript>
+    &lt;div id="root"> &lt;/div>
+  &lt;/body>
+
+  &lt;/html>
+</code></pre>
+</div>
+
+<p class="text">
+ The next file you may want to look at is your <green3>./src/index.js</green3> in the src folder. Here, we are importing <red>React</red> and the <red>ReactDOM</red>. We
+ are going to the use the <red>Render()</red> method from <green3>"react-dom"</green3> module that renders everything that is placed in the first parameter the
+ <green>&lt;App></green> component into the id root as we specify <blue>getElementById</blue> in second parameter.
+</p>
+
+<p class="underline-text"># To start with ReactJS, we need to first import the react packages as follows :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ Import Packages</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+</code></pre>
+</div>
+
+<p class="underline-text"># Our <red>index.js</red> file where the main render happen :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  import App from "./App"
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))  
+</code></pre>
+</div>
+
+<p class="text">
+ The <green>&lt;App></green> component is a separate component file that we can write our html content individually, then export it so we can use it in our main render
+ page in <green3>./src/index.js</green3> file by importing it there. We are going to have <green3>./src/App.js</green3> that has an <red>App()</red> function which
+ returns a simple html content. You must export <red>App()</red> function component so we can import it within <green3>./src/index.js</green3>.
+</p>
+
+<p class="underline-text"># Our <red>App.js</red> file that has a component that renders an html content :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  function App() {
+    return (
+     &lt;div className="App">
+      &lt;h1> Hello, From ReactJS &lt;/h1>
+     &lt;/div>
+    )
+   }
+   
+   export default App   
+</code></pre>
+</div>
+
+<p class="text">
+ Now our first project is ready, yes it's without any styling will add them later. But for now let's run our first react application. Go to your command line and type the
+ following command line that will run our react application
+</p>
+
+<p class="underline-text"># Run your react application by typing the following command line:-</p>
+
+<div class="terminal-block terminal code pre-block">
+ <pre><code class="js language-jsx">
+> npm start
+
+  <green2>Compiled successfully!</green2>
+
+  You can now view reactapp in the browser.        
+
+    Local:            http://localhost:3000        
+    On Your Network:  http://192.168.56.1:3000     
+
+  Note that the development build is not optimized.
+  To create a production build, use npm run build. 
+</code></pre>
+</div>
+
+<p class="underline-text"># Browser Output Result :-</p>
+
+<img path="/img/image002.PNG" id="image" alt="" />
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">4 - Understanding <blue>Functional Components</blue> vs. <blue>Class Components</blue> in React</p>
+
+<p class="text">
+ <red>Components</red> let you develop the UI of the website independently and even we can use reusable components to implement a similar UI. In React there is two ways
+ of writing a react component. One uses a function and the other uses a class. Recently functional components are becoming more and more popular. We will help you
+ understand the difference between functional and class components.
+</p>
+
+<p class="sub-sub-title mark get-title">A - Rendering JSX</p>
+
+<p class="text">
+ The difference here is the syntax, a <red>Functional Component</red> is just a plain Javascript function or an arrow function that returns <green>JSX</green>. A
+ <red>Class Component</red> is a JavaScript class that extends React.Component which has a render method.
+</p>
+
+<p class="underline-text"># Define a functional component that returns JSX :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react";
+
+  // Plain Javascript Function 
+  function FunctionalComponent() {
+    return &lt;h1> Hello, world &lt;/h1>;
+   }
+
+  // Arrow Function ES6 
+  const FunctionalComponent = () => {
+   return &lt;h1> Hello, world &lt;/h1>;
+  };
+</code></pre>
+</div>
+
+<p class="text">
+ In other hand defining a <red>Class Component</red>, you have to make a class that <red>extends</red> <blue>React.Component</blue>. The JSX to render will be returned
+ inside the <code>render()</code> method.
+</p>
+
+<p class="underline-text"># Define a class component that returns JSX, with using Destructuring :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  import React, { Component } from "react";
+
+  // Using Destructuring to extract Component class from react
+  class ClassComponent extends Component {
+   render() {
+     return &lt;h1> Hello, world &lt;/h1>;
+   }
+  }
+</code></pre>
+</div>
+
+<p class="underline-text"># Define a class component that returns JSX, without using Destructuring :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react";
+
+  class ClassComponent extends React.Component {
+   render() {
+     return &lt;h1> Hello, world &lt;/h1>;
+   }
+  }
+</code></pre>
+</div>
+
+<p class="sub-sub-title mark get-title">B - Passing props</p>
+
+<p class="text">
+ let’s see how they are written in both class and functional components. Inside a <red>Functional Component</red>, we are passing props as an argument of the function.But
+ in <red>Class Component</red> you need to use <blue>"this"</blue> to refer to props. Let’s say we are passing props of the name <green3>"Adam"</green3> like below.
+</p>
+
+<p class="underline-text"># Calling our component while passing props :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  &lt;FunctionalComponent name="Adam" />
+  &lt;ClassComponent  name="Adam" />
+</code></pre>
+</div>
+
+<p class="underline-text"># Passing props with functional component and using Destructuring :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  const FunctionalComponent = ({ name }) => {
+    return &lt;h1> Hello, {name} &lt;/h1>;
+  };
+
+  const FunctionalComponent = (props) => {
+    return &lt;h1> Hello, {props.name} &lt;/h1>;
+   };
+</code></pre>
+</div>
+
+<p class="underline-text"># Passing props with class component and using <red>"this"</red> to refer to props :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  class ClassComponent extends React.Component {
+    render() {
+      const { name } = this.props;
+      return &lt;h1> Hello, { name } &lt;/h1>;
+   }
+  }
+</code></pre>
+</div>
+
+<p class="sub-sub-title mark get-title">C - Handling state in Functional Component And Class component</p>
+
+<p class="text">
+ To use state variables in a <red>Functional Component</red>, we need to use <blue>useState</blue> Hook, which takes an argument of initial state. in the following
+ example a useState hook takes an argument of initial state. We start with 0 clicks so the initial state of count will be 0.
+</p>
+
+<p class="underline-text"># Handling state by using state hooks in functional components :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  const FunctionalComponent = () => {
+    const [count, setCount] = React.useState(0);
+   
+    return (
+      &lt;div>
+        &lt;p>count: {count}&lt;/p>
+        &lt;button onClick={ () => setCount(count + 1)}>Click&lt;/button>
+      &lt;/div>
+    );
+   };
+</code></pre>
+</div>
+
+<p class="text">
+ The initial state can be <green>null</green>, <green>string</green> and even <green>object</green>. The useState hook return the current state using the
+ <red>count</red> variable, and a function <red>setCount()</red> that updates it, we are destructuring the array two elements of the array consider them as a state and
+ its setter.
+</p>
+
+<p class="text">
+ Handling state in a <red>Class Component</red> is a bit different, we define a constructor first. Inside the constructor you will make a state object with a state key
+ and initial value. And inside JSX, we use <blue>this.state.count</blue> to access the value of the state key we defined in the constructor to display the count. Setter
+ is pretty much the same, just different syntax.
+</p>
+
+<p class="underline-text"># Handling state by using setState method in class components :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  class ClassComponent extends React.Component {
+
+    constructor(props) {
+      super(props);
+      this.state = {
+        count: 0
+      };
+    }
+   
+    render() {
+      return (
+        &lt;div>
+          &lt;p>count: {this.state.count} times&lt;/p>
+          &lt;button onClick={() => this.setState({ count: this.state.count + 1 })}>
+          &lt;button onClick={() => this.setState((state) => { return { count: state.count + 1 } } })}>
+            Click
+          &lt;/button>
+        &lt;/div>
+      );
+    }
+   }
+</code></pre>
+</div>
+
+<p class="sub-sub-title mark get-title">D - Lifecycle Methods</p>
+
+<p class="text">
+ Lifecycles play an important role in the timing of rendering. For those of you who are migrating from class components to functional components, you must be wondering
+ what could replace lifecycle methods such as <red>componentDidMount()</red> in a <red>Class Component</red>
+ And yes, there is a hook that works perfectly for the purpose, let’s check it out!
+</p>
+
+<p class="red bold font-code fz-28 mgb-30">- componentDidMount() and useEffect(() => { }, []) Hook</p>
+
+<p class="text">
+ The lifecycle method <red>componentDidMount()</red> is called right after the first render completes. There used to be a componentWillMount that happens before the first
+ render, but it is considered legacy and not recommended to use in newer versions of React.
+</p>
+
+<p class="underline-text"># Invoke <red>componentDidMount</red> using the useEffect hook :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  const FunctionalComponent = () => {
+    React.useEffect(() => {
+      console.log("Hello");
+    }, []);
+    return &lt;h1> Hello, World &lt;/h1>;
+  };
+</code></pre>
+</div>
+
+<p class="text">
+ Replacing <red>componentDidMount()</red>, We use the useEffect hook with the second argument of <green>[]</green>. The second argument of the useState hook is normally
+ an array of a state(s) that changes, and <blue>useEffect</blue> will be only called on these selected changes. But when it’s an empty array like this example, it will be
+ called once on mounting. This is a perfect replacement for a <red>componentDidMount()</red>.
+</p>
+
+<p class="underline-text"># Using <red>componentDidMount</red> that will be invoked after the first render :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  class ClassComponent extends React.Component {
+    componentDidMount() {
+      console.log("Hello");
+    }
+   
+    render() {
+      return &lt;h1>Hello, World&lt;/h1>;
+    }
+   }
+</code></pre>
+</div>
+
+<br />
+
+<p class="red bold font-code fz-28 mgb-30">- componentWillUnmount() and useEffect(() => { return () => { ... } }, [] ) Hook</p>
+
+<p class="text">
+ Now using <red>componentWillUnmount()</red> syntax is a bit different in a <red>Functional Component</red>, we can use a <blue>useState</blue> hook for unmounting. But
+ be careful, the syntax is a bit different. What you need to do is return a function that runs on unmounting inside the <blue>useEffect</blue> function. This is usefull
+ especially when you have to clean up the subscriptions such as a clearInterval function, otherwise it can cause a severe memory leak on a bigger project. One advantage
+ of using useEffect is that we can write functions for both mounting and unmounting in the same place.
+</p>
+
+<p class="underline-text"># Using <red>useEffect</red> to unmount components :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  const FunctionalComponent = () => {
+    React.useEffect(() => {
+      return () => {
+        console.log("Unmount Successfully");
+      };
+    }, []);
+    return &lt;h1> Bye, World &lt;/h1>;
+    };
+</code></pre>
+</div>
+
+<p class="underline-text"># Using <red>componentWillUnmount</red> method to unmount components :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  class ClassComponent extends React.Component {
+    
+    componentWillUnmount() {
+      console.log("Unmount Successfully");
+    }
+   
+    render() {
+      return &lt;h1> Bye, World &lt;/h1>;
+    }
+   }
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">5 - When to use the Class Component and the Functional Component ?</p>
+
+<p class="text">
+ To answer this question we need to have a decent understanding of the state of the component. In <red>Class Component</red>, the render method will be called, whenever
+ the state of the components changes. On the other hand, the <red>Functional components</red> render the UI based on the props.
+</p>
+
+<p class="text">
+ Whenever we have the use case with the State of the component and rendering the UI based on the Component State, use the <red>Class Component</red>. It should be
+ preferred whenever we have the requirement with the state of the component.
+</p>
+
+<p class="text">
+ In <blue>React 16.8</blue> we can use state in <red>Functional Components</red> also, so there is no need to use the class components. In version 16.8 Hooks were
+ introduced and with the use of useState hook we can use the state in <red>Functional Components</red> also. It is advised that you use
+ <red>Functional Components</red> rather than <red>Class Components</red> by Facebook itself.
+</p>

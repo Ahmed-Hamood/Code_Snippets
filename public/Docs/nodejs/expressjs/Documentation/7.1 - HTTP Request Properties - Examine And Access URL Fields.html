@@ -1,0 +1,237 @@
+<p class="main-title">7.1 - HTTP Request Properties - Examine And Access URL Fields</p>
+
+<p class="text">
+ We use properties on the Request Object to access a parts of a URL. You can access various parts of the URL using built-in properties such as
+ <span class="blue bold font-code">req.protocol</span>, <span class="blue bold font-code">req.hostname</span>,<span class="blue bold font-code">req.path</span>
+ <span class="blue bold font-code">req.originalUrl</span> and <span class="blue bold font-code">req.subdomains</span>
+</p>
+
+<p class="underline-text"># An image that examine URL with various parts of the URL properties :-</p>
+
+<img path="/img/image022.PNG" alt="" id="image" />
+
+<p class="underline-text"># An Example of Accessing a URL parts using a properties of request object :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+ <gray>>> https://sales.example.com/admin?productId=45233</gray>
+  app.get("/creatures", (req, res) => {
+    console.log(req.protocol)     // "https"
+    console.log(req.hostname)     // "example.com"
+    console.log(req.path)         // "/admin"
+    console.log(req.originalUrl)  // "/admin?productId=45233"
+    console.log(req.subdomains)   // "['sales']"
+  })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">A - <span class="red bold font-code">req.protocol</span></p>
+
+<p class="text">
+ The <span class="red bold font-code">req.protocol</span> property use to get the protocol string either http or https (TLS (Transport Layer Security) Request). When the
+ "trust proxy" setting does not evaluate to false, this property will use the value of the <blue>X-Forwarded-Proto</blue> header field if present. This header can be set
+ by the client or by the proxy.
+</p>
+
+<p class="underline-text"># An Example of using req.protocol to get the protocol string :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+ <gray>>> http://www.example.com/user</gray>
+  app.get("/user", (req, res) => {
+    console.log(req.protocol) // "http"
+  })
+
+ <gray>>> https://www.example.com/user</gray>
+  app.get("/user", (req, res) => {
+    console.log(req.protocol) // "https"
+  })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">B - <span class="red bold font-code">req.host</span> And <span class="red bold font-code">req.hostname</span></p>
+
+<p class="text">
+ The <span class="red bold font-code">req.host</span> property contains the host derived from the Host HTTP header. If proxy sends more than one X-Forwarded-Host header
+ in the request, the value of the first header is used. This includes a single header with comma-separated values, in which the first value is used.
+</p>
+
+<p class="underline-text"># An Example of using req.host to get the Host from HTTP Header :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+ <gray>>> Host header : "example.com:3000"</gray>
+  app.get("/user", (req, res) => {
+    console.log(req.host) // "example.com:3000"
+  })
+
+ <gray>>> Host header : "[::1]:3000"</gray>
+  app.get("/user", (req, res) => {
+    console.log(req.host) // "[::1]:3000"
+  })
+</code></pre>
+</div>
+
+<p class="text">The <span class="red bold font-code">req.hostname</span> property contains the hostname derived from the Host HTTP header.</p>
+
+<p class="underline-text"># An Example of using req.host to get the hostname from HTTP Header :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+ <gray>>> Host header : "example.com:3000"</gray>
+  app.get("/user", (req, res) => {
+    console.log(req.hostname) // "example.com:"
+  })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">C - <span class="red bold font-code">req.path</span></p>
+
+<p class="text">The <span class="red bold font-code">req.path</span> property contain the path of the request URL.</p>
+
+<p class="underline-text"># An Example of using req.path to get path part of the request URL :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+ <gray>>> "example.com/users?sort=desc"</gray>
+  app.get("/users", (req, res) => {
+    console.log(req.path) // "/users"
+  })
+
+ <gray>>> "example.com/user/book?bookId=4522"</gray>
+  app.get("/user/book", (req, res) => {
+    console.log(req.path) // "/user/book"
+  })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">D - <span class="red bold font-code">req.originalUrl</span></p>
+
+<p class="text">The <span class="red bold font-code">req.originalUrl</span> property it return the full URL after the hostname begin.</p>
+
+<p class="underline-text"># An Example of using req.originalUrl to get The full URL :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+ <gray>>> "example.com/users?sort=desc"</gray>
+  app.get("/users", (req, res) => {
+    console.log(req.originalUrl) // "/users?sort=desc"
+  })
+
+ <gray>>> "example.com/user/book?bookId=4522"</gray>
+  app.get("/user/book", (req, res) => {
+    console.log(req.originalUrl) // "/user/book?bookId=4522"
+  })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">E - <span class="red bold font-code">req.subdomains</span></p>
+
+<p class="text">
+ The <span class="red bold font-code">req.subdomains</span> property it return An Array of subdomain in the domain name of the request like <blue>"www"</blue>.
+</p>
+
+<p class="underline-text"># An Example of using req.subdomains to get The full URL :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+ <gray>>> Host: "https://www.example.com"</gray>
+  app.get("/users", (req, res) => {
+    console.log(req.subdomains) // "['www']"
+  })
+
+ <gray>>> Host: "https://sales.cars.example.com"</gray>
+  app.get("/user/book", (req, res) => {
+    console.log(req.subdomains) // "['sales', 'cars']"
+  })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">F - <span class="red bold font-code">req.baseUrl</span></p>
+
+<p class="text">
+ The <span class="red bold font-code">req.baseUrl</span> property is the URL path on which a router instance was mounted. The
+ <span class="red bold font-code">req.baseUrl</span> property is similar to the mount path property of the app object, except
+ <span class="red bold font-code">app.mountpath</span> returns the matched path pattern(s).
+</p>
+
+<p class="underline-text"># An Example of using req.baseUrl to get the base URL :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+ <gray>>> Host: "http://www.example.com/admin/new?id=123"</gray>
+  app.get("/users", (req, res) => {
+    console.dir(req.originalUrl)  // "/admin/new?id=123"
+    console.dir(req.baseUrl) // "/admin"
+    console.dir(req.path) // "/admin/new"
+  })
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example of using req.baseUrl With Router mount :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express(); 
+    
+  const user = express.Router();
+    
+  user.get("/login", (req, res) => {
+    console.log(req.baseUrl); // "/user"
+    res.end();
+  })
+    
+  app.use("/user", user);
+    
+  app.listen(3000, (err) => {
+      if (err) console.log(err);
+      console.log("Server listening on PORT", PORT);
+  });
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example 2 of using req.baseUrl With Router mount :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express(); 
+    
+  const student = express.Router();
+
+  app.use("/student", student);
+    
+  student.get("/signup", (req, res) => {
+      if(req.baseUrl == "/student")
+      {
+          console.log("Show Singup Form");
+          res.end();
+      } else {
+          console.log("Invalid Request")
+          res.send("Invalid Route")
+      } 
+  })
+    
+  app.listen(3000, (err) => {
+      if (err) console.log(err);
+      console.log("Server listening on PORT", PORT);
+  });
+</code></pre>
+</div>

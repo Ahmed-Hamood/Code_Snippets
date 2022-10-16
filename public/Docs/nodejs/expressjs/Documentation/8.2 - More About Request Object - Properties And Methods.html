@@ -1,0 +1,213 @@
+<p class="main-title">8.2 - All About An HTTP Request Object - Properties And Methods</p>
+
+<p class="text">
+ Request Object is a request object parameter of the callback function and it used for the express application. The request Object represents the HTTP request and
+ contains properties for the request <span class="blue bold font-code">query string, parameters, body, HTTP headers, method</span> , etc.
+</p>
+
+<p class="underline-text"># The syntax of application callback function that has a request parameter :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Syntax</p>
+ <pre><code class="js language-js">
+  app.get("/", (req, res) => {  
+    console.log(req.__)
+  })  
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">
+ A - Request Object Properties - <span class="red bold font-code fz-22">req.method, req.route, req.xhr, req.ip, req.ips, req.secure, req.fresh, req.stale</span>
+</p>
+
+<p class="sub-sub-title get-title">1 - req.method</p>
+
+<p class="text">
+ The <span class="blue bold font-code">req.method</span> is used to view the http method that been use with this route. Access the HTTP method
+ <span class="red bold font-code">(GET, POST, PUT, DELETE)</span> with <span class="blue bold font-code">req.method</span>.
+</p>
+
+<p class="underline-text"># Access HTTP Method using req.method :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  app.get("/", (req, res) => { console.log(req.method) }) // GET  
+  app.post("/", (req, res) => { console.log(req.method) }) // POST 
+  app.delete("/", (req, res) => { console.log(req.method) }) // DELETE  
+  app.PUT("/", (req, res) => { console.log(req.method) }) // PUT
+</code></pre>
+</div>
+
+<p class="sub-sub-title get-title">2 - req.route</p>
+
+<p class="text">
+ The <span class="blue bold font-code">req.route</span> Object contain the current route information like
+ <span class="red bold font-code">path, method, name, key, etc..</span>
+</p>
+
+<p class="underline-text"># View the route information req.route :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  app.get("/", (req, res) => {
+    console.log(req.route);   
+  }) 
+  ###### Output ######
+  "headers": {
+    "path": "/",
+    "stack": [
+      {
+        "name": "&lt;anonymous>",
+        "keys": [],
+        "regexp": {
+          "fast_star": false,
+          "fast_slash": false
+        },
+        "method": "get"
+      }
+    ],
+    "methods": {
+      "get": true
+    }
+  }
+</code></pre>
+</div>
+
+<p class="sub-sub-title get-title">3 - req.xhr</p>
+
+<p class="text">
+ A Boolean property that is true if the request’s X-Requested-With header field is “XMLHttpRequest”, indicating that the request was issued by a client library such as
+ jQuery.
+</p>
+
+<p class="underline-tex"># Indicate that the request was issued by a client library :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  app.get("/", (req, res) => {
+    console.log(req.xhr); // true
+  }) 
+</code></pre>
+</div>
+
+<p class="sub-sub-title get-title">4 - req.ip</p>
+
+<p class="text">It specifies the remote IP address of the request which is the client.</p>
+
+<p class="underline-tex"># View the remote ip using req.ip :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  const ALLOWED_IPS = ["127.0.0.1", "123.456.7.89"];
+  const EVIL_IP = "123.45.67.89";
+
+  app.use(( req, res, next ) => {
+    const userIsAllowed = ALLOWED_IPS.indexOf(req.ip) !== -1;
+    if (!userIsAllowed) {
+      res.status(401).send("Not authorized!");
+    } else {
+      next();
+    }
+  });
+
+  app.use(( req, res, next ) {
+    if (request.ip === EVIL_IP) {
+      response.status(401).send("Not allowed!");
+    } else {
+      next();
+    }
+  });  
+
+  app.get("/",(req,res)=>{
+    console.log(req.ip); // :ffff:192.168.0.63
+  })
+</code></pre>
+</div>
+
+<p class="sub-sub-title get-title">5 - req.ips</p>
+
+<p class="text">When the trust proxy setting is true, this property contains an array of IP addresses specified in the ?x-forwarded-for? request header.</p>
+
+<p class="sub-sub-title get-title">6 - req.secure</p>
+
+<p class="text">A Boolean that is true if a TLS connection is established.</p>
+
+<p class="sub-sub-title get-title">7 - req.fresh & req.stale</p>
+
+<p class="text">
+ The <span class="red bold font-code">req.fresh</span> specifies that the request is "fresh." it is the opposite of <span class="red bold font-code">req.stale</span>.
+</p>
+<p class="text">
+ The <span class="red bold font-code">req.stale</span> It indicates whether the request is "stale," and is the opposite of
+ <span class="red bold font-code">req.fresh</span>.
+</p>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">
+ A - Request Object Methods -
+ <span class="red bold font-code fz-22">req.accepts(), req.is(), req.acceptsLanguages(), req.acceptsCharsets(), req.acceptsEncodings()</span>
+</p>
+
+<p class="sub-sub-title get-title">1 - req.accepts(types)</p>
+
+<p class="text">This method is used to check whether the specified content types are acceptable, based on the request's Accept HTTP header field.</p>
+
+<p class="underline-tex"># Check wether the content type is acceptable :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  req.accepts("html");  // ?html?  
+  req.accepts("text/html"); // ?text/html? 
+</code></pre>
+</div>
+
+<p class="sub-sub-title get-title">2 - req.is(type)</p>
+
+<p class="text">This method returns true if the incoming request's "Content-Type" HTTP header field matches the MIME type specified by the type parameter.</p>
+
+<p class="underline-tex"># Match the MIME type return boolean :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  req.is("html"); // true  
+  req.is("text/html"); // true  
+  req.is("text/*"); // true  
+</code></pre>
+</div>
+
+<p class="sub-sub-title get-title">3 - req.acceptsLanguages()</p>
+
+<p class="text">
+ Returns the first accepted language of the specified languages, based on the request’s Accept-Language HTTP header field. If none of the specified languages is accepted,
+ returns false.
+</p>
+
+<p class="underline-tex"># Check if the following languages is accepted:-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  app.get("/" , (req, res) => {
+    // Accept-Language: en-US,en;q=0.9   
+      console.log(req.acceptsLanguages("en")); // en
+      console.log(req.acceptsLanguages("en-US")); // en-US
+      console.log(req.acceptsLanguages("en-us")); // en-us
+      console.log(req.acceptsLanguages("ar")); // false
+
+    // check en-us If available If not Then check en      
+      console.log(req.acceptsLanguages(["ar" , "en-US" , "en"])); // en-US 
+      console.log(req.acceptsLanguages(["ar" , "en" , "en-US"])); // en-US 
+      console.log(req.acceptsLanguages(["ar" , "en" , "uu"])); // en-US   
+    }) 
+</code></pre>
+</div>
+
+<p class="sub-sub-title get-title">4 - req.acceptsCharsets(charset [, ...])</p>
+<p class="sub-sub-title get-title">5 - req.acceptsEncodings(encoding [, ...])</p>

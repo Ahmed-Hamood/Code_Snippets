@@ -1,0 +1,252 @@
+<p class="main-title">4.4 - React Using the <code>useRef</code> Hook</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">1 - What is <code>useRef</code> Hook ?</p>
+
+<p class="text">
+ The <code>useRef</code> hook allow us to access the DOM elements by referencing an elements that you want to access it's DOM object. <red>UseRef</red> is a build-in
+ React Hook that accepts one argument as the initial value and it return a mutable ref object that we can pass to an HTML element to get the current object DOM.
+</p>
+
+<p class="text">
+ One of the most common use case of <red>useRef</red> hook is to access <green>DOM</green> elements For example if you want to access an <blue>input</blue> element after
+ it has been mounted to the <green>DOM</green>, instead of using <blue>document.getElementById</blue>, <blue>document.querySelector</blue> or any other method for
+ selecting DOM elements like in vanilla javascript, you can use <red>useRef</red> hook.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">2 - Import the <red>useRef</red> Hook</p>
+
+<p class="text">
+ We are going to use the <red>useRef</red> Hook to access the DOM elements, first we need to import the <red>useRef</red> Hook from the React library at the top of your
+ file as the following
+</p>
+
+<p class="underline-text"># Import <red>useRef</red> hook from react module :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ Importing useRef hook</p>
+ <pre><code class="js language-jsx">
+  import React, { useRef } from "react";
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">3 - Use <red>useRef</red> to Access DOM elements</p>
+
+<p class="text">
+ Create a new ref using the <red>useRef</red> hook. In the parentheses <code>()</code>, pass in the initial value of your ref. Usually, it'll be <green>null</green> or
+ <green>undefined</green>. Then assign it to a variable. This variable will be used as a reference to access our DOM element as following.
+</p>
+
+<p class="underline-text"># An Example - Applying autoFocus in our input field when the Application or component mount/start :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useRef, useEffect } from "react"
+  import ReactDOM from "react-dom"
+
+  function App() {
+    const inputRef = useRef(null)
+
+    useEffect(() => {
+      console.log(inputRef.current)
+      inputRef.current.focus()
+    }, [])
+
+    return (
+      &lt;form>
+        &lt;label> Name &lt;/label>
+        &lt;input type="text" placeholder="Enter Name" name="name" ref={inputRef} />
+      &lt;/form>
+    )
+  }
+
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<p class="text">
+ The <red>useRef</red> has a property called <blue>current</blue>, we use it to access the actual HTML element in our case the Text input. In our InputText element we
+ have a ref attribute that will be used to reference our <blue>inputRef</blue> object <code>ref={inputRef}</code>. React will set it's <blue>.current</blue> property to
+ the Input element.
+</p>
+
+<p class="underline-text"># An Example of managing the focus of an input when the user clicks on the button :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useRef, createRef } from "react"
+  import ReactDOM from "react-dom"
+  
+  function App() {
+   const inputRef = createRef()
+   // const inputRef = React.useRef()
+  
+   const focusInput = e => {
+    e.preventDefault()
+    inputRef.current.focus()
+   }
+  
+   return (
+    &lt;form>
+     &lt;label> Name &lt;/label>
+     &lt;input type="text" placeholder="Enter Name" name="name" ref={inputRef} />
+     &lt;button onClick={focusInput}> SetFocus &lt;/button>
+    &lt;/form>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">- Example 1</p>
+
+<p class="underline-text"># In this Example we will use useRef to store our interval Count :- :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState, useRef, useEffect } from "react"
+  import ReactDOM from "react-dom"
+  
+  function App() {
+   const [count, setCount] = useState(0)
+  
+   let TimerRef = useRef(null)
+  
+   const clear = () => {
+    window.clearInterval(TimerRef.current)
+   }
+  
+   useEffect(() => {
+    TimerRef.current = window.setInterval(() => {
+     setCount(previousCount => previousCount + 1)
+    }, 1000)
+  
+    return clear
+   },[])
+  
+   return (
+    &lt;div>
+     &lt;h1>{count}&lt;/h1>
+     &lt;button onClick={clear}>Stop&lt;/button>
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<img path="/img/image020.gif" id="image" alt="" />
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">- Example 2</p>
+
+<p class="underline-text"># In this Example Three inputFields with three button to focus on each input, and submit button to log each input value :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState, useRef, useEffect } from "react"
+  import ReactDOM from "react-dom"
+  
+  function App() {
+   const nameRef = React.useRef()
+   const emailRef = React.useRef()
+   const passwordRef = React.useRef()
+  
+   const handleSubmit = e => {
+    e.preventDefault()
+  
+    const name = nameRef.current.value
+    const email = emailRef.current.value
+    const password = passwordRef.current.value
+  
+    console.log(`Name: ${name}, Email: ${email}, Password: ${password}`)
+   }
+  
+   return (
+    &lt;React.Fragment>
+     &lt;label>
+      Name:
+      &lt;input placeholder="name" type="text" ref={nameRef} />
+     &lt;/label>
+  
+     &lt;label>
+      Email:
+      &lt;input placeholder="email" type="text" ref={emailRef} />
+     &lt;/label>
+  
+     &lt;label>
+      Password:
+      &lt;input placeholder="password" type="password" ref={passwordRef} />
+     &lt;/label>
+  
+     &lt;hr />
+  
+     &lt;button onClick={() => nameRef.current.focus()}> Focus Name Input&lt;/button>
+     &lt;button onClick={() => emailRef.current.focus()}> Focus Email Input &lt;/button>
+     &lt;button onClick={() => passwordRef.current.focus()}> Focus Password Input &lt;/button>
+  
+     &lt;hr />
+     &lt;button onClick={handleSubmit}> Submit &lt;/button>
+    &lt;/React.Fragment>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<img path="/img/image021.gif" id="image" alt="" />
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">- Example 3</p>
+
+<p class="underline-text"># Fill the comment text Field and then click submit to view it on the other text field :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState, useRef, useEffect } from "react"
+  import ReactDOM from "react-dom"
+  
+  function App() {
+   const CommentText = useRef(null)
+   const ViewComment = useRef(null)
+  
+   useEffect(() => {
+    CommentText.current.focus()
+   }, [])
+  
+   const onCLickHandler = () => {
+    ViewComment.current.value = CommentText.current.value
+    CommentText.current.focus()
+    CommentText.current.value = ""
+   }
+  
+   return (
+    &lt;React.Fragment>
+     &lt;label>Write your comment :-&lt;/label> &lt;br />
+     &lt;textarea ref={CommentText} />
+     &lt;div>
+      &lt;button onClick={onCLickHandler}>Submit&lt;/button>
+     &lt;/div>
+     &lt;label>View your Comments &lt;/label>
+     &lt;br />
+     &lt;textarea ref={ViewComment} disabled />
+    &lt;/React.Fragment>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))  
+</code></pre>
+</div>
+
+<img path="/img/image022.gif" id="image" alt="" />

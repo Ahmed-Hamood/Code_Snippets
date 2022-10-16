@@ -1,0 +1,88 @@
+<p class="main-title">3.5 - Understand Express Top-Level <span class="red bold">app</span> And Create Sub Express App Instance</p>
+
+<p class="text">
+ An Express Provides inside it's <span class="red bold">app</span> Object Properties, Methods and Events. The <span class="red bold">app</span> object is created by
+ calling the top-level <span class="red bold font-code">express()</span> module.
+</p>
+
+<p class="underline-text"># Using the express module :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+</code></pre>
+</div>
+
+<p class="text">The core part of an Express app is the Application object. It’s the application itself. What can it do ?</p>
+
+<p class="underline-text"># App object methods are used for :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>Routing and handling HTTP requests</li>
+  <li>configuring middleware</li>
+  <li>Rendering HTML views</li>
+  <li>Set configuration settings like registering template engine and server behavior</li>
+ </ul>
+</div>
+
+<br />
+
+<!-- ########################################## -->
+<p class="main-title bold">- Create an Express Application and sub Express App</p>
+
+<p class="underline-text"># Create main express Application all routes will go thru it</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+
+  app.get("/", (req, res) => {
+    res.send("hello world");
+  });
+
+  app.listen(3000);
+</code></pre>
+</div>
+
+<p class="text">
+ A sub-app is an instance of express that may be used for handling the request to a route. the sub-app have the default settings and it does not inherit the settings from
+ the main app.
+</p>
+
+<p class="underline-text"># Create a sub-app to be handles by the main app</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+
+  const app = express() // the main app
+  const admin = express() // the sub app 
+
+  // GET - http://localhost:3000/
+  app.get("/", (req, res) => {
+    res.send("Main Homepage")
+  })
+
+  // App is the main route will route requests to other sub-apps once /admin endpoint hits
+  app.use("/admin", admin); // Mount the sub app on /admin  
+  
+  // GET - http://localhost:3000/admin/
+  admin.get("/", function (req, res) {  res.send("Admin Homepage") })
+  
+  // POST - http://localhost:3000/admin/create
+  admin.post("/create", function (req, res) {  res.send("Admin create")  })
+  
+  // DELETE - http://localhost:3000/admin/delete
+  admin.delete("/delete", function (req, res) {   res.send("Admin delete") })
+  
+  app.listen(3000, () => {
+    console.log("connecting to server ....");
+  });
+</code></pre>
+</div>

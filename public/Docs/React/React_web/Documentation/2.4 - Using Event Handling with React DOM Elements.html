@@ -1,0 +1,748 @@
+<p class="main-title">2.4 - Using Event Handling with React DOM JSX Elements</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">1 - What is Event Handler ?</p>
+
+<p class="text">
+ <red>Handling Events</red> with React elements is very similar to handling events on DOM elements. There some syntax differences like in <blue>React</blue> events are
+ named using camelCase, rather than lower case instead of writting <red>"onclick"</red>, we should write it <red>"onClick"</red> so react can consider it as event.
+</p>
+
+<p class="underline-text"># The differences between HTML and react when using on click event :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <pre><code class="js language-jsx">
+ In HTML : &lt;button <purple2>onclick</purple2>=<green4>"activateLasers()"</green4>> Click ME &lt;/button>
+ In ReactJS : &lt;button onClick={activateLasers()}> Click ME &lt;/button>
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">2 - Passing Function to Event Handlers And PreventDefault</p>
+
+<p class="text">
+ And also with JSX you can pass functions as the event handler, rather than writing a string of statements that return something. We know whenever we need to perform an
+ action after clicking a button, link or pretty much any element, you'll use the onclick or <red>onClick</red> event handler in react.
+</p>
+
+<p class="text">
+ Another difference in react event handler is that you can't return false to prevent default behavior link in normal HTML. You must call
+ <red>"preventDefault"</red> explicitly. below we will have a form that will be submitted on click.
+</p>
+
+<p class="underline-text"># We are going to call <red>preventDefault</red> to prevent the default behavior of submitting our form in both HTML And React :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ PreventDefault In HTML</p>
+ <pre><code class="js language-jsx">
+  &lt;form onsubmit="console.log('You clicked submit.'); return false">
+    &lt;button type="submit">Submit&lt;/button>
+  &lt;/form>
+
+  &lt;form onsubmit="doSomething()">
+    &lt;button type="submit">Submit&lt;/button>
+  &lt;/form>
+
+  &lt;script>
+    function doSomething() {
+      console.log('You clicked submit.'); 
+      return false
+    }
+  &lt;/script>
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ PreventDefault In React</p>
+ <pre><code class="js language-jsx">
+  function Form() {
+    function handleSubmit(e) {
+      e.preventDefault();
+      console.log('You clicked submit.');
+    }
+  
+    return (
+      &lt;form onSubmit={handleSubmit}>
+        &lt;button type=<green4>"submit"</green4>> Submit &lt;/button>
+      &lt;/form>
+    );
+  }
+</code></pre>
+</div>
+
+<p class="text">
+ The value <green3>e</green3> is what’s called a <blue>SyntheticEvent</blue>. Every event handler is passed a <blue>SyntheticEvent</blue>, which is an object that
+ contains useful metadata related to the event, such as the target element’s value.
+</p>
+
+<p class="text">
+ Another difference is that in React the event handler <red>onClick</red> can only receive one function, while in the HTML/JS approach, any number of JS functions can be
+ passed to an <red>onclick</red> event handler. 
+</p>
+
+<p class="text">
+ Finally, React events always bubble, while in JavaScript some events - such as onchange for example - do not bubble up. This means that if you have an element or
+ component nested inside a container, and you assign an event handler to the container, when you click the nested element the event will still be captured. This happens
+ even if you don’t directly click the container, because events bubble up to all their parents and ancestors.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">3 - Using an <red>onClick</red> Event Handler in a <blue>Functional Component</blue></p>
+
+<p class="text">
+ In functional component, the event handler is passed as an attribute to an element or component. This attribute receives a function that describes what happen when the
+ user interacts with the element. If the user clicks the element multiple times, the event is triggered and the function is called multiple times. Let's create an event
+ handler called <red>onClick</red> and pass a function that will run when some click on the button.
+</p>
+
+<p class="underline-text"># An Example of onClick event handler :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const App = () => {
+   function greetUser() {
+    alert("Welcome to our Website")
+   }
+  
+   return (
+    &lt;div onClick={greetUser()}>
+     &lt;p> Click the Button Below &lt;/p>
+     &lt;button onClick={greetUser}> Click Me &lt;/button>
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.body)  
+</code></pre>
+</div>
+
+<p class="text">
+ When you run this code, you should see the message alert <green3>"Welcome to our Website"</green3> once the browser opens. This is the result of
+ <code>&lt;div onClick={greetUser()}></code> calling the function immediately inside the JSX code.
+</p>
+
+<p class="text">
+ And if you click the button, the message alert <green3>"Welcome to our Website"</green3> will be shown again, because <code>button onClick={greetUser}></code> called the
+ <blue>greetUser</blue> function above. The <code>div onClick={greetUser()}</code> will call the function instead of waiting for any click. Let's remove the
+ <blue>()</blue> from our div <code>&lt;div onClick={greetUser}></code>, the alert message won't appear instead if click the text you should see the alert message every
+ time you click the text or button the alert message will run.
+</p>
+
+<div class="text-box note">
+ We do not want to execute a function inside of the event handler using <span class="blue bold font-code">&lt;div onClick={greetUser()}</span>. if we passed in the
+ function with parentheses, the function will execute every time the component renders. To pass arguments to your function we should use inline function in order to do
+ that.
+</div>
+
+<p class="underline-text"># Common mistake doing the following :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ GOOD</p>
+ <pre><code class="js language-jsx">
+  &lt;button onClick={sayHello}>
+    Click me!
+  &lt;/button>
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ BAD</p>
+ <pre><code class="js language-jsx">
+  &lt;button onClick={sayHello()}>
+    Click me!
+  &lt;/button>
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">4 - Call an Inline Function in an onClick Event Handler</p>
+
+<p class="text">
+ An <red>Inline Function</red> is a function which is defined inside of the event handler which is <red>onClick</red> handler. When the <blue>React</blue> component
+ render the function is assigned inside the event handler, which is inside of the component render method (or return, in the case of functional React components).
+</p>
+
+<p class="text">
+ You’d use an inline function to pass in additional arguments to a function, such as a value from a loop, or the target button’s value. Let’s take a look at an example
+ using an inline function to run an alert method to view message to the user on click event.
+</p>
+
+<p class="underline-text"># An Example of assigning an arrow function to the event event that return an alert message :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function App() {
+    return (
+      &lt;button onClick={ () => alert('hello') }>
+        Click me
+      &lt;/button>
+    );
+  }
+  
+  ReactDOM.render(&lt;App />, document.body)
+</code></pre>
+</div>
+
+<p class="underline-text"># In the following example we are going to pass arguments to our inline function :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function App() {
+   const greetUser = msg => {
+    alert(msg)
+   }
+  
+   return &lt;button onClick={ () => greetUser("Welcome to our website") }>
+    Click me
+   &lt;/button>
+  }
+  
+  ReactDOM.render(&lt;App />, document.body)
+</code></pre>
+</div>
+
+<div class="text-box note">
+ A common mistake when using inline functions is not including parentheses after the function name. Unlike calling a function that’s not inline, one that’s defined inside
+ of the component’s body, we need to execute the function if it’s inline.
+</div>
+
+<p class="underline-text"># Common mistake doing the following :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ GOOD</p>
+ <pre><code class="js language-jsx">
+  &lt;button onClick={ () => functionName() ) }>
+    Click me!
+  &lt;/button>
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ BAD</p>
+ <pre><code class="js language-jsx">
+  &lt;button onClick={ () => functionName }>
+    Click me!
+  &lt;/button>
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">5 - Call Multiple Functions in an onClick Event Handler</p>
+
+<p class="text">
+ find yourself wanting to call multiple functions after clicking a button. For example, updating a component’s state and simultaneously showing an alert. We can do this
+ by running inline function with a block of code inside the <red>onClick</red> handler, or calling multiple functions.
+</p>
+
+<p class="undserline-text"># Let’s start with defining a block of code inside of the onClick handler itself:</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function App() {
+   const greetUser = msg => {
+    alert(msg)
+   }
+  
+   return (
+    &lt;button
+      onClick={() => {
+      const username = "James"
+      const message = "Welcome " + username
+      greetUser(message)
+      alert("Start...")
+     }}>
+     Click me!
+    &lt;/button>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.body)
+</code></pre>
+</div>
+
+<p class="text">
+ As you see in the example above, it is possible to define a block of code inside of the onClick handler within inline function. However, depending on the amount of code
+ that you want to run, the block scope can be difficult to read.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">6 - Passing Events Object to an Inline Function</p>
+
+<p class="text">
+ Another common use of an inline function is to pass in a button’s event value as an argument. This is also very common when using input elements and the onChange event
+ handler. Take a look at the example below. Notice the value <green3>e</green3> that’s returned from the onClick event handler:
+</p>
+
+<p class="undserline-text"># An Example of passing onClick Event handler thru inline function :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function App() {
+   const GetValueText = e => {
+    alert(e.target.value)
+   }
+  
+   return (
+    &lt;button value="hello Welcome" onClick={ e => GetValueText(e) }>
+        Click me!
+    &lt;/button>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.body)
+ </code></pre>
+</div>
+
+<p class="text">
+ The value <green3>e</green3> is what’s called a SyntheticEvent. Every event handler is passed a SyntheticEvent, which is an object that contains useful metadata related
+ to the event, such as the target element’s value.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">7 - Pass a Value from an Array to an Inline Function</p>
+
+<p class="text">
+ The final example we’ll explore is how to pass in a value from an array to an inline function that’s inside of the onClick event handler. One common use of arrays in
+ React is to render multiple components per item in the array.
+</p>
+
+<p class="undserline-text"># An admin dashboard which displays a list of users and provides admins with the ability to edit or delete users :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from 'react';
+
+  function UserList() {
+    const users = ['James', 'Nora', 'Matthew', 'Joe', 'Susan'];
+    
+    function deleteUserWithName(name) {
+      ...
+    }
+    
+    return (
+      &lt;ul>
+        {users.map(name => (
+          &lt;li>
+            &lt;button onClick={ () => deleteUserWithName(name) }>
+              Click me!
+            &lt;/button>
+          &lt;/li>
+        ))}
+      &lt;/ul>
+    );
+  }
+  
+  export default UserList;
+ </code></pre>
+</div>
+
+<p class="text">
+ The code above first defines a new array called users with a list of first names. Then, it loops through those names, rendering a list and button element for each value
+ inside the array. Finally, it passes in the name from the array as an argument of the deleteUserWithName function.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">8 - Using the <code>onChange</code> Event to Track Input Value</p>
+
+<p class="text">
+ The <code>onChange</code> Event in <blue>React</blue> detect when the value of an <green3>Input Element</green3> changes. As you know Javascript allow us to listen to an
+ input change in value by providing the attribute <red>onchange</red>. In React the <red>onchange</red> event handler with be the dame name but camel-cased
+ <code>onChange</code>.
+</p>
+
+<p class="text">
+ We will understand how to use <code>onChange</code> event handler inside of a React Component and how the <code>onChange</code> event handler works with forms, state,
+ and how you can pass the value to a function. The following is a simple example on how to add <code>onChange</code> event to an input in a React Component.
+</p>
+
+<p class="undserline-text"># Using onChange event inside our input element :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const App = () => {
+
+   function HandleInputChange(e) {
+    console.log(e.target.value)
+   }
+  
+   return (
+    &lt;form>
+     &lt;label>Name:&lt;/label>
+     &lt;input type="text" onChange={HandleInputChange} />
+    &lt;/form>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<p class="text">
+ In the example above, we have a single input element field which, when you type something in it, passes it's current value to the <red>HandleInputChange</red> function.
+ The <code>onChange</code>event can be applied to <green3>checkbox</green3> or <green3>select</green3> element in React Component.
+</p>
+
+<p class="text">
+ We have an example that store the current input value inside od a state value, to keep track of the current input field, and displaying or use them on your application
+ to send data to the server .
+</p>
+
+<p class="undserline-text"># An Example of saving input value inside a state using <red>onChange</red> in a React Component :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState } from "react"
+  import ReactDOM from "react-dom"
+  
+  const App = () => {
+   const [Name, setName] = useState("")
+  
+   function SubmitData(e) {
+    e.preventDefault()
+    console.log(Name)
+   }
+  
+   return (
+    &lt;form>
+     &lt;label>Name:&lt;/label>
+     &lt;input name="Name" onChange={e => setName(e.target.value)} />
+     &lt;button onClick={SubmitData}> Submit &lt;/button>
+    &lt;/form>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">9 - Understanding the SyntheticEvent, and Some Supported Events</p>
+
+<p class="text">
+ Your event handler will pass an instance of <red>SyntheticEvent</red> a cross-browser wrapper around the browser’s native event. It has the same interface as the
+ browser’s native event, including <red>stopPropagation()</red> and <red>preventDefault()</red>, except the events work identically across all browsers.
+</p>
+
+<p class="text">
+ imagine an event that fires when the user click, this event in chrome called A in Safari called B, in such case, we will need to make different implementations for each
+ browser. What this wrapper does is registering all the different names for the same event effect, click event in our case, with only one name, so in a case when we want
+ to listen to our clicking effect instead of being listening to A for chrome and B for Safari we just use onClick, which is the wrapper react creates around the real
+ event.
+</p>
+
+<p class="text">
+ So whenever we are triggering an event in a React component, we are not actually dealing with the real DOM event, instead, we are dealing with React's custom event type,
+ a <red>SyntheticEvent</red>. Every SyntheticEvent object has the following event properties:
+</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>boolean bubbles</li>
+  <li>boolean cancelable</li>
+  <li>DOMEventTarget currentTarget</li>
+  <li>boolean defaultPrevented</li>
+  <li>number eventPhase</li>
+  <li>boolean isTrusted</li>
+  <li>DOMEvent nativeEvent</li>
+  <li>void preventDefault()</li>
+  <li>boolean isDefaultPrevented()</li>
+  <li>void stopPropagation()</li>
+  <li>boolean isPropagationStopped()</li>
+  <li>void persist()</li>
+  <li>DOMEventTarget target</li>
+  <li>number timeStamp</li>
+  <li>string type</li>
+ </ul>
+</div>
+
+<!-- ************************************** -->
+<p class="sub-sub-title mark get-title">A - Clipboard Events</p>
+
+<p class="underline-text"># Events Names and properties :</p>
+
+<div class="js-block code">
+ <pre><code class="js language-jsx">
+  Event names: onCopy onCut onPaste
+  Properties: DOMDataTransfer clipboardData
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ Type Text then copy it</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function App() {
+   const EventHandle = e => {
+    e.preventDefault()
+    console.log("Text Copied")
+    console.log(e.target.value)
+    console.log(e)
+   }
+  
+   return (
+    &lt;div>
+     &lt;input onCopy={EventHandle} type="text" placeholder="Enter your name" />
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.body)
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  Text Copied
+  My Text
+  SyntheticBaseEvent {
+    bubbles: true,
+    cancelable: true,
+    clipboardData: { dropEffect: "none", effectAllowed: "uninitialized", items: DataTransferItemList, types: Array(0), files: FileList },
+    currentTarget: null,
+    defaultPrevented: true,
+    eventPhase: 3,
+    isDefaultPrevented(),
+    isPropagationStopped(),
+    isTrusted: true,
+    nativeEvent: ClipboardEvent {isTrusted: true, clipboardData: DataTransfer, type: "copy", target: input, currentTarget: null, …}
+    target: input { DOM Properties }
+    timeStamp: 6142.899999991059
+    type: "copy"
+    _reactName: "onCopy"
+  }
+</code></pre>
+</div>
+
+<!-- ************************************** -->
+<p class="sub-sub-title mark get-title">B - Keyboard Events</p>
+
+<p class="underline-text"># Events Names and properties :</p>
+
+<div class="js-block code">
+ <pre><code class="js language-jsx">
+  Event names: onKeyDown onKeyPress onKeyUp
+  Properties: 
+  boolean altKey
+  number charCode
+  boolean ctrlKey
+  boolean getModifierState(key)
+  string key
+  number keyCode
+  string locale
+  number location
+  boolean metaKey
+  boolean repeat
+  boolean shiftKey
+  number which
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ Type Text then copy it</p>
+ <pre><code class="js language-jsx">
+  import React, { useState } from "react"
+
+  const ExampleComponent = (() => {
+    const [counter, setCounter] = useState()
+  
+    function handelArrowBtn(event) {
+      if (event.keyCode === 40) { //down arrow button
+        setCounter(counter - 1)
+      } else if (event.keyCode === 38) { // up arrow button
+        setCounter(counter + 1)
+      }
+    }
+  
+    return (
+      &lt;div>
+        &lt;input
+          type="number"
+          value={counter}
+          onKeyDown={handelArrowBtn}
+         />
+      &lt;/div>
+    )
+  })
+  
+  export default ExampleComponent
+</code></pre>
+</div>
+
+<!-- ************************************** -->
+<p class="sub-sub-title mark get-title">C - Focus Events</p>
+
+<p class="underline-text"># Events Names and properties :</p>
+
+<div class="js-block code">
+ <pre><code class="js language-jsx">
+  Event names: onFocus onBlur
+  Properties: DOMEventTarget relatedTarget
+</code></pre>
+</div>
+
+<p class="underline-text"># The <red>onFocus</red> event is called when the user clicks on a text input :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  function Example() {
+    return (
+      &lt;input
+        onFocus={(e) => {
+          console.log('Focused on input');
+        }}
+        placeholder="onFocus is triggered when you click this input."
+      />
+    )
+  }  
+</code></pre>
+</div>
+<p class="underline-text"># The <red>onBlur </red> event is called when the user clicks outside of a focused text input :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  function Example() {
+    return (
+      &lt;input
+        onBlur={(e) => {
+          console.log('Triggered because this input lost focus');
+        }}
+        placeholder="onBlur is triggered when you click this input and then you click outside of it."
+      />
+    )
+  }  
+</code></pre>
+</div>
+
+<!-- ************************************** -->
+<p class="sub-sub-title mark get-title">D - Form Events</p>
+
+<p class="underline-text"># Events Names and properties :</p>
+
+<div class="js-block code">
+ <pre><code class="js language-jsx">
+  Event names: onChange onInput onInvalid onReset onSubmit 
+  Properties: DOMEventTarget relatedTarget
+</code></pre>
+</div>
+
+<!-- ************************************** -->
+<p class="sub-sub-title mark get-title">E - Mouse Events</p>
+
+<p class="underline-text"># Events Names and properties :</p>
+
+<div class="js-block code">
+ <pre><code class="js language-jsx">
+  Event names: onClick onContextMenu onDoubleClick onDrag onDragEnd onDragEnter onDragExit
+  onDragLeave onDragOver onDragStart onDrop onMouseDown onMouseEnter onMouseLeave
+  onMouseMove onMouseOut onMouseOver onMouseUp
+
+  Properties:
+  boolean altKey
+  number button
+  number buttons
+  number clientX
+  number clientY
+  boolean ctrlKey
+  boolean getModifierState(key)
+  boolean metaKey
+  number pageX
+  number pageY
+  DOMEventTarget relatedTarget
+  number screenX
+  number screenY
+  boolean shiftKey
+</code></pre>
+</div>
+
+<!-- ************************************** -->
+<p class="sub-sub-title mark get-title">F - Selection Events</p>
+
+<p class="underline-text"># Events Names and properties :</p>
+
+<div class="js-block code">
+ <pre><code class="js language-jsx">
+  Event names: onSelect
+</code></pre>
+</div>
+
+<!-- ************************************** -->
+<p class="sub-sub-title mark get-title">G - Touch Events</p>
+
+<p class="underline-text"># Events Names and properties :</p>
+
+<div class="js-block code">
+ <pre><code class="js language-jsx">
+  Event names: onTouchCancel onTouchEnd onTouchMove onTouchStart
+  Properties:
+  boolean altKey
+  DOMTouchList changedTouches
+  boolean ctrlKey
+  boolean getModifierState(key)
+  boolean metaKey
+  boolean shiftKey
+  DOMTouchList targetTouches
+  DOMTouchList touches
+</code></pre>
+</div>
+
+<!-- ************************************** -->
+<p class="sub-sub-title mark get-title">H - Wheel Events</p>
+
+<p class="underline-text"># Events Names and properties :</p>
+
+<div class="js-block code">
+ <pre><code class="js language-jsx">
+   Event names: onWheel
+   Properties:
+    number deltaMode
+    number deltaX
+    number deltaY
+    number deltaZ
+</code></pre>
+</div>
+
+<!-- ************************************** -->
+<p class="sub-sub-title mark get-title">I - Image Events</p>
+
+<p class="underline-text"># Events Names and properties :</p>
+
+<div class="js-block code">
+ <pre><code class="js language-jsx">
+  Event names: onLoad onError
+  Properties: onAnimationStart onAnimationEnd onAnimationIteration
+</code></pre>
+</div>

@@ -1,0 +1,338 @@
+<p class="main-title">2.5 - How To Set-Up Application Config Easily</p>
+
+<p class="text mgt-10">
+ As a developer when building a server side application, you would like to store your application configuration settings in a proper way, where you can easily handle the
+ application settings <span class="blue bold">"key":"value"</span>. It is a crucial part of the system as our application will have lots of configurable elements, so it
+ must be handled properly throughout the codebase. So we will create a configuration file to manage config variables for different environments
+ <span class="red bold">(development, testing, staging and production)</span>.
+</p>
+
+<p class="underline-text"># When building any kind of server side app, you will eventually have the following thoughts:</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>I would like to bind my app to a specific port.</li>
+  <li>I would like to enter a connection string so I can connect to my database.</li>
+  <li>I would like to use a third-party service through a provided API key or credentials.</li>
+  <li>I would like to Keep my encryption keys as a secret.</li>
+ </ul>
+</div>
+
+<p class="text">
+ Instead of defining parts of the config in separate files, it is strongly advised to have a <span class="red bold">config.js</span>
+ file that will hold all configuration in a centralized way. This will help other developers to locate and adjust config values much more easily, and by having one
+ centralized file ensures reusability of config values and also it can give a quick insight about the project and what technologies/services/libraries are used.
+</p>
+
+<p class="text">It is <span class="solid-red bold">a Bad Practice</span> to use your application setting as following</p>
+
+<p class="underline-text"># Assigning your variables settings within your application <b class="red bold">( Bad Practice )</b> :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js ( Bad Practice )</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  const port = 3000;
+
+  require("./db")()
+  
+  app.listen(port, () => {
+   console.log("Listening on port", port);
+  });
+</code></pre>
+</div>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./db.js ( Bad Practice )</p>
+ <pre><code class="js language-js">
+  const mongoose = require('mongoose');
+
+  module.exports = (dbKey) => {
+    const host = 'localhost';
+    const port = 27017;
+    const name = 'db';
+
+    const connectionString = `mongodb://${host}:${port}/${name}`;
+    mongoose.connect(connectionString);
+  };
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">A - Create a <span class="red bold">config</span> Javascript File</p>
+
+<p class="text">
+ let’s create <span class="red bold">config.js</span> in root <span class="blue bold font-code">./config.js</span>. The idea is
+ <span class="red bold">development</span> is the default environment and contains all config variables. You only repeat config variables in other environments if you
+ want to override the default config variable values found in the default development environment.
+</p>
+
+<p class="underline-text"># Create a file in the root directory called <b class="red bold">config.js</b> or any other name as you prefer :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./config.js</p>
+ <pre><code class="js language-js">
+  const env = process.env.NODE_ENV;
+
+  if(!env){
+    console.log("Environment variable is not available");
+    process.exit(1);
+  }
+
+  const development = {
+    app: {
+      port: 3000,
+    },
+    db: {
+      host: "localhost",
+      port: 27017,
+      name: "db",
+    },
+  }
+  
+  const production = {
+    app: {
+      port: 4850,
+    },
+    db: {
+      host: "https://db.com/4521",
+      port: 45235,
+      name: "MuDB",
+    },
+  }
+  
+  const config = {
+    development,
+    production,
+  }
+  
+  module.exports = config[env]
+</code></pre>
+</div>
+
+<p class="text">
+ Use our custom setting from <span class="blue bold font-code">./config.js</span> and configure our application on them easily. First we require our
+ <span class="red bold">config.js</span> file then assign each variables settings to it. Our app is now aware about its environment; however, when multiple developers are
+ working on a project, their machine setup can (and will) differ from each other and also from the server they are deploying the app.
+</p>
+
+<p class="underline-text"># Our application will use the <b class="red bold">config.js</b> file :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  const mongoose = require("mongoose")
+  const config = require("./config")
+
+  console.log("Node Environment is : ", process.env.NODE_ENV)
+  
+  const app_port = config.app.port
+  const host = config.db.host
+  const DB_port = config.db.port
+  const name = config.db.name
+  
+  app.get("/", (req, res) => {
+    res.send(" &lt;h1> Hello World Normal &lt;/h1> ")
+  })
+  
+  const connectionString = `mongodb://${host}:${DB_port}/${name}`
+  console.log(connectionString);
+  mongoose.connect(connectionString)
+  
+  console.log(config);
+  
+  app.listen(app_port, () => {
+    console.log("Listening on PORT ", app_port)
+  })
+</code></pre>
+</div>
+
+<p class="underline-text"># Let's run our application in terminal :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> nodemon server.js
+  <blue>#######################################################</blue>
+  [nodemon] starting `node server.js`
+  Node Environment is : undefined
+  mongodb://localhost:27017/db
+  {
+    app: { port: 3000 },
+    db: { host: 'localhost', port: 27017, name: 'db' }
+  }
+  Listening on PORT 3000
+  <blue>#######################################################</blue>
+</code></pre>
+</div>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> $ NODE_ENV=production nodemon server.js
+  <blue>#######################################################</blue>
+  [nodemon] starting `node server.js`
+  Node Environment is : production
+  mongodb://mongoDB.com:45235/MuDB
+  {
+    app: { port: 4850 },
+    db: { host: 'mongoDB.com', port: 45235, name: 'MuDB' }
+  }
+  Listening on PORT 4850
+  <blue>#######################################################</blue>
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">B - Use <span class="red bold">config.js</span> With <span class="red bold">.Env</span></p>
+
+<p class="text">
+ We can use <span class="red bold">DotEnv</span> to hold variables and pass them into <span class="blue bold font-code">./config.js</span> file. All your express settings
+ will be configure from <span class="blue bold font-code">.env</span>
+</p>
+
+<p class="underline-text"># Let's define our variables inside .env file :-</p>
+
+<div class="code-block code pre-block">
+ <p class="block-title">./.env</p>
+ <pre><code class="js language-js">
+  DEV_APP_PORT=3000
+  DEV_DB_HOST=localhost
+  DEV_DB_PORT=27017
+  DEV_DB_NAME=db
+
+  PROD_APP_PORT=4503
+  PROD_DB_HOST=mongoDB.com
+  PROD_DB_PORT=45235
+  PROD_DB_NAME=MuDB
+
+  API_KEY=supersecret
+</code></pre>
+</div>
+
+<p class="text">
+ Inside <span class="blue bold font-code">./config.js</span> we use <span class="blue bold font-code">dotenv</span> module to get our settings from
+ <span class="blue bold font-code">.env</span> to environment variables then assign them using
+ <span class="blue bold font-code">process.env</span>
+</p>
+
+<p class="underline-text"># now we use dotenv module inside our <b class="red bold">config.js</b> file :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./config.js</p>
+ <pre><code class="js language-js">
+  require('dotenv').config();
+
+  const env = process.env.NODE_ENV || "development";
+  
+  const development = {
+    app: {
+      port:  parseInt(process.env.DEV_APP_PORT) || 3000,
+    },
+    db: {
+      host:  process.env.DEV_DB_HOST,
+      port: parseInt(process.env.DEV_DB_PORT),
+      name:  process.env.DEV_DB_NAME,
+    },
+  }
+  
+  const production = {
+    app: {
+      port:  parseInt(process.env.PROD_APP_PORT),
+    },
+    db: {
+      host:  process.env.PROD_DB_HOST,
+      port: parseInt(process.env.PROD_DB_PORT),
+      name:  process.env.PROD_DB_NAME,
+    },
+  }
+  
+  const config = {
+    development,
+    production,
+  }
+  
+  module.exports = config[env]  
+</code></pre>
+</div>
+
+<p class="text">
+ Implement your configuration settings from <span class="blue bold font-code">./config.js</span>, and access settings depend on your current environment, which will be
+ determine at the startup of your application.
+</p>
+
+<p class="underline-text"># Our application will use the <b class="red bold">config.js</b> file :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  const mongoose = require("mongoose");
+  const config = require("./config")
+
+  console.log("Node Environment is : ", process.env.NODE_ENV)
+  
+  const app_port = config.app.port
+  const host = config.db.host
+  const DB_port = config.db.port
+  const name = config.db.name
+  
+  app.get("/", (req, res) => {
+    res.send(" &lt;h1> Hello World Normal &lt;/h1> ")
+  })
+  
+  const connectionString = `mongodb://${host}:${DB_port}/${name}`
+  console.log(connectionString);
+  mongoose.connect(connectionString)
+  
+  console.log(config);
+  console.log(process.env.API_KEY);
+  
+  app.listen(app_port, () => {
+    console.log("Listening on PORT ", app_port)
+  })
+</code></pre>
+</div>
+
+<p class="text">
+ We are going to run our application in both environments <span class="red bold">"development"</span> and <span class="red bold">"production"</span> and see out setting
+ loading correctly from the current environment object in the <b class="red bold">./config.js</b>
+</p>
+
+<p class="underline-text"># Let's run our application in terminal :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> nodemon server.js
+  <blue>#######################################################</blue> 
+  [nodemon] starting `node server.js`
+  Node Environment is : undefined
+  mongodb://localhost:27017/db
+  {
+    app: { port: 3000 },
+    db: { host: 'localhost', port: 27017, name: 'db' }
+  }
+  supersecret
+  Listening on PORT 3000
+  <blue>#######################################################</blue> 
+</code></pre>
+</div>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> NODE_ENV=production nodemon server.js
+  <blue>#######################################################</blue> 
+  [nodemon] starting `node server.js`
+  Node Environment is : production
+  mongodb://mongoDB.com:45235/MuDB
+  {
+    app: { port: 4850 },
+    db: { host: 'mongoDB.com', port: 45235, name: 'MuDB' }
+  }
+  supersecret
+  Listening on PORT 4503
+  <blue>#######################################################</blue> 
+</code></pre>
+</div>

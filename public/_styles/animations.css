@@ -1,0 +1,143 @@
+@keyframes FadeInAnimation {
+ 0% {
+  opacity: 0;
+ }
+ 100% {
+  opacity: 1;
+ }
+}
+
+@keyframes fadeSlideAnimation {
+ 0% {
+  opacity: 0;
+  right: 100px;
+ }
+ 100% {
+  opacity: 1;
+  right: 0;
+ }
+}
+
+@keyframes sideBarSlideAnimation {
+ 0% {
+  opacity: 0;
+  width: 0;
+ }
+ 100% {
+  opacity: 1;
+  width: var(--sidebar-width);
+ }
+}
+@keyframes sideBarSlideAnimation2 {
+ 0% {
+  opacity: 1;
+  width: var(--sidebar-width);
+ }
+ 100% {
+  opacity: 0;
+  width: 0;
+ }
+}
+
+@keyframes popupAnimation {
+ 0% {
+  /* opacity: 0; */
+  transform: scale(0);
+ }
+ 50% {
+  transform: scale(1.4);
+ }
+ 100% {
+  /* opacity: 1; */
+  transform: scale(1);
+ }
+}
+
+@keyframes BorderFadeInAnimation {
+ 0% {
+  border-color: #1abc9c;
+ }
+ 100% {
+  border-color: #3d3d3d;
+ }
+}
+
+@keyframes zoom {
+ 0% {
+  transform: scale(0);
+ }
+ 50% {
+  transform: scale(1);
+ }
+ 100% {
+  transform: scale(0.7);
+ }
+}
+
+@keyframes loadingSpin {
+ 0% {
+  transform: rotate(0deg);
+ }
+ 100% {
+  transform: rotate(360deg);
+ }
+}
+
+@keyframes transOutIn {
+ 0% {
+  opacity: 0;
+  transform: translateY(-20px);
+ }
+ 100% {
+  opacity: 1;
+  transform: translateY(0px);
+ }
+}
+
+@keyframes rotate_reload {
+ 0% {
+  transform: rotate(-360deg);
+ }
+ 100% {
+  transform: rotate(0deg);
+ }
+}
+
+@keyframes nav_header {
+ 0% {
+  transform: translateY(-150px);
+ }
+ 100% {
+  transform: translateY(0);
+ }
+}
+
+@keyframes title_focus {
+ 0% {
+  opacity: 0;
+ }
+ 100% {
+  opacity: 1;
+ }
+}
+
+@keyframes cv_main_title_name {
+ 0% {
+  opacity: 0;
+  transform: translateY(-30px);
+ }
+ 100% {
+  opacity: 1;
+  transform: translateY(0);
+ }
+}
+
+@keyframes main_list_titles {
+ from {
+  transform: translateX(-15px);
+ }
+ to {
+  transform: translateX(0);
+  opacity: 1;
+ }
+}

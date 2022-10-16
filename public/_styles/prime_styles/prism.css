@@ -1,0 +1,29 @@
+/* PrismJS 1.29.0
+https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+python */
+code[class*='language-'],
+pre[class*='language-'] {
+ white-space: pre;
+ word-spacing: normal;
+ word-break: normal;
+ word-wrap: normal;
+  /* -moz-tab-size: 2; */
+ /* tab-size: 2;   */
+ -webkit-hyphens: none;
+ -moz-hyphens: none;
+ -ms-hyphens: none;
+ hyphens: none;
+}
+
+pre[class*='language-'] {
+ overflow: auto;
+}
+
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+ /* background: #2d2d2d; */
+}
+:not(pre) > code[class*='language-'] {
+ /* padding: 0.1em; */
+ border-radius: 0.3em;
+ white-space: normal;
+}

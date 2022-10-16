@@ -1,0 +1,542 @@
+<p class="main-title">
+  3.3 - Rendering Element Children Props With Lists and Keys Iteration
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">
+  1 - Rendering Element Children Props
+</p>
+
+<p class="text">
+  Props children used to display whatever you include between the opening and closing tags when invoking a component. 
+  the <code>props.children</code> is a special prop, automatically passed to every component, 
+  that can be used to render the content included between the opening and closing tags when invoking a component.
+</p>
+
+<p class="text">
+  All Child elements must be placed between the two tag component like this <code> &lt;MyComponent> <blue>child Elements</blue> 
+  &lt;/MyComponent></code>. When a component has no children, you can invoke it with either <code>&lt;MyComponent>&lt;/MyComponent></code> 
+  or <code>&lt;MyComponent/></code>, but the prefer is using self closing tag to make code shorter and easier to read.
+</p>
+
+<p class="underline-text">
+  # Render our children elements into prop children :-
+</p>
+
+<img path="/img/image014.PNG" id="image" alt="">
+
+<p class="underline-text">
+  # Example of Using children props  :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const Picture = props => {
+   return (
+    &lt;div>
+     &lt;img src={props.src} />
+     {props.children}
+    &lt;/div>
+   )
+  }
+  
+  const App = () => {
+   return (
+    &lt;div className="container" >
+     &lt;<yellow>Picture</yellow> path="/imgs/4125.jpg" >
+      &lt;h1> Welcome Adam &lt;/h1>
+     &lt;/<yellow>Picture</yellow>>
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+
+<div class="html-block html-text code">
+<pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div <blue>class</blue>=<green3>"container"</green3>>
+      &lt;div>
+        &lt;img src=<green3>"./imgs/4125.jpg"</green3>>
+        &lt;h1> Welcome Adam &lt;/h1>
+      &lt;/div>
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # Example of Using children props  :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function FancyBorder(props) {
+   return (
+     &lt;div className={"FancyBorder FancyBorder-" + props.color}>
+      {props.children}
+     &lt;/div>
+    )
+  }
+  
+  function WelcomeDialog() {
+   return (
+    &lt;FancyBorder color="blue">
+     &lt;h1 className="Dialog-Title">Welcome&lt;/h1>
+     &lt;p className="Dialog-message"> Thank You For Visiting Our Spacecraft !&lt;/p>
+    &lt;/FancyBorder>
+   )
+  }
+  
+  ReactDOM.render(&lt;WelcomeDialog />, document.getElementById("root"))
+  </code></pre>
+</div>
+
+
+<div class="html-block html-text code">
+<pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div <blue>class</blue>=<green3>"FancyBorder FancyBorder-blue"</green3>>
+      &lt;h1 <blue>class</blue>=<green3>"Dialog-Title</green3>"> Welcome &lt;/h1>
+      &lt;p <blue>class</blue>=<green3>"Dialog-message"</green3>> Thank You For Visiting Our Spacecraft !&lt;/p>
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>
+
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">
+  2 - Rendering List of Elements using the <code>map()</code> Method
+</p>
+
+<p class="text">
+  Rendering a list of element is really simple, we just use the build-in javascript <code>map()</code> method inside the JSX 
+  using curly braces to render list of items by iterating over an array of numbers, strings or objects, so it iterate over every element 
+  of that array, then after finish iterating it creates a new array with transformed values. It doesn’t change the parent or main array.
+</p>
+
+<p class="underline-text">
+  # An example of assigning the new array returned by map() to the variable result and log it:
+</p>
+
+<div class="js-block js-code code">
+<p class="block-title">➤ An Example </p>
+<pre><code class="js language-jsx">
+  const numbers = [1, 2, 3, 4, 5];
+  const result = numbers.map((number) => number * 2);
+  console.log(result); <green>// [2, 4, 6, 8, 10]</green>
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # An Example of Iterate thru an Array with react:
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  const numbers = [1, 2, 3, 4, 5];
+  const listItems = numbers.map((number) =>
+    &lt;li> {number} &lt;/li>
+  );
+
+  ReactDOM.render(
+    &lt;ul> {listItems} &lt;/ul>,
+    document.getElementById("root")
+  );
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+<pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;ul>
+      &lt;li>1&lt;/li>
+      &lt;li>2&lt;/li>
+      &lt;li>3&lt;/li>
+      &lt;li>4&lt;/li>
+      &lt;li>5&lt;/li>
+    &lt;/ul>
+  &lt;/div>
+</code></pre>
+</div>
+  
+<p class="text">
+ Also we can an array with objects of element data, using the <code>map()</code> method you can iterate thru each object 
+ and access it's properties inside the JSX and transform the data into element let's take a look in the following example.
+</p>
+
+<p class="underline-text">
+  # An Example of Iterate thru an Array of objects:
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const tasks = [
+   { text: "Buy flowers", status: "todo" },
+   { text: "Go to the dentist", status: "done" },
+  ]
+  
+  const App = () => {
+   const TasksList = tasks.map(task => {
+    return (
+     &lt;p>
+      {task.text} - {task.status}
+     &lt;/p>
+    )
+   })
+  
+   return &lt;div> {TasksList} &lt;/div>
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+<pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div>
+      &lt;p> Buy flowers - todo &lt;/p>
+      &lt;p> Go to the dentist - done &lt;/p>
+    &lt;/div>
+  &lt;/div>  
+</code></pre>
+</div>
+    
+<p class="underline-text">
+ # An example of using props to pass an array of number into our component :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function NumberList(props) {
+   const numbers = props.numbers
+   const listItems = numbers.map(number => <li>{number}</li>)
+   return &lt;ul> {listItems} &lt;/ul>
+  }
+  
+  const numbers = [1, 2, 3, 4, 5]
+  ReactDOM.render(&ltNumberList <orange>numbers</orange>={numbers} />, document.getElementById("root"))  
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+<pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;ul>
+      &lt;li>1&lt;/li>
+      &lt;li>2&lt;/li>
+      &lt;li>3&lt;/li>
+      &lt;li>4&lt;/li>
+      &lt;li>5&lt;/li>
+    &lt;/ul>
+  &lt;/div>  
+</code></pre>
+</div>
+
+<p class="text">
+  An error or Warning appears in your browser console that says each child in the list should have a unique Key prop.
+  To resolve the error we need to include a unique key identifier with unique value on each child element so next we will do,=.
+</p>
+
+<p class="underline-text">
+  # An error or warning on your browser console :-
+</p>
+
+<img path="/img/image015.PNG" id="image" alt="">
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">
+  3 - Rendering Lists with Keys 
+</p>
+
+<p class="text">
+  When creating a list of elements each element need a unique identifier like a <red>Key</red> property and it's value should be a string.
+  A <red>Key</red> is a special string attribute you need to include when creating a lists of elements. 
+  Keys give the elements a stable identity and each list should be unique mean each key can't have the same value. 
+  Keys is kind of the id for the element that help React identify which items have changed, added, or removed help in efficient update of the user interface.
+</p>
+
+<p class="underline-text">
+  # Using Key props to identify each list element :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ An Example</p>
+<pre><code class="js language-jsx">
+  const numbers = [1, 2, 3, 4, 5];
+  const listItems = numbers.map((number) =>
+    &lt;li key={number.toString()}>
+      {number}
+    &lt;/li>
+  );
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ An Example</p>
+<pre><code class="js language-jsx">
+  const list = ["a", "b", "c"];
+ 
+  const SimpleList = () => (
+    &lt;ul>
+      {list.map(item => (
+        &lt;li key={item}>{item}&lt;/li>
+      ))}
+    &lt;/ul>
+  );
+</code></pre>
+</div>
+  
+<p class="underline-text">
+  # Let’s assign a key to our list items inside <red>numbers.map()</red> and fix the missing key warning issue :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js </p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function NumberList(props) {
+   const numbers = props.numbers
+   const listItems = numbers.map(number => &lt;li key={number.toString()}> {number} &lt;/li>)
+   return &lt;ul> {listItems} &lt;/ul>
+  }
+  
+  const numbers = [1, 2, 3, 4, 5]
+  ReactDOM.render(&lt;NumberList numbers={numbers} />, document.getElementById("root"))  
+</code></pre>
+</div>
+
+<p class="underline-text">
+ # If you don't have stable IDs for rendered items, you may use the item index as a key as a last resort as following.
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js</p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const tasks = [
+   { text: "Buy flowers", status: "todo" },
+   { text: "Go to the dentist", status: "done" },
+  ]
+
+  const TaskItems = tasks.map((todo, index) => (
+   // Only do this if items have no stable IDs
+   &lt;li key={index}> {todo.text} &lt;/li>
+  ))
+  
+  ReactDOM.render(&lt;div> {TaskItems} &lt;/div>, document.getElementById("root"))
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # If you try to assign key with the same values you will get the same key error :-
+ </p> 
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js</p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+
+  const names = ["adam", "mike", "lily", "adam"];
+  const PersonList = names.map((name) => &lt;h2 key={name}> {name} &lt;/h2> )
+
+  ReactDOM.render(&lt;div> {PersonList} &lt;/div>, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+<pre><code class="js language-jsx">
+  <red>index.js:1 Warning: Encountered two children with the same key, `adam`. Keys should be unique so that components maintain their identity across updates. 
+  Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. at div</red>
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # An Example Of rendering list of objects :-
+ </p> 
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js</p>
+<pre><code class="js language-jsx">
+  import React from "react";
+  import ReactDOM from "react-dom";
+
+  const UserInfo = [
+    { id: 1, name: "Adam", age: 45 },
+    { id: 2, name: "Frank", age: 34 },
+    { id: 3, name: "John", age: 23 },
+  ];
+
+  function App({ info }) {
+    return (
+      &lt;div>
+        {info.map((user) => (
+          &lt;div key={user.id} style={{ border: "1px solid black" }}>
+            &lt;p> id:- {user.id} &lt;/p>
+            &lt;p> Username:- {user.name} &lt;/p>
+            &lt;p> Age:- {user.age} &lt;/p>
+          &lt;/div>
+        ))}
+      &lt;/div>
+    );
+  }
+
+  ReactDOM.render(&lt;App <orange>info</orange>={UserInfo} />, document.getElementById("root"));
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">
+ 4 - Conditional rendering
+</p>
+
+<p class="text">
+  You may want to render conditionally render components base on the value of properties. like only you want to render something when the user is logged in. 
+  Conditional rendering in React works the same way conditions work in JavaScript. Use JavaScript operators like if or the conditional operator to create 
+  elements representing the current state, and let React update the UI to match them.
+</p>
+
+<p class="underline-text">
+  # Use if-else Condition :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ An Example</p>
+<pre><code class="js language-jsx">
+  if(props.isLoggin){
+    return &lt;div> Welcome Adam &lt;/div>
+  } else{
+    return &lt;div> Welcome Adam &lt;/div>
+  }
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # Or Use Ternary Condition  :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ An Example</p>
+<pre><code class="js language-jsx">
+  return this.isLoggin ? &lt;div> Welcome Adam &lt;/div> : &lt;div> Welcome Adam &lt;/div>
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # Store component in variable :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ An Example</p>
+<pre><code class="js language-jsx">
+  let message;
+
+  if(props.isLoggin){
+    message = &lt;div> Welcome Adam &lt;/div>
+  } else{
+    message = &lt;div> Welcome Adam &lt;/div>
+  }
+
+  return message;
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # An Example of Conditional rendering :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js</p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function UserGreeting(props) {
+   return &lt;h1> Welcome back! &lt;/h1>
+  }
+  
+  function GuestGreeting(props) {
+   return &lt;h1> Please sign up. &lt;/h1>
+  }
+  
+  function Greeting(props) {
+   const isLoggedIn = props.isLoggedIn
+   if (isLoggedIn) {
+    return &lt;<yellow>UserGreeting</yellow> />
+   }
+   return &lt;<yellow>GuestGreeting</yellow> />
+  }
+  
+  ReactDOM.render(&lt;Greeting <orange>isLoggedIn</orange>={false} />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+<pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;h1>Please sign up. &lt;/h1>
+  &lt;/div>  
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # An Example of Using Conditional rendering wit ternary Operator :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+<p class="block-title">➤ ./src/index.js</p>
+<pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function UserGreeting(props) {
+   return &lt;h1> Welcome back! &lt;/h1>
+  }
+  
+  function GuestGreeting(props) {
+   return &lt;h1> Please sign up. &lt;/h1>
+  }
+  
+  function Greeting(props) {
+   const isLoggedIn = props.isLoggedIn
+   return &lt;div> {isLoggedIn === true ? &lt;<yellow>UserGreeting</yellow> /> : &lt;<yellow>GuestGreeting</yellow> />} &lt;/div>
+  }
+  
+  ReactDOM.render(&lt;Greeting <orange>isLoggedIn</orange>={false} />, document.getElementById("root"))  
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+<pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;h1>Please sign up. &lt;/h1>
+  &lt;/div>  
+</code></pre>
+</div>

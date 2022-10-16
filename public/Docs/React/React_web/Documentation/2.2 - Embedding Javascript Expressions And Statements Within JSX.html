@@ -1,0 +1,924 @@
+<p class="main-title">2.2 - Embedding Javascript Expressions And Statements Within JSX</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">1 - Expressions In JSX</p>
+
+<p class="text">
+ JSX will only accept expressions between curly braces <code>{}</code>. The curly braces tell our transpiler to process what is between the curly braces as normal
+ JavaScript. Only JSX accept a return value we can not write a full statement Here are a few common types of expressions you may use:
+</p>
+
+<p class="underline-text"># A few common types of expressions :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>Variable and object values</li>
+  <li>Function calls and references</li>
+  <li>Ternary Operators and ShortCircuit Operator Expressions</li>
+  <li>Loops and iteration</li>
+ </ul>
+</div>
+
+<p class="text">
+ We have only used HTML tags as a part of JSX. But JSX becomes more useful when we actually add JavaScript code inside it. We will learn how to embed
+ <red>variables</red>, refer to <red>object property values</red>, <red>functions</red> like <red>normal</red> and <red>arrow functions</red> or
+ <red>call functions </red> and also we can place expressions like add <red>mathematic operation</red>, and use <red>ternary operators</red> or <red>if-else</red> and
+ <red>Iteration loops</red> like map and foreach methods. So let start learning these things.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">2 - JavaScript Expressions - Variables, Object Values and Reference</p>
+
+<p class="text">
+ We can define and initialize our variables then use or call them inside a JSX <code>{}</code>. Also we can define an object that has properties that we can access or
+ refer thru object variable name. Here's a valid things you can have in a JSX Expression.
+</p>
+
+<p class="underline-text"># The valid expressions that we can use within JSX :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>A string like "hello"</li>
+  <li>A number like 10</li>
+  <li>An array like [1, 2, 4, 5]</li>
+  <li>An object property that will evaluate to some value</li>
+ </ul>
+</div>
+
+<br />
+
+<p class="sub-sub-title mark">- Variable String and Arrays with Mathematic Expressions</p>
+
+<p class="underline-text"># Example 1 - Defining a variable called UserName and insert it inside the <code>{ }</code> :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+
+  const UserName = "Adam Frank";
+  const element = &lt;h1> Hello, { UserName } &lt;/h1>; // reference to name variable
+
+  ReactDOM.render(element, document.getElementById("root");
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  Hello, Adam Frank
+</code></pre>
+</div>
+
+<p class="underline-text"># Example 2 - Defining a variable called price and return within a function :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const price = 2000;
+  
+  function Car() {
+    return (
+      &lt;div>
+        Car Price: {price}
+      &lt;/div>
+    );
+  }
+  
+  ReactDOM.render(&lt;Car />, document.body)
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  Car Price: 2000
+</code></pre>
+</div>
+
+<p class="underline-text"># Example 3 - Calculate tax with variable mathematic expression :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const price = 2000;
+  const tax = price * 0.10;
+  
+  const Car = () => {
+    return (
+      &lt;div>
+        Car Price include Tax: {price + tax}
+      &lt;/div>
+    );
+  }
+  
+  ReactDOM.render(&lt;Car />, document.body)
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  Car Price include Tax: 2200
+</code></pre>
+</div>
+
+<p class="underline-text"># Example 4 - Pass a variable of type string and array into JSX :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  const name = "Adam Frank";
+  const numbers = [1,2,3,4,5];
+
+  let App = () => {
+    return (
+      &lt;div>
+        &lt;h1> Hello, {name} &lt;/h1>
+        &lt;p> Start - {numbers} &lt;/p>
+       &lt;/div>
+    );
+  };
+
+  ReactDOM.render(&lt;App />, document.getElementById("root"));
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  Hello, Adam Frank
+  Start - 12345
+</code></pre>
+</div>
+
+<p class="underline-text"># Example 5 - Using string values to assign HTML text and attributes :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  let Mylabel = "2 + 2";
+  let InputType = "text";
+  let imagesrc = "./photo_122.png";
+
+  let App = () => {
+    return (
+      &lt;label>
+        { Mylabel } = &lt;input type={InputType} value={2 + 2} />
+        &lt;img src={imagesrc} />
+      &lt;/label>
+    );
+  };
+
+  ReactDOM.render(&lt;App />, document.getElementById("root"));
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  2 + 2 = <input type="text" value="4" style="padding: 5px 12px">
+</code></pre>
+</div>
+
+<br />
+
+<p class="sub-sub-title mark">- Access Object by Reference</p>
+
+<p class="underline-text"># Example 1 - Passing object properties <green>info.name</green> And <green>info.age</green> into <code>{ }</code> :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  let info = {
+   name: "Adam",
+   age: 45,
+  }
+  
+  function Greet() {
+   return (
+    &lt;div>
+     &lt;h1> Welcome {info.name} &lt;/h1>
+     &lt;p> The age is {info.age} years old. &lt;/p>
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;Greet />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  Welcome Adam
+  The age is 45 years old.
+</code></pre>
+</div>
+
+<p class="underline-text"># Note - You can’t add an object as a reference variable :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  let key = { title: "welcome" }
+
+  const App = () => 
+    &lt;div>
+      &lt;h1> {key} &lt;/h1>   
+    &lt;/div>
+
+  ### Failed to Compile ###
+</code></pre>
+</div>
+
+<p class="underline-text"># Example 2 - Passing object properties <green>info.name</green> And <green>info.age</green> into <code>{ }</code> :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const car = "MG Hector";
+  
+  let specifications = {
+    length : 4655,
+    width : 1835,
+    height : 1760
+  }
+  
+  function GetDimensions() {
+   return (
+    &lt;div>
+    &lt;p> {car} &lt;/p>
+      `${specifications.length}(mm) ${specifications.width}(mm) ${specifications.height}(mm)`
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;GetDimensions />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  MG Hector
+  `$4655(mm) $1835(mm) $1760(mm)`
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">3 - Function Calls, Conditional Statements, Ternary operator and ShortCircuit Operator &&</p>
+
+<p class="text">
+ We can also call functions with JSX and embed the result of the calling function that return a value. You can include conditional statements inside your function or use
+ ternary operator and ShortCircuit Operator &&
+</p>
+
+<br />
+
+<p class="sub-sub-title mark">- Using Function Call</p>
+
+<p class="underline-text"># Example 1 - Call a function that return a value with your JSX braces <code>{}</code> :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function GetText(){
+    return "Welcome Again"
+  }
+  
+  const App = function () {
+    return (
+      &lt;div>
+        &lt;h1> { GetText() } &lt;/h1>
+      &lt;/div>
+    );
+  }; 
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"));
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  Welcome Again
+</code></pre>
+</div>
+
+<p class="underline-text"># Example 2 - Using arrow function to return a string value :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const callName = () => "Adam"
+  
+  function App() {
+   const loading = false
+  
+   if (loading) {
+    return &lt;h3> Is Loading ....&lt;/h3>
+   }
+  
+   return (
+    &lt;div>
+     &lt;h1>Hello {callName()} &lt;/h1>
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))  
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  Hello Adam
+</code></pre>
+</div>
+
+<p class="underline-text"># Example 3 - Call a function that accept an object parameter and return from it FirstName and LastName :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function formatName(user) {
+    return user.firstName + " " + user.lastName;
+  }
+  
+  const user = {
+    firstName: "Adam",
+    lastName: "Frank",
+  };
+  
+  const App = () => {
+    return &lt;h1> Hello, { formatName(user) } &lt;/h1>;
+  };
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"));
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  Welcome Adam Frank
+</code></pre>
+</div>
+
+<p class="underline-text"># Example 4 - Call a function that accept an object parameter and return car Dimensions :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const car = "MG Hector"
+  
+  const specifications = {
+   length: 4655,
+   width: 1835,
+   height: 1760,
+  }
+  
+  const getDimensions = specifications => `${specifications.length}(mm) ${specifications.width}(mm) ${specifications.height}(mm)`
+  
+  function Vehicles() {
+   return (
+    &lt;div>
+     &lt;p>{car}&lt;/p>
+     &lt;p>{getDimensions(specifications)}&lt;/p>
+    &lt;/div>
+   )
+  }
+
+  ReactDOM.render(&lt;Vehicles />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  MG Hector
+  4655(mm) 1835(mm) 1760(mm)
+</code></pre>
+</div>
+
+<br />
+
+<p class="sub-sub-title mark">- Using if-else</p>
+
+<p class="underline-text"># Example 1 - Using if-else condition inside our function and return a value of user object :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function formatName(user) {
+    return user.firstName + " " + user.lastName;
+  }
+  
+  function getGreeting(user) {
+    if (user) {
+      return &lt;h1> Hello, {formatName(user)}! &lt;/h1>;
+    }
+      return &lt;h1> Hello, Stranger. &lt;/h1>;
+  }
+  
+  const user = {
+    firstName: "Adam",
+    lastName: "Frank",
+  };
+  
+  const App = function () {
+    return getGreeting();
+  };
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"));
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  Hello, Stranger
+</code></pre>
+</div>
+
+<p class="underline-text"># Example 2 - Using if-else condition inside our function and return a price value :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const price = 8000;
+  
+  function Vehicles() {
+    if (price &lt; 5000) {		
+      return &lt;div>Car Price: {price + (price * 0.05)}&lt;/div>		
+    } else {		
+      return &lt;div>Car Price: {price + (price * 0.15)}&lt;/div>		
+    }
+  }
+  
+  const App = function () {
+    return Vehicles();
+  };
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"));
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  Car Price: 9200
+</code></pre>
+</div>
+
+<p class="sub-sub-title mark">- Using Ternary Operator</p>
+
+<p class="underline-text"># Example 1 - Using ternary operator to return a string value :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  let i = 5; 
+
+  const App = () => &lt;h1> {i > 1 ? "Hello World!" : "False!"} &lt;/h1>;
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"));
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  Hello World!
+</code></pre>
+</div>
+
+<p class="underline-text"># Example 2 - Using ternary operator to return a HTML Header value :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+
+  function App() {
+    const name = "Adam"
+    const loading = true
+
+    return (
+      &lt;div>
+      &lt;h1> Welcome to our Website &lt;/h1>
+      {loading ? &lt;h3> Loading... &lt;/h3> : &lt;h1> Hello, {name} &lt;/h1>}
+      &lt;/div>
+    )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  Welcome to our Website
+  Loading...
+</code></pre>
+</div>
+
+<p class="underline-text"># Example 3 - Using nested ternary operator :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function App() {
+   const name = "Adam"
+   const loading = false
+   const showName = true
+  
+   return &lt;div> {loading ? &lt;h3> Loading... &lt;/h3> : &lt;h1> Hello, {showName ? name : "Anonymous"} &lt;/h1>} &lt;/div>
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  Hello, Adam
+</code></pre>
+</div>
+
+<p class="sub-sub-title mark">- Using ShortCircuit Operator &&</p>
+
+<p class="underline-text"># Example 1 - Using ShortCircuit Operator <code>>&&</code> :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const name = "Adam";
+  const showName = true;
+  
+  // If showName is true then show name, but if false then show Empty
+  const App = () => &lt;h1>  Welcome { showName && name  } &lt;/h1>;
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"));
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  Hello, Adam
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">4 - Loops and Iteration For Loop and Map Method</p>
+
+<p class="underline-text"># Example 1 - using map iteration method to loop thru an array :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const cars = ["MG Hector", "Hyundai Venue", "Toyota Fortuner", "Hyundai Creta"];
+  
+  const carList = cars.map( (car) => &lt;li key={car.toString()}> {car} &lt;/li> );
+  
+  function Vehicles() {
+    return &lt;ul> { carList } &lt;/ul>;
+  }
+  
+  ReactDOM.render(&lt;Vehicles />, document.getElementById("root"));
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  MG Hector
+  Hyundai Venue
+  Toyota Fortuner
+  Hyundai Creta
+</code></pre>
+</div>
+
+<p class="underline-text"># Example 2 - using map iteration method to loop thru an array :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  function Numbers() {
+    const elements = ["one", "two", "three"];
+    return (
+      &lt;ul>
+        {elements.map((value, index) => {
+          return &lt;li key={index}> { value } &lt;/li>;
+        })}
+      &lt;/ul>
+    );
+  }
+  
+  ReactDOM.render(&lt;Numbers />, document.getElementById("root"));
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  one
+  two
+  three
+</code></pre>
+</div>
+
+<p class="underline-text"># Example 3 - using for loop for iteration :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const elements = ["one", "two", "three"]
+  
+  const items = []
+  
+  for (const [index, value] of elements.entries()) {
+   items.push( &lt;li key={index}> {value} &lt;/li> )
+  }
+  
+  function Numbers() {
+   return &lt;div> {items} &lt;/div>
+  }
+  
+  ReactDOM.render(&lt;Numbers />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  one
+  two
+  three
+</code></pre>
+</div>
+
+<p class="underline-text"># Example 4 - using map iteration :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const elements = ["one", "two", "three"]
+  
+  const items = []
+  
+  for (const [index, value] of elements.entries()) {
+   items.push( &lt;li key={index}> {value} &lt;/li> )
+  }
+  
+  function Numbers() {
+   return &lt;div> {items} &lt;/div>
+  }
+  
+  ReactDOM.render(&lt;Numbers />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  one
+  two
+  three
+</code></pre>
+</div>
+
+<p class="underline-text"># Example 5 - using map iteration to loop thru users info :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const users = [
+   {
+    ID: 1,
+    username: "Adam Frank",
+    avatar_url: "https://avatars0.githubusercontent.com/u/1?v=4",
+    html_url: "https://github.com/mojombo",
+   },
+   {
+    ID: 2,
+    username: "sam Frank",
+    avatar_url: "https://avatars0.githubusercontent.com/u/1?v=4",
+    html_url: "https://github.com/mojombo",
+   },
+   {
+    ID: 3,
+    username: "Adam jojo",
+    avatar_url: "https://avatars0.githubusercontent.com/u/1?v=4",
+    html_url: "https://github.com/mojombo",
+   },
+  ]
+  
+  function UserItem(props) {
+   return (
+    &lt;ul>
+     &lt;li> ID : {props.info.ID} &lt;/li>
+     &lt;li> Username : {props.info.username} &lt;/li>
+     &lt;li> URL : {props.info.avatar_url} &lt;/li>
+     &lt;li> Page : {props.info.html_url} &lt;/li>
+     &lt;br />
+    &lt;/ul>
+   )
+  }
+  
+  const App = () => {
+   return (
+    &lt;div className="users-content">
+     {users.map(user => {
+      return &lt;UserItem info={user} />
+     })}
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  ID : 1
+  Username : Adam Frank
+  URL : https://avatars0.githubusercontent.com/u/1?v=4
+  Page : https://github.com/mojombo
+  
+  ID : 2
+  Username : sam Frank
+  URL : https://avatars0.githubusercontent.com/u/1?v=4
+  Page : https://github.com/mojombo
+  
+  ID : 3
+  Username : Adam jojo
+  URL : https://avatars0.githubusercontent.com/u/1?v=4
+  Page : https://github.com/mojombo
+</code></pre>
+</div>
+
+<p class="underline-text"># Example 6 - using map iteration to loop thru users info :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const users = [
+   {
+    ID: 1,
+    username: "Adam Frank",
+    avatar_url: "https://avatars0.githubusercontent.com/u/1?v=4",
+    html_url: "https://github.com/mojombo",
+   },
+   {
+    ID: 2,
+    username: "sam Frank",
+    avatar_url: "https://avatars0.githubusercontent.com/u/1?v=4",
+    html_url: "https://github.com/mojombo",
+   },
+   {
+    ID: 3,
+    username: "Adam jojo",
+    avatar_url: "https://avatars0.githubusercontent.com/u/1?v=4",
+    html_url: "https://github.com/mojombo",
+   },
+  ]
+  
+  function UserItem(props) {
+   return (
+    &lt;ul>
+     &lt;li> ID : {props.info.id} &lt;/li>
+     &lt;li> Username : {props.info.username} &lt;/li>
+     &lt;li> URL : {props.info.avatar_url} &lt;/li>
+     &lt;li> Page : {props.info.html_url} &lt;/li>
+     &lt;br />
+    &lt;/ul>
+   )
+  }
+  
+  const getAllUsers = users.map(user => &lt;UserItem info={user} />)
+  
+  const App = () => {
+   return &lt;div className="users-content"> {getAllUsers} &lt;/div>
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  ID : 1
+  Username : Adam Frank
+  URL : https://avatars0.githubusercontent.com/u/1?v=4
+  Page : https://github.com/mojombo
+  
+  ID : 2
+  Username : sam Frank
+  URL : https://avatars0.githubusercontent.com/u/1?v=4
+  Page : https://github.com/mojombo
+  
+  ID : 3
+  Username : Adam jojo
+  URL : https://avatars0.githubusercontent.com/u/1?v=4
+  Page : https://github.com/mojombo
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">5 - Using Build-In Javascript Methods</p>
+
+<p class="text">We can use build-in Javascript methods like upperCase method or Data method.</p>
+
+<p class="underline-text"># Example 1 - using UpperCase Method :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  function App() {
+    let name = "adam";
+    return &lt;p> Hello { name.toUpperCase() } &lt;/p>;
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"));
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  ADAM
+</code></pre>
+</div>
+
+<p class="underline-text"># Example 2 - using new Date() method :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react";
+  import ReactDOM from "react-dom";
+  
+  function tick() {
+    const element = (
+      &lt;div>
+        &lt;h1>Hello, world!&lt;/h1>
+        &lt;h2>It is { new Date().toLocaleTimeString() }.&lt;/h2>
+      &lt;/div>
+    );
+    ReactDOM.render(element, document.getElementById("root"));
+  }
+  
+  setInterval(tick, 1000);
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  Hello, world!
+  It is 7:16:09 PM.
+</code></pre>
+</div>

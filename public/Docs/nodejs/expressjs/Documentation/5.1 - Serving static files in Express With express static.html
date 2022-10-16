@@ -1,0 +1,373 @@
+<p class="main-title">5.1 - Serving static files in Express With <span class="red bold font-code">express.static()</span></p>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">A - What are static files ?</p>
+
+<p class="text">
+ Static files are files that clients download from the server as they are from the server to serve them to the client-side such
+ <span class="blue bold">Images, HTML, CSS, and JavaScript</span> files. We create a new folder directory in our server application that stores our static files, we
+ usually call this folder <span class="red bold font-code">"./public"</span>. By default does not allow you to serve static files. You need to enable it using a build-in
+ middleware <blue>(next)</blue> comes with express application
+</p>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">B - Set-up <span class="red bold font-code">express.static()</span> To Serve Static Files</p>
+
+<p class="text">
+ Express provides a built-in method to serve your static files <span class="red bold font-code">express.static("public")</span>, which express will look up the files from
+ the directory root that you specify on the first parameter.
+</p>
+
+<p class="underline-text"># Using a build in middleware to serve your static files inside a folder called "public" :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  const path = require("path");
+
+  app.use( express.static( path.join(__dirname, "public") ) )
+
+  console.log(__dirname); // C:\Users\AdamPC\Desktop\ExpressFolder
+</code></pre>
+</div>
+
+<p class="text">
+ We recommend to use the absolute path of the directory that you want to serve, because the path that you provide to the express.static function is relative to the
+ directory from where you launch your node process If you run the express app from another directory, it’s safer to use the absolute path of the directory that you want
+ to serve, so we use "path" module and use <span class="red bold font-code">path.join(__dirname, "public")</span>. The <blue>__dirname</blue> return the full path of the
+ current file.
+</p>
+
+<p class="text">After creating a "public" folder, we include an index.html file along with styles and scripts folders Your file structure will look like this :-</p>
+
+<p class="underline-text"># Project structure including "public" folder, with some files :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+ > Project_Name ls
+   └── node_module (Folder)
+   └── public (Folder)
+     └── styles (Folder)
+       └── <blue>style.css (File)</blue>
+     └── scripts (Folder)
+       └── <blue>script.css (File)</blue>
+     └── images (Folder)
+       └── <blue>image001.jpg (File)</blue>
+       └── <blue>image002.jpg (File)</blue>
+       └── <blue>image003.jpg (File)</blue>
+     └── <blue>index.html (File)</blue>
+     └── <blue>app.js (File)</blue>
+   └── package.json (File)
+   └── package-lock (File)
+   └── server.js  (File)
+</code></pre>
+</div>
+
+<p class="text">
+ The directory path of your static file can be accessed thru <span class="blue bold">URL</span>, but without the main folder directory "public". The files relative to the
+ static directory, so the name of the static directory is not part of the URL
+</p>
+
+<p class="underline-text"># How the client side access static files :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-js">
+ >> Access "style.css"
+  URL Path :- <blue><gray>http://localhost:3000/</gray>styles/styles.css</blue>  
+  Express Will Perform :- <orange>http://localhost:3000/public/styles/style.css</orange>
+ ###################################################################################
+
+ >> Access "script.js"
+  URL Path :- <blue><gray>http://localhost:3000/</gray>scripts/script.js</blue>  
+  Express Will Perform :- <orange>http://localhost:3000/public/scripts/script.js</orange>
+ ###################################################################################
+
+ >> Access "image002.js"
+  URL Path :- <blue><gray>http://localhost:3000/</gray>images/image002.jpg</blue>  
+  Express Will Perform :- <orange>http://localhost:3000/public/images/image002.jpg</orange>
+ ###################################################################################
+
+ >> Access "app.js"
+  URL Path :- <blue><gray>http://localhost:3000/</gray>app.js</blue>  
+  Express Will Perform :- <orange>http://localhost:3000/public/app.js</orange>
+ ###################################################################################
+</code></pre>
+ >
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">C - Using Multiple Static Directories And Virtual Path Prefix</p>
+
+<p class="sub-sub-title get-title">1 - Using Multiple Static Directories</p>
+
+<p class="text">
+ We can also set multiple static assets directories. To use multiple static assets directories, call the express.static middleware function multiple times
+</p>
+
+<p class="underline-text"># Using Multiple directory folders to access static assets :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  const path = require("path");
+
+  app.use( express.static( path.join(__dirname, "public") ) )
+  app.use( express.static( path.join(__dirname, "images") ) )
+  app.use( express.static( path.join(__dirname, "other") ) )
+</code></pre>
+</div>
+
+<p class="sub-sub-title get-title">2 - Using Virtual Path Prefix</p>
+
+<p class="text">
+ We can also provide a virtual path prefix for serving static files <span class="blue bold">(where the path does not actually exist in the file system)</span>. if you
+ want to provide a path prefix like "/static", you need to include the virtual path in the first parameter.
+</p>
+
+<p class="underline-text"># Using Multiple directory folders to access static assets :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  const path = require("path");
+
+  app.use( "/static" , express.static(  path.join(__dirname, "public") ));
+</code></pre>
+</div>
+
+<p class="underline-text"># How the client side access static files :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-js">
+ >> Access "style.css"
+  URL Path :- <blue><gray>http://localhost:3000/</gray>static/styles/styles.css</blue>  
+  Express Will Perform :- <orange>http://localhost:3000/<green>static</green>/public/styles/style.css</orange>
+  Real Path Directory :- ./public/styles/style.css
+ ###################################################################################
+
+ >> Access "script.js"
+  URL Path :- <blue><gray>http://localhost:3000/</gray>static/scripts/script.js</blue>  
+  Express Will Perform :- <orange>http://localhost:3000/<green>static</green>/public/scripts/script.js</orange>
+  Real Path Directory :- ./public/scripts/script.js
+ ###################################################################################
+
+ >> Access "image002.js"
+  URL Path :- <blue><gray>http://localhost:3000/</gray>static/images/image002.jpg</blue>  
+  Express Will Perform :- <orange>http://localhost:3000/<green>static</green>/public/images/image002.jpg</orange>
+  Real Path Directory :- ./public/images/image002.jpg
+ ###################################################################################
+
+ >> Access "app.js"
+  URL Path :- <blue><gray>http://localhost:3000/static/</gray>app.js</blue>  
+  Express Will Perform :- <orange>http://localhost:3000/<green>static</green>/public/app.js</orange>
+  Real Path Directory :- ./public/app.jpg
+ ###################################################################################
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">D - Building Your Web Page</p>
+
+<p class="text">
+ We are going to write an application that serves an HTML content back to the client when accessing home URL, within the html content we will request another files like
+ css, script and images. our express application will recieve each request and serve static file from the public folder.
+</p>
+
+<p class="underline-text"># The content of out index.html file :-</p>
+
+<div class="html-block html-code code">
+ <p class="block-title">./public/index.html</p>
+ <pre><code class="js language-js">
+  &lt;!DOCTYPE html>
+  &lt;html>
+  &lt;head>
+    &lt;link rel="stylesheet" href="styles/style.css">
+  &lt;/head>
+  &lt;body>
+      &lt;h1>hello welcome&lt;/h1>
+      
+      &lt;img path="images/image001.jpg" alt="">
+      &lt;script path="scripts/script.js">&lt;/script>
+  &lt;/body>
+  
+  &lt;/html>  
+</code></pre>
+</div>
+
+<p class="underline-text"># An application that serve an html file :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  const path = require("path");
+  const fs = require("fs");
+  
+  const htmlFile = fs.readFileSync(__dirname + "./public/index.html");
+  
+  app.use( express.static( path.join(__dirname, "public") ));
+  
+  app.get("/" , (req,res,next) => {  res.end(htmlFile);  });
+  
+  app.use( (req, res) =>  {  res.status(404).send("File not found!"); });
+  
+  app.listen(3000);
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">E - Static Files Options</p>
+
+<p class="text">
+ Our <span class="red bold font-code">express.static()</span> has an option parameter used to configure our static files by setting their header, we specify policies
+ include how a resource is cached, where it’s cached and its maximum age before expiring
+</p>
+
+<p class="underline-text"># static files Options are :-</p>
+
+<p class="sub-sub-title get-title">- dotfiles</p>
+
+<p class="text">
+ Set how "dotfiles" are treated when the client request them. A dotfile is a file or directory that begins with a dot (“.”) like .env or other setting files. Note this
+ check is done on the path itself without checking if the path actually exists on the disk. the possible values are :
+</p>
+
+<div class="list-content custom">
+ <ul>
+  <li><span class="blue bold font-code">'allow'</span> No special treatment for dotfiles.</li>
+  <li><span class="blue bold font-code">'deny'</span> Deny a request for a dotfile and 403/next().</li>
+  <li><span class="blue bold font-code">'ignore'</span> Pretend like the dotfile does not exist and 404/next().</li>
+ </ul>
+</div>
+
+<p class="text">The default value is similar to 'ignore', with the exception that this default will not ignore the files within a directory that begins with a dot.</p>
+
+<p class="sub-sub-title get-title">- etag (Defaults to <green>true</green>)</p>
+
+<p class="text">
+ Hash every file content into a string of characters in quotes "675af34563dc-tr34", and attached to the response header it will identifies the version of served content.
+ Any modification on the static file our etag will generate a new hash, so when the client request a file from the server will compare the etag value if matches then the
+ browser will view the non-updated local file cache or retrieve the updated file from the server
+</p>
+
+<p class="sub-sub-title get-title">- extensions (Defaults to false)</p>
+
+<p class="text">
+ Add extension to the file, if file is not found the given extensions will be added to the file name and search for. The first that exists will be served. Example:
+ <span class="blue bold font-code">['html', 'htm']</span>. When client requests a file without a file extension name it will try adding the specified files extension.
+</p>
+
+<p class="sub-sub-title get-title">- index (Defaults to true)</p>
+
+<p class="text">
+ By default this module will send “index.html” files inside the public folder, in response to a request on a directory without specifying any file name. The clients can't
+ just request the folder name it will give us all the files inside that folder, so they have to give us the file name to get something back. it's better to disable, Tt
+ disable this set false
+</p>
+
+<p class="sub-sub-title get-title">- maxAge ( Defaults to 0 -> "1m", "10h", "2d", "1y" )</p>
+
+<p class="text">Provide a max-age in seconds for http caching, when this file will expire. 604800 7days, "1d" 1 day , "1h" 1 hour, "1m" 1 minute, "1y" 1 year</p>
+
+<p class="sub-sub-title get-title">- redirect ( Defaults to true )</p>
+
+<p class="text">Redirect back to the root "/" when file is not found, set it to false</p>
+
+<p class="sub-sub-title get-title">- setHeaders</p>
+
+<p class="text">custom Function used to set the response header, it has three parameters <span class="red bold font-code">(res, path, stat)</span> :</p>
+
+<div class="list-content custom">
+ <ul>
+  <li><span class="blue bold font-code">res</span> the response object</li>
+  <li><span class="blue bold font-code">path</span> the file path that is being sent</li>
+  <li><span class="blue bold font-code">stat</span> the stat object of the file that is being sent</li>
+ </ul>
+</div>
+
+<p class="underline-text"># An Example of using express static with options :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  const path = require("path")
+  const fs = require("fs")
+  
+  const htmlFile = fs.readFileSync(__dirname + "/public/index.html")
+  
+  const options = {
+    dotfiles: "ignore",
+    etag: true,
+    extensions: ["htm", "html"],
+    index: false,
+    maxAge: "7d",
+    redirect: true,
+    setHeaders: (res, path, stat) => {
+      res.set({
+        "x-timestamp" : Date.now(),
+        "Cache-Control" : (path.includes("index.html")) ? "no-store" : "public, max-age=3600 " // 1 hour
+      })
+    },
+  }
+  
+  app.use(express.static(path.join(__dirname, "public"), options))
+  
+  app.get("/", (req, res, next) => {
+    res.send(htmlFile)
+  })
+  
+  app.listen(3000, () => {
+    console.log("Listening on port 3000")
+  })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">F - What is the Cache-Control Header</p>
+
+<p class="text">
+ <span class="red bold font-code">Cache-control</span> is an HTTP header used to specify browser caching policies in both client requests and server responses. Policies
+ include how a resource is cached, where it’s cached and its maximum age before expiring
+</p>
+
+<p class="underline-text"># cache-control values :-</p>
+
+<p class="sub-sub-title get-title font-code">- "Cache-Control" : "max-Age"</p>
+
+<p class="text">
+ The max-age request directive defines, in seconds, the amount of time it takes for a cached copy of a resource to expire. After expiring, a browser must refresh its
+ version of the resource by sending another request to a server.
+</p>
+
+<p class="sub-sub-title get-title font-code">- "Cache-Control" : "no-cache"</p>
+
+<p class="text">The no-cache directive means that a browser may cache a response, but must first submit a validation request to an origin server to check by etag.</p>
+
+<p class="sub-sub-title get-title font-code">- "Cache-Control" : "no-store"</p>
+
+<p class="text">
+ The no-store directive means browsers aren’t allowed to cache a response and must pull it from the server each time it’s requested. This setting is usually used for
+ sensitive data, such as personal banking details.
+</p>
+
+<p class="sub-sub-title get-title font-code">- "Cache-Control" : "public"</p>
+
+<p class="text">The public response directive indicates that a resource can be cached by any cache like browser cache and proxy cache</p>
+
+<p class="sub-sub-title get-title font-code">- "Cache-Control" : "private"</p>
+
+<p class="text">
+ The private response directive indicates that a resource is user/client specific—it can still be cached, but only on a client device. The proxy not allowed to store
+ content only the desktop user browser can store the content
+</p>

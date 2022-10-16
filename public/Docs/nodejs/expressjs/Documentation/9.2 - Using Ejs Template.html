@@ -1,0 +1,89 @@
+<p class="main-title">9.2 - Setup Ejs Template</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">1 - What is EJS Template ?</p>
+
+<p class="text">
+ EJS stand for <blue>Embedded JavaScript templates</blue>, it's very simple , light and fast. it's a templating language that lets you generate HTML markup with plain
+ JavaScript.
+</p>
+
+<p class="text">
+ One of the most important feature in EJS is the use of partials. Partials allow you to define something once and then apply it to any page in your application. I will
+ show you how to create a simple Node.js application that uses EJS as the templating engine.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">2 - Install Ejs thru NPM</p>
+
+<p class="text">EJS is very light weight, approx 119kb unpacked with zero dependencies. To manually install dependencies, enter this command:</p>
+
+<p class="underline-text"># Install EJS Template :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> npm install ejs 
+ + ejs@3.1.6
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">3 - Configure EJS</p>
+
+<p class="text">EJS configuration is very easy, we create an index.ejs file in views folder in root folder. Using index.ejs file for static html page</p>
+
+<p class="underline-text"># EJS Directory Structure :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> Project_Name ls
+  └── node_module (Folder)
+  └── views (Folder)
+    └── index.ejs (File)
+  └── public (Folder)
+    └── style.css (File)
+    └── app.js (File)
+  └── package.json (File)
+  └── package-lock (File)
+  └── server.js  (File)
+</code></pre>
+</div>
+
+<p class="text">
+ Now that we have our ejs module installed, and the index.ejs file is created inside view folder. Let's setup our express application and configure ejs template.
+</p>
+
+<p class="underline-text"># Setup our express application and configure our ejs template :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ ./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express(); 
+  const path = require("path");
+
+  const port = process.env.PORT || 3000;
+
+  // Server Static Files 
+  app.use(express.static("public"));
+
+  // Set you view engine
+  app.set("view engine" , "ejs"); 
+
+  // Set your view directory ( Default is the view folder )
+  app.set("views", path.join(__dirname, "views"));
+
+  app.get("/" , (req,res)=>{
+    res.render("index");
+  }) 
+
+  app.listen(port , () => {
+    console.log("Listen On Port 3000");
+  })  
+</code></pre>
+</div>
+
+<p class="text">
+ Our server will be listening on the port defined in <span class="red bold font-code"> process.env.PORT</span> or 3000. We define a /public directory because this is how
+ we will reach our stylesheet style.css located in the /public folder. We define and configure our template engine to be ejs
+</p>

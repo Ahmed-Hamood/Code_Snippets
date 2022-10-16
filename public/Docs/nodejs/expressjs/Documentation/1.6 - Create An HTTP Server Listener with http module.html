@@ -1,0 +1,157 @@
+<p class="main-title">1.6 - Create An HTTP Server Listener with http module</p>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">Use Express Module to Create an HTTP Server</p>
+
+<p class="text">
+ Express provides an easy way to create web server, we import the express module using <span class="blue bold font-code">require()</span> function. The express module
+ return an object which we can use it to configure our express server like handling HTTP requests routes, configuring middleware, rendering HTML views and registering a
+ template engine.
+</p>
+
+<p class="text">
+ Within express object we have a listener method, the <span class="blue bold font-code">app.listen()</span> used to create the Node.js web server at the specified host
+ and port It is identical to Node's <span class="blue bold font-code">http.Server.listen()</span> method.
+</p>
+
+<p class="underline-text"># Import the Express module to create the web server :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  
+  app.get("/", (req, res) => {
+    res.send(" &lt;h1> Hello World &lt;/h1> ")
+  })
+  
+  app.listen(3000, (err) => {
+    if (err) {
+      console.log(err)
+      return
+    }
+    console.log("Listening on PORT 3000")
+  })  
+</code></pre>
+</div>
+
+<p class="underline-text"># All listen methods with different parameters :-</p>
+
+<div class="code-block code pre-block">
+ <p class="block-title">Listen methods</p>
+ <pre><code class="js language-js">
+  listen(<orange>port</orange>: number, <orange>hostname</orange>: string, <orange>backlog</orange>: number, <span class="green bold">callback</span>?: () => void): <span class="blue bold">http.Server</span>;
+  listen(<orange>port</orange>: number, <orange>hostname</orange>: string, <span class="green bold">callback</span>?: () => void): <span class="blue bold">http.Server</span>;
+  listen(<orange>port</orange>: number, <span class="green bold">callback</span>?: () => void): <span class="blue bold">http.Server</span>;
+  listen(<span class="green bold">callback</span>?: () => void): <span class="blue bold">http.Server</span>;
+  listen(<orange>path</orange>: string, <span class="green bold">callback</span>?: () => void): <span class="blue bold">http.Server</span>;
+  listen(handle: any, listeningListener?: () => void): <span class="blue bold">http.Server</span>;
+</code></pre>
+</div>
+
+<p class="underline-text"># All parameters :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li><span class="green bold">port</span> Specifies the port we want to listen to</li>
+  <li><span class="green bold">hostname</span> Specifies the IP address we want to listen to</li>
+  <li>
+   <span class="green bold">backlog</span> Specifies the max length of the queue of pending connections. Default 511 backlog parameter to specify the maximum length of
+   the queue of pending connections. The actual length will be determined by the OS through sysctl settings such as tcp_max_syn_backlog and somaxconn on Linux. The
+   default value of this parameter is 511 (not 512).
+  </li>
+  <li><span class="green bold">callback</span> Specifies a function to be executed when the listener has been added</li>
+ </ul>
+</div>
+
+<p class="underline-text"># Use listen method with port number and hostname :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.listen(3000, "localhost", function (err) {
+    if (err) {
+      console.log(err)
+      return
+    }
+    console.log("Listening at http://localhost:" + 3000 + "\n")
+  })
+
+  app.listen(3000, "localhost", 800, (err) => {
+    if (err) {
+      console.log(err)
+      return
+    }
+    console.log("Listening at http://localhost:" + 3000 + "\n")
+  })
+</code></pre>
+</div>
+
+<p class="underline-text"># Use listen method with port number and hostname :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const server = app.listen(8000, "127.0.0.1", err => {
+    if (err) {
+      console.log(err)
+      return
+    }
+    var host = server.address().address
+    var port = server.address().port
+    console.log("Example app listening at http://%s | %s", host, port); 
+    // Example app listening at http://127.0.0.1 | 8000 
+  })
+</code></pre>
+</div>
+
+<br />
+
+<!-- ########################################## -->
+<p class="sub-title get-title">Use HTTP Module to Create an HTTP Server</p>
+
+<p class="text">
+ You can create HTTP server yourself, instead of having Express create one for you is useful when you want to reuse the HTTP server to run
+ <span class="reb bold">socket.io</span> within the same HTTP server instance
+</p>
+
+<p class="text"><span class="blue bold font-code">app.listen()</span> return the HTTP server instance. let's create a server with NodeJS build-in http module.</p>
+
+<p class="underline-text"># Create an HTTP server using http module :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const http = require('http');
+  
+  const app = express();
+
+  app.get("/", (req, res) => {
+    res.send(" &lt;h1> Hello World &lt;/h1> ")
+  })
+
+  const server = http.createServer(app);
+  
+  server.listen(1234);
+</code></pre>
+</div>
+
+<p class="underline-text"># Way 2 - Create an HTTP server using http module :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const https = require('http');
+  const app = express();
+
+  app.get("/", (req, res) => {
+    res.send(" &lt;h1> Hello World &lt;/h1> ")
+  })
+
+   https.createServer(app).listen(3000, function() {
+      console.log('Https App started');
+  });
+</code></pre>
+</div>

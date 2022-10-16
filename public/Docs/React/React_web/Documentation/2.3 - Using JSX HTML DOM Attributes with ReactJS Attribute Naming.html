@@ -1,0 +1,646 @@
+<p class="main-title">2.3 - Using HTML DOM Attributes And Apply CSS Styling in JSX Element</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">1 - JSX/HTML Attributes</p>
+
+<p class="text">
+ We can write your own custom <green3>attributes</green3> in addition to regular HTML properties and attributes, before <blue>React</blue> used to ignore unknown DOM
+ attributes. If you wrote a JSX element with an attribute that <blue>React</blue> doesn’t recognize, React would just skip it. For example, this:
+</p>
+
+<p class="underline-text"># Writing Your JSX HTML Elements with unknown attributes. How React 15 & 16 will render unknown attributes in the DOM :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  // Your code:
+  &lt;div <purple2>mycustomattribute</purple2>="something" />
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ In React 15 DOM Output - Unknown attributes will not be rendered to the DOM</p>
+ <pre><code class="js language-jsx">
+  // React 15 output:
+  &lt;div />
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ In React 16 DOM Output - Unknown attributes will end up to the DOM</p>
+ <pre><code class="js language-jsx">
+  // React 16 output:
+  &lt;div <purple2>mycustomattribute</purple2>="something" />
+</code></pre>
+</div>
+
+<p class="text">
+ Since <blue>React</blue> components take both custom and related DOM attributes. If your attending to use your own custom attributes that <blue>React</blue> does not
+ recognize it as a DOM attributes then you have spell it as lowercase so react would know it's a custom attribute. But you can't use React naming reserved keywords as
+ lower case and pass them as a custom attributes to all HTML like <green3>className</green3>, <green3>tabIndex</green3>. React will include the attribute in to the DOM
+ but still element won't be changed. for example
+</p>
+
+<p class="underline-text"># Using React reserved keyword and write them as lowercase, they will be added but elements won't change :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  // Yes, it's a class attribute
+  &lt;div className="main-header" />
+
+  // Invalid DOM property `classname`. Did you mean `className`?
+  &lt;div classname="main-header" />
+</code></pre>
+</div>
+
+<p class="underline-text">Q - Should I Keep Data in Custom Attributes ?</p>
+
+<p class="text">
+ <red>NO</red>. We don’t encourage you to keep data in DOM attributes. Even if you have to, better use <red>data-*</red> and <red>aria-*</red>
+ custom attributes that allow you to attach other values onto an HTML element. they're a better approach, but in most cases data should be kept in React component state
+ or external stores.
+</p>
+
+<p class="underline-text"># Pass data freely thru date and aria attributes :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  &lt;div <purple2>data-foo</purple2>="42" />
+  &lt;button <purple2>aria-btnlabel</purple2>="Close" onClick={onClose} />
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">2 - Canonical React Attribute Naming</p>
+
+<p class="text">
+ <blue>React</blue> support a custom naming DOM attributes that will translate into javascript attributes and class is a reserved word in JavaScript that we can use
+ inside our HTML element. When JSX is rendered, JSX className attributes are automatically rendered as class attributes. There are a number of attributes that work
+ differently between React and HTML. In React, all DOM properties, attributes and event handlers should be <red>camelCased</red>.
+</p>
+
+<p class="sub-sub-title mark get-title">A - readonly attribute - <code>readOnly</code></p>
+
+<p class="text">
+ The readonly attribute is supported by <blue>&lt;input></blue> components of type <green3>text</green3>. You can use it to prevent anyone to edit the text input, only to
+ view readable input only.
+</p>
+
+<p class="underline-text"># Apply readOnly attribute with our input element of type text :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  HTML :- &lt;input type="password" value="adam" <orange>readonly</orange>>
+  JSX  :- &lt;input type="password" value="adam" readOnly />
+</code></pre>
+</div>
+
+<p class="sub-sub-title mark get-title">B - checked attribute - <code>defaultChecked</code></p>
+
+<p class="text">
+ The checked attribute is supported by <blue>&lt;input></blue> components of type <green3>checkbox</green3> or <green3>radio</green3>. You can use it to set whether the
+ component is <blue>checked</blue>. This is useful for building controlled components. <code>defaultChecked</code> is the uncontrolled equivalent, which sets whether the
+ component is checked when it is first mounted.
+</p>
+
+<p class="underline-text"># Apply checked attribute with our input element of either type checkbox or radio :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  IsMarried: &lt;input type="checkbox" value="IsMarried" defaultChecked />
+  IsMarried: &lt;input type="radio" value="IsMarried" defaultChecked />
+  ### DOM Output ###
+  IsMarried: &lt;input type="checkbox" value="IsMarried" checked>
+  IsMarried: &lt;input type="radio" value="IsMarried" checked>
+</code></pre>
+</div>
+
+<p class="sub-sub-title mark get-title">C - class attribute - <code>className</code></p>
+
+<p class="text">
+ The <blue>class</blue> attribute has to be written <code>className</code> with an Uppercase format. To specify a CSS class, use the <code>className</code> attribute and
+ insert it within elements like <blue>&lt;div></blue> and <blue>&lta></blue> and others
+</p>
+
+<p class="underline-text"># Apply className attribute for styling that will be translate into class attribute :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  HTML :-  &lt;div id="" class=<green4>"main-title"</green4>> &lt;/div>
+  JSX  :-  &lt;div id="" className=<green4>"main-title"</green4>> &lt;/div>
+</code></pre>
+</div>
+
+<p class="sub-sub-title mark get-title">D - for attribute - <code>htmlFor</code></p>
+
+<p class="text">The <blue>for</blue> attribute has to be written <code>htmlFor</code>. Since for is a reserved word in JavaScript, React elements use htmlFor instead.</p>
+
+<p class="underline-text"># Apply htmlFor attribute :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  HTML :- &lt;label <purple2>for</purple2>="name" class=<green4>""</green4>> Enter You name &lt;/label>
+  JSX  :- &lt;label htmlFor="name" className=<green4>""</green4>> Enter You name &lt;/label>
+</code></pre>
+</div>
+
+<p class="sub-sub-title mark get-title">E - style attribute - <code>style</code></p>
+
+<p class="text">
+ The <blue>style</blue> attribute takes a reference to an object of camel-cased style properties. It accepts a JavaScript object with camelCased properties rather than a
+ CSS string. This is consistent with the DOM style JavaScript property, is more efficient, and prevents XSS security holes. For example:
+</p>
+
+<p class="underline-text"># Apply style attribute :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  const divStyle = {
+    color: 'blue',
+    backgroundImage: 'url(' + imgUrl + ')',
+  };
+  
+  function HelloWorldComponent() {
+    return (
+      &lt;div style={divStyle}>
+        Hello World! 
+        &lt;p style={{ color: 'red' }}
+      &lt;/div>;
+    ) 
+  }
+</code></pre>
+</div>
+
+<p class="sub-sub-title mark get-title">F - selected Attribute - <code>defaultValue</code></p>
+
+<p class="text">
+ The <blue>value</blue> attribute is supported by <red>&lt;input></red>, <red>&lt;select></red> and <red>&lt;textarea></red> components. You can use it to set the value
+ of the component. This is useful for building controlled components. <code>defaultValue</code> is the uncontrolled equivalent, which sets the value of the component when
+ it is first mounted.
+</p>
+
+<p class="underline-text"># Using defaultValue instead of selected in Dropdown List :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  &lt;select name="fruits" id="fruit" defaultValue="apple">
+    &lt;option value=<green4>"bananna"</green4>> bananna &lt;/option>
+    &lt;option value=<green4>"apple"</green4>> apple &lt;/option>
+    &lt;option value=<green4>"orange"</green4>> orange &lt;/option>
+    &lt;option value=<green4>"other"</green4>> other &lt;/option>
+  &lt;/select>
+  ### DOM Output ###
+  &lt;select name="fruits" id="fruit">
+    &lt;option value=<green4>"bananna"</green4>> bananna &lt;/option>
+    &lt;option value="apple" selected> apple &lt;/option>
+    &lt;option value=<green4>"orange"</green4>> orange &lt;/option>
+    &lt;option value=<green4>"other"</green4>> other &lt;/option>
+  &lt;/select>
+</code></pre>
+</div>
+
+<p class="sub-sub-title mark get-title">G - All Supported HTML Attributes</p>
+
+<p class="text">
+ React takes both custom and DOM related attributes, and also it takes <red>props</red> which we will learn about it later. React uses the camelCase convention for it's
+ build-in named attributes in DOM API. here's some DOM API's :-
+</p>
+
+<p class="underline-text"># Some DOM API's :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <pre><code class="js language-jsx">
+  &lt;div tabIndex={-1} />  // Just like node.tabIndex DOM API    
+  &lt;div className="Button" /> // Just like node.className DOM API
+  &lt;input readOnly={true} />  // Just like node.readOnly DOM API
+</code></pre>
+</div>
+
+<p class="underline-text"># Some of the DOM attributes supported by React include:</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>accept</li>
+  <li>acceptCharset</li>
+  <li>accessKey</li>
+  <li>action</li>
+  <li>allowFullScreen</li>
+  <li>alt</li>
+  <li>async</li>
+  <li>autoComplete</li>
+
+  <li>autoFocus</li>
+  <li>autoPlay</li>
+  <li>capture</li>
+  <li>cellPadding</li>
+  <li>cellSpacing</li>
+  <li>challenge</li>
+  <li>charSet</li>
+  <li>checked</li>
+
+  <li>cite</li>
+  <li>classID</li>
+  <li>className</li>
+  <li>colSpan</li>
+  <li>cols</li>
+  <li>content</li>
+  <li>contentEditable</li>
+  <li>contextMenu</li>
+  <li>controls</li>
+
+  <li>controlsList</li>
+  <li>coords</li>
+  <li>crossOrigin</li>
+  <li>data</li>
+  <li>dateTime</li>
+  <li>default</li>
+  <li>defer</li>
+  <li>dir</li>
+  <li>disabled</li>
+
+  <li>download</li>
+  <li>draggable</li>
+  <li>encType</li>
+  <li>form</li>
+  <li>formAction</li>
+  <li>formEncType</li>
+  <li>formMethod</li>
+  <li>formNoValidate</li>
+
+  <li>formTarget</li>
+  <li>frameBorder</li>
+  <li>headers</li>
+  <li>height</li>
+  <li>hidden</li>
+  <li>high</li>
+  <li>href</li>
+  <li>hrefLang</li>
+  <li>htmlFor</li>
+
+  <li>httpEquiv</li>
+  <li>icon</li>
+  <li>id</li>
+  <li>inputMode</li>
+  <li>integrity</li>
+  <li>is</li>
+  <li>keyParams</li>
+  <li>keyType</li>
+  <li>kind</li>
+  <li>label</li>
+  <li>lang</li>
+  <li>list</li>
+
+  <li>loop</li>
+  <li>low</li>
+  <li>manifest</li>
+  <li>marginHeight</li>
+  <li>marginWidth</li>
+  <li>max</li>
+  <li>maxLength</li>
+  <li>media</li>
+  <li>mediaGroup</li>
+  <li>method</li>
+
+  <li>min</li>
+  <li>minLength</li>
+  <li>multiple</li>
+  <li>muted</li>
+  <li>name</li>
+  <li>noValidate</li>
+  <li>nonce</li>
+  <li>open</li>
+  <li>optimum</li>
+  <li>pattern</li>
+
+  <li>placeholder</li>
+  <li>poster</li>
+  <li>preload</li>
+  <li>profile</li>
+  <li>radioGroup</li>
+  <li>readOnly</li>
+  <li>rel</li>
+  <li>required</li>
+  <li>reversed</li>
+
+  <li>role</li>
+  <li>rowSpan</li>
+  <li>rows</li>
+  <li>sandbox</li>
+  <li>scope</li>
+  <li>scoped</li>
+  <li>scrolling</li>
+  <li>seamless</li>
+  <li>selected</li>
+  <li>shape</li>
+  <li>size</li>
+
+  <li>sizes</li>
+  <li>span</li>
+  <li>spellCheck</li>
+  <li>src</li>
+  <li>srcDoc</li>
+  <li>srcLang</li>
+  <li>srcSet</li>
+  <li>start</li>
+  <li>step</li>
+  <li>style</li>
+  <li>summary</li>
+
+  <li>tabIndex</li>
+  <li>target</li>
+  <li>title</li>
+  <li>type</li>
+  <li>useMap</li>
+  <li>value</li>
+  <li>width</li>
+  <li>wmode</li>
+  <li>wrap</li>
+ </ul>
+</div>
+
+<p class="underline-text"># Some of all SVG attributes are fully supported:</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>accentHeight</li>
+  <li>accumulate</li>
+  <li>additive</li>
+  <li>alignmentBaseline</li>
+  <li>allowReorder</li>
+  <li>alphabetic</li>
+
+  <li>amplitude</li>
+  <li>arabicForm</li>
+  <li>ascent</li>
+  <li>attributeName</li>
+  <li>attributeType</li>
+  <li>autoReverse</li>
+  <li>azimuth</li>
+
+  <li>baseFrequency</li>
+  <li>baseProfile</li>
+  <li>baselineShift</li>
+  <li>bbox</li>
+  <li>begin</li>
+  <li>bias</li>
+  <li>by</li>
+  <li>calcMode</li>
+  <li>capHeight</li>
+
+  <li>clip</li>
+  <li>clipPath</li>
+  <li>clipPathUnits</li>
+  <li>clipRule</li>
+  <li>colorInterpolation</li>
+
+  <li>colorInterpolationFilters</li>
+  <li>colorProfile</li>
+  <li>colorRendering</li>
+  <li>contentScriptType</li>
+
+  <li>contentStyleType</li>
+  <li>cursor</li>
+  <li>cx</li>
+  <li>cy</li>
+  <li>d</li>
+  <li>decelerate</li>
+  <li>descent</li>
+  <li>diffuseConstant</li>
+  <li>direction</li>
+
+  <li>display</li>
+  <li>divisor</li>
+  <li>dominantBaseline</li>
+  <li>dur</li>
+  <li>dx</li>
+  <li>dy</li>
+  <li>edgeMode</li>
+  <li>elevation</li>
+  <li>enableBackground</li>
+
+  <li>end</li>
+  <li>exponent</li>
+  <li>externalResourcesRequired</li>
+  <li>fill</li>
+  <li>fillOpacity</li>
+  <li>fillRule</li>
+  <li>filter</li>
+
+  <li>filterRes</li>
+  <li>filterUnits</li>
+  <li>floodColor</li>
+  <li>floodOpacity</li>
+  <li>focusable</li>
+  <li>fontFamily</li>
+  <li>fontSize</li>
+
+  <li>fontSizeAdjust</li>
+  <li>fontStretch</li>
+  <li>fontStyle</li>
+  <li>fontVariant</li>
+  <li>fontWeight</li>
+  <li>format</li>
+  <li>from</li>
+  <li>fx</li>
+  <li>fy</li>
+
+  <li>g1</li>
+  <li>g2</li>
+  <li>glyphName</li>
+  <li>glyphOrientationHorizontal</li>
+  <li>glyphOrientationVertical</li>
+  <li>glyphRef</li>
+
+  <li>gradientTransform</li>
+  <li>gradientUnits</li>
+  <li>hanging</li>
+  <li>horizAdvX</li>
+  <li>horizOriginX</li>
+  <li>ideographic</li>
+
+  <li>imageRendering</li>
+  <li>in</li>
+  <li>in2</li>
+  <li>intercept</li>
+  <li>k</li>
+  <li>k1</li>
+  <li>k2</li>
+  <li>k3</li>
+  <li>k4</li>
+  <li>kernelMatrix</li>
+  <li>kernelUnitLength</li>
+
+  <li>kerning</li>
+  <li>keyPoints</li>
+  <li>keySplines</li>
+  <li>keyTimes</li>
+  <li>lengthAdjust</li>
+  <li>letterSpacing</li>
+  <li>lightingColor</li>
+
+  <li>limitingConeAngle</li>
+  <li>local</li>
+  <li>markerEnd</li>
+  <li>markerHeight</li>
+  <li>markerMid</li>
+  <li>markerStart</li>
+
+  <li>markerUnits</li>
+  <li>markerWidth</li>
+  <li>mask</li>
+  <li>maskContentUnits</li>
+  <li>maskUnits</li>
+  <li>mathematical</li>
+  <li>mode</li>
+
+  <li>numOctaves</li>
+  <li>offset</li>
+  <li>opacity</li>
+  <li>operator</li>
+  <li>order</li>
+  <li>orient</li>
+  <li>orientation</li>
+  <li>origin</li>
+  <li>overflow</li>
+
+  <li>overlinePosition</li>
+  <li>overlineThickness</li>
+  <li>paintOrder</li>
+  <li>panose1</li>
+  <li>pathLength</li>
+
+  <li>patternContentUnits</li>
+  <li>patternTransform</li>
+  <li>patternUnits</li>
+  <li>pointerEvents</li>
+  <li>points</li>
+
+  <li>pointsAtX</li>
+  <li>pointsAtY</li>
+  <li>pointsAtZ</li>
+  <li>preserveAlpha</li>
+  <li>preserveAspectRatio</li>
+  <li>primitiveUnits</li>
+
+  <li>r</li>
+  <li>radius</li>
+  <li>refX</li>
+  <li>refY</li>
+  <li>renderingIntent</li>
+  <li>repeatCount</li>
+  <li>repeatDur</li>
+  <li>requiredExtensions</li>
+
+  <li>requiredFeatures</li>
+  <li>restart</li>
+  <li>result</li>
+  <li>rotate</li>
+  <li>rx</li>
+  <li>ry</li>
+  <li>scale</li>
+  <li>seed</li>
+  <li>shapeRendering</li>
+  <li>slope</li>
+
+  <li>spacing</li>
+  <li>specularConstant</li>
+  <li>specularExponent</li>
+  <li>speed</li>
+  <li>spreadMethod</li>
+  <li>startOffset</li>
+
+  <li>stdDeviation</li>
+  <li>stemh</li>
+  <li>stemv</li>
+  <li>stitchTiles</li>
+  <li>stopColor</li>
+  <li>stopOpacity</li>
+
+  <li>strikethroughPosition</li>
+  <li>strikethroughThickness</li>
+  <li>string</li>
+  <li>stroke</li>
+  <li>strokeDasharray</li>
+
+  <li>strokeDashoffset</li>
+  <li>strokeLinecap</li>
+  <li>strokeLinejoin</li>
+  <li>strokeMiterlimit</li>
+  <li>strokeOpacity</li>
+
+  <li>strokeWidth</li>
+  <li>surfaceScale</li>
+  <li>systemLanguage</li>
+  <li>tableValues</li>
+  <li>targetX</li>
+  <li>targetY</li>
+  <li>textAnchor</li>
+
+  <li>textDecoration</li>
+  <li>textLength</li>
+  <li>textRendering</li>
+  <li>to</li>
+  <li>transform</li>
+  <li>u1</li>
+  <li>u2</li>
+  <li>underlinePosition</li>
+
+  <li>underlineThickness</li>
+  <li>unicode</li>
+  <li>unicodeBidi</li>
+  <li>unicodeRange</li>
+  <li>unitsPerEm</li>
+  <li>vAlphabetic</li>
+
+  <li>vHanging</li>
+  <li>vIdeographic</li>
+  <li>vMathematical</li>
+  <li>values</li>
+  <li>vectorEffect</li>
+  <li>version</li>
+  <li>vertAdvY</li>
+
+  <li>vertOriginX</li>
+  <li>vertOriginY</li>
+  <li>viewBox</li>
+  <li>viewTarget</li>
+  <li>visibility</li>
+  <li>widths</li>
+  <li>wordSpacing</li>
+
+  <li>writingMode</li>
+  <li>x</li>
+  <li>x1</li>
+  <li>x2</li>
+  <li>xChannelSelector</li>
+  <li>xHeight</li>
+  <li>xlinkActuate</li>
+  <li>xlinkArcrole</li>
+
+  <li>xlinkHref</li>
+  <li>xlinkRole</li>
+  <li>xlinkShow</li>
+  <li>xlinkTitle</li>
+  <li>xlinkType</li>
+  <li>xmlns</li>
+  <li>xmlnsXlink</li>
+  <li>xmlBase</li>
+
+  <li>xmlLang</li>
+  <li>xmlSpace</li>
+  <li>y</li>
+  <li>y1</li>
+  <li>y2</li>
+  <li>yChannelSelector</li>
+  <li>z</li>
+  <li>zoomAndPan</li>
+ </ul>
+</div>

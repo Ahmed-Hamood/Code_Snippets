@@ -1,0 +1,1312 @@
+<p class="main-title">
+  9.3 - Using <code>Express-Handlebars</code> Template
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">1 - What is <code>Express-Handlebars</code></p>
+
+<p class="text">
+  Handlebars is a free and open source JavaScript Template Engine that allows us to inject JavaScript property values directly into our HTML code.
+  Basically, it works as a compiler, which means that it takes some input, then compiles and transforms it into a result.
+</p>
+
+<p class="text">
+  In Handlebars, we have to input the HTML and JavaScript code inside the Handlebars file. It will then automatically compile the code (fill the values) 
+  and return the actual HTML web page. We will use the <code>Express-Handlebars</code> module that integrates Handlebars with your web framework.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">2 - Installing <code>Express-Handlebars</code> Dependency </p>
+
+<p class="text">
+  To start using our handlebars Template,we need to install it first. You need to create a folder that will contain our whole project with your express framework
+  installed inside your project folder. After that install <code>Express-Handlebars</code> in it by opening the CLI terminal as following.
+</p>
+
+<p class="underline-text">
+  # Installing Express-Handlebars into your project for template render :-
+</p>
+
+<div class="terminal-block terminal pre-block">
+<pre><code class="js language-js">
+ > npm install express-handlebars
+ + express-handlebars@5.3.3 
+</code></pre>
+</div>
+
+<p class="text">
+  Now if you go to <green>package.json</green> file you are going to see your <code>Express-Handlebars</code> module/package under your Dependencies.
+</p>
+
+<p class="underline-text">
+  # In your package.json file :-
+</p>
+
+<div class="text-block js-code code">
+<p class="block-title">./package.json</p>
+<pre><code class="js language-js">
+  {
+    "name": "HandlebarsProject",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      ....
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.17.1",
+      "express-handlebars": "^5.3.3" 
+    }
+  }  
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">2 - Import and Setup <code>Express-Handlebars</code> module </p>
+
+<p class="text">
+  Inside your project folder in <green>server.js</green> file, you need to import or load your <code>Express-Handlebars</code> module along 
+  with other module in to your project. Let's Loads the handlebars module.
+</p>
+
+<p class="underline-text"># Import or load the handlebars module :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+<p class="block-title">➤ ./server.js</p>
+<pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  
+  // Loads the handlebars module
+  const hbs = require("express-handlebars")
+
+  ....
+  
+  const port = process.env.PORT || 3000
+  app.listen(port, () => console.log(`App listening to port ${port}`))  
+</code></pre>
+</div>
+
+<p class="text">
+  After loading express-handlebars module, now we can configure our application view engine by set it to <green>hbs</green>.
+  And also we are going to configure the extension because by default the extension by default is .handlebars and we want to
+  change it to .hbs as our extension name because it's shorter.
+</p>
+
+<p class="underline-text"># Set handlebars as the view engine and configure the extension setting :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+<p class="block-title">➤ ./server.js</p>
+<pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  
+  > 1. Loads the handlebars module
+  const hbs = require("express-handlebars")
+
+  > 2. Settings for Handlebars
+  app.engine("hbs", hbs({
+    extname: ".hbs" // you handlebars files extension must end with .hbs like main.hbs 
+  }));
+
+  > 3. Configure our application to utilize the Handlebars as template view engine
+  app.set("view engine", ".hbs");
+  
+  const port = process.env.PORT || 3000
+  app.listen(port, () => console.log(`App listening to port ${port}`))  
+</code></pre>
+</div>
+
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">3 - Create our views Folder and Render </p>
+
+<p class="text">
+ After we configure express to use the template engine handlebars, along with some setting like the file extension,
+ we need to create a folder called <green>./views</green> that has all our handlebars template files. Let's create our first index page
+ with a template name as <blue>home.hbs</blue>.
+</p>
+
+<p class="underline-text">
+  # Create our first template file :-
+</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  &lt;!DOCTYPE html>
+  &lt;html lang="en">
+  &lt;head>
+    &lt;meta charset="UTF-8">
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0">
+    &lt;title>Document&lt;/title>
+  &lt;/head>
+  &lt;body>
+    &lt;h1> Welcome to Express Handlebars &lt;/h1>
+  &lt;/body>
+  &lt;/html>
+</code></pre>
+</div>
+
+<p class="text">
+ Now to be able to reach the <green>home.hbs</green> page, we need to configure a request handler. The <code>res.render('home')</code>
+ will render the template name as <green>home.hbs</green> to the assigned route. let's render our home template file by setup our route.
+</p>
+ 
+<p class="underline-text"># Setup Route to send the home file template as a response :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+<p class="block-title">➤ ./server.js</p>
+<pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  
+  # 1. Loads the handlebars module
+  const hbs = require("express-handlebars")
+
+  # 2. Settings for Handlebars
+  app.engine("hbs", hbs({
+    extname: ".hbs" // you handlebars files extension must end with .hbs like main.hbs 
+  }));
+
+  # 3. Configure our application to utilize the Handlebars as template view engine
+  app.set("view engine", ".hbs");
+
+  # 4. Create a home route that render our home template as a response
+  app.get("/", (req, res) => {
+    res.render("home", { layout: false })
+  })
+  
+  const port = process.env.PORT || 3000
+  app.listen(port, () => console.log(`App listening to port ${port}`))  
+</code></pre>
+</div>
+
+<p class="text">
+  If we run our application, and access this URL <green>http://localhost:3000/</green> in the browser we should be able to see <blue>Welcome to Express Handlebars</blue>
+  message on the page. This mean our <green>home.hbs</green> is rendered successfully. 
+</p>
+
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">4 - Setup a <blue>Default Layout</blue> and Render Using Body Placeholder  </p>
+
+<p class="text">
+  We will create a layout of our website that can be easily applied on different web pages. Inside the views folder, there’s will be another folder names as <blue>layouts</blue>
+  which will contain the <green>main.hbs</green> file will a layout content for all other template files. This layout will will contain the HTML structure, style sheets, and scripts 
+  that are shared between templates.
+</p>
+
+<p class="text">
+  We will just add a <orange>{{{body}}}</orange> placeholder content inside our <green>main</green> layout that all other template will be wrapped a round. 
+  The <green>main.hbs</green> will contain the core of the HTML code we want to render a cross all templates. 
+  The default layout directory is set to <green>"/views/layouts"</green>. Thru handlebars setting we can change the default layout directory and setup 
+  the default layout file inside the layout directory (if you don’t tell handlebars which layout file to render, it will throw an error telling you there’s no layout file.) 
+</p>
+
+<p class="underline-text"># Configure our default layout file and directory :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+<p class="block-title">➤ ./server.js</p>
+<pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+
+  const hbs = require("express-handlebars")
+
+  app.engine(
+  "hbs",
+  hbs({
+    extname: ".hbs",
+    layoutsDir: __dirname + "/views/layouts", // this the default directory no need to set it.
+    defaultLayout: "main" // select the default layout file that all our templates will use
+  })
+  )
+
+  app.set("view engine", ".hbs")
+
+  app.get("/", (req, res) => {
+    res.render("home")
+  })
+
+  app.get("/about", (req, res) => {
+    res.render("about")
+  })
+
+  app.get("/allusers", (req, res) => {
+    res.render("allUsers")
+  })
+
+  const port = process.env.PORT || 3000
+  app.listen(port, () => console.log(`App listening to port ${port}`))
+</code></pre>
+</div>
+
+
+<p class="underline-text">
+  # Viewing our project folder directory :-
+</p>
+
+<img path="/img/image029.PNG" id="image" alt="">
+
+<p class="text">
+  Let's create our templates starting the main layout template that contain all assets and a layout that all other template file will share.
+  And also we are going create other templates with only the html content each file will be rendered inside our main layout.
+</p>
+
+<p class="underline-text">
+  # Creating one layout template for all other templates :-
+</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/layouts/main.hbs</p>
+<pre><code class="js language-js">
+  &lt;html lang="en">
+    &lt;head>
+     &lt;meta charset="UTF-8" />
+     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     &lt;title>Document&lt;/title>
+     &lt;link rel="stylesheet" href="./style.css" />
+    &lt;/head>
+    &lt;body>
+     &lt;header>
+      &lt;nav>
+        &lt;a href=<green3>"/"</green3>> Home &lt;/a>
+        &lt;a href=<green3>"/about"</green3>> About &lt;/a>
+        &lt;a href=<green3>"/allUsers"</green3>> All Users &lt;/a>
+      &lt;/nav>
+     &lt;/header>
+     &lt;hr />
+     {{{body}}} // All other template files content will be placed here
+     &lt;hr />
+     &lt;h1>Footer&lt;/h1>
+     &lt;script src="./app.js">&lt;/script>
+     &lt;script src="./other.js">&lt;/script>
+    &lt;/body>
+   &lt;/html>
+</code></pre>
+</div>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  &lt;h1> Welcome to Express Handlebars &lt;/h1>
+</code></pre>
+</div>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/about.hbs</p>
+<pre><code class="js language-js">
+  &lt;h1> About this page &lt;/h1>
+</code></pre>
+</div>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/allUsers.hbs</p>
+<pre><code class="js language-js">
+  &lt;h1> All Users &lt;/h1>
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # Here is our output :-
+</p>
+
+<img path="/img/image030.gif" id="image" alt="">
+
+<p class="text">
+ You can change the default layout for a specific template files, by injecting other layout file inside our render method as a second parameter 
+ and pass <blue>layout</blue> property inside an object, this will set the selected layout for this template file only.
+</p>
+
+<p class="underline-text"># Configure our default layout file and directory :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+<p class="block-title">➤ ./server.js</p>
+<pre><code class="js language-js">
+  app.get("/allusers", (req, res) => {
+    res.render("allUsers", { <orange>layout</orange>: "other" })
+  })
+</code></pre>
+</div>
+
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">5 - Using Shared Partials Template  </p>
+
+<p class="text">
+  Pretty much all web pages contain different sections. these are the Header, Body, and Footer sections. Since the Header and Footer are typically shared 
+  between many pages, having this in all web pages will soon become extremely annoying and simply redundant. we can use Handlebars to divide these sections 
+  in templates and simply include these templates as "partials" in pages themselves.
+</p>
+
+<p class="text">
+  Partials is usable HTML code block that we can use them sections or pieces in our main template. Inside the views folder, there’s will be another folder names 
+  as <green>partials</green> as the default directory which include all your partials like HTML code such as header and footer and any other reusable HTML block.
+  If you want to change the default directory just pass partialsDir option into you hbs object setting.
+</p>
+
+<p class="underline-text"># Configure our default partial folder :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+<p class="block-title">➤ ./server.js</p>
+<pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+
+  const hbs = require("express-handlebars")
+
+  app.engine(
+  "hbs",
+  hbs({
+    extname: ".hbs",
+    layoutsDir: __dirname + "/views/layouts", // this the default directory no need to set it.
+    partialsDir: __dirname + "/views/partials", // this the default directory no need to set it.
+    defaultLayout: "main" // select the default layout file that all our templates will use
+  })
+  )
+
+  app.set("view engine", ".hbs")
+
+  app.get("/", (req, res) => {
+    res.render("home")
+  })
+
+  app.get("/about", (req, res) => {
+    res.render("about")
+  })
+
+  app.get("/allusers", (req, res) => {
+    res.render("allUsers")
+  })
+
+  const port = process.env.PORT || 3000
+  app.listen(port, () => console.log(`App listening to port ${port}`))
+</code></pre>
+</div>
+
+<p class="text">
+  We are going to create a partial templates, so let's create two partials inside our <green>partials</green> folder, first the <blue>navBar.hbs</blue> in Header HTML block.
+  And create <blue>footer.hbs</blue> HTML block code. 
+</p>
+
+<p class="underline-text">
+  # The project directory content :-
+</p>
+
+<img path="/img/image031.PNG" id="image" alt="">
+
+<p class="underline-text"># Create two partials HTML block content :-</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/partials/navBar.hbs</p>
+<pre><code class="js language-js">
+  &lt;nav>
+    &lt;a href=<green3>"/"</green3>> Home &lt;/a>
+    &lt;a href=<green3>"/about"</green3>> About &lt;/a>
+    &lt;a href=<green3>"/allUsers"</green3>> All Users &lt;/a>
+  &lt;/nav>
+</code></pre>
+</div>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/partials/Footer.hbs</p>
+<pre><code class="js language-js">
+  &lt;div>
+    &lt;h1>Footer&lt;/h1>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="text">
+  We place both partials files inside our <blue>main.hbs</blue> like this <orange>{{> navBar}}</orange> and <orange>{{> footer}}</orange> as following.
+</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/layouts/main.hbs</p>
+<pre><code class="js language-js">
+  &lt;html lang="en">
+    &lt;head>
+     &lt;meta charset="UTF-8" />
+     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     &lt;title>Document&lt;/title>
+     &lt;link rel="stylesheet" href="./style.css" />
+    &lt;/head>
+    &lt;body>
+
+     &lt;header>
+     {{> <blue>navBar</blue>}}
+     &lt;/header>
+     
+     &lt;hr />
+     {{{body}}}
+     &lt;hr />
+   
+     {{> <blue>Footer</blue>}}
+   
+     &lt;script src="./app.js">&lt;/script>
+     &lt;script src="./other.js">&lt;/script>
+    &lt;/body>
+  &lt;/html>
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # Here is our output :-
+</p>
+
+<img path="/img/image030.gif" id="image" alt="">
+
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">6 - Bind and Access Data and methods from Template  </p>
+
+
+<!-- ##################################################################################### -->
+<p class="sub-sub-title get-title">A - Bind Data into our template  </p>
+
+<p class="text">
+  Using handlebars we can send data and add them dynamically into our template by just passing the data inside the render method.
+  Let's start passing data into our template and reference each data inside double brackets <code>{{}}</code>, first will place some 
+  data into our render() method as following.
+</p>
+
+<p class="underline-text"># Passing value into our template thru the render method :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+<p class="block-title">➤ ./server.js</p>
+<pre><code class="js language-js">
+  app.get("/", function (req, res) {
+
+    res.locals.username = "Adam";
+
+    res.render("home", {
+        myTitle: "my title",
+        msg: "This is home page",
+        post: {
+          author: "Janith Kasun",
+          image: "https://picsum.photos/500/500",
+          comments: ["Hey There", "Welcome", "Ok"]
+        }
+    });
+  });
+</code></pre>
+</div>
+
+<p class="text">
+ Now after passing our data into our template let's fill the name of each property inside our HTML file within double brackets <code>{{variable_name}} </code>
+ as a placeholder for the variable that contains the value from the logic inside the Javascript object.
+</p>
+
+<p class="underline-text">
+  # Here we are going to bind our data into the template :-
+</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  &lt;h1> {{myTitle}} &lt;/h1>
+  &lt;h1> Welcome {{username}} &lt;/h1>
+  &lt;p> {{msg}} &lt;/p>
+  &lt;p> Post Details: &lt;/p>
+  &lt;ul>
+    &lt;li>author: {{post.author}}&lt;/li>
+    &lt;li>image: {{post.image}}&lt;/li>
+    &lt;li>comments: {{post.comments}}&lt;/li>
+    &lt;li>comment 1: {{post.comments[0]}}&lt;/li> <error>// Won't work</error>
+  &lt;/ul>
+</code></pre>
+</div>
+
+<img path="/img/image032.PNG" id="image" alt="">
+
+<p class="text">
+  By referencing these values with the handler that renders the page, they're inserted on the server-side
+  and the user is served seemingly static HTML with these values already present.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-sub-title get-title">B - Bind Methods into our template  </p>
+
+<p class="text">
+  Also we can bind or pass methods that return a value into our template, maybe inside method you want to have some logic before returning a value,
+  or return a fake api contain a list of users as following.
+</p>
+
+<p class="underline-text"># Passing value into our template thru the render method :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+<p class="block-title">➤ ./server.js</p>
+<pre><code class="js language-js">
+  const fakeApi = () => {
+    return [
+      {
+        player: 'Katarina',
+        lane: 'midlaner'
+      },
+      {
+        player: 'Jayce',
+        lane: 'toplaner'
+      },
+      {
+        player: 'Heimerdinger',
+        lane: 'toplaner'
+      },
+      {
+        player: 'Zed',
+        lane: 'midlaner'
+      },
+      {
+        player: 'Azir',
+        lane: 'midlaner'
+      }
+    ];
+  }
+
+  app.get("/", function (req, res) {
+    res.render("home", {
+      suggestedPlayers: fakeApi(),
+      listExists: true
+    });
+  });
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # Here we are going to bind our method into the template :-
+</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  {{<blue>#if</blue> listExists}} 
+  &lt;ul>
+    {{<blue>#each</blue> suggestedPlayers}}
+      &lt;li class={{this.lane}}>{{this.player}}&lt;/li>
+    {{/<blue>each</blue>}}
+  &lt;/ul>
+  {{/<blue>if</blue>}}
+</code></pre>
+</div>
+
+<img path="/img/image033.PNG" id="image" alt="">
+
+<!-- ##################################################################################### -->
+<p class="sub-sub-title get-title">C - Bind Using <code>Lookup</code> Built-in Helper Method  </p>
+
+<p class="text">
+  handlebars has a build-in method used to look up some values from objects or arrays anywhere. It's useful for resolving values from an array
+  let's see how it works.
+</p>
+
+<p class="underline-text"># Passing value into our template thru the render method :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+<p class="block-title">➤ ./server.js</p>
+<pre><code class="js language-js">
+  app.get("/", function (req, res) {
+    res.render("home", {
+        myTitle: "my title",
+        msg: "This is home page",
+        post: {
+          author: "Janith Kasun",
+          image: "https://picsum.photos/500/500",
+          comments: ["Hey There", "Welcome", "Ok"]
+        }
+    });
+  });
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # Here we are going to bind data using the lookup build in method :-
+</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  &lt;h1> {{ myTitle }} &lt;/h1>
+  &lt;p> {{ msg }} &lt;/p>
+  &lt;p> Post Details: &lt;/p>
+  &lt;ul>
+   &lt;li>Author : {{<blue>lookup</blue> post "author"}}&lt;/li>
+   &lt;li>image: {{<blue>lookup</blue> post "image"}}&lt;/li>
+   &lt;li>comment 1: {{<blue>lookup</blue> post "comments"}}&lt;/li>
+   &lt;li>comment 1: {{<blue>lookup</blue> post.comments 0}}&lt;/li>
+   &lt;li>comment 2: {{<blue>lookup</blue> post.comments 1}}&lt;/li>
+   &lt;li>comment 3: {{<blue>lookup</blue> post.comments 2}}&lt;/li>
+  &lt;/ul>
+</code></pre>
+</div>
+
+<img path="/img/image034.PNG" id="image" alt="">
+
+<p class="underline-text">
+  # An Example :-
+</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  {
+    people: ["Nils", "Yehuda"],
+    cities: [
+      "Darmstadt",
+      "San Francisco",
+    ],
+  }
+
+  // .. double dots mean go back one level
+  // . single dot means return the current value inside an array
+  // You can use this keyword instead if single dot
+
+  {{<purple>#each</purple> people}}
+   {{.}} lives in {{lookup ../cities @index}}
+  {{/<purple>each</purple>}}
+
+  #Output:
+  Nils lives in Darmstadt
+  Yehuda lives in San Francisco
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-sub-title get-title">D - Bind Using the #with helper  </p>
+
+<p class="text">
+  The <code>#with</code> helper allows you to change the evaluation context of template-part. In with helper can also be used with block parameters 
+  to define known references in the current block
+</p>
+
+<p class="underline-text"># Passing value into our template thru the render method :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+<p class="block-title">➤ ./server.js</p>
+<pre><code class="js language-js">
+  app.get("/", function (req, res) {
+
+    res.locals.username = "Adam";
+    
+    res.render("home", {
+      person: {
+        firstname: "Yehuda",
+        lastname: "Katz",
+      }
+    });
+  });
+</code></pre>
+</div>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  {{<purple>#with</purple> person}}
+    {{firstname}} {{lastname}} - Accessed by {{../username}}
+  {{/<purple>with</purple>}}
+
+  // Output
+  Yehuda Katz - Accessed by Adam
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+<p class="block-title">➤ ./server.js</p>
+<pre><code class="js language-js">
+  app.get("/", function (req, res) {
+    res.render("home", {
+      city: {
+        name: "San Francisco",
+        summary: "San Francisco is the &lt;b>cultural center&lt;/b> of &lt;b>Northern California&lt;/b>",
+        location: {
+          north: "37.73,",
+          east: "-122.44",
+        },
+        population: 883305,
+      },
+    });
+  });
+</code></pre>
+</div>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  {{<purple>#with</purple> city as | city |}}
+    {{<purple>#with</purple> city.location as | loc |}}
+      {{city.name}}: {{loc.north}} {{loc.east}}
+    {{/<purple>with</purple>}}
+  {{/<purple>with</purple>}}
+  
+  // Output
+  San Francisco: 37.73, -122.44
+</code></pre>
+</div>
+
+
+<p class="underline-text"># An Example of using else if no result Available :-</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  // Send Object content with render method
+  {
+    person: {
+      firstname: "Yehuda",
+      lastname: "Katz",
+    },
+  }
+
+  {{#with city}}
+    {{city.name}} (not shown because there is no city)
+  {{else}}
+    No city found
+  {{/with}}
+</code></pre>
+</div>
+
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">7 - Display Data Conditionally   </p> 
+
+<!-- ********************************* -->
+<p class="sub-sub-title get-title">A - Using the #if Helper  </p>
+ 
+<p class="text">
+  We can use the if-else condition in the template itself to show or render a block of code conditionally. Since we have if condition logic
+  we can show data if they're present if not we can run another block of code. If its argument returns <green>false</green>, <green>undefined</green>, 
+  <green>null</green>, <green>""</green>, <green>0</green>, or <green>[]</green>, Handlebars will not render the block.
+</p>
+
+<p class="underline-text"># If condition Syntax :-</p>
+
+<div class="html-block html-code code">
+  <p class="block-title">➤ Syntax</p>
+  <pre><code class="js language-js">
+      // > Using if condition
+      {{<purple>#if</purple> variable}}
+        If variable true Execute this HTML Code Block 
+      {{<purple>/if</purple>}} &lt;-- Here if-else ends
+
+      // > Using if-else condition
+      {{<purple>#if</purple> variable}}
+        If variable true Execute this HTML Code Block 
+      {{<green3>else</green3>}}
+        If variable false Execute this HTML Code Block 
+      {{<purple>/if</purple>}} &lt;-- Here if-else ends
+
+      // > Using Nested If-else
+      {{<purple>#if</purple> variable}}
+        {{<purple>#if</purple> variable2}} 
+           View the following content
+        {{<green3>/if</green3>}}
+      {{<green3>else</green3>}}
+        If variable false Execute this HTML Code Block 
+      {{<green3>else</green3>}}
+  </code></pre>
+  </div>
+
+<p class="underline-text"># Passing value into our template thru the render method :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+<p class="block-title">➤ ./server.js</p>
+<pre><code class="js language-js">
+  app.get("/", function (req, res) {
+    res.render("home", {
+      myTitle: "my title",
+      msg: "This is home page",
+      post: {
+        author: "Janith Kasun",
+        image: "https://picsum.photos/500/500",
+        comments: ["Hey There", "Welcome", "Ok"]
+      }
+    });
+  });
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # Here we are going to render data conditionally using the #if helper :-
+</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  &lt;p>
+    {{<purple>#if</purple> msg}}
+      {{msg}}
+    {{<green3>else</green3>}}
+      No message was found
+    {{<purple>/if</purple>}}
+  &lt;/p>
+
+  {{<purple>#if</purple> msg}}
+    {{<purple>#each</purple> post}}
+      &lt;li>{{author}}&lt;/li>
+      &lt;li>{{image}}&lt;/li>
+      &lt;li>{{comments}}&lt;/li>
+    {{/<purple>each</purple>}}
+  {{<green3>else</green3>}}
+    &lt;p> No Post Available &lt;/p>
+  {{<purple>/if</purple>}}
+</code></pre>
+</div>
+
+<p class="text">
+  #if only accepts a single condition and you can't use JavaScript comparison syntax (<blue>===</blue>). 
+  If you need to use multiple conditions or additional syntax, you can create a variable in the code and pass it down to the template. 
+  Additionally, you can define your own helper, which we'll do in the last section.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-sub-title get-title">B - Using the <code>#unless</code> Helper  </p>
+
+<p class="text">
+  The unless helper as the inverse of the if helper. Its block will be rendered if the expression returns a <false>falsy</false> value.
+</p>
+
+<p class="underline-text">
+  # Here we are going to render data using the unless helper :-
+</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  &lt;div <blue>class</blue>="entry">
+    {{<purple>#unless</purple> license}} // If there is no license render the following code block
+    &lt;h3 <blue>class</blue>="warning"> WARNING: This entry does not have a license! &lt;/h3>
+    {{/<purple>unless</purple>}}
+  &lt;/div>
+</code></pre>
+</div>
+
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">8 - Iterate Thru an Array using <code>#each</code> Loop  </p>
+
+<p class="text">
+  Handlebars also allow us to display an array of object data into templates using the <code>#each</code> syntax.
+  let's have an array that contain names of string and and display all of them using the <code>#each</code> loop.
+</p>
+
+<p class="underline-text">
+  # The #each syntax :-
+</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ syntax</p>
+<pre><code class="js language-js">
+  {{<purple>#each</purple> ArrayOfStrings}}
+     Access strings using the this keyword or single dot
+  {{<purple>/each</purple>}}
+
+  {{<purple>#each</purple> ArrayOfObject}}
+    Object Properties inside ArrayOfObject are Available here access them directly {{property1}} or {{this.property2}} 
+  {{<purple>/each</purple>}}
+
+  {{<purple>#each</purple> ArrayOfObject as |value key|}}
+    {{key}} : {value}}
+  {{<purple>/each</purple>}}
+</code></pre>
+</div>
+
+
+<p class="text">
+  You can iterate over a list using the built-in #each helper. Inside the block, you can use <blue>this</blue> or single dot <blue>"."</blue> 
+  to reference the element being iterated over.
+</p>
+
+<p class="underline-text">
+  # An Example of iterate thru an array :-
+</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  // Send Object content with render method
+  {
+    people: [
+      "Yehuda Katz",
+      "Alan Johnson",
+      "Charles Jolley",
+    ],
+  }
+
+  &lt;ul <blue>class</blue>="people_list">
+    {{<purple>#each</purple> people}}
+      &lt;li>{{<orange>this</orange>}} OR {{<orange>.</orange>}}&lt;/li>
+    {{<purple>/each</purple>}}
+  &lt;/ul>
+
+  # OUTPUT :-
+  &lt;ul class="people_list">
+    &lt;li>Yehuda Katz OR Yehuda Katz&lt;/li>
+    &lt;li>Alan Johnson OR Alan Johnson&lt;/li>
+    &lt;li>Charles Jolley OR Charles Jolley&lt;/li>
+  &lt;/ul>
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # You can optionally provide an else section which will display only when the list is empty. :-
+</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  // Send Object content with render method
+  {} // No content
+
+  {{<purple>#each</purple> paragraphs}}
+    &lt;p>{{<orange>this</orange>}}&lt;/p>
+    {{<purple>else</purple>}}
+    &lt;p class="empty">No content&lt;/p>
+  {{<purple>/each</purple>}}
+
+  # OUTPUT :-
+  &lt;p <blue>class</blue>="empty"> No content &lt;/p>
+</code></pre>
+</div>
+
+<p class="text">
+  If you have an array of objects, you can access any attribute of that object as well. For example if there is an array of users objects
+  you can simply use <blue>this.name</blue> or <blue>name</blue> directly to access the name field.
+</p>
+
+<p class="underline-text">
+  # An Example of iterating thru an array of objects :-
+</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+<p class="block-title">➤ ./server.js</p>
+<pre><code class="js language-js">
+  app.get("/", function (req, res) {
+    res.locals.username = "Adam Sam"
+
+    res.render("home", {
+     post: {
+      author: "Janith Kasun",
+      image: "https://picsum.photos/500/500",
+      comments: ["This is the first comment", "This is the second comment", "Lorem ipsum dolor sit amet."],
+      users: [
+        { id: 1, name: "adam" },
+        { id: 2, name: "Frank" },
+        { id: 3, name: "William" },
+        { id: 4, name: "John" },
+      ],
+     },
+    })
+   })
+</code></pre>
+</div>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  &lt;h1> Loop thru an array &lt;/h1>
+
+  {{<purple>#if</purple> post.comments}}
+   {{<purple>#each</purple> post.comments}}
+    &lt;li> - {{<orange>.</orange>}} - {{<orange>this</orange>}} &lt;/li>
+   {{<purple>/each</purple>}}
+  {{<purple>else</purple>}}
+   &lt;p> No comments Available &lt;/p>
+  {{<purple>/if</purple>}}
+  
+  &lt;h1> Loop thru an list of users object &lt;/h1>
+  
+  &lt;ul class="user">
+   {{<purple>#each</purple> post.users}}
+    &lt;li>ID: {{id}}, Name: {{<orange>this</orange>.name}} - Accessed by {{../username}}&lt;/li>
+   {{<purple>/<ppur></ppurple>each</purple>}}
+  &lt;/ul>
+</code></pre>
+</div>
+
+<img path="/img/image035.PNG" id="image" alt="">
+
+<p class="text">
+ You can changing the context within <code>#each</code> or <code>#with</code> to dive into nested object, 
+ When you include <green><code>../</code></green> segments in your path, Handlebars will change back into the parent context or one level up.
+</p>
+
+<p class="underline-text">
+  # An Example :-
+</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  // Send Object content with render method
+  {
+    persons: [
+      {
+        name: "Nils",
+        "resident-in": "darmstadt",
+      },
+      {
+        name: "Yehuda",
+        "resident-in": "san-francisco",
+      },
+    ],
+    cities: {
+      darmstadt: {
+        name: "Darmstadt",
+        country: "Germany",
+      },
+      "san-francisco": {
+        name: "San Francisco",
+        country: "USA",
+      },
+    },
+  }
+  
+  {{<purple>#each</purple> persons as | p |}}
+    {{p.name}} lives in {{<purple>#with</purple> (<orange>lookup</orange> ../cities [resident-in])~}}
+      {{p.name}} ({{country}})
+    {{/<purple>with</purple>}}
+  {{<purple>/each</purple>}}
+
+  #OUTPUT
+  Nils lives in Darmstadt (Germany)
+  Yehuda lives in San Francisco (USA)
+</code></pre>
+</div>
+
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">9 - <code>{{ }}</code> vs <code>{{{ }}}</code> - HTML Escaping  </p>
+
+<p class="text">
+  We have in handlebars a double and triple curly brackets, the values returned by the <code>{{expression}} </code> are HTML-escaped
+  if the expression contains <green>&</green>, then the returned HTML-escaped output is generated as <blue>&lt;</blue>. 
+  If you don't want Handlebars to escape a value, use the "triple-stash", {{{}}}.
+</p>
+
+<p class="underline-text">
+  # An Example :-
+</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  // Send Object content with render method
+  {
+    content1: "&lt;h1> In Double curly brackets &lt;/h1> &lt;",
+    content2: "&lt;h1> In Triple curly brackets &lt;/h1> &lt;"
+  }
+
+  &lt;h1> {{content1}} &lt;/h1>
+  &lt;h1> {{{content2}}} &lt;/h1>
+</code></pre>
+</div>
+
+<img path="/img/image036.PNG" id="image" alt="">
+
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">10 - Using <code>log</code> Helper </p>
+
+<p class="text">
+  The <code>log</code> helper allows for logging of context state while executing a template and view it in your CMD terminal window.
+  It delegates to <blue>Handlebars.logger.log</blue> which may be overridden to perform custom logging.
+</p>
+
+<p class="underline-text">
+  # Pass argument into our log method to pass them to the terminal :-
+</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  // Send Object content with render method
+  {
+    firstname: "Yehuda",
+    lastname: "Katz",
+  }
+
+  {{log 'firstname' firstname 'lastname' lastname}}
+</code></pre>
+</div>
+
+<div class="terminal-block terminal pre-block ">
+<pre><code class="js language-js">
+ firstname Yehuda lastname Katz
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # An Example :-
+</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  // Send Object content with render method
+  {
+   title: "My Title",
+   comments: ["comment 1", "comment 2", "comment 3"],
+   users: [
+     { id: 1, name: "adam"},
+     { id: 2, name: "william"},
+     { id: 3, name: "frank"}
+   ]
+  }
+
+  {{log 'title' title}}
+  {{log 'Whole content' this}}
+  {{log 'All Comment' comments}}
+  {{log 'All Users' users}}
+</code></pre>
+</div>
+
+<div class="terminal-block terminal pre-block ">
+<pre><code class="js language-js">
+  title: 'My Title',
+
+  Whole content {
+    settings: {
+      'x-powered-by': true,
+      etag: 'weak',
+      'etag fn': [Function: generateETag],
+      env: 'development',
+      'query parser': 'extended',
+      'query parser fn': [Function: parseExtendedQueryString],
+      'subdomain offset': 2,
+      'trust proxy': false,
+      'trust proxy fn': [Function: trustNone],
+      view: [Function: View],
+      views: 'C:\\Users\\Username\\Desktop\\HandlebarsProject\\views',
+      'jsonp callback name': 'callback',
+      'view engine': '.hbs'
+    },
+    username: 'Adam Sam',
+    title: 'My Title',
+    comments: [ 'comment 1', 'comment 2', 'comment 3' ],
+    users: [
+      { id: 1, name: 'adam' },
+      { id: 2, name: 'william' },
+      { id: 3, name: 'frank' }
+    ],
+    _locals: [Object: null prototype] { username: 'Adam Sam' },
+    cache: false
+  }
+
+  All Comment [ 'comment 1', 'comment 2', 'comment 3' ]
+  All Users [
+    { id: 1, name: 'adam' },
+    { id: 2, name: 'william' },
+    { id: 3, name: 'frank' }
+  ]
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">11 - Building a Custom Helper  </p>
+
+<p class="text">
+ handlebars also allow us to create and configure helper methods that can be used in the template. let’s consider if we want o display the current date and time zone.
+ We have to assign the helper method in the app.engine configuration by passing the helpers property as following.
+</p>
+
+<p class="underline-text">
+  # assign methods into app.engine configuration :-
+</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+<p class="block-title">➤ ./server.js</p>
+<pre><code class="js language-js">
+  app.engine('hbs', exphbs({
+    defaultLayout: 'main',
+    extname: '.hbs',
+    helpers: { 
+      todaysDate: () => new Date() 
+      getValue: (name) => name
+    }
+}));
+</code></pre>
+</div>
+
+<p class="text">
+  And in the template file, we just have to set the function name which we have defined wherever we want to display, and also we can pass parameter into our method
+  each parameter separated by space.
+</p>
+
+<p class="underline-text">
+  # Run our helper methods :-
+</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  &lt;div class='content'>
+    {{todaysDate}} &lt;br />
+    {{getValue "MyValue"}}
+  &lt;/div>
+
+  #OUTPUT
+  Thu Sep 02 2021 17:45:00 GMT+0400 (Gulf Standard Time)
+  MyValue
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # We can define our helper functions. In our case, we'll clip comments to 64 characters :-
+</p>
+
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+<p class="block-title">➤ ./server.js</p>
+<pre><code class="js language-js">
+  app.engine("hbs", exphbs({
+    defaultLayout: "main",
+    extname: ".hbs",
+    helpers: {
+      getShortComment(comment, defaultLength) {
+        if (comment.length &lt; defaultLength) {
+          return comment;
+        }
+
+        return comment.substring(0, 61) + "...";
+      }, 
+      async CheckIfUserExist(id) {
+        const getUser = await userModel.getUserById(id);
+        if(getUser){
+          return `&lt;h1> Welcome ${getUser.username} &lt;/h1>`
+        } else{
+          return '&lt;h1> User does not exist &lt;/h1>''
+        }
+      }
+    }
+  }));
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # Run our helper methods :-
+</p>
+
+<div class="html-block html-code code">
+<p class="block-title">➤ ./views/home.hbs</p>
+<pre><code class="js language-js">
+  &lt;div> 
+    {{CheckIfUserExist "2533256"}} 
+  &lt;/div>
+
+  {{#if this.comments}}
+  &lt;ul class="list-group">
+    {{<purple>#each</purple> this.comments}}
+    &lt;li class="list-group-item">{{<orange>getShortComment</orange> this 64}}&lt;/li>
+    {{<purple>/each</purple>}}
+  &lt;/ul>
+  {{<purple>else</purple>}}
+  &lt;ul class="list-group">
+    &lt;li class="list-group-item">Be first to comment on this post&lt;/li>
+  &lt;/ul>
+  {{<purple>/if</purple>}}
+</code></pre>
+</div>

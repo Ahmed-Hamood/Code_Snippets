@@ -1,0 +1,273 @@
+<p class="main-title">2.4 - Using Config Module To Store Configuration Settings</p>
+
+<p class="text">
+ Config module package gives us an elegant way to store configuration settings in JSON format for our applications. It lets you define a set of default parameters, and
+ extend them for different deployment environments (development, staging, production, etc.).
+</p>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">A - Install Config With NPM</p>
+
+<p class="text">Let's install Config module into our project application using NPM</p>
+
+<p class="underline-text"># Install Config Module Using NPM :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> npm i config
+  added 3 packages, and audited 55 packages in 2s
+  found 0 vulnerabilities
+</code></pre>
+</div>
+
+<p class="underline-text"># View package.json Content :-</p>
+
+<div class="code-block code pre-block">
+ <p class="block-title">./package.json</p>
+ <pre><code class="js language-js">
+  "dependencies": {
+    "config": "^3.3.3",
+    "dotenv": "^8.2.0", 
+    "express": "^4.17.1"
+  }
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">B - Creating config Folder with Environment Files</p>
+
+<p class="text">
+ Our Config module will look into a folder called <span class="blue bold">config</span>, so create one in your root directory with three files
+ <code>default.json</code>,<code>development.json</code> and <code>production</code>, which config module will load configuration settings from one of the files depend on
+ the current Node environments NODE_ENV .
+</p>
+
+<p class="underline-text"># Create a config folder with three files :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> Project_Name ls
+  └── node_module (Folder)
+  └── config (Folder)
+    └─ default.json (File)
+    └─ development.json (File)
+    └─ production.json (File)
+  └── package.json (File)
+  └── package-lock (File)
+  └── server.js  (File)
+</code></pre>
+</div>
+
+<p class="text">
+ In each file you specify your configuration settings in json format as <span class="blue bold">"Key": "Value"</span> or embedded properties. For Example when you run on
+ development mode, the config module will load the settings from <code>development.json</code> file, and it goes same for other files depend on the current NODE_ENV value
+</p>
+
+<p class="underline-text"># Each file will be used depend on the current node environment :-</p>
+
+<div class="code-block code pre-block">
+ <p class="block-title">./config/default.json</p>
+ <pre><code class="js language-js">
+  // Default Setting for all environment files, you can override it
+ {
+   "name": "Express Default",
+   "port": 3000
+ }
+</code></pre>
+</div>
+
+<div class="code-block code pre-block">
+ <p class="block-title">./config/development.json</p>
+ <pre><code class="js language-js">
+ {
+   "name": "Express Development",
+   "dbConfig": {
+    "host": "localhost",
+    "port": 5984,
+    "dbName": "customers_sample"
+   }
+ }
+</code></pre>
+</div>
+
+<div class="code-block code pre-block">
+ <p class="block-title">./config/production.json</p>
+ <pre><code class="js language-js">
+ {
+   "name": "Express Production",
+   "dbConfig": {
+    "host": "https://.....",
+    "port": 2566,
+    "dbName": "customers"
+  }
+ }
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">C - Start Using Config Module</p>
+
+<p class="text">
+ After creating our Config folder with all environment files, which one of them will be loaded depend on the current specified node environment thru command-line or
+ other. To start using Config module we need to require it first
+</p>
+
+<p class="underline-text"># Let's require our Config module :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const config = require("config");
+</code></pre>
+</div>
+
+<p class="text">
+ to load configuration settings from config folder and get value from one the node environment files, we use
+ <code>config.get("&lt;Key_Name>")</code> and to check if key exist use
+ <code>config.has("&lt;Key_Name>")</code>
+</p>
+
+<p class="underline-text"># An Example of using our config module to load settings :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const config = require("config");
+  const express = require("express")
+  const app = express();
+ 
+  console.log("Current Environment is :", app.get("env") );
+
+  if (config.has("dbConfig.dbName")) {  // return Boolean
+     console.log("Yes it exist");
+  }
+
+  console.log(config.get("name"));  
+  console.log(config.get("port"));  // Default Port for all environment files
+  console.log(config.get("dbConfig.host")); 
+  console.log(config.get("dbConfig.port")); 
+  console.log(config.get("dbConfig.dbName")); 
+</code></pre>
+</div>
+
+<p class="text">Let's run our application on different Node environments and see what will happen</p>
+
+<p class="underline-text"># Run your express application on development environment (Default) :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> node server.js
+  [nodemon] starting `node start server.js`   
+  ##################################
+  Express Development
+  3000     
+  localhost
+  5984     
+  customers_sample
+  ##################################
+  Listening on PORT 3000
+</code></pre>
+</div>
+
+<p class="underline-text"># Run your express application on development environment (Default) :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> NODE_ENV=production nodemon server.js
+  [nodemon] starting `node server.js`
+  ##################################
+  Express Production
+  3000
+  https://.....
+  2566
+  customers
+  ##################################
+  Listening on PORT 3000
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">D - Access Environment Variables With Config Module</p>
+
+<p class="text">
+ Config Module loads our configuration settings only from one of the environment files in config folder. You can access environment Variables from process.env that loads
+ from command-line or .env.
+</p>
+
+<p class="text">
+ To access environment variables from Config Module, you need to create a new file inside config folder, called "custom-environment-variables" within it you specify
+ <span class="blue bold">"YourKeyName":"environment_var"</span>. let's define environment variables in both command-line and .env file.
+</p>
+
+<p class="underline-text"># Type your environment variable in the form of NAME=VALUE :-</p>
+
+<div class="code-block code pre-block">
+ <p class="block-title">./.env</p>
+ <pre><code class="js language-js">
+  MY_DB_NAME=ADAM
+  MY_DB_PASSWORD=12345
+</code></pre>
+</div>
+
+<p class="underline-text"># Run your express and specify your environment variable :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> MY_NUMBER=458458 node server.js
+</code></pre>
+</div>
+
+<p class="text">Better naming your custom-environment-variables.json carefully because you don’t have a conflict with config variable names</p>
+
+<p class="underline-text"># The following file will replace the values with environment variables :-</p>
+
+<div class="code-block code pre-block">
+ <p class="block-title">./config/custom-environment-variables.json</p>
+ <pre><code class="js language-js">
+  {
+    "name": "Express Custom",
+    "user_number": "MY_NUMBER",
+    "DB_info": { 
+      "username" : "MY_DB_NAME",
+      "password": "MY_DB_PASSWORD"
+    }
+  }
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example of using our config module to load settings from environment variables :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const config = require("config");
+  const express = require("express")
+  const app = express();
+  const dotenv = require("dotenv");
+ 
+  dotenv.config(); 
+
+  console.log(config.get("name")); // development.json will override this key value
+  console.log(config.get("user_number"));   
+  console.log(config.get("DB_info.username")); 
+  console.log(config.get("DB_info.password")); 
+</code></pre>
+</div>
+
+<p class="text">Let's run our application our config module will replace all values entry with environment variables.</p>
+
+<p class="underline-text"># Run your express application on development mode (Default) :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> node server.js
+  [nodemon] starting `node start server.js`   
+  ##################################
+  Express Development
+  458458     
+  ADAM
+  12345     
+  ##################################
+  Listening on PORT 3000
+</code></pre>
+</div>

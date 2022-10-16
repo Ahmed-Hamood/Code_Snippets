@@ -1,0 +1,1173 @@
+<p class="main-title">4.2 - React Using the <code>useState()</code> Hook</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">1 - What is <code>useState()</code> Hook ?</p>
+
+<p class="text">
+ The <red>useState</red> is a hook that allows to have state variables in a functional component. A state is the place where the data is stored.
+ <red>useState</red> simply allow you to add state to your functional component and the state inside the function component generated a single piece of state associated
+ with that component. You create a single piece of state associated with your component. With <blue>React 16.8</blue>, hooks are released which allow us to handle the
+ state with less coding.
+</p>
+
+<p class="text">
+ In class component the state is always an object, with <red>Hooks</red>, the state can be any type. Each piece of state holds a single value which can be
+ <green>a number</green>, <green>an object</green>, <green>an array</green>, <green>a boolean</green>, or any other type you can imagine.
+</p>
+
+<p class="underline-text"># So when should you use the useState Hook ?</p>
+
+<p class="text">We use the state hook for local component state, but larger projects might require additional state management solutions.</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">2 - Importing useState from react module</p>
+
+<p class="text">
+ The <code>useState</code> hook is available inside the react module, <code>useState</code> is a named export from react. To use it, you can write: so to start using
+ <code>useState()</code> Hook, we just call it from React itself directly as the following.
+</p>
+
+<p class="underline-text"># Using <red>useState</red> hook directly from react module :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  
+  const App = () => {
+    const [count, setCount] = React.useState(0); // Declare state with new state variable
+  }
+</code></pre>
+</div>
+
+<p class="text">
+ Or we can just import the <code>useState</code> non-default function from the <green>"react"</green> module at the beginning of your file. <code>useState</code> is a
+ function exposed or exported by react itSelf you'll import it in your components as:
+</p>
+
+<p class="underline-text"># Import <red>useState</red> hook from react module :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState } from 'react';
+  
+  function App()
+  {
+    const [count, setCount] = useState(0); // Declare state with new state variable
+  }
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">3 - Declare a state using <code>useSate</code> Hook</p>
+
+<p class="text">
+ The <code>useState</code> Hook allows you to declare only one state variable of any type at a time, unlike the state object that you can declare in a class, which allows
+ you to declare more than one state variable. The <code>useState</code> takes the initial value of the state variable as an argument. First let's see what we get returned
+ from <red>useState</red>.
+</p>
+
+<p class="underline-text"># Declare useState without initial a state value :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState } from "react";
+
+  function App() {
+    const value = useState(); // Declare useState without initializing a state value
+    console.log(value);
+    console.log(value[0]);
+    console.log(value[1]);
+
+    return (
+      &lt;div>
+        &lt;h1> 0 &lt;/h1>
+        &lt;button>Change!&lt;/button>
+      &lt;/div>
+    );
+  }
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.4; color: #097c9c">
+ > [null, ƒ()]
+ > null
+ > function
+</code></pre>
+
+</div>
+
+<!-- ********************************************* -->
+<p class="sub-sub-title mark get-title">A - Initial State with value</p>
+
+<p class="text">
+ Our <red>useState</red> returns an array, where the first element is the state variable and the second element is a function to update the value of the variable. We said
+ that <red>useState</red> Hook accept only one state variable. So let's pass the initial value into our useState that will be assigned only on the initial render. We can
+ update the state based on the new properties the component receives
+</p>
+
+<p class="underline-text"># Declare many useStates with initial a state value :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState } from "react"
+
+  function App(props) {
+    const messageState = useState(true)
+    const listState = useState([])
+    const NumberState = useState(0)
+    const TextState = useState("Adam")
+    const PropState = useState(prop.value)
+
+    console.log(messageState)
+    console.log(listState)
+    console.log(NumberState)
+    console.log(TextState)
+    console.log(PropState)
+  }
+</code></pre>
+
+</div>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.4; color: #097c9c">
+  > [true, ƒ()]
+  > [[], ƒ()]
+  > [0, ƒ()]
+  > ["Adam", ƒ()]
+  > ["someValue", ƒ()]
+</code></pre>
+
+</div>
+
+<!-- ********************************************* -->
+<p class="sub-sub-title mark get-title">B - Initial State with Function</p>
+
+<p class="text">
+ You can use a function to lazily initialize the variable useful when the initial state is the result of an expensive computation. The initial value will be assigned only
+ on the initial render, if it’s a function, it will be executed only on the initial render
+</p>
+
+<p class="underline-text"># Declare many useStates with initial a state value :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState } from "react"
+
+  const expensiveComputation = () => {
+    // Expensive Computation Calculate Logic
+    return 12.36
+  }
+
+  function App(props) {
+    const priceState = useState(() => expensiveComputation() );
+    console.log(priceState)
+  }
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.4; color: #097c9c">
+  > [12.36, ƒ()]
+</code></pre>
+
+</div>
+
+<!-- ********************************************* -->
+<p class="sub-sub-title mark get-title">C - useState Return Array</p>
+
+<p class="text">
+ Using <red>useState</red> alone won’t work because its argument is used the first time only. But <red>useState</red> doesn’t return just a variable. As we said it
+ returns an array or a pair of elements, where the first element is the state variable and the second element is a function to update the value of the variable. Next we
+ are going to use array destructuring to simplify the code, and also update our state.
+</p>
+
+<p class="underline-text"># Why does useState return array ?</p>
+
+<p class="text">
+ Because compared to an object in class state, an array is more flexible and easy to use. If the method returned an object with a fixed set of properties, you wouldn’t be
+ able to assign custom names in an easy way.
+</p>
+
+<!-- ********************************************* -->
+<p class="sub-sub-title mark get-title">D - Array Destructuring</p>
+
+<p class="text">
+ We can improve our code by using array destructuring <code><green>[]</green></code> to store the value from useState hook. It's similar to object destructuring. Using we
+ can get the initial value of state and the function that updates our state from the <code>useState()</code> hook.
+</p>
+
+<p class="text">
+ The <code>setState</code> return an array with a pair of elements, the <blue>state</blue> and <blue>setState</blue>. The <blue>state</blue> is the current state that we
+ passed into the <red>useState</red>, while <blue>setState</blue> is used to change the state of the initial state inside the functional component.
+</p>
+
+<p class="underline-text"># Using array destructuring to get both returned elements from the array :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState } from "react"
+
+  function App() {
+    const [count, setCount] = useState(0);
+
+    console.log(count);  
+    console.log(setCount);  
+
+    return (
+      &lt;div>
+       &lt;p> {count} &lt;/p>
+      &lt;/div>
+    )
+  }
+</code></pre>
+
+</div>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.4; color: #097c9c">
+  > 0
+  > ƒ dispatchAction(fiber, queue, action) { ... }
+</code></pre>
+
+</div>
+
+<div class="html-block html-text code">
+ <pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+   &lt;div>
+    &lt;p> 0 &lt;/p>
+   &lt;/div>
+  &lt;/div>
+</code></pre>
+
+</div>
+
+<p class="text">
+ We declare a state variable called <red>count</red>, and set it to 0. React will remember its current value between re-renders, and provide the most recent one to our
+ function. If we want to update the current <red>count</red>, we can call <red>setCount</red>
+ which we will do next.
+</p>
+
+<!-- ********************************************* -->
+<p class="sub-sub-title mark get-title">E - Multiple State Variables</p>
+
+<p class="text">
+ You can declare states as many as we like inside our component, working with multiple state variables fields or values inside you functional component. Each state
+ variable will have a state and setState so each will have it's own set function. Let's work them with an example.
+</p>
+
+<p class="underline-text"># Defining multiple states variables inside our component :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState } from "react"
+
+  function App() {
+    // Declaring and initializing our states
+    const [count, setCount] = useState(props.initialValue);
+    const [title, setTitle] = useState("This is my title");
+    const [age, setAge] = useState(25);
+    const [isMarried, setIsMarried] = useState(true);
+
+    // Updating each state with setState functions
+    setCount(count + 1)
+    setTitle("My New Title")
+    setAge(45)
+    setIsMarried(false)
+
+    // View our state thru HTML 
+    return (
+      &lt;div>
+       &lt;p> Count: {count} &lt;/p>
+       &lt;p> Title: {title} &lt;/p>
+       &lt;p> Age: {age} &lt;/p>
+      &lt;/div>
+    )
+  }
+</code></pre>
+</div>
+
+<p class="text">
+ As you can see, we have 3 separate state objects. If we wanted to update the age for example, we just call the <code>setAge()</code> function. The same with
+ <green>count</green> and <green>title</green>.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">4 - Updating state with <code>setState()</code></p>
+
+<p class="text">
+ We said that <red>useState()</red> hook return an array with two elements member. The first element is the state which we initialize it by pass our variable value into
+ the <code>useState</code> function that receives a state as a parameter. And the second element is of type function that takes a new value to update the state variable.
+</p>
+
+<p class="underline-text"># A syntax of useState that return two elements :-</p>
+
+<div class="js-block code">
+ <p class="block-title">➤ Syntax</p>
+ <pre><code class="js language-jsx">
+  <purple>const</purple> [state, setState] = <blue3>useState</blue3>(0)
+</code></pre>
+
+</div>
+
+<div class="text-block code code pre-block">
+ <pre style="line-height: 1.4; color: #097c9c">
+  <red>state</red> =>  is the a variable that hold the state ot the actual value for the state.
+  <red>setCount</red> =>  is the a function  which responsible for changing the state value by it's argument.
+  <red>useState(0)</red> => The useState argument is the initial state value. as we see we started at 0
+</code></pre>
+
+</div>
+
+<div class="text-box note">Every time you set a state the whole component where you useState is written; re-render including all internal components.</div>
+
+<p class="text">
+ You can call your state whatever you want for example <blue>counter</blue>, but by convention you have to name your <red>setState</red> starting with prefix
+ <green>"set-"</green>, and then follows your state variable name for example like <blue>setCounter</blue>
+ which will used to update your current counter value
+</p>
+
+<div class="text-box note">On every state change, the component re-renders with the updated state.</div>
+
+<p class="underline-text"># The state of the object can be changed in two ways :-</p>
+
+<div class="js-block code">
+ <p class="block-title">➤ Syntax</p>
+ <pre><code class="js language-jsx">
+  <purple>const</purple> [state, setState] = <blue3>useState</blue3>(0)
+
+  <red>setState</red>(state + 1)}
+  <red>setState</red>((prevState) => prevState + 1)}
+  <red>setState</red>(() => count + 1)
+  <red>setState</red>(() => (count &lt; 10) ? count + 1 : count);
+</code></pre>
+
+</div>
+
+<p class="text">
+ In the <blue>first</blue> setState, we update the state by incrementing the value by 1, but this doesn’t ensure that the 1 is added to the previous updated state. In the
+ <blue>second</blue> setState it is ensured that 1 is added to the previous updated state’s value only.
+</p>
+
+<!-- ********************************************* -->
+<p class="sub-sub-title mark get-title">A - Updating and Reading Your State</p>
+
+<p class="text">
+ To update our current state, we simply pass the new value you want into your <blue>setSate</blue> function that receive the old state and return the new state. In the
+ following example we are going to initialize our count state to <blue>0</blue>, and the after three second we are going to run and pass our new state value into
+ setCount.
+</p>
+
+<p class="underline-text"># initializing our count state and after three second update the state into 100 with setCount function :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState } from "react"
+  import ReactDOM from "react-dom"
+  
+  function App() {
+   const [count, setCount] = useState(0) // 1. initialize our count state to 0
+  
+   setTimeout(() => {
+    setCount(count + 1) // 2A. Update or incrementing our count state by 1
+    setCount(() => count + 1) // 2B. Update or incrementing our count state by 1
+    setCount(prevState => prevState + 1); // 2C. Update or incrementing our count state by 1
+   }, <green2>3000</green2>)
+  
+   return (
+    &lt;div>
+     &lt;p> {count} &lt;/p>
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.4; color: #097c9c">
+  count = 0
+  after 3 seconds
+  count = 1
+</code></pre>
+
+</div>
+
+<p class="text">
+ In <red>setCount</red> we received the old state and then returned the new state. Our count state is updated, we can display the current count directly as you see above.
+ Our count state started with a state value of 0 then after 3 second setCount update the <red>count</red> state.
+</p>
+
+<!-- ********************************************* -->
+<p class="sub-sub-title mark get-title">B - Update State on event change</p>
+
+<p class="text">
+ We will build a React application that changes the state of a functional component when a button is clicked and also re-renders the whole component. We are going to
+ place our setState to the <blue>onClick</blue> event listener, so every time we click the button the state will be updated.
+</p>
+
+<p class="underline-text"># An Example of updating a state on every button click :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState } from "react"
+  import ReactDOM from "react-dom"
+  
+  function App(props) {
+   const [count, setCount] = useState(0)
+
+   console.log("Component Render....")
+  
+   return (
+    &lt;div>
+     &lt;p> {count} &lt;/p>
+     &lt;button onClick={() => setCount(count + 1)}> Click &lt;/button>
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+
+</div>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.4; color: #097c9c">
+  Component Render....
+  count = 0
+
+  click on button
+  Component Render....
+  count = 1
+
+  click on button
+  Component Render....
+  count = 2
+
+  click on button
+  Component Render....
+  count = 3
+</code></pre>
+
+</div>
+
+<p class="text">Every time you click the button count state change, the component function re-renders with the updated state on every click.</p>
+
+<p class="underline-text"># An Example of calling setState Hook when the button is pressed :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState } from "react";
+
+  export default function Button() {
+    const [textButton, setButtonText] = useState("Click me, please");
+
+    function UpdateButton()
+    {
+      setButtonText("Thanks, been clicked!")
+    }
+
+    return (
+      &lt;button onClick={UpdateButton}>
+        { textButton }
+      &lt;/button>
+    );
+  }
+</code></pre>
+
+</div>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.4; color: #097c9c">
+  textButton = Click me, please
+  Button clicked
+  textButton = Thanks, been clicked!
+</code></pre>
+
+</div>
+
+<p class="underline-text"># Here's another example that uses a textbox to update the state variable on every change :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState } from "react"
+  import ReactDOM from "react-dom"
+  
+  function App() {
+   const [message, setMessage] = useState("");
+
+   const ChangeInput = (e) =>  setMessage(e.target.value);
+  
+   return (
+    &lt;div>
+     &lt;input type="text" value={message} placeholder="Enter a message" onChange={ChangeInput} />
+     &lt;p>
+      &lt;strong>{message}&lt;/strong>
+     &lt;/p>
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+
+</div>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.4; color: #097c9c">
+  Type A
+  input text = A
+  Type B
+  input text = AB
+  Type C
+  input text = ABC
+</code></pre>
+
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">5 - useState with Previous State</p>
+
+<p class="text">
+ If the new state is computed using the previous state, you can pass a function to setState. The function will receive the previous value, and return an updated value .
+ If you use the previous value to update state, you must pass a function that receives the previous value and returns the new value.
+</p>
+
+<p class="underline-text"># Here’s an example of a counter component which we will increase it multiple times :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState } from "react"
+  import ReactDOM from "react-dom"
+  
+  function App(props) {
+   const [count, setCount] = useState(props.initialCount)
+  
+   const IncreaseCount = () => {
+     setCount(count + 1);
+     setCount(count + 1);
+     setCount(count + 1);
+     setCount(count + 1);
+   }
+
+   const IncreaseCountWithPreviousValue = () => {
+     setCount(prev => prev + 1);
+     setCount(prev => prev + 1);
+     setCount(prev => prev + 1);
+     setCount(prev => prev + 1);
+   }
+  
+   return (
+    &lt;div>
+     &lt;button onClick={() => setCount(props.initialCount)}>Reset&lt;/button>
+     &lt;button onClick={IncreaseCount}>Increase 1&lt;/button>
+     &lt;button onClick={IncreaseCountWithPreviousValue}>Increase 2&lt;/button>
+     &lt;strong>Count : {count}&lt;/strong>
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App <orange>initialCount</orange>={1} />, document.getElementById("root"))
+</code></pre>
+
+</div>
+
+<img path="/img/image018.gif" id="image" alt="" />
+
+<p class="underline-text"># Here’s an example of a textbox that we update the entered value depend on the previous input value :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState } from "react"
+  import ReactDOM from "react-dom"
+
+  function App() {
+    const [message, setMessage] = useState("")
+
+    return (
+    &lt;div>
+      &lt;input
+      type="text"
+      placeholder="Enter some letters"
+      onChange={e => {
+        const val = e.target.value
+        setMessage(prev => prev + val)
+      }}
+      />
+      &lt;p>
+      &lt;strong>{message}&lt;/strong>
+      &lt;/p>
+    &lt;/div>
+    )
+  }
+
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+
+</div>
+
+<img path="/img/image017.gif" id="image" alt="" />
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">6 - Using Different Types Value in <code>useState</code></p>
+
+<p class="text">
+ We can set our state with different value types like <green>String</green>, <green>Number</green>, <green>Array</green>, <green>Boolean</green>,
+ <green>Object</green> and <green>Objects within Array</green>, and also pass variables or props to set your initial state.
+</p>
+
+<p class="underline-text"># Here's all we set state our initialize value of each type :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ initialize value state</p>
+ <pre><code class="js language-jsx">
+  const [id, setID] = useState(0);
+  const [name, setName] = useState("");
+  const [isMarried, setIsMarried] = useState(false);
+  const [isMarried, setIsMarried] = useState([]);
+  const [isMarried, setIsMarried] = useState({});
+</code></pre>
+
+</div>
+
+<p class="underline-text"># Here's all value types you can pass into your useState :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example 1 - String Type</p>
+ <pre><code class="js language-jsx">
+  // initiate a String Value
+  const [name, setName] = useState("");
+  const [name, setName] = useState("Anonymous");
+
+  // Set a String Value 
+  setName("NewValue");
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example 2 - Number Type</p>
+ <pre><code class="js language-jsx">
+  // initiate a Number Value
+  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
+
+  // Set a Number Value 
+  setCount(150);
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example 3 - Boolean Type</p>
+ <pre><code class="js language-jsx">
+  // initiate a Boolean Value
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Set a Boolean Value 
+  setIsLoading(true);
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example 4 - Object Type</p>
+ <pre><code class="js language-jsx">
+  // initiate an Object Value
+  const [msg, setMsg] = useState({});
+  const [message, setMessage] = useState({ title: "Expired Subscription", content: "Dear User please pay for subscription Renewal" });
+  const [alert, setAlert] = useState({ type: "Error", message: "Please fill all fields" });
+
+  // Retrieve value from Object 
+  console.log(alert); // { message: "Please fill all fields", type: "Error" }
+  console.log(alert.type); // Error
+  console.log(alert.message); // Please fill all fields
+
+  // Update value from Object 
+  setAlert( { ...alert, type: "Warning" } )
+  setAlert( { message: "Database Error", type: "Error" } )
+  setAlert( (alert) => { ...alert, type: "Error" } )
+
+  // Destruct object from state names
+  const [{ id, name }, setNames] = useState({ id: 1, name: "Adam" })
+  console.log(id); // 1
+  console.log(name); // Adam
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example 5 - Array Type</p>
+ <pre><code class="js language-jsx">
+  // initiate Array Value
+  const [names, setNames] = useState(["adam", "David", "John", "Marry"]);
+  // Add value into Array
+  names.push("mike");
+  setNames([...names, "Alan"])
+  setNames(names.concat("mike"))
+  setNames((names) => [...names, "Alan"])
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example 6 - Array of Object Type</p>
+ <pre><code class="js language-jsx">
+  // initiate Array Object Value
+  const [names, setNames] = useState([
+    { id: 1, name: "Adam" },
+    { id: 2, name: "Nile" },
+    { id: 3, name: "Sara" },
+  ]);
+
+  names.push({ id: 5, name: "Sally" })
+  setNames([...names,  { id: 4, name: "Alan" }])
+  setNames(names.concat({ id: 5, name: "Marry" }));
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example 7 - state from props</p>
+ <pre><code class="js language-jsx">
+  // initiate state From Props
+  const [name, setName] = useState(props.name);
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">7 - Set States For Object and Arrays Using Spread operator</p>
+
+<p class="text">
+ As well we can assign objects and arrays into our useState to store multiple values or properties. We will works with both array and object states and will,learn how to
+ manage your arrays, objects and array of objects with the <code>useState</code> hook.
+</p>
+
+<!-- ********************************************* -->
+<p class="sub-sub-title mark get-title">A - Working with Array State</p>
+
+<p class="text">
+ We will learn about how to update an array using the <code>useState()</code> hook. We will start by creating an Array State variable with <code>useState()</code> and set
+ the initialize value to <green>[]</green> of an empty array to start our state.
+</p>
+
+<p class="underline-text"># Declaring and initializing our array state :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react";
+  const { useState } = React;
+  
+  const [myArray, setMyArray] = useState([]);
+</code></pre>
+
+</div>
+
+<p class="text">
+ Next we will learn how to push an elements into our array state. The <code>push()</code> method is defined on <blue>Array.prototype</blue>, so it is called using the
+ dot-reference operator on the array. In the following example we will add a new item at the end of the array list, and then will see how to update the array state.
+</p>
+
+<p class="underline-text"># Adding elements into our array using the push method :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState } from "react"
+  import ReactDOM from "react-dom"
+  
+  function App() {
+   const [names, setNames] = useState([])
+  
+   names.push("Adam");
+   names.push("Sam");
+   names.push("Alan");
+  
+   setNames(names.push("Frank")); // names.push is not a function
+  
+   console.log(names);
+   
+   return null
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))  
+</code></pre>
+</div>
+
+<p class="text">
+ As you see above the <red>push</red> method doesn’t work inside <blue>setNames</blue>, An error appears that <red>names.push is not a function</red>, the app is broken.
+ The <blue>setNames</blue> function or called a reducer, only updates the current state to the value that is passed in.
+</p>
+
+<p class="text">
+ We will use the spread operator ... which helps when copying and combining arrays, so it can also be used to add an item to an array in React state. We will combine the
+ old array with the new element using JavaScript' Spread operator. We can also define a function that creates the new array from the old array and pass it to the
+ <red>useState</red> update method.
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <pre><code class="js language-jsx">
+  setMyArray(oldArray => oldArray.concat("newElement")); // Recommended
+  setMyArray(oldArray => [...oldArray, "newElement"]); // Recommended
+  setMyArray([...oldArray, "newElement"]); // Not Recommended
+</code></pre>
+</div>
+
+<p class="underline-text"># Updating a State Array using the spread operator :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState } from "react"
+  import ReactDOM from "react-dom"
+  
+  function App() {
+   const [names, setNames] = useState(["adam", "sally"])
+  
+   const BtnEvent = () => {
+     setNames([...names, "Sally1"]) // Not Recommend
+     setNames(names => [...names, "Sally2"]) // Recommend
+     setNames(names => names.concat("Sally3")) // Recommend
+   }
+  
+   return (
+    &lt;div>
+     &lt;button onClick={BtnEvent}>Start&lt;/button>
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<img path="/img/image019.gif" id="image" alt="" />
+
+<!-- ********************************************* -->
+<p class="sub-sub-title mark get-title">B - Working with Object State</p>
+
+<p class="text">
+ We will assign an object type into our state variable, you have to merge the state of an object manually in <code>useState()</code>. Using the spread operator to get all
+ the properties of the object then overwrite the properties that you want to update.
+</p>
+
+<p class="underline-text"># Updating a State object without using the spread operator :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  const [fullName, setFullName] = useState({ firstName:"" , lastName:"" });
+
+  setFullName({ firstName:"Adam" })
+  console.log(fullName);  { firstName:"Adam" } the lastName property is removed
+</code></pre>
+</div>
+
+<p class="text">
+ As you see in the example above setFullName with an object will create a new object won't merge it like setState in the class component so to set the state of the object
+ properly we have to use spread operator
+</p>
+
+<p class="underline-text"># Updating a State object using the spread operator :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  const [fullName, setFullName] = useState({ firstName:"" , lastName:"" });
+
+  setFullName({ ...fullName, firstName:"Adam" })
+  console.log(fullName); // { firstName:"Adam" , lastName:"" }
+  
+  setFullName({ ...fullName, lastName:"John" })
+  console.log(fullName); // { firstName:"Adam" , lastName:"John" }
+</code></pre>
+</div>
+
+<p class="text">
+ When working with objects, it’s easy to make a mistake, like updating an object from the existed state directly then assign it to setState. Instead of creating a new
+ object mutates the existing state object then pass it to the setState method.
+</p>
+
+<p class="underline-text"># Updating a State object using the spread operator :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  const [messageObj, setMessage] = useState({ title:"" message: "" });
+
+  onChange={e => {
+    messageObj.message = e.target.value;
+    setMessage(messageObj); // Doesn't work
+  }}
+
+  onChange={e => {
+    const newMessageObj = { title:"", message: e.target.value };
+    setMessage(newMessageObj); // Now it works
+  }}
+
+  onChange={e => {
+    const val = e.target.value;
+    setMessage(prevState => {
+      return { ...prevState, message: val } // this also works
+    });
+  }}
+
+  onChange={e => {
+    const val = e.target.value;
+    setMessage(prevState => {
+      return Object.assign({}, prevState, { message: val }); // this also works
+    });
+  }}
+</code></pre>
+</div>
+
+<p class="text">
+ The <red>...prevState</red> part will get all of the properties of the object and the <blue>message: val</blue> part will overwrite the message property.
+</p>
+
+<p class="underline-text"># An example of storing multiple values in useState as an object then update them :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  function LoginForm() {
+    const [form, setState] = useState({
+      username: '',
+      password: ''
+    });
+  
+    const printValues = e => {
+      e.preventDefault();
+      console.log(form.username, form.password);
+    };
+  
+    const updateField = e => {
+      setState({
+        ...form,
+        [e.target.name]: e.target.value
+      });
+    };
+  
+    return (
+      &lt;form onSubmit={printValues}>
+        &lt;label>
+          Username:
+          &lt;input value={form.username} name="username" onChange={updateField} />
+        &lt;/label>
+        &lt;br />
+        &lt;label>
+          Password:
+          &lt;input value={form.password} name="password" type="password" onChange={updateField} />
+        &lt;/label>
+        &lt;br />
+        &lt;button>Submit&lt;/button>
+      &lt;/form>
+    );
+  } 
+</code></pre>
+
+</div>
+
+<!-- ********************************************* -->
+<p class="sub-sub-title mark get-title">C - Working with Object within Array State</p>
+
+<p class="text">Now with Objects within an Array either using concat() or spread operator. if you setState an object with an object like this</p>
+
+<p class="underline-text"># Update an array of objects state :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  const [names, setNames] = useState([
+    { id: 1, name: "Adam" },
+    { id: 2, name: "Nile" },
+    { id: 3, name: "Sara" },
+  ]);
+
+  setNames( ()=> [...names, { id: 4, name: "Tony" } ])
+</code></pre>
+
+</div>
+
+<p class="underline-text"># An Example :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  let Counter = () => {
+    const [names, setNames] = useState([
+      { id: 1, name: "Adam" },
+      { id: 2, name: "Nile" },
+      { id: 3, name: "Sara" },
+    ]);
+  
+    let concatName = () => {
+      let User = { id: 4, name: "Maxwill" }
+      setNames(names.concat(User))
+    }
+  
+    let SpreadWithNames = () => {
+       let User = { id: 4, name: "Tony" }
+      setNames(()=> [...names, User])
+    }
+  
+    return (
+      &lt;div>
+        {names.map(name => ( &lt;h1> {name.id} - {name.name} &lt;/h1>) )}
+        &lt;button onClick={concatName}> Add Using Concat&lt;/button>
+        &lt;button onClick={SpreadWithNames}> Add Using Spread operator&lt;/button>
+      &lt;/div>
+    );
+  };
+</code></pre>
+
+</div>
+
+<!-- ********************************************* -->
+<p class="sub-sub-title mark get-title">D - Working with Nested Object State</p>
+
+<p class="text">
+ We can set a state value to a deeply nested object with the state, you have to be careful when using state objects with a complex structure (nested objects)
+</p>
+
+<p class="underline-text"># An Example :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  const [messageObj, setMessage] = useState({
+    author: '',
+    message: {
+      id: 1,
+      text: ''
+    }
+  });
+
+  setMessage(prevState => ({
+    ...prevState,           // copy all other field/objects
+    message: {              // recreate the object that contains the field to update
+      ...prevState.message, // copy all the fields of the object
+      text: 'My message'    // overwrite the value of the field to update
+    }
+  }));
+
+  setMessage(prevState => ({
+    author: 'Joe',          // overwrite the value of the field to update
+    ...prevState.message    // copy all other field/objects
+  }));
+
+  setMessage(prevState => ({
+    author: 'Joe',          // update the value of the field
+    message: {              // recreate the object that contains the field to update
+      ...prevState.message, // copy all the fields of the object
+      text: 'My message'    // overwrite the value of the field to update
+    }
+  }));
+</code></pre>
+</div>
+
+<p class="text">
+ If you have to update a specific field nested deep in the object, you’ll have to copy all the other objects along with the key-value pairs of the object that contains
+ that specific field
+</p>
+
+<p class="underline-text"># An Example :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  const [messageObj, setMessage] = useState({
+    input: {
+      author: {
+        id: -1,
+        author: {
+          fName:'',
+          lName: ''
+        }
+      },
+      message: {
+        id: -1,
+        text: '',
+        date: now()
+      }
+    }
+  });
+
+  setMessage(prevState => ({
+    input: {
+      ...prevState.input,
+      message: {
+        ...prevState.input.message, 
+        text: 'My message'
+      }
+    }
+  }));
+</code></pre>
+
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">8 - Multiple state variables or one state object</p>
+
+<p class="text">We recommend to split state into multiple state variables based on which values tend to change together.</p>
+
+<p class="underline-text"># An Example :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  function Box() {
+    const [position, setPosition] = useState({ left: 0, top: 0 });
+    const [size, setSize] = useState({ width: 100, height: 100 });
+  }
+</code></pre>
+
+</div>
+
+<p class="text">
+ If you have to update a specific field nested deep in the object, you’ll have to copy all the other objects along with the key-value pairs of the object that contains
+ that specific field. In some cases, cloning deeply nested objects can be expensive because React may re-render parts of your applications that depend on fields that
+ haven’t even changed. For this reason, the first thing you need to consider is trying to flatten your state object(s)
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  const [messageObj, setMessage] = useState({
+    author: '',
+    message: {
+      id: 1,
+      text: ''
+    },
+    detail: {
+      content: '',
+      data: ''
+    }
+  });
+
+  // Instead we can flatten your state nested object into three separated object state
+
+  const [author, setAuthor] = useState("")
+  const [message, setMessage] = useState({ id:1, text:"" })
+  const [detail, setDetail] = useState({ content:'', data: '' })
+</code></pre>
+</div>

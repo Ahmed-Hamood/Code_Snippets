@@ -1,0 +1,345 @@
+<p class="main-title">
+ 1.3 - Staging File with <terminal><orange>git add file_names</orange></terminal> Command
+</p>
+
+<!-- ################################################################################################################ -->
+<p class="sub-title">1. Create Files in <red>My_Project</red> Directory</p>
+
+<p class="text">
+ We will learn about staging a file with <red>Git</red>, the purpose of the <yellow>staging area</yellow> is review our changes before Committing/snapshot them into our
+ repository. Lets start by adding a couple of file to our project that uses Git as the version control System. We are going to create a file called
+ <file>file1.txt</file>. To create a new file, open your GitBash Terminal and type the following code.
+</p>
+
+<section terminal-content title-header="Check the current working Directory" preferred-sign=">" line-num="">
+ <pre>
+  pwd
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  /c/Users/username/Desktop/My_Project
+</pre
+ >
+</div>
+
+<section terminal-content title-header="Create new files & list the current directory content" preferred-sign=">" line-num="">
+ <pre>
+  echo "Hello, everyone" > file1.txt  // create a new file called 'file1.txt' in our My_project Directory
+  echo "Other message" > file2.txt    // create a new file called 'file2.txt' in our My_project Directory
+  ls -l  // list the content of the My_project Directory
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  total 2
+  -rw-r--r-- 1 Username 197610 16 Jul  5 17:25 file1.txt
+  -rw-r--r-- 1 Username 197610 14 Jul  5 17:48 file2.txt
+</pre
+ >
+</div>
+
+<p class="text">
+ Now we have two files in our project, both files are not tracked by <red>Git</red> so we need to initialize a <red>Git Repository</red> in our project directory. Next
+ let's initialize Git in our project.
+</p>
+
+<!-- ################################################################################################################ -->
+<p class="sub-title">2. Initialize Git in our Project <terminal>git add</terminal></p>
+
+<p class="text">
+ To enable Git in our project directory with its content, we will use the <command>git init</command> command in order to initialize Git inside our project directory.
+</p>
+
+<section terminal-content title-header="Initialize Git" preferred-sign=">" line-num="">
+ <pre>
+  git init
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  Initialized empty Git repository in C:/Users/Username/Desktop/My_Project/.git/
+</pre
+ >
+</div>
+
+<!-- ################################################################################################################ -->
+<p class="sub-title">3. Check the status of our Project using <command>git status</command> command</p>
+
+<p class="text">
+ We are gonna run the <terminal>git status</terminal> command that will show us the status of the working directory in the <yellow>Staging Area</yellow>. This command
+ check if our project files are tracked in the staging area or not.
+</p>
+
+<section terminal-content title-header="Check Project Files status" preferred-sign=">" line-num="">
+ <pre>
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+
+  No commits yet
+  
+  Untracked files:
+    (use "git add &lt;file>..." to include in what will be committed)
+          <red>file1.txt</red>
+          <red>file2.txt</red>
+  
+  nothing added to commit but untracked files present (use "git add" to track)
+</pre
+ >
+</div>
+
+<p class="text">
+ As you see above, both <file>file1</file> and <file>file2</file> are untracked files, because they are not in the <yellow>Staging Area</yellow> yet. To add these file to
+ the <yellow>Staging Area</yellow> we need use the add command which we will learn below.
+</p>
+
+<!-- ################################################################################################################ -->
+<p class="sub-title">4. Staging File with the <command>git add</command> command</p>
+
+<p class="text">
+ To add both <file>file1</file> and <file>file2</file> into the staging area, we will use the <terminal>git add Your_Files</terminal> command, we have a different ways to
+ add files we can specify a single file, or specify multiple files separated by a space, also we can use patterns like <terminal>*.txt</terminal> to add all the files
+ with <blue>.txt</blue> extension.
+</p>
+
+<section terminal-content title-header="Check Project Files status" preferred-sign=">" line-num="">
+ <pre>
+  git add file1.txt // add a single file into the staging area
+  git add file1.txt file2.txt // add a multiple file into the staging area
+  git add *.txt  // add all files with .txt extension
+  git add .  // add the entire directory recursively (including sub-directories)
+  git add *  // add the entire directory recursively (including sub-directories)
+</pre
+ >
+</section>
+
+<p class="text">
+ Be carful while using the <terminal>git add .</terminal> because sometimes there are file that you don't want to add to your repository perhaps large file like full
+ library, which will increase the size of our repository. We will learn later about how to ignore certain files and prevent git committing them.
+</p>
+
+<section terminal-content title-header="Add all file into the staging area" preferred-sign=">" line-num="">
+ <pre>
+  git add *   
+</pre
+ >
+</section>
+
+<img id="image" alt="" path="/img/image016.PNG" alt="" />
+
+<p class="text">
+ Now both <green>file1</green> and <green>file2</green> are in the staging area that are ready yo be committed, to confirm that we run
+ <terminal>git status</terminal> command. We will see that we have two new file and they are indicated by green which means they are in the staging area.
+</p>
+
+<section terminal-content title-header="Check Directory Status" preferred-sign=">" line-num="">
+ <pre>
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+
+  No commits yet
+  
+  Changes to be committed:
+    (use "git rm --cached &lt;file>..." to unstage)
+          <green>new file:   file1.txt</green>
+          <green>new file:   file2.txt</green>
+</pre>
+</div>
+
+<!-- ################################################################################################################ -->
+<p class="sub-title">5. Modify Files and Update the Staging Area</p>
+
+<p class="text">
+ What will happen if you Modify <yellow>file1.txt</yellow> file from the working directory, the file will become untracked which mean need to be staged again because
+ <yellow>file1.txt</yellow> from the staging area is old, and need to be updated or tracked to the latest change. Let's modify file1.txt and see what will happen.
+</p>
+
+<section terminal-content title-header="Modify file1.txt" preferred-sign=">" line-num="">
+ <pre>
+  echo "New information is added to file1" >> file1.txt  // two greater that sign mean append to file1
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  <gray>./file1.txt</gray>
+  -------------------------------
+  Hello, everyone
+  New information is added to file1
+</pre
+ >
+</div>
+
+<p class="text">
+ Now let's run <terminal>git status</terminal> command, and look we have two files in the staging area because they are indicated by green. And we also have one modified
+ file in our working directory which is a change not staged yet, our last snapshot that we added to the staging area become stale or old version of
+ <yellow>file1.txt</yellow> file.
+</p>
+
+<section terminal-content title-header="Get working directory status" preferred-sign=">" line-num="">
+ <pre>
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+
+  No commits yet
+  
+  Changes to be committed:
+    (use "git rm --cached &lt;file>..." to unstage)
+          <green>new file:   file1.txt</green>  <gray>-- Older Version --</gray>
+          <green>new file:   file2.txt</green>
+  
+  Changes not staged for commit:
+    (use "git add &lt;file>..." to update what will be committed)
+    (use "git restore &lt;file>..." to discard changes in working directory)
+          <red>modified:   file1.txt</red>
+</pre>
+</div>
+
+<p class="text">
+ In the staging area we have the first version of <yellow>file1.txt</yellow>, we changed <yellow>file1.txt</yellow> after we added it to the <red>staging area</red>, this
+ means what we have in our current working directory is the second version of <yellow>file1.txt</yellow> file. It has some changes that are not staged yet
+</p>
+
+<img id="image" alt="" path="/img/image017.PNG" alt="" />
+
+<p class="text">
+ Let's add file1.txt newer version into the staging area, so we run <terminal>git add file1.txt</terminal> tp add file1.txt to the staging area. Then we run
+ <terminal>git status</terminal> command to show the status of our working directory.
+</p>
+
+<section terminal-content title-header="Add file1 to the Stage area & check Working Directory status" preferred-sign=">" line-num="">
+ <pre>
+  git add file1.txt // add file1.txt to the staging area
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+
+  No commits yet
+  
+  Changes to be committed:
+    (use "git rm --cached &lt;file>..." to unstage)
+          <green>new file:   file1.txt</green>
+          <green>new file:   file2.txt</green>
+</pre>
+</div>
+
+<p class="text">
+ As you see the working directory status has both files in the staging area with <file>file1.txt</file> latest file update, and we don't have any un-staged changes which
+ mean both files latest changes/updates are ready to be committed for snapshot to permanently store it in our git repository.
+</p>
+
+<img id="image" alt="" path="/img/image018.PNG" alt="" />
+
+<!-- ################################################################################################################ -->
+<p class="sub-title">6. Delete Files and Update the Staging Area</p>
+
+<p class="text">
+ We decided to delete <file>file2.txt</file> file from our working directory because we don't need it anymore. We know that both files are in staging area separated from
+ the files in working directory So lets remove file2.txt file and see what will happen.
+</p>
+
+<section terminal-content title-header="Delete file2.txt and list current directiry content" preferred-sign=">" line-num="">
+ <pre>
+  rm -rf file2.txt
+  ls -l
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  total 1
+  -rw-r--r-- 1 username 197610 50 Jul  6 15:16 file1.txt
+</pre
+ >
+</div>
+
+<p class="text">
+ After removing <file>file1.txt</file> file from our project folder, git will consider <file>file2.txt</file> as deleted but not committed or untracked. If we run
+ <terminal>git status</terminal> we will see that <file>file2.txt</file> is still available in the staging area although we deleted it from the project folder.
+</p>
+
+<img id="image" alt="" path="/img/image019.PNG" alt="" />
+
+<section terminal-content title-header="Check working directory status" preferred-sign=">" line-num="">
+ <pre>
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+
+  No commits yet
+  
+  Changes to be committed:
+    (use "git rm --cached &lt;file>..." to unstage)
+          <green>new file:   file1.txt</green>
+          <green>new file:   file2.txt</green>
+  
+  Changes not staged for commit:
+    (use "git add/rm &lt;file>..." to update what will be committed)
+    (use "git restore &lt;file>..." to discard changes in working directory)
+          <red>deleted:    file2.txt</red>
+</pre>
+</div>
+
+<p class="text">
+ The <file>file2.txt</file> is untracked and git knows that it has been deleted but not staged, so we need to stage it in order to confirm that file2.txt is no longer
+ need in our project. Lets commit our changes in this case file deletion by using <terminal>git add file2.txt</terminal> to inform git that you want to commit
+ <file>file2.txt</file> deletion from the staging area.
+</p>
+
+<section terminal-content title-header="remove file2 from the staging area & Check Working Directory Status" preferred-sign=">" line-num="">
+ <pre>
+  git add file2.txt
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+
+  No commits yet
+  
+  Changes to be committed:
+    (use "git rm --cached &lt;file>..." to unstage)
+          <green>new file:   file1.txt</green>
+</pre>
+</div>
+
+<img id="image" alt="" path="/img/image020.PNG" alt="" />

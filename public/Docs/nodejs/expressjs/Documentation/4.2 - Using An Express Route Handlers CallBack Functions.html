@@ -1,0 +1,208 @@
+<p class="main-title">4.2 - Using An <span class="red bold">Express</span> Route Handlers CallBack Functions</p>
+
+<p class="text mgt-20">
+ After we specify a Route Method with Endpoint URL Route. You can provide a callback function called <span class="blue bold">"Request Handler"</span> or "Middleware",
+ which execute when the route is matched. Our handler can be either a regular functions or an arrow functions, and it has two, three or four
+ <green>(Learn Later)</green> parameters with request and response <br />
+ <span class="red bold font-code">(req, res) => { ... }</span>
+</p>
+
+<!-- ********************************** -->
+<p class="sub-title get-title">1 - Single Function Handler</p>
+
+<p class="underline-text"># A single callback function can handle a route. For example:</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.get("/home", (req, res) => {
+    res.send("Welcome home")
+  })
+</code></pre>
+</div>
+
+<!-- ********************************** -->
+<p class="sub-title get-title">2 - Multiple Handlers With <span class="red bold font-code"> next() </span></p>
+
+<p class="text mgt-20">
+ We can have more than one callback function to handle a route, but first we must specify a third parameter
+ <span class="red bold font-code">(req, res, next) => { ... }</span> then call it inside the function handler <span class="red bold font-code"> next() </span> for pass
+ flow control to the next handler function
+</p>
+
+<p class="underline-text"># A Multiple callback functions to handle a route. For example:</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.get("/home", (req, res, next) => {
+    console.log("Handle our request and response")
+    next(); // Go to the Next Handler Function
+  }, (req, res) => {
+    res.send("Welcome home")
+  })
+</code></pre>
+</div>
+
+<!-- ********************************** -->
+<p class="sub-title get-title">3 - Execute Multiple routes With Same URL Path Using <span class="red bold font-code">next()</span></p>
+
+<p class="text mgt-20">
+ If we have multiple routes with similar url path endpoint, you can run them both rather than execute the first one only, we can achieve that by using
+ <span class="red bold font-code">next()</span>. When we first hit the first route, run it then invoke next to the next route, which has the same url.
+</p>
+
+<p class="underline-text"># A Multiple routes both same url :</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  // http://localhost:3000/user
+  app.get("/user", (req, res, next) => {
+    console.log("URL matches");
+    next();
+  });
+
+  app.get("/user", (req, res) => {
+    console.log("And also this match");
+    res.end();
+  });
+
+  Output:
+  ---------------------------
+    URL matches
+    And also this match
+</code></pre>
+ >
+</div>
+
+<!-- ********************************** -->
+<p class="sub-title get-title">4 - Route Handler Sequence of Functions or Arrays</p>
+
+<p class="text mgt-20">
+ Using A combination of independent functions or An array of callback functions to handle route. The <span class="blue bold">return</span> keyword is very important For
+ example, we don’t want to continue processing the request if the authentication has failed in the first handler function
+</p>
+
+<p class="underline-text">A- Using multiple handler functions to authenticate user before process to the next handler :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const checkUserIsAdmin = (req, res, next) => {
+    if (!isAuthenticated) {
+      return next(401) // 401
+    }
+    next()
+  }
+
+  const cb0 = (req, res, next) => {
+    console.log("CB0")
+    next()
+  }
+  
+  const cb1 = (req, res, next) => {
+    console.log("CB1")
+    next()
+  }
+
+  const cb2 = (req, res) => {
+    res.send("Hello from cb2")
+  }
+
+  app.get("/user", checkUserIsAdmin, cb0, cb1, cb2  ) // Pass Function handlers to handle route
+  app.get("/user", checkUserIsAdmin, [cb0, cb1, cb2]  ) // Pass Function handlers with arrays to handle route
+</code></pre>
+ >
+</div>
+
+<p class="underline-text">B- This example shows an array with a middleware sub-stack that handles GET requests to the /user/:id path :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  function logOriginalUrl (req, res, next) {
+    console.log("Request URL:", req.originalUrl)
+    next()
+  }
+  
+  function logMethod (req, res, next) {
+    console.log("Request Type:", req.method)
+    next()
+  }
+  
+  const logStuff = [logOriginalUrl, logMethod]
+
+  app.get("/user/:id", logStuff, function (req, res, next) {
+    res.send("User Info")
+  })
+</code></pre>
+</div>
+
+<p class="underline-text">C- An Example we don’t want to continue processing the request if the authentication has failed in the first route :-</p>
+
+<div class="dropdown-title-container">
+ <h1 class="dropdown- title-header">Click to show the full example ....</h1>
+ <img class="dropdown-title-Arrow" src="../../icon/arrow.png" alt="" />
+ <div class="dropdown-content">
+  <div class="express-block js-code express-code code language-javascript pre-block">
+   <p class="block-title">./server.js</p>
+   <pre><code class="js language-js">
+  // Authentication middleware
+  const checkUserIsAdmin = (req, res, next) => {
+    if (req.session._admin !== true) {
+      return next(401)
+    }
+    return next()
+  }
+
+  // Admin Route that fetches users and calls Render Function
+  const admin = {
+    main: (req, res, next) => {
+      req.db.get("users").find({}, function (e, users) {
+        if (e) return next(e)
+        if (!users) return next(new Error("No users to display."))
+        res.render("admin/index.html", users)
+      })
+    },
+  }
+
+  // Display list of users for admin dashboard
+  app.get("/admin", checkUserIsAdmin, admin.main)
+</code></pre>
+   >
+  </div>
+ </div>
+</div>
+
+<!-- ********************************** -->
+<p class="sub-title get-title">5 - Using <span class="red bold font-code">next("route")</span> - Route Controller</p>
+
+<p class="text mgt-20">
+ We use <span class="red bold font-code">next("route")</span> controller to skip the rest of function in the current route to the next route in the stack, call
+ <span class="red bold font-code">next("route")</span> to pass control to the next route. will work only in middleware functions that were loaded by using the
+ app.METHOD() or router.METHOD() functions.
+</p>
+
+<p class="underline-text"># This example shows an array with a middleware sub-stack that handles GET requests to the /user/:id path :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.get("/user/:id", (req, res, next) => {
+    // If the user ID is 0, skip to the Next Route
+    if (req.params.id === "0") next("route")
+    // otherwise pass the control to the Next middleware/Route Function in this stack 'special'
+    else next()
+  }, (req, res, next) => {
+    // Execute the following response
+    res.send("regular")
+  })
+  
+  // handler for the /user/:id path, which sends a special response
+  app.get("/user/:id", (req, res, next) => {
+    res.send("special")
+  })
+</code></pre>
+ >
+</div>

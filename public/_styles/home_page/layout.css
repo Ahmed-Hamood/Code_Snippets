@@ -1,0 +1,67 @@
+.body-container {
+ background: var(--body-container);
+ height: var(--content-render-height);
+ display: flex;
+ flex-flow: row nowrap;
+ /* overflow: auto; */
+}
+
+.sideBar {
+ width: var(--sidebar-width);
+ background: var(--sideBar-sidebar-bg-color);
+ border-right: 1px solid rgb(37, 37, 37);
+ display: block;
+ z-index: 10;
+ position: relative;
+ animation: FadeInAnimation 0.3s;
+}
+
+.sideBar ::-webkit-scrollbar-track {
+ background: var(--sideBar-header-bg-color);
+
+ /* box-shadow: inset 7px 0px 12px #282c34; */
+}
+
+ 
+
+.sideBar.no-sideBar {
+ width: 0;
+ display: none;
+}
+
+.sideBar .sideBar-container {
+ opacity: 1;
+}
+.sideBar-container.hide {
+ opacity: 0;
+}
+
+.sideBar.sideBar-slide {
+ animation-name: sideBarSlideAnimation;
+ animation-duration: var(--screen-width-animation-duration);
+ animation-fill-mode: forwards;
+}
+
+.sideBar.sideBar-slide-reverse {
+ animation-name: sideBarSlideAnimation2;
+ animation-duration: var(--screen-width-animation-duration);
+ animation-fill-mode: forwards;
+}
+
+.main-content-container {
+ background: var(--body-container);
+ width: var(--content-render-width);
+ height: var(--content-render-height);
+}
+
+.no-display {
+ display: none !important;
+}
+
+@media screen and (max-width: 1100px) {
+ .sideBar {
+  overflow: hidden;
+  position: absolute;
+ }
+
+}

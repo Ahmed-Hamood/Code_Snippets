@@ -1,0 +1,384 @@
+<!-- ##############################
+############ JS Code, Css Html and terminal Block ###########
+############################### -->
+
+<!-- line-num="5,9" -> select line 5 and 9 -->
+<!-- line-num="all" -> select all lines -->
+<!-- colors Letters = r -> red, g -> green, y -> yellow, a -> add (+ sign instead of number), m -> remove (- sign instead of number) -->
+<!-- line-num="1r,5g,12y" -> select lines 1,5,12 with red, green and yellow highlight colors -->
+<!-- line-num="1r,3,5g,12y" -> select lines 1,3,5,12 with red, white, green and yellow highlight colors -->
+<!-- line-num="1r,3,5g,12y" -> select lines 1,3,5,12 with red, white, green and yellow highlight colors -->
+<!-- line-num="1a,5a,8a" -> select lines 1,5,8 with color and change line number into + sign as add this line -->
+<!-- line-num="1m,5m,8m" -> select lines 1,5,8 with color and change line number into - sign as remove this line -->
+
+<!-- #########################################  -->
+<!-- ###### JS code snippets ######  -->
+<!-- #########################################  -->
+
+<!-- js-content => class="js-block js-code js-content" -->
+<!-- js-jsx-content => class="js-block js-code react-code js-content" -->
+<!-- json-content => class="js-block json-code js-content" -->
+
+<!-- With header title and code number -->
+<code js-content title-header="./socket.js" line-num="5,9">
+ <pre></pre>
+</code>
+
+<code js-jsx-content title-header="./socket.js" line-num="5,9">
+ <pre></pre>
+</code>
+
+<!-- Empty header title will set to "- Example" by default and code number with no data num highlight -->
+<code js-jsx-content title-header="" line-num>
+ <pre></pre>
+</code>
+
+<!-- don't display header title and code number -->
+<code js-jsx-content no-title-header no-line-num>
+ <pre></pre>
+</code>
+
+<!-- don't display title header with no-title-header attribute -->
+<!-- using line-num to highlight line numbers with colors default is white -> g-green, red-red, y-yellow -->
+<code json-content no-title-header line-num="5g,9g">
+ <pre></pre>
+</code>
+
+<!-- don't display header title and code side line number -->
+<code js-jsx-content no-title-header no-line-num>
+ <pre></pre>
+</code>
+
+<!--  use full-height attribute to make content at full height -->
+<code js-jsx-content full-height title-header no-line-num>
+ <pre></pre>
+</code>
+
+<!-- ######################################### -->
+<!-- ###### HTML block snippets - ######  -->
+<!-- ######################################### -->
+
+<!-- html-content => class="html-block html-code html-content" -->
+
+<!-- with title header  -->
+<!-- using line-num to highlight line numbers with colors default is white -> g-green, red-red, y-yellow -->
+<section html-content title-header="./index.html" line-num="6,8,9g">
+ <pre></pre>
+</section>
+
+<!-- keep side line number without highlighting any line number -->
+<!-- don't display title header with no-title-header attribute -->
+<section html-content no-title-header line-num="">
+ <pre></pre>
+</section>
+
+<!-- don't display code side line number -->
+<!-- don't display title header with no-title-header attribute -->
+<section html-content no-title-header no-line-num>
+ <pre></pre>
+</section>
+
+<!-- ######################################### -->
+<!-- ###### Terminal code snippets - no code number highlight ######  -->
+<!-- ######################################### -->
+
+<!-- terminal-content => class="terminal-block npm-command terminal-content" -->
+
+<!-- terminal content with header title and bu default using ">" sign as default  -->
+<div terminal-content title-header="CMD">
+ <pre></pre>
+</div>
+
+<!-- set preferred sign, the default is ">" -->
+<div terminal-content title-header="CMD" preferred-sign="$">
+ <pre></pre>
+</div>
+
+<!-- set highlight sign line -->
+<div terminal-content title-header="CMD" preferred-sign="$" line-num="1,2">
+ <pre></pre>
+</div>
+
+<!-- disable header title -->
+<div terminal-content no-title-header>
+ <pre></pre>
+</div>
+
+<!-- ######################################### -->
+<!-- ###### StyleSheet block snippets - ######  -->
+<!-- ######################################### -->
+
+<!-- css-content => class="css-block css-code css-content" -->
+
+<!-- You can't disable code side line number list, only you can leave it empty - line-num="" -->
+
+<!-- with title header  -->
+<!-- with only number highlight  -->
+<section css-content title-header="./style.css" line-num="6,8">
+ <pre></pre>
+</section>
+
+<section css-content no-title-header line-num="">
+ <pre></pre>
+</section>
+
+<!-- ###############################
+########## Tabs Block ##########
+############################### -->
+
+<section class="tab-container">
+ <div class="btn_tabs">
+  <button class="tab-btn active">index.html</button>
+  <button class="tab-btn">app.js</button>
+  <button class="tab-btn">Result</button>
+ </div>
+ <div class="main-tab-content">
+  <!-- ########### Begin ########### -->
+
+  <!-- ************************ -->
+  <div class="tab-content"></div>
+  <!-- ************************ -->
+
+  <!-- ************************ -->
+  <div class="tab-content"></div>
+  <!-- **************************** -->
+
+  <!-- ************************ -->
+  <div class="tab-content"></div>
+  <!-- ************************ -->
+
+  <!-- ########### End ########### -->
+ </div>
+</section>
+
+<!-- ###############################
+########## Image Element ##########
+############################### -->
+
+<!-- it will look for an image inside the img folder on current directory/folder -->
+<img id="image" path="/image-folder/image-name" alt="" />
+<img id="image" path="/img/image001.jpg" alt="" />
+<!-- path from file -->
+<img id="image" file path="/img/image001.PNG" alt="" />
+<!-- ###############################
+########## Collapsible Element ##########
+############################### -->
+
+<div class="Collapsible-container">
+ <h1 class="Collapsible-title">- My Title</h1>
+
+ <div class="Collapsible-content">
+  <!-- Your Content Here -->
+ </div>
+</div>
+
+<!-- ###############################
+########## title and text content ##########
+############################### -->
+
+<p class="main-title"></p>
+
+<p class="sub-title"></p>
+<p class="sub-sub-title"></p>
+<p class="sub-sub-sub-title"></p>
+
+<p class="text"></p>
+
+<a id="ref-link" href="ref_00#"></a>
+
+<red>text in red color</red>
+<red bold>text in red color and bold</red>
+<red bold underline>text in red color, bold and underline</red>
+<red bold underline capitalize>text in red color, bold, underline and capitalize</red>
+<red bold underline capitalize consolas>text in red color, bold, underline,capitalize and consolas</red>
+
+<file>file_name.txt</file>
+<folder>/foldername</folder>
+<text>/foldername</text>
+<!-- white color and border-->
+<text red|green|yellow|orange|purple>/foldername</text>
+
+<!-- ###############################
+########## messages content ##########
+############################### -->
+
+<!-- Gray bgColor -->
+<div class="text-box"></p>
+<!-- Yellow bgColor -->
+<div class="text-box note"></p>
+<!-- red bgColor -->
+<div class="text-box warning"></p>
+
+<!-- ###############################
+########## List Content ##########
+############################### -->
+
+<div class="list-content custom">
+ <p class="list-title">-</p>
+ <ul>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+ </ul>
+</div>
+
+<!-- No title -->
+<div class="list-content custom">
+ <ul>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+ </ul>
+</div>
+
+<div class="list-content custom none">
+ <p class="list-title">- Your Title here . . . . . . .</p>
+ <ul>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+ </ul>
+</div>
+
+<div class="list-content custom dash">
+ <p class="list-title">- Your Title here . . . . . . .</p>
+ <ul>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+ </ul>
+</div>
+
+<div class="list-content normal">
+ <p class="list-title">- Your Title here . . . . . . .</p>
+ <ul>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+ </ul>
+</div>
+
+<div class="list-content normal alpha">
+ <p class="list-title">- Your Title here . . . . . . .</p>
+ <ul>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+ </ul>
+</div>
+
+<div class="list-content normal number">
+ <p class="list-title">- Your Title here . . . . . . .</p>
+ <ul>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+ </ul>
+</div>
+
+<div class="list-content normal check">
+ <p class="list-title">- Your Title here . . . . . . .</p>
+ <ul>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+ </ul>
+</div>
+
+<!-- ###############################
+########## Table content ##########
+############################### -->
+
+<!-- Place the following anywhere in your document, so table content list will be placed there  -->
+<div class="table-content"></div>
+
+<!-- Use this to hide table content -->
+<div class="no-table-content"></div>
+
+<!-- ###############################
+########## List Menu Topics ##########
+############################### -->
+
+<div class="subject-topics-list-container">
+ <!-- ############################################################### -->
+ <p class="subject-main-title">- Helmet</p>
+ <!-- ############################################################### -->
+
+ <!-- ------------------------------ Section Start ------------------------------ -->
+ <p class="subject-title">1. Main subject title</p>
+
+ <!-- ####################################################### -->
+ <div class="subject-topics-content">
+  <li><a class="topic-title-link" path="/Helmet/1 - topic one.html">1. Topic One</a></li>
+  <li><a class="topic-title-link" path="/Helmet/2 - topic two.html">2. Topic Two</a></li>
+  <li><a class="topic-title-link" path="/Helmet/3 - topic three.html">3. Topic Three</a></li>
+
+  <p class="sub-subject-title">A - Sub title</p>
+
+  <li><a class="topic-title-link" path="/Helmet/1 - topic one.html">A1. Topic One</a></li>
+  <li><a class="topic-title-link" path="/Helmet/2 - topic two.html">A2. Topic Two</a></li>
+  <li><a class="topic-title-link" path="/Helmet/3 - topic three.html">A3. Topic Three</a></li>
+ </div>
+ <!-- ####################################################### -->
+
+ <!-- ------------------------------ Section End ------------------------------ -->
+
+ <!-- ------------------------------ Section Start ------------------------------ -->
+ <p class="subject-title">2. Main subject title</p>
+
+ <!-- ####################################################### -->
+ <div class="subject-topics-content">
+  <div class="two-columns">
+   <section>
+    <!-- #### Left Section #### -->
+    <li><a class="topic-title-link" path="/Helmet/1 - topic one.html">1. Topic One</a></li>
+    <li><a class="topic-title-link" path="/Helmet/2 - topic two.html">2. Topic Two</a></li>
+    <li><a class="topic-title-link" path="/Helmet/3 - topic three.html">3. Topic Three</a></li>
+   </section>
+   <section>
+    <!-- #### Right Section #### -->
+    <p class="sub-subject-title">A - Sub title</p>
+    <li><a class="topic-title-link" path="/Helmet/1 - topic one.html">1. Topic One</a></li>
+    <li><a class="topic-title-link" path="/Helmet/2 - topic two.html">2. Topic Two</a></li>
+    <li><a class="topic-title-link" path="/Helmet/3 - topic three.html">3. Topic Three</a></li>
+   </section>
+  </div>
+
+  <div class="two-columns">
+   <section>
+    <!-- #### Left Section #### -->
+   </section>
+   <section>
+    <!-- #### Right Section #### -->
+   </section>
+  </div>
+ </div>
+ <!-- ####################################################### -->
+ <!-- ------------------------------ Section End ------------------------------ -->
+</div>
+
+<!-- card title only -->
+<div class="card-container">
+ <a href="" class="card-title-link topic-title-link" path="/Documentation/1.1 - Understanding Basic Git Workflow.html">1.1 - Understanding Basic Git Workflow</a>
+ <p class="card-text">Understand Git terminology</p>
+</div>
+
+<!-- card title with list link -->
+
+<div class="card-container">
+ <a href="" class="card-title-link topic-title-link" path="/Documentation/1.1 - Understanding Basic Git Workflow.html">1.1 - Understanding Basic Git Workflow</a>
+ <p class="card-text">Understand Git terminology</p>
+ <div class="card-link-list-content">
+  <li>
+   <a class="topic-title-link" path="/Documentation/1.2 - Initialize Git in our project.html"> 1.2 - Initialize Git in our project </a>
+  </li>
+ </div>
+</div>

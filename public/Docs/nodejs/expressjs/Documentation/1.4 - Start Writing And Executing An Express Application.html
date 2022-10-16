@@ -1,0 +1,110 @@
+<p class="main-title">1.4 - Start Writing And Executing An Express Application</p>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">1 - Create A Simple Express Application</p>
+
+<p class="text">
+ We have installed our express framework, now it is time to start developing our first app using Express. We will write a web server that runs locally on
+ <span class="blue bold">PORT</span> <span class="red bold">3000</span>, So when you open <span class="red bold font-code">http://localhost:3000/</span> URl in your
+ browser, you should see Hello World. Now let's start writing our simple application
+</p>
+
+<p class="underline-text"># Writing an express application which will listen on port number 3000 :</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+
+  app.get("/", (req, res) => {
+    res.send(" &lt;h1> Hello World &lt;/h1> ")
+  })
+
+  app.listen(3000, () => {
+    console.log("Listening on PORT 3000")
+  })  
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-sub-title get-title font-code highlight mgt-30 blue">- const express = require("express")</p>
+
+<p class="text mgt-20">We are using the require function to include the express module into our project</p>
+
+<!-- ########################################## -->
+<p class="sub-sub-title get-title font-code highlight mgt-30 blue">- const app = express()</p>
+
+<p class="text mgt-20">Now we can create an application object by instantiate an Express.js module</p>
+
+<!-- ########################################## -->
+<p class="sub-sub-title get-title font-code highlight mgt-30 blue">- app.get("/", (req, res) => { } )</p>
+
+<p class="text mgt-20">
+ We create HTTP GET Method for the home route o the first parameter. In the second parameter we have a request handler as a callback function, which will be called or
+ invoked when the client hit the <span class="red bold font-code">http://localhost:3000/</span> home root URL
+</p>
+
+<!-- ########################################## -->
+<p class="sub-sub-title get-title font-code highlight mgt-30 blue">- res.send("Hello World")</p>
+
+<p class="text mgt-20">
+ Inside the call back function we are responding and sending an HTML string text back to the client. The <span class="blue bold">res</span> parameter is used to send
+ content back to the web page.
+</p>
+
+<!-- ########################################## -->
+<p class="sub-sub-title get-title font-code highlight mgt-30 blue">- app.listen(3000, () => { console.log("Listening on PORT 3000") })</p>
+
+<p class="text mgt-20">
+ Our server will listen to any request thru the <span class="blue bold">PORT</span> <span class="red bold">3000</span>. Our server application listen to client requests
+ on port no 3000. You can specify any available port over here.
+</p>
+
+<p class="underline-text mgt-30"># Another way to startup a server using http :-</p>
+
+<div class="dropdown-title-container">
+ <h1 class="dropdown- title-header">Click to show the full example ....</h1>
+ <img class="dropdown-title-Arrow" src="../../icon/arrow.png" alt="" />
+ <div class="dropdown-content">
+  <div class="express-block js-code express-code code language-javascript pre-block">
+   <p class="block-title">./server.js</p>
+   <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  const http = require("http");
+  
+  app.get("/home" , (req, res) => { res.send("Hello World"); });
+  
+  http.createServer(app).listen(3000, function() {
+    console.log("Express server listening on port 3000");
+  });
+</code></pre>
+  </div>
+ </div>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">2 - Run An Express Application</p>
+
+<p class="text">
+ To run your express application, we execute <span class="red bold font-code">node server.js</span> from the project folder directory thru CMD (You may have to cd into
+ the directory where server.js lives.). If everything works well you should see <span class="blue bold">"Listening on PORT 3000"</span>
+ as a text appear on the screen
+</p>
+
+<p class="underline-text"># Run your express application with current director terminal :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> node server.js
+Listening on PORT 3000 
+</code></pre>
+</div>
+
+<p class="text mgt-20">
+ Now the server is listening on port 3000, Open your favorite browser and type <span class="red bold font-code">http://localhost:3000/</span>
+ and a message will be displayed as in the following screenshot.
+</p>
+
+<img path="/img/image002.PNG" alt="" id="image" />

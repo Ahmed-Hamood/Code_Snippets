@@ -1,0 +1,225 @@
+<p class="main-title">6.1 - Express Route - <span class="red bold">Path Endpoints</span> With Static And Dynamic URL</p>
+
+<p class="text">
+ <span class="red bold">Route</span> is a combination of a request method, and a <blue>URL path endpoints</blue>. The URL path endpoints respond to client requests route
+ is a way to map requests to specific handlers depending on their URL and HTTP verb. Route URL paths can be strings, string patterns, or regular expressions.
+</p>
+
+<p class="text">
+ When client request a home page <span class="red bold font-code">"/"</span> or <span class="red bold font-code">"/home"</span> our application will match the map the URL
+ route, and execute the request handler and return a response. As we have other paths like about page <span class="red bold font-code">"/about"</span> and 404 page for
+ none existed URL.
+</p>
+
+<p class="underline-text"># A client HTTP request to the server with application route :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+ <blue>################## Client Side ##################</blue>
+ GET <blue>/home</blue> <orange>http/1.1</orange>
+  - GET : HTTP GET Request
+  - /home : Home page URL path
+  - http/1.1 : Using An HTTP Protocol version 1.1
+ <blue>#################################################</blue>
+
+ <blue>################## Server Side ##################</blue>
+  app.get("URL_Endpoint", (request, response) => { // Return a response });
+ <blue>#################################################</blue>
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">A - Static URL Route Path</p>
+
+<p class="text">
+ Static URL Path base on strings separated by slashes <span class="red bold">( / )</span>. Our Application will match or map a client request path with one of the
+ registered path routes that you specified. The route path will match requests and execute handlers to response to that requested path with GET information or POST Data
+ and store them. The hyphen (-) and the dot (.) are interpreted literally by string-based paths.
+</p>
+
+<p class="underline-text"># The following route path will match requests to the root route "/" :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">GET / - http://localhost:3000/</p>
+ <pre><code class="js language-js">
+  app.get("/", (req, res) => { res.send("Root Home") })
+</code></pre>
+</div>
+
+<p class="underline-text"># The following route path will match requests to "/about" :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">GET /about -http://localhost:3000/</p>
+ <pre><code class="js language-js">
+  app.get("/about", (req, res) => { res.send("About US") })
+</code></pre>
+</div>
+
+<p class="underline-text"># The following route path will match requests to "/random.text" :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">GET /random.text - http://localhost:3000/random.text</p>
+ <pre><code class="js language-js">
+  app.get("/random.text", (req, res) => { res.send("random.text") })
+</code></pre>
+</div>
+
+<p class="underline-text"># The following route path will match requests to "/api/users :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">GET /api/users - http://localhost:3000/api/users</p>
+ <pre><code class="js language-js">
+  app.get("/api/users", (req, res) => { res.send("Get All Users") })
+</code></pre>
+</div>
+
+<p class="text">
+ By default URL is not a case sensitive. The case sensitive routing setting is false by default, which means
+ <span class="red bold font-code">"/user"</span> and <span class="red bold font-code">"/User"</span> are same both. so when access the route
+ <span class="red bold font-code">"/home"</span>, you can type either <span class="red bold font-code">"/home"</span> or
+ <span class="red bold font-code">"/Home"</span> to access the the home route
+</p>
+
+<p class="underline-text"># The following route path "/api/customers" And "/api/Customers" will match requests to "/api/customers" :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">POST /api/customers OR /api/Customers - http://localhost:3000/api/customers OR http://localhost:3000/api/Customers</p>
+ <pre><code class="js language-js">
+  app.get("/api/customer" , (req , res)=> {  res.json( { id:1 , name:'alen' , amount:4889 } ); });
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">B - Dynamic URL Routes with Pattern Matched <span class="red bold font-code">( ?, +, *, () )</span></p>
+
+<p class="text">
+ Also we can specify paths base on a string pattern. The characters <span class="red bold font-code">( ?, +, *, () )</span> are subsets of their regular expression
+ counterparts. Here we have some examples of route paths based on string patterns.
+</p>
+
+<p class="underline-text"># The String pattern characters :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>
+   <span class="blue bold font-code">"?"</span> : The endpoint must have 0 or 1 of the preceding character (or group), e.g. a route path of
+   <span class="green bold font-code">"/ab?cd"</span> will match endpoints <green>acd</green> or <green>abcd</green>.
+  </li>
+  <li>
+   <span class="blue bold font-code">"+"</span> : The endpoint must have 1 or more of the preceding character (or group), e.g. a route path of
+   <span class="green bold font-code">"/ab+cd"</span> will match endpoints <green>abcd</green>, <green>abbcd</green>, <green>abbbcd</green>, and so on.
+  </li>
+  <li>
+   <span class="blue bold font-code">"*"</span> : The endpoint may have an arbitrary string where the * character is placed. E.g. a route path of
+   <span class="green bold font-code">"/ab*cd"</span> will match endpoints <green>abcd</green>, <green>abXcd</green>, <green>abSOMETEXTcd</green>, and so on.
+  </li>
+  <li>
+   <span class="blue bold font-code">"()"</span> : Grouping match on a set of characters to perform another operation on
+   <span class="green bold font-code">"/ab(cd)?e"</span> will perform a ?-match on the group (cd) it will match <green>abe</green> and <green>abcde</green>.
+  </li>
+ </ul>
+</div>
+
+<p class="sub-sub-title get-title">- Using Optional <span class="red bold font-code">"?"</span></p>
+
+<p class="underline-text"># The following route path will match /acd and /abcd - Optional character you can add it or remove it :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">URL_Path : /abcd OR /acd // Optional "b"</p>
+ <pre><code class="js language-js">
+  app.get("/ab?cd",  (req, res) => {  res.end("ok")   });
+</code></pre>
+</div>
+
+<p class="sub-sub-title get-title">- Using Extra <span class="red bold font-code">"+"</span></p>
+
+<p class="underline-text"># The following route path will match /abcd, /abbcd or /abbbcd - Character you can repeat characters :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">URL_Path : /abcd, /abbcd OR /abbbcd // extra "b"</p>
+ <pre><code class="js language-js">
+  app.get("/ab+cd", function (req, res) {  res.send("ok")   })
+</code></pre>
+</div>
+
+<p class="sub-sub-title get-title">- Using Insert <span class="red bold font-code">"*"</span></p>
+
+<p class="underline-text"># The following route path will match /abcd, /abccccd or /abAnyThingd - Character you can insert anything between :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">URL_Path : /abcd, /abccccd OR /abOKd // Add Anything between "ab" and "cd</p>
+ <pre><code class="js language-js">
+  app.get("/ab*cd", function (req, res) { res.send("ok")  })
+</code></pre>
+</div>
+
+<p class="sub-sub-title get-title">- Using Optional Set <span class="red bold font-code">"()"</span></p>
+
+<p class="underline-text"># The following route path will match /book and /book_part1 :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">URL_Path : /book OR /book_part1 // Optional "_part1"</p>
+ <pre><code class="js language-js">
+ app.get("/book(_part1)?",  (req, res) => {   res.end("ok")   });
+</code></pre>
+</div>
+
+<p class="underline-text"># The following route path will match /abe and /abcde :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">URL_Path : /abe OR /abcde // Optional "cd"</p>
+ <pre><code class="js language-js">
+ app.get("/ab(cd)?e",  (req, res) => {   res.end("ok")   });
+ app.get("/ab(cd)?",  (req, res) => {   res.end("ok")   }); // /ab or /abcd
+
+ // Below are same
+ app.get("/ab(cd)", function (req, res) {res.send("ok") })  
+ app.get("/abcd", function (req, res) {res.send("ok") })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">C - Dynamic URL Routes With Regular Expression</p>
+
+<p class="text">Also we can specify route path base on regular expression.</p>
+
+<p class="underline-text"># Only accept 5 digits Number in URL :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">URL_Path : user/12345 OR user/45215</p>
+ <pre><code class="js language-js">
+ app.get("/user/[0-9]{5}",  (req, res) => { res.send("OK");  }); 
+</code></pre>
+</div>
+
+<p class="underline-text"># Must include "user" keyword in the url endpoint :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">URL_Path : /myuser OR /userinfo</p>
+ <pre><code class="js language-js">
+ app.get(/user/,  (req, res) => {  res.send("OK")  })
+</code></pre>
+</div>
+
+<p class="underline-text"># Must include "info" keyword at the end of url endpoint :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">URL_Path : /userinfo OR /myinfo</p>
+ <pre><code class="js language-js">
+ app.get(/.*info$/, (req, res) => {  res.send("OK") })
+</code></pre>
+</div>
+
+<p class="underline-text"># Create routes with regular expression :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Examples</p>
+ <pre><code class="js language-js">
+ //http://localhost:3000/user/contactinfo
+ app.get(/^\/user\/.*info$/, (req, res) => {  res.send("OK")  })
+
+ //http://localhost:3000/account/user/contactinfo
+ app.get(/^\/account\/user\/.*info$/, (req, res) => { res.send("OK")  })
+</code></pre>
+</div>

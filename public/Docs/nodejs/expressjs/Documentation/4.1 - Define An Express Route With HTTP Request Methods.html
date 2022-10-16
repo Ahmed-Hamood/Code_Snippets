@@ -1,0 +1,146 @@
+<p class="main-title">4.1 - Define An Express Route With <span class="red bold">HTTP</span> Request Methods</p>
+
+<p class="text mgt-20">
+ <span class="red bold">Routing</span> determining how an application responds to a client request to a particular endpoint, which is a URI (or path) and a specific HTTP
+ request method (<span class="blue bold">GET, POST</span>, PUT, and DELETE ..). Each Route you define has a url parameter and handler function for a specific request
+ handler method
+</p>
+
+<p class="text">
+ We will lean how to handle routes and HTTP request methods within Express. Routes handle user navigation to various URLs throughout your application. You define routing
+ using methods of the <span class="red bold">Express</span> app object which has all HTTP methods.
+</p>
+
+<p class="underline-text"># Define Route structure :-</p>
+
+<div class="code-block code pre-block">
+ <p class="block-title">➤ Route definition</p>
+ <pre><code class="js language-js">
+  app.METHOD(<blue>PATH</blue>, <blue>HANDLER</blue>)
+</code></pre>
+</div>
+
+<div class="list-content custom">
+ <ul>
+  <li><span class="red bold font-code">app</span> - <blue>is an instance of express.</blue></li>
+  <li><span class="red bold font-code">METHOD</span> - <blue>is an HTTP request method, in lowercase.</blue></li>
+  <li><span class="red bold font-code">PATH</span> - <blue>is a path on the server.</blue></li>
+  <li><span class="red bold font-code">HANDLER</span> - <blue>is the function executed when the route is matched.</blue></li>
+ </ul>
+</div>
+
+<p class="text">
+ A route method is derived from one of the <span class="red bold">HTTP</span> methods, and is attached to an instance of the <span class="red bold">express</span> class.
+ There is a special routing method, <span class="red bold font-code">app.all()</span> used to load middleware functions at a path for all HTTP request methods.
+</p>
+
+<p class="underline-text"># Defining Express Routes using an HTTP Methods :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express();
+
+  app.get("/", (req,res) => { // Execute the following } )
+  app.post("/", (req,res) => { // Execute the following } )
+  app.put("/", (req,res) => { // Execute the following } )
+  app.delete("/", (req,res) => { // Execute the following } )
+  app.all("/", (req,res) => { // Execute the following } )
+
+  app.listen(3000, () => { console.log("Listening on port 3000 ...."); })
+</code></pre>
+</div>
+
+<p class="underline-text"># Using HTTP methods with express as follows :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li><span class="red bold font-code">app.get()</span> - <blue>to handle GET Method Requests</blue></li>
+  <li><span class="red bold font-code">app.post()</span> - <blue>to handle POST Method Requests</blue></li>
+  <li><span class="red bold font-code">app.put()</span> - <blue>to handle PUT Method Requests</blue></li>
+  <li><span class="red bold font-code">app.delete()</span> - <blue>to handle DELETE Method Requests</blue></li>
+  <li><span class="red bold font-code">app.all()</span> - <blue>to handle all HTTP methods</blue></li>
+  <li><span class="red bold font-code">app.use()</span> - <blue>to specify middleware as the callback function</blue></li>
+ </ul>
+</div>
+
+<p class="underline-text"># An HTTP Method is supplied by the request from the browser :-</p>
+
+<div class="code-block code pre-block">
+ <p class="block-title">➤ Request line</p>
+ <pre><code class="js language-js">
+  GET <blue>/home</blue> <orange>HTTP/1.1</orange>
+  <green>Host</green>: www.example.com
+  <blue>--------------------------------------------------------------</blue>
+  POST <blue>/</blue> <orange>HTTP/1.1</orange>
+  <green>Host</green>: www.example.com
+  <blue>--------------------------------------------------------------</blue>
+  PUT <blue>/user</blue> <orange>HTTP/1.1</orange>
+  <green>Host</green>: www.example.com
+  <blue>--------------------------------------------------------------</blue>
+  DELETE <blue>/user</blue> <orange>HTTP/1.1</orange>
+  <green>Host</green>: www.example.com
+</code></pre>
+</div>
+
+<p class="underline-text"># The following code is an example of a very basic route :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express();
+
+ // respond with "hello world" when a GET request is made to the homepage
+  app.get("/home", (req, res) => {
+    res.send("hello world")
+  })
+
+ // Respond to POST request on the root route (/), the application’s home page
+  app.post("/", function (req, res) {
+    res.send("Got a POST request")
+  })
+
+ // Respond to a PUT request to the /user route:
+  app.put("/user", function (req, res) {
+    res.send("Got a PUT request at /user")
+  })
+
+ // Respond to a DELETE request to the /user route
+  app.delete("/user", function (req, res) {
+    res.send("Got a DELETE request at /user")
+  })
+
+ // Respond to All requests Methods to the /secret route
+  app.all("/secret", function (req, res, next) {
+    console.log("Accessing the secret section ...")
+    next() // pass control to the next handler 
+  })
+
+  app.listen(3000, () => { console.log("Listening on port 3000 ...."); })
+</code></pre>
+</div>
+
+<!-- ********************************** -->
+<p class="sub-title get-title">1. <span class="red bold">GET</span> Method - Get Data</p>
+
+<p class="text">The GET method requests a representation of the specified resource. Requests using GET should only retrieve data and should have no other effect.</p>
+
+<!-- ********************************** -->
+<p class="sub-title get-title">2. <span class="red bold">POST</span> Method - Create New Data</p>
+
+<p class="text">The POST method requests that the server accept the data enclosed in the request as a new object/entity of the resource identified by the URI.</p>
+
+<!-- ********************************** -->
+<p class="sub-title get-title">3. <span class="red bold">PUT</span> Method - Update Data</p>
+
+<p class="text">
+ The PUT method requests that the server accept the data enclosed in the request as a modification to existing object identified by the URI. If it does not exist then the
+ PUT method should create one.
+</p>
+
+<!-- ********************************** -->
+<p class="sub-title get-title">4. <span class="red bold">DELETE</span> Method - Delete Data</p>
+
+<p class="text">The DELETE method requests that the server delete the specified resource.</p>

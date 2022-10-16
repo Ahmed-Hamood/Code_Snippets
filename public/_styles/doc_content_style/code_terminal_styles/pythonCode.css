@@ -1,0 +1,295 @@
+.python-block {
+ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+ width: 100%;
+ max-width: var(--main-doc-content-width);
+ max-height: 500px;
+ overflow-x: auto;
+ overflow-y: auto;
+ position: relative;
+ display: block;
+ background: var(--python-code-block-primary-bg-color);
+ opacity: 0;
+ animation: var(--pre-block-animation);
+}
+
+.python-block::-webkit-scrollbar {
+ width: 2px;
+}
+.python-block::-webkit-scrollbar-thumb {
+ background: #425768;
+}
+
+.python-block::-webkit-scrollbar-thumb:hover {
+ background: rgb(187, 232, 172);
+}
+
+.underline-text + .python-block {
+ margin-top: calc(1.2 * 0.1rem);
+}
+
+/* ######################################### */
+/* ########### Code Header block ########### */
+/* ######################################### */
+
+.python-block .block-header {
+ /* height: 40px; */
+ padding: 10px 12px 10px 8px;
+ font-family: 'Optimistic Display', Consolas, monospace, 'Segoe UI', 'Source Sans Pro', sans-serif;
+ top: 0;
+ z-index: 4;
+ position: sticky;
+ /* background: var(--python-code-block-primary-bg-color); */
+ background: #1e343d;
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+ align-items: center;
+}
+
+.python-block .block-header .block-title {
+ font-size: 0.85rem;
+ letter-spacing: 1.2px;
+ font-weight: 500;
+ line-height: 1.5;
+ color: rgb(226, 226, 226);
+}
+
+.python-block .block-header .block-title::after {
+ /* position: absolute;
+  content: '';
+  height: 1px;
+  border-radius: 50px;
+  width: min(927px, 100%);
+  background: #1f2325;
+  left: 0;
+  bottom: 0; */
+}
+
+.python-block .block-header .text-lang {
+ display: flex;
+ align-items: center;
+ font-size: 0.9rem;
+ color: #535353;
+ cursor: default;
+ position: relative;
+ /* padding-right: 35px;
+ padding-left: 12px; */
+ /* user-select: none; */
+ transition: 0.3s all;
+ height: 100%;
+}
+
+.block-header .text-lang:hover {
+ color: rgb(198, 198, 198);
+ opacity: 1;
+}
+
+.python-block .block-header .lock-svg,
+.python-block .block-header .unlock-svg {
+ width: 22px;
+ height: 22px;
+ position: absolute;
+ right: 0.4rem;
+ opacity: 0.5;
+ transition: 300ms all;
+}
+
+.python-block .block-header .lock-svg:hover,
+.python-block .block-header .unlock-svg:hover {
+ opacity: 1;
+}
+
+.python-block .block-header .copyPythonCodeClipboard {
+ width: 25px;
+ height: 25px;
+ position: absolute;
+ right: 0.4rem;
+
+ z-index: 3;
+ opacity: 0.4;
+ transition: 200ms all;
+ cursor: pointer;
+}
+
+.python-block .block-header .copyPythonCodeClipboard:hover {
+ opacity: 1;
+}
+
+.python-block .block-title .copyPythonCodeClipboard:hover {
+ opacity: 1;
+}
+
+.python-block .block-header .copyPythonCodeClipboard.copied {
+ animation-name: FadeInAnimation;
+ animation-duration: 400ms;
+ animation-delay: 250ms;
+}
+
+/* ######################################### */
+/* ######################################### */
+
+/* ######################################### */
+/* ########### Code Block Content ########### */
+/* ######################################### */
+
+.python-block .block-content {
+ display: flex;
+ flex: row nowrap;
+ position: relative;
+ /* font-size: 1rem; */
+ line-height: 1.5rem;
+ /* margin-top: 3px; */
+ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+ /* background: #1e272e; */
+ background: var(--python-code-block-primary-bg-color);
+ overflow: hidden;
+}
+
+/* .react-code.python-block .block-content {
+  /* line-height: 1.6rem; } */
+
+.python-block .block-content pre {
+ font-size: 15px;
+ font-weight: 600;
+ font-family: 'Consolas', 'JetBrains Mono', monospace, 'Menlo';
+ width: 100%;
+ color: rgb(195, 221, 255);
+ background: var(--python-code-block-primary-bg-color);
+ padding: 0.7rem 0;
+ padding-right: 5px;
+ padding-left: 15px;
+ border-radius: 0 0 8px 0;
+ user-select: none;
+ overflow-x: auto;
+}
+
+/*.python-block.react-code .block-content pre {
+   font-family: 'Consolas', monospace, 'Menlo';
+  font-weight: 600; 
+ }*/
+
+.python-block .block-content .python-line-num {
+ width: 1.85rem;
+ background: var(--python-code-block-primary-bg-color);
+ /* background: #282C34; */
+ padding: 0.705rem 0;
+ z-index: 3;
+ user-select: none;
+ /* border-right: 1px solid rgb(50, 50, 50); */
+ /* box-shadow: rgba(0, 0, 0, 0.187) 0px 3px 8px; */
+}
+
+.python-block .block-content .python-line-num li {
+ font-size: 14px;
+ font-family: monospace, 'Source Sans Pro', sans-serif;
+ color: #4c5363;
+ font-weight: 400;
+ display: block;
+ text-align: center;
+ cursor: default;
+ position: relative;
+ transition: 200ms all;
+}
+
+.python-block .block-content .python-line-num li:hover {
+ color: rgb(255, 255, 255);
+}
+
+.python-block .block-content .python-line-num li.highlight-line {
+ color: rgb(255, 255, 255);
+}
+
+.python-block .block-content .python-line-num li.highlight-line.a {
+ color: rgb(0, 166, 0);
+ font-weight: 600;
+}
+
+.python-block .block-content .python-line-num li.highlight-line.m {
+ color: rgb(173, 2, 2);
+ font-weight: 600;
+}
+
+.python-block .block-content .python-line-num li::after {
+ position: absolute;
+ content: '';
+ height: 100%; /* block-content font-size  = 0.9375rem */
+ left: 1.85rem;
+ width: var(--main-doc-content-width);
+ /* width: 300vw; */
+ border-radius: 1px;
+}
+
+.python-block .block-content .python-line-num li:hover::after {
+ background: rgba(255, 255, 255, 0.055);
+ box-shadow: inset 2px 0 0 #0dec2366;
+}
+
+.python-block .block-content .python-line-num li.highlight-line::after {
+ background: rgba(255, 255, 255, 0.055);
+ border-bottom: 1px solid var(--python-code-block-primary-bg-color);
+}
+
+.python-block .block-content .python-line-num li.highlight-line.g::after {
+ background: rgba(0, 255, 13, 0.077);
+}
+
+.python-block .block-content .python-line-num li.highlight-line.r::after {
+ background: rgba(255, 0, 0, 0.077);
+}
+
+.python-block .block-content .python-line-num li.highlight-line.y::after {
+ background: rgba(251, 255, 0, 0.077);
+}
+
+.python-block .block-content .python-line-num li.highlight-line.a::after {
+ background: rgba(0, 255, 13, 0.077);
+ border-radius: 0;
+ left: 0rem;
+ transition: 0.3s all;
+}
+
+.python-block .block-content .python-line-num li.highlight-line.m::after {
+ background: rgba(255, 0, 0, 0.077);
+ border-radius: 0;
+ left: 0rem;
+ transition: 0.3s all;
+}
+
+.python-block .block-content .python-line-num li.highlight-line.m:hover::after {
+ background: rgba(255, 0, 0, 0.2);
+}
+.python-block .block-content .python-line-num li.highlight-line.a:hover::after {
+ background: rgba(0, 255, 13, 0.2);
+}
+
+.python-block .block-content .python-line-num li.highlight-line.a:hover::after,
+.python-block .block-content .python-line-num li.highlight-line.m:hover::after {
+ box-shadow: none;
+}
+
+.python-block .block-content .python-line-num li.highlight-line:hover::after {
+ background: rgba(255, 255, 255, 0.076);
+}
+
+@media screen and (max-width: 1000px) {
+ .block-header .copyClipboard {
+  top: 3rem;
+ }
+
+ .python-block .block-header .block-title::after {
+  width: 90%;
+ }
+
+ .python-block .block-content .python-line-num {
+  user-select: auto;
+ }
+
+ .python-block .block-content pre,
+ .python-block .block-content .python-line-num li {
+  font-size: 12px;
+ }
+
+ .python-block pre {
+  overflow-y: auto;
+ }
+}

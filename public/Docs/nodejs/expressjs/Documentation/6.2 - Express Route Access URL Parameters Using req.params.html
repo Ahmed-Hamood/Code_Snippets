@@ -1,0 +1,201 @@
+<p class="main-title">6.2 - Express Route - Access URL<span class="red bold"> Parameters</span> Using <span class="blue bold font-code">req.params</span></p>
+
+<p class="text">
+ <span class="red bold">Route URL parameters</span> are variables from a named sections of the URL, we used to capture the values specified at their position in the URL,
+ and store them in the <span class="blue bold font-code">req.params</span> property Object as <blue>{ key: value }</blue>
+</p>
+
+<p class="text">
+ <span class="red bold font-code">req.params</span> property is an object containing properties mapped to the named route. The simplest way to grab a parameter is by
+ putting it in your route with a colon ( : ) in Front of it. To grab the value, you’ll look inside the params property of the request. If you have the route
+ <span class="red bold font-code">"/user/:name"</span> , then the <blue>"name"</blue> property is available as<span class="blue bold font-code">req.params.name</span>.
+</p>
+
+<p class="underline-text"># Define a route with URL parameters :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  Route path: /users/:userId/books/:bookId
+  Request URL: http://localhost:3000/users/34/books/8989
+  req.params: { "userId": "34", "bookId": "8989" }
+  <blue>##################################################################</blue>
+  Route path: /flights/:from-:to
+  Request URL: http://localhost:3000/flights/LAX-SFO
+  req.params: { "from": "LAX", "to": "SFO" }   
+  <blue>##################################################################</blue>
+  Route path: /user/:userId(\d+)
+  Request URL: http://localhost:3000/user/42
+  req.params: {"userId": "42"}
+</code></pre>
+</div>
+
+<p class="text">
+ You can define multiple route parameters in a URL. In the below example, the Express route is <span class="red bold font-code">"/users/:userId/books/:bookId"</span>, so
+ <span class="blue bold font-code">req.params.userId</span> will contain the substring after <span class="red bold font-code">/users/</span> and before
+ <span class="red bold font-code">/books/</span>, and <span class="blue bold font-code">req.params.bookId</span> will contain everything after
+ <span class="red bold font-code">/books/</span>.
+</p>
+
+<p class="underline-text"># Define a route with URL parameters :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+
+  app.get("/user/:userId/books/:bookId", (req, res) => {
+    req.params; // { userId: '42', bookId: '101' }
+    res.json(req.params);
+  });
+
+  app.listen(3000, () => {
+    console.log("Listening on PORT 3000")
+  })
+</code></pre>
+</div>
+
+<p class="underline-text"># Making a request to the server using axios :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./app.js</p>
+ <pre><code class="js language-js">
+  const axios = require("axios");
+  const res = await axios.get("http://localhost:3000/user/42/books/101")
+  
+  res.data; // { userId: '42', bookId: '101' }
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">A - URL Parameter Examples</p>
+
+<p class="underline-text"># Examples of URL Parameters :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./app.js</p>
+ <pre><code class="js language-js">
+  // http://localhost:3000  --> won’t work 
+  // http://localhost:3000/8  
+  app.get("/:id" , (req , res) => {   
+    res.send(req.params.id); // 8 
+  });  
+
+  // http://localhost:3000/api/customer/81255 
+  app.patch("/api/customer/:id" , (req , res) => { 
+    res.send(req.params.id); // 81255
+  });
+
+  // http://localhost:3000/api/customer/john/12/2009 
+  app.get("/api/customer/:name/:month/:year" , (req , res) => { 
+    res.send(req.params); // { "month": "12",  "year": "2009","name": "john"  }  
+    res.send(req.params.month); // 12
+  });
+
+  // http://localhost:3000/story/2/link/romance/english
+  app.get("/story/:storyid/link/:fav/english" , (req,res,next) => {
+      res.send(`story ${req.params.storyid} - ${req.params.fav}`); // story 2 - romance
+  });
+
+
+  // &lt;a href="story/1"> Story one &lt;/a>  
+  app.get("/story/:storyid", (req, res, next) => {
+    res.send(`story ${req.params.storyid}`); // 1
+  });
+
+
+  // &lt;a href="story/2/story12"> Story one &lt;/a>
+  app.get('/story/:storyid/:link' , (req,res,next) =>{
+    const id = req.params.storyid; // 2 
+    const link = req.params.link; // story12  
+    res.send(`story ${id} link is ${link} `); // story 2 is story12
+  });
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">B - <span class="red bold font-code">req.params</span> with regular expression</p>
+
+<p class="underline-text"># Examples of URL Parameters with regular expression:-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./app.js</p>
+ <pre><code class="js language-js">
+  // You need the id to be a 5-digit long number.
+  // http://localhost:3000/review/125689
+  app.get("/review/:id([0-9]{5})", (req, res) => {   
+    console.log(req.params.id); // 125689 
+  });
+  
+  // http://localhost:3000/users/87
+  app.get(/^\/users\/(\d+)$/, (req, res) => {
+    var userId = parseInt(req.params[0], 10); // { '0': '87')
+    console.log(userId); // 87
+  });
+  
+  // Using regular expressions for Range of id’s 
+  // http://localhost:3000/users/33-88  
+  app.get(/^\/users\/(\d+)-(\d+)$/, (req, res) => {
+    console.log(req.params); // { '0': '33', '1': '88' }
+    let startId = parseInt(req.params[0], 10);
+    let endId = parseInt(req.params[1], 10);
+    console.log(startId + " - " + endId); // 33 - 88 
+  });
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">C - <span class="red bold font-code">req.params</span> with duplicate names - Last will override value</p>
+
+<p class="underline-text"># Examples of URL Parameters with duplicate names :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./app.js</p>
+ <pre><code class="js language-js">
+  // http://localhost:3000/100/200
+  app.get("/:id/:id", function (req, res) {
+    console.log(req.params);  // { id : '200' }
+    console.log(req.params.id); // 200 
+  });
+  
+  // http://localhost:3000/travel/5/review/8
+  app.get("/travel/:id/review/:id", function (req, res) {
+    console.log(req.params); // { id: '8' } 
+    console.log(req.params.id); // 8 
+  });
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">D - Using <span class="red bold font-code">req.param(key)</span> To Get One Parameter</p>
+
+<p class="underline-text"># Examples of using req.param() to get one parameter :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./app.js</p>
+ <pre><code class="js language-js">
+  // http://localhost:3000/customer/7/adam
+  app.get("/customer/:id/:name" , (req,res,next) => {
+    res.send(`${req.param("name')}, Customer id no.${req.param("id")} `); // adam, Customer id no.7
+  });
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">E - <span class="red bold font-code">req.params</span> with optional parameter</p>
+
+<p class="underline-text"># Examples using req.params with optional parameter :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./app.js</p>
+ <pre><code class="js language-js">
+  app.get("/:id?", (req, res) => {
+    // http://localhost:3000/
+    console.log(req.params.id); // undefined
+    // http://localhost:3000/45
+    console.log(req.params.id); // 45
+    res.end("ok")
+  });
+</code></pre>
+</div>

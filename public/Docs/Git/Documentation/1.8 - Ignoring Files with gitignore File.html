@@ -1,0 +1,131 @@
+<p class="main-title">1.8 - Ignoring Files with <Text red>.gitignore</Text> File</p>
+
+<p class="text">
+ On every project we may have a certain files and directories that we want <text red>Git</text> to ignore, we don't to include files that are generated as a result of
+ compiling or while installing addition packages, this is going to increase the size of our repository, and developers may have valuable files that they don't want to
+ share and synchronize with other team members.
+</p>
+
+<p class="text">
+ We are going create a few files and directories and learn how to configure Git to ignore these files. Lets create a directory called <folder>/Log</folder> and within it
+ we create a file called <file>info.log</file>, Open your <red bold underline>GitBash</red> Terminal and type the following Commands.
+</p>
+
+<section terminal-content title-header="Create Directory and File" preferred-sign=">" line-num="">
+ <pre>
+  mkdir logs // Create a new directory called 'logs'
+  echo "log info 001" > logs/info.log // Create info.log file inside our logs directory
+  git status // check Git Status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+  Untracked files:
+    (use "git add &lt;file>..." to include in what will be committed)
+          <red>logs/</red>
+  
+  nothing added to commit but untracked files present (use "git add" to track) 
+</pre
+ >
+</div>
+
+<p class="text">
+ When you run <terminal>git status</terminal> command, you gonna see that git have un-tracked directory called <folder>/log</folder>, we don't want to add this folder to
+ the <yellow bold cap>staging area</yellow>, because we don't <red bold underline>Git</red> to track <folder>/log</folder> folder.
+</p>
+
+<p class="text">
+ To prevent Git from tracking files and directories, we have to create a special file inside the root of your project called <file>.gitignore</file>, this file has no
+ name it only has an extension. So, lets create this file open your <red>GitBash</red> Terminal again and type the following Commands
+</p>
+
+<section terminal-content title-header="Create .gitignore file and add a new line" preferred-sign=">" line-num="">
+ <pre>
+  echo logs/ > .gitignore // create .gitignore file and add a new line
+  code .gitignore // open .gitignore in vscode
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  logs/
+</pre
+ >
+</div>
+
+<p class="text">
+ In <file>.gitignore</file>, we have a single entry <folder>logs/</folder> which indicates a directory with all it's content that we want to ignore. We can have a list of
+ files and directories or even ignore sub-directory only. Also we can use patterns to ignore files with certain extension.
+</p>
+
+<div class="terminal-output">
+ <pre>
+  logs/           <yellow>--> ignore log directory content</yellow>
+  node_modules/   <yellow>--> ignore node_modules directory content</yellow>
+  users/private/  <yellow>--> ignore users/private directory, only private content</yellow>
+  main.log        <yellow>--> ignore main.log file</yellow>
+  process.env     <yellow>--> ignore process.env file</yellow>
+  *.txt           <yellow>--> pattern ignore all files with .txt extension </yellow>
+  *.log           <yellow>--> pattern ignore all files with .log extension </yellow>
+  note/*.txt      <yellow>--> pattern ignore all files with .txt extension inside the note directory </yellow>
+  note/p1/*.txt   <yellow>--> pattern ignore all files with .txt extension inside the note/p1/ sub-directory only </yellow>
+</pre>
+</div>
+
+<p class="text">After we done, we can save the changes and go back and open the <terminal>terminal</terminal> back again</p>
+
+<section terminal-content title-header="Check Git Status" preferred-sign=">" line-num="">
+ <pre>
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+  Untracked files:
+    (use "git add &lt;file>..." to include in what will be committed)
+          <red>.gitignore</red>
+
+  nothing added to commit but untracked files present (use "git add" to track)
+</pre
+ >
+</div>
+
+<p class="text">
+ As you see Git ignored all our files and directories because it's ignoring it instead it says we have a new file called <file>.gitignore</file>. Lets add this file to
+ the <yellow underline cap bold>staging area</yellow> and then commit our code with a proper message.
+</p>
+
+<section terminal-content title-header="Commit and add .gitignore file to the repository" preferred-sign=">" line-num="">
+ <pre>
+  git add .gitignore // add .gitignore to the staging area
+  git commit -m "add gitignore file" // commit changes to the repository
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  [master 8965726] add gitignore file
+  1 file changed, 3 insertions(+)
+  create mode 100644 .gitignore
+</pre
+ >
+</div>
+
+<div class="text-box note">
+ Remember, this only works if you haven't already included a file or a directory in your repository, if you include a file in your repository and then later added it to
+ <file>.gitignore</file> Git is not going to ignore that, the file will stay in the <yellow underline cap bold>staging area</yellow>
+</p>
+
+<p class="text">
+ For example If you accidentally include a file in your repository and then later you decided to add it to <file>.gitignore</file>, actually Git is not going to ignore
+ that file because its already been added to the staging area. So, next we will learn how remove files from the <yellow bold underline cap>staging area</yellow> that have
+ been added by accident.
+</p>

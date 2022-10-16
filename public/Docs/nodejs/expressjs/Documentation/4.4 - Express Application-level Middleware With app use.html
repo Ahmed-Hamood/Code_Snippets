@@ -1,0 +1,305 @@
+<p class="main-title">4.4 - Express Application-level Middleware With <span class="red bold font-code">app.use()</span></p>
+
+<p class="sub-title get-title">1 - What is Express Middleware?</p>
+
+<p class="text">
+ <span class="red bold">Middleware</span> functions are functions that have access to the request object (req), the response object (res), and the next middleware
+ function in the application’s request-response cycle.
+</p>
+
+<p class="text">
+ <span class="red bold">Middleware</span> is software containing functions that execute during the request-response cycle and have access to both the request object (req)
+ and the response object (res). Middleware is executed during the window between when a server receives a request and when it sends a response.
+</p>
+
+<p class="text">
+ The <span class="blue bold font-code"> next() </span> function is a function in express router which will be invoked when the executing of the current middleware succeed
+ then proceed to the next middleware stack or route. if the current middleware does not end request-response cycle, it must call next() to pass control to the next
+ middleware function. Otherwise, the request will be left hanging. so don't forget to call the <span class="blue bold font-code"> next() </span> callback function.
+</p>
+
+<p class="text">
+ <span class="red bold">Middleware</span> always will be executed first at the beginning of your application. let say you have three middlewares the first middleware is
+ used for logging, after logging finish then jump to next middleware by using <span class="blue bold font-code"> next() </span> to go to next middleware the second
+ middleware will check the request header looking for cookies to fetch user data and authenticate or authorize user if not authorize then response with unauthorized
+ message . if authorized then go to <span class="blue bold font-code"> next() </span> middleware and so on .
+</p>
+
+<p class="underline-text"># Middleware functions can perform the following tasks:</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>Execute any code.</li>
+  <li>Make changes to the request and the response objects.</li>
+  <li>End the request-response cycle.</li>
+  <li>Call the next middleware in the stack.</li>
+ </ul>
+</div>
+
+<p class="text">
+ There is something you need to know that request handler is also a middleware actually, the only different between Middleware and function handler. In
+ <span class="red bold font-code">app.get()</span> function handler you must provide a URL parameter, but in <span class="red bold font-code">app.use()</span>
+ middleware, the URL parameter is optional.
+</p>
+
+<p class="underline-text"># The following figures shows an express route with middleware function call :</p>
+
+<img path="/img/image011.PNG" alt="" id="image" />
+
+<p class="text">
+ <span class="red bold">Middleware</span> includes application-level, router-level <blue>(later)</blue>, and error handling functionality <blue>(later)</blue>
+ and can be built-in or from a third party. Since Express.js has limited functionality of its own, an Express app is largely comprised of multiple middleware function
+ calls.
+</p>
+
+<!-- #################################################################################### -->
+<p class="sub-title get-title">2 - Using Middleware - Application-level Middleware</p>
+
+<p class="text">
+ To set-up middleware, we use <span class="red bold">app.use()</span> method binding application-level middleware to an instance off the
+ <span class="blue bold">app object</span>. The <span class="red bold">app.use()</span> has one optional URL string parameter, and one mandatory callback function
+ parameter which has three parameter <span class="red bold font-code"> (req, res, next) => { } </span>. Run series of middlewares to log request or authorize user request
+ before sending a reponse.
+</p>
+
+<p class="underline-text"># Viewing a request passing thru a series of middlewares :-</p>
+
+<img path="/img/image012.PNG" alt="" id="image" />
+
+<p class="underline-text"># Executing a series of middlewares :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  
+  // middleware one do some stuff then jump to next middleware 
+  app.use( (req, res, next) => { next(); });
+  // middleware two do more stuff like logging user info then jump to next middleware 
+  app.use( (req, res, next) => { next(); });
+  // middleware three do extra stuff then jump to next middleware  
+  app.use( (req, res, next) => { next(); });
+  // middleware four do authenticate with the login route 
+  app.use("/login", (req, res, next) => {  next(); });
+  // Finally successfully reach the last Route 
+  app.get("/", (req, res) => {  res.send("Get date")  });
+</code></pre>
+
+</div>
+
+<p class="text">Now we are going to implement a logger with data, time, request method and URL that will run on every client request</p>
+
+<p class="underline-text"># Using Middleware to implement logger with data, time, request method and URL :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  // The following Middleware will run on every request
+  app.use( (req, res, next) => {
+    console.log("Date/Time:", Date.now())
+    console.log("Request Method:", req.method)
+    console.log("Request URL:", req.url)
+    return next()
+  })
+</code></pre>
+
+</div>
+
+<p class="text">
+ If you want to restrict the use of middleware to only the routes that you specify, we can use the <span class="blue bold">path</span> parameter to limit the logging to
+ only the <span class="red bold font-code">"/admin"</span> endpoint we can write the following.
+</p>
+
+<p class="underline-text"># Execute the logger middleware only when the client hits the admin path :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+
+  app.use("/admin", (req, res, next) => {
+    console.log("Date/Time:", Date.now())
+    console.log("Request Method:", req.method)
+    console.log("Request URL:", req.url)
+    return next()
+  })
+</code></pre>
+
+</div>
+
+<p class="text">
+ We can use Middleware at the end of all routes, when there is no route matches the request url endpoint, so we response with
+ <span class="red bold">"Page Not Found"</span> message with <span class="red bold">"404"</span> status code. The last middleware is a request handler if no request route
+ handler is found and returns a response. From this all catch middleware we can send message for incorrect paths.
+</p>
+
+<p class="underline-text"># Use middleware to response with page not found :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js || GET /shops http 1.1</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+
+  app.get("/", (req, res, next) => { res.send("Welcome home")})
+  app.get("/admin", (req, res, next) => { res.send("Welcome home")})
+  app.post("/books", (req, res, next) => { res.send("Welcome home")})
+ 
+  app.use( (req, res) => {
+    res.status(404).send("&lt;h1> Page not found &lt;/h1>");
+  })
+</code></pre>
+
+</div>
+
+<!-- #################################################################################### -->
+<p class="sub-title get-title">3 - Implement Express Build-in Middleware Or Third-Party Middleware</p>
+
+<p class="text">
+ As you see, we wrote our own middleware from scratch like logging. We can utilize or use the build-in middleware that comes or bundled with express like server static
+ files (html, css, img, and more) instead or writing our own module that serve a static files, is obviously not much fun. Instead we can use a build-in express
+ middlewares to serve static files or using a third party module called morgan logger (for better logging <blue>learn later</blue>).
+</p>
+
+<p class="text">
+ We have a build-in module for serving static files called <span class="red bold font-code">express.static()</span> middleware enables pass through requests for static
+ assets. Those assets are typically stored in the public folder. In Express 4.x logger was part of Express js could be called with
+ <span class="red bold font-code">express.logger()</span>.
+</p>
+
+<p class="underline-text"># Here’s an example of using express.static() and morgan middleware: :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express();
+  const logger = require("morgan");
+
+  app.use(logger("combined"));
+  app.use(express.static(__dirname + "/public"));
+</code></pre>
+
+</div>
+
+<p class="text">
+ We pass our <span class="red bold font-code">express.static()</span> inside a middleware <span class="red bold font-code">app.use()</span>, so every request pass thru it
+ will trigger the request file from the public folder. If you look closely <span class="red bold font-code">express.static()</span> accepts a folder name as a parameter.
+ <green
+ Later we will learn about build-in and Essential Middleware (third-party) that helps you as a developer to maintain, secure, testing and building your application
+  functionality very well
+ </green>
+</p>
+
+<!-- #################################################################################### -->
+<p class="sub-title get-title">4 - Middleware Examples</p>
+
+<p class="underline-text"># the following code loads the myLogger middleware function before the route to the root path (/). :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+
+  const myLogger = function (req, res, next) {
+    console.log("LOGGED")
+    next()
+  }
+
+  app.use(myLogger)
+
+  app.get("/", function (req, res) {
+    res.send("Hello World!")
+  })
+
+  app.listen(3000, ()=> console.log("running on port 3000");)
+</code></pre>
+
+</div>
+
+<p class="underline-text"># Middlewares are function handlers and we can pass them as an array :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  function logOriginalUrl (req, res, next) {
+    console.log('Request URL:', req.originalUrl)
+    next()
+  }
+  
+  function logMethod (req, res, next) {
+    console.log('Request Type:', req.method)
+    next()
+  }
+  
+  const logStuff = [logOriginalUrl, logMethod]
+
+  app.use( logStuff, function (req, res, next) {
+    res.send('User Info')
+  })
+</code></pre>
+
+</div>
+
+<p class="underline-text">
+ # Use the requestTime middleware function. as callback function of the root path route uses the property that the middleware function adds to req :-
+</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+
+  const requestTime = function (req, res, next) {
+    req.requestTime = Date.now()
+    next()
+  }
+
+  app.use(requestTime)
+
+  app.get("/", (req, res) => {
+    let responseText = "Hello World!&lt;br>"
+    responseText += "&lt;small>Requested at: " + req.requestTime + "&lt;/small>"
+    res.send(responseText)
+  })
+
+  app.listen(3000, ()=> console.log("running on port 3000");)
+</code></pre>
+
+</div>
+
+<p class="underline-text"># Validate cookie from the incoming request and pass them to our cookieValidator function:-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const cookieParser = require("cookie-parser")
+  const cookieValidator = require("./cookieValidator")
+  
+  const app = express()
+  
+  async function validateCookies (req, res, next) {
+    // The validateCookies middleware returns a Promise that upon rejection will automatically trigger our error handler.
+    await cookieValidator(req.cookies)
+    next()
+  }
+  
+  app.use(cookieParser())
+  app.use(validateCookies)
+  
+  // Error Handler
+  app.use( (err, req, res, next) => {
+    res.status(400).send(err.message)
+  })
+  
+  app.listen(3000, ()=> console.log("running on port 3000");)
+</code></pre>
+
+</div>

@@ -1,0 +1,193 @@
+<p class="main-title">3.1 - Configure Application Settings Using <span class="red bold font-code fz-28">set(), get(), enable(), disable(), enabled(), disable()</span></p>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">- What is <span class="red bold">Express Configuration</span> ?</p>
+
+<p class="text">
+ <span class="red bold">Express</span> framework configure your application settings to change the server behavior. We assign setting name to value to configure the
+ behavior of the server, add information to responses, or be used for references later. The Express Application comes with default values settings so that if you don’t
+ configure them—the app will still run okay! Therefore, it’s not a big deal if you don’t know or don’t use some of the Express.js settings.
+</p>
+
+<p class="underline-text"># There are two types of settings:</p>
+
+<div class="list-content custom">
+ <ul>
+  <li><span class="dark-green underline">Express.js system settings</span> that the framework uses behind the scene</li>
+  <li><span class="dark-green underline">Custom settings</span> that developers use for their own code.</li>
+ </ul>
+</div>
+
+<p class="underline-text"># Express Setting Configuration methods :-</p>
+
+<p class="text">
+ Express Setting <span class="red bold">Configuration</span> are methods used to set settings values and to get them back. We will learn how to configure your express
+ application using <span class="blue bold font-code">app.set("name", "value")</span> to define a value, and use
+ <span class="blue bold font-code">app.get("name")</span> to retrieve the value based on the <span class="orange bold">key/value</span> of the setting.
+</p>
+
+<p class="text">
+ The other configuration methods are less versatile, because they apply only to certain settings based on their type (boolean):
+ <span class="blue bold font-code">app.enable("name")</span> set key Name to <span class="green bold">"true"</span> and
+ <span class="blue bold font-code">app.disable("name")</span> set key Name to <span class="green bold">"false"</span>.
+</p>
+
+<p class="text">
+ And also we have other methods used to check wether the value key is <span class="green bold">"true"</span> or <span class="green bold">"false"</span> The
+ <span class="blue bold font-code">app.enabled("name")</span> return true if key value is equal to <span class="green bold">"true"</span>, and
+ <span class="blue bold font-code">app.disabled("name")</span> return true if key value is equal to <span class="red bold">"false"</span>,
+</p>
+
+<!-- ########################################## -->
+<p class="sub-title get-title fz-32">A - Using <span class="red bold font-code">app.set()</span> And <span class="red bold font-code">app.get()</span></p>
+
+<p class="text">
+ The method <span class="blue bold font-code">app.set("name", "value")</span> accepts two parameter name and value, it sets the value for the name.
+ <span class="red bold">For Example,</span> we can store the value of the port on which we plan to start our server. The value can be
+ <span class="red bold">Number, String and Boolean</span>
+</p>
+
+<p class="underline-text"># Set Port number thru configuration methods <b class="red bold font-code">app.set()</b> :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.set('port', 4000);
+</code></pre>
+</div>
+
+<p class="text">
+ For more realistic use, we can get the port value from Node Environment variable <span class="red bold font-code">process.env.PORT</span>. If the
+ <span class="red bold font-code">process.env.PORT</span> environment variable is undefined, we fall back to the hard-coded value <span class="red bold">3000</span>:
+</p>
+
+<p class="underline-text">
+ # Set Port number thru <b class="red bold font-code">app.set()</b> with either from environment variable if available or <b class="red">3000</b> value:-
+</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.set('port', process.env.PORT || 3000);
+
+  // We can shorten the equivalent by using If-Else Statement
+  if (process.env.PORT) {
+    app.set(process.env.PORT);
+  } else {
+    app.set(3000);
+  }
+</code></pre>
+</div>
+
+<p class="text">
+ To get the value of the key name, we can use <span class="blue bold font-code">app.set("name")</span> with a single parameter, but we use the more convenient method
+ <span class="blue bold font-code">app.get("name")</span>, which gets the value of the key name setting.
+</p>
+
+<p class="underline-text"># Using <b class="red bold">app.get()</b> to get the value of the key name:-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  console.log("Express server listening on port " + app.get('port'));
+  >> Express server listening on port 4000 
+
+  app.set("myName", "Adam");
+  app.get("myName"); // Adam 
+
+  app.set("isMarried", true);
+  app.get("isMarried"); // True 
+</code></pre>
+</div>
+
+<p class="text">
+ We also we can use <span class="blue bold font-code">app.set("placeholder", "value")</span> to pass variables to an <span class="red bold">HTML templates</span>.
+ Template engines like <span class="red bold">Jade/Pug, EJS, Mustache</span> and <span class="red bold">Handlebars</span> we will learn about template engines in later
+ sections.
+</p>
+
+<p class="underline-text"># Using <b class="red bold">app.set()</b> with variable name and value as placeholder for our template engine :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.set('appName', 'techApp');   
+  app.set('username', 'Alen Adam');   
+  app.set('id', '45f48g5d484f5');   
+</code></pre>
+</div>
+
+<p class="underline-text"># Using <b class="red bold">Pug</b> template engine to get all placeholder values from express configuration settings :-</p>
+
+<div class="html-block html-code code">
+ <p class="block-title">./views/index.pug</p>
+ <pre><code class="js language-js">
+  doctype 5
+  html
+    head
+      title= appName
+    body
+      p username
+      p id  
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title fz-32">B - Using <span class="red bold font-code">app.enable()</span> And <span class="red bold font-code">app.disable()</span></p>
+
+<p class="text">
+ We have some express settings that accept a value as a boolean type either <span class="green bold">"true"</span> or <span class="green bold">"false"</span>, there are
+ shorthand versions <span class="red bold">For Example</span> alternative to the <span class="blue bold font-code">app.set(name, true)</span> and
+ <span class="blue bold font-code">app.set(name, false)</span> functions, instead you can use <span class="blue bold font-code">app.enable(name)</span> to set key name
+ value to <span class="green bold">"true"</span> and <span class="blue bold font-code">app.disable(name)</span> to set key name value to
+ <span class="green bold">"false"</span>.
+</p>
+
+<p class="text">
+ <span class="red bold">For Example</span> the etag Express.js setting is a boolean. It turns <span class="red bold">ETag</span> headers on and off for browser caching
+ (more on etag later). To turn this caching off with <span class="blue bold font-code">app.disable("eTag")</span> write a statement:
+</p>
+
+<p class="underline-text"># Set the key name value to enable-true or disable-false :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.disable("etag");
+  app.disable("x-powered-by");
+  app.enable("something");
+  
+  app.get("etag"); // False
+  app.get("x-powered-by"); // False
+  app.get("something"); // True
+</code></pre>
+</div>
+
+<p class="text">
+ I <span class="solid-red bold">recommend</span> using <span class="blue bold font-code">app.set()</span> because it keeps the code consistent no matter what is the type
+ of the setting.
+</p>
+
+<!-- ########################################## -->
+<p class="sub-title get-title fz-32">C - Using <span class="red bold font-code">app.enabled()</span> And <span class="red bold font-code">app.disabled()</span></p>
+
+<p class="text">
+ To check wether the key-name value equal <span class="green bold">"true"</span> or <span class="green bold">"false"</span>, we can call
+ <span class="blue bold font-code">app.enabled("name")</span> return true if key value is equal to <span class="green bold">"true"</span>, and
+ <span class="blue bold font-code">app.disabled("name")</span> return true if key value is equal to <span class="red bold">"false"</span>,
+</p>
+
+<p class="underline-text"># Check wether the key-name value equal to True or False :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.disable("etag");
+  console.log(app.enabled("etag")); // False
+  console.log(app.disabled("etag")); // True
+
+  app.enabled("x-powered-by");
+  console.log(app.enabled("x-powered-by")); // True
+  console.log(app.disabled("x-powered-by")); // False
+</code></pre>
+</div>

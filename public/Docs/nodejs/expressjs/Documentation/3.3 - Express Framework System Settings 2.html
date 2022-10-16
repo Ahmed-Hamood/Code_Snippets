@@ -1,0 +1,262 @@
+<!-- ########################################## -->
+<p class="main-title get-title">3.2B - <span class="red bold font-code">trust proxy</span> - Accept Requests From Proxy (Disable by default)</p>
+
+<p class="text">
+ If your express application is working behind a proxy such as <span class="blue bold">Vaenish or Nginx</span>, then your sever must be aware of that proxy, and the
+ server must understand that it's not facing the client IP directly only receive requests from the proxy server only
+</p>
+
+<p class="text">
+ Every request that is coming from the client to the revered proxy. The reversed proxy will add a header into the request which will permit trusting for our application
+ server. Only our application server will get requests from the revered proxy
+</p>
+
+<p class="text">
+ By enabling the <span class="red bold">"trust proxy"</span> setting via <span class="blue bold font-code">app.enable('trust proxy')</span> Express will have knowledge
+ that it's sitting behind a proxy and that the <span class="red bold">X-Forwarded-* header</span> fields may be trusted, which otherwise may be easily spoofed.
+</p>
+
+<p class="text">
+ Set <span class="red bold">"trust proxy"</span> to <span class="green bold">true</span>,this will permit trusting in the X-Forwarded-* headers, such as
+ <span class="orange bold font-code underline">X-Forwarded-Proto (req.protocol) HTTP or HTTPs or X-Forwarder-For (req.ips) localhost</span>. The value of
+ <span class="blue bold">req.hostname</span> is derived from the value set in the X-Forwarded-Host header, which can be set by the client or by the proxy.
+</p>
+
+<p class="text">
+ The <span class="red bold">X-Forwarded-For</span> (XFF) header is a command method for identifying the originating IP address of a client connecting to a web server
+ through an HTTP proxy or a load balancer.
+</p>
+
+<p class="underline-text"># Set the trust proxy server one of the following types (default false - No Proxy) :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  
+  // Turn on proxy when you have a proxy server and our server will receive an X-Forwarded-* headers
+  app.set("trust proxy", true);
+  app.enable("trust proxy");
+
+ > String, comma-separated strings, or array of strings — one or more subnets or IP address to trust
+  app.set("trust proxy", "loopback") // specify a single subnet 
+  app.set("trust proxy", "loopback, 123.123.123.123") // specify a subnet and an address 
+  app.set("trust proxy", "loopback, linklocal, uniquelocal") // specify multiple subnets as CSV 
+  app.set("trust proxy", ["loopback", "linklocal", "uniquelocal"]) // specify multiple subnets as 
+
+ > Trust the nth hop from the front-facing proxy server as the client.
+  app.set("trust proxy", 2) // specify multiple subnets as 
+
+  app.set("trust proxy", (ip) => {
+    if (ip === "127.0.0.1" || ip === "123.123.123.123") return true // trusted IPs
+    else return false
+  })
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">6 - <span class="red bold font-code">jsonp callback name</span></p>
+
+<p class="text">
+ JSONP is a method for sending JSON data without worrying about cross-domain issues, and it does not use <span class="red bold">XMLHttpRequest</span>
+ object
+</p>
+
+<p class="text">
+ When you are building a REST API server that serves a requests coming from front-end clients hosted on different domains. you might encounter cross-domain limitations
+ when making XHR/AJAX calls for example other application or domain names is trying to use your URL API to get information as ajax/XHR request in this case it is not
+ allowed because of CORS restriction.
+</p>
+
+<p class="text">
+ Only you can access the API URL thru the browser only on your localhost, But if we want to open an API URL to other domain clients here we use jsonp (json padding) in
+ our server and on other client domain must send a request using JQuery request of jsonp datatype along with url with cb=? to get his data
+</p>
+
+<p class="underline-text"># Using a JSONP response :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  res.jsonp(null) 
+  // => callback(null)
+
+  res.jsonp({ user: "tobi" })
+  // => callback({ "user": "tobi" })
+
+  res.status(500).jsonp({ error: "message" })
+  // => callback({ "error": "message" })
+
+  // ?callback=foo
+  res.jsonp({ user: "tobi" })
+  // => foo({ "user": "tobi" })
+
+  app.set("jsonp callback name", "cb")
+
+  // ?cb=foo
+  res.status(500).jsonp({ error: "message" })
+  // => foo({ "error": "message" })
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">7 - <span class="red bold font-code">json replacer</span> and <span class="red bold font-code">json spaces</span></p>
+
+<p class="text">
+ When we use the Express method <span class="red bold font-code">res.json({ name: value })</span>. Applying <span class="blue bold">json replacer</span> and
+ <span class="blue bold">json spaces</span> parameters which are passed to <span class="red bold font-code">JSON.stringify()</span> function which is used to transform
+ native Javascript/Node.js objects into String.
+</p>
+
+<p class="text">
+ The <span class="blue bold">json space</span> parameter is used to format your json data on the browse and add indentation size or space from the left. it's default
+ value is 2 in <span class="red bold">"development"</span> and 0 in <span class="red bold">"production"</span> In most cases, we leave these settings alone.
+</p>
+
+<p class="underline-text"># Viewing how data look with setting json space :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+ { "name": "adam", "age": 45, "job": "programming" }
+</code></pre>
+</div>
+
+<p class="underline-text"># Using json space to send us back a formate object :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+
+  app.set("json space", "3");
+
+  app.get("/", function (req, res) {
+    res.json({
+       name : "adam",
+       age:45,
+       job: "programming"
+     });
+  });  
+</code></pre>
+</div>
+
+<p class="underline-text"># Now let see ho our server will configure our json data using json space :-</p>
+
+<img path="/img/image004.PNG" alt="" id="image" />
+
+<p class="text">
+ The <span class="blue bold">json space</span> parameter is used to filter our json data like remove, edit the key object that you specify in your json replace. The
+ second argument is a function which has two parameter key and value, and it return a key value or remove it by returning <span class="red bold">undefined</span>
+</p>
+
+<p class="underline-text"># Using json replace to replace/edit or remove a key values when sending a json response to the client :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+
+  app.set("json replace", (key, value) => {
+    if (key === "password") return "SECRET";
+    else return value
+  });
+
+  app.set("json spaces", 4);
+
+  app.get('/', function (req, res) {
+    res.json({
+      username: "adam",
+      email: "adam899@gmail.com",
+      password: "45df285ef"
+     });
+  });  
+</code></pre>
+</div>
+
+<p class="underline-text"># View our result below :-</p>
+
+<img path="/img/image005.PNG" alt="" id="image" />
+
+<!-- ########################################## -->
+<p class="sub-title get-title">8 - <span class="red bold font-code">case sensitive routing</span> - <span class="green bold">Accept</span>/Ignore UpperCase sensitive</p>
+
+<p class="text">
+ The <span class="red bold">case sensitive routing</span> is false by default is used to disregard the case of the URL, so when access the route '/home', you can type
+ either '/home' or '/Home' to access the the home route, because Any incoming URL will be converted into lower case and also all the application routes will be converted
+ into lower case because case sensitive routing is set to false.
+</p>
+
+<p class="text">
+ By enabling <span class="red bold">case sensitive routing</span> by set it to <green>true</green> to access the route '/home', you must type the exact rout URL
+</p>
+
+<p class="underline-text"># An Example of using case sensitive routing to access our url routes :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.set("case sensitive routing", false); // The Default is False
+  >> All The following URL :-
+  ---------------------------------------------------
+   // www.localhost:3000/home/user  --> Works Fine
+   // www.localhost:3000/Home/user  --> Works Fine
+   // www.localhost:3000/Home/User  --> Works Fine
+  ---------------------------------------------------
+  app.get("/home/user", function (req, res) { res.send("OK") });  
+</code></pre>
+</div>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.enable("case sensitive routing"); // Set it to True
+  >> Only the following URL :-
+  ---------------------------------------------------
+   // www.localhost:3000/home/user  --> Works Fine
+   // www.localhost:3000/Home/user  --> Does not Work
+   // www.localhost:3000/Home/User  --> Does not Work
+  ---------------------------------------------------
+  app.get("/home/user", function (req, res) { res.send("OK") });  
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">9 - <span class="red bold font-code">strict routing</span> - Accept/Deny trailing slashes</p>
+
+<p class="text">
+ The <span class="red bold">strict routing</span> is false by default is used to accept the trailing slashes as a part of the URL which means when
+ <span class="red bold">strict routing</span> is set to false the last trailing slash in the URL will be ignored, and if it set to <green>true</green>
+ then if the route has a trailing slash at the end your url must provide it also otherwise it won't accept the URL.
+</p>
+
+<p class="underline-text"># Enabling and disabling strict routing either ignore ot accept trailing slash :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.set("strict routing", false); // The Default is False
+  >> All The following URL :-
+  ---------------------------------------------------
+   // www.localhost:3000/home --> Works Fine
+   // www.localhost:3000/home/ --> Works Fine
+  ---------------------------------------------------
+  app.get("/home/", function (req, res) { res.send("OK") });  
+</code></pre>
+</div>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.set("strict routing", true); // Set it to True
+  >> The following URL :-
+  ---------------------------------------------------
+   // www.localhost:3000/home --> Does not Work
+   // www.localhost:3000/home --> Does not Work
+   // www.localhost:3000/home/ --> Works Fine
+  ---------------------------------------------------
+  app.get("/home/", function (req, res) { res.send("OK") });  
+</code></pre>
+</div>

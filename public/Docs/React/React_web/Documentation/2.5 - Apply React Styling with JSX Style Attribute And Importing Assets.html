@@ -1,0 +1,592 @@
+<p class="main-title">2.5 - Apply React Styling with JSX Style Attribute And Importing Assets</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">1 - What is JSX Styling ?</p>
+
+<p class="text">
+ We have a <red>style</red> attribute which accept javascript object with camelCased properties rather than a CSS string. There are many ways to style React with CSS, we
+ will take a closer look at <blue>inline styling</blue>, <blue>CSS stylesheet</blue>, <blue>CSS Modules </blue> and Styled Component. It's required to define CSS style
+ properties with a <orange>camelCase</orange> format.
+</p>
+
+<p class="underline-text"># Some CSS properties convert them in to JSX style properties :-</p>
+
+<div class="text-block code code pre-block">
+ <pre><code class="js language-jsx">
+  background-color -> backgroundColor
+  font-weight -> fontWeight
+  max-width -> maxWidth
+  padding-top -> paddingTop
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">2 - Using Inline Styling CSS In React</p>
+
+<p class="text">
+ In order to define inline JSX style on your react element node, you need to pass the <red>style</red> prop/attribute a javascript object or reference to an object
+ containing CSS properties and values. To style an element with the inline style attribute, the value must be a JavaScript object.
+</p>
+
+<p class="text">
+ In the following example we are going to setup an inline styling with an object containing JSX inline styles using the
+ <span class="blue bold font-code">{}</span> bracket like this <code>style={ { color: "red" } }</code> defining our CSS properties with their values.
+</p>
+
+<p class="underline-text"># An Example of inserting an style object within style attribute as inline styling :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+
+  const App = () => {
+    return(
+      &lt;div>
+        &lt;h1 style={{ color: "red", backgroundColor: "white" }}> Welcome to ReactJS &lt;/h1>
+        &lt;p> Information about your application &lt;/p>
+      &lt;/div>
+    )
+  }
+
+  ReactDOM.render(&lt;App />, document.body)
+</code></pre>
+</div>
+
+<p class="text"><red>React</red> will transfer the JSX code using Babel and then parsed by a JavaScript engine, the resulting HTML will be as above.</p>
+
+<div class="html-block html-text code">
+ <pre><code class="js language-jsx">
+  &lt;h1 style=<green3>"color: red; background-color: pink;"</green3>> Welcome to ReactJS &lt;/h1>
+  &lt;p> Information about your application &lt;/p>
+</code></pre>
+</div>
+
+<p class="text">
+ In the example above we embedded our CSS as JSX inline styling object using <span class="blue bold font-code">{}</span> brackets. As you see our CSS properties must be
+ in a <orange>camelCase</orange> format it similar to when writing CSS properties in JavaScript. Since the inline CSS is written in a JavaScript object, properties with
+ two names, like <red>background-color</red>, must be written with camel case as <red>backgroundColor</red>
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">3 - Using JavaScript Object Styling CSS In React</p>
+
+<p class="text">
+ We can also create an object with styling information, and refer to it in the style attribute. We will create a variable object called <blue>MyStyles</blue>, containing
+ jsx inline style with <orange>camelCase</orange> format, then pass <blue>MyStyles</blue> into JSX element tag with <span class="blue bold font-code">{}</span> brackets
+ to reference the object that should be used for the value of the style prop/attribute like this <code>style={ MyStyles }</code> let's see our example.
+</p>
+
+<p class="underline-text"># An Example of inserting a style object within style attribute as object reference :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const App = () => {
+
+   const ImageURL = "./image/12512.png";
+
+   const MyStyles = {
+    color: "red",
+    backgroundColor: "black",
+    fontWeight: "bold",
+    fontFamily: "Arial"
+   }
+
+   return (
+    &lt;div>
+     &lt;h1 style={ MyStyles }> Welcome to ReactJS &lt;/h1>
+     &lt;p> Information about your application &lt;/p>
+     &lt;img style={ { backgroundImage: 'url(' + ImageURL + ')' } } />
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.body)
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+ <pre><code class="js language-jsx">
+  &lt;h1 style=<green3>"color: red; background-color: black; font-weight: bold; font-family: Arial;</green3>> Welcome to ReactJS &lt;/h1>
+  &lt;p> Information about your application &lt;/p>
+  &lt;img style=<green3>"background-image: url(&quot;./image/12512.png&quot;);"</green3>>
+</code></pre>
+</div>
+
+<p class="text"><red>React</red> will transfer the JSX code using Babel and then parsed by a JavaScript engine, the resulting HTML will be as above.</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">4 - Using CSS Stylesheet In React</p>
+
+<p class="text">
+ You can write your CSS styling in a separate file as an external CSS, just save the file with the .css file extension, and import it to your React components depending
+ on where you need the styling to be applied. Let's create our external CSS file that define our css classes.
+</p>
+
+<p class="underline-text"># Create a new file called <red>"App.css"</red> within the src folder, and insert some CSS code in it:</p>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ ./src/App.css</p>
+ <pre><code class="js language-jsx">
+  <red>h1</red> {
+    <blue>background-color</blue>: #282c34;
+    <blue>color</blue>: white;
+    <blue>font-family:</blue> Arial;
+    <blue>text-align</blue>: center;
+  }
+   
+  .<red>button</red> {
+    <blue>cursor</blue>: pointer;
+    <blue>border</blue>: 1px solid #1a202c;
+    <blue>padding</blue>: 8px;
+    <blue>min-width</blue>: 64px;
+    <blue>background</blue>: transparent;
+    <blue>transition</blue>: all 0.1s ease-in;
+  }
+   
+  .<red>button</red>:<green3>hover</green3> {
+    <blue>background</blue>: #1a202c;
+    <blue>color</blue>: #ffffff;
+  }   
+</code></pre>
+</div>
+
+<p class="text">
+ In order to use our <red>App.css</red> styling inside our react component all you need to do is import the CSS file into your component file, then use your CSS classes
+ inside <blue>className</blue> attribute.
+</p>
+
+<p class="underline-text"># Import the stylesheet in your application and you can use the CSS class right away within the <red>className</red> attribute :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  import "./App.css"  &lt-- Import Our External CSS file 
+  
+  const App = () => {
+   return (
+    &lt;div>
+     &lt;h1>Hello Style!&lt;/h1>
+     &lt;p> Press the Button Below to continue &lt;/p>
+     &lt;button type="button" className="button">
+      Click Here
+     &lt;/button>
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.body)
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">5 - Using SASS Stylesheet In React</p>
+
+<p class="text">
+ <red>Sass (Syntactically Awesome Style Sheets)</red> is a CSS extension that gives you more powerful CSS. For example, you can define reusable CSS variables and you are
+ able to nest your CSS. If you use the <blue>create-react-app</blue> in your project, you can easily install and use Sass in your React projects. Install Sass by running
+ this command in your terminal:
+</p>
+
+<p class="underline-text"># Install sass-node :</p>
+
+<div class="terminal-block terminal code pre-block">
+ <pre><code class="js language-jsx">
+> npm install node-sass
+  @"node-sass": "^6.0.1",
+</code></pre>
+</div>
+
+<p class="text">
+ Create a <red>Sass</red> file the same way as you create CSS files, but Sass files have the file extension <green3>.scss</green3>, and then in your react application
+ Import the Sass file the same way as you imported a CSS file:
+</p>
+
+<p class="underline-text"># Create a new file called <red>"MyStyles.scss"</red> within the src folder, and insert some SASS code in it:</p>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ ./src/MyStyles.scss</p>
+ <pre><code class="js language-jsx">
+  <red>h1</red> {
+    <blue>background-color</blue>: #282c34;
+    <blue>color</blue>: white;
+    <blue>font-family:</blue> Arial;
+    <blue>text-align</blue>: center;
+  }
+   
+  .<red>button</red> {
+    <blue>cursor</blue>: pointer;
+    <blue>border</blue>: 1px solid #1a202c;
+    <blue>padding</blue>: 8px;
+    <blue>min-width</blue>: 64px;
+    <blue>background</blue>: transparent;
+    <blue>transition</blue>: all 0.1s ease-in;
+
+    &:<green3>hover</green3> {
+    <blue>background</blue>: #1a202c;
+    <blue>color</blue>: #ffffff;
+    }
+  } 
+</code></pre>
+</div>
+
+<p class="underline-text"># Import the Sass file in your application and you can use the CSS class right away within the <red>className</red> attribute :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  import "./MyStyles.scss"  &lt-- Import Our External Sass file 
+  
+  const App = () => {
+   return (
+    &lt;div>
+     &lt;h1>Hello Style!&lt;/h1>
+     &lt;p> Press the Button Below to continue &lt;/p>
+     &lt;button type="button" className="button">
+      Click Here
+     &lt;/button>
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.body)
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">6 - Benefits of Using CSS and SASS StyleSheets</p>
+
+<p class="text">
+ It is <red>much more popular than the rest</red> of the styling strategies, so there is a ton of helpful resources when you run into a bug. It's
+ <red>Caching & Performance</red> Standard CSS files are easy for the browser to optimize for, caching the files locally for repeat visits, and ultimately giving
+ performance wins.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">7 - Using CSS Modules In React</p>
+
+<p class="text">
+ Another way of adding styles to your application is to use <red>CSS Modules</red>. A <red>CSS Module</red> is a CSS file in which all class names and animation names are
+ scoped locally by default. When using CSS Modules, each <blue>React component</blue> is provided with its own CSS file, that is scoped to that file and component alone.
+ That means <red>CSS Modules</red> are convenient for components that are placed in separate files.
+</p>
+
+<p class="text">
+ A <red>CSS Module</red> happens at build time when local class names which can be super simple without conflict are mapped directly to the automatically-generated ones.
+ If you check your browser inspect > Elements you going to find you class name with different name that are assigned by <red>CSS Module</red> at build time.
+</p>
+
+<p class="text">
+ Creating the <red>CSS Module</red> is simple just add with <green3>.module.css</green3> before the CSS file name, for example <code>MyStyles.module.css</code>. So let's
+ create our <red>CSS Module</red>.
+</p>
+
+<p class="underline-text"># Create a new file called <red>"styles.module.css"</red> and insert some CSS code in it: :</p>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ ./src/App.module.css</p>
+ <pre><code class="js language-jsx">
+  .<red>MyHeader</red> {
+    <blue>background-color</blue>: #282c34;
+    <blue>color</blue>: white;
+    <blue>font-family:</blue> Arial;
+    <blue>text-align</blue>: center;
+  }
+  .<red>MyParagraph</red> {
+    <blue>color</blue>: red;
+   }
+  .<red>text-box note</red> {
+    <blue>color</blue>: rgb(255, 221, 2);
+  }
+  .<red>MyButton</red> {
+    <blue>cursor</blue>: pointer;
+    <blue>border</blue>: 1px solid #1a202c;
+    <blue>padding</blue>: 8px;
+    <blue>min-width</blue>: 64px;
+    <blue>background</blue>: transparent;
+    <blue>transition</blue>: all 0.1s ease-in;
+  }
+  .<red>MyButton</red>:<green3>hover</green3> {
+    <blue>background</blue>: #1a202c;
+    <blue>color</blue>: #ffffff;
+  }   
+  .<red>MyFooter</red>{
+    <blue>color</blue>: aqua;
+  }
+</code></pre>
+</div>
+
+<p class="text">
+ Now to make use of <red>CSS Module</red> file inside our Component we need to import the module file directly into our <red>App.js</red> component and within the
+ <blue>className</blue> we reference style like prop to access the styles as the following.
+</p>
+
+<p class="underline-text">
+ # Import the <red>CSS Module</red> file in your application and you can access the styles as a reference within the <red>className</red> attribute :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  import styles from "./App.module.css"
+  
+  function NoteText() {
+   return &lt;p className={styles["text-box note"]}> Notice Enjoy &lt;/p>
+  }
+  function Footer() {
+   return &lt;p className=<green4>"MyFooter"</green4>> Footer &lt;/p>
+  }
+  
+  const App = () => {
+   return (
+    &lt;div>
+     &lt;h1 className={styles.MyHeader}> Hello Style! &lt;/h1>
+     &lt;p className={styles.MyParagraph}> Press the Button Below to continue &lt;/p>
+     &lt;button type="button" className={styles.MyButton}>
+      Click Here
+     &lt;/button>
+     &lt;<yellow>NoteText</yellow> />
+     &lt;<yellow>Footer</yellow> />
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.body)
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+ <pre><code class="js language-jsx">
+  &lt;div>
+    &lt;h1 <blue>class</blue>=<green3>"App_MyHeader__1gEAY"</green3>> Hello Style! &lt;/h1>
+    &lt;p <blue>class</blue>=<green3>"App_MyParagraph__37mTn"</green3>> Press the Button Below to continue &lt;/p>
+    &lt;button type=<green3>"button"</green3> <blue>class</blue>=<green3>"App_MyButton__3aY5n"</green3>> Click Here &lt;/button>
+    &lt;p <blue>class</blue>=<green3>"App_note-text__3JEs6"</green3>> Notice Enjoy &lt;/p>
+    &lt;p <blue>class</blue>=<green3>"MyFooter"</green3>> Footer &lt;/p> &lt-- MyFooter won't work The Generated name is 'App_MyFooter__3sJvF'
+  &lt;/div>
+</code></pre>
+</div>
+
+<img path="/img/image007.PNG" id="image" alt="" />
+
+<p class="underline-text">- BENEFITS OF USING CSS MODULES :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>Modular and reusable CSS,</li>
+  <li>No more styling conflicts,</li>
+  <li>Explicit dependencies,</li>
+  <li>Local scope,</li>
+  <li>Clear dependencies,</li>
+  <li>No Code duplication in case of SSR,</li>
+  <li>No Additional costs in JS payload,</li>
+  <li>Variables, Sharing variables in CSS and exposing it to JavaScript.</li>
+ </ul>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">8 - Using <blue>Styled-components</blue> Library In React</p>
+
+<p class="text">
+ <red>Styled-components</red> is a library for React and React Native that allows you use component-level styles in your application that are written with a mixture of
+ JavaScript and CSS. It was created with the same method of operation of <blue>CSS Modules</blue>, a way to write CSS that’s scoped to a single component, and not
+ accessible to any other element in the page or even component.
+</p>
+
+<p class="text">
+ <red>Styled-components</red> allows React developers to write plain CSS in React components without having to worry about clashing of class names. To use
+ <red>Styled-components</red> library, first we need to install it by running the following command in your terminal.
+</p>
+
+<p class="underline-text"># Install <red>Styled-components</red> :</p>
+
+<div class="terminal-block terminal code pre-block">
+ <pre><code class="js language-jsx">
+> npm install styled-components
+  @"styled-components": "^5.3.0"
+</code></pre>
+</div>
+
+<p class="text">
+ Now we can import the styled component library into our component by writing <code>import styled from 'styled-components';</code>. then start writing or creating a
+ variables and assign to them a particular HTML elements methods like <green3>div, p, span, ...</green3> and other more. After selecting our HTML element we open a back
+ quote <code>``</code> to store our style keys. Then we use the name of our variable we created as a wrapper around our JSX elements. Let's create our three styled
+ components.
+</p>
+
+<p class="underline-text"># Using <red>Styled-components</red> to implement styling components :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  import styled from "styled-components"
+  
+  const Box = styled.div`
+   margin: 40px;
+   border: 5px black;
+  `
+  
+  const Content = styled.p`
+   font-size: 16px;
+   text-align: center;
+  `
+  
+  const CustomBtn = styled.button`
+   cursor: pointer;
+   border: 1px solid #1a202c;
+   padding: 8px;
+   min-width: 64px;
+   background: transparent;
+   transition: all 0.1s ease-in;
+   &:hover {
+    background: #1a202c;
+    color: #ffffff;
+   }
+  `
+  
+  const App = () => {
+   return (
+    &lt;<yellow>Box</yellow>>
+     &lt;<yellow>Content</yellow>> Styling ReactJS Components &lt;/<yellow>Content</yellow>>
+     &lt;<yellow>CustomBtn</yellow>> Click Me &lt;/<yellow>CustomBtn</yellow>>
+    &lt;/<yellow>Box</yellow>>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.body)
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+ <pre><code class="js language-jsx">
+  &lt;head>
+    &lt;style data-styled="active" data-styled-version=<green3>"5.3.0"</green3>>
+      .jnyVVJ { margin:40px;border:5px black; }
+      .blirUq { font-size:16px;text-align:center; }
+      .hFZEoJ { cursor:pointer;border:1px solid #1a202c; .... }
+      .hFZEoJ:hover { background:#1a202c;color:#ffffff; }
+    &lt;/style>
+  &lt;/head>
+
+  &lt;div <blue>class</blue>=<green3>"sc-bdnxRM jnyVVJ"</green3>>
+    &lt;p <blue>class</blue>=<green3>"sc-gtsrHT blirUq"</green3>> Styling React Components &lt;/p>
+    &lt;button <blue>class</blue>=<green3>"sc-dlnjwi hFZEoJ"</green3>> Click Me &lt;/button>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="text">
+ The <red>CustomBtn</red> is the styled component, and it will be rendered as an HTML button with the contained styles. styled is an internal utility method that
+ transforms the styling from JavaScript into actual CSS. We can adapt styling using <blue>props</blue>. Each component accept <blue>props</blue>, we can assign a
+ different background color based on the existence or value of the bg prop.
+</p>
+
+<p class="underline-text"># Using props to adapt our styles by passing them thru our components to the internal styles :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  import styled from "styled-components";
+
+  const StyledButton = styled.button`
+    min-width: 200px;
+    border: none;
+    font-size: 18px;
+    padding: 7px 10px;
+    <gray>/* The resulting background color will be based on the bg props. */</gray>
+    background-color: ${props => props.bgColor === "black" ? "black" : "blue";
+  `;
+
+  function App() {
+    return (
+      &lt;div>
+        &lt;<yellow>StyledButton</yellow> bgColor="black"> Button A &lt;/<yellow>StyledButton</yellow>>
+        &lt;<yellow>StyledButton</yellow> bgColor="blue"> Button B &lt;/<yellow>StyledButton</yellow>>
+      &lt;/div>
+    )
+  }
+
+  ReactDOM.render(&lt;App />, document.body)
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">9 - Importing Images and Other Assets</p>
+
+<p class="text">
+ We can import files into our app components, like Images, styles or other assets. We have an image element that need a file that we can import from a folder that include
+ all of our assets. We can import images files and other assets directly into our React components. This feature comes from Create React App's webpack configuration.
+</p>
+
+<p class="underline-text"># Importing an image file from our src folder on the current folder :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  import "./App.css";
+  import logo from "./logo.svg"; // the file exist on src folder or current folder
+
+  function App() {
+    return (
+      &lt;div className="App">
+        &lt;header className="App-header">
+          &lt;img src={logo} className="App-logo" alt="logo" />
+          &lt;h1> ReactJS Application &lt;/h1>
+        &lt;/header>
+      &lt;/div>
+    );
+  }
+
+  ReactDOM.render(&lt;App />, document.body)
+</code></pre>
+</div>
+
+<p class="text">
+ We can instead of including or Importing our static assets directly within our <green3>src</green3> folder, we also have the option to include them in our public folder
+ where <red>index.html</red> exist. And we can just use the file name with their extension like this <blue>"./image012.png</blue>, it will look on the
+ <green3>public</green3> folder where <red>index.html</red> exist. All assets are stored with the <blue>assets</blue> folder which is located on the
+ <green3>./public</green3> folder. Let's see the following example
+</p>
+
+<p class="underline-text">
+ # Writing our string file path on the src attribute value directly instead of importing, it will start looking from the <red>./public/index.html</red> path directory :-
+</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const App = () => {
+  
+   return (
+    &lt;React.Fragment>
+      &lt;h1> Welcome To ReactJS &lt;/h1>
+      &lt;img src="./assets/images/image125749.jpg" />
+    &lt;/React.Fragment>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>

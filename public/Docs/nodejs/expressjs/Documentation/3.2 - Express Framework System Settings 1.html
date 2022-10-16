@@ -1,0 +1,275 @@
+<p class="main-title">3.2A - Express Framework System Settings 1</p>
+
+<p class="text">
+ <span class="red bold">Express System Settings</span> are used by the framework to determine certain configurations. Most of them have default values, which these
+ default settings will work just fine. You can create your custom settings to store <span class="orange bold">key-value</span> settings using
+ <span class="red bold font-code">app.set(key, value)</span> to save you own settings and reference them later. These settings are custom to your application, and you
+ first need to define them to use.
+</p>
+
+<p class="underline-text"># Here all the settings that is used by the Express framework and to configure your server :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>env <blue>(discuss below)</blue></li>
+  <li>view cache <blue>(discuss below)</blue></li>
+  <li>view engine <blue>(discuss below)</blue></li>
+  <li>views <blue>(discuss below)</blue></li>
+  <li>trust proxy (discuss next Setting 2)</li>
+  <li>jsonp callback name (discuss next Setting 2)</li>
+  <li>json replacer and json spaces (discuss next Setting 2)</li>
+  <li>case sensitive routing (discuss next Setting 2)</li>
+  <li>strict routing (discuss next Setting 2)</li>
+  <li>x-powered-by (discuss next Setting 3)</li>
+  <li>etag (discuss next Setting 3)</li>
+  <li>query parser (discuss next Setting 3)</li>
+  <li>subdomain offset (discuss next Setting 3)</li>
+ </ul>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">1 - <span class="red bold font-code">env</span> - Node Environment Mode</p>
+
+<p class="text">
+ <span class="red bold">env</span> variable is used to store the current environment mode <span class="orange bold">development, production, test </span>and more. The
+ default value is automatically set by Express which is the <span class="red bold">"development"</span> value. If
+ <span class="blue bold font-code">process.env.NODE_ENV</span> is not set then the default value is set to the <span class="blue bold">"development"</span> value.
+</p>
+
+<p class="underline-text"># The other most common values for env setting are as follows you can specify your own environment mode name :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>development</li>
+  <li>test</li>
+  <li>stage</li>
+  <li>preview</li>
+  <li>production</li>
+ </ul>
+</div>
+
+<p class="text">
+ As you know The <span class="orange bold">"development"</span> and <span class="orange bold">"production"</span> values are used by us to configure a certain settings on
+ each environment, and also <span class="red bold">Express Framework</span> use the environment mode for certain default settings
+ <span class="blue bold">For Example</span> like <span class="red bold">view-cache</span> setting in <span class="orange bold">"production"</span> the
+ <span class="red bold">view-cache</span> is <blue>ON</blue> , and for <span class="orange bold">"development"</span> <span class="red bold">view-cache</span> is
+ <blue>OFF</blue>.
+</p>
+
+<p class="text">
+ To configure the environment mode with <span class="red bold">"env"</span> setting by using <span class="blue bold font-code">app.set('env', 'preview')</span> OR
+ <span class="blue bold font-code">process.env.NODE_ENV=preview</span>.The better way is to start running your application in terminal using
+ <span class="blue bold font-code">NODE_ENV=preview node app</span>
+</p>
+
+<p class="underline-text"># An Example of settings and getting the environment mode using "env" key :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  
+  if(!process.env.NODE_ENV) app.set("env", "production");
+  
+  console.log(app.get("env")); 
+  console.log(process.env.NODE_ENV); 
+   
+  app.get("/", (req, res) => {
+    res.send(" &lt;h1> Hello World Normal &lt;/h1> ")
+  })
+   
+  app.listen(3000, () => {
+    console.log("Listening on PORT 3000")
+  })  
+</code></pre>
+</div>
+
+<p class="text">
+ When <span class="red bold">NODE_ENV</span> is set to <span class="blue bold">"development"</span> while lunching your application both app env setting and
+ process.env.NODE_ENV are set to <span class="blue bold">"development"</span> value, but if you don't specify A <span class="red bold">NODE_ENV</span> at startup
+ application the setting env set to <span class="blue bold">"development"</span> and process.env.NODE_ENV is set to <span class="red bold">undefined</span>
+</p>
+
+<p class="underline-text"># Startup your application with and without setting the NODE_ENV Mode :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> nodemon server.js
+  <blue>#######################################################</blue>
+  [nodemon] starting `node server.js`
+  production
+  undefined
+  Listening on PORT 3000
+  <blue>#######################################################</blue>
+</code></pre>
+</div>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> NODE_ENV=development nodemon server.js
+  <blue>#######################################################</blue>
+  [nodemon] starting `node server.js`
+  development
+  development
+  Listening on PORT 3000
+  <blue>#######################################################</blue>
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">2 - <span class="red bold font-code">view cache</span> - Store Web Page</p>
+
+<p class="text">
+ <span class="red bold">view cache</span> is set to <span class="orange bold">false</span> by default, is use to save the content of the webpage.
+ <span class="red bold">view cache</span> is enabled by default only on <span class="blue bold">"production"</span>, and disabled on
+ <span class="blue bold">"production"</span>
+</p>
+
+<p class="text">
+ <span class="red bold">view cache</span> allows for painless development because templates are read each time the server requests them. every time you update your HTML
+ content the last updated content won't show on the webpage, because <span class="red bold">view cache</span> saved the previous HTML content, so that why we prefer as
+ developer to set <span class="red bold">view cache</span> to false. To set the view cache to false use
+ <span class="blue bold font-code">app.set('view cache', false)</span>
+</p>
+
+<p class="underline-text"># Enabling and disabling view cache feature:-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+
+  app.get("view cache"); // false
+  app.set('view cache', true);
+  app.get("view cache"); // true
+</code></pre>
+</div>
+
+<p class="text">
+ <span class="solid-red bold">Don’t worry</span> if you forget to set view cache. When you set env to production, then view cache is enabled by default. Otherwise it is
+ set to false. Later we will discuss about caching our resources like <span class="green bold">HTML, CSS, JS, IMG</span> and more
+</p>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">3 - <span class="red bold font-code">view engine</span> - Set Engine Template</p>
+
+<p class="text">
+ <span class="red bold">view engine</span> setting holds the template file extension like <span class="red bold">.pug, .ejs, .hbs </span> and more. We utilize the
+ <span class="red bold">view engine</span> if the file extension is not passed to <span class="blue bold font-code">res.render()</span>
+</p>
+
+<p class="underline-text"># Set template engine extension :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+
+  app.set('view engine', 'pug');
+  app.set('view engine', 'ejs');
+</code></pre>
+</div>
+
+<p class="text">
+ A <span class="red bold">template engine</span> enables you to use static template files in your application. At runtime, the template engine replaces variables in a
+ template file with actual values,and transforms the template into an HTML file sent to the client. This approach makes it easier to design an HTML page.
+</p>
+
+<p class="text">
+ Some popular template engines that work with Express are <span class="red bold">Pug, Mustache, and EJS</span>. The Express application generator uses Jade as its
+ default, but it also supports several others. After we decide which template engine we are going to use, you must install the preferred template engine using npm, which
+ we will discuss in later sections
+</p>
+
+<p class="text">
+ To create a template view engine file you need to create a folder called <span class="blue bold">views</span> inside it where all templates files are stored next we will
+ see how to change our template engine file folder. In views folder create a file called <span class="red bold">index.pug</span>.
+</p>
+
+<p class="underline-text"># Project folders and files Content :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> Project_Name ls
+  └── node_module (Folder)
+  └── views (Folder) 
+    └── index.pug (file)
+  └── .env (File)
+  └── package.json (File)
+  └── package-lock (File)
+  └── server.js  (File)
+</code></pre>
+</div>
+
+<p class="text">
+ Now let's use our template engine file and attached to Home URL '/' with request handler function within we provide a response with render, which will send us back out
+ static html file of ejs extension, and the second parameter is the placeholder for our ejs variable replacement
+</p>
+
+<p class="underline-text"># Using the ejs template engine with route :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+
+  app.set('view engine', 'ejs');
+
+  // Our server will look for index.ejs and Render an html while replace title placeholder with Express text
+  app.get('/', (req, res) =>  {
+    res.render('index', { title: 'Express' })
+  });   
+
+  // If you are going to specify the html file extension then no need to Use view engine Set
+  app.get('/', (req, res) =>  {
+    res.render('index.ejs', { title: 'Express' })
+  });   
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">4 - <span class="red bold font-code">views</span> - Set Template Files Directory Path</p>
+
+<p class="text">
+ <span class="red bold">views</span> setting has a default directory path to store all templates files called <span class="red bold font-code">"./view"</span> folder in
+ the project root. You can change your templates files folder location using <span class="blue bold font-code">app.set('views', location)</span>. The location we use
+ <span class="red bold font-code">path.join()</span> and the <span class="red bold font-code">__dirname</span> global variable, which gives us the absolute path to the
+ folder where server.js is. <span class="blue bold">For example</span>, if you want to use folder templates.
+</p>
+
+<p class="underline-text"># Create a folder called "template" and use it to store template files :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express();
+  const path = require("path");
+
+  app.set('view engine', 'ejs');
+  app.set('views', path.join(__dirname, 'templates'));
+
+  app.get('/', (req, res) =>  {
+    res.render('index', { title: 'Express' })
+  });   
+</code></pre>
+</div>
+
+<p class="underline-text"># Project folders and files Content :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> Project_Name ls
+  └── node_module (Folder)
+  └── templates (Folder) 
+    └── index.pug (file)
+  └── .env (File)
+  └── package.json (File)
+  └── package-lock (File)
+  └── server.js  (File)
+</code></pre>
+</div>

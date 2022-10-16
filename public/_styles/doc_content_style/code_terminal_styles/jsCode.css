@@ -1,0 +1,346 @@
+.js-block {
+ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+ width: 100%;
+ max-width: var(--main-doc-content-width);
+ max-height: 500px;
+ overflow: auto;
+ position: relative;
+ display: block;
+ border: 1px solid rgb(29 29 29);
+ background: var(--js-code-block-primary-bg-color);
+
+ opacity: 0;
+ animation: var(--pre-block-animation);
+}
+
+.js-block[full-height] {
+ max-height: none;
+}
+
+/* ######################################### */
+/* ########### Code Header block ########### */
+/* ######################################### */
+
+.js-block .block-header {
+ /* height: 40px; */
+ padding: 10px 12px 10px 8px;
+ font-family: Consolas, monospace, 'Segoe UI', 'Source Sans Pro', sans-serif;
+ top: 0;
+ z-index: 4;
+ position: sticky;
+ /* background: var(--js-code-block-primary-bg-color); */
+ /* background: #23292c; */
+ background: #222526;
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between;
+ align-items: center;
+}
+
+.js-block .block-header .block-title {
+ font-family: 'Source Sans Pro', sans-serif;
+ font-size: 0.85rem;
+ letter-spacing: 1.2px;
+ font-weight: 500;
+ line-height: 1.5;
+ color: rgb(226, 226, 226);
+}
+
+.js-block .block-header .block-title::after {
+ /* position: absolute;
+ content: '';
+ height: 1px;
+ border-radius: 50px;
+ width: min(927px, 100%);
+ background: #1f2325;
+ left: 0;
+ bottom: 0; */
+}
+
+.js-block .block-header .text-lang {
+ display: flex;
+ align-items: center;
+ font-size: 0.9rem;
+ color: #535353;
+ cursor: default;
+ position: relative;
+ /* padding-right: 35px;
+ padding-left: 12px; */
+ user-select: none;
+ transition: 0.3s all;
+ height: 100%;
+}
+
+.block-header .text-lang:hover {
+ color: rgb(198, 198, 198);
+ opacity: 1;
+}
+
+.js-block .block-header .lock-svg,
+.js-block .block-header .unlock-svg {
+ width: 22px;
+ height: 22px;
+ position: absolute;
+ right: 0.4rem;
+ opacity: 0.5;
+ transition: 300ms all;
+}
+
+.js-block .block-header .lock-svg:hover,
+.js-block .block-header .unlock-svg:hover {
+ opacity: 1;
+}
+
+.js-block .block-header .copyJSCodeClipboard {
+ width: 25px;
+ height: 25px;
+ position: absolute;
+ right: 0.4rem;
+ /* padding: 0.75rem; */
+ z-index: 3;
+ opacity: 0.4;
+ transition: 500ms all;
+ cursor: pointer;
+}
+
+.js-block .block-header .copyJSCodeClipboard:hover {
+ opacity: 1;
+}
+
+.js-block .block-header .copyJSCodeClipboard.copied {
+ animation-name: FadeInAnimation;
+ animation-duration: 400ms;
+ animation-delay: 250ms;
+}
+
+/* ######################################### */
+/* ######################################### */
+
+/* ######################################### */
+/* ########### Code Block Content ########### */
+/* ######################################### */
+
+.js-block .block-content {
+ display: flex;
+ flex: row nowrap;
+ position: relative;
+ /* font-size: 1rem; */
+ line-height: 1.5rem;
+ /* margin-top: 3px; */
+ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+ /* background: #1e272e; */
+ background: var(--js-code-block-primary-bg-color);
+ overflow: hidden;
+}
+
+/* .react-code.js-block .block-content {
+ /* line-height: 1.6rem; } */
+
+.js-block .block-content pre {
+ /* font-size: 0.85rem; */
+ color: #bfe9ff;
+ font-size: 15px;
+ font-weight: 600;
+ /* -moz-tab-size: 2;
+ tab-size: 2; */
+ /* font-family: 'JetBrains Mono', 'Consolas', monospace, 'Menlo'; */
+ font-family: 'Consolas', 'JetBrains Mono', monospace, 'Menlo';
+ /* letter-spacing: 0.01rem; */
+ width: 100%;
+ background: var(--js-code-block-primary-bg-color);
+ padding: 0.7rem 0;
+ overflow-x: auto;
+ padding-right: 5px;
+ padding-left: 14px;
+ border-radius: 0 0 8px 0;
+ user-select: none;
+}
+
+/*.js-block.react-code .block-content pre {
+  font-family: 'Consolas', monospace, 'Menlo';
+ font-weight: 600; 
+}*/
+
+.js-block .block-content .js-line-num {
+ width: 1.588rem;
+ background: var(--js-code-block-primary-bg-color);
+ /* background: #282C34; */
+ padding: 0.705rem 0;
+ z-index: 3;
+ user-select: none;
+ /* box-shadow: rgba(0, 0, 0, 0.187) 0px 3px 8px; */
+}
+
+.js-block .block-content .js-line-num li {
+ font-size: 14px;
+ font-family: monospace, 'Source Sans Pro', sans-serif;
+ color: #555555;
+ font-weight: 300;
+ display: block;
+ text-align: center;
+ cursor: default;
+ position: relative;
+ transition: 200ms all;
+}
+
+.js-block .block-content .js-line-num li:hover {
+ color: rgb(255, 255, 255);
+}
+
+.js-block .block-content .js-line-num li.highlight-line {
+ color: rgb(255, 255, 255);
+}
+
+.js-block .block-content .js-line-num li.highlight-line.a {
+ color: rgb(0, 166, 0);
+ font-weight: 600;
+}
+
+.js-block .block-content .js-line-num li.highlight-line.m {
+ color: rgb(173, 2, 2);
+ font-weight: 600;
+}
+
+.js-block .block-content .js-line-num li::after {
+ position: absolute;
+ content: '';
+ height: 100%; /* block-content font-size  = 0.9375rem */
+ left: 1.7rem;
+ width: 300vh;
+ border-radius: 1px;
+}
+
+.js-block .block-content .js-line-num li:hover::after {
+ background: rgba(255, 255, 255, 0.055);
+ box-shadow: inset 2px 0 0 #bb800966;
+}
+
+.js-block .block-content .js-line-num li.highlight-line::after {
+ background: rgba(255, 255, 255, 0.055);
+ border-bottom: 1px solid var(--js-code-block-primary-bg-color);
+}
+
+.js-block .block-content .js-line-num li.highlight-line.g::after {
+ background: rgba(0, 255, 13, 0.077);
+}
+
+.js-block .block-content .js-line-num li.highlight-line.r::after {
+ background: rgba(255, 0, 0, 0.077);
+}
+
+.js-block .block-content .js-line-num li.highlight-line.y::after {
+ background: rgba(251, 255, 0, 0.077);
+}
+
+.js-block .block-content .js-line-num li.highlight-line.a::after {
+ background: rgba(0, 255, 13, 0.077);
+ border-radius: 0;
+ left: 0rem;
+ transition: 0.3s all;
+}
+
+.js-block .block-content .js-line-num li.highlight-line.m::after {
+ background: rgba(255, 0, 0, 0.077);
+ border-radius: 0;
+ left: 0rem;
+ transition: 0.3s all;
+}
+
+.js-block .block-content .js-line-num li.highlight-line.m:hover::after {
+ background: rgba(255, 0, 0, 0.2);
+}
+.js-block .block-content .js-line-num li.highlight-line.a:hover::after {
+ background: rgba(0, 255, 13, 0.2);
+}
+
+.js-block .block-content .js-line-num li.highlight-line.a:hover::after,
+.js-block .block-content .js-line-num li.highlight-line.m:hover::after {
+ box-shadow: none;
+}
+
+.js-block .block-content .js-line-num li.highlight-line:hover::after {
+ background: rgba(255, 255, 255, 0.076);
+}
+
+/* ################################################################ */
+/* ################################################################ */
+/* ################################################################ */
+/* ################### code content old version ################### */
+/* ################################################################ */
+/* ################################################################ */
+/* ################################################################ */
+
+.code,
+.terminal {
+ background: #1e1e1e;
+ /* margin-bottom: 2.5rem; */
+ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ transition: 0.5s all;
+ margin-top: 1.2rem !important;
+}
+
+.code .block-title {
+ color: rgb(190, 190, 190);
+ font-family: 'Source Sans Pro', sans-serif;
+ font-size: 0.9rem;
+ font-weight: 400;
+ padding: 0.8rem;
+ background: #151c24;
+ border-bottom: 2px solid #888c8f4f;
+ letter-spacing: 1.7px;
+ width: 100%;
+ position: sticky;
+ top: 0;
+ user-select: none;
+}
+
+.code pre,
+.terminal pre {
+ color: rgb(182, 209, 245);
+ font-size: 15px;
+ font-weight: 600;
+ font-family: 'Consolas', 'JetBrains Mono', monospace, 'Menlo';
+ line-height: 1.6rem;
+ letter-spacing: 0.01rem;
+ word-spacing: normal;
+ word-break: normal;
+ word-wrap: normal;
+ tab-size: 1;
+ -webkit-font-smoothing: auto;
+ padding: 22px 20px;
+ margin-right: 5px;
+ overflow: auto;
+}
+
+.terminal pre {
+ padding-left: 18px;
+}
+
+/* ################################################################ */
+/* ################################################################ */
+/* ################################################################ */
+/* ################################################################ */
+/* ################################################################ */
+/* ################################################################ */
+
+@media screen and (max-width: 1000px) {
+ .block-header .copyClipboard {
+  top: 3rem;
+ }
+
+ .js-block .block-header .block-title::after {
+  width: 90%;
+ }
+
+ .js-block .block-content .js-line-num {
+  user-select: auto;
+ }
+
+ .js-block .block-content pre,
+ .js-block .block-content .js-line-num li {
+  font-size: 12px;
+ }
+ .js-block pre {
+  overflow-y: auto;
+ }
+}

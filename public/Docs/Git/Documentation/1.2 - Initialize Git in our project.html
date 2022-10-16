@@ -1,0 +1,89 @@
+<p class="main-title">1.2 - Initialize Git in our Project</p>
+
+<!-- ################################################################### -->
+<p class="sub-title">1. Creating Project Folder</p>
+
+<p class="text">In order to use <red>Git</red> First, we create our project folder and call it "My_Project", use the following command to create a new directory</p>
+
+<section terminal-content title-header="Create New Directory" preferred-sign=">" line-num="">
+ <pre>
+  mkdir My_Project
+</pre
+ >
+</section>
+
+<!-- ################################################################### -->
+<p class="sub-title">2. Initialize Git in our project</p>
+
+<p class="text">
+ Inside our project folder we have a couple of files like <green>index.html</green>, <green>style.css</green>, <green>app.js</green> and a folder that contains two
+ images. We decided to use Git Control System in our project, so we will initialize by using the <terminal>git init</terminal> command.
+</p>
+
+<section terminal-content title-header="Initialized Git in our Project" preferred-sign=">" line-num="">
+ <pre>
+ git init
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  Initialized empty Git repository in C:/Users/user_name/Desktop/My_Project/.git/
+</pre
+ >
+</div>
+
+<p class="text">
+ After we initialize Git in our project folder there will be a new created folder called <red>.git</red>, this means we implement Git in our project successfully. Now our
+ project become <red>Repository</red> or Repos. <red>Repository</red> is a container for a project which will track with git like tracking all changes of our project.
+</p>
+
+<img id="image" alt="" path="/img/image013.PNG" alt="" />
+
+<!-- ################################################################### -->
+<p class="sub-title">3. Don't Initialize Git in Sub-Directory</p>
+
+<p class="text">
+ Now we are able to track any changes in our project directories and sub-directories, don't initialize Git inside sub-directory, for example Images folder, if you
+ initialize Git inside that folder then Git will track the Image content only
+</p>
+
+<section terminal-content title-header="Create New Directory" preferred-sign=">" line-num="">
+ <pre>
+  rm -rf .git // remove .git Directory
+  cd images // Enter the Images Directory
+  git init // initialize Git inside the Image Directory
+</pre
+ >
+</section>
+
+<p class="text">
+ if initialize happen inside the images folder, then changes outside of that folder will not be tracked, because the repository is going to be the images folder, and not
+ the entire project
+</p>
+
+<img id="image" alt="" path="/img/image014.PNG" alt="" />
+
+<!-- ################################################################### -->
+<p class="sub-title">4. Keep Progress in History</p>
+
+<p class="text">
+ let's say we added new file to our newer project version called script.js, and we want to save this version of our project in history. We can do that using commit which
+ takes a snap shoot of our current state of our project in the history getting ready to save it.
+</p>
+
+<img id="image" alt="" path="/img/image015.PNG" alt="" />
+
+<p class="text">
+ In the image above it present a line history or time line of the development of our project. Let's imagine we are at the starting point. After doing some work with a
+ files in folder. We would like to take a snap shoot or save the current state of the project for that we have to make commit done, then later we add new files or edit
+ the old one's in our project which means the project current state is different from the previous state in files that you created. So we create or apply another commit
+ to save our project current state .
+</p>
+
+<p class="text">
+ Now we have saved two versions of our projects. In near future let's say we add a backEnd feature to our project, and take another snap shoot save. Now anytime in near
+ future we are able to go back in time and get the previous state/versions of our project. in real world we can make as many snap shoots as you wish we will learn about
+ applying commit in later sections.
+</p>

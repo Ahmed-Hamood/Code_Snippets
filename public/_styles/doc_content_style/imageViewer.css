@@ -1,0 +1,87 @@
+/* ---------image Viewer----------- */
+
+#image {
+ cursor: pointer;
+ display: block;
+ margin-bottom: calc(1.2 * 1.4rem);
+ box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
+ border-radius: 8px;
+ width: 60%;
+ opacity: 0;
+ transition: 0.3s;
+ animation-name: FadeInAnimation;
+ animation-duration: 1.5s;
+ animation-delay: 0.2s;
+ animation-fill-mode: forwards;
+}
+
+#image:hover {
+ opacity: 0.9;
+ transform: scale(1.01);
+}
+
+.modal-container {
+ background-color: rgba(0, 0, 0, 0.878);
+ width: 100%;
+ height: var(--content-render-height);
+ display: none;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ position: fixed;
+ left: 0;
+ top: 0;
+ z-index: 100;
+ overflow: auto;
+}
+
+.modal-image-title {
+ display: none;
+ font-size: 1.5rem;
+ color: #fff;
+ margin-top: 30px;
+ animation-name: FadeInAnimation;
+ animation-duration: 0.3s;
+ animation-iteration-count: infinite;
+ animation-direction: alternate-reverse;
+ animation-timing-function: ease-in-out;
+}
+
+.modal-image-content {
+ display: block;
+ border-radius: 5px;
+ /* box-shadow: rgba(253, 253, 253, 0.097) 0px 20px 30px -10px; */
+ animation-name: zoom;
+ transform: scale(0.7);
+ animation-duration: 0.5s;
+ animation-timing-function: ease-out;
+ transition: 0.3s transform;
+}
+
+.close-image {
+ opacity: 0.5;
+ width: 80px;
+ height: 80px;
+ position: absolute;
+ top: 15px;
+ right: 35px;
+ transition: 0.3s;
+}
+
+.close-image:hover {
+ opacity: 1;
+}
+
+@media screen and (max-width: 1366px) {
+ .modal-container {
+  width: var(--content-render-width);
+  height: var(--content-render-height);
+ }
+}
+
+@media screen and (max-width: 1000px) {
+ #image {
+  width: 95%;
+  margin-left: 5px;
+ }
+}

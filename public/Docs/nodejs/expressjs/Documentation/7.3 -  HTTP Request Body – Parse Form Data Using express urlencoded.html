@@ -1,0 +1,66 @@
+<p class="main-title">
+ 7.3 - HTTP <span class="red bold font-code">req.body</span> – Parse Form Data Using <span class="blue bold font-code">express.urlencoded()</span>
+</p>
+
+<p class="text">
+ We use to get data from HTML form and we use it on search textbox to post into the server. in the server we use
+ <span class="red bold font-code">bodyParser.urlencoded()</span> to get form data as <blue>'application/x-www-form-urlencoded'</blue>. If data is a search text then we
+ encode text into URL format.
+</p>
+
+<p class="text">
+ The <span class="red bold font-code">bodyParser.urlencoded()</span> is a method inbuilt in express. It parses incoming requests with urlencoded payloads and is based on
+ body-parser.
+</p>
+
+<p class="underline-text"># Use url encode middleware :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.use(express.urlencoded({ Options }));
+  // The options parameter contains various property like extended, inflate, limit, verify
+  ---------------------------------------------------------
+  app.use(express.urlencoded({ extended: false }));
+  app.post("/user", (req, res) => { console.dir(req.body)};
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">A - Using <span class="red bold font-code">express.urlencoded()</span></p>
+
+<p class="underline-text"># An HTML Form 1 :-</p>
+
+<div class="html-block html-code code">
+ <p class="block-title">./index.html</p>
+ <pre><code class="js language-js">
+  &lt;form action="http://localhost:3000/user" method="post">
+    &lt;label>Movie_Name :&lt;/label>
+    &lt;input type="text" name="movie_name" id="" placeholder="lord of the ring" />
+    &lt;label>Year :&lt;/label>
+    &lt;input type="number" name="year" id="" placeholder="2003" />
+    &lt;input type="submit" value="submit" />
+  &lt;/form>
+</code></pre>
+</div>
+
+<p class="underline-text"># Using urlencoded to get data from Form :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  
+  app.use(bodyParser.urlencoded({ extended: false })); // handles data that comes from form 
+  
+  app.post("movies/search" , function (req, res) {
+    console.log(req.body.movie_name); // lord%20of%20the%20ring  
+    console.log(req.body.year); // 2003  
+    console.log(req.body); // { movie_name: 'lord of the ring', year: 2003 }  
+    
+    const search = encodeURI(req.body.movie_name);
+    console.log(search);  // lord of the ring  
+  })  
+</code></pre>
+</div>

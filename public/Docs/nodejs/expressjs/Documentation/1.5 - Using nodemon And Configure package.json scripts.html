@@ -1,0 +1,179 @@
+<p class="main-title">
+  1.5 - Using <span class="red bold font-code">nodemon</span> And Configure <span class="red bold font-code">package.json</span> scripts
+</p>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">1 - Use <span class="red bold font-code">nodemon</span> to Restart Your Express App Automatically</p>
+
+<p class="text">
+  Now if you make a change to your server.js or any other scripts you'll notice the changes didn't take any effect, We actually have to restart the server every time we
+  make a change
+</p>
+
+<p class="text">
+  We will install a command-line Interface Utility that will wraps your Node/Express Application to watch the file system, and automatically restarts the process for any
+  files change. you will learn how to install nodemon globally so you can use on any project and how to set-it up
+</p>
+
+<p class="underline-text"># Install nodemon globally with npm :-</p>
+
+<div class="terminal-block terminal pre-block">
+  <pre><code class="js language-js">
+> npm install -g nodemon 
+</code></pre>
+</div>
+
+<p class="text mgt-20">
+  Now we can use nodemon to start a Node Script. For Example we have an Express server setup in
+  <span class="blue bold font-code">server.js</span> file we can start it and watch for changes like this:
+</p>
+
+<p class="underline-text"># Run express application using nodemon :-</p>
+
+<div class="terminal-block terminal pre-block">
+  <pre><code class="js language-js">
+> nodemon server.js
+  [nodemon] 2.0.4
+  [nodemon] to restart at any time, enter `rs`
+  [nodemon] watching path(s): *.*
+  [nodemon] watching extensions: js,mjs,json
+  [nodemon] starting `node server.js`
+  Listening on PORT 3000
+</code></pre>
+</div>
+
+<p class="text mgt-20">Alternatively, nodemon will also look for a main file specified in your project’s package.jsonfile:</p>
+
+<p class="underline-text"># View Only the main property :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+  <p class="block-title">./package.json</p>
+  <pre><code class="js language-js">
+  {
+    // ...
+    "main": "server.js",
+    // ...
+  } 
+</code></pre>
+</div>
+
+<p class="text mgt-20">
+  Now you can use nodemon only without specifying a file name after it, nodemon will look into package.json/main and pass the value after
+  nodemon
+</p>
+
+<p class="underline-text"># Run express application using nodemon without server.js :-</p>
+
+<div class="terminal-block terminal pre-block">
+  <pre><code class="js language-js">
+> nodemon 
+  [nodemon] 2.0.4
+  [nodemon] to restart at any time, enter `rs`
+  [nodemon] watching path(s): *.*
+  [nodemon] watching extensions: js,mjs,json
+  [nodemon] starting `node server.js`
+  Listening on PORT 3000
+</code></pre>
+</div>
+
+<br />
+
+<!-- ########################################## -->
+<p class="sub-title get-title">2 - Configure NPM Scripts <span class="red bold font-code">package.json</span> To Run An Express App</p>
+
+<p class="text">
+  You can use NPM scripts Object from <span class="red bold font-code">package.json</span>. This where NPM scripts is written. NPM
+  scripts are written as usual JSON key-value pairs where the key is the name of the script and the value contains the script you want to execute.
+</p>
+
+<p class="underline-text"># Scripts from package.json :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+  <p class="block-title">./package.json</p>
+  <pre><code class="js language-js">
+ {
+  // ...
+  "scripts": {  "start": "node index.js",    ...}
+  // ...
+ } 
+</code></pre>
+</div>
+
+<p class="text mgt-20">
+  to execute the script you can type <span class="red bold font-code">npm start</span> to execute the script from any terminal command. you can use a custom commands
+  and add them into you scripts, let's define our own custom scripts if you want to execute multiple command use <span class="blue bold font-code">&&</span>
+</p>
+
+<p class="underline-text"># Defining our own scripts :-</p>
+
+<div class="terminal-block terminal pre-block">
+  <p class="block-title">./package.json</p>
+<pre><code class="js language-js">
+ {
+  // ...
+  "scripts": {
+    "start": "node server.js", 
+    "restart": "nodemon server.js",
+    "dev" : "set NODE_ENV=development && node server.js", 
+    "prod": "set NODE_ENV=production && node server.js"
+  }
+  // ...
+ } 
+</code></pre>
+</div>
+
+<p class="text mgt-20">
+  Now we will run our custom scripts by either <span class="red bold font-code">run-script</span> or <span class="red bold font-code">run</span>
+  followed the script name.
+</p>
+
+<p class="underline-text"># Running our custom script from terminal :-</p>
+
+<div class="terminal-block terminal pre-block">
+  <pre><code class="js language-js">
+> npm start // you can use start or test without run keyword
+  <blue>########################################################## </blue>
+  <red">ExpressTest@1.0.0 start
+  node server.js
+  Listening on PORT 3000</span>  
+  <blue>########################################################## </blue>
+</code></pre>
+</div>
+
+<div class="terminal-block terminal pre-block">
+  <pre><code class="js language-js">
+> npm run restart
+  <blue>########################################################## </blue>
+  ExpressTest@1.0.0 restart
+  nodemon server.js
+  [nodemon] 2.0.4
+  [nodemon] to restart at any time, enter `rs`
+  [nodemon] watching path(s): *.*
+  [nodemon] watching extensions: js,mjs,json
+  [nodemon] starting `node server.js`
+  Listening on PORT 3000
+  <blue>########################################################## </blue>
+</code></pre>
+</div>
+
+<div class="terminal-block terminal pre-block">
+  <pre><code class="js language-js">
+> npm run dev
+  <blue>########################################################## </blue>
+  ExpressTest@1.0.0 dev
+  set NODE_ENV=development && node server.js
+  Listening on PORT 3000
+  <blue>########################################################## </blue>
+</code></pre>
+</div>
+
+<div class="terminal-block terminal pre-block">
+  <pre><code class="js language-js">
+> npm run prod
+  <blue>########################################################## </blue>
+  ExpressTest@1.0.0 prod
+  set NODE_ENV=production && node server.js
+  Listening on PORT 3000  
+  <blue>########################################################## </blue>
+</code></pre>
+</div>

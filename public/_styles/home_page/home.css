@@ -1,0 +1,32 @@
+@import "../reset.css"; 
+@import "../var.css";  
+@import "../default.css";  
+@import "../svg.css";  
+@import "../animations.css";  
+
+@import "./layout.css";  
+
+@import "./sidebar_header.css";  
+@import "./sidebar_menulist.css"; 
+@import "./sidebar_footer.css"; 
+
+@import "./main_content_header.css";  
+@import "./main-content_body.css";  
+@import "./options_menu.css";  
+
+
+@import "../doc_content_style/cv_styles.css"; 
+@import "../doc_content_style/doc_menu_content.css"; 
+
+@import "../doc_content_style/doc_text_content.css"; 
+@import "../doc_content_style/texts_highlight.css"; 
+@import "../doc_content_style/api_forms_styles/create_subject_form.css"; 
+
+@import "../doc_content_style/code_terminal_styles/jsCode.css"; 
+@import "../doc_content_style/code_terminal_styles/pythonCode.css"; 
+@import "../doc_content_style/code_terminal_styles/terminal.css"; 
+@import "../doc_content_style/code_terminal_styles/styleSheet.css"; 
+@import "../doc_content_style/code_terminal_styles/hyperText.css"; 
+@import "../doc_content_style/code_terminal_styles/_coloring.css"; 
+
+@import "../doc_content_style/imageViewer.css"; 

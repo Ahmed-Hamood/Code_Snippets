@@ -1,0 +1,120 @@
+.language-python .token.string {
+ color: #ce9178;
+}
+.language-python .token.comment {
+ color: #34855e;
+}
+
+.language-python .token.punctuation,
+.language-python .punctuation_colons,
+.language-python .punctuation_semiColons,
+.language-python .punctuation_dots,
+.language-python .punctuation_commas {
+ color: #ccc;
+}
+.language-python .token.punctuation_parentheses,
+.language-python .token.punctuation_squareBrackets,
+.language-python .token.punctuation_curlyBrackets {
+ color: rgb(255, 238, 54);
+}
+
+.language-python .token.string-interpolation .token.string:first-child{
+ /* color: red !important; */
+}
+
+.language-python .token.string-interpolation .punctuation_curlyBrackets {
+ color: #c586c0;
+}
+
+.language-python .token.string .CurlyInString,
+.language-python .token.string .PlaceHolder {
+ color: #84cafc;
+}
+
+.language-python .token.string-interpolation .punctuation_parentheses {
+ color: #569cd6;
+}
+
+.language-python .token.keyword {
+ color: #c586c0;
+}
+
+.language-python .token.mainKeyword {
+ color: #569cd6;
+}
+
+.language-python .token.function,
+.language-python .token.builtin_fun {
+ color: #f2ebc1;
+}
+.language-python .token.builtin_class {
+ color: #6beadb;
+}
+
+.language-python .token.number {
+ color: #9be2bb;
+}
+
+/* #################### */
+
+.language-python .token.block-comment,
+.language-python .token.cdata,
+.language-python .token.doctype,
+.language-python .token.prolog {
+ color: #999;
+}
+
+.language-python .token.attr-name,
+.language-python .token.deleted,
+.language-python .token.namespace,
+.language-python .token.tag {
+ color: #e2777a;
+}
+.language-python .token.function-name {
+ color: #6196cc;
+}
+
+.language-python .token.boolean {
+ color: #569cd6;
+}
+
+.language-python .token.class-name,
+.language-python .token.constant,
+.language-python .token.property,
+.language-python .token.symbol {
+ color: #f8c555;
+}
+
+.language-python .token.atrule,
+.language-python .token.important,
+.language-python .token.selector {
+ color: #cc99cd;
+}
+
+.language-python .token.attr-value,
+.language-python .token.char,
+.language-python .token.regex,
+.language-python .token.variable {
+ color: #7ec699;
+}
+
+.language-python .token.entity,
+.language-python .token.url {
+ color: #67cdcc;
+}
+.language-python .token.operator {
+ color: #b2bec3;
+}
+
+.language-python .token.bold,
+.language-python .token.important {
+ font-weight: 700;
+}
+
+.language-python .token.entity {
+ cursor: help;
+}
+
+.language-python .token.inserted {
+ color: green;
+}

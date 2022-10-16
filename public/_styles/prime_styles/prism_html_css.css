@@ -1,0 +1,121 @@
+/* Coloring */
+
+/* html */
+.language-html .token.doctype,
+.language-html .token.punctuation {
+ color: #9d9d9d;
+}
+
+.language-html .token.comment {
+ color: #6a9955;
+}
+.language-html .token.attr-name {
+ /* color: #a5d8f3; */
+ color: #f5d152;
+}
+
+.language-html .token.attr-value {
+ color: #ce9178;
+}
+
+.language-html .token.tag {
+ color: #4dbbf7;
+}
+
+/* css */
+
+.language-css .token.comment {
+ color: #999;
+}
+
+.language-css .token.color,
+.language-css .token.hexcode.color {
+ color: #ce9178;
+}
+
+.language-css .token.selector,
+.language-css .token.selector .pseudo-element,
+.language-css .token.selector .pseudo-class,
+.language-css .token.selector .class {
+ color: #d7ba7d;
+}
+
+.language-css .token.selector .attribute .attr-name {
+ color: #a5d8f3;
+}
+
+.language-css .token.operator,
+.language-css .token.punctuation,
+.language-css .token.selector .attribute .operator,
+.language-css .token.selector .combinator,
+.language-css .token.property + .punctuation,
+.language-css .token.selector .punctuation {
+ color: #eeee;
+}
+
+.language-css .token.selector .attribute .punctuation {
+ color: rgb(255, 255, 5);
+}
+
+.language-css .token.variable,
+.language-css .token.property {
+ color: #9cdcfe;
+}
+
+.language-css .token.string,
+.language-css .token.selector .attribute .attr-value,
+.language-css .token.property-value {
+ color: #ce9178;
+}
+
+.language-css .token.number,
+.language-css .token.unit {
+ color: #b5ce96;
+}
+
+.language-css .token.function {
+ color: #f6f5a9;
+}
+
+.language-css .token.important {
+ color: #6196cc;
+ font-weight: 700;
+}
+
+.language-css .token.string.url {
+ color: #ce9178;
+}
+
+.language-css .token.atrule {
+ color: #ce9178;
+}
+
+.language-css .token.atrule .rule,
+.language-css .token.url .punctuation {
+ color: #cc99cd;
+}
+
+.language-css .token.atrule .keyword {
+ color: #eeee;
+}
+
+.language-css span.inline-color-wrapper {
+ background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyIDIiPjxwYXRoIGZpbGw9ImdyYXkiIGQ9Ik0wIDBoMnYySDB6Ii8+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik0wIDBoMXYxSDB6TTEgMWgxdjFIMXoiLz48L3N2Zz4=);
+ background-position: center;
+ background-size: 110%;
+ display: inline-block;
+ height: 1.333ch;
+ width: 1.333ch;
+ margin: 0 0.333ch;
+ box-sizing: border-box;
+ border: 1px solid #fff;
+ border-radius: 2px;
+ outline: 1px solid rgba(0, 0, 0, 0.5);
+ overflow: hidden;
+}
+
+.language-css span.inline-color {
+ display: block;
+ height: 120%;
+ width: 120%;
+}

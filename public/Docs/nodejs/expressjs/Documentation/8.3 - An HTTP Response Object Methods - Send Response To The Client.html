@@ -1,0 +1,372 @@
+<p class="main-title">8.3 - An HTTP Response Object methods - Send Response To The Client</p>
+
+<p class="text">
+ Response Object (res for short) which is an argument in the request handler callbacks. It specifies the HTTP response which is sent by an Express app when it
+ gets an HTTP request. A response is send back to the client browser. Whenever an application server receives an HTTP request, it will provide a response object with data
+ content or cookie back to the client.
+</p>
+
+<p class="text">
+ There are many ways to send a response to the client, using methods that Express server provide us. We will use tje most useful methods of the response object:
+</p>
+
+<div class="text-box note">Note: Once you send a response to the client, you cannot do it again, otherwise, there will be uncaught error.</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">A - <span class="red bold font-code">res.send([body])</span> - String, Object JSON, Array, And Buffer</p>
+
+<p class="text">
+ The send() method on the res object is used to send and data passed as an argument to the client side. The method can take a string,
+ Buffer
+ array, and an object JSON as an argument.
+</p>
+
+<p class="text">
+ This send() method automatically sets the Content-Type response header as well based on the argument passed to the method. <blue>For example</blue> if the
+ [body] is a Buffer the Content-Type will be set to <span class="green bold font-code">application/octet-stream</span> unless of course we programmatically set it to be
+ something else using <span class="red bold font-code">res.set("Content-Type", "text/html");</span> .
+</p>
+
+<p class="text">
+ Although <green>200</green> status code will be added automatically, It’s recommended to set statuses for all other cases, such as 201 for Created or 404 for Not Found,
+ using the follwing code to set the status code before sending the response
+ <span class="red bold font-code">res.status(201)</span>
+</p>
+
+<p class="underline-text"># Let's send a different data content with res.send() method :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  app.get("/home", (req, res) => {
+    res.send("Welcome"); --> Content-Type: text/html
+    res.send("&lt;h1> Welcome to our website &lt;/h1>"); --> Content-Type: text/html
+    res.send({ name: "adam", cart: ["apples", "Orange"] }); --> Content-Type: application/json
+    res.send(["A", "B"]); --> Content-Type: application/json
+    res.send([{...}, {...}]); --> Content-Type: application/json
+    res.send(new Buffer('Data')); --> Content-Type: application/octet-stream
+    res.status(201).send("Welcome User"); --> Content-Type: text/html
+    res.status(500).send({message: "Oops, the server is down."}); --> Content-Type: application/json
+    ---------------------------------------------------------
+    // Set the content type before response the data
+    ---------------------------------------------------------
+    res.set("Content-Type", "text/plain");
+    res.send(new Buffer("text data that will be converted into Buffer")); // text data that will be converted into Buffer
+  });
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">B - <span class="red bold font-code">res.json([body])</span> - JSON format</p>
+
+<p class="text">
+ The json() method is used to send a JSON data as a response. It’s equivalent to response.send() when data passed is Array or Object type.
+ <span class="red bold font-code">res.json()</span> forces data conversion with JSON.stringify(). By default. The header Content-Type is set to
+ <blue>application/json</blue>
+</p>
+
+<p class="underline-text"># it can format the returned JSON data by applying two options json replacer and json spaces:</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  // property transformation rules
+  app.set("json replace", (key, value) => {
+    if (key === "password") return "SECRET";
+    else return value
+  });
+  
+  // number of spaces for indentation
+  app.set("json spaces", 2); 
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example of enabling json middleware and send a json response:</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  
+  app.use(express.json());
+
+  app.post("/login", (req, res) => {
+    res.json({ message: "Welcome Back" }); --> Content-Type: application/json
+    // OR
+    res.status(500).json({ error: "message" })  
+    // OR
+    res.status(200).json([
+      { title: "Practical Node.js", tags: "node.js express.js" },
+      { title: "Rapid Prototyping with JS", tags: "backbone.js node.js mongodb" },
+      { title: "JavaScript: The Good Parts", tags: "javascript" }
+    ]);
+  }) 
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">C - <span class="red bold font-code">res.end()</span> - End Response</p>
+
+<p class="text">
+ The end() method is used to end the response or session. There's a response and once we have collected the data or did something else we want to present that
+ to the caller and as a last step we should end the session.
+</p>
+
+<p class="text">
+ We can use <span class="red bold font-code">res.end()</span> if we want to end the response without providing any data. This could be useful for a 404 page
+</p>
+
+<p class="underline-text"># Sending An Error code with response end:</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  app.use((req, res) => {
+    res.status(404).end();
+  }) 
+</code></pre>
+
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">D - <span class="red bold font-code">res.redirect()</span> - StatusCode And URL_PATH</p>
+
+<p class="text">
+ The redirect() method is used to redirect to the URL derived from the specified path, with specified HTTP status code status. Sometimes we simply need to
+ redirect users/requests to another route. We can use absolute, relative, or full paths
+</p>
+
+<p class="text">
+ By default, response.redirect() sends the <green>302</green> (Found/Temporarily Moved) status code. we can Configure it by passing two argument into
+ <span class="red bold font-code">res.redirect()</span>, first one is the status code, second argument for URL Path redirect.
+</p>
+
+<p class="underline-text"># Using redirect() method :</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  app.use((req, res) => {
+    res.redirect("/api/book")
+    res.redirect("http://example.com")
+    res.redirect(301, "http://example.com")
+  }) 
+</code></pre>
+
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">E - <span class="red bold font-code">res.attachment()</span> - JSON format</p>
+
+<p class="text">
+ The attachment() method is used to set the HTTP response Content-Disposition header field to "attachment". If the name of the file is given as
+ filename, then it sets the <blue>Content-Type</blue> based on the extension name through <span class="red bold font-code">res.type()</span> function and finally sets the
+ Content-Disposition filename = parameter.
+</p>
+
+<div class="text-box note">Note: The attachment method only display the content in the browser, only you going to see the file name with an empty content.</div>
+
+<p class="underline-text"># An Example of Using attachment() method :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  
+  app.use("/", function (req, res, next) {
+    res.attachment("Hello.txt")
+    console.log(res.get("Content-Disposition"))
+    next()
+  })
+  
+  app.get("/", function (req, res) {
+    console.log("Attachment Added")
+    res.send()
+  })
+  
+  app.listen(3000, function (err) {
+    if (err) console.log(err)
+    console.log("Server listening on PORT", 3000)
+  })
+</code></pre>
+
+</div>
+
+<div class="csharp-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.4; color: rgb(202, 8, 8)">
+  Server listening on PORT 3000
+  attachment; filename="Hello.txt"
+  Attachment Added
+</code></pre>
+
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">F - <span class="red bold font-code">res.download()</span> - Files</p>
+
+<p class="text">
+ The download() method is used to send and prompts the client-side to download a file and sets appropriate headers for the file type in one call. Both
+ <span class="red bold font-code">res.attachment()</span> , <span class="red bold font-code">res.download()</span> methods set a response header called
+ Content-Disposition to attachment; this will prompt the browser to download the content instead of displaying it in a browser.
+</p>
+
+<p class="text">
+ You may specify filename as a hint to the browser. With res.download, you can specify the file to download, just sets the header; you still have to send content to the
+ client. Transfers the file at path as an "attachment". Typically, browsers will prompt the user for download. By default, the Content-Disposition header “filename=”
+ parameter is path, and it will set the content-type as the extension of the file you send the the client.
+</p>
+
+<p class="text">
+ The download() method has two arguments, first one for the file path, and second one either or both a callback function to handle errors, or set or rename a
+ file name.
+</p>
+
+<p class="underline-text"># An Example of Using download() method :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  const path = require("path");
+  
+  app.get("/text", function (req, res) {
+    res.download("./Hello.txt") 
+    // Response Headers
+    - Content-Disposition: attachment; filename="Hello.txt" 
+    - Content-Type: text/plain; 
+  })
+
+  app.get("/image", function (req, res) {
+    res.download("./image.jpg") 
+    // Response Headers
+    - Content-Disposition: attachment; filename="image.jpg" 
+    - Content-Type: image/jpeg; 
+  })
+
+  app.get("/statement" , (req,res) => {
+    res.download(path.join(__dirname , "statements/statement.pdf") , "CustomerSta.pdf" );
+    // Response Headers
+    - Content-Disposition: attachment; filename="CustomerSta.jpg" 
+    - Content-Type: application/pdf; 
+  })
+
+  app.get("/image" , (req,res) => {
+    res.download("/image002.png", "report.pdf", (err) => {
+      if (err) {
+        // Handle error, but keep in mind the response may be partially-sent
+        // so check res.headersSent
+      } else {
+        // decrement a download credit, etc.
+      }
+    })
+  })
+  
+  app.listen(3000, (err) => {
+    if (err) console.log(err)
+    console.log("Server listening on PORT", 3000)
+  })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">G - <span class="red bold font-code">res.sendFile()</span> - Files With Options</p>
+
+<p class="text">
+ The sendFile() method will read a file specified by path and send its contents to the client. There should be little need for this method; it’s easier to use
+ the static middleware express.static(), and put files you want available to the client in the public directory. However, if you want to have a different
+ resource served from the same URL depending on some condition, this method could come in handy.
+</p>
+
+<p class="text">In sendFile() method you can provide an option argument that has a root property path of all your static files, and other property options.</p>
+
+<div class="text-box note">Note: Check 5.1 - Serving static files in Express With express.static() for more about static options</div>
+
+<p class="underline-text"># An Example of Using download() method :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  const express = require('express');
+  const path = require('path');
+  const app = express();
+  
+  app.get("/image", function(req, res){
+     res.sendFile(path.join(__dirname , "public/images/image.png") );
+  });   
+
+  app.get("/home", function(req, res){
+     res.sendFile(path.join(__dirname , "./public/index.html") );
+  });   
+
+  app.get("/myimage", (req, res, next) => {
+    const options = {
+      maxAge: "30d",
+      root: path.join(__dirname, "public/images"),
+      dotfiles: "allow",
+      headers: {
+        "x-timestamp": Date.now(),
+        "x-sent": true,
+      },
+    }
+  
+    res.sendFile("./04.jpg", options, (err) => {
+      if (err) {
+        next(new Error("File Not Found"))
+      } else {
+        console.log("Sent:", "image.png")
+      }
+    })
+    // Response Headers
+    - Cache-Control: public, max-age=2592000
+    - Content-Type: image/jpeg
+    - Content-Length: 124622
+    - x-sent: true
+    - x-timestamp: 1618077985211
+  })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">H - <span class="red bold font-code">res.render()</span> - View Render</p>
+
+<p class="text">The render() method is used to render a view and sends the rendered HTML string to the client.</p>
+
+<p class="underline-text"># It has Three parameters and two are Optional :</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  // send the rendered view to the client
+  res.render("index")
+
+  // if a callback is specified, the rendered HTML string has to be sent explicitly
+  res.render("index", function (err, html) {
+    res.send(html)
+  })
+
+  // pass a local variable to the view
+  res.render("user", { name: "Tobi" }, function (err, html) {
+    // ...
+  })
+</code></pre>
+
+</div>
+
+<div class="list-content custom">
+ <ul>
+  <li>The view argument is a string that is the file path of the view file to render</li>
+  <li>An object whose properties define local variables for the view.</li>
+  <li>
+   Callback function. If provided, the method returns both the possible error and rendered string, but does not perform an automated response. When an error occurs, the
+   method invokes next(err) internally..
+  </li>
+ </ul>
+</div>
+
+<div class="text-box note">
+ Note: We will discuss about <span class="red bold">View Render</span> Templates And start using view Engines like ejs, pug <blue>( In Later section )</blue>
+</div>

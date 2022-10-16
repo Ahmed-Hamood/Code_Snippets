@@ -1,0 +1,661 @@
+<p class="main-title">1.1 - What's ReactJS, Installation, Folder Structure & Start React App</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">1 - What is React ?</p>
+
+<p class="text">
+ <red>React</red> (sometimes called React.js or ReactJS) is a JavaScript library for building fast, interactive, efficient and flexible user interfaces. It's an open
+ source component base front-end JavaScript library responsible only for the view layer of the application. It's maintained by Facebook and a community of individual
+ developers and companies. It is widely used as a base in building single-page websites and mobile applications. It is very easy to use, and it allows users to create
+ reusable UI components.
+</p>
+
+<p class="text">
+ <red>React</red> designs a simple views for each state in your application, and React will efficiently update and render just the right component when your data changes.
+ Think of component as a simple function that you can call with some input and they render some output. And as you can reuse functions, so also you can reuse components,
+ merge them and thereby creating a complex user interface.
+</p>
+
+<p class="underline-text"># Here is an example of cutting a page into components, each section highlighted above is considered a component:</p>
+
+<img path="/img/image001.PNG" id="image" alt="" />
+
+<p class="text">
+ We can say that <red>React</red> is a way to build user interfaces, it's only concerned with what you see on the front-end. React makes user interfaces very easy to
+ build by cutting each page into pieces. We call these pieces components (learn later).
+</p>
+
+<p class="text">
+ <red>React</red> is a lightweight view library that only supports the UI components. Therefore, it requires integration with other technologies and tools (such as Flux
+ and Redux) in order to get a full-fledged architecture.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">2 - Features of React, and it's Advantages</p>
+
+<p class="text">
+ There are unique features are available on <red>React</red> like <blue>JSX</blue>, <blue>Virtual DOM</blue>, <blue>Component</blue>, <blue>Performance</blue> and
+ <blue>One-way Data Binding</blue>. Because of These features that's why <red>React</red> is widely used and popular. Let's take a look at these features.
+</p>
+
+<p class="text">
+ <red>Use JSX (Javascript XML)</red>, it's an extension of JavaScript it's faster than normal javascript as it performs optimizations while translating to regular
+ JavaScript. It makes it easier for us to create templates. Though it is not mandatory to use JSX in react, it is one of the good features and easy to use.
+</p>
+
+<p class="text">
+ <red>Virtual DOM</red> exists because it's a lightweight copy of the actual DOM. a virtual DOM is the representation of an original DOM. React creates a virtual dom
+ in-memory data-structure cache. Only the final changes of DOM has later updated in the browsers DOM. Manipulating DOM is slow, but manipulating Virtual DOM is fast as
+ nothing gets drawn on the screen.
+</p>
+
+<p class="text">
+ <red>One-way Data Binding</red> This feature gives you better control over your application. React uses a unidirectional data flow. Meaning, the developers cannot edit
+ any component directly. They have to utilize the callback function in order to make changes in the components. This process is called one-way data binding.
+</p>
+
+<p class="text">
+ <red>Components</red> are like pure JavaScript functions that help make the code easy by splitting the logic into reusable independent code. A Component is one of the
+ core building blocks of React. It'll make the task of building UIs much easier. You can see a UI broken down into multiple individual pieces called components and work
+ on them independently and merge them all in a parent component which will be your final UI.
+</p>
+
+<p class="text">
+ <red>Performance</red> React.js use JSX, which is faster compared to normal JavaScript and HTML. Virtual DOM is a less time taking procedure to update webpages content.
+ all these features makes react perform fast and efficient.
+</p>
+
+<p class="underline-text"># Advantages of React :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>
+   <red>React</red> uses virtual dom that makes use of in-memory data-structure cache, and only the final changes are updated in browsers dom. This makes the app faster.
+  </li>
+  <li>You can create components of your choice by using the react component feature. The components can be reused and also helpful in code maintenance.</li>
+  <li><red>React</red> is an open-source javascript library, so it is easy to start with.</li>
+  <li>
+   <red>React</red> has become very popular in a short span and maintained by Facebook and Instagram. It is used by many famous companies like Apple, Netflix, etc.
+  </li>
+  <li>Facebook maintains ReactJS, the library, so it is well maintained and kept updated.</li>
+  <li><red>React</red> can be used to develop rich UI for both desktop and mobile apps.</li>
+  <li>Easy to debug and test as most of the coding is done in Javascript rather than on Html.</li>
+ </ul>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">3 - Using ReactJS from CDN</p>
+
+<p class="text">
+ To start working with react, we need to first install reactjs. You can easily get started to use reactjs by using the CDN javascript files, as shown below. Go to the
+ official site of reactjs to get the CDN links, <a id="only-link" target="_blank" href="https://reactjs.org/docs/cdn-links.html">Click here</a>
+</p>
+
+<p class="underline-text"># The following CDN versions are meant only for development, and are not suitable for production:-</p>
+
+<section html-content title-header="./index.html">
+ <pre>
+  &lt;script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"> &lt;/script>
+  &lt;script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"> &lt;/script>
+</code></pre>
+
+</section>
+
+<p class="underline-text"># The following CDN versions are minified and optimized for production used :-</p>
+
+<section html-content title-header="./index.html">
+ <pre>
+  &lt;script crossorigin src= "https://unpkg.com/react@17/umd/react.production.min.js"> &lt;/script>
+  &lt;script crossorigin src= "https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"> &lt;/script>
+</code></pre>
+
+</section>
+
+<p class="text">
+ To load a specific version of <red>react</red> and <red>react-dom</red>, replace 17 with the version number. if you are planning to use the CDN files, make sure to keep
+ the cross-origin attribute, to avoid cross-domain issues. <red>Reactjs</red> code cannot be executed directly in the browser and needs to be transpired using
+ <blue>Babel</blue> to javascript before executing in the browser.
+</p>
+
+<p class="text">
+ Start by including three scripts, the first two let us write React code in our JavaScripts, and the third, Babel, allows us to write JSX syntax and ES6 in older
+ browsers.
+</p>
+
+<p class="underline-text"># TAlso include Babel so it allow us to write JSX syntax :-</p>
+
+<section html-content title-header="./index.html">
+ <pre>
+  &lt;script src= "https://unpkg.com/babel-standalone@6.15.0/babel.min.js"> &lt;/script>
+</code></pre>
+
+</section>
+
+<p class="underline-text"># Here is the working ReactJS example using cdn scripts files and babel-js script :-</p>
+
+<section html-content title-header="./index.html">
+<pre>
+  &lt;!DOCTYPE html>
+  &lt;html>
+  &lt;head>
+    &lt;meta charset="UTF-8" />
+    &lt;title>Add React in One Minute&lt;/title>
+  
+    &lt;!-- Load React. -->
+    &lt;!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    &lt;script crossorigin src="https://unpkg.com/react@17/umd/react.development.js">&lt;/script>
+    &lt;script crossorigin</purple> src="https://unpkg.com/react-dom@17/umd/react-dom.development.js">&lt;/script>
+    &lt;script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js">&lt;/script>
+    
+  &lt;/head>
+  &lt;body>
+  
+    &lt;!-- We will put our React component inside this div. -->
+    &lt;div id="app"> &lt;/div>
+  
+    &lt;!-- Load our React component. -->
+    &lt;script type="text/babel">
+      ReactDOM.render(
+        &lt;h1>Hello, from React Tutorials!&lt;/h1>,
+        document.getElementById('app')
+      );
+    &lt;/script>
+
+  &lt;/body>
+  &lt;/html>  
+</code></pre>
+</section>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">4 - Install React Using NPM Package</p>
+
+<p class="text">
+ Before we start, make sure you have <blue>nodejs</blue> installed. If not installed go this website
+ <a id="only-link" target="_blank" href="https://nodejs.org/en/">Click here</a> Once you have nodejs installed, create a new folder and name it
+ <green>"ReactApp"</green>. To start with project with <green>"ReactApp"</green> folder, run a command the following npm command <code>"npm init –-yes"</code> to
+ initialize <blue>package.json</blue> that provide details such as project name, description, and so forth
+</p>
+
+<p class="underline-text"># The following command will create for a <red>package.json</red> file :-</p>
+
+<section terminal-content title-header="initialize Package.json">
+<pre>
+  npm init --yes
+</code></pre>
+</section>
+
+<div class="terminal-output">
+<pre>
+  Wrote to C:\Users\User\Desktop\ReactApp\package.json:
+
+  {
+    "name": "ReactApp",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo Error: no test specified" && exit 1"
+    },
+    "keywords": [],
+    ...
+  }
+</code></pre>
+</div>
+
+<p class="text">
+ Now, after initializing <green>"package.json"</green> we can install reactjs package lists like <red>react</red>, <red>react-dom</red> and
+ <red>react-scripts</red> packages. let install all of them with one line of command.
+</p>
+
+<p class="underline-text"># Installing the list of packages for reactjs :-</p>
+
+<section terminal-content title-header="install React">
+<pre>
+  npm install react react-dom react-scripts
+</code></pre>
+</section>
+
+<div class="terminal-output">
+<pre>
+  "react": "^17.0.2",
+  "react-dom": "^17.0.2",
+  "react-scripts": "^4.0.3"
+</code></pre>
+</div>
+
+<p class="underline-text"># the content of package.json file, all package lists were installed :-</p>
+
+<section json-content title-header="./package.json">
+<pre>
+  {
+    ....
+    "dependencies": {
+      "react": "^17.0.2",
+      "react-dom": "^17.0.2",
+      "react-scripts": "^4.0.3"
+    },
+    ....
+  }
+</code></pre>
+</section>
+
+<p class="text">
+ Your React application is successfully installed, if you want to start running your application ou have to do the following, first within <blue>"ReactApp"</blue> folder
+ create another folder <green>./src</green> where all the js code will come in that folder. All the code for reactjs project will be available in the
+ <red>"src/"</red> folder. Create a file <orange>index.js</orange> and add import react and react-dom, as shown below.
+</p>
+
+<p class="underline-text"># Importing react and react-dom to start to display a text message :-</p>
+
+<section js-jsx-content title-header="./src/index.js">
+<pre>
+  import React from "react";
+  import ReactDOM from "react-dom";
+  
+  ReactDOM.render(
+    &lth1> Hello, From ReactApp &lt/h1>, 
+    document.getElementById("root")
+  );
+</code></pre>
+</section>
+
+<p class="text">
+ We want to <blue>"Hello, From ReactApp"</blue> into our DOM element with id <green>"root"</green> It is taken from the index.html file, which is the start file. Create a
+ folder <green>./public</green> within <blue>"ReactApp"</blue> and add <orange>index.html</orange> and write the following.
+</p>
+
+<p class="underline-text"># Importing react and react-dom to start to display a text message :-</p>
+
+<section html-content title-header="./public/index.html">
+<pre>
+  &lt;!DOCTYPE html>
+  &lt;html>
+    &lt;head>
+      &lt;meta charset="UTF-8" />
+      &lt;title>ReactJS Demo&lt;/title> 
+    &lt;/head>
+    &lt;body>
+      &lt;div id="root"> -- Here React Start -- &lt;/div>
+     &lt;/body>
+  &lt;/html>
+</code></pre>
+</section>
+ 
+<p class="text">
+ The package <blue>react-scripts</blue> will take care of compiling the code and starting the server to display the html file <orange>index.html</orange>. You need to add
+ the command in <green>"package.json"</green> that will take care of using react-scripts to compile the code and start server as shown below:
+</p>
+
+<p class="underline-text"># the content of <red>package.json</red> file, add a script that will start your react application :-</p>
+
+<section json-content title-header="./package.json">
+<pre>
+  {
+    ....
+    "scripts": {
+      "start": "react-scripts start" 
+    }
+    ....
+  }
+</code></pre>
+</section>
+
+<p class="underline-text"># the content of <red>package.json</red> file, Final :-</p>
+
+<section json-content title-header="./package.json">
+<pre>
+  {
+    "name": "ReactApp",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "start": "react-scripts start"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      "react": "^16.9.0",
+      "react-dom": "^16.9.0",
+      "react-scripts": "^3.1.1"
+    }
+  }
+</code></pre>
+</section>
+
+
+
+<p class="underline-text"># Our final file structure as following :-</p>
+
+<img path="/img/image003.PNG" id="image" alt="" />
+
+<p class="text">
+ To start running your react application, you have to run the command <blue>"scripts.start"</blue> within <green>"package.json"</green> file. to do that run the following
+ command in your terminal. It will open browser with url <path>http://localhost:3000/</path> as you see below.
+</p>
+
+<p class="underline-text"># Run Start Scripts to start your react application :-</p>
+
+<section terminal-content title-header="Run React">
+<pre>
+ npm run start
+</code></pre>
+</section>
+
+<section terminal-content title-header="Run React">
+<pre>
+ npm start
+</code></pre>
+</section>
+
+<div class="terminal-output">
+<pre>
+  <green>Compiled successfully!</green>
+
+  You can now view ReactApp in the browser.
+
+    Local:            http://localhost:3000
+    On Your Network:  http://192.168.56.1:3000
+
+  Note that the development build is not optimized.
+  To create a production build, use <red>npm run build</red>.
+</code></pre>
+</div>
+
+<p class="underline-text"># browser output :-</p>
+
+<img path="/img/image002.PNG" id="image" alt="" />
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">5 - Install React Using <code>npx create-react-app [project_name]</code></p>
+
+<p class="text">
+ You can create a <blue>React</blue> application by installing the <code>create-react-app</code> tool-chain command. Facebook has created Create React App environment
+ that will create a live development server and automatically compile React and all other things. You can install each react package like in our previous example, or use
+ <code>create-react-app</code> to get the latest packages with other features.
+</p>
+
+<p class="underline-text"># The <code>create-react-app</code> Syntax to install you react project :-</p>
+
+<section terminal-content title-header="Create React App">
+<pre>
+  npx create-react-app &lt;Folder_Name>
+</code></pre>
+</section>
+
+<p class="underline-text"># The following Steps on how to install react application in order to start your project :-</p>
+
+<div class="list-content normal number">
+ <ul>
+  <li>
+   Install <blue>Node.js</blue> and <blue>NPM</blue> globally on your machine, go to node js website and download it
+   <a id="only-link" target="_blank" href="https://nodejs.org/en/">Click here</a>
+  </li>
+  <li>We create our project folder let’s call it <green>"my-react-app"</green></li>
+  <li>Open our <green>"my-react-app"</green> folder using vs-code"</li>
+  <li>Run <green>"npm init --yes"</green> to initialize your package.json</li>
+  <li>Then Use <code>create-react-app</code> to install react thru CLI Terminal"</li>
+ </ul>
+</div>
+
+<p class="text">
+ To create a new React project, we can use the tool npx, provided you have an npm version of at least 5.2. npx gives us the ability to use the create-react-app package
+ without having to first install it on our computer, which is very convenient. Using npx also ensures that we are using latest version of Create React App to create our
+ project:
+</p>
+
+<div class="text-box note">You can check what npm version you have by running in your terminal <span class="blue bold font-code">"npm -v"</span> command.</div>
+
+<p class="underline-text"># Run the following command to start creating your react application latest version and features :-</p>
+
+<section terminal-content title-header="Create and install react application within my-react-app folder">
+<pre>
+  npx create-react-app my-react-app
+  // Create and install react application within the current folder using '.' dot
+  npx create-react-app .
+  npm start
+</code></pre>
+</section>
+
+
+<p class="text">
+ Once we run this command, a folder named "my-react-app" will be created where we specified on our computer and all of the packages it requires will be automatically
+ installed. The <code>create-react-app</code> will set up everything you need to run a React application. And make sure you should not use uppercase letters for your
+ application name.
+</p>
+
+<div class="text-box note">
+ If you’ve previously installed create-react-app globally via <span class="blue bold font-code">"npm install -g create-react-app"</span>, we recommend you to uninstall
+ the package using <span class="blue bold font-code">"npm uninstall -g create-react-app"</span> to ensure that npx always uses the latest version
+</div>
+
+<p class="text">
+ Create React App doesn’t handle backend logic or databases; it just creates a frontend build pipeline, so you can use it with any backend you want. Under the hood, it
+ uses Babel and webpack, but you don’t need to know anything about them.
+</p>
+
+<p class="underline-text"># To create a React app that uses TypeScript, we can use the Create React App TypeScript template :-</p>
+
+<section terminal-content title-header="Create and install react application within my-react-app folder">
+<pre>
+  npx create-react-app my-react-app --template typescript
+</code></pre>
+</section>
+
+<p class="text">
+ Now to run your react application, the <code>create-react-app</code> tool generate for us all scripts automatically, all you have to do just enter
+ <red>"npm start"</red> in your terminal.
+</p>
+
+<p class="underline-text"># the content of <red>package.json</red> file, add a script that will start your react application :-</p>
+
+<section json-content title-header="./package.json">
+<pre>
+  {
+    ....
+    "scripts": {
+      "start": "react-scripts start",  
+      "build": "react-scripts build",  
+      "test": "react-scripts test",  
+      "eject": "react-scripts eject"  
+    }
+    ....
+  }
+</code></pre>
+</section>
+
+<p class="underline-text"># Run this command to run the React application :-</p>
+
+<section terminal-content>
+<pre>
+  npm start
+</code></pre>
+</section>
+
+<div class="terminal-output">
+<pre>
+  <green>Compiled successfully!</green>
+
+  You can now view ReactApp in the browser.
+  
+    Local:            http://localhost:3000
+    On Your Network:  http://192.168.56.1:3000
+  
+  Note that the development build is not optimized.
+  To create a production build, use <red>npm run build</red>.
+</code></pre>
+</div>
+
+<p class="underline-text">
+ # A new browser window will pop up with your newly created React App! If not, open your browser and type localhost:3000 in the address bar :-
+</p>
+
+<img path="/img/image004.PNG" id="image" alt="" />
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">6 - Reviewing the Project Folder Structure</p>
+
+<p class="text">
+ Once our react project files have been created and our dependencies have been installed. Let’s walk through the directory structure that React CLI created for us. create
+ react app will initial react framework/library files our project structure should look like this. Create react app does use webpack which is a module bundler it uses
+ babel behind the scene
+</p>
+
+<p class="underline-text"># The project folder files and directories :-</p>
+
+<img path="/img/image005.PNG" id="image" alt="" />
+
+<p class="sub-sub-title mark get-title">A - node_modules</p>
+
+<p class="text">
+ This Folder includes all of the dependency-related code that Create React App has installed.this will have all the library dependency of <green>package.json</green>. You
+ will never need to go into this folder.
+</p>
+
+<p class="sub-sub-title mark get-title">B - package.json</p>
+
+<p class="text">
+ it manages our app dependencies and what is included in our node_modules folder for our project, plus the scripts we need to run our app. Records of our project
+ dependencies and configures our project
+</p>
+
+<p class="underline-text"># the content of <red>package.json</red> file :-</p>
+
+<section json-content title-header="./package.json">
+<pre>
+  {
+    "name": "ReactApp",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+      // Libraries For Testing
+      "@testing-library/jest-dom": "^5.14.1",
+      "@testing-library/react": "^11.2.7",
+      "@testing-library/user-event": "^12.8.3",
+      "react": "^17.0.2", // Here is react the library 
+      "react-dom": "^17.0.2", // allows us to render our react app to the browser or within the DOM so we use react-dom
+      "react-scripts": "4.0.3", // Includes scripts and configuration used by Create React App to bundle and server our code
+      "web-vitals": "^1.1.2"
+    },
+    "scripts": {
+      "start": "react-scripts start", // use to start our dev server which will run on 3000 port by default
+      "build": "react-scripts build", // use to generate our static assets when ready up to deploy
+      "test": "react-scripts test", // use to run test 
+      "eject": "react-scripts eject" // we use to edit our webpack and  babel scripts 
+    },
+    .....
+    ....
+    ...
+    .
+  }  
+</code></pre>
+</section>
+
+
+<p class="sub-sub-title mark get-title">C - package-lock.json</p>
+
+<p class="text">
+ Records the exact version of packages that we install. It describes the exact tree that was generated, such that subsequent installs are able to generate identical
+ trees, regardless of intermediate dependency updates.
+</p>
+
+<p class="sub-sub-title mark get-title">D - .gitignore</p>
+
+<p class="text">A file that is used to exclude files and folders from being tracked by Git. We don't want to include large folders such as the node_modules folder</p>
+
+<p class="sub-sub-title mark get-title">E - public</p>
+
+<p class="text">
+ A folder that we can use to store our static assets, such as images, svgs, and fonts for our React app. In this directory our important file is index.html As you know
+ React is a single page application so it is the only one Html or you can say a single file that gets rendered when we run the application. There is a
+ <blue>"serviceWorker.js"</blue> file is a service worker for PWAs — Progressive Web Apps.
+</p>
+
+<p class="underline-text"># In the public folder we have an index.html file :-</p>
+
+<section html-content title-header="./public/index.html">
+<pre>
+  &lt;!DOCTYPE html>
+  &lt;html lang="en">
+    &lt;head>
+      &lt;meta charset="utf-8" />
+      &lt;link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+      &lt;meta name="viewport" content="width=device-width, initial-scale=1" />
+      &lt;meta name="theme-color" content="#000000" />
+      &lt;meta name="description" content="Web site created using create-react-app" />
+      &lt;link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+      &lt;link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+      &lt;title> React App &lt;/title>
+    &lt;/head>
+    &lt;body>
+      &lt;noscript>You need to enable JavaScript to run this app.&lt;/noscript>
+      &lt;div id="root"> ####### Here React Render Your Content ####### &lt;/div>
+    &lt;/body>
+  &lt;/html>
+</code></pre>
+</section>
+
+
+<p class="text">
+ This <code>&lt;div id="root">&lt;/div></code> will be replaced with the root component. has the div#root which is basically where our entire react application is going
+ to output. It’s going to output the main app component or root component code let’s say any component we create like nav bar a user list etc.. will get embedded on the
+ main component or div#root
+</p>
+
+<p class="sub-sub-title mark get-title">F - src</p>
+
+<p class="text">
+ A folder that contains our source code. It is where all of our React-related code will live and is what we will primarily work in to build our app. We have the
+ <red>"App.js"</red> file that contain all our React code. It has our component, which will get render when we run our application.
+</p>
+
+<p class="underline-text"># A component that display a react logo with some text :-</p>
+
+<section js-jsx-content title-header="./src/App.js">
+<pre>
+  import logo from "./logo.svg";
+  import "./App.css";
+
+  function App() {
+    return (
+      &lt;div className="App">
+        &lt;header className="App-header">
+          &lt;img src={logo} className="App-logo" alt="logo" />
+          &lt;p>
+            Edit src and save to reload.
+          &lt;/p>
+          &lt;a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
+            Learn ReactJS
+          &lt;/a>
+        &lt;/header>
+      &lt;/div>
+    );
+  }
+
+  export default App;  
+</code></pre>
+</section>
+
+
+<p class="text">
+ The <red>index.js</red> file has a method the <code>ReactDOM.render()</code> that renders the <blue>index.html</blue> root div. It will replace this root div with the
+ app component. This is how your first component will work. as following
+</p>
+
+<p class="underline-text"># A render method that render our html root id :-</p>
+
+<section js-jsx-content title-header="./src/index.js">
+<pre>
+  import React from "react"; // import react library
+  import ReactDOM from "react-dom"; // import react Dom To render browser
+  import "./index.css"; // import index style 
+  import App from "./App"; // import App Component 
+  import * as serviceWorker from "./serviceWorker"; // Progressive Web Apps 
+  
+  ReactDOM.render(&lt;App />, document.getElementById('root') );
+  
+  serviceWorker.unregister();
+</code></pre>
+</section>
+
+ 

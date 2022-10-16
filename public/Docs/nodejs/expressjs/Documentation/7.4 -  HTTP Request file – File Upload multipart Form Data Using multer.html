@@ -1,0 +1,543 @@
+<p class="main-title">
+ 7.4 - HTTP <span class="red bold font-code">req.file</span> – File Upload Multipart Form Data Using <span class="blue bold font-code">multer()</span>
+</p>
+
+<p class="text">
+ File upload is a common feature that almost every website needs. To perform uploading operation in ExpressJS we have middleware known as Multer. We are going to learn
+ how to upload files in the server with the help of multer and express.
+</p>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">A - What is Multer?</p>
+
+<p class="text">
+ Multer is node.js middleware for handling <blue>multipart/form-data</blue>, which is primarily used for uploading files. Multer adds a body object and a file or files
+ object to the request object <span class="red bold font-code">req.file and req.files</span> object contain the
+ <span class="green bold font-code">fieldname, originalname, mimetype, destination, filename, path and size</span>
+</p>
+
+<p class="underline-text"># the request body object with file object contain the file information :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ req.file</p>
+ <pre><code class="js language-js">
+  req.file = {
+    fieldname: "image",
+    originalname: "1616751665586--avatar.PNG",
+    encoding: "7bit",
+    mimetype: "image/png",
+    destination: "./public/uploads",
+    filename: "1616751665586--avatar.PNG",
+    path: "public\\uploads\\1616751665586--avatar.PNG",
+    size: <orange>638</orange>
+  }
+</code></pre>
+</div>
+
+<p class="underline-text"># Each file contains the following information:</p>
+
+<img path="/img/image023.PNG" alt="" id="image" />
+
+<p class="text">
+ Multipart Data, when a form is submitted, the browser use <blue>"multipart/form-data"</blue> content-type to create a multipart message where each part will contain a
+ field of the form. A multipart message will consist of text input and file input. This way using multipart/form-data you can upload files. Multer will not process any
+ form which is not multipart (multipart/form-data).
+</p>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">B - Install And Set-Up Multer</p>
+
+<p class="text">Now the first step that we have to follow is installing multer in your project using npm.</p>
+
+<p class="underline-text"># Before using multer, we have to install it using npm :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> npm install multer
+</code></pre>
+</div>
+
+<p class="text">
+ We will require multer in the server.js file using the <span class="red bold font-code">require()</span> method. The following code will go in the server.js file.
+</p>
+
+<p class="underline-text"># Here we require multer in our express application :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  const multer = require("multer");
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">C - Multer Method Object Options - Configure The StorageEngine</p>
+
+<p class="text">
+ The disk storage engine gives you full control over storing files to disk. We will create a storage object using the
+ <span class="red bold font-code">diskStorage()</span> method. There is two properties that we can use destination, dest and filename
+</p>
+
+<p class="underline-text"># Using multer.diskStorage to configure the upload location and file name :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  const multer = require("multer");
+
+  // 1. Set Storage Engine
+  const storageEngine = multer.diskStorage({
+    // A. Same As Below
+    dest: "./public/uploads",
+    // B. Set where you want to save your files upload
+    destination: (req, file, cb) => {
+      cb(null, "./public/uploads");    
+    },
+    // C. Set the File Name for every incoming files
+    filename: (req, file, cb) => {
+      // cb(error, set filename )
+      cb(null, Date.now() + "--" + file.originalname)
+    },
+  })  
+</code></pre>
+</div>
+
+<p class="text">
+ Using <span class="red bold font-code">cb(null, ...</span> as we don't want to show any error. <span class="red bold font-code">file.originalname</span>
+ we have used the same name of the file as they were uploaded. You can use any name of your choice. let pass our storageEngine into multer method options object.
+</p>
+
+<p class="underline-text"># Pass option into multer method object :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const upload = multer({ storage: storageEngine })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">D - Pass Other Options - <span class="red bold font-code">limits, fileFilter</span></p>
+
+<p class="text">
+ There is other option that we can use with the multer object options like limits You can also put a limit on the size of the file that is being uploaded with the help of
+ using limits.
+</p>
+
+<p class="underline-text"># The following code will go inside the multer({}) Object :</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  // inside multer({}), file upto only 1MB can be uploaded
+  const upload = multer({
+        storage: storageEngine,
+        // FileSize is in bytes. (1000000 bytes = 1MB)
+        limits : {fileSize : 1000000}
+  });
+</code></pre>
+</div>
+
+<p class="underline-text"># The following limits object options integer values are available:</p>
+
+<img path="/img/image025.PNG" id="image" alt="" />
+
+<p class="text">An Also we set a fileFilter to control which should be uploaded and which should be skipped, and only we accept only all images format.</p>
+
+<p class="underline-text"># Create a function that will filter file extension and mimetype :</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const imageFilter = (req, file, cb) => {
+    // Accept images only
+    const filetypes = /jpeg|jpg|png|gif/
+  
+    const extName = filetypes.test(path.extname(file.originalname).toLowerCase())
+    const mimeType = filetypes.test(file.mimetype)
+  
+    if (mimeType && extName) {
+      return cb(null, true)
+    } else {
+      cb(new Error("Invalid Extension"))
+    }
+
+    // we use the following:-
+    // To reject this file pass "false", like so: 
+    cb(null, false);
+    // To accept the file pass "true", like so: 
+    cb(null, true);   
+  }
+
+  // inside multer({}), file upto only 1MB can be uploaded
+  const upload = multer({
+        storage: storageEngine,
+        // FileSize is in bytes. (1000000 bytes = 1MB)
+        limits : {fileSize : 1000000},
+        // Filter files Only Accept image files 
+        fileFilter: imageFilter,
+  });
+</code></pre>
+</div>
+
+<p class="underline-text"># The following are the options that can be passed to Multer :-</p>
+
+<img path="/img/image024.PNG" id="image" alt="" />
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">E - File Accept - <span class="red bold font-code">single(), array(), fields(), none() and any()</span></p>
+
+<p class="text">
+ If you want to control the number of files that you want multer to receive, multer gives us another function call
+ <span class="red bold font-code">single(), array(), fields(), none() and any()</span> telling multer how many files to accept, we use
+ <span class="red bold font-code">single("field_name")</span> to accept only one file that comes from "image" fieldname input, and
+ <span class="red bold font-code">arrays(fieldname, max_count) </span> that accepts an array of files, all with the name fieldname. It generates an error if more than
+ max_count files are uploaded. The array of files will be stored in req.files.
+</p>
+
+<p class="underline-text"># Pass option into multer method object :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  //A. Pass our storageEngine and configure multer as a single file upload from "image" input field
+  const upload = multer({ storage: storageEngine }).single("image")
+
+  //B. Pass our storageEngine and configure multer as a multiple files upload from "images" input field
+  const upload = multer({ storage: storageEngine }).array("images", 4)
+
+  //C. Pass our storageEngine and configure multer as a multiple and separate files upload from "images" and "pdf" input field
+  const upload = multer({ storage: storageEngine }).fields([{ name: "image", maxCount: 1 }, { name: "pdf", maxCount: 3 }])
+
+  //D. Accept only text fields. If any file upload is made, error with code "LIMIT_UNEXPECTED_FILE" will be issued.
+  const upload = multer({ storage: storageEngine }).none()
+
+  //E. Accepts all files that comes over the wire. An array of files will be stored in req.files.
+  const upload = multer({ storage: storageEngine }).any()
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">D - Multer - Error Handling</p>
+
+<p class="text">
+ When encountering an error, Multer will delegate the error to Express. You can display a nice error page using the standard express way. If you want to catch errors
+ specifically from Multer, you can call the middleware function by yourself. Also, if you want to catch only the Multer errors, you can use the MulterError class that is
+ attached to the multer object itself (e.g. err instanceof multer.MulterError)
+</p>
+
+<p class="underline-text"># Handling Multer Error :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const multer = require('multer')
+  const upload = multer().single('avatar')
+  
+  app.post("/profile", function (req, res) {
+    upload(req, res, function (err) {
+      if (err instanceof multer.MulterError) {
+        // A Multer error occurred when uploading.
+      } else if (err) {
+        // An unknown error occurred when uploading.
+      }
+  
+      // Everything went fine.
+    })
+  })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">E - An Example</p>
+
+<p class="text">
+ We are going to create a full upload file application that accept only single or multiple image from the client. we will have an HTML file with script that will handle
+ our form and send files thru <span class="red bold font-code">fetch()</span> method to our server.
+</p>
+
+<p class="underline-text"># Our HTML Forms :-</p>
+
+<div class="html-block html-code code">
+ <p class="block-title">./views</p>
+ <pre><code class="js language-js">
+  &lt;!DOCTYPE html>
+  &lt;html lang="en">
+    &lt;head>
+      &lt;meta charset="UTF-8" />
+      &lt;meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      &lt;title>Document&lt;/title>
+    &lt;/head>
+    &lt;body>
+      &lt;h1>Upload single file&lt;/h1>
+      &lt;form id="form_single" method="POST" enctype="multipart/form-data">
+        &lt;input type="file" name="image" id="image" />
+        &lt;input type="submit" value="submit" />
+      &lt;/form>
+  
+      &lt;h1>Upload Multiple files&lt;/h1>
+      &lt;form id="form_multiple" method="POST" enctype="multipart/form-data">
+        &lt;input type="file" name="images" id="images" multiple />
+        &lt;input type="submit" value="submit" />
+      &lt;/form>
+      
+      &lt;p id="message" style="display: none; font-weight: bold">Error&lt;/p>
+
+      &lt;script path="/scripts/app.js">&lt;/script>
+    &lt;/body>
+  &lt;/html>  
+</code></pre>
+</div>
+
+<p class="underline-text"># Our Script file :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./public/scripts/app.js</p>
+ <pre><code class="js language-js">
+  const form_single = document.getElementById("form_single")
+  const form_multiple = document.getElementById("form_multiple")
+  
+  const image = document.getElementById("image");
+  const images = document.getElementById("images");
+  
+  const message = document.getElementById("message")
+  
+  form_single.addEventListener("submit", e => {
+    e.preventDefault()
+  
+    const file = image.files[0]
+    console.log(file) 
+
+    if (!file) {
+      alert("please upload a file")
+      return
+    }
+  
+    const formData = new FormData()
+  
+    formData.append("image", file)
+  
+    formData.append(
+      "fields",
+      JSON.stringify({
+        name: "adam",
+        age: 45,
+        job: "programmer",
+      })
+    )
+  
+    fetch("http://localhost:3000/upload", {
+      method: "POST",
+      body: formData,
+    })
+      .then(rawResp => rawResp.json())
+      .then(res => {
+        console.log("photo post response: ", res)
+        showMessage(res)
+      })
+      .catch(err => {
+        console.log("error posting photo: ", err);
+        showMessage(err)
+      } )
+  })
+  
+  form_multiple.addEventListener("submit", e => {
+    e.preventDefault()
+  
+    const files = images.files
+
+    console.log(files) 
+   
+    if (!files.length) {
+      alert("please upload a file")
+      return
+    }
+  
+    const formData = new FormData()
+  
+    console.dir(files)
+  
+    for (let index = 0; index &lt; files.length; index++) {
+      formData.append("images", files[index])
+    }
+  
+    formData.append(
+      "fields",
+      JSON.stringify({
+        name: "adam",
+        age: 45,
+        job: "programmer",
+      })
+    )
+  
+    fetch("http://localhost:3000/uploads", {
+      method: "POST",
+      body: formData,
+    })
+      .then(rawResp => rawResp.json())
+      .then(res => {
+        console.log("photo post response: ", res)
+        showMessage(res)
+      })
+      .catch(err => {
+        console.log("error posting photo: ", err);
+        showMessage(err)
+      } )
+  })
+  
+  
+  function showMessage(res){
+    message.style["display"] = "block"
+  
+    if(res.statusCode === 200)  message.style["color"] = "green"
+    if(res.statusCode === 400)  message.style["color"] = "red"
+  
+    message.textContent = res.msg;
+  
+    setTimeout(() => {
+      message.style["display"] = "none"
+    }, 3000)
+  }
+</code></pre>
+</div>
+
+<p class="underline-text"># Our Express Server file :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  // Require multer
+  const multer = require("multer")
+  const path = require("path")
+  
+  app.use(express.json())
+  app.use(express.static(path.join(__dirname, "public")))
+  app.set("view engine", "ejs")
+  
+  // 1. Set Storage Engine
+  const storageEngine = multer.diskStorage({
+    // A. Set where the files would be uploaded location
+    destination: "./public/uploads",
+    // B. Set the File Name for every incoming files
+    filename: (req, file, cb) => {
+      cb(null, Date.now() + "--" + file.originalname)
+      // cb(error, set filename )
+    },
+  })
+  
+  // Setup file filter extension and mimetype
+  const imageFilter = (req, file, cb) => {
+    // Accept images only
+    const filetypes = /jpeg|jpg|png|gif/
+  
+    const extName = filetypes.test(path.extname(file.originalname).toLowerCase())
+    const mimeType = filetypes.test(file.mimetype)
+  
+    if (mimeType && extName) {
+      return cb(null, true)
+    } else {
+      cb(new Error("Invalid Extension"))
+    }
+  }
+  
+  // 2. Initialize Upload
+  const upload = multer({
+    // A. Set the storage engine
+    storage: storageEngine,
+    // B. Set file size limit 1MB
+    limits: { fileSize: 1000000 },
+    // C. Filter files Only Accept image files
+    fileFilter: imageFilter,
+  }).single("image")
+  
+  // 3. Initialize Uploads
+  const uploads = multer({
+    // A. Set the storage engine
+    storage: storageEngine,
+    // B. Set file size limit 1MB
+    limits: { fileSize: 1000000 },
+    // C. Filter files Only Accept image files
+    fileFilter: imageFilter,
+  }).array("images", 3)
+  
+  
+  app.get("/", (req, res) => {
+    return res.render("index")
+  })
+  
+  app.post("/upload", (req, res) => {
+    // 3. Call the upload method
+    upload(req, res, err => {
+      if (err) {
+        console.dir(err.message)
+        if (err.code === "LIMIT_FILE_SIZE")
+          return res.json({ statusCode: 400, msg: "The file is more than 1MB" })
+        if (err.message === "Invalid Extension")
+          return res.json({
+            statusCode: 400,
+            msg: "Only image files are allowed!",
+          })
+        if (err instanceof multer.MulterError) {
+          return res.json({
+            statusCode: 400,
+            msg: "Upload Error",
+          }) 
+        }
+        return res.json({
+          statusCode: 400,
+          msg: "Error While Uploading the file",
+        })
+      }
+
+      console.log(JSON.parse(req.body.fields)) // { name: "adam", age: 45, job: "programmer" } 
+      console.log(req.file)
+
+      res.json({ statusCode: 200, msg: "Uploaded Successfully" })
+    })
+  })
+  
+  app.post("/uploads", (req, res) => {
+    // 3. Call the upload method
+    uploads(req, res, err => {
+      if (err) {
+        console.dir(err.message)
+        if (err.code === "LIMIT_FILE_SIZE")
+          return res.json({ statusCode: 400, msg: "The file is more than 1MB" })
+        if (err.message === "Invalid Extension")
+          return res.json({
+            statusCode: 400,
+            msg: "Only image files are allowed!",
+          })
+        if (err instanceof multer.MulterError) {
+          return res.json({
+            statusCode: 400,
+            msg: "Upload Error",
+          }) 
+        }
+        return res.json({
+          statusCode: 400,
+          msg: "Error While Uploading the file",
+        })
+      }
+      
+      console.log(JSON.parse(req.body.fields)) // { name: "adam", age: 45, job: "programmer" } 
+      console.log(req.files)
+
+      res.json({ statusCode: 200, msg: "All Files Uploaded Successfully" })
+    })
+  })
+  
+  const port = 3000
+  
+  app.listen(port, () => {
+    console.log(`Server is Running on port ${port}`)
+  })  
+</code></pre>
+</div>

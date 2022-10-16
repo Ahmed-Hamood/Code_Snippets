@@ -1,0 +1,72 @@
+.cv-main-title {
+ font-size: 2.8rem;
+}
+
+.cv-main-title span {
+ font-size: 3rem;
+ display: block;
+ font-weight: 500;
+ color: #2ecc71;
+ margin-top: 15px;
+ margin-left: 10px;
+ opacity: 0;
+ animation: cv_main_title_name 0.5s cubic-bezier(0.63, 0.03, 0.24, 1.25) 2s forwards;
+}
+
+.main-user-container {
+ display: flex;
+}
+
+.cv-user-info-container {
+ flex: 2;
+}
+
+.cv-user-image-container {
+ flex: 1;
+}
+
+.cv-user-info-container ul li {
+ font-size: 1rem;
+ font-weight: 300;
+ line-height: 170%;
+ padding: 12px 0;
+ border-bottom: 1px dotted rgb(50, 56, 91);
+}
+
+.cv-user-info-container ul li:last-child {
+ border: none;
+}
+
+.cv-user-info-container ul li span {
+ font-size: 1.1rem;
+ font-weight: 600;
+ margin-left: 12px;
+}
+
+.cv-user-image-container img {
+ width: 350px;
+ zoom: 1.37;
+ margin-top: 20px;
+ border-radius: 100%;
+ opacity: 0;
+ animation: FadeInAnimation 0.5s ease-in 3s forwards;
+}
+
+.main-user-container + .sub-title {
+ margin-top: 12px !important;
+}
+
+@media screen and (max-width: 1000px) {
+ .main-user-container {
+  display: block;
+ }
+ .cv-user-image-container img {
+  width: 100%;
+ }
+}
+
+@media screen and (min-width: 1366px) {
+ .cv-user-info-container ul li text {
+  font-size: 100%;
+ }
+}

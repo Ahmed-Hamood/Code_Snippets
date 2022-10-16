@@ -1,0 +1,145 @@
+<p class="main-title">3.6 - Express Top-Level <span class="red bold">app</span> Object - Properties And Events</p>
+
+<!-- ********************************** -->
+<p class="sub-title get-title"><span class="red bold font-code"># app.locals</span></p>
+
+<p class="text">
+ <span class="red bold font-code">app.locals</span> Object is a properties that are local variables within the app, which we can use it as a getter or setter and use
+ anywhere throughout the whole app, rather than just the lifetime of a request. We can also use <span class="red bold font-code">app.locals</span> inside our template
+ render
+</p>
+
+<p class="underline-text"># For Example of using app.locals :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express();
+
+  app.locals.title = "My Title"
+  app.locals.username = "Adam"
+  app.locals.email = "Adam@gmail.com"
+
+  app.get("/", (req, res) => {
+    console.log(app.locals.username); // Adam
+    console.log(app.locals.email); // Adam@gmail.com
+    res.send("title is " + app.locals.title);
+    // OR
+    res.render('index'); // Use it inside template render index.pug
+  })
+</code></pre>
+</div>
+
+<!-- ********************************** -->
+<p class="sub-title get-title"><span class="red bold font-code"># app.mountpath</span></p>
+
+<p class="text">
+ <span class="red bold font-code">app.mountpath</span> property has one or more path patterns which the last sub-app was mounted on. A sub-app is an instance of express
+ that’s used for handling request to a route.
+</p>
+
+<p class="underline-text"># An Example 1 of using app.mountpath :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express= require("express") 
+  const app = express()
+  const post = express()
+  const comment = express()
+
+  app.use('/post', post);
+  post.use('/comment', comment);
+
+  console.log(app.mountpath); // '' 
+  console.log(post.mountpath); // '/post'
+  console.log(comment.mountpath); // '/comment'
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example 2 of using app.mountpath :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  const anotherApp = express()
+  
+  anotherApp.get("/contact", (req, res) => {
+    res.send(anotherApp.mountpath)
+  })
+  
+  anotherApp.get("/user", (req, res) => {
+    res.send(anotherApp.mountpath)
+  })
+  
+  app.use("/home", anotherApp); // No mount
+  app.use("/admin", anotherApp) // Will mount on the last main app
+  
+  app.listen(3000, () => console.log("server started"))  
+</code></pre>
+</div>
+
+<p class="text">It is similar to the baseUrl property of the req object , except req.baseUrl returns the matched URL path, instead of the matched patterns.</p>
+
+<div class="code-block code pre-block mgt-30">
+ <p class="block-title">➤ Output</p>
+ <pre><code class="js language-js">
+  http://localhost:3000/home/contact --> /admin  
+  http://localhost:3000/home/user --> /admin 
+  http://localhost:3000/admin/contact --> /admin  
+  http://localhost:3000/admin/contact --> /admin
+</code></pre>
+</div>
+
+<br />
+
+<!-- ########################################## -->
+<p class="main-title bold">- App Object Events</p>
+
+<!-- ********************************** -->
+<p class="sub-title get-title"><span class="red bold font-code"># app.on('mount', callback(parent))</span></p>
+
+<p class="text">
+ The <span class="red bold font-code">mounts</span> event is fired on a sub-app, when it is mounted on a parent app, The parent app is passed to the callback function.
+</p>
+
+<p class="underline-text"># An Example of using the mount event this event invoke when you mount a sub app on main app :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express(); // the main app  
+
+  const admin = express(); // the sub app
+  
+  admin.on('mount', function (parent) {
+    console.log('Admin Mounted')
+    console.log(parent)
+  })
+  
+  admin.get('/', function (req, res) {
+    res.send('Admin Homepage')
+  });
+  
+  app.use('/admin', admin); // Here admin.on('mount'..) -> invoked
+  
+  app.listen(3000, () => {
+    console.log('connecting to server ....');
+  });   
+</code></pre>
+</div>
+
+<div class="code-block code pre-block mgt-30">
+ <p class="block-title">➤ Output</p>
+ <pre><code class="js language-js">
+  Admin Mounted
+  ............
+  ............
+  settings: {...}
+  connecting to server ....
+</code></pre>
+</div>

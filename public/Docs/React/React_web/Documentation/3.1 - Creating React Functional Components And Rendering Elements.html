@@ -1,0 +1,590 @@
+<p class="main-title">3.1 - Creating React Functional Components And Rendering Elements</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">1 - What is Functional Component ?</p>
+
+<p class="text">
+ A <red>Component</red> is a base building block of any react application.It is a JavaScript class or maybe a function which accepts inputs(properties-Props) and return
+ React elements that shows how the User Interface need to be visible.
+</p>
+
+<p class="text">
+ A <red>Functional Component</red> is a plain javascript function <green3>(Arrow and Regular Functions)</green3> that returns a JSX/HTML code. It behaves pretty much the
+ same way as a <blue>Class Component</blue> but Class components have some additions. The <red>Functional Component</red> accepts props as an arguments and returns
+ <blue>React Element</blue>. These functions may or may not receive data as parameters. In the <red>Functional Components</red>, the return value is the
+ <green3>JSX</green3> code to render to the DOM tree.
+</p>
+
+<p class="underline-text"># Here are the key reasons to start using functional components:</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>Functional components are easy to read and reason about</li>
+  <li>Functional components are easy to test</li>
+  <li>Functional components can potentially have a better performance</li>
+  <li>Functional components are easy to debug</li>
+  <li>Functional components are more reusable</li>
+ </ul>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">2 - Creating a Simple Functional Component</p>
+
+<p class="text">
+ We are going to create a simple functional component that help make the code easy by splitting the logic into reusable independent code. Always start your component
+ names with a <green3>Capital Letter</green3>, because React treats components start with a lowercase letters as <blue>DOM Tags</blue>. For example
+ <orange>&lt;div></orange> represent an HTML <green3>&lt;div></green3> tag, but <orange>&lt;Welcome></orange>
+ represents a component that will be rendered in your DOM. Let's create our functional component.
+</p>
+
+<p class="underline-text"># Creating a Functional Component that start with a Capital letter :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  // Importing the following libraries
+  import React from "react"; <green2> &lt;-- Now This is Optional to Import </green2>
+  import ReactDOM from "react-dom";
+  
+  function Welcome() {
+    return &lt;h2> Welcome to ReactJS &lt;/h2>;
+  }
+
+  // Render our component element into the DOM
+  ReactDOM.render(&lt;Welcome />, document.getElementById("root"));  
+</code></pre>
+</div>
+
+<p class="underline-text"># Components can be assigned to a variables :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import ReactDOM from "react-dom"
+
+  function Welcome() {
+   return &lt;h2> Welcome to ReactJS &lt;/h2>
+  }
+  
+  const element = &lt;Welcome />
+  
+  ReactDOM.render(element, document.getElementById("root"))
+</code></pre>
+</div>
+
+<p class="text">
+ In the above example, we have created a function component called <blue>Welcome</blue> that return a <green>h1</green> tag. The Component <blue>Welcome</blue> is used as
+ an HTML tag. We can either add it into the <red>render()</red> method or assigned to <blue>element</blue> variable, then add the element variable into the
+ <red>render()</red> method.
+</p>
+
+<p class="underline-text"># Creating an App component that has other component inside it :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import ReactDOM from "react-dom"
+
+  const Welcome = () => &lt;h2> Welcome to ReactJS &lt;/h2>
+  
+  function App() {
+   return (
+    &lt;div>
+     &lt;Welcome />
+    &lt;/div>
+   )
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">3 - Exporting and Importing Components</p>
+
+<p class="text">
+ We have learned that React application is a collection of interactive components, and these components can be re-used that may have been defined elsewhere. To do so we
+ need to know two operations broadly known as Importing and Exporting. Instead od defining all of our components within the same where we render them, we can separate
+ them into different files to make our application clean and simple. If you have a complex app and have to scroll through hundreds or thousands of lines of code, then the
+ job of debugging or just understanding the app becomes that much harder.
+</p>
+
+<p class="sub-sub-title mark get-title">A - Export Default And Export Only</p>
+
+<p class="text">
+ When using <blue>export default</blue> on a function file. In order to import the <blue>export default</blue> function from that file, we can use only the address and
+ use the keyword import before it, and also we can use only the <blue>export</blue> keyword, then we have import each name inside <green3>{ }</green3> brackets separate
+ each named parameter within the curly braces.
+</p>
+
+<p class="underline-text"># Exporting and Importing export default function :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  export default function App() {}
+  export default function App2() {} // Only one default export allowed per module.
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import App from "./App.js"
+</code></pre>
+</div>
+
+<p class="underline-text"># Using export default at the end :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  function App() { }
+  export default App;
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import App from "./App.js"
+</code></pre>
+</div>
+
+<p class="underline-text"># Using export only :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  export function App() { }
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import { App } from "./App.js"
+  import App from "./App.js" // App does not contain a default export
+</code></pre>
+</div>
+
+<p class="underline-text"># Using export with Arrow function :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  export const App = () => { }
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import { App } from "./App.js"
+</code></pre>
+</div>
+
+<p class="underline-text"># Using export default with Arrow function :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  export default const App = () => { } // Syntax Error
+  const App = () => { }
+  export default App
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import App from "./App.js"
+</code></pre>
+</div>
+
+<!-- ************************************************************************************** -->
+<p class="sub-sub-title mark get-title">B - Multiple Exports</p>
+
+<p class="text">
+ We can export several functions using the <red>export</red> keyword, then we can import all of them within the curly braces separate by comma. And also we can combine
+ functions with <red>export</red> and <red>default export</red> keywords. let see the following examples.
+</p>
+
+<p class="underline-text"># add Export beside each function and Importing several named parameters :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  export function App1() {}
+  export function App2() {}
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import { App1, App2 } from "./App.js"
+</code></pre>
+</div>
+
+<p class="underline-text"># A combination of One default export function and other only exports functions :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  export default function App1() {}
+  export function App2() {}
+  export function App3() {}
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import App1, { App2, App3 } from "./App.js"
+</code></pre>
+</div>
+
+<p class="underline-text"># One default export and other exports at the end :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  export default function App1() {}
+  function App2() {}
+  function App3() {}
+
+  export { App2, App3 }
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import App1, { App2, App3 }  from "./App.js"
+</code></pre>
+</div>
+
+<p class="underline-text"># Exporting multiple arrow functions using export keyword on each arrow function:-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  export const App1 = () => { }
+  export const App2 = () => { }
+  export const App3 = () => { }
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import { App1, App2, App3 } from "./App.js"
+</code></pre>
+</div>
+
+<p class="underline-text"># Exporting multiple arrow functions at the end :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  const App1 = () => { }
+  const App2 = () => { }
+  const App3 = () => { }
+  
+  export { App1, App2, App3 }
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import { App1, App2, App3 } from "./App.js"
+</code></pre>
+</div>
+
+<!-- ************************************************************************************** -->
+<p class="sub-sub-title mark get-title">C - Example</p>
+
+<p class="underline-text"># Example :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import ReactDOM from "react-dom"
+  import App from "./App"
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))  
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  import { Welcome } from "./Welcome"
+
+  function App(){
+    return(
+      &lt;div>
+        &lt;Welcome />
+      &lt;/div>
+    )
+  }
+
+  export default App;
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/Welcome.js</p>
+ <pre><code class="js language-jsx">
+  export const Welcome = () => &lt;h2> Welcome to ReactJS &lt;/h2>
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+ <pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div>
+      &lt;h2> Welcome to ReactJS &lt;/h2>
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">4 - Composing Components - Re-use Components Many Times</p>
+
+<p class="text">
+ <red>Composing Components</red> it's building components from other components. Components can refer to other components in their output. We can gather all other
+ components into one main component. When a component contains another component it can be said that the parent component owns the child component.
+</p>
+
+<p class="underline-text"># An Example of rendering components :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  function WelcomeMessage() {
+    return &lt;h1> Welcome &lt;/h1>;
+  }
+
+  function App() {
+    return (
+      &lt;div>
+        &lt;<yellow>WelcomeMessage</yellow> />
+        &lt;<yellow>WelcomeMessage</yellow> />
+        &lt;<yellow>WelcomeMessage</yellow> />
+      &lt;/div>
+    )
+  }
+
+  export default App
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+ <pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div>
+      &lt;h1> Welcome &lt;/h1>
+      &lt;h1> Welcome &lt;/h1>
+      &lt;h1> Welcome &lt;/h1>
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example of rendering components into the App Component from different component files :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import ReactDOM from "react-dom"
+  import App from "./App"
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))  
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  import { Header } from "./AllComponents/Header.js"
+  import { Main } from "./AllComponents/Main.js"
+  import { Footer } from "./AllComponents/Footer.js"
+
+  function App() {
+    return (
+      &lt;div>
+        &lt;<yellow>Header</yellow> />
+        &lt;<yellow>Main</yellow> />
+        &lt;<yellow>Footer</yellow> />
+      &lt;/div>
+    )
+  }
+
+  export default App
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/AllComponents/Header.js</p>
+ <pre><code class="js language-jsx">
+  export const Header = () => &lt;h1> This The Header &lt;/h1>
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/AllComponents/Main.js</p>
+ <pre><code class="js language-jsx">
+  export const Main = () => &lt;h1> This The Main &lt;/h1>
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/AllComponents/Footer.js</p>
+ <pre><code class="js language-jsx">
+  export const Footer = () => &lt;h1> This The Footer &lt;/h1>  
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+ <pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div>
+      &lt;h1> This The Header &lt;/h1>
+      &lt;h1> This The Main &lt;/h1>
+      &lt;h1> This The Footer &lt;/h1>
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="text">
+ In the example above, we have a single <blue>App</blue> component that contain other components the <green3>Header, Main</green3> and <green3>Footer</green3> components,
+ our <blue>App</blue> component has these children, and all children has one parent component which the <blue>App</blue> Component. React components by design are meant
+ to contain other React components.
+</p>
+
+<p class="underline-text"># The following Image shows rendering both competent in the main App component :-</p>
+
+<img path="/img/image009.png" id="image" alt="" />
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">5 - Nesting Components</p>
+
+<p class="text">
+ In <blue>React</blue>, we can nest components inside within one another. The components that are nested inside parent components are called child components. This helps
+ in creating more complex User Interfaces, and it's fast and easy to separate UI elements. In the following picture we have a parent component which has two children
+ components, and one of the children components has other three child components.
+</p>
+
+<p class="underline-text"># In the following parent/child relationship represent as a DOM tree :-</p>
+
+<img path="/img/image010.png" id="image" alt="" />
+
+<p class="underline-text"># An Example of nesting components :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import ReactDOM from "react-dom"
+  import App from "./App"
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))  
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/App.js</p>
+ <pre><code class="js language-jsx">
+  import Header from "./Components/Header"
+  import MainContent from "./Components/MainContent"
+  
+  function App() {
+   return (
+    &lt;div>
+     &lt;Header />
+     &lt;MainContent />
+    &lt;/div>
+   )
+  }
+
+  export default App
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/Components/Header.js</p>
+ <pre><code class="js language-jsx">
+  export default function Header() {
+    return (
+     &lt;div>
+      &lt;<yellow>Logo</yellow> />
+      &lt;<yellow>MenuList</yellow> />
+     &lt;/div>
+    )
+   }
+   
+   const Logo = () => &lt;div> Logo Here &lt;/div>
+   
+   const MenuList = () => {
+    return (
+      &lt;div className="listStyle" >
+        &lt;ul>
+         &lt;li>Option 1&lt;/li>
+         &lt;li>Option 2&lt;/li>
+         &lt;li>Option 3&lt;/li>
+        &lt;/ul>
+      &lt;/div>
+    )
+   }
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/Components/MainContent.js</p>
+ <pre><code class="js language-jsx">
+  function MainContent() {
+    return (
+     &lt;div className="styleUser" >
+      &lt;<yellow>UserName</yellow> />
+     &lt;/div>
+    )
+   }
+   
+   const UserName = () => &lt;h1> Welcome Adam &lt;/h1>
+   
+   export default MainContent
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+ <pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div>
+      &lt;div>
+        &lt;div> Logo Here &lt;/div>
+
+        &lt;div <blue>class</blue>=<green3>"listStyle"</green3>>
+          &lt;ul>
+            &lt;li>Option 1&lt;/li>
+            &lt;li>Option 2&lt;/li>
+            &lt;li>Option 3&lt;/li>
+          &lt;/ul>
+        &lt;/div>
+      &lt;/div>
+
+      &lt;div <blue>class</blue>=<green3>"styleUser"</green3>>
+        &lt;h1> Welcome Adam &lt;/h1>
+      &lt;/div>
+
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="underline-text">An Example Diagram :-</p>
+
+<img path="/img/image011.PNG" id="image" alt="" />

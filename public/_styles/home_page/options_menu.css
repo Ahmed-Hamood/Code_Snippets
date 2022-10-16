@@ -1,0 +1,82 @@
+.body-container .options-menu-container {
+ opacity: 1;
+ font-family: 'Segoe UI', 'Source Sans Pro', sans-serif, Arial;
+ position: absolute;
+ /* top: 50%;
+ left: 50%; */
+ z-index: 30;
+ background: rgb(40, 39, 39);
+ border: 1px solid rgb(55, 55, 55);
+ border-radius: 0 12px 12px 12px;
+ width: 300px;
+ box-shadow: rgba(52, 52, 52, 0.2) 0px 2px 8px 0px;
+ display: none;
+ transition: 200ms all;
+}
+
+.body-container .options-menu-container.hide {
+ opacity: 0;
+}
+
+@media screen and (max-width: 1000px) {
+ .body-container .options-menu-container {
+  display: none;
+ }
+}
+
+.options-menu-container .option-menu-content-wrapper {
+ padding: 12px 0 12px 0;
+}
+
+.options-menu-container .option-menu-content-wrapper .option-btn {
+ padding: 12px 9px;
+ margin: 0 6px;
+ border-radius: 4px;
+ transition: 200ms all;
+}
+
+.options-menu-container .option-menu-content-wrapper .option-btn:hover {
+ cursor: pointer;
+ background: #333030;
+}
+
+.option-menu-content-wrapper .option-btn .option-text {
+ font-size: 1rem;
+ font-weight: 500;
+ color: rgb(186, 186, 186);
+ transition: 200ms color;
+}
+
+.option-btn:hover .option-text {
+ color: #ffff;
+}
+
+.option-menu-content-wrapper .options-menu-separator {
+ width: 100%;
+ background: rgb(53, 52, 52);
+ height: 1px;
+ margin: 5px 0;
+}
+
+.option-menu-content-wrapper .option-btn.delete-btn {
+ border: 2px solid #ea3f2c;
+ /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
+ margin: 14px 18px 0 18px;
+ text-align: center;
+ transition: 300ms all;
+}
+
+.option-menu-content-wrapper .option-btn.delete-btn .option-text {
+ color: #e74c3c;
+ font-size: 1.1rem;
+}
+
+.option-menu-content-wrapper .option-btn.delete-btn:hover {
+ background: #e74c3c;
+ border: 2px solid rgb(24, 23, 23);
+}
+
+.option-menu-content-wrapper .option-btn.delete-btn:hover .option-text {
+ color: #d9d9d9;
+}
+ 

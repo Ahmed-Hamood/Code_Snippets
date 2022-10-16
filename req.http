@@ -1,0 +1,2 @@
+
+GET http://localhost:3331/get_all_icons HTTP/1.1

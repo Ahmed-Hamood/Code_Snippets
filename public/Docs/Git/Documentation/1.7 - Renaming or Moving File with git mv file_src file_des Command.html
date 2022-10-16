@@ -1,0 +1,159 @@
+<p class="main-title">
+ 1.7 - Renaming or Moving File with <terminal><orange>git mv file_src file_des</orange></terminal> Command
+</p>
+
+<p class="text">
+ In Git renaming or moving files is a two-step operation, first we have to modify our working directory and then we have to stage two type of changes an addition and a
+ deletion Git provides a special command that does both operation in one step, the <terminal>git mv file_src file_des</terminal> command. Lets check both operations first
+ before we learn about our special command.
+</p>
+
+<p class="text">
+ We have a single file in our working directory, and that is <file>file1.txt</file> we are going to rename it to <file>main.js</file> by using the
+ <terminal>mv</terminal> command in unix to rename <file>file1.txt</file>. First let's view our project folder content.
+</p>
+
+<section terminal-content title-header="List Directory Content" preferred-sign=">" line-num="">
+ <pre>
+  ls
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  file1.txt
+</pre
+ >
+</div>
+
+<p class="text">With <terminal>mv</terminal> command we can <sky>Rename</sky> or <sky>Remove</sky> files and directories.</p>
+
+<section terminal-content title-header="Rename File name" preferred-sign=">" line-num="">
+ <pre>
+  mv file1.txt main.js
+</pre
+ >
+</section>
+
+<p class="text">
+ Let's run <terminal>git status</terminal> and see our changes, will see that we have two changes both are un-stages because they are indicated by red. We a have
+ <file>file1.txt</file> with delete operation, and under untracked files we have a new file called <file>main.js</file> as we know Git doesn't automatically track all
+ your new files
+</p>
+
+<section terminal-content title-header="Check Working Directory status" preferred-sign=">" line-num="">
+ <pre>
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+  Changes not staged for commit:
+    (use "git add/rm &lt;file>..." to update what will be committed)
+    (use "git restore &lt;file>..." to discard changes in working directory)
+          <red>deleted:    file1.txt</red>
+  
+  Untracked files:
+    (use "git add &lt;file>..." to include in what will be committed)
+          <red>main.js</red>
+  
+  no changes added to commit (use "git add" and/or "git commit -a")
+</pre>
+</div>
+
+<p class="text">
+ Every time you have a new file in your project you have to add it to the staging area, so <red>Git</red> starts tracking it. So we need to use the
+ <terminal>git add</terminal> command, to stage both these changes.
+</p>
+
+<section terminal-content title-header="Commit staging and Get Status" preferred-sign=">" line-num="">
+ <pre>
+  git add file1.txt // Stage file1.txt deletion
+  git add main.js // Stage main.js addition
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+  Changes to be committed:
+    (use "git restore --staged &lt;file>..." to unstage)
+          <green>renamed:    file1.txt -> main.js</green>
+</pre>
+</div>
+
+<p class="text">
+ Now, Git recognized that ewe renamed <file>file1.txt</file> to <file>main.js</file>, as you see renaming is indicated by green which means this is in the staging area,
+ and ready to commit it to the repository.
+</p>
+
+<section terminal-content title-header="Commit our Changes to the Repository" preferred-sign=">" line-num="">
+ <pre>
+  git commit -m "file Rename from file1.txt to main.js"
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  [master f9adf6f] file modify from file1.txt to main.js
+  1 file changed, 0 insertions(+), 0 deletions(-)
+  rename file1.txt => main.js (100%)
+</pre
+ >
+</div>
+
+<p class="text">
+ Let's do renaming again, but with our special <terminal>git mv</terminal> command to rename or move our file in one step, instead of using the standard Linus/Unix
+ <terminal>mv</terminal> command, We are going to use the <terminal>git mv file_src file_des</terminal> command.
+</p>
+
+<section terminal-content title-header="Rename main.js to file1.txt & Get Status" preferred-sign=">" line-num="">
+ <pre>
+  git mv main.js file1.txt
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  $ git status
+  On branch master
+  Changes to be committed:
+    (use "git restore --staged &lt;file>..." to unstage)
+          <green>renamed:    main.js -> file1.txt</green>
+</pre>
+</div>
+
+<p class="text">
+ We renamed <file>main.js</file> file into <file>file1.txt</file> without the need to commit multiple changes. Our <terminal>git mv</terminal> command the changes are
+ applied to both the working directory amd the <yellow>staging area</yellow>. Now let's commit the changes.
+</p>
+
+<section terminal-content title-header="Commit Changes to the Repository" preferred-sign=">" line-num="">
+ <pre>
+  git commit -m "Refactor code"
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  [master 3dc0bb3] Refactor code
+  1 file changed, 0 insertions(+), 0 deletions(-)
+  rename main.js => file1.txt (100%)
+</pre
+ >
+</div>
+
+<p class="text">
+ If you look at the statistics, one file has changed and we have zero insertions because we haven't added any new lines to any of our files, and also have a zero
+ deletions because we haven't remove any lines from any files
+</p>

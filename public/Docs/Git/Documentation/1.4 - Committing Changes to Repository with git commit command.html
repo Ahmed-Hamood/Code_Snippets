@@ -1,0 +1,179 @@
+<p class="main-title">
+ 1.4 - Committing Changes to Repository with <terminal><orange>git commit -m ""</orange></terminal> Command
+</p>
+<!-- 25:24 -->
+
+<!-- ################################################################################################################################## -->
+<p class="sub-title">
+ 1. Commit Changes with Simple Message with <terminal><yellow>git commit -m ""</yellow></terminal> Command
+</p>
+
+<p class="text">
+ We are going to commit our snapchat from the staging area and store it permanently in our <red>Git Repository</red>. We have a snapchat in the staging are ready to be
+ committed in our repository permanently. to confirm that our files in the staging area and ready to be committed we type <terminal>git status</terminal> command.
+</p>
+
+<section class="tab-container">
+ <div class="btn_tabs">
+  <button class="tab-btn active">Check Project Status</button>
+  <button class="tab-btn">Staging Files</button>
+ </div>
+ <div class="main-tab-content">
+  <!-- ########### Begin ########### -->
+
+  <!-- ************************ -->
+  <div class="tab-content">
+   <section terminal-content title-header="Check Directory Status" preferred-sign=">" line-num="">
+    <pre>
+  git status
+</pre
+    >
+   </section>
+
+   <div class="terminal-output">
+    <pre>
+  On branch master
+
+  No commits yet
+  
+  Changes to be committed:
+    (use "git rm --cached &lt;file>..." to unstage)
+          <green>new file:   file1.txt</green>
+          <green>new file:   file2.txt</green>
+</pre>
+   </div>
+  </div>
+  <!-- ************************ -->
+
+  <!-- ************************ -->
+  <div class="tab-content">
+   <section terminal-content title-header="Add all file into the staging area" preferred-sign=">" line-num="">
+    <pre>
+  git add *   
+</pre
+    >
+   </section>
+  </div>
+  <!-- **************************** -->
+
+  <!-- ########### End ########### -->
+ </div>
+</section>
+
+<p class="text">
+ To commit our snapchat in our repository we type <terminal>git commit -m "initial commit."</terminal>, we use flag <terminal>-m</terminal> for message, then we write our
+ message then we open double quotes, inside it we type a short description that identifies what this snapshot represents, so as this is our first commit then the message
+ will be <yellow><consolas>"initial commit."</consolas></yellow
+ >, you can name it whatever you want.
+</p>
+
+<section terminal-content title-header="Commit our files to repository" preferred-sign=">" line-num="">
+ <pre>
+  git commit -m "initial commit."
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  [master (root-commit) 50cd29e] initial commit.
+  2 files changed, 3 insertions(+)
+  create mode 100644 file1.txt
+  create mode 100644 file2.txt
+</pre
+ >
+</div>
+
+<img id="image" alt="" path="/img/image021.PNG" alt="" />
+
+<!-- ################################################################################################################################## -->
+<p class="sub-title">
+ 2. Commit Changes with Detailed Message with <terminal><yellow>git commit</yellow></terminal> Command
+</p>
+
+<p class="text">
+ sometime you may need to explain your committed snapshot in detailed description or more details, instead of providing a short message that does not explain what is
+ going on. For example if you work on a bug and you want to explain it with your valuable solution while committing you code.
+</p>
+
+<p class="text">
+ With situations like this we drop <terminal>git commit -m "bugs fix"</terminal>, and we only just type <terminal>git commit</terminal> command. After you press enter our
+ default editor will open a file called <red>"COMMIT_EDITMSG"</red> stored in .git sub-directory, here we can edit file commit.
+</p>
+
+<section terminal-content title-header="Commit our files to repository without message" preferred-sign=">" line-num="">
+ <pre>
+  git commit 
+  // hint: Waiting for your editor to close the file... 
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+ <gray>>> .git/COMMIT_EDITMSG</gray>
+
+  <green># Please enter the commit message for your changes. Lines starting</green>
+  <green># with '#' will be ignored, and an empty message aborts the commit.</green>
+  <green>#</green>
+  <green># On branch master</green>
+  <green># Changes to be committed:</green>
+  <green>#</green>	<sky>modified:   file2.txt</sky>
+  <green>#</green>
+</pre>
+</div>
+
+<p class="text">
+ Texts After <terminal>#</terminal> sign are considered as a comment, we can write our description any where. We can specify title them below write a long description as
+ you see below.
+</p>
+
+<div class="terminal-output">
+ <pre>
+  Fix Bugs:
+
+  Our bugs occur because the string value ......
+  <green># Please enter the commit message for your changes. Lines starting</green>
+  <green># with '#' will be ignored, and an empty message aborts the commit.</green>
+  <green>#</green>
+  <green># On branch master</green>
+  <green># Changes to be committed:</green>
+  <green>#</green>	<sky>modified:   file2.txt</sky>
+  <green>#</green>
+</pre>
+</div>
+
+<div class="terminal-output">
+ <pre>
+  <gray>// you can remove all comment and add new lines</gray>
+
+  Fix Bugs:
+
+  Our bugs occur because the string value ......
+</pre>
+</div>
+
+<p class="text">
+ Then, we save the changes and then we close <red>COMMIT_EDITMSG</red> file window, our snapshot will committed and git will return a message statists about what was
+ changed. As you see below <green>2 insertion</green> or two lines were inserted
+</p>
+
+<section terminal-content title-header="Commit our files to repository without message" preferred-sign=">" line-num="">
+ <pre>
+  git commit 
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  [master 78822ce] Fix Bugs
+   2 files changed, 2 insertions(+) 
+</pre
+ >
+</div>
+
+<p class="text">
+ After you commit snapshot changes into your repository, our project terminal will tur green, which mean it doesn't have any changes so what we have in pur working
+ directory is exactly the same content we have in the staging area which is exactly te same content we have in the last commit.
+</p>

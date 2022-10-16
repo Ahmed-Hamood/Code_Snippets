@@ -1,0 +1,163 @@
+body,
+html {
+ font-family: 'Segoe UI', 'Source Sans Pro', sans-serif;
+ color: #353b48;
+ /* font-size: 16px; */
+ background: var(--body-container);
+ zoom: var(--zoom-body);
+ -webkit-filter: contrast(106%);
+ filter: contrast(106%);
+ -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+ font-style: normal;
+ font-stretch: 100%;
+ vertical-align: baseline;
+ overflow-wrap: break-word;
+ overflow: hidden;
+ text-rendering: optimizelegibility;
+ text-size-adjust: 100%;
+ -webkit-font-smoothing: antialiased;
+ letter-spacing: normal;
+}
+
+a {
+ text-decoration: none;
+ color: var(--text-color);
+}
+
+/* Scroll bar style */
+::-webkit-scrollbar {
+ width: 5px;
+ height: 3px;
+}
+
+::-webkit-scrollbar-track {
+ background: var(--body-container);
+ border-radius: 0px;
+ /* box-shadow: inset 7px 0px 12px #282c34; */
+}
+
+::-webkit-scrollbar-thumb {
+ background: #383248;
+ border-radius: 0;
+}
+::-webkit-scrollbar-thumb:hover {
+ background: #8aad0d;
+}
+
+.pre-block,
+.terminal-output,
+.tab-container {
+ transition: 400ms max-width;
+}
+
+.pre-block::-webkit-scrollbar  {
+ width: 2px;
+ height: 2px;
+}
+
+.pre-block:not(.pre-block + .terminal-output) {
+ margin-bottom: calc(1.2 * 1.7rem);
+}
+
+.pre-block + .terminal-output {
+ margin-top: calc(1.2 * -0.6rem);
+}
+
+.pre-block.full-height {
+ max-height: none !important;
+}
+
+[full-height] {
+ max-height: none !important;
+}
+
+.content-text-error {
+ font-size: 1.4rem;
+ text-align: center;
+ margin-top: 33px;
+ color: #ea2611;
+ border: 1px solid #ca3e2e;
+}
+
+.content-text-error h1 {
+ border-bottom: 1px solid #a52214;
+ font-weight: 500;
+}
+
+.content-text-error span {
+ font-size: 1rem;
+ font-weight: 500;
+ color: #ffffff;
+ display: block;
+ background: #82130779;
+}
+
+.content-text-error h1,
+.content-text-error span {
+ padding: 10px 0;
+}
+
+.vscode-svg-btn {
+ position: absolute;
+ width: 25px;
+ height: 25px;
+
+ position: absolute;
+ right: 0.4rem;
+ z-index: 3;
+ opacity: 0.4;
+ transition: 500ms all;
+ cursor: pointer;
+}
+
+.vscode-svg-btn:hover {
+ opacity: 1;
+}
+
+.disable-btn {
+ opacity: 0.1;
+ pointer-events: none;
+}
+
+#blank-modal {
+ display: none;
+ position: absolute;
+ inset: 0;
+}
+
+#blank-modal.show-menu {
+ background-color: rgba(0, 0, 0, 0.388);
+ display: block;
+ z-index: 2;
+}
+
+#blank-modal.show-options {
+ z-index: 11;
+ display: block;
+}
+
+#blank-modal.show-tooltip {
+ background-color: rgba(0, 0, 0, 0.596);
+ z-index: 10;
+ display: block;
+}
+
+@media screen and (max-width: 1366px) {
+ body,
+ html {
+  zoom: var(--zoom-body);
+  /* font-size: 15px; */
+ }
+}
+
+@media screen and (max-width: 1000px) {
+ body,
+ html {
+  zoom: var(--zoom-body);
+ /* font-size: 12px;  */
+ }
+
+ .svg.vscode-svg-btn {
+  display: none;
+ }
+}

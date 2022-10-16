@@ -1,0 +1,389 @@
+/* ###################################### */
+/* ######## HTML ############## */
+/* ###################################### */
+/* #region */
+
+htmlString,
+htmlString * {
+ color: #ce9178 !important;
+}
+
+htmlTagColor {
+ color: #4dbbf7;
+}
+
+htmlAttributeColor {
+ color: #a5d8f3;
+}
+
+htmlAttributesNoValue {
+ color: #ff6b6b;
+}
+
+htmlComment,
+htmlComment * {
+ color: #6a9955 !important;
+}
+
+htmlEqualSignColor {
+ color: #d4d4d4;
+}
+
+htmlAngleBracketsColor {
+ color: #9d9d9d;
+}
+
+/* #endregion */
+
+/* ###################################### */
+/* ############### JS ################### */
+/* ###################################### */
+
+/* #region */
+
+jsComment,
+jsComment jspropertycolor,
+jsComment jsstringexp,
+jsComment * {
+ color: gray !important;
+}
+
+/* jsString:not(jsString sky, jsString BracketStringColor, jsString jsDollarSignColor, jsString jsExpressionString),
+jsString *:not(jsString sky, jsString BracketStringColor, jsString jsDollarSignColor, jsString jsExpressionString) {
+ color: #ce9178 !important;
+} */
+
+jsString:not(jsComment jsString),
+jsString *:not(jsComment jsString *) {
+ color: #ce9178 !important;
+}
+
+jsStringExp,
+jsStringExp jspropertycolor,
+jsStringExp jsobjectliteralcolorkey,
+jsStringExp JSObjectLiteralColorValue,
+jsStringExp jsobjectpropertyvalue,
+jsStringExp jsdigitcolor,
+jsStringExp jskeywordcolor {
+ color: #ce9178 !important;
+}
+
+jsDollarSignColor {
+ color: #4ebef8;
+}
+
+jsStringExp CurlyBracketStringExpColor,
+jsStringExp CurlyBracketStringExpColor * {
+ color: #4ebef8 !important;
+}
+
+JsSignsColor:not(jsStringExp JsSignsColor) {
+ color: #fff;
+}
+
+/* jsString white,
+jsString white * {
+ color: #ffff !important;
+} */
+
+jsExpressionString {
+ color: #9cdcfe;
+}
+
+jsKeywordColor {
+ color: #569cd6;
+ /* color: #ff7b72; */
+}
+
+jsKeyword2Color {
+ color: #dcdca6;
+}
+
+jsKeyword3Color {
+ color: #c586b6;
+}
+
+jsKeyword4Color {
+ color: #dcdca6;
+}
+
+jsFunctionNameColor {
+ color: #dcdca6;
+}
+
+jsVariableNameColor {
+ color: #4fc1ff;
+}
+
+jsPropertyColor {
+ color: #9cdcfe;
+}
+
+JsBooleanColor {
+ color: rgb(41, 227, 171);
+}
+
+JsPropertyImport:not(JsPropertyImport JsSignsColor),
+JsPropertyImport *:not(JsPropertyImport JsSignsColor) {
+ color: #9cdcfe !important;
+}
+
+jsVariableNameFunctionColor {
+ color: #dcdca6;
+}
+
+jsDigitColor {
+ color: #b5ce96;
+}
+
+jsParametersColor {
+ color: #9cdcfe;
+}
+
+jsArrayMethod {
+ color: #4dbbf7;
+}
+
+jsSlashColor {
+ color: white;
+}
+
+/* Object keys and values */
+
+JSObjectLiteralColorKey {
+ color: #9cdcfe;
+}
+
+JSObjectLiteralColorValue {
+ color: #9cdcfe;
+}
+
+JSObjectPropertyValue {
+ color: #9cdcfe;
+}
+
+objectLiteralColor jsDigitColor {
+ color: #b5ce96;
+}
+
+/* #endregion */
+
+/* ###################################### */
+/* ############## React ################### */
+/* ###################################### */
+/* #region */
+
+reactJSXTag {
+ color: #569cd6;
+}
+
+reactArrowSign {
+ color: rgb(200, 200, 200);
+}
+
+reactBrackets {
+ color: gray;
+}
+
+/* reactJSXTag reactJSXAttribute, */
+reactJSXAttribute {
+ color: #c5a5c5;
+}
+
+/* reactJSXTag reactHTMLAttribute  */
+reactHTMLAttribute {
+ color: #9cdcfe;
+}
+
+/* reactJSXTag jsDigitColor,  */
+jsDigitColor {
+ color: #b5ce96;
+}
+
+reactComponentColor {
+ color: #4ec9a7;
+}
+
+reactStateVariable {
+ color: #9cdcfe;
+}
+
+reactTextColor,
+reactTextColor * {
+ color: #d4d4d4 !important;
+ display: inline;
+}
+
+/* #endregion */
+
+/* ###################################### */
+/* ############## JSON ################### */
+/* ###################################### */
+/* #region */
+
+JSONKey {
+ color: #9cdcfe;
+}
+
+JSONValue {
+ color: #ce9178;
+}
+
+JSONCurlyBracket {
+ color: #ecf0f1;
+}
+
+JSONBracket {
+ color: #c0c0c0;
+}
+
+JSONCaretSign {
+ color: #f65b5b;
+}
+
+/* #endregion */
+
+/* ###################################### */
+/* ############## CSS ################### */
+/* ###################################### */
+/* #region */
+
+cssCommentColor,
+cssCommentColor * {
+ color: #6a9955 !important;
+}
+
+cssStringColor {
+ color: #ce9178;
+}
+
+cssCurlyBracketsColor {
+ color: #d4d4d4;
+}
+
+cssParenthesesColor {
+ color: #e643a7;
+}
+
+cssClassColor {
+ color: #d7ba7d;
+}
+
+cssPseudoClasses {
+ color: #d7ba7d;
+}
+
+cssIdColor {
+ color: #9cdcfe;
+}
+
+cssHtmlTagColor {
+ color: #d7ba7d;
+}
+
+cssPropertyName {
+ color: #9cdcfe;
+}
+
+cssPropertyValue {
+ color: #dcdcaa;
+}
+
+cssPropertyValuesSetColor {
+ color: #dcdcaa;
+}
+
+cssPropertyVarValue {
+ color: #9cdcfe;
+}
+
+cssDigitWithUnitsColor {
+ color: #b5ce96;
+}
+
+cssHEXColor {
+ color: #ce9178;
+}
+
+/* #endregion */
+
+
+
+/* #endregion */
+
+/* ###################################### */
+/* ############## Python ################### */
+/* ###################################### */
+/* #region */
+
+
+
+/* 
+
+pyTopKeyword:not(pyString pyTopKeyword) {
+ color: #3186d6;
+}
+pyOtherKeyword {
+ color: #c586c0;
+}
+
+pyFunctionName {
+ color: #f9f99c;
+}
+
+pyString,
+pyString
+ *:not(pyString pyComment, pyString pyPlaceHolder, pyString pyPlaceHolder pyFunctionName, pyString pyPlaceHolder pyVariable, pyString pyPlaceHolder pyDigit, pyString
+  pyCurlyInString) {
+ color: #ce9178;
+}
+
+pyString pyComment,
+pyString pyComment * {
+ color: #ce9178 !important;
+}
+
+pyString pyPlaceHolder {
+ color: rgb(255, 255, 255) !important;
+}
+
+pyString pyCurlyInString {
+ color: rgb(229, 108, 209) !important;
+}
+
+pyBracket {
+ color: rgb(228, 240, 118);
+}
+
+pyWhiteColor {
+ color: white;
+}
+
+pyVariable {
+ color: rgb(153, 191, 241);
+}
+
+pyDigit {
+ color: rgb(149, 235, 198);
+}
+
+pyTrueFalse {
+ color: #569cd6;
+}
+
+pyFormatF {
+ color: #56d687;
+}
+
+pyOrange{
+  color: rgb(239, 207, 76);
+}
+
+pyComment,
+pyComment *:not(pyString pyComment, pyString pyComment pyVariable, pyString pyComment pyFunctionName, pyString pyComment pyOtherKeyword) {
+ color: #34855e !important;
+}
+
+*/
+
+/* #endregion */

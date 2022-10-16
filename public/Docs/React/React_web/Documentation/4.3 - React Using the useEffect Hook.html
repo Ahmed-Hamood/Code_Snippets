@@ -1,0 +1,957 @@
+<p class="main-title">4.3 - React Using the <code>useEffect</code> Hook</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">1 - What is <code>useEffect</code> Hook ?</p>
+
+<p class="text">
+ The <code>useEffect</code> is used to tell react that your component needs to do something after render. <red>useEffect</red> are declared inside the component so they
+ have access to its <green>props</green> and <green>state</green>. By default, React runs the effects after every render — including the first render.
+ <red>useEffect</red> will run after every render, including the first render. or useEffect we can configure it to run only one time on the first render
+</p>
+
+<p class="text">
+ The <code>useEffect</code> can apply the following lifecycle methods like <blue>componentDidMount</blue>, <blue>componentDidUpdate</blue>, and
+ <blue>componentWillUnmount</blue>. <red>useEffect</red> takes effect when a component receives new props that change its state and when a component makes an API call and
+ does something with the response ( change the state, props )
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">2 - Import <code>useEffect</code> Hook</p>
+
+<p class="text">
+ The <code>useEffect</code> is available inside the <blue>React</blue> itself. In order to use useEffect, you'll need to import it at the top of the file. Don't forget to
+ keep React and useState as we still need them. let's import our <red>useEffect</red> from the React library.
+</p>
+
+<p class="underline-text"># Import <red>useEffect</red> hook from react module :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState, useEffect } from "react";
+</code></pre>
+
+</div>
+
+<p class="text">
+ The <code>useEffect</code> is useful when you wish to run some functions during the component's lifecycle like on component render and re-render. For example, if you
+ want to update the UI when a state changes, the useEffect hook is the way to go. You can also define a state on first load (when <blue>componentDidMount</blue>), and
+ also clean the state when the component is unmounting (<blue>componentWillUnmount</blue>).
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">3 - Implementing and Using <code>useEffect</code> Hook</p>
+
+<p class="text">
+ The <red>useEffect</red> Hook lets you perform side effects in function components, it runs on startup and on every render happen or when the component mount for the
+ first time, and it will run again for any changes on the state or receiving a new props.
+</p>
+
+<p class="underline-text"># Using useEffect hook :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState, useEffect } from "react";
+  
+  function App() {
+    const [count, setCount] = useState(0)
+    
+    useEffect(() => {
+      console.log("UseEffect Start")
+    })
+
+    console.log("Component Mount")
+    
+    return &lt;h1>Header&lt;/h1>
+    }
+</code></pre>
+
+</div>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.4; color: #097c9c">
+  > Component Mount
+  > UseEffect Start
+</code></pre>
+
+</div>
+
+<p class="underline-text"># Our <red>useEffect</red> accepts two argument the callback and Dependencies arguments :-</p>
+
+<p class="text">
+ <blue>callback</blue> is the callback function containing side-effect logic. <code>useEffect()</code> executes the callback function after React has committed the
+ changes to the screen. We put
+</p>
+
+<p class="text">
+ <blue>dependencies</blue> is an optional array of dependencies arguments that control useEffect only when a specific changes happened between renderings. we will learn
+ about it later.
+</p>
+
+<p class="text">We put your side-effect logic into the callback function, then use the dependencies argument to control when you want the side-effect to run.</p>
+
+<p class="underline-text"># Import <red>useEffect</red> hook from react module :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ Syntax</p>
+ <pre><code class="js language-jsx">
+  useEffect(() => { }, [] )
+</code></pre>
+
+</div>
+
+<div class="text-box note">We can specify multiple useEffect call within the same component</div>
+
+<p class="text">
+ let's start by creating a component with useEffect hook that will run at the component first render for example setting up the document title. We want to update the
+ document title every time the user clicks on the button.
+</p>
+
+<p class="underline-text"># An Example of setting the document title at component startup or first render then update it on every button click :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState, useEffect } from "react";
+  
+  function App() {
+    const [count, setCount] = useState(0)
+   
+    useEffect(() => {
+     document.title = `You clicked ${count} times`
+     console.log("Run useEffect")
+    })
+
+    console.log("Component Render")
+   
+    return &lt;button onClick={ () => setCount(count + 1)}> You clicked {count} times &lt;/button>
+   }
+   
+   ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+
+</div>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.4; color: #097c9c">
+ # Application Startup
+ > Component Render
+ > Run useEffect
+ title: You clicked 0 times
+ button: You clicked 0 times
+
+ # Click on button 
+ > Component Render
+ > Run useEffect
+ title: You clicked 1 times
+ button: You clicked 1 times
+</code></pre>
+
+</div>
+
+<p class="text">
+ Now, every time you click on the button, the title of the tab will update to reflect the number of times the user clicked on the button. Every time the count is updated,
+ the useEffect will re-run and updating the document title. We said that our <code>useEffect</code> runs every time a component re-render when you update a state. Let's
+ have an example that update a state inside <red>useEffect</red>
+</p>
+
+<p class="underline-text"># An Example of setting the document title at component startup or first render then update it on every button click :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState, useEffect } from "react";
+  
+  function App() {
+    const [count, setCount] = useState(0)
+   
+    useEffect(() => {
+      setCount(count + 1);
+      console.log("useEffect Run");
+    })
+   
+    console.log("Component Render");
+   
+    return &lt;h1> Current count is {count} times&lt;/h1>
+   }
+   
+   ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+
+</div>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.8; color: #097c9c">
+  > Component Render X 230
+  > Run useEffect X 230
+  Maximum update depth exceeded.
+</code></pre>
+</div>
+
+<p class="text">
+ As you see above, our component is behaving crazy, we set our state within useEffect so every time the state updates useEffect must run again and again, this proves that
+ useEffect is called with each render of the component. To solve this problem is to pass useEffect an empty array ([ ]) as the second argument so React knows to only call
+ useEffect when the component mounts.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">4 - Running the <code>useEffect</code> Once - <blue>componentDidMount</blue></p>
+
+<p class="text">
+ Our <red>useEffect</red> hook accept a dependencies argument as an optional array. If you don't provide any into your second argument the side-effect runs after every
+ rendering. Every time you set your state useEffect must render it run on every render, we can stop that by passing an empty array.
+</p>
+
+<p class="underline-text"># Not providing any thing :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import { useEffect } from 'react';
+
+  function MyComponent1() {
+    useEffect(() => {
+      // Runs after EVERY rendering
+    });  
+  }
+
+  function MyComponent2() {
+    useEffect(() => {
+      // Runs Only on FIRST Render
+    },[]);  
+  }
+</code></pre>
+</div>
+
+<p class="text">
+ By passing useEffect an empty array <code>[]</code> as the second argument the side-effect runs once after the initial rendering. If you want to run you function
+ component useEffect hook to run once is by passing an empty array on the second argument of useEffect.
+</p>
+
+<p class="underline-text"># An Example of setting the document title at component startup or first render then update it on every button click :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState, useEffect } from "react";
+  
+  function App() {
+    const [count, setCount] = useState(0)
+   
+    useEffect(() => {
+      setCount(count + 1);
+      console.log("useEffect Run");
+    },[])
+   
+    console.log("Component Render");
+   
+    return &lt;h1> Current count is {count} times &lt;/h1>
+   }
+   
+   ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+
+</div>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.8; color: #097c9c">
+ > Component Render
+ > useEffect Run
+ # Current count is 0 times
+
+ > Component Render
+ # Current count is 1 times
+</code></pre>
+
+</div>
+
+<p class="text">
+ If you want to run you function component useEffect hook to run once is by passing an empty array on the second argument of useEffect.
+ <red>useEffect</red> hook will run on the first render only like <blue>componentDidMount</blue>. empty array = useEffect hook runs once on mount
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">5 - Conditionally Run <code>useEffect</code> with Dependencies Argument - <blue>componentDidUpdate</blue></p>
+
+<p class="text">
+ <red>useEffect</red> by default run after every render this can cause performance problem. So we can conditionally run useEffect. for example you have an input that
+ changes it's state while typing it doesn't make sense to run useEffect on every typing change that why react let us conditionally run useEffect for specific states.
+</p>
+
+<p class="text">
+ Instead of run <red>useEffect</red> on every time the input change we want to run useEffect only when the button state is changed then get the input state value. to Add
+ condition state into our useEffect just provide an array of states we call it into the second argument of useEffect function. the second argument of useEffect called
+ <green>Dependency Array</green>
+</p>
+
+<p class="underline-text"># Each time the side-effect uses props or state values, you must indicate these values as dependencies :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  useEffect(() => {
+    // Runs ONCE after initial rendering
+    // and after every rendering ONLY IF `prop` or `state` changes
+  }, [prop1, prop2, ..., state1, state2]);
+</code></pre>
+</div>
+
+<p class="underline-text"># Apply dependencies array :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  function App() {
+    const [count, setCount] = useState(0)
+    const [name, setName] = useState("")
+   
+    // A. If you apply the following useEffect hook what will happen is:
+    // UseEffect callback will execute on every click button and input type 
+    useEffect(() => { console.log(`UseEffect Run Count = ${count}`) }) 
+
+    // B. If you apply the following useEffect hook what will happen is:
+    // UseEffect callback will only run once and won't run again 
+    useEffect(() => { console.log(`UseEffect Run Count = ${count}`) }, []) 
+
+    // C. If you apply the following useEffect hook what will happen is:
+    // UseEffect callback will execute at the first render and only when count state changes or update 
+    useEffect(() => {
+      console.log("useEffect Run Count = " + count);
+    }, [count])
+   
+    console.log("Component Render");
+   
+    return &lt;div>
+      &lt;input type="text" value={name} onChange={(e)=> setName(e.target.value)} />
+      &lt;button onClick={() => setCount(count + 1)}> You clicked {count} times&lt;/button>
+    &lt;/div> 
+   }
+   
+   ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<p class="text">
+ In the following Example Whenever the countA variable changes, the component Re-renders and the useEffect hook will run and output the message. Since we add our count
+ variable into the array, we can add multiple states into it.
+</p>
+
+<p class="underline-text"># An Example :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  function CompA({ countA, countB }) {
+    const [name, setName] = useState("Adam")
+   
+    useEffect(() => {
+     console.log(`the states are name: ${name}, countA: ${countA}, countB = ${countB}`)
+     // eslint-disable-next-line
+    }, [countA])
+   
+    return (
+     &lt;div>
+      &lt;h1>
+       welcome {name} - CountA is {countA}, CountB is {countB}
+      &lt;/h1>
+     &lt;/div>
+    )
+   }
+   
+   function App() {
+    const [countA, setCountA] = useState(0)
+    const [countB, setCountB] = useState(0)
+   
+    const ChangePropsCA = () => setCountA(countA + 1)
+    const ChangePropsCB = () => setCountB(countB + 1)
+
+    console.log("Component Render");
+   
+    return (
+     &lt;div>
+      &lt;<yellow>CompA</yellow> <orange>countA</orange>={countA} <orange>countB</orange>={countB} />
+      &lt;button onClick={ChangePropsCA}> Count A +1 &lt;/button>
+      &lt;button onClick={ChangePropsCB}> Count B +1 &lt;/button>
+     &lt;/div>
+    )
+   }
+   
+   ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.8; color: #097c9c">
+  # Application startup
+  > Component Render
+  > the states are name: Adam, countA: 0, countB = 0
+  welcome Adam - CountA is 1, CountB is 0
+
+  # click on Count A +1
+  Component Render
+  the states are name: Adam, countA: 1, countB = 0
+  welcome Adam - CountA is 1, CountB is 0
+
+  # click on Count B +1
+  Component Render
+  welcome Adam - CountA is 1, CountB is 1
+</code></pre>
+
+</div>
+
+<!-- *************************************** -->
+<p class="sub-sub-title mark get-title">A - useEffect with incorrect dependency</p>
+
+<p class="text">
+ In dependency array we specify states in our dependency array that our useEffect should watch for any change. if know that your state is changeable just add it into the
+ array dependency of useEffect check the following example
+</p>
+
+<p class="underline-text"># In this counter Example we are not watching our count state which will render every 1 second :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  function App() {
+    const [count, setCount] = useState(0)
+   
+    const tick = () => {
+     setCount(count + 1)
+    }
+   
+    useEffect(() => {
+     console.log("set Interval....")
+     const interval = setInterval(tick, 1000)
+     return () => {
+      clearInterval(interval)
+      console.log("Clear interval");
+     }
+    },[])
+   
+    console.log("Component Render");
+   
+    return (
+     &lt;div>
+      &lt;h1> Current Count : {count} &lt;/h1>  
+     &lt;/div>
+    )
+   }
+   
+   ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+
+</div>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.8; color: #097c9c">
+  Component Render
+  Current Count : 0
+  setInterval ....
+  Component Render
+  Current Count : 1
+  Stops here
+</code></pre>
+
+</div>
+
+<p class="text">We should tell useEffect to watch the count state because count state will update every 1 second. let fix it</p>
+
+<p class="underline-text"># Solution 1 - add count state into useEffect dependency array list</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  const [count, setCount] = useState(0);
+
+  const tick = () => {
+    setCount(count + 1);
+  };
+
+  useEffect(() => {
+    console.log("set Interval....")
+    const interval = setInterval(tick, 1000);
+    return () => {
+       clearInterval(interval);
+       console.log("Clear interval");
+    };
+  }, [count]);
+
+  return (
+    &lt;div>
+      &lt;h1> Current Count : {count} &lt;/h1> 
+    &lt;/div>
+  );
+</code></pre>
+
+</div>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.8; color: #097c9c">
+  Component Render
+  Clear interval
+  setInterval .... 
+  Current Count : 0
+
+  Component Render
+  Clear interval
+  setInterval .... 
+  Current Count : 1
+
+  Component Render
+  Clear interval
+  setInterval .... 
+  Current Count : 2
+</code></pre>
+
+</div>
+
+<p class="underline-text"># Solution 2 - or use the second form of setCount which is prevState value</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  const [count, setCount] = useState(0);
+
+  const tick = () => {
+    setCount(prevCount => prevCount + 1);
+  };
+
+  useEffect(() => {
+    console.log("set Interval....")
+    const interval = setInterval(tick, 1000);
+    return () => {
+      clearInterval(interval);
+      console.log("Clear interval");
+    };
+  },[]);
+
+  return (
+    &lt;div>
+      &lt;h1> Current Count : {count} &lt;/h1> 
+    &lt;/div>
+  );
+</code></pre>
+
+</div>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.8; color: #097c9c">
+  Component Render
+  setInterval .... 
+
+  Component Render
+  Current Count : 0
+  Component Render
+  Current Count : 1
+  Component Render
+  Current Count : 2
+</code></pre>
+
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">6 - <code>useEffect</code> Callback CleanUp - <blue>componentWillUnmount</blue></p>
+
+<p class="text">
+ If the callback of <code>useEffect()</code> returns a function, then <code>useEffect()</code> considers this as an effect cleanup. To run a hook as the component is
+ about to unmount, we just have to return a function from the useEffect hook
+</p>
+
+<p class="underline-text"># UseEffect with clean up or unmount as a return function:-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ Syntax</p>
+ <pre><code class="js language-jsx">
+  useEffect(() => {
+    console.log("running effect");
+  
+    return () => {
+      console.log("unmounting");
+    };
+  });
+</code></pre>
+
+</div>
+
+<p class="text">
+ Cleanup works after initial rendering, <code>useEffect()</code> invokes the callback having the side-effect. cleanup function is not invoked. On later renderings, before
+ invoking the next side-effect callback, <code>useEffect()</code> invokes the cleanup function from the previous side-effect execution (to clean up everything after the
+ previous side-effect), then runs the current side-effect.
+</p>
+
+<div class="text-box note">passing an empty array as a Dependencies Argument will not run clean at the first render.</div>
+
+<p class="text">
+ Finally, after unmounting the component, useEffect() invokes the cleanup function from the latest side-effect. Let’s see an example when the side-effect cleanup is
+ useful.
+</p>
+
+<p class="underline-text"># An Example :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  function MouseMove() {
+    const [X, setX] = useState(0);
+    const [Y, setY] = useState(0);
+  
+    useEffect(() => {
+      console.log("Mouse Listener Added - component Mounted")
+      window.addEventListener("mousemove", logMousePosition);
+      // eslint-disable-next-line
+  
+      return () => {
+        console.log("Mouse Listener Removed - component Unmounted")
+        window.removeEventListener("mousemove", logMousePosition);
+      }
+    }, [X, Y]);
+  
+    const logMousePosition = (e) => {
+      setX(e.clientX);
+      setY(e.clientY);
+    };
+  
+    return (
+      &lt;div>
+        &lt;h1>
+          Mouse-X = {X} - Mouse-Y = {Y}
+        &lt;/h1>
+      &lt;/div>
+    );
+  }
+  
+  function App() {
+    const [displayMouse, setDisplayMouse] = useState(true);
+  
+    return (
+      &lt;div>
+        &lt;button onClick={ ()=> setDisplayMouse(!displayMouse) }> Display toggle &lt;/button>
+        {displayMouse && &lt;MouseMove />}
+      &lt;/div>
+    );
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+
+</div>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.8; color: #097c9c">
+  # Application Startup
+  Mouse Listener Added - component Mounted
+
+  # While moving mouse
+  Mouse Listener Removed - component Unmounted
+  Mouse Listener Added - component Mounted
+
+  Mouse Listener Removed - component Unmounted
+  Mouse Listener Added - component Mounted
+
+  Mouse Listener Removed - component Unmounted
+  Mouse Listener Added - component Mounted
+</code></pre>
+
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">7 - Fetching API Data with <code>useEffect</code></p>
+
+<p class="text">
+ We can perform data fetching from an API within <code>useEffect</code>. You can use <blue>Axios</blue> or <blue>JS fetch</blue> to fetch Data from an API url.
+</p>
+
+<p class="underline-text"># Using then/catch or async-await to fetch an API :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  useEffect(async () => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setData(data);
+    } catch(err){
+      console.log(err);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetch(url)
+      .then(response => response.json())
+      .then(data => setData(data));
+      .catch(err => console.log(err);)
+  },[]);
+</code></pre>
+
+</div>
+
+<p class="underline-text"># An Example of fetching data with useEffect using JS fetch :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState, useEffect } from "react"
+  import ReactDOM from "react-dom"
+  
+  function GitHubUsers() {
+   const [users, setUsers] = useState([])
+  
+   useEffect(() => {
+    fetch("https://api.github.com/users")
+     .then(response => response.json())
+     .then(data => {
+      setUsers(data)
+     })
+   }, [])
+  
+   return (
+    &lt;li className="section">
+     {users.map(user => (
+      &lt;li key={user.id}>{user.login}&lt;/li>
+     ))}
+    &lt;/li>
+   )
+  }
+  
+  ReactDOM.render(&lt;GitHubUsers />, document.getElementById("root"))
+</code></pre>
+
+</div>
+
+<p class="underline-text"># An Example of fetching data with useEffect using Axios :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState, useEffect } from "react";
+  import axios from "axios";
+
+  function GitHubUsers() {
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+      axios.get("https://jsonplaceholder.typicode.com/posts")
+      .then( res => {
+        setPosts(res);
+      })
+      .catch(err => {
+        console.log(err);
+      }
+    }, []);  
+
+    return (
+      &lt;div className="section">
+        {posts.map(post => (
+          &lt;div key={user.id} className="card">
+           &lt;li key={post.id} > {post.title} &lt;/li>>
+          &lt;/div>
+        ))}
+      &lt;/div>
+    );
+  } 
+
+  ReactDOM.render(&lt;GitHubUsers />, document.getElementById("root"))
+</code></pre>
+
+</div>
+
+<p class="underline-text"># The following component FetchEmployeesByQuery fetches the employees list over the network. The query prop filters the fetched employees :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState, useEffect } from "react"
+  import ReactDOM from "react-dom"
+
+  import { useEffect, useState } from 'react';
+
+  function FetchEmployeesByQuery({ query }) {
+    const [employees, setEmployees] = useState([]);
+
+    useEffect(() => {
+      async function fetchEmployees() {
+        const response = await fetch(`/employees?q=${encodeURIComponent(query)}`);
+        const fetchedEmployees = await response.json(response);
+        setEmployees(fetchedEmployees);
+      }
+
+      fetchEmployees(); // Run it
+
+    }, [query]);
+
+    return (
+      &lt;div>
+        {employees.map(name => &lt;div>{name}&lt;/div>)}
+      &lt;/div>
+    );
+  }
+   
+  ReactDOM.render(&lt;DataFetching />, document.getElementById("root"))
+</code></pre>
+</div>
+
+<p class="text">
+ <code>useEffect()</code> starts a fetch request by calling <code>fetchEmployees()</code> async function after the initial mounting. When the request completes,
+ setEmployees(fetchedEmployees) updates the employees state with the just fetched employees list. On later renderings, if the query prop changes,
+ <code>useEffect()</code> hook starts a new fetch request for a new query value.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">8 - <code>useEffect</code> Examples</p>
+
+<p class="underline-text"># An Example 1 :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState, useEffect } from "react"
+  import ReactDOM from "react-dom"
+
+  function App() {
+    const [count, setCount] = useState(0)
+   
+    const tick = () => {
+     setCount(count + 1)
+    }
+   
+    console.log("App Render");
+   
+    return (
+     &lt;div>
+      &lt;Example count={count} tick={tick} />
+     &lt;/div>
+    )
+   }
+   
+   function Example({ count, tick }) {
+   
+    useEffect(() => {
+     console.log("setInterval .... ")
+     const interval = setInterval(tick, 1000)
+     return () => {
+      clearInterval(interval)
+     }
+    }, [count])
+   
+    return (
+     &lt;div>
+      &lt;h1>{count}&lt;/h1>
+     &lt;/div>
+    )
+   }
+   
+   ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+
+</div>
+
+<div class="text-block code code pre-block">
+ <p class="block-title">➤ Output</p>
+ <pre style="line-height: 1.8; color: #097c9c">
+  # Application Startup
+  App Render
+  setInterval .... 
+
+  App Render
+  setInterval .... 
+
+  App Render
+  setInterval .... 
+
+  App Render
+  setInterval .... 
+
+  App Render
+  setInterval .... 
+</code></pre>
+
+</div>
+
+<p class="underline-text"># An Example 2 :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState, useEffect } from "react"
+  import ReactDOM from "react-dom"
+
+  function CounterwithFriendStatus() {
+    const [count, setCount] - useState(0);
+
+    useEffect(()=>{
+      document.title = `You clicked ${count} times`;
+    })
+
+    const [isOnline, setIsOnline] = useState(class="gray">null);
+
+    useEffect(()=>{
+      const handleStateChange = (status) => {
+        setIsOnline(status.isOnline);
+      }
+
+      ServerAPI.CheckFriendStatus(props.friend.id, handleStateChange);
+
+      return () => {
+        ServerAPI.UncheckFriendStatus(props.friend.id, handleStateChange);
+      }
+    })
+  }
+   
+   ReactDOM.render(&lt;App />, document.getElementById("root"))
+</code></pre>
+
+</div>
+
+<p class="underline-text"># An Example 3 :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { useState, useEffect } from "react"
+  import ReactDOM from "react-dom"
+
+  function DataFetching() {
+    const [post, setPost] = useState({})
+    const [id, setId] = useState(1)
+    const [idFromButtonClick, setIdFromButtonClick] = useState(1)
+  
+    useEffect(() => {
+      axios
+        .get(`https://jsonplaceholder.typicode.com/posts/${id}`)
+        .then(res => {
+          console.log(res)
+          setPost(res.data)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    }, [idFromButtonClick])
+  
+    const handleClick = () => {
+      setIdFromButtonClick(id)
+    }
+  
+    return (
+      &lt;div>
+        &lt;input type="text" value={id} onChange={e => setId(e.target.value)} />
+        &lt;button type="button" onClick={handleClick}>Fetch Post&lt;/button>
+        &lt;h1>{post.title}&lt;/h1>
+      &lt;/div>
+    )
+  }
+   
+  ReactDOM.render(&lt;DataFetching />, document.getElementById("root"))
+</code></pre>
+
+</div>

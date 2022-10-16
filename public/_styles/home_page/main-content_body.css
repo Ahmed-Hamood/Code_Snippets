@@ -1,0 +1,115 @@
+#page-content-render-container {
+ position: relative;
+ /* height: calc(var(--content-render-height) - var(--nav-header-height)); */
+ height: var(--content-render-height);
+ overflow-y: auto;
+ scroll-behavior: smooth;
+ background: var(--body-container);
+
+ display: flex;
+ justify-content: end;
+}
+
+#page-content-wrapper {
+ color: #f5f2f2;
+ width: 100%;
+ max-width: var(--main-doc-content-width);
+ margin: 0 auto;
+ margin-top: 150px;
+ margin-bottom: 0px;
+ padding: 9px;
+ padding-left: 15px;
+ animation: FadeInAnimation 0.4s ease-in 0.2s backwards;
+ position: relative;
+ transition: 400ms max-width;
+}
+
+@media screen and (max-width: 1000px) {
+ #page-content-wrapper {
+  padding-left: 8px;
+  margin-top: 110px;
+ }
+}
+
+body[max-content='true'] #page-content-wrapper {
+ max-width: var(--main-doc-content-width);
+}
+
+body[max-content='true'] .nav-content-header {
+ max-width: calc(var(--main-doc-content-width) + 50px) !important;
+}
+
+/* ########################################################### */
+/* Loading Element  */
+/* ########################################################### */
+
+.spinner-content {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+ height: 20vh;
+ 
+}
+
+.spinner-wheel {
+ border: 4px solid #252526;
+ border-radius: 50%;
+ border-top: 4px solid #eaeaea;
+ width: 30px;
+ height: 30px;
+ animation: spin 0.5s linear infinite;
+ -webkit-animation: loadingSpin 0.8s ease-in-out infinite;
+ position: relative;
+}
+
+/* .spinner-message { */
+/* color: #718093;
+ font-family: Arial;
+ font-size: 0.4rem;
+ font-weight: 700;
+ position: absolute;
+ top:67px; */
+/* } */
+
+/* ########################################################### */
+/* Button Merge */
+/* ########################################################### */
+
+#btn-merge {
+ color: rgb(224, 224, 224);
+ box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+ font-weight: 600;
+ position: absolute;
+ top: -5px;
+ right: 0;
+ outline: none;
+ border: 1px solid #505050;
+ border-radius: 5px;
+ background: rgba(255, 255, 255, 0);
+ padding: 8px 12px;
+ transition: 200ms all;
+ transition-property: background-color, color;
+}
+
+#btn-merge:hover {
+ color: #272727;
+ background-color: #c8d6e5;
+ border-bottom: 3px solid gray;
+}
+
+#btn-merge:active {
+ transform: scale(0.95);
+}
+
+/* ########################################################### */
+/* ########################################################### */
+/* ########################################################### */
+
+@media screen and (max-width: 1366px) {
+ #page-content-render-container {
+  /* height: calc(var(--content-render-height) - var(--nav-header-height)); */
+ }
+}
+
+

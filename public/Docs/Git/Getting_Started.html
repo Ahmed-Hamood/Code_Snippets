@@ -1,0 +1,365 @@
+<!-- <div class="no-table-content"></div> -->
+<p class="main-title">Getting Start</p>
+
+<!-- ############################################################################################# -->
+<p class="sub-title">1. What is Git ?</p>
+
+<p class="text">
+ Git is the most popular version control system, which records the changes made to our code over time in a special database called
+ <tooltip text="A Git repository tracks and saves the history of all changes made to the files in a Git project.">repository</tooltip>. Our project will have a history
+ that allow us to see how made what changes when and why.
+</p>
+
+<p class="text">
+ If someone screw up something in our code, we can simply and easily revert our project back to an earlier state. So without a version control system we would constantly
+ store copies of the entire project in various folders, this will be very slow and doesn't scale where multiple developers can't work in the same folder folder and you
+ can review the latest code that our developer come up with in the same project with different files to merge both changes.
+</p>
+
+<p class="text">
+ With Version Control System like Git we can track our project history where a group of developers can work together in the same project. Our Version Control System has
+ two types or categories centralized and distributed.
+</p>
+
+<div class="list-content normal check">
+ <p class="list-title"># We use git because :</p>
+ <ul>
+  <li>Free of cost</li>
+  <li>Open source</li>
+  <li>Super fast</li>
+  <li>Scalable and maintainable</li>
+  <li>Cheap Branching/Merging</li>
+ </ul>
+</div>
+
+<!-- ############################################################################################# -->
+<p class="sub-sub-title">- Types of Version Control System</p>
+
+<p class="text">
+ <yellow underline>Centralized System:</yellow> Where multi-members connect to a central server to get the latest copy of the code, and to share their changes with
+ others. The Sub-version and microsoft team foundation server are examples of centralized version control systems.
+ <red
+  >The problem with centralized architecture is the single point of failure if the server goes offline then we can't collaborate or save latest updated code/snapshots of
+  our project, so we need to wait until the server comes back online</red
+ >
+</p>
+
+<p class="text">
+ <yellow underline>Distributed System:</yellow> Here every one has a copy of the project with its history on their machine, so we can save snapshots of our project
+ locally on our machine, if the central server is offline we can synchronize our work directly with others. Distributed System like Git and Mercurial are the most popular
+ Version Control System
+</p>
+
+<!-- ############################################################################################# -->
+<p class="sub-sub-title">- How to use Git ?</p>
+
+<p class="text">
+ We can use get in terminal or command prompt window to execute git commands, most developer uses git command thru the command line. Also we have a build-in extensions
+ git features within the code editor or IDE, VSCode supports git with a source control panel extensions which gives us the essential git features, also there are also
+ extensions available for an additional git features for vscode like GitLens extension.
+</p>
+
+<p class="text">
+ We also have GUI Git client tools for different platforms, the most popular tools is <blue>GitKraken Git GUI</blue> and <blue>SourceTree</blue>, they present our project
+ history as a timeline, and we can track changes easily and manage each version graphically.
+</p>
+
+<div class="list-content normal check">
+ <p class="list-title"># Why we are going to git command thru the command line instead of GUI or extension IDE :-</p>
+ <ul>
+  <li>GUI Tools have limitation</li>
+  <li>GUI Tools are not always available like when using a remote server</li>
+ </ul>
+</div>
+
+<!-- ############################################################################################# -->
+<p class="sub-title">2. Install Git and GitBash and get version</p>
+
+<p class="text">
+ To install Git in your machine visit <a href="https://git-scm.com/" id="only-link">https://git-scm.com/</a> to install the latest version of Git which is available on
+ all operating system.
+</p>
+
+<p class="text">
+ After you install Git, we recommend using Git Bash, which is a shell or command prompt window that emulate Linux/Unix environment. To install Git Bash visit
+ <a href="https://gitforwindows.org/" id="only-link">https://gitforwindows.org/</a>
+</p>
+
+<p class="text">To get Git version in your machine, type <terminal>git --version</terminal>, as you see below we are using version <number>2.32</number></p>
+
+<section terminal-content title-header="Get Git Version" preferred-sign=">" line-num="">
+ <pre>
+  git --version
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  git version 2.32.0.windows
+</pre
+ >
+</div>
+
+<!-- ############################################################################################# -->
+<p class="sub-title">3. Configure Git</p>
+
+<p class="text">
+ Before we start initializing git on our project, first we need to specify few configuration settings like <text>Name</text>, <text>Email</text>,
+ <text>Default Editor</text> and <text>Line Ending</text>. We can configure these different setting at three different levels.
+</p>
+
+<div class="list-content normal star">
+ <p class="list-title">- Configuration System Level :-</p>
+ <ul>
+  <li><text blue>System Level</text> : This is a very top level, Which apply configuration to all users of the current machine</li>
+  <li><text blue>Global Level</text> : This level apply to all repositories/projects of the current user</li>
+  <li><text blue>Local Level</text> : This level only applied on the current repository or the repository in the current project folder</li>
+ </ul>
+</div>
+
+<!-- ############################################################################################# -->
+<p class="sub-sub-title">- Configure System Setting Level with name</p>
+
+<p class="text">
+ With Local level, we can have a different settings for different repositories or different projects. We will apply our setting at global level which apply to all
+ repository of the current user only. Open you terminal and configure your level by specifying <code>--global</code> which specify the level that will define our setting
+ on. After that we should specify the settings <code>user.name</code> setting.
+</p>
+
+<section terminal-content title-header="Set Configuration Level and setup user.name setting" preferred-sign=">" line-num="">
+ <pre>
+  git config --global user.name "Adam William"
+</pre
+ >
+</section>
+
+<!-- ############################################################################################# -->
+<p class="sub-sub-title">- Configure System Setting Level with email</p>
+
+<p class="text">
+ The reason we adding double quote is because we have a space in our <code>user.name</code> value. once again we repeat our configuration global level and specify our
+ email user with <code>user.email</code>, but this time we don't need to wrap our value string between double quotes because it's an email so we don't have a space in an
+ email id.
+</p>
+
+<section terminal-content title-header="Set Configuration Level and setup user.email setting" preferred-sign=">" line-num="">
+ <pre>
+  git config --global user.email adam123@gmail.com
+</pre
+ >
+</section>
+
+<!-- ############################################################################################# -->
+<p class="sub-sub-title">- Set the default Editor with Git</p>
+
+<p class="text">
+ Let's set the default editor with git we set or configure the <code>core.editor</code> setting and assign <orange>"code --wait"</orange>, the wait flag tells the
+ terminal window to wait until we close a new vscode instance
+</p>
+
+<section terminal-content no-title-header="" preferred-sign=">" line-num="">
+ <pre>
+  git config --global core.editor "code --wait"
+</pre
+ >
+</section>
+
+<!-- ############################################################################################# -->
+<p class="sub-sub-title">- Open VSCode Editor or Default Editor</p>
+
+<p class="text">
+ Next, we are going to specify our default editor, by default in MACOS is going to use vim. In windows we are going to use VSCode editor, so download it by visiting
+ <a href="https://code.visualstudio.com/download" id="only-link" target="_blank">https://code.visualstudio.com/download</a>, now access your project folder by specifying
+ it's path, and type the following to open it with vscode.
+</p>
+
+<section terminal-content title-header="Open vscode" preferred-sign=">" line-num="">
+ <pre>
+  code // just open vscode
+  code . // open vscode on the current path using "dot"
+</pre
+ >
+</section>
+
+<!-- ############################################################################################# -->
+<p class="sub-sub-title">- Configure End of Lines on Window and MacOS/Linux</p>
+
+<p class="text">
+ we going to configure how git should handle end of lines, which is an important setting that a lot of people miss. On windows end of lines are marked with two special
+ characters as following.
+</p>
+
+<div class="list-content normal check">
+ <p class="list-title"># End of lines :</p>
+ <ul>
+  <li>The <code>"\r"</code> CR or carriage return, it moves the cursor to the beginning of the line.</li>
+  <li>The <code>"\n"</code> LF or line feed, it moves moves the cursor to the next line</li>
+ </ul>
+</div>
+
+<p class="text">
+ On MacOS/Linux Systems end of line is indicated with line feeds, so that means if we don't handle end of line properly then we're going to run into some weird issues
+ down the road to prevent this we have to configure a property called <code>code.autocrlf</code> which is a short for carriage return / line feed.
+</p>
+
+<div class="list-content normal check">
+ <ul>
+  <li>Window indicate end of line with <code>"\n"</code> and <code>"\r"</code></li>
+  <li>MacOS/Linus indicate end of line with <code>"\n"</code> Only</li>
+ </ul>
+</div>
+
+<p class="text">
+ Let's say two developer working with the same repository one developer uses a window and other developer uses a MacOS. In windows the end of lines are marked with
+ carriage return and line feed. If window user wants to check his code into the repository Git to remove the carriage return from end of lines, similarly checking out the
+ code from the repository Git should update end of line and add the carriage return character, to achieve this behavior we should set the
+ <code>core.autocrlf</code> property into a <green>true</green> value.
+</p>
+
+<img id="image" alt="" path="/img/image001.PNG" file alt="" />
+
+<p class="text">
+ In other hand MacOS user doesn't want the carriage return character, so Git should not touch end of lines, if MacOS developer get carriage return character where Window
+ is using, then Git should remove it when storing the code in the repository, we should set the <code>core.autocrlf</code> property into a <green>input</green> value
+</p>
+
+<section terminal-content title-header="config End of Lines" preferred-sign=">" line-num="">
+ <pre>
+  git config --global core.autocrlf true // In windows
+  git config --global core.autocrlf input // In MacOS/Linux
+</pre
+ >
+</section>
+
+<!-- ############################################################################################# -->
+<p class="sub-sub-title">- Open Git File Global Settings in default editor</p>
+
+<p class="text">
+ All configurations are stored in a text file, we will vscode editor to edit that file, to open this file in our default editor we use <orange>"-e"</orange> flag.
+</p>
+
+<section terminal-content title-header="Open .gitconfig in default editor" preferred-sign=">" line-num="">
+ <pre>
+  git config --global -e
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  C://Users//username//.gitconfig
+
+  [core]
+  <blue>editor</blue> = code --wait
+  <blue>autocrlf</blue> = true
+
+  [user]
+  <blue>name</blue> = Username
+  <blue>email</blue> = email@gmail.com
+</pre
+ >
+</div>
+
+<p class="text">
+ The <code>.gitconfig</code> file has different sections, like the user section with two settings <yellow>name</yellow> and <yellow>email</yellow>, and also the core
+ section with two settings <yellow>editor</yellow> and <yellow>autocrlf</yellow> settings.
+</p>
+
+<section terminal-content title-header="Print Git config on Terminal" preferred-sign=">" line-num="">
+ <pre>
+  git config --global --list
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  core.editor=code --wait
+  core.autocrlf=true
+  user.name=Username
+  user.email=your_email@gmail.com
+</pre
+ >
+</div>
+
+<!-- ############################################################################################# -->
+<p class="sub-sub-title">- Getting Help with Git commands</p>
+
+<p class="text">
+ To get help about <red>Git</red> commands, lets get help with <yellow>config</yellow> command, we simply type <code>git config --help</code>, this will give you an
+ information about the config command. You can use <code>-h</code> this will give us a short summary and its options.
+</p>
+
+<section terminal-content no-title-header="" preferred-sign=">" line-num="">
+ <pre>
+  git config --help
+  git config -h 
+</pre
+ >
+</section>
+
+<p class="text">The command above, will print information on the terminal, or will direct you to Git website.</p>
+
+<!-- ############################################################################################# -->
+<p class="sub-title">4. Initializing Git Repository</p>
+
+<p class="text">
+ Lets say we decided to use Git with our project, first thing we do is create a directory of our project any where in your machine. To create a directory using terminal
+ command type the following command with GitBash emulator.
+</p>
+
+<section terminal-content title-header="Create an Empty Directory" preferred-sign=">" line-num="">
+ <pre>
+  mkdir MyProject // Create Directory Project called "MyProject"
+  cd MyProject // Enter our project
+</pre
+ >
+</section>
+
+<p class="text">
+ Now within the project directory where all our file will be added, to start using Git repository in out project folder we have to initialize a new empty repository. So
+ we type <code>git init</code> command to initialize an empty repository
+</p>
+
+<section terminal-content title-header="Initializing an Empty Repository" preferred-sign=">" line-num="">
+ <pre>
+  git init
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  Initialized empty Git repository in C:/Users/username/Desktop/MyProject/.git/
+</pre
+ >
+</div>
+
+<p class="text">
+ A hidden folder is created inside our project folder called <red>.git</red> which is a su-directory, this folder is hidden because you are not suppose to touch it.
+ Inside .git directory/repository here where git stores information about our project history. Don't remove the <red>.git</red> directory or you will lose your project
+ history
+</p>
+
+<section terminal-content title-header="List all .git content" preferred-sign=">" line-num="">
+ <pre>
+  ls -l
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  total 7
+  -rw-r--r-- 1 Adam123 197610 130 Jul  3 22:46 config     
+  -rw-r--r-- 1 Adam123 197610  73 Jul  3 22:46 description
+  -rw-r--r-- 1 Adam123 197610   0 Jul  3 22:52 FETCH_HEAD 
+  -rw-r--r-- 1 Adam123 197610  23 Jul  3 22:46 HEAD       
+  drwxr-xr-x 1 Adam123 197610   0 Jul  3 22:46 hooks      
+  drwxr-xr-x 1 Adam123 197610   0 Jul  3 22:46 info       
+  drwxr-xr-x 1 Adam123 197610   0 Jul  3 22:52 objects    
+  drwxr-xr-x 1 Adam123 197610   0 Jul  3 22:46 refs
+</pre
+ >
+</div>

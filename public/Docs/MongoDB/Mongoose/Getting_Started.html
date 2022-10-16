@@ -1,0 +1,167 @@
+<!-- <div class="no-table-content"></div> -->
+
+<p class="main-title">Getting Start</p>
+
+<!-- ############################################################################## -->
+<p class="sub-title">1. What is MongoDB/Mongoose ?</p>
+
+<p class="text">
+ <green>MongoDB</green> is a schema-less NoSQL document database. It means you can store JSON documents in it, and the structure of these documents can be different as it
+ is not enforced like SQL databases. This is one of the advantages of using NoSQL as it speeds up application development and reduces the complexity of deployments.
+</p>
+
+<p class="text">
+ <red>Mongoose</red> is an Object Data Modeling (ODM) library for MongoDB and Node.js. <red>Mongoose</red> is an abstraction over the native MongoDB driver, it is a
+ modeling tool help us to work with <green>MongoDB</green> environment asynchronously.
+</p>
+
+<p class="text">
+ <red>Mongoose</red> manages relationships between data, provides schema validation, and is used to translate between objects in code and the representation of those
+ objects in MongoDB. Here's some definitions or Terminologies that we need to understand before we start learning MongoDB/Mongoose
+</p>
+
+<img id="image" file path="/img/image001.PNG" alt="" />
+
+<div class="list-content normal check">
+ <ul>
+  <li><bold>Collections:</bold> in Mongo are equivalent to tables in relational databases. They can hold multiple JSON documents.</li>
+  <li>
+   <bold>Document:</bold> are equivalent to records or rows of data in SQL. While a SQL row can reference data in other tables, Mongo documents usually combine that in a
+   document.
+  </li>
+  <li><bold>Collections:</bold> in Mongo are equivalent to tables in relational databases. They can hold multiple JSON documents.</li>
+  <li><bold>Fields:</bold> or attributes are similar to columns in a SQL table.</li>
+  <li>
+   <bold>Schema:</bold> As we know MongoDB is schema-less, SQL defines a schema via the table definition. A Mongoose ‘schema’ is a document data structure (or shape of
+   the document) that is enforced via the application layer.
+  </li>
+  <li><bold>Models:</bold> are higher-order constructors that take a schema and create an instance of a document equivalent to records in a relational database.</li>
+ </ul>
+</div>
+
+<!-- ############################################################################## -->
+<p class="sub-title">2. Mongoose Installation</p>
+
+<p class="text">
+ First in order to work with <code>mongoose</code> first, you need to install <green>MongoDB</green> first, so you can work with <code>mongoose</code>. Lets install
+ mongoose from the command line using <red>npm</red>, open the terminal and type the following command.
+</p>
+
+<section terminal-content title-header="Install Mongoose" preferred-sign=">" line-num="">
+ <pre>
+  npm install mongoose
+</pre
+ >
+</section>
+
+<section json-content full-height no-title-header="./socket.js" line-num="14g">
+ <pre>
+  {
+    "name": "mongoose_tutorial",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.18.1",
+      "mongoose": "^6.4.1"
+    }
+  }  
+</pre
+ >
+</section>
+
+<!-- ############################################################################## -->
+<p class="sub-title">3. Import and Connect to MongoDB</p>
+
+<p class="text">
+ First we include mongoose in our project, using <code><yellow>require('mongoose')</yellow></code> module and create an instance from it. We will use the
+ <red>mongoose</red> instance to create a database connection to our <brown>"DBSample"</brown> database on our locally running instance of MongoDB.
+</p>
+
+<section js-content title-header="./db.js" line-num="">
+ <pre>
+  const mongoose = require('mongoose'); // reference to mongoose
+
+  // Connect to a MongoDB server running on 'localhost:27017' and use the 'DBSample' database.
+  mongoose.connect('mongodb://localhost:27017/DBSample')
+  .then(() => {
+    console.log('Database connection successful')
+  })
+  .catch(err => {
+    console.error('Database connection error')
+  })
+</pre
+ >
+</section>
+
+<p class="text">
+ To connect to <green>MongoDB</green> from Node.js using <red>Mongoose</red> package, call <code>connect()</code> function, on the variable referencing to mongoose, with
+ MongoDB Database URI passed as argument to the function.
+</p>
+
+<section js-content title-header="./db.js - Mongoose Connect Using Async/Await" line-num="">
+ <pre>
+  const mongoose = require("mongoose")
+
+  async function db_connect() {
+   try {
+    // Connect to a MongoDB server running on 'localhost:27017' and use the 'DBSample' database.
+    await mongoose.connect("mongodb://localhost:27017/DBSample")
+    console.log("Database is connected successfully..")
+   } catch (error) {
+    console.log("Error:", err)
+   }
+  }
+  
+  db_connect()
+</pre
+ >
+</section>
+
+<!-- ############################################################################## -->
+<p class="sub-title">4. Define Schema</p>
+
+<p class="text">
+ <red>Schema</red> define the structure of the document with properties through an object where the key name corresponds to the property name in the collection. In your
+ schema you can provide default values, validators to validate the received value. With Mongoose, everything is derived from a Schema, so lets create our first schema.
+</p>
+
+<section js-jsx-content title-header="./db.js - Mongoose Connect Using Async/Await" line-num="">
+ <pre>
+  const mongoose = require("mongoose")
+
+  // connecting to MongoDB
+  mongoose.connect("mongodb://localhost:27017/DBSample")
+  ....
+
+  const personSchema = new mongoose.Schema({
+    username: String, //  Define username field of type string
+    email: { //  Define email field of type string and it's a mandatory field and it must be unique
+      type: String,
+      required: true,
+      unique: true
+    },
+    age: Number, // Define age field of type Number
+    isMarried: Boolean // Define isMarried field of type Boolean
+  });
+</pre
+ >
+</section>
+
+<!-- ############################################################################## -->
+<p class="sub-title">5. Create Model</p>
+
+<!-- ############################################################################## -->
+<p class="sub-title">6. Create New Document</p>
+
+<!-- ############################################################################## -->
+<p class="sub-title">7. Save Document to Database</p>
+
+<!-- ############################################################################## -->
+<p class="sub-title">8. Retrieve Document from Database</p>

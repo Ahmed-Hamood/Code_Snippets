@@ -1,0 +1,160 @@
+<p class="main-title">2.2 - Set And Access Environment Variables Using <span class="red bold font-code">process.env</span></p>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">- What is <span class="red bold font-code">process.env</span> Global variable ?</p>
+
+<p class="text">
+ Working with environment variables is a great way to configure different aspects of your Node.js application. Many cloud hosts
+ <span class="blue bold">(Heroku, Azure, AWS, now.sh, etc.)</span> and Node.js modules use environment variables. Hosts,
+</p>
+
+<p class="text">
+ In Node.js <span class="red bold font-code">process.env</span> is a Global variable which all environment variables inject or set at the runtime, or at the moment the
+ process was started. When we set an environment variable, it is loaded into <span class="red bold font-code">process.env</span>
+ during application runtime start, and can later be accessed
+</p>
+
+<p class="text">
+ When your Node.js process boots up it will automatically provide access to all existing environment variables by creating an env object as property of the process global
+ object.
+</p>
+
+<p class="underline-text"># let's take a peak at <b class="red bold font-code">process.env</b> global Object :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  console.log(process.env)
+  {
+    TERM: 'cygwin',
+    COMPUTERNAME: 'DESKTOP-User_Name',
+    USERNAME: 'User_Name',
+    USERDOMAIN: 'DESKTOP-User_Name',  
+    TMP: 'C:\\Users\\User_Name~1\\AppData\\Local\\Temp',  
+    PWD: 'C:/Users/User_Name/Desktop/projectFolder',
+    PROCESSOR_LEVEL: '6',
+    SHELL: '/usr/local/bin/bash'
+  }
+########################################################################
+ // PWD  :-  The current working directory.  Set by some shells.
+ // SHELL :-  The pathname of the user's login shell. cmd or bash 
+########################################################################
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">- Pass Variables Into <span class="red bold font-code">process.env</span> Thru Terminal</p>
+
+<p class="text">
+ You can pass environment variables on the terminal as part of your Node process <span class="blue bold">For example</span>, will set a PORT variable that specifies on
+ which port the server should listen to properly work. You might have a different behaviors (like logging) depending on the value of NODE_ENV variable.
+</p>
+
+<p class="text">
+ Accessing environment variables in Node.js is supported right out of the box. When your Node.js process boots up it will automatically provide access to all existing
+ environment variables by creating an env object as property of the process global object.
+</p>
+
+<p class="underline-text"># Set/Add PORT variable into environment variable thru terminal :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> PORT=9999 node server.js
+</code></pre>
+</div>
+
+<br />
+
+<p class="text">
+ We will use the PORT variable to tell you on which port your server should listen for the routing to work properly. You should determine the port to listen on by
+ checking PORT environment variable or givin it a default value if it's undefined
+</p>
+
+<p class="underline-text"># An Example of setting port to environment variable or to default if environment variable is undefined :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+
+  // Set port into process.env.PORT, If it's Undefined Then Assign to default port 3000
+  const port = process.env.PORT || 3000;
+  
+  app.get("/", (req, res) => {
+    res.send(" &lt;h1> Hello World &lt;/h1> ")
+  })
+  
+  app.listen(port, () => {
+    console.log(`Server is listening on port ${PORT}`);
+    // Server is listening on port 9999
+  })  
+</code></pre>
+</div>
+
+<p class="text">
+ Since process.env is simply a normal object we can set/override the values very easily. We can set or add environment variables into our global object as follow
+</p>
+
+<p class="underline-text"># Set/Add More variable into environment variable thru terminal :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> NODE_ENV=development PORT=5000  DB_USER='admin' DB_PASS='password'  node server.js 
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example of using environment variables to configure our database :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+   const express = require("express")
+   const app = express()
+ 
+   // Set port to process.env.PORT, If it's Undefined Then Assign to default port 3000
+   const port = process.env.PORT || 3000;
+
+   const mysql = require("mysql");
+
+   // Configure Database
+   let con = mysql.createConnection({
+     user: process.env.DB_USER,
+     password: process.env.DB_PASS,
+   });
+   
+   app.get("/", (req, res) => {
+     res.send(" &lt;h1> Hello World &lt;/h1> ")
+   })
+   
+   app.listen(port, () => {
+     console.log(`Server is listening on port ${PORT}`);
+     // Server is listening on port 9999
+   })
+ </code></pre>
+</div>
+
+<p class="underline-text"># An Example :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> PORT=3000 NODE_ENV=development  NAME='Alen'  db_name='local'  nodemon server.js 
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  console.log(process.env); // NODE_ENV: "development" , NAME: "alen" , PORT:9000, ....  
+  console.log(process.env.NODE_ENV); // "development" 
+  console.log(process.env.PORT); // 3000 
+  console.log(process.env.NAME); // "Alen" 
+
+  process.env.NAME = 'William';
+
+  console.log(process.env.NAME); // "William" 
+  console.log(process.env.db_name);  // local
+</code></pre>
+</div>

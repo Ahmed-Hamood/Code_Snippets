@@ -1,0 +1,287 @@
+<p class="main-title">
+  9.1 - Using Server-Side Template Engine And Set The View Engine
+</p>
+
+<p class="text">
+  A Template Engine enables you to use static template files in your application. At runtime, the template engine replaces variables in a template
+  file with actual values, and transforms the template into an HTML file sent to the client. This approach makes it easier to design an HTML page.
+</p>
+
+<p class="text">
+  You can populate your HTML pages with various information and data directly onto your view. This allows us to generate HTML dynamically.
+  Template engines serves as a bridge in between node and front end. We can send data from node (thru DB) from the engine template combine data to fill the front end HTML
+</p>
+
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title"> A - Choose Your Favorite View Engine </p>
+
+<p class="text">
+  Before setting the view engine, you have configure your express which view engine you are going to use.
+  There are many popular view engine. The Most Popular template Engines Modules are :-
+</p>
+
+<p class="underline-text">
+  # We have three popular template engines for Express :-
+</p>
+
+<div class="list-content custom">
+  <ul>
+    <li>- Pug</li>
+    <li>- EJS</li>
+    <li>- Handlebars</li>
+    <li>- express-handlebars</li>
+    <li>- Mustache</li>
+  </ul>
+</div>
+
+<p class="text">
+  Te default template engine found in Express is Jade, which is now known as Pug. However,
+  the default Jade installed in Express is still using the old version.
+</p>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title"> B - Install The View Engine </p>
+
+<p class="text">
+  You must install it thru NPM. To install the template engine library, we run the following code.
+</p>
+
+<p class="underline-text">
+  # to install your template view engine :-
+</p>
+
+<div class="terminal-block terminal pre-block">
+  <pre><code class="js language-js">
+> npm i ejs // installing ejs module  
+> npm i pug // installing pug module  
+> npm i hbs // installing handlebars module  
+> npm i express-handlebars // installing express-handlebars module  
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title"> C - Set-up The View Engine And HTML File Location </p>
+
+<p class="text">
+  After you decide which view engine you are going to use, we configure our express application,
+  by setting the view engine we want to use by setting the view engine property using
+  <span class="red bold font-code">app.use()</span> as follow.
+</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+  <p class="block-title">➤ Example</p>
+  <pre><code class="js language-js">
+  const express = require("express");
+  const app = express(); 
+
+  // Set your view engine. The default view engine is (undefined)
+  app.set("view engine" , "ejs"); 
+  app.set("view engine" , "hbs");
+  app.set("view engine" , "pug");  
+</code></pre>
+</div>
+
+<p class="text">
+  First, we create the views folder to store our templates as we set the "./views" folder to be our templates folder.
+  You can change the default Directory "./views" if you want to override the path of Views Templates Default using the following.
+</p>
+
+<p class="underline-text">
+  # Setup view location directory :-
+</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+  <p class="block-title">➤ Example</p>
+  <pre><code class="js language-js">
+  const express = require("express");
+  const app = express(); 
+  const path = require("path");
+
+  // Set you view engine
+  app.set("view engine" , "ejs"); 
+
+  app.set("views", path.resolve(__dirname, "views"));  // by default directory  
+  app.set("views" , path.join(__dirname , "AllViews")); // set views engine and look for index.ejs in folder called AllViews 
+  app.set("views", path.resolve(__dirname, "files")); // or other folder 
+  app.set("views", "./AllViews"); // or set directory without path  
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title"> D - Create An HTML File With View Engine Extension </p>
+
+<p class="text">
+  We chose to use Pug or EJS as our template engine, the template files should have the .pug or .ejs extension.
+  Inside the views folder, create an index.ejs and then put:
+</p>
+
+<p class="underline-text">
+  # Our Project Folders :-
+</p>
+
+<div class="terminal-block terminal pre-block">
+<pre><code class="js language-js">
+> Project_Name ls
+  └── node_module (Folder)
+  └── views (Folder)
+    └── index.ejs (File)
+  └── package.json (File)
+  └── package-lock (File)
+  └── server.js  (File)
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # Write An HTML file :-
+</p>
+
+<div class="html-block html-code code">
+  <p class="block-title">➤ EJS File</p>
+  <pre><code class="js language-js">
+  &lt;!DOCTYPE html>
+  &lt;html lang="en">
+  &lt;head>
+    &lt;meta charset="UTF-8">
+    &lt;title>EJS Is Fun&lt;/title>
+    &lt;link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+    &lt;style> &lt;/style>
+  &lt;/head>
+
+  &lt;body class="container">
+  
+  &lt;header>
+    &lt;nav class="navbar navbar-expand-lg navbar-light bg-light">
+      &lt;a class="navbar-brand" href="/">EJS Is Fun&lt;/a>
+      &lt;ul class="navbar-nav mr-auto">
+        &lt;li class="nav-item">
+          &lt;a class="nav-link" href="/">Home&lt;/a>
+        &lt;/li>
+        &lt;li class="nav-item">
+          &lt;a class="nav-link" href="/about">About&lt;/a>
+        &lt;/li>
+      &lt;/ul>
+    &lt;/nav>
+  &lt;/header>
+  
+  &lt;main>
+      &lt;div class="jumbotron">
+          &lt;h1>This is great&lt;/h1>
+          &lt;p>Welcome to templating using EJS&lt;/p>
+      &lt;/div>
+  &lt;/main>
+  
+  &lt;footer>
+    &lt;p class="text-center text-muted">© Copyright 2020 The Awesome People&lt;/p>
+  &lt;/footer>
+  
+  &lt;/body>
+  &lt;/html>
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title"> E - Render Your View And Pass Data </p>
+
+<p class="text">
+  After adding a template file into your views directory as "./view/index.ejs".
+  That view will end up creating a HTML template, to render a view to the client we use the following.
+</p>
+
+<p class="underline-text">
+  # Rendering our view from the view folder using res.render(file_name) :-
+</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+  <p class="block-title">➤ Example</p>
+  <pre><code class="js language-js">
+  app.get("/" , (req,res)=>{
+    res.render("index");
+  }) 
+</code></pre>
+</div>
+
+<p class="text">
+  Now, let’s say that we want to add a list of animals to our HTML page. We can pass an array of animals through our Express application to our EJS template.
+</p>
+
+<p class="underline-text">
+  # Pass data into the view template :-
+</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+  <p class="block-title">➤ Example</p>
+  <pre><code class="js language-js">
+  app.locals.title = "All Animals";
+
+  app.get("/home", (req, res) => {
+
+    let animals = [
+      { name: "Alligator" },
+      { name: "Crocodile" }
+    ];
+
+    res.render("home", { animals: animals });
+  });
+</code></pre>
+</div>
+
+<p class="underline-text">
+  # Inside our index.ejs file :-
+</p>
+
+<div class="html-block html-code code">
+  <p class="block-title">➤ ./view/index.ejs</p>
+  <pre><code class="js language-js">
+  &lt;h2> &lt;%= title %>  &lt;/h2>
+  &lt;p>It's a test view&lt;/p>
+  &lt;ul>
+    &lt;% animals.forEach((animal) => { %>
+    &lt;li>&lt;%= animal.name %>&lt;/li>
+    &lt;% }); %>
+  &lt;/ul>
+  </ul>
+</code></pre>
+</div>
+
+
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title"> E - An Example </p>
+
+<p class="underline-text">
+  # An Example :-
+</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+  <p class="block-title">➤ Example</p>
+  <pre><code class="js language-js">
+  const express = require("express");
+  const path = require("path");
+  const app = express();
+  
+  // Secure Our HTTP Header
+  const helmet = require("helmet");
+  app.use(helmet());
+  
+  // Server Static Files 
+  app.use(express.static("public"));
+  
+  // Handle body parser JSON Data 
+  app.use(express.json());
+  app.use(express.urlencoded());
+    
+  // Set the view engine
+  app.set("view engine" , "ejs");
+  // No need views is the default folder
+  app.set("views" , path.join(__dirname , "views"));
+  
+  app.get("/" , (req,res,next)=>{
+    res.render("index");
+  })
+  
+  app.listen(3000 , () => {
+    console.log("Listen On Port 3000");
+  })  
+</code></pre>
+</div>

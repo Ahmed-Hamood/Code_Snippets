@@ -1,0 +1,328 @@
+<p class="main-title">1.2 - Using <red>Environment Variables</red> and Setup <blue>Proxy</blue> in package.json</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">1 - Using Environment Variables</p>
+
+<p class="text">
+ <red>Environment Variables</red> are variables that are available through a global process.env Object you can access anywhere in your application. Global Object is
+ provided by your environment through NodeJs. And because we don’t have NodeJs in the browser, we’re going to need webpack.
+</p>
+
+<p class="text">
+ <red>Environment Variables</red> is used to configure your application settings from your current environment variables depend on which environment you are on. all
+ environment variables are set at the time you run your application. You’ll often need to create multiple environments to work with. For example you might have an
+ environment called development that might be connected to your server on a specific port number, and also you want use a different port number on production. This is to
+ ensure that you are working with separate or isolated environment variables for each application stage.
+</p>
+
+<p class="text">
+ While developing your frontend React app and working with an API backend, you’ll often need to create multiple environments to work with. You need environment variables
+ to customize variables base on your environment <blue>(development, stage, production, testing, etc..)</blue>, and also to store sensitive information like API keys and
+ passwords which are highly sensitive and you shouldn’t push them to version control.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">2 - Using Environment Variables in a React Application</p>
+
+<p class="text">
+ All environment variables are defined for you on <code>process.env</code>. There are two kind of variables, we have <red>Build time variables</red> which are provided
+ when the application is compiled (when <code>npm run build</code> is executed), and also we have <red>Run time variables</red>
+ which they are provided when the application runs depend on the current environment they are on (development, staging or production).
+</p>
+
+<p class="text">
+ By default <blue>React</blue> define for you <code>NODE_ENV</code> by default depend on you current application stage. When you run <code>"npm start"</code> the
+ <code>NODE_ENV="development"</code> will look for all custom environment variables that is available with <green>.env</green> file or other environment variables files.
+</p>
+
+<p class="underline-text"># Each script command will assign value to <red>NODE_ENV</red> to different environment :-</p>
+
+<div class="terminal-block terminal code pre-block">
+ <pre><code class="js language-jsx">
+  > npm start // NODE_ENV="development"  
+  > npm run build // NODE_ENV="production"  
+  > npm test // NODE_ENV="test"  
+</code></pre>
+</div>
+
+<div class="terminal-block terminal code pre-block">
+ <p class="block-title">➤ ./package.json</p>
+ <pre><code class="js language-jsx">
+  ....
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+  },
+  ....
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">3 - Defining Custom Environment Variables</p>
+
+<p class="text">
+ The <red>Create React App</red> has support for custom environment variables baked into the build system of react. To create environment variables, we need a file that
+ our react application will look for either in shell command or a file called <red>.env</red> file.
+</p>
+
+<p class="text">
+ To define a custom environment variable and pass them to your application, first you need to create <red>.env</red> file, and define you custom environment variables
+ inside it. All environment variable names must be prefix with <blue>REACT_APP_</blue> either in your <red>.env</red> file or command line
+ <code>"REACT_APP_MY_VAR=foo react-scripts start"</code>. let create our <red>.env</red> file and provide it with an environment variable.
+</p>
+
+<div class="text-box note">that variables without the prefix <blue>REACT_APP </blue>are ignored during bundling.</div>
+
+<p class="underline-text"># Create <red>.env</red> file in your project root directory :-</p>
+
+<div class="terminal-block terminal code pre-block">
+ <p class="block-title">➤ ./.env</p>
+ <pre><code class="js language-jsx">
+REACT_APP_CLIENT_ID=12345
+REACT_APP_KEY=ANDJFFSKBSKFBF
+</code></pre>
+</div>
+
+<p class="text">
+ These custom environment variables will be defined for you on <code>process.env</code> for example having variable named <blue>REACT_APP_NOT_SECRET_CODE</blue> will be
+ exposed in your JS as <code>process.env.REACT_APP_NOT_SECRET_CODE</code>. You can print them and also assign them to other variables, but they are ready only in your
+ application (means their value can't be changed). let's access them in your react application
+</p>
+
+<p class="underline-text"># Read environment variables from <red>process.env</red></p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  const { REACT_APP_CLIENT_ID, REACT_APP_KEY } = process.env;
+</code></pre>
+</div>
+
+<p class="underline-text"># Access our custom environment variables :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react";
+
+  function App() {
+    console.log(process.env.REACT_APP_CLIENT_ID); // printing it to console
+    console.log(process.env.REACT_APP_KEY); // printing it to console
+
+    // You can perform actions conditionally
+    if (process.env.NODE_ENV !== "production") {
+      analytics.disable();
+    }
+  
+    return (
+      &lt;div className="app">
+        &lt;p>{process.env.REACT_APP_KEY}&lt;/p> // printing it to screen
+      &lt;/div>
+    );
+  }
+  
+  export default App;
+</code></pre>
+</div>
+
+<p class="text">
+ These environment variables will be defined for you on <code>process.env</code>. The <blue>NODE_ENV</blue> variable will be set for you automatically. When you
+ <red>run npm start</red>, it is always equal to <blue>'development'</blue>, when you <red>run npm test</red> it is always equal to <blue>'test'</blue>, and when you run
+ <red>npm run build</red> to make a production bundle, it is always equal to <blue>'production'</blue>.
+</p>
+
+<p class="text">
+ You can also access the environment variables starting with <red>REACT_APP_</red> in the <blue>"public/index.html"</blue> . In Your HTML file you specify your
+ environment variable between <green>%</green>
+</p>
+
+<p class="underline-text"># Use environment variables in your HTML file :-</p>
+
+<div class="html-block html-text code">
+ <p class="block-title">➤ ./public/index.html</p>
+ <pre><code class="js language-jsx">
+  &lt;h1> %REACT_APP_KEY% &lt;/h1>
+  &lt;h2> %REACT_APP_CLIENT_ID% &lt;/h2>
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">3 - Adding Temporary Environment Variables in your CMD :-</p>
+
+<p class="text">
+ Define environment variables can be different between operating systems. You have to know that the environment variables are defined for the life of the current shell
+ session process. if terminal your sell command line session all theses environment variables will be erased. So we better define our permanent environment variables with
+ <red>.env</red> in the root of your project
+</p>
+
+<p class="underline-text"># Define environment variables :-</p>
+
+<div class="terminal-block terminal code pre-block">
+ <pre><code class="js language-jsx">
+// In Windows cmd.exe
+> set "REACT_APP_NOT_SECRET_CODE=abcdef" && npm start
+
+// In Windows (Powershell) 
+> ($env:REACT_APP_NOT_SECRET_CODE = "abcdef") -and (npm start)
+
+// Linux, macOS (Bash) 
+> REACT_APP_NOT_SECRET_CODE=abcdef npm start
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">4 - Different Types of <red>.env</red> Files for Loading Environment Variables</p>
+
+<p class="text">
+ We defined our environment variables inside a file called <red>".env"</red> in the root of your project. Each environment variable must start with a prefix begins with
+ <blue>REACT_APP_</blue> any other variables <red>NODE_ENV</red> will be ignored ( to avoid accidentally exposing a private key on the machine that could have the same
+ name.) Changing any environment variables will require you to restart the development server if it is running.
+</p>
+
+<p class="text">
+ We have other than <red>.env</red> files than can be used. these files are used set environment variables depend on the current <red>NODE_ENV</red>. We will list all
+ these files that loads environment variables.
+</p>
+
+<p class="underline-text"># Different types of .env files for loading Environment Variables depend on the current environment <red>NODE_ENV</red> :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li><code>.env</code>: Default.</li>
+  <li><code>.env.local</code>: Local overrides. This file is loaded for all environments except test.</li>
+  <li><code>.env.development</code>, <code>.env.test</code> and <code>.env.production</code>: Environment-specific settings.</li>
+  <li><code>.env.development.local</code>, <code>.env.test.local</code> and <code>.env.production.local</code>: Local overrides of environment-specific settings.</li>
+ </ul>
+</div>
+
+<p class="text">
+ Our react will look for environment files depend on the current <red>NODE_ENV</red>. When you <red>run npm start</red> it is equal to <blue>"development"</blue> , and
+ when you run <red>npm test</red> it is equal to <blue>"test"</blue>, and when you run <red>npm run build</red> it is equal to <blue>"production"</blue>
+ react will look for the following files by order depend on the current environment and set variables on who come first.
+</p>
+
+<p class="underline-text"># On <red>development</red> mode our react application will look for the following files by order ( Higher-Top is more priority ) :-</p>
+
+<div class="terminal-block code">
+ <pre><code class="js language-jsx">
+npm start 
+  .env.development.local, 
+  .env.local, 
+  .env.development, 
+  .env
+</code></pre>
+</div>
+
+<p class="underline-text"># On <red>production</red> mode our react application will look for the following files by order ( Higher-Top is more priority ) :-</p>
+
+<div class="terminal-block code">
+ <pre><code class="js language-jsx">
+npm run build
+  .env.production.local, 
+  .env.local, 
+  .env.production, 
+  .env
+</code></pre>
+</div>
+
+<p class="underline-text"># On <red>test</red> mode our react application will look for the following files by order ( Higher-Top is more priority ) :-</p>
+
+<div class="terminal-block code">
+ <pre><code class="js language-jsx">
+npm test
+  .env.test.local, 
+  .env.test, 
+  .env
+  (note .env.local is missing)
+</code></pre>
+</div>
+
+<p class="text">
+ if you run <red>npm start</red> , it is always equal to <red>"development"</red> so it will look for
+ <orange>.env.development.local --> .env.local --> .env.development --> .env</orange>
+</p>
+
+<p class="text">
+ if you <red>run npm test</red>, it is always equal to <red>"test"</red> so it will look for <orange>.env.test.local --> .env.test</orange> (env.local is missing)
+</p>
+
+<p class="text">
+ if you run <red>npm run build</red> to make a production bundle, it is always equal to <red>"production"</red> so it will look for
+ <orange>.env.production.local --> .env.production --> .env.locals</orange>
+</p>
+
+<div class="sub-sub-title mark get-title">- Example</div>
+
+<p class="text">
+ We will create two <red>.env</red> files <blue>"development"</blue> and <blue>"production"</blue> in our root of our projects, then run our react application with both
+ modes and see which environment variables will loaded into our react application.
+</p>
+
+<p class="underline-text"># Create <red>.env.development</red> and <red>.env.production</red> file in your project root directory :-</p>
+
+<div class="terminal-block terminal code pre-block">
+ <p class="block-title">➤ ./.env.development</p>
+ <pre><code class="js language-jsx">
+REACT_APP_NOT_SECRET_CODE=".env.development"
+</code></pre>
+</div>
+
+<div class="terminal-block terminal code pre-block">
+ <p class="block-title">➤ ./.env.production</p>
+ <pre><code class="js language-jsx">
+REACT_APP_NOT_SECRET_CODE=".env.production"
+</code></pre>
+</div>
+
+<p class="underline-text"># We will run both modes :-</p>
+
+<div class="terminal-block terminal code pre-block">
+ <pre><code class="js language-jsx">
+> npm start // Load '.env.development' environment variables
+> npm run build // Load '.env.production' environment variables
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">5 - Setup <red>Proxy</red></p>
+
+<p class="text">
+ we are going to add proxy because when we make a request to a backend. we don't want to add domain name and port number <path>http://localhost:3000/api/user </path> or
+ <path>http://websitename/api/user</path> into our request thru fetch api or axios.
+</p>
+
+<p class="underline-text"># Request users using either fetch or axios with the full url :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  axios.get("http://localhost:3000/api/user")
+  fetch("http://localhost:3000/api/user") 
+</code></pre>
+</div>
+
+<p class="underline-text"># Add and setup our proxy inside our package.json :-</p>
+
+<div class="terminal-block terminal code pre-block">
+ <p class="block-title">➤ ./package.json</p>
+ <pre><code class="js language-jsx">
+  ...
+  {  
+    "proxy": "http://localhost:3000"
+    // OR
+    "proxy": "http://www.mywebsite.com"
+  }
+  ...
+</code></pre>
+</div>
+
+<p class="underline-text"># Request users using either fetch or axios with only path url :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  axios.get("/api/user")
+  fetch("/api/user") 
+</code></pre>
+</div>

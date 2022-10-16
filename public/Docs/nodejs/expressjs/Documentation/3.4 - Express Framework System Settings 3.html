@@ -1,0 +1,171 @@
+<!-- ########################################## -->
+<p class="main-title get-title">3.2C - <span class="red bold font-code">X-powered-by</span> - View/Remove Server Platform</p>
+
+<p class="text">
+ The <span class="red bold">X-Power-By</span> response header (enabled by default) is used to view or detect what kind of application that your server is running, which
+ in our case it's ExpressJS/NodeJS. Removing this header will prevent attacker from determining that an app is running Express. We recommend disabling or remove
+ <span class="red bold">X-Power-By</span> header for security reason because it’s harder to find vulnerabilities if your platform is unknown
+</p>
+
+<p class="underline-text"># The x-powered-by option sets the HTTP response header X-Powered-By to the Express value. This option is enabled by default</p>
+
+<img path="/img/image006.PNG" id="image" alt="" />
+
+<p class="text">
+ We can remove the <span class="red bold">X-Power-By</span> header by using <span class="blue bold font-code">app.set("x-powered-by", false)</span> or
+ <span class="blue bold font-code">app.disable("x-powered-by")</span>, or you can just remove the header from the response using
+ <span class="blue bold font-code">res.removeHeader("X-Powered-By")</span>
+</p>
+
+<p class="underline-text"># Now removing x-powered-by header :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+
+  // Using Express configuration setting
+  app.set("x-powered-by" , false)  
+  app.disable("x-powered-by")
+
+  // Using Response removeHeader method inside middleware 
+  app.use( (req, res, next) => {
+    res.removeHeader("X-Powered-By");
+    next();
+  })
+
+  // Using Response removeHeader method inside grt method route 
+  app.get("/home", (req, res) => {
+    res.removeHeader("x-powered-by")
+    res.json({ message: "message content" })
+  })
+</code></pre>
+</div>
+
+<img path="/img/image007.PNG" id="image" alt="" />
+
+<!-- ########################################## -->
+<p class="sub-title get-title">11 - <span class="red bold font-code">e-tag</span> - Assign Identifier to static content</p>
+
+<p class="text">
+ The <span class="red bold">e-tag</span> (entity tag) response header (enabled by default) is a caching tool used to assigning unique identifier for every content or
+ static file on a given URL before sending it to the client browser.
+</p>
+
+<p class="text">
+ The browser will keep a copy of the content page for sometime depend on content max-age inside it's cache memory. the browser will check every content like css, js,
+ images files and each one will have a etag, when the content or url expires the browser will send a request along with etag identifier to the server to check if content
+ is changed on a specific URL mean if the etag is changed if so then the server will tell the browser I will send the expired content to you , but if the etag is still
+ the same mean the content didn’t change then the browser will use the cache memory or disk
+</p>
+
+<p class="text">
+ it’s better to leave the Express.js default etag response header setting enabled as it is, otherwise to disable ETag, use
+ <span class="blue bold font-code">app.disable('etag')</span>, which will eliminate the ETag HTTP response header.
+</p>
+
+<p class="underline-text"># E-Tag uses the following values :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>No Tag - <span class="dark-green underline">false</span></li>
+  <li>Weak Tag - <span class="dark-green underline">true</span> (indicates that the response is semantically the same)</li>
+  <li>Strong Tag - <span class="dark-green underline">"strong"</span>(Strong ETag guarantees the response is byte-for-byte the same)</li>
+  <li>Custom Tag - <span class="dark-green underline">function(body, encoding)</span></li>
+ </ul>
+</div>
+
+<p class="underline-text"># To enable etag on every response content then you enable etag setting :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+
+  app.enable("etag"); // Weak etag 
+  app.set("etag", true); // Weak etag
+  app.set("etag", "strong"); // Strong etag
+  app.set("etag", false); // Remove etag
+
+  >> Using Express provides your own E-Tag algorithm Custom Function
+
+  app.set("etag", function (body, encoding) {
+    return customEtag(body, encoding); // you define the customEtag function 
+  });  
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">12 - <span class="red bold font-code">query parser</span> - Parse URL Data into Javascript Object</p>
+
+<p class="text">
+ The <span class="red bold">query parser</span> (default "extended") is data sent in the URL after the question mark (for example
+ <span class="red bold font-code">?name=value&name2=value2</span>). this format needs to be parsed into javascript/Node.js Object format before we can use it. Express.js
+ automatically includes this query parsing for our convenience It does so by enabling the <span class="red bold">query parser</span> setting.
+</p>
+
+<p class="underline-text"># The default value for query parser is <green>extended</green>, which uses the qs module’s functionality Other possible values are :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li><span class="dark-green underline">false</span>: Disable parsing</li>
+  <li><span class="dark-green underline">true</span>: Uses qs module</li>
+  <li><span class="dark-green underline">"simple"</span>: Uses the core querystring module’s functionality</li>
+ </ul>
+</div>
+
+<p class="text">
+ It’s possible to pass your own function as an argument, in which case your custom function will be used for parsing instead of parsing libraries. If you pass your own
+ function, your custom parsing function must take a string argument and return a JavaScript/Node.js object similar to the parse function’s signature from the core
+ querystring module
+</p>
+
+<p class="underline-text"># The following are examples in which we set query parser to use querystring, no parsing and a custom parsing function: :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+ 
+  app.set("query parser", "simple");
+  app.set("query parser", false);
+  app.set("query parser", customQueryParsingFunction);
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">13 - <span class="red bold font-code">subdomain offset</span> - View/Remove Server Platform</p>
+
+<p class="text">
+ The <span class="red bold">subdomain offset</span> (default is 2) setting controls the value returned by the req.subdomains property. This setting is useful when the app
+ is deployed on multiple subdomains, such as <span class="blue bold underline">http://ncbi.nlm.nih.gov</span>. the last two on the right in the hostname/URL are dropped
+ and the rest are returned in reverse order in the <span class="red bold font-code">req.subdomains</span>
+</p>
+
+<p class="text">
+ For example <span class="blue bold underline">http://ncbi.nlm.nih.gov</span> the resulting <span class="red bold font-code">req.subdomains</span> is ['nlm', 'ncbi']. if
+ you set <span class="red bold">subdomain offset</span> set to 3 by <span class="blue bold font-code">app.set('subdomain offset', 3)</span> the result of
+ <span class="red bold font-code">req.subdomains</span> will be just ['ncbi'],because Express.js will drop the three (3) parts starting from the right (nlm, nih, and
+ gov).
+</p>
+
+<p class="underline-text"># The following are examples in which we set query parser to use querystring, no parsing and a custom parsing function: :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">> http://ncbi.nlm.mywebsite.gov</p>
+ <pre><code class="js language-js">
+  >> mywebsite is the host name 
+  >> Express subdomain offset setting default = 2 -> ['nlm', 'ncbi'] the resulting of req.subdomains
+
+  app.set("subdomain offset", 3); 
+  console.log(req.subdomains); // ['ncbi'] - drop last three 
+  // the result of req.subdomains will be just ['ncbi'], because Express.js will 
+  // drop the three (3) parts starting from the right (nlm, mywebsite, and gov)
+
+  app.set("subdomain offset", 1); 
+  console.log(req.subdomains); // ['nlm', 'ncbi', 'mywebsite'] - drop last two
+</code></pre>
+</div>

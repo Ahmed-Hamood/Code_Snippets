@@ -1,0 +1,316 @@
+<p class="main-title">8.4 - An HTTP Response Object Methods - Set Response Header Fields</p>
+
+<p class="text">
+ In Response Object we are going to look how to set headers and status code with other headers, , including the set method for setting headers, status for setting
+ response status code, type for setting the Content-Type header value
+</p>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">A - <span class="red bold font-code">res.set(key, value)</span> - Set Header Fields</p>
+
+<p class="text">
+ The set() method is used to set the response of HTTP header field to value, before sending a response. You can change any HTTP header value using
+ <span class="red bold font-code">res.set()</span>
+</p>
+
+<p class="text">
+ Using set(), we can change the <blue>content-type</blue>, Express default content type is a content type of <green>text/html</green> If you want to change the content
+ type you have to call <span class="red bold font-code">res.set("Content-Type", "text/plain") </span> before calling <span class="red bold font-code">res.send()</span>.
+ if content is object or array, then set the content type to JSON instead. If you are going to <blue>JSON</blue>. I recommend sending it with
+ <span class="red bold font-code">res.json()</span> instead
+</p>
+
+<p class="underline-text"># Using res.set() to set the content-type of the response header :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-js">
+ app.get("/", (req, res) => {
+  // Change the content type to text/plain 
+  res.set("Content-Type", "text/plain"); 
+  res.send("&lt;h1>Hello&lt;/h1>"); // Content-Type: text/plain; charset=utf-8
+ })
+
+ app.get("/", (req, res) => {
+  // Change the content type to application/json 
+  res.set("Content-Type", "application/json") ; 
+  res.send({ name : "Alen" }); // Content-Type: application/json; charset=utf-8
+ })
+</code></pre>
+</div>
+
+<p class="underline-text"># We can set multiple response headers fields at once:-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-js">
+  app.get("/", (req, res) => {
+    res.set({
+      "Content-Type": "text/csv",
+      "Content-Length": body.length,
+      "Set-Cookie": ["type=reader", "language=javascript"]
+    });
+  })
+
+  app.get("/", (req, res, next) => {
+    res.set({
+      "Content-Type": "text/plain",
+      "Content-Length": "100",
+      "UserName": "William45"
+    }).send();
+  })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">B - <span class="red bold font-code">res.setHeader(code)</span> - Set Response Headers</p>
+
+<p class="text">
+ The setHeader() method will perform slightly better, since <span class="red bold font-code">res.set()</span> is just a wrapper, which calls
+ <span class="red bold font-code">res.setHeader()</span>, with setHeader() method Only you can set a single header at a time.
+</p>
+
+<p class="underline-text"># Using setHeader() method to set header :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-js">
+  app.get("/", (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
+    res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type, Accept");
+    res.setHeader("Access-Control-Allow-Credentials", true);
+    res.setHeader("Content-Type", "image/gif");
+  })
+
+  app.get("/", (req, res, next) => {
+  res.set({
+    "Access-Control-Allow-Origin" : "*" ,
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE" ,
+    "Access-Control-Allow-Credentials": true,
+    "Content-Type": "image/gif"
+  });
+  })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">C - <span class="red bold font-code">res.status(code)</span> - Set Status Code 200, 201, 404</p>
+
+<p class="text">
+ The status() method is used to add a status code before sending the response. It accepts an HTTP status code number and sends it in response. The Express default status
+ code is <green>200 (OK)</green>. We use this method to return status response to the request that’s been sent by the client and send a response with status code like:-
+</p>
+
+<p class="underline-text"># HTTP Status Code :-</p>
+
+<img path="/img/image028.PNG" id="image" alt="" />
+
+<p class="underline-text"># Using res.status() method to set status code before sending it to the user :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-js">
+  app.get("/", (req, res) => {
+    res.status(404);
+    res.send("Page not Found");
+    res.status(403).end();  
+    res.status(400).send("Bad Request");  
+    res.status(403).end()
+    res.status(400).send("Bad Request")
+    res.status(404).sendFile("/absolute/path/to/404.png")
+  
+    res.status(201).json({
+      status: "success",
+      message: "User created successfully . . .",
+      result
+   }); 
+  })
+
+  app.get("/status", function(req, res) {
+    res.status(200).end();
+  });
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">D - <span class="red bold font-code">res.sendStatus(code)</span> - Set Status Code And Send response</p>
+
+<p class="text">The sendStatus() method Sets the response HTTP status code to statusCode and send its string representation as the response body.</p>
+
+<p class="underline-text"># Using res.sendStatus() method to set status code and send a response :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-js">
+  app.get("/", (req, res) => {
+    res.sendStatus(200) // equivalent to res.status(200).send('OK')
+    res.sendStatus(403) // equivalent to res.status(403).send('Forbidden')
+    res.sendStatus(404) // equivalent to res.status(404).send('Not Found')
+    res.sendStatus(500) // equivalent to res.status(500).send('Internal Server Error')
+    res.sendStatus(9999) // equivalent to res.status(9999).send('9999')
+  }); 
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">E - <span class="red bold font-code">res.type(type)</span> - Set Type To Type</p>
+
+<p class="text">
+ The type() method Sets the Content-Type HTTP header to the MIME type as determined by mime.lookup() method from the node-mime package for the specified type. It is
+ shorthand way to write a header.
+</p>
+
+<div class="text-box note">Note: This method doesn’t send the response.</div>
+
+<p class="underline-text"># Using res.type() method to set the Content-Type type :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-js">
+  app.get("/", (req, res) => {
+    res.type("text"); // it will set the 'Content type' : text/plain
+    res.set("Content-Type": "text/plain");
+
+    res.type(".html"); // => 'Content-Type': 'text/html 
+    res.type("html"); // => 'Content-Type': 'text/html 
+    res.type("text/html"); // => 'Content-Type': 'text/html'
+    res.type("json"); // => 'Content-Type': 'application/json'
+    res.type("application/json"); // => 'Content-Type': 'application/json'
+    res.type("png"); // => 'Content-Type': image/png:
+
+    res.type(".html").send("&lt;h1> Welcome To Express &lt;/h1>");
+  }); 
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">F - <span class="red bold font-code">res.get(key_name)</span> - Return Key Value</p>
+
+<p class="text">The get() method is used to return the HTTP response header specified by field. The match is case-insensitive.</p>
+
+<p class="underline-text"># Using res.get() method to get the field key value :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-js">
+  app.get("/", (req, res) => {
+    res.get("X-Powered-By");  => express 
+    res.get("Content-Type")  => 'text/plain'     
+  }); 
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">G - <span class="red bold font-code">res.append(key, value || [values])</span> - Append Value Into Field</p>
+
+<p class="text">
+ The append() method it appends the specified value to the HTTP response header field, you can set many values into the field it like an array u just push elements into.
+ If the header is not already set, it creates the header with the specified value. The value parameter can be a string or an array.
+</p>
+
+<p class="underline-text"># Using res.append() method to get the field key value :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-js">
+  app.get("/", (req, res) => {
+    res.append("Link", ["&lt;http://localhost/>", "&lt;http://localhost:3000/>"])
+    res.append("Set-Cookie", "foo=bar; Path=/; HttpOnly")
+    res.append("Warning", "199 Miscellaneous warning")
+    res.append("Content-Length", "5089990");
+
+    res.append("Content-Type", "application/javascript; charset=UTF-8");
+    res.append("Content-Type", "application/json; charset=UTF-8"); 
+    // Error TypeError: Content-Type cannot be set to an Array 
+  }); 
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">H - <span class="red bold font-code">res.location(path)</span> - Set Path as a value</p>
+
+<p class="text">
+ The location() Sets the response Location HTTP header to the specified path parameter. A path value of "back" has a special meaning, it refers to the URL specified in
+ the Referer header of the request. If the Referer header was not specified, it refers to "/".
+</p>
+
+<p class="underline-text"># Using res.location() method to set the location field :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-js">
+  app.get("/", (req, res) => {
+    res.location("http://xyz.com");   Location: http://xyz.com 
+    res.location("/foo/bar");   Location: /foo/bar 
+    res.location("http://example.com");  Location: http://example.com 
+  }); 
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">I - <span class="red bold font-code">res.headersSent</span> - Indicate response already sent</p>
+
+<p class="text">
+ The headersSent() return a boolean value, and it indicates if the application server sent HTTP headers for the response. It only check if the server has sent a response
+ to the client
+</p>
+
+<p class="underline-text"># Using res.headersSent() method Used to check if a response header has been sent :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-js">
+  app.get("/", function (req, res) {
+    console.dir(res.headersSent) // false
+    res.send("OK")
+    console.dir(res.headersSent) // true
+  })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">J - <span class="red bold font-code">res.local</span> - store local variables</p>
+
+<p class="text">
+ The locals property it's an object that contain a local variables that we can use later in a scope to the request life. We can use local variables inside our render
+ template, and the local variables will be overridden by the <span class="red bold font-code">res.render()</span>
+ local parameter.
+</p>
+
+<p class="underline-text"># Using res.local() method to store local variables:-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-js">
+  app.use((req, res, next) => {
+    res.locals.name = "Adam";
+    next();
+  });
+  
+  app.get("/new", (req, res, next) => {
+    res.locals.age = 45;
+    console.log(res.locals); // { name: 'adam', age: 45 } 
+    res.send("ok");
+  });   
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">K - <span class="red bold font-code">res.vary(field)</span> - Content Negotiation</p>
+
+<p class="text">
+ The vary() method adds the field to the Vary response header if it’s not already there. The Vary header lets us to content negotiation, which is a mechanism for serving
+ different kinds of data with the same URL. It indicates which headers it’s used for content negotiation.
+</p>
+
+<p class="underline-text"># Using res.vary() method to store local variables:-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-js">
+  app.get("/", (req, res) => {
+    res.vary("User-Agent").send(); <omment>// vary: User-Agent</omment>
+  });   
+</code></pre>
+</div>

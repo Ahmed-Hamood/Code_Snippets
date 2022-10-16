@@ -1,0 +1,197 @@
+<p class="main-title">
+ 6.3 - Express Route - Enable <span class="red bold">Parameter Trigger</span> Using <span class="blue bold font-code">app.param(name, callback)</span>
+</p>
+
+<p class="text">
+ The <span class="red bold font-code">app.param()</span> function used to add a callback triggers to route URL parameter. We create a parameter trigger callback function
+ using <span class="red bold font-code">app.param()</span> on <span class="green bold font-code">"id"</span>, so when a client hits a URL route parameter
+ <span class="green bold font-code">"user/:id"</span>, the parameter trigger callback function will be invoked first, before any handler of any route in which the param
+ occurs.
+</p>
+
+<p class="underline-text"># Creating a parameter trigger using app.param() :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Syntax</p>
+ <pre><code class="js language-js">
+  app.param("parameter_name", (req, res, next, value) => { } )
+  app.param(["parameter_name_1", "parameter_name_2"], (req, res, next, value) => { next() } )
+</code></pre>
+</div>
+
+<p class="text">
+ So every time when the client request thru <span class="red bold font-code">app.get()</span> either URL <green>"/user/1256"</green> or <green>"/user/4tj8f4"</green>, the
+ callback inside will be triggered or invoked <span class="red bold font-code">app.param()</span> will be executed before
+ <span class="red bold font-code">app.get()</span>
+</p>
+
+<p class="underline-text"># Using app.param() :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.param("id", (req, res, next, value) => {
+    // Do something with id
+    // Perform database query
+    // Store id or other info in req object
+    // Call next when done
+    console.log(value); // 452
+    req.user = user;
+    next();
+  })
+
+  app.get("users/:id", (req, res) => { 
+    //... Do something with req.user
+    return res.render(req.user);
+  })
+
+  # What will happen ?
+  ------------------------------------------------------------------------------
+   1. user hit "/users/452" GET request to the server
+   2. server map the url route app.get()
+   3. the app.param() execute first before app.get() because the ":id" triggered
+   4. After app.param() finishes next run app.get()
+  ------------------------------------------------------------------------------
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">A - Using <span class="red bold font-code">app.param()</span> To find User</p>
+
+<p class="text">The following is an example of accessing database when an id parameter is triggered, we check if the id exist in our database</p>
+
+<p class="underline-text"># An Example of using app.param() :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.param("id", (req, res, next, id) => {
+    req.db.get("users").findOne({_id: id}, function (error, user){
+      if (error) return next(error);
+      if (!user) return next(new Error("Nothing is found"));
+      req.story = story;
+      next();
+    });
+  });  
+  
+  app.get("/api/v1/stories/:id", (request, response) => {
+    res.send(req.story);
+  }); 
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">B - Using Multiple <span class="red bold font-code">app.param()</span></p>
+
+<p class="underline-text"># An Example of using multiple app.param() :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.param("storyId", (req, res, next, storyId) => {
+    // Fetch the story by its ID (storyId) from a database
+    // Save the found story object into request object
+    request.story = story;
+  });
+
+  app.param("elementId", (req, res, next, elementId) => {
+    // Fetch the element by its ID (elementId) from a database
+    // Narrow down the search when req.story is provided
+    // Save the found element object into req object
+    req.element = element;
+  });
+
+  app.get("/api/v1/stories/:storyId/elements/:elementId", (req, res) => {
+    // Now we automatically get the story and element in the req object
+    res.send({ story: req.story, element: req.element});
+  });
+
+  app.post("/api/v1/stories/:storyId/elements", (req, res) => {
+    // Now we automatically get the story in the req object
+    // We use story ID to create a new element for that story
+    res.send({ story: req.story, element: newElement});
+  }); 
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">C - Using an Array of params within <span class="red bold font-code">app.param()</span></p>
+
+<p class="text">
+ We can use multiple parameter name within <span class="red bold font-code">app.param()</span> by passing an array of parameter names ["param_1", "param_2"]. All
+ parameter names inside an array will be triggered by any incoming request with a parameter.
+</p>
+
+<p class="underline-text"># An Example of using multiple app.param() :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  
+  app.param(["userid", "name"], function (req, res, next, value) {
+    console.log(value);
+    http://localhost:3000/user/4522 -> 4522
+    http://localhost:3000/person/adam -> adam
+    next()
+  })
+
+  app.get("/user/:userid", (req, res) => {
+    res.send(`params is :- ${req.params.userid}`)
+  })
+  
+  app.get("/person/:name", (req, res) => {
+    res.send(`params is :- ${req.params.name}`)
+  })
+  
+  app.listen(3000, () => {
+    console.log("Listening on port 3000")
+  })  
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">C - Using <span class="red bold font-code">router.param()</span> With Router Express</p>
+
+<p class="text">
+ Using param method with Router is similar to normal route, but with <span class="red bold font-code">router.param()</span> it does not accept an array of parameter names
+ that's the only difference. In express older version <span class="red bold font-code">router.param(callback)</span> was available, but now is Deprecated.
+</p>
+
+<p class="underline-text"># An Example of using Express Router router.param() :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  const router = express.Router()
+  
+  app.use("/api", router)
+  
+  router.param("id", (req, res, next, val) => {
+    console.log(val)
+    next()
+  })
+  
+  router.param("name", (req, res, next, val) => {
+    console.log(val)
+    next()
+  })
+  
+  router.get("/user/:id", (req, res) => {
+    console.log(req.params.id)
+    res.end()
+  })
+  
+  router.get("/book/:name", (req, res) => {
+    console.log(req.params.id)
+    res.end()
+  })
+  
+  app.listen(3000, () => {
+    console.log("Listening on port 3000")
+  })  
+</code></pre>
+</div>

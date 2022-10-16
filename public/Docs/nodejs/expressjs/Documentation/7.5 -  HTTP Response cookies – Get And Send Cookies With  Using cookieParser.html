@@ -1,0 +1,255 @@
+<p class="main-title">
+ 7.5 - HTTP <span class="red bold font-code">res.cookies</span> – Get And Set Cookies With <span class="blue bold font-code">cookieParser()</span>
+</p>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">A - What is Cookies And Authentication/Authorization ?</p>
+
+<p class="text">
+ Cookies are simple small files/data that are send to client thru a server request and stored on the client side machine. Every time the users loads or navigate thru a
+ website, the cookies is send with request from the client to the server to help us keep truck of the user's and recognize them.
+</p>
+
+<p class="text">
+ the client will get cookies while login or register to an account, our server will authenticate our client and send a cookie back to the client, so when the client
+ connect to the server again. the client will send the cookie a long with the request and the server will recognize the cookie and do authorization or authentication
+ process.
+</p>
+
+<p class="underline-text"># What is Authentication And Authorization ?</p>
+
+<p class="text">
+ Authentication confirms that users are who they say they are. Validating that users are whom they claim to be. This is the first step in any security process. To
+ complete the authentication process through Username and password
+</p>
+
+<p class="text">
+ Authorization gives those users permission to access a resource. The process of giving the user permission to access a specific resource or function. In secure
+ environments, authorization must always follow authentication. Users should first prove that their identities are genuine before an organization’s administrators grant
+ them access to the requested resources.
+</p>
+
+<p class="underline-text"># Here how client and server keep track of each other :-</p>
+
+<img path="/img/image026.PNG" id="image" alt="" />
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">B - Install <span class="red bold font-code">cookie-parser</span></p>
+
+<p class="text">
+ <span class="red bold font-code">cookie-parser</span> is a middleware which parses cookies attached to the client request object
+ <span class="blue bold font-code">req.cookies</span> . We use <span class="red bold font-code">cookie-parser</span> in order to use cookies with express, we need the
+ cookie-parser middleware. To install it, use the following code
+</p>
+
+<p class="underline-text"># Install cookie-parser using npm :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> npm install cookie-parser
+</code></pre>
+</div>
+
+<p class="text">
+ We will require the <span class="red bold font-code">cookie-parser</span> inside our server,js file, and use it as a middleware and attach it with
+ <span class="red bold font-code">app.use()</span>. The <span class="red bold font-code">cookie-parser</span> middleware will ask the browser for it's own cookies if
+ available then cookie-parser parses Cookie header and populates <span class="blue bold font-code">req.cookies</span> with an object keyed by the cookie names.
+</p>
+
+<p class="underline-text"># Use cookie-parser with our application to parse cookies :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ ./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  const cookieParser = require("cookie-parser");
+
+  app.use(cookieParser());
+
+  ....
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">C - Sending, Getting And Clear Cookies</p>
+
+<p class="sub-sub-title get-title">- Sending Cookies</p>
+
+<p class="text">
+ In server side, After the user login or register our server will generate a web token or id session that identify the client owner, and send it back as a cookie response
+ to the client browser, the browser will store and keep this cookie for. to set a new cookie from the server, you have to set name and value as following
+</p>
+
+<p class="underline-text"># Set a cookie and attach it to the response :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Set Cookie</p>
+ <pre><code class="js language-js">
+  res.cookie("Cookie_name", "Cookie_value"); 
+  res.json({ msg: "cookie set" })
+
+  // You can set cookie by setting in http headers
+  app.post("/login", (req, res) => {
+    res.writeHead(200, {
+        "Set-Cookie": "token=encryptedstring; HttpOnly",
+        "Access-Control-Allow-Credentials": "true"
+      }).send();
+  });
+
+  // Expires after 3600000 ms after One hour from the time it is set.
+  res.cookie(name, "value", { expire: 3600000 + Date.now() });  
+  // This cookie also expires after 3600000 ms after One hour from the time it is set.
+  res.cookie(name, "value", { maxAge: 3600000 }); // Expire after one hour
+
+  // In browser Inspect console = to check cookie 
+  console.log(document.cookie);
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example of generate a webtoken and attach it into cookie and send it as a response to the client :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ ./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  const cookieParser = require("cookie-parser");
+
+  app.use(cookieParser());
+
+  const payload = { id: "102", username: "Adam" }
+  const SECRET_KEY = "lf9fhfg7dbr557f";
+  const signOptions = { algorithm: "RS256", expiresIn:  "12h" }
+
+  app.post("/login", (req, res) => {
+    jwt.sign(payload, JWT_SECRET, signOptions, (err, token) => {
+      res.cookie("user", token)
+    })
+
+    return res.json({ msg: "Access Granted" })
+  })
+</code></pre>
+</div>
+
+<p class="sub-sub-title get-title">- Getting Cookies</p>
+
+<p class="text">
+ we installed <span class="red bold font-code">"cookie-parser"</span> to attach <span class="blue bold font-code">req.cookies</span> into our request object. The browser
+ will send back it's own cookie every time that connect to the server, so both client and server keep tracking each other, and keep the client login.
+</p>
+
+<p class="underline-text"># To get cookies from the client from the server :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Get Cookie</p>
+ <pre><code class="js language-js">
+  const cookieParser = require("cookie-parser");
+  app.use(cookieParser());
+
+  console.log(req.cookies.user); 
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example of getting a cookie from the client from the server:-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ ./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  const cookieParser = require("cookie-parser");
+
+  app.use(cookieParser()); 
+
+  const payload = { id: "102", username: "Adam" }
+  const SECRET_KEY = "lf9fhfg7dbr557f";
+  const signOptions = { algorithm: "RS256", expiresIn:  "12h" }
+
+  // Send a response cookie to the client  
+  app.post("/login", (req, res) => {
+    jwt.sign(payload, JWT_SECRET, signOptions, (err, token) => {
+      res.cookie("user", token)
+    })
+
+    return res.json({ msg: "Access Granted" })
+  })
+    
+  // Get the cookie from client side from request http header
+  app.get("/welcome", (req, res, next) => {
+    const token = req.cookies.user;
+
+    jwt.verify(token, JWT_SECRET , function(err, decoded) {
+      if(err) next(err)  
+    });  
+
+    return res.json({ msg: "OK" })
+  });
+</code></pre>
+</div>
+
+<p class="sub-sub-title get-title">- Clear Cookies</p>
+
+<p class="text">Our server can send a response the client browser asking it to clear it cookies that owned by the server, use the clearCookie function</p>
+
+<p class="underline-text"># To Clear cookies from the client from the server :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Clear Cookie</p>
+ <pre><code class="js language-js">
+  app.get("/logout" , (req,res,next) => {
+    res.clearCookie('username');
+    res.redirect('/login');
+  })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">D - Cookie Options</p>
+
+<p class="text">Our <span class="red bold font-code">res.cookie</span> method accept a third parameter, which contains various options:</p>
+
+<p class="underline-text"># All available options :-</p>
+
+<p class="text">
+ <blue>domain</blue>: Controls the domains the cookie is associated with; this allows you to assign cookies to specific subdomains. Note that you cannot set a cookie for
+ a different domain than the server is running on: it will simply do nothing.
+</p>
+
+<p class="text">
+ <blue>path</blue>: Controls the path this cookie applies to. Note that paths have an implicit wildcard after them: if you use a path of / (the default), it will apply to
+ all pages on your site. If you use a path of /foo, it will apply to the paths /foo, /foo/bar, etc.
+</p>
+
+<p class="text">
+ <blue>maxAge</blue>: Specifies how long the client should keep the cookie before deleting it, in milliseconds. If you omit this, the cookie will be deleted when you
+ close your browser. (You can also specify a date for expiration with the expires option, but the syntax is frustrating. I recommend using maxAge.)
+</p>
+
+<p class="text"><blue>secure</blue>: Specifies that this cookie will be sent only over a secure (HTTPS) connection.</p>
+
+<p class="text">
+ <blue>httpOnly</blue>: Setting this to true specify the cookie will be modified only by the server. That is, client-side JavaScript cannot modify it. This helps prevent
+ XSS attacks.
+</p>
+
+<p class="text">
+ <blue>signed</blue>: Set to true to sign this cookie, making it available in res.signedCookies instead of res.cookies. Signed cookies that have been tampered with will
+ be rejected by the server, and the cookie value will be reset to its original value.
+</p>
+
+<p class="underline-text"># Set cookie name and value with options :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Set Cookie Options</p>
+ <pre><code class="js language-js">
+  res.cookie("Cookie-Name", "Cookie-Value", {
+    domain:"localhost",   // assign cookie to the same domain than the server is running on
+    path: "/", // apply this cookie when the request hit this route 
+    httpOnly: false,  // only server side can modify the cookie
+    maxAge: 100000,  // 1000 milliseconds = 1 second after cookie expire it will be removed fromm the browser
+    secure : true  // only responds with cookie if the connection is secured https 
+    signed : true
+   });  
+ </code></pre>
+</div>

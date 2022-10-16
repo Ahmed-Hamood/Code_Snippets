@@ -1,0 +1,97 @@
+<p class="main-title">4.3 - Using Routes Chain Handlers With <span class="red bold font-code">app.route()</span></p>
+
+<p class="text mgt-20">
+ The <span class="red bold font-code">app.route()</span> method is used to chain HTTP verb methods to a single route path. You can create chainable route handlers for a
+ route path by using <span class="red bold font-code">app.route()</span>. <span class="blue bold">For example,</span> using a create, read, update, and delete (CRUD)
+ server that has POST, GET, PUT, and DELETE endpoints for the same URL endpoint
+</p>
+
+<p class="underline-text"># Creating same route path handler to HTTP methods :</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express();
+
+  app.get("/user", (req, res) => { res.send("Get User") } )
+  app.post("/user", (req, res) => { res.send("Create User") } )
+  app.put("/user", (req, res) => { res.send("Update User") } )
+  app.delete("/user", (req, res) => { res.send("Delete User") } )
+
+  app.listen(3000, () => { console.log("Listening At port 3000"); })
+</code></pre>
+</div>
+
+<p class="text mgt-20">
+ As you see above because the path "/user" is specified for all HTTP verbs, we can shorten our route and a void duplicate route names and educing redundancy and typos by
+ using <span class="red bold font-code">app.route()</span>, it return an instance of a single route which you can then use to handle HTTP verbs with optional middleware
+</p>
+
+<p class="underline-text"># Attach All HTTP verb methods into a single route path :</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.route("/user")
+  .all( (req, res) => { // runs for all HTTP verbs first } )
+  .get( (req, res) => { .... } )
+  .post( (req, res) => { .... } )
+  .get( (req, res) => { .... } )
+</code></pre>
+</div>
+
+<p class="text mgt-20">
+ Here is an example of chained route handlers that are defined by using <span class="red bold font-code">app.route()</span>. if we make GET request to
+ <span class="blue bold font-code">"/user"</span> we get A GET request called similarly for other HTTP requests
+</p>
+
+<p class="underline-text"># An Example of using a chain of HTTP verbs routes :</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express();
+
+  app.route("/user") 
+  .get((req, res, next) => { 
+     res.send("GET request called"); 
+  }) 
+  .post((req, res, next) => { 
+     res.send("POST request called"); 
+  }) 
+  .all((req, res, next) => { 
+     res.send("Other requests called"); 
+  }) 
+
+  app.listen(3000, () => { console.log("Listening At port 3000"); })
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example 2 of using a chain of HTTP verbs routes :</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express();
+
+  app.route("/events")
+    .all( (req, res, next) => {
+      // runs for All HTTP verbs first
+      // think of it as Route specific middleware!
+    })
+    .get( (req, res, next) => {
+      res.json({})
+    })
+    .post( (req, res, next) => {
+      // maybe add a new event...
+   })
+</code></pre>
+</div>
+
+<p class="text mgt-20">
+ So this is how you can use the express app.route() function which returns an instance of a single route, which you can then use to handle HTTP verbs with optional
+ middleware.
+</p>

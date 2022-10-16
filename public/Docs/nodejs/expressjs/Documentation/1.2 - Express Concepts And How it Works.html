@@ -1,0 +1,229 @@
+<p class="main-title">1.2 - Express Concepts And How it Works</p>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">1. Routing and HTTP Methods</p>
+
+<p class="text">
+ <span class="red bold">Routing</span> is used to determine a specific behavior of an application. it defines how an application should response to the client request to
+ a particular route, path or URL with an HTTP method to know if the client want to getting data or send data. Each route can contain more than one handler functions,
+ which is executed when the user browses for a specific route.
+</p>
+
+<p class="underline-text"># Using express application instance along with HTTP method, path and handler :-</p>
+
+<div class="code-block code pre-block">
+ <pre><code class="js language-js">
+  <span class="red bold">app</span>.<span class="green bold">METHOD</span>(<span class="blue bold">PATH</span>, <span class="blue bold">HANDLER</span>) 
+</code></pre>
+</div>
+
+<p class="underline-text"># Explain each :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li><span class="dark-green underline">App</span> - is just an instance of Express.js. You can use any variable of your choice.</li>
+  <li><span class="dark-green underline">METHOD</span> - is an HTTP request method such as <span class="blue bold">GET, POST, PUT, DELETE,</span> etc.</li>
+  <li><span class="dark-green underline">PATH</span> - is the route to the server for a specific webpage</li>
+  <li><span class="dark-green underline">HANDLER</span> - is the callback Function that is executed when the matching route is found.</li>
+ </ul>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">2. Middleware</p>
+
+<p class="text">
+ <span class="red bold">Middleware</span> function that allows for better code organization and reuse. Middleware can have access to the request and response objects
+ after that jump to next middleware using <span class="orange bold font-code"> next() </span> function. you can write your custom middleware or use third party package
+ NPM
+</p>
+
+<p class="underline-text"># We have listed down the majorly used middlewares in any Express.js application :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>Application-level middleware</li>
+  <li>Router-level middleware</li>
+  <li>Error-handling middleware</li>
+  <li>Built-in middleware</li>
+  <li>Third-party middleware</li>
+ </ul>
+</div>
+
+<p class="underline-text"># Use middleware third party or custom :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+ // Third Party Middleware 
+  app.use(bodyParser.json()); // -- Get JSON body From the Request 
+  app.use(helmet()); // -- Secure your Application using helmet 
+ 
+ // Custom Middleware 
+  app.use( (req, res, next) => { 
+    req.timeStamp = new Date(); // -- Modify the request and the response objects here we add a timeStamp property in your request object  
+    next(); // -- Continue to the Next middleware or route 
+  })
+
+ // End applications request-response cycle. 
+  app.use( (req, res) => res.send("&lt;h1> Page Not Found &lt;/h1>") ) 
+
+ // Error-handling middleware 
+  app.use( function(err, req, res, next) {
+    console.error(err.stack);
+    res.status(500).send("Error Found");
+  });
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">3. Using Third-Party Dependencies</p>
+
+<p class="text">
+ We define third-party dependencies include <span class="red bold">express()</span> along with necessary middleware such as jsonwebtoken, cookie_parser, mongoose,
+ bcryptjs and more
+</p>
+
+<p class="underline-text"># Define dependencies at the beginning of our application :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const mongoose = require("mongoose");
+  const bcryptjs = require("bcryptjs");
+  const jwt = require("jsonwebtoken");
+  const cookie_parser = require("cookie-parser");
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">4. Configuring Express App Settings</p>
+
+<p class="text">
+ We can simply configure our express application settings that consist of value with a string key using <span class="red bold font-code">app.set()</span>. if you are
+ using the Jade template engine configure the template engine using <span class="bold blue">"view engine</span>
+</p>
+
+<p class="underline-text"># Configure template engine :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./package.json</p>
+ <pre><code class="js language-js">
+  app.set('view engine', 'jade');
+</code></pre>
+</div>
+
+<p class="text mgt-20">
+ we can assign port to a value from the environment variable PORT or, if it’s undefined, to 3000 so that we can use the value across all source code
+</p>
+
+<p class="underline-text"># Configure PORT and assign it from the environment variable PORT :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  app.set('port', process.env.PORT || 3000);
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">5. Templating view rendering</p>
+
+<p class="text">
+ <span class="red bold">Templating engine</span> facilitates us in creating and using the static HTML template with minimal code. When you execute them, the variables in
+ the template file gets replaced by actual values and the entire template is converted into an HTML file by the template engine. Then, it is finally sent to the
+ client-side where data is further injected into the actual template to produce the final HTML document.
+</p>
+
+<p class="underline-text"># We have a list of the popular template engines that work well with Express.js:</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>Pug (earlier know as Jade)</li>
+  <li>mustache</li>
+  <li>dust</li>
+  <li>handlebars</li>
+  <li>hogan</li>
+  <li>liquor</li>
+  <li>toffee</li>
+  <li>underscore</li>
+  <li>walrus</li>
+  <li>whiskers</li>
+ </ul>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">6. Cookies Sessions with WebToken</p>
+
+<p class="text">
+ We use session to track the user once he is logged in, since the user will navigate cross the website we must maintain the user information like cart list or access to a
+ private content that belongs to him. using session or web tokens which is stored in cookies that is send on every user request to help us to keep information about the
+ user identity.
+</p>
+
+<p class="text">
+ Cookies in Express.js are the small files of information which are stored within a user’s computer. They hold a decent amount of data specific to a particular user and
+ the websites he visits. Each time a client loads a website on his browser, the browser will implicitly send the locally stored data back to the website/server, in order
+ to recognize the user. A cookie generally consists of the following:
+</p>
+
+<p class="underline-text"># The cookies consist of the following :</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>Name</li>
+  <li>Value</li>
+  <li>Zero or more attributes in key-value format. These attributes can include cookie’s expiration, domain, and flags, etc.</li>
+ </ul>
+</div>
+
+<p class="underline-text"># Set-up cookies :</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-js">
+  app.get('/setcookie',function(req, res){
+      res.cookie('Name', 'Value');
+      res.cookie('organization', 'something');
+      res.cookie('organization', 'something', { httpOnly: false, maxAge: 100000 } );
+      res.cookie('token', '09f26e402586e2faa8da4c98a35f1b20d6b033c6097befa8be3486a829587fe2f90a832bd3ff9d42710a4da095a2ce285b009f0c3730cd9b8e1af3eb84df6611');
+      res.status(200).send('ok');
+  });
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">7. Authentication</p>
+
+<p class="text">
+ Every website that require login or sign-up forms to an account with username, email and password to more complicated authentication mechanism as used by banking
+ systems. you also got social authentication like facebook and tweeter. Authentication lets you secure a set of routes and enables access to a set of users which have a
+ necessary credentials.
+</p>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">8. Database I/O</p>
+
+<p class="text">
+ <span class="red bold">Database</span> allows us storing data about users, products or scientific data. We have databases like
+ <span class="blue bold">MongoDB, NySQL</span> and more. Our database always required in adynamic web application a structure method that let's you manage database
+ interactions to perform Web app or an API
+</p>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">9. Websockets</p>
+
+<p class="text">
+ The nature of HTTP is stateless this mean that once data is served to a user as per his request the connection is severed and not persist.
+ <span class="red bold">Websockets</span> allow you to maintain an open persistent connection a cross users for data transfer between the server and the client can take a
+ place like a phone call where you can talk freely with disconnect. <span class="red bold">Websockets</span> allow us to achieve a realtime application like messaging or
+ call.
+</p>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">10. Logging</p>
+
+<p class="text">
+ Error Logging need to be monitored by the operations team once the app has been deployed. Logs can be written to the console to a file on disk or to dedicated services
+ that enable teams to monitor application performance errors and requests on a real time basis
+</p>

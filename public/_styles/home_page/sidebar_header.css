@@ -1,0 +1,215 @@
+/* ############# Header content ############# */
+
+.sideBar-header {
+ background: var(--sideBar-sidebar-bg-color);
+ height: var(--sidebar-header-height);
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ position: relative;
+ /* border-bottom: 1px solid rgb(50, 49, 49); */
+}
+
+.sideBar-header .search-content {
+ display: flex;
+ padding: 0px 5px;
+ align-items: center;
+ animation-name: FadeInAnimation;
+ animation-duration: 1s;
+ width: 100%;
+}
+
+.sideBar-header .search-content .search-input {
+ font-size: 1rem;
+ font-weight: 500;
+ color: var(--input-search-input-color);
+ padding: 6px 1px;
+ border: none;
+ border-bottom: 1px solid var(--input-search-input-border-color);
+ background: transparent;
+ outline: none;
+ opacity: 0;
+ width: 0px;
+ transition: 200ms all;
+ pointer-events: none;
+}
+
+.sideBar-header .search-content .search-svg,
+.sideBar-header .search-content .close-svg {
+ padding: 0.8rem;
+}
+
+.search-content .search-input.view {
+ opacity: 1;
+ display: block;
+ width: 90%;
+ pointer-events: visible;
+ margin-left: 5px;
+}
+
+.sideBar-header .side-title-header {
+ font-size: 0.9rem;
+ font-weight: 700;
+ color: rgb(90, 90, 90);
+ margin-left: 12px;
+ cursor: default;
+ text-shadow: 0 1px 0 rgb(10 10 10 / 80%);
+ user-select: none;
+ opacity: 0;
+ animation: FadeInAnimation 0.5s 0.5s forwards;
+}
+
+/* open menu button */
+
+.body-container .open-sidebar-btn {
+ background: var(--main-doc-header-content-bg-color);;
+ border: 1px solid #2c2b2b;
+ border-bottom: 7px solid var(--main-doc-header-content-border-bottom-color);
+ border-radius: 12px;
+ position: absolute;
+ top: 60px;
+ left: 12px;
+ height: 55px;
+ width: 55px;
+ z-index: 2;
+ opacity: 0.5;
+ display: none;
+ justify-content: center;
+ align-items: center;
+ transition: 0.3s all;
+}
+
+.body-container .open-sidebar-btn:hover,
+.body-container .open-sidebar-btn:hover .open-menu-style {
+ opacity: 1;
+}
+
+.body-container .open-sidebar-btn .open-menu-style {
+ width: 38px;
+ height: 38px;
+}
+
+body[sidebar='false'] .body-container .open-sidebar-btn {
+ display: flex;
+ animation: FadeInAnimation 0.6s 0.4s backwards;
+}
+
+body[newTab] .body-container .open-sidebar-btn {
+    display: none;
+}
+
+/* close menu button */
+
+.sideBar-header .close-sideMenu-btn {
+ height: var(--sidebar-header-height);
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin-right: 3px;
+ opacity: 0.6;
+ transition: 300ms all;
+}
+
+.sideBar-header .close-sideMenu-btn:hover {
+ opacity: 1;
+}
+
+.close-sideMenu-btn .close-menu-style {
+ width: 35px;
+ height: 35px;
+ opacity: 0.2;
+}
+
+.close-sideMenu-btn .close-menu-style:hover {
+ opacity: 0.8;
+}
+
+@media screen and (max-width: 1100px) {
+ .body-container .open-sidebar-btn {
+  top: 125px;
+ }
+}
+
+/* ################################## */
+/* ################################## */
+/* ################################## */
+/* ################################## */
+
+.create-subject-container {
+ height: var(--sidebar-create-content);
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ padding: 0 12px;
+ opacity: 0;
+ animation-name: FadeInAnimation;
+ animation-duration: 0.5s;
+ animation-delay: 0.7s;
+ animation-fill-mode: forwards;
+}
+
+body[api-system='false'] .create-subject-container {
+ display: none;
+}
+
+.create-subject-content {
+ width: 100%;
+}
+
+.create-new-subject-btn {
+ pointer-events: fill;
+ user-select: none;
+ opacity: 1;
+ background: rgba(69, 69, 69, 0.046);
+ padding: 5px 0;
+ padding-left: 4px;
+ border: 2px dotted rgb(66, 66, 66);
+ border-radius: 5px;
+ outline: none;
+ display: flex;
+ justify-content: flex-start;
+ align-items: center;
+}
+
+body[active-form='create'] .create-new-subject-btn,
+body[api-system='false'] .create-new-subject-btn {
+ pointer-events: none;
+ opacity: 0.3;
+}
+
+.create-new-subject-btn:hover {
+ cursor: pointer;
+ background: #79797960;
+}
+
+.create-new-subject-btn:active {
+ background: rgb(41, 41, 41);
+ border: 3px solid rgb(39, 38, 38);
+}
+
+.add-svg-style,
+.create-btn-text,
+.create-new-subject-btn {
+ transition: 300ms all;
+}
+
+.add-svg-style {
+ padding: 12px;
+ opacity: 0.5;
+}
+
+.create-new-subject-btn:hover .add-svg-style {
+ opacity: 1;
+}
+
+.create-btn-text {
+ color: rgb(117, 117, 117);
+ text-shadow: 0 1px 0 rgb(10 10 10 / 80%);
+ font-size: 0.9rem;
+ font-weight: 600;
+ margin-left: 8px;
+}
+
+.create-new-subject-btn:hover .create-btn-text {
+ color: rgb(219, 219, 219);
+}

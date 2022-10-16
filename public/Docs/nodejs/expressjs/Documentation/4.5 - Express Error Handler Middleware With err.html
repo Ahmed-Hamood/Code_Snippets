@@ -1,0 +1,357 @@
+<p class="main-title">
+ 4.5 - Express Error Handler Middleware With <span class="red bold font-code">(err, req, res)</span> And <span class="red bold font-code">next("err")</span>
+</p>
+
+<p class="text">
+ <span class="red bold">Error Handling</span> is how Express catches and processes errors that occur both synchronously ans asynchronously. Good web applications must
+ have informative error messages to notify clients exactly why their request has failed. Errors might be caused either by the client (wrong input data) or by the server
+ (a bug in the code). Express comes with a default error handler. Our Express Error Handler must follow the route or last route
+</p>
+
+<p class="text">
+ The client might be a browser, in which case the application should display an HTML page. For example, a 404 page should display when the requested resource is not
+ found. Or the client might be another application consuming our resources via the REST API. In this case, the application should send the appropriate HTTP status code
+ and the message in the <blue>JSON format</blue>. For these reasons, it’s always the best practice to customize error-handling code when developing a serious application.
+</p>
+
+<p class="sub-title get-title">A - Catching Errors</p>
+
+<p class="text">
+ It's important to ensure when we define our Express Routes, we catch all errors that occur inside our function route handlers and middleware. Errors that occurs in
+ synchronous (error happen at the moment) code inside route handlers and middleware require no extra work. If synchronous code throws an error, then Express will catch
+ and process it. For example:
+</p>
+
+<p class="underline-text"># An Example of catching an Error synchronously :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Examples</p>
+ <pre><code class="js language-js">
+  app.get("/", function (req, res) {
+    throw new Error("BROKEN") // Express will catch this on its own.
+    res.status(500).send("Something broke!");
+  })
+  ---------------------------------------------------------------------------------------
+  Error: BROKEN
+    at C:\Users\MyComuterName\Desktop\ExpressTest\server.js:6:9
+    at Layer.handle [as handle_request] (C:\Users\MyComuterName\Desktop\ExpressTest\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\MyComuterName\Desktop\ExpressTest\node_modules\express\lib\router\route.js:137:13)
+  ---------------------------------------------------------------------------------------
+</code></pre>
+</div>
+
+<p class="text">
+ Because of the asynchronous nature of Node.js and callback patterns. For errors returned from asynchronous functions invoked by route handlers and middleware, we wait
+ for a result either response with result output, or catch an error with our error handler, for example get data from database
+</p>
+
+<p class="underline-text"># An Example of catching an Error asynchronously :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Examples</p>
+ <pre><code class="js language-js">
+  app.post("/user", async (req, res, next) => {
+    User.find({ id: 125 })
+    .then(res => res.send(res.message);)
+    .catch(err => res.status(400).json({ error: err.toString() }));
+  });
+
+  app.get("/", async (req, res) => {
+    let message;
+    try {
+      message = await User.find({ id: 125 });
+    } catch (err) {
+      return res.status(400).json({ error: err.toString() });
+    }
+    return res.send(message);
+  });
+</code></pre>
+</div>
+
+<p class="text">
+ Because we don’t know the path that users will make thru URL Request to we cannot hardcode a path into this error route. We also do not know which HTTP method the
+ request might use, we will therefore use <span class="red bold font-code">app.use()</span>
+</p>
+
+<p class="underline-text"># At the end we specify a route that handle non existed path error - page not found :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Examples</p>
+ <pre><code class="js language-js">
+  // this matches All routes and All methods
+  app.use((req, res, next) => {
+    res.status(404).send({
+      statusCode: 404,
+      error: "Page Not found"
+    })
+  })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">B - Define Error Handling Using Middleware</p>
+
+<p class="text">
+ Error handling middleware functions are declared in the same way as other middleware functions, except that they have four argument instead of three <br />
+ <span class="red bold font-code">(err, req, res, next)</span>, to handle error we pass an error argument to <span class="blue bold font-code">next(error)</span>, Express
+ will assume that this was an error and it will skip all other routes and send whatever was passed to next() to the error handling middleware that was defined.
+</p>
+
+<p class="underline-text"># Define Error handler Middleware :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Examples</p>
+ <pre><code class="js language-js">
+  app.use((error, req, res, next) => {
+    console.error(error); // log an error
+    res.render("errorPage") // Renders an error page to user!
+    res.status(500).send('Something broke!')
+  });
+</code></pre>
+</div>
+
+<p class="text">
+ It’s important to ensure that Express catches all errors that occur while running route handlers and middleware. The middleware error handler only invoke by using
+ next('error message' ) To create Middleware Error handler just provide four parameters into the Middleware
+ <span class="red bold font-code">app.use((err, req, res, next) => {})</span> and invoke it by using
+ <span class="blue bold font-code">next("error message")</span>
+</p>
+
+<p class="underline-text"># An Example of Error handler :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Examples</p>
+ <pre><code class="js language-js">
+  app.use((req, res, next) => {
+    const error = new Error("Not found")
+    error.status = 404
+    next(error); // Pass the error into Error handler middleware
+  })
+
+  // Skip All the following routes going to the error handling middleware
+  app.get("/", (req, res) => { .... })
+  app.get("/user", (req, res) => { .... })
+  app.post("/user", (req, res) => { .... })
+  app.delete("/user", (req, res) => { .... })
+
+  // Error handler middleware
+  app.use((error, req, res, next) => {
+    res.status(error.status || 500).send({
+      error: {
+        status: error.status || 500,
+        message: error.message || "Internal Server Error",
+      },
+    })
+  })
+</code></pre>
+</div>
+
+<p class="text">
+ You could extract this as a reusable custom error. This new error class extends the commonly used JavaScript Error class. The only feature we add here is the 400 HTTP
+ status code:
+</p>
+
+<p class="underline-text"># Creating our Custom Error Class :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./utilities/HttpError.js</p>
+ <pre><code class="js language-js">
+  class httpError <blue>extends</blue> Error {
+    constructor(message, statusCode) {
+      super(message);
+      <blue>this</blue>.errorMessage = message;
+      <blue>this</blue>.statusCode = statusCode;
+      <blue>this</blue>.status = `${statusCode}`.startsWith("4") ? "fail" : "error";
+      <blue>this</blue>.isOperational = true;
+      // Error.captureStackTrace(this, this.constructor);
+    }
+  }
+  
+  module.exports = httpError;  
+</code></pre>
+</div>
+
+<p class="text">
+ We could import this new error class and use it for the error handling. This way, we can react to the error and attach an appropriate status code to it
+</p>
+
+<p class="underline-text"># Use our custom Error class to handle errors :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const httpError = require('../utilities/HttpError');
+
+  app.get("/user", async (req, res) => { 
+    const result = await Model.findByIdAndDelete(req.params.id);
+
+    if (!result) return next(new httpError("ID NOT EXIST", 404));
+
+    res.status(200).json({
+      status: "Document is Deleted successfully",
+      data: { result }
+    });
+   })
+
+   app.use((err, req, res) => {
+     res.status(err.statusCode).json("error", {
+      status: err.status,
+      message: err.errorMessage || 'Unknown Error ....'
+     })
+   })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">C - Middleware Error Handler Examples</p>
+
+<p class="underline-text"># Use error handler middleware to stop any invalid user to access the following content :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Examples</p>
+ <pre><code class="js language-js">
+  app.get("/user", async function (req, res, next) {
+    let UserValid = false;
+    if (!UserValid) next("Invalid User Please Login Again"); // user invalid then throw an error to Middleware Error  
+    res.send("welcome Username");
+  });
+  
+  app.use((err, req, res, next) => {
+    console.log("Error: ", err); / Error : Invalid User Please Login Again /
+    res.send("Error Happen");
+  });   
+</code></pre>
+</div>
+
+<p class="underline-text"># Use res.headerSent to check if server response already, we use multiple error handler middleware to check if server already response :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Examples</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  
+  app.get('/user', async function (req, res, next) {
+    if(!isInvalid){
+        next("Invalid User Please Login Again");
+    }
+  });
+  
+  app.use((err, req, res, next) => {
+    // Here we check if our server response to the client already
+    if (res.headerSent) {
+      return next("Already response to user");
+    }
+
+    console.log("Error: ", err); // Error : Invalid User Please Login Again
+    res.send("Error Happen");
+  });
+  
+  app.use((err, req, res, next) => {
+      res.send(err); // Already response to user
+  })
+  
+  app.listen(3000, () => {
+    console.log("connecting to server ....");
+  });   
+</code></pre>
+</div>
+
+<p class="underline-text"># Use sequence of middlewares to handle certain things :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Examples</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+
+  app.get("/user/:id", async (req, res, next) => {
+    const error = new Error("Not found")
+    error.status = 404
+    next(error); // Pass the error into Error handler Log middleware
+  });
+
+  app.use(logErrors)
+  app.use(errorHandler)
+  app.use((req, res, next) => { res.send("Invalid Route")})
+
+  app.listen(3000, () => { console.log("connecting to server ...."); });
+
+  // save error logs into file or database 
+  const logErrors = (err, req, res, next) => {
+    console.error(err.stack);
+    next(err);
+  }
+
+  // response to user with an html error 
+  const errorHandler = (err, req, res, next) => {
+    res.status(500);
+    res.render("error", { error: err });
+  }   
+</code></pre>
+</div>
+
+<p class="underline-text"># Route handler with multiple callback functions you can use the route parameter to skip to the next route handler :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Examples</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  
+  app.get("/checkIfUserPay", 
+     checkIfPaidSubscriber(req, res, next) => {
+      if (!req.user.hasPaid) {
+        next("User Did not pay"); // stop and throw error into error handling middleware 
+      } else {
+        next();
+      }
+    },
+     getPaidContent(req, res, next) => {
+      PaidContent.find(function (err, doc) {
+        if (err) return next(err); // if paid recipe not found then throw error 
+        res.json(doc);
+      });
+    }
+  );
+  
+  // Error handling middleware 
+  app.use((err, req, res, next) => {
+      res.send(err)
+  })
+  
+  app.listen(3000, () => {
+    console.log("connecting to server ....");
+  });  
+</code></pre>
+</div>
+
+<p class="underline-text"># If last middleware use next(error) then it will return res.send(‘error’) and 500 status code internal server error :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ An Examples</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  
+  // Routes 
+  app.get("/", (req, res) => { .... })
+  app.get("/user", (req, res) => { .... })
+  app.post("/user", (req, res) => { .... })
+  app.delete("/user", (req, res) => { .... })
+
+  
+  // Error handling middleware 
+  app.use((err, req, res, next) => {
+      res.send('err')
+  })
+  
+  app.use((req, res, next) => {
+      next("error");  // won’t go back it will response with error message and 500 status code 
+  })
+  
+  app.listen(3000, () => {
+    console.log("connecting to server ....");
+  });  
+</code></pre>
+</div>

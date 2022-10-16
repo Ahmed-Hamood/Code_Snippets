@@ -1,0 +1,355 @@
+<p class="main-title">1.11 - Viewing the Staged and Un-staged Changes with <terminal orange>git diff</terminal> command</p>
+
+<p class="sub-title">1. Use <terminal>git diff</terminal> command to compare changes</p>
+
+<p class="text">
+ We have some files and we have done some changes on these files, before committing these changes from the <text yellow>staging area</text> we want to review our code
+ because we don't want to commit bad code, so lets check our changes below before we will have old and new changes.
+</p>
+
+<section class="tab-container">
+ <div class="btn_tabs">
+  <button class="tab-btn active">file1.txt and file2.txt (Old)</button>
+  <button class="tab-btn">file1.txt and file2.txt (New)</button>
+ </div>
+ <div class="main-tab-content">
+  <!-- ########### Begin ########### -->
+
+  <!-- ************************ -->
+  <div class="tab-content">
+   <div class="terminal-output">
+    <pre>
+  ./file1.txt
+  ------------------------------
+  File 1 Text line 1
+  File 1 Text line 2
+</pre
+    >
+   </div>
+   <div class="terminal-output">
+    <pre>
+  ./file2.txt
+  ------------------------------
+  File 2 Text line 1
+  File 2 Text line 2
+</pre
+    >
+   </div>
+  </div>
+  <!-- ************************ -->
+
+  <!-- ************************ -->
+  <div class="tab-content">
+   <div class="terminal-output">
+    <pre>
+  ./file1.txt  <yellow>(here we added a new line)</yellow>
+  ------------------------------
+  File 1 Text line 1
+  File 1 Text line 2
+  File 1 Text line 3
+</pre>
+   </div>
+   <div class="terminal-output">
+    <pre>
+  ./file2.txt <yellow>(here we removed last line)</yellow>
+  ------------------------------
+  File 2 Text line 1
+</pre>
+   </div>
+  </div>
+  <!-- **************************** -->
+
+  <!-- ########### End ########### -->
+ </div>
+</section>
+
+<p class="text">
+ Now, we need to stage these changes using the <terminal>git add .</terminal> command, then we will run <terminal>git status</terminal> to view that our changes been
+ staged successfully.
+</p>
+
+<section terminal-content title-header="Stage changes and check git status" preferred-sign=">" line-num="">
+ <pre>
+  git add .
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+  Changes to be committed:
+    (use "git restore --staged &lt;file>..." to unstage)
+          <green>modified:   file1.txt</green>
+          <green>modified:   file2.txt</green>
+</pre>
+</div>
+
+<section terminal-content title-header="Check git status with short info" preferred-sign=">" line-num="">
+ <pre>
+  git status -s
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  <green>M</green>  file1.txt
+  <green>M</green>  file2.txt
+</pre
+ >
+</div>
+
+<p class="text">
+ Now, we have staged both <file>file1.txt</file> and <file>file2.txt</file>, before committing our code to our <text yellow>repository</text>, we can review what we have
+ in the <yellow>staging area</yellow> before making a commit. As we know the status command shows only the files that have been effected but without seeing which exact
+ line of code effected.
+</p>
+
+<p class="text">
+ We can use <terminal>git diff --staged</terminal> command, that we can use to review our code changes in the staging area that is going to the next commit. We are going
+ to compare two files copies the last commit copy and the newer copy in the staging area.
+</p>
+
+<section terminal-content title-header="Review code" preferred-sign=">" line-num="">
+ <pre>
+  git diff --staged
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  diff --git a/file1.txt b/file1.txt  <yellow>--> a/ (last commit copy from repository) && b/ (newer copy that we currently have in the staging area)</yellow>
+  index d2b1562..a552179 100644 <yellow>--> meta data reference</yellow>
+  --- a/file1.txt <yellow>(changes - old copy from repository)</yellow>
+  +++ b/file1.txt <yellow>(changes - new copy from current staging area)</yellow>
+  <sky>@@ -1,2 +1,3 @@</sky> <yellow>-- changes position --</yellow>
+   File 1 Text line 1
+  <red>-File 1 Text line 2</red> <yellow>--> here we removed this line from the old commit file copy</yellow>
+  \ No newline at end of file
+  <green>+File 1 Text line 2</green> <yellow>--> here we added this line in the newer current staging file copy</yellow>
+  <green>+File 1 Text line 3</green> <yellow>--> here we added this line in the newer current staging file copy</yellow>
+  \ No newline at end of file
+
+  diff --git a/file2.txt b/file2.txt
+  index 9754b86..6289f7e 100644 <yellow>--> meta data reference</yellow>
+  --- a/file2.txt <yellow>(changes - old copy from repository)</yellow>
+  +++ b/file2.txt <yellow>(changes - new copy from current staging area)</yellow>
+  <sky>@@ -1,2 +1 @@</sky> <yellow>-- changes position --</yellow>
+  <red>-File 2 Text line 1</red> <yellow>--> here we removed this line from the old commit file copy</yellow>
+  <red>-File 2 Text line 2</red> <yellow>--> here we removed this line from the old commit file copy</yellow>
+  \ No newline at end of file
+  <green>+File 2 Text line 1</green> <yellow>--> here we added this line in the newer current staging file copy</yellow>
+  \ No newline at end of file
+</pre>
+</div>
+
+<p class="text">
+ As you above comparing file using the terminal window is not really the best way, we usually use a visual tools. But for now we are going to understand the output of the
+ <terminal>diff</terminal> command. We will have two copies one is the last commit copy from the repository, and the newer copy from the staging area.
+</p>
+
+<p class="text">
+ we can also compare the changes that we have in the working directory with what we have in the staging area using <terminal>git diff</terminal> command without any
+ options to check the un-staged changes. Lets have another example modify <file>file1.js</file> file and compare the different between working directory and staging area.
+</p>
+
+<img id="image" alt="" path="/img/image024.PNG" alt="" />
+
+<p class="sub-title">2. Use Visual Diff Tools</p>
+
+<p class="text">
+ We use <yellow underline>Diff Tools</yellow> for comparing files, there is so many <yellow underline>Diff Tools</yellow> out there that use graphical interface to
+ compare file. Here we are going to use <text purple>vscode</text> Tool editor to compare our files.
+</p>
+
+<div class="list-content normal check">
+ <p class="list-title"># popular Diff Tools like :</p>
+ <ul>
+  <li>P4Merge (Cross platform)</li>
+  <li>KDiff3 (Cross platform)</li>
+  <li>P4Merge (Windows Only)</li>
+  <li>VSCode</li>
+ </ul>
+</div>
+
+<p class="text">
+ We need to tell <text red>Git</text> that we want to use <text purple>VSCode</text> as our default Diff Tool, we need to set two configuration settings. Open your
+ terminal and type the following command.
+</p>
+
+<section terminal-content title-header="Configure Default Diff Tool" preferred-sign=">" line-num="">
+ <pre>
+  git config --global diff.tool vscode
+</pre
+ >
+</section>
+
+<p class="text">
+ Our default Diff Tool is set to VSCode, now we need to tell <text red>Git</text> how to lunch <text purple>VSCode</text>. Open your terminal and type the following
+ command.
+</p>
+
+<section terminal-content title-header="Set VSCode launch with diff tool" preferred-sign=">" line-num="">
+ <pre>
+  git config --global difftool.vscode.cmd "code --wait --diff $LOCAL $REMOTE"
+</pre
+ >
+</section>
+
+<p class="text">
+ Above, we are telling VSCode in terminal to <terminal>--wait</terminal> until we are done with VSCode file comparison and then close the VSCode instance. The second
+ argument is <terminal>--diff</terminal> is to tell VSCode that we want to use diffing or comparing files.
+</p>
+
+<p class="text">
+ We have two argument <text orange>$LOCAL</text> and <text orange>$REMOTE</text>, these are placeholders for the old and new copy of a file. Now we are going to open Git
+ global configuration settings in our default editor.
+</p>
+
+<section terminal-content title-header="Open Git global configuration settings in VSCode" preferred-sign=">" line-num="">
+ <pre>
+  git config --global -e
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  ./.gitignore
+  ------------------------------
+  [<yellow>core</yellow>]
+    <blue>editor</blue> = code --wait
+    <blue>autocrlf</blue> = true
+  [<yellow>user</yellow>]
+    <blue>name</blue> = Username
+    <blue>email</blue> = my_email@gmail.com
+  [<yellow>diff</yellow>]
+    <blue>tool</blue> = vscode  <yellow>&lt;-- here we set out default Diff tool</yellow>
+  [<yellow>difftool "vscode"</yellow>]
+    <blue>cmd</blue> = <orange>"code --wait --diff $LOCAL $REMOTE"</orange> <yellow>&lt;-- here command about what we should run when comparing files with VSCode</yellow>
+</pre>
+</div>
+
+<p class="text">
+ Now go back to your terminal, instead using of diff command, we are going to use <terminal>git difftool</terminal> to launch VSCode DiffTool for comparing files. If you
+ don't provide any argument, the files comparison will be in what we have in the working directory and what we have in the staging area.
+</p>
+
+<p class="text">
+ If you provide an argument <terminal>--staged</terminal>, the files comparison will be in what we have in the staging area and what we have in the repository.
+</p>
+
+<section terminal-content title-header="Launch VSCode DiffTool" preferred-sign=">" line-num="">
+ <pre>
+  git difftool // compare un-staged changes, this will compare what we have in the working directory and what we have in the staging area.
+  git difftool --staged // compare staged changes, this will compare what we have in the staging area and what we have in the repository.
+</pre
+ >
+</section>
+
+<section class="tab-container">
+ <div class="btn_tabs">
+  <button class="tab-btn active">file1.txt (Old)</button>
+  <button class="tab-btn">file1.txt (New)</button>
+ </div>
+ <div class="main-tab-content">
+  <!-- ########### Begin ########### -->
+
+  <!-- ************************ -->
+  <div class="tab-content">
+   <div class="terminal-output">
+    <pre>
+  ./file1.txt
+  ------------------------------
+  File 1 Text line 1
+  File 1 Text line 2
+</pre
+    >
+   </div>
+  </div>
+  <!-- ************************ -->
+
+  <!-- ************************ -->
+  <div class="tab-content">
+   <div class="terminal-output">
+    <pre>
+  ./file1.txt  <yellow>(here we added a new line)</yellow>
+  ------------------------------
+  File 1 Text line 1
+  File 1 Text line 2
+  File 1 Text line 3
+</pre>
+   </div>
+  </div>
+  <!-- **************************** -->
+  <!-- ########### End ########### -->
+ </div>
+</section>
+
+<p class="text">
+ We have modified only a single file which is <file>file1.txt</file>, after you run <terminal>git difftool</terminal> command, Git is asking if you want to launch VSCode
+ which is the name that we assigned to our default DiffTool. Type <terminal>y</terminal> as yes.
+</p>
+
+<section terminal-content title-header="Launch VSCode DiffTool" preferred-sign=">" line-num="">
+ <pre>
+  git difftool
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  Viewing (1/1): 'file1.txt'
+  Launch 'vscode' [Y/n]? y
+</pre
+ >
+</div>
+
+<img id="image" alt="" path="/img/image025.PNG" alt="" />
+
+<p class="text">
+ VSCode will be opened viewing the old copy (left side) that we have in the staging area, and a new copy which we have in the working directory (Right side). As you can
+ see above, we can easily tell that we add a new Line text on Line 3. Another Example below where we have <file>file1.js</file> file that been modified or replaced.
+</p>
+
+<img id="image" alt="" path="/img/image026.PNG" alt="" />
+
+<p class="text">
+ Our terminal is waiting for us to close the VSCode instance, so close VSCode comparison window, and go back to the terminal and look at the staged changes using the
+ <terminal>git difftool --staged</terminal> command. As you see below we have two files changes <file>file1.js</file> and <file>file2.js</file>.
+</p>
+
+<section terminal-content title-header="Check staged changes with DiffTool" preferred-sign=">" line-num="">
+ <pre>
+  git difftool --staged 
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  Viewing (1/2): 'file1.js'  <yellow>--> Two Files changes</yellow>
+  Launch 'vscode' [Y/n]? y
+</pre>
+</div>
+
+<img id="image" alt="" path="/img/image027.PNG" alt="" />
+
+<p class="text">
+ As you see above, we have two copies one is in the staging area and another in the repository, changes that are going to next commit. From our comparison we can tell
+ that we have added two lines at the end. Close VSCode window and Go back to Terminal to check <file>file2.js</file>.
+</p>
+
+<div class="terminal-output">
+ <pre>
+  Viewing (2/2): 'file2.js' 
+  Launch 'vscode' [Y/n]? n
+</pre
+ >
+</div>
+
+<!-- 55:26 -->

@@ -1,0 +1,176 @@
+<p class="main-title">1.10 - Short Status with <terminal orange>git status -s</terminal> command</p>
+
+<p class="text">
+ We have learned how to get the status of the working directory and the <yellow bold cap>staging area</yellow> using the <terminal>git status</terminal> command. This
+ command output is very comprehensive or thorough. As you see below we will create and modify some files then we are going to run <terminal>git status</terminal> command.
+</p>
+
+<section terminal-content title-header="Create/Modify files & get Git status" preferred-sign=">" line-num="">
+ <pre>
+  echo "new text" > file2.txt // create new file called file2.txt
+  echo "add new text" >> file1.txt  // modify file called file1.txt
+  git status
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  On branch master
+  Changes not staged for commit:
+    (use "git add &lt;file>..." to update what will be committed)
+    (use "git restore &lt;file>..." to discard changes in working directory)
+          <red>modified:   file1.txt</red>
+
+  Untracked files:
+    (use "git add &lt;file>..." to include in what will be committed)
+          <red>file2.txt</red>
+
+  no changes added to commit (use "git add" and/or "git commit -a")
+</pre>
+</div>
+
+<p class="text">
+ As you can see we have a modified <file>file1.txt</file>, and also we have a new <file>file2.txt</file> file un-tracked. The output of our
+ <terminal>git status</terminal> command is very comprehensive and very wordy.
+</p>
+
+<p class="text">
+ We have an alternative way we can supply the <terminal>git status -s</terminal>, the short <terminal>-s</terminal> dash flag. With this command we will get two column.
+</p>
+
+<div class="list-content normal check">
+ <ul>
+  <li>
+   <yellow underline bold>Left Column</yellow>: represents another two column <text>"left:right"</text> left means file in the staging area, and right mean file only
+   available in the working directory
+  </li>
+  <li><yellow underline bold>Right Column</yellow>: represents the working directory</li>
+ </ul>
+</div>
+
+<section terminal-content title-header="Get short status" preferred-sign=">" line-num="">
+ <pre>
+  git status -s
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  <red> M</red> file1.txt  <yellow>--> ' M' in red means we have a modified file, with changes that are not in the staging area, only available in the working directory</yellow>
+  <red>??</red> file2.txt  <yellow>--> '??' in red means we have untracked file that we need to add it to the stating area</yellow>
+</pre>
+</div>
+
+<p class="text">We are going to add both files into the <yellow bold cap>staging area</yellow>, first lets add <file>file1.txt</file> and then check our short status.</p>
+
+<section terminal-content title-header="Add file1.txt then Get short status" preferred-sign=">" line-num="">
+ <pre>
+  git add file1.txt
+  git status -s
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  <green>M </green> file1.txt  <yellow>--> 'M ' in green means we have our changed file on the staging area</yellow>
+  <red>??</red> file2.txt  <yellow>--> '??' in red means we have untracked file that we need to add it to the stating area</yellow>
+</pre>
+</div>
+
+<p class="text">
+ When we stage a file <red bold underline>git</red> takes a snapshot of that file and puts it in the <yellow bold cap>staging area</yellow>, so if you modify that file
+ after we have to restage the changes. Let modify <file>file1.txt</file> one more time.
+</p>
+
+<section terminal-content title-header="Modify file1.txt then Get short status" preferred-sign=">" line-num="">
+ <pre>
+  echo "add new text 2" >> file1.txt
+  git status -s
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  <green>MM</green> file1.txt  <yellow>--> 'MM' in green means we have our changed file on the staging area and also we have some additional changes in the working directory that are not added to the staging area</yellow>
+  <red>??</red> file2.txt  <yellow>--> '??' in red means we have untracked file that we need to add it to the stating area</yellow>
+</pre>
+</div>
+
+<p class="text">
+ Lets add <file>file1.txt</file> to the staging area one more time, and then run <terminal>git status -s</terminal> command, you will see that all the changes that we had
+ in the <text>working directory</text> are now in the <yellow bold cap>staging area</yellow>.
+</p>
+
+<section terminal-content title-header="Modify file1.txt then Get short status" preferred-sign=">" line-num="">
+ <pre>
+  git add file1.txt
+  git status -s
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  <green>M </green> file1.txt  <yellow>--> 'M ' in green means we have our changed file on the staging area</yellow>
+  <red>??</red> file2.txt  <yellow>--> '??' in red means we have untracked file that we need to add it to the stating area</yellow>
+</pre>
+</div>
+
+<p class="text">
+ Now, we are done with <file>file1.txt</file>, so lets add untracked <file>file2.txt</file> to the <yellow bold cap>staging area</yellow>, and then run
+ <terminal>git status</terminal> command.
+</p>
+
+<section terminal-content title-header="add file2.txt then Get short status" preferred-sign=">" line-num="">
+ <pre>
+  git add file2.txt
+  git status -s
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  <green>M </green>  file1.txt <yellow>--> 'M ' in green means we have our changed file on the staging area</yellow>
+  <green>A </green>  file2.txt <yellow>--> 'A ' in green means our file is added to the staging area</yellow>
+</pre>
+</div>
+
+<p class="text">
+ As you see <terminal>git status</terminal> show that <file>file2.txt</file> is been added to the <yellow bold cap>staging area</yellow> for the first time. This is how
+ the <terminal>git status -s</terminal> command output is simple and brief.
+</p>
+
+<section terminal-content title-header="commit changes to the repository" preferred-sign=">" line-num="">
+ <pre>
+  git commit -m "new changes"
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  [master 409d6f1] new changes
+  2 files changed, 2 insertions(+), 1 deletion(-)
+  create mode 100644 file2.txt
+</pre
+ >
+</div>
+
+<section terminal-content title-header="Get short status" preferred-sign=">" line-num="">
+ <pre>
+  git status -s
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  No Output Result
+</pre
+ >
+</div>

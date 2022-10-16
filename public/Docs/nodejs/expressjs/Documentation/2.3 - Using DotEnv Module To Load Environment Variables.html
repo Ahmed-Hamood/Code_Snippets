@@ -1,0 +1,190 @@
+<p class="main-title">2.3 - Using <span class="red bold">DotEnv</span> Module To Load Environment Variables</p>
+
+<p class="text mgt-20">
+ <span class="red bold">DotEnv</span> is a module used to configure and organize your environment variables and their values. A popular solution to how you can organize
+ and maintain your environment variables is to use a <span class="red bold">.env</span> file, it is an easy place where I can quickly read and modify them.
+</p>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">A - Install <span class="red bold">.Env</span> With NPM</p>
+
+<p class="text">
+ To start using <span class="red bold">.env</span> file, first you need to install <span class="red bold">dotenv</span> module. Simply install the module by using NPM.
+</p>
+
+<p class="underline-text"># Install DotEnv Module Using NPM :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> npm i dotenv
+  added 1 package, and audited 52 packages in 1s
+</code></pre>
+</div>
+
+<p class="underline-text"># View package.json Content :-</p>
+
+<div class="js-block js-code code language-javascript pre-block">
+ <p class="block-title">./package.json</p>
+ <pre><code class="js language-js">
+  "dependencies": {
+    "dotenv": "^8.2.0", 
+    "express": "^4.17.1"
+  }
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">B - Create <span class="red bold">.env</span> File in The Root Folder</p>
+
+<p class="text">
+ Create the <span class="red bold">.env</span> file in the root of your app and add your variables and values to it. After Creating
+ <span class="red bold">.env</span> file in the root directory of your project. Add environment-specific variables on new lines in the form of
+ <span class="blue bold">NAME=VALUE</span>.
+</p>
+
+<p class="underline-text"># Create .env file in the root of your project :-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+ > Project_Name ls
+   └── node_module (Folder)
+   └── .env (File)
+   └── package.json (File)
+   └── package-lock (File)
+   └── server.js  (File)
+</code></pre>
+</div>
+
+<p class="underline-text"># Type your environment variable in the form of NAME=VALUE :-</p>
+
+<div class="code-block code pre-block">
+ <p class="block-title">./.env</p>
+ <pre><code class="js language-js">
+  NODE_ENV=development
+  PORT=8626
+  DB_HOST=localhost
+  DB_USER=root
+  DB_PASS=s1mpl3
+  # Set your database/API connection information here 
+  API_KEY=**************************
+  API_URL=**************************
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">C - Load And Read Environment Variables From <span class="red bold">.env</span> File</p>
+
+<p class="text">
+ We are going to load the environment variables from a <span class="red bold">.env</span> file into the <span class="red bold">process.env</span> variable in Node.js.
+ You'll add the following line code at the top of your <span class="blue bold">server.js</span>
+</p>
+
+<p class="underline-text"># Let's require our DotEnv module and configure and load from .env file :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  require('dotenv').config() // Load variables From <path>./.env</path> file ( Default )
+  ------------- OR -------------
+  require('dotenv').config( { path: "./Myconfig.env" } ) // Load variables From another file ( Optional )
+</code></pre>
+</div>
+
+<p class="text">
+ The code above will automatically load the <span class="red bold">.env</span> file in the root of your project and initialize the values. It will skip any variables that
+ already have been set. <br />
+ <span class="solid-red bold">You should not use</span> .env files in your production environment though and rather set the values directly on the respective host.
+</p>
+
+<p class="underline-text"># You might want to wrap your load statement in an if-statement :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+  }
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">D - Using DotEnv variables in Express Application And Catch <span class="red bold">Error</span></p>
+
+<p class="text">
+ After loading our variables from <span class="red bold">.env</span> into Node Environment Variables. Let's display or retrieve all variables in our Node.js code, you can
+ refer to the variables using <span class="red bold">process.env.YOUR_ENV_VAR_GOES_HERE</span>
+</p>
+
+<p class="underline-text"># An Example of using our .env environment variables :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  const dotenv = require("dotenv");
+  
+  if (process.env.NODE_ENV !== 'production') {
+    dotenv.config() ; // Get variables From .env 
+  }
+ 
+  const port = process.env.PORT || 3000 ; // port = 8626 / If undefined set it to 3000  
+  
+  const db = require("db")
+  db.connect({
+    host_name: process.env.DB_HOST,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS
+  })  
+
+  app.listen( port , () => {
+    console.log("listening on port 8000 ")
+  })
+
+</code></pre>
+</div>
+
+<p class="text">
+ Even if dotenv is used in the application, it is completely optional. <span class="solid-red bold">If no .env file is found</span> , the library fails silently. You can
+ continue to use environment variables defined outside the file.
+</p>
+
+<p class="text"><span class="red bold font-code">dotenv.config()</span> return an object contain an error property if dotenv fails</p>
+
+<p class="underline-text"># Using dotenv config error to prevent the application from running :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  const dotenv = require("dotenv").config(); 
+  
+  if (dotenv.error) {
+    console.log('.env File Does not Exist')
+    throw dotenv.error
+  }
+
+########################################################################
+.env File Does not Exist
+Error: ENOENT: no such file or directory, open 'C:\Users\User\Desktop\ExpressTest\.env'
+########################################################################
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">D - Add <span class="red bold">.env</span> to <span class="red bold">.gitignore</span></p>
+
+<p class="text">
+ It's recommended do not commit environment variables to version control (GIT), because it may contain confidential or variable information like password.to prevent
+ <span class="red bold">.env</span> from committing to GIT. Create a <span class="red bold">.gitignore</span> file in the application Root directory.
+</p>
+
+<p class="underline-text"># Creating .gitignore file in the current directory :-</p>
+
+<div class="code-block code pre-block">
+ <p class="block-title">./.gitignore</p>
+ <pre><code class="js language-js">
+  .env
+</code></pre>
+</div>

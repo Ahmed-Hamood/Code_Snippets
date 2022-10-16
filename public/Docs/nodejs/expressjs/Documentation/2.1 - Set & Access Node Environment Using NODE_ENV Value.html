@@ -1,0 +1,198 @@
+<p class="main-title">2.1 - Set & Access Node Environment Using <span class="red bold font-code">NODE_ENV</span> Value</p>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">- What is Node Environment <span class="red bold font-code">NODE_ENV</span> ?</p>
+
+<p class="text">
+ <span class="red bold">NODE_ENV</span> is an environment variable is a part of developing with <span class="blue bold">Node.js</span>, allowing your application to
+ behave differently base on the environment you want them to run in. An environment variable is simply a name assigned to a value.
+</p>
+
+<p class="text">
+ When node application run, it check the value of the environment variable and do different things based on the <span class="red bold">NODE_ENV</span> value. The
+ <span class="red bold">NODE_ENV</span> is used to state wether your current environment is a <span class="blue bold">production</span>, a
+ <span class="blue bold">development</span> or staging environment. We use <span class="blue bold">development</span> environment for a common case or start up building
+ application, and running debugging and logging code
+</p>
+
+<p class="underline-text"># The Environment variable that will determine our current environment :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>Development (default)</li>
+  <li>Production</li>
+  <li>Staging</li>
+  <li>preview</li>
+  <li>test</li>
+ </ul>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">- Setting <span class="red bold font-code">NODE_ENV</span></p>
+
+<p class="text">
+ The <span class="red bold">NODE_ENV</span> does not exist for now in your node environment, but it exist in express settings the default is
+ <span class="blue bold">development</span> environment
+</p>
+
+<p class="underline-text">
+ # let's check our environment variable using <b class="red bold font-code">NODE_ENV</b> & <b class="red bold font-code">app.get('env')</b> :-
+</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  
+  console.log(process.env.NODE_ENV); // undefined
+  console.log(app.get('env')); // development
+  ....
+  ....
+</code></pre>
+</div>
+
+<p class="text">
+ You can set The <span class="red bold">NODE_ENV</span> from the command-line Node assumes it’s always running in a development environment. In command line we specify
+ <span class="red bold">NODE_ENV</span> with the variable value <span class="blue bold">development</span> or <span class="blue bold">production</span> all lowercase.
+</p>
+
+<p class="underline-text"># Set the environment variable from the command-line:-</p>
+
+<div class="terminal-block terminal pre-block">
+ <pre><code class="js language-js">
+> NODE_ENV=production node server.js
+> NODE_ENV=production nodemon server.js
+</code></pre>
+</div>
+
+<p class="underline-text"># Now let's check again our environment variable :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  
+  console.log(process.env.NODE_ENV); // production
+  console.log(app.get('env')); // production
+  ....
+  ....
+</code></pre>
+</div>
+
+<p class="text">
+ In <span class="red bold font-code">package.json</span> within <span class="blue bold">scripts</span> you can specify the environment variable, but in different way by
+ using <span class="red bold">set</span> keyword with <span class="blue bold font-code">&&</span>
+</p>
+
+<p class="underline-text"># Within package.json inside scripts :-</p>
+
+<div class="code-block code pre-block">
+ <p class="block-title">./package.json</p>
+ <pre><code class="js language-js">
+  "scripts": {
+    "start": "<span class="orange bold">node</span> server.js",
+    "restart": "<span class="orange bold">nodemon</span> server.js", 
+    "dev": "<span class="red bold">set</span> <span class="blue bold">NODE_ENV</span>=development && <span class="orange bold">node</span> server.js",
+    "prod": "<span class="red bold">set</span> <span class="blue bold">NODE_ENV</span>=production && <span class="orange bold">node</span> server.js"
+  }
+</code></pre>
+</div>
+
+<!-- ########################################## -->
+<p class="sub-title get-title">- Accessing <span class="red bold font-code">NODE_ENV</span> Using <span class="blue bold font-code">process.env.NODE_ENV</span></p>
+
+<p class="text">
+ After setting you environment variable thru command-line or NPM scripts. Those environments usually include at least development, testing and production. Each of the
+ environments puts a different requirement on the app. <span class="blue bold">For example</span> , in development the app error messaging needs to be as verbose or
+ detailed as possible, while in production it needs to be user friendly to identify the error to the user, or change or switch port number or database url depend on the
+ current environment variable.
+</p>
+
+<p class="text">You can use the following code to access the environment variable yourself so that you can perform your own checks and logic</p>
+
+<p class="underline-text"># Access environment variable by using the following code :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const environment = process.env.NODE_ENV
+</code></pre>
+</div>
+
+<p class="text">
+ We need to a accommodate or adjust different environment without us, the developers having to modify it every time we deploy to a different environment. You can write up
+ <span class="blue bold">if-else</span> statement based on <span class="red bold">process.env.NODE_ENV</span> with <span class="orange bold">===</span> equality which
+ will convert the <span class="red bold">NODE_ENV</span> to string for you (if for some reason it’s not a string already)
+</p>
+
+<p class="underline-text"># Using if-else to configure our application base on the environment variable :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  let database_URL;
+  let Port;
+
+  if (process.env.NODE_ENV === "development"){
+    // Connect to development database 
+    PORT = 3000;
+  } else if (process.env.NODE_ENV === "production") {
+    // Connect to production database
+    PORT = 5000;
+  } else {
+    // ........
+  }
+</code></pre>
+</div>
+
+<p class="text mgt-20">
+ You can alternatively using express <span class="blue bold font-code">app.get('env')</span> function, but note that this is
+ <span class="red bold">NOT RECOMMENDED</span> as it defaults to <span class="blue bold font-code">"development"</span>, which may result in development code being
+ accidentally run in a production environment - it's much safer if your app throws an error if this important value is not set
+</p>
+
+<p class="underline-text"># Not Recommended to use <b class="red bold font-code">app.get("env")</b> :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  // Assuming that App is a reference to Express.js instance 
+  if ('development' === app.get('env')) {
+  // Connect to development database 
+  } else if ('production' === app.get('env')) {
+  // Connect to production database 
+  } // Continue for staging and preview environments 
+</code></pre>
+</div>
+
+<p class="text mgt-20">
+ We use environment variables for error handling message that will be given either to the user or developer. As a developer in
+ <span class="blue bold font-code">"development"</span> environment we send the whole stacktrace from the err object, but if environment is anything but
+ <span class="blue bold font-code">"development"</span>
+ instead of the error handler above, Express.js will use this one in which no stacktraces are leaked to a user
+</p>
+
+<p class="underline-text"># Example - Handling error messages depend on the current environment :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.use( (err, req, res, next) => {
+    if(process.env.NODE_ENV === "development"){
+      // Send the following to the developer 
+      res.status(err.status || 500);
+      res.render('error', {
+      message: err.message,
+      error: err
+      });
+    } 
+    // Send the following to the Client User if environment variable is not development 
+    res.status(err.status || 500);
+    res.render('error', {
+    message: err.message,
+    error: {}
+  })
+</code></pre>
+</div>

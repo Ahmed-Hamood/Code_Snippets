@@ -1,0 +1,247 @@
+:is(p, a, li, .block-title) code:not(code[class]),
+:is(p, a, li, .block-title) terminal,
+:is(p, a, li, .block-title) file,
+:is(p, a, li, .block-title) folder,
+:is(p, a, li, .block-title) text,
+:is(p, a, li, .block-title) number {
+ font-size: 90%;
+ font-weight: 400;
+ font-family: consolas, 'JetBrains Mono', monospace, 'Menlo', monospace;
+ vertical-align: middle;
+ margin: 0 0.2rem;
+ white-space: nowrap;
+ position: relative;
+ bottom: 1px;
+ border-radius: 3px;
+ padding: 2px 6px;
+ box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+ cursor: default;
+ transition: all 0.3s;
+ vertical-align: initial;
+}
+
+/* #region code | terminal style */
+
+:is(p, a, li, .block-title) code:not(code[class]),
+:is(p, a, li, .block-title) terminal {
+ color: #eeee;
+ background: #434343;
+ border: 0.1rem solid rgba(0, 0, 0, 0.1);
+}
+
+:is(p, a, li, .block-title) terminal {
+ color: #eeee;
+ background: #434343;
+}
+
+/* #endregion */
+
+/* #region folder and file style */
+
+:is(p, li, .block-title) folder {
+ color: #404040;
+ background-color: #d5a00f;
+ border: 1px solid #8c6700;
+ border-bottom: 3px solid #9e7a17;
+ border-radius: 5px;
+}
+
+:is(p, li, .block-title) file {
+ color: #b5b5b5;
+ background-color: #292b28;
+ border: 1px solid rgb(76, 76, 76);
+ border-bottom: 3px solid rgb(91, 91, 91);
+ border-radius: 5px;
+}
+
+/* #endregion */
+
+/* #region text and number tag with color style */
+
+:is(p, li, .block-title) text {
+ color: #ffffff;
+ background: #c6ae1500;
+ border: 0.1rem solid rgb(182, 182, 182);
+}
+
+:is(p, li, .block-title) number {
+ color: #ffffff;
+ background: #242323;
+ border: 0.1rem solid rgba(236, 236, 236, 0.38);
+ border-radius: 0;
+}
+
+text[red],
+number[red] {
+ border: 0.1rem solid #e74d3cb6;
+}
+
+text[yellow],
+number[yellow] {
+ border: 0.1rem solid #ddd09a;
+}
+
+text[green],
+number[green] {
+ border: 0.1rem solid #14a952;
+}
+
+text[orange],
+number[orange] {
+ border: 0.1rem solid #cc6d1b;
+}
+
+text[purple],
+number[purple] {
+ border: 0.1rem solid #8749a0;
+}
+
+text[blue],
+number[blue] {
+ border: 0.1rem solid #32adff;
+}
+
+/* #endregion */
+
+/* #region <code|terminal|text|number [...]> style color attribute */
+
+[red] {
+ color: #eb5757 !important;
+}
+
+[green] {
+ color: #2ecc71 !important;
+}
+
+[yellow] {
+ color: #ddd09a !important;
+}
+
+[orange] {
+ color: #e67e22 !important;
+}
+
+[purple] {
+ color: #d980fa !important;
+}
+
+[blue] {
+ color: #339fe7 !important;
+}
+
+[white] {
+ color: var(--text-color) !important;
+}
+
+[inherit] {
+ color: inherit !important;
+}
+
+/* #endregion */
+
+/* #region colors with styles  */
+
+red {
+ color: #eb5757 !important;
+}
+
+blue {
+ color: #4dbbf7 !important;
+}
+
+lightblue {
+ color: #9cdcfe !important;
+}
+
+green {
+ color: #27ae60 !important;
+}
+
+lightgreen {
+ color: rgb(171, 186, 104) !important;
+}
+
+pink {
+ color: #c32672 !important;
+}
+
+orange {
+ color: rgb(212, 156, 50) !important;
+}
+
+purple {
+ color: #d980fa !important;
+}
+
+sky {
+ color: #4ebef8 !important;
+}
+
+black {
+ color: black !important;
+}
+
+white {
+ color: var(--text-color) !important;
+}
+
+inherit {
+ color: inherit !important;
+}
+
+gray {
+ color: #80807a !important;
+}
+
+brown {
+ color: rgb(171, 77, 0) !important;
+}
+
+yellow {
+ color: #ddd09a !important;
+}
+
+[bold] {
+ font-weight: 600 !important;
+}
+
+[cap] {
+ text-transform: capitalize;
+}
+
+[consolas] {
+ font-family: Consolas, monospace, 'Segoe UI', 'Source Sans Pro', sans-serif;
+}
+
+[underline],
+underline {
+ text-decoration: underline;
+ text-decoration-color: inherit;
+ text-underline-offset: 3px;
+}
+
+[bold],
+bold {
+ font-weight: 600 !important;
+}
+
+[consolas],
+consolas,
+.consolas {
+ font-family: Consolas, monospace, 'Segoe UI', 'Source Sans Pro', sans-serif;
+}
+
+/* #endregion */
+
+highlight {
+ border-bottom: 1px solid yellow;
+}
+
+small {
+ font-size: 0.9rem !important;
+}
+
+.view-border {
+ border: 1px solid rgb(114, 114, 114);
+ padding: 22px;
+}

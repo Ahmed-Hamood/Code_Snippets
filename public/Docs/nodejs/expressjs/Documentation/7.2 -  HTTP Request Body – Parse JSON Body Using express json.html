@@ -1,0 +1,293 @@
+<p class="main-title">7.2 - HTTP <span class="red bold font-code">req.body</span> – Parse JSON Body Using <span class="red bold font-code">express.json()</span></p>
+
+<p class="text">
+ We use a Build-in Body-Parser Middleware in order for us to be able to read the <blue>"body"</blue> of an incoming JSON data object. we use it specifically with POST and
+ PUT requests for sending data , and you don't need to use GET and DELETE requests with it. Express has a Build-in json parser the
+ <span class="red bold font-code">express.json()</span> function that return an Express Middleware function that parses JSON HTTP request bodies into JavaScript objects.
+ Json parse JSON formatted text for bodies with Content-Type of application/json
+</p>
+
+<p class="underline-text"># The Build-in Body-Parser Middleware express.json():-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.use(express.json()); // Used to parse JSON bodies
+  app.post("/post", (req, res) => { res.json(req.body); });
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">A - Using <span class="red bold font-code">express.json()</span></p>
+
+<p class="text">
+ The <span class="red bold font-code">json()</span> middleware adds a <blue>body</blue> property to the Express request. use
+ <span class="red bold font-code">req.body</span> To access the parsed request body. <span class="red bold font-code">req.body</span> Contains key-value pairs of data
+ submitted in the request body. By default, it is undefined
+</p>
+
+<p class="underline-text"># An Example Using Build-in BodyParser express.json() :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+ const express = require("express");
+ const app = express();
+
+ // Parse JSON bodies for this app. Make sure you put
+ app.use(express.json()); // Add it Before your route handlers
+
+ app.post("/post", (req, res) => {
+  console.log(req.body); // { name: 'Adam', age: 45, job: 'Programming' } 
+  res.json(req.body);
+ });
+
+ app.listen(3000, (err) => {
+  if (err) console.log(err);
+  console.log("Server listening on PORT", 3000);
+ });
+</code></pre>
+</div>
+
+<p class="underline-text"># Using Axios to send A post request along with JSON data :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+ const axios = require("axios");
+ const res = await axios.post("http://localhost:3000/post", {
+  name: "Adam",
+  age: 45,
+  answer: 42
+ });
+
+ res.data; // `{ name: "Adam", age: 45, answer: 42 }`
+</code></pre>
+</div>
+
+<p class="underline-text"># Using fetch In frontEnd to send A post request along with JSON data :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  fetch("http://localhost:3000/user", {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json"
+    },
+    body: JSON.stringify({ name: "Adam", age: 45, job: "Programming" }),
+  }).then(response => {
+    console.log(response)
+    if (response.status === 200) {
+      console.log("Send Successfully")
+    }
+    if (response.status === 400) {
+      console.log("Send Failed")
+    }
+  })  
+ })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">
+ B - <span class="red bold font-code">express.json()</span> Options - <span class="blue bold font-code">inflate, limit, reviver, strict, type, verify </span>
+</p>
+
+<p class="sub-sub-title get-title"># inflate: Boolean (Defaults to true)</p>
+
+<p class="text">When set to true, then deflated (compressed) bodies will be inflated; when false, deflated bodies are rejected. Defaults to true.</p>
+
+<p class="sub-sub-title get-title"># limit : Number (Default is 100KB)</p>
+
+<p class="text">
+ Controls the maximum request body size. If this is a number, then the value specifies the number of bytes; if it is a string, the value is passed to the bytes library
+ for parsing. Defaults to '100kb'.
+</p>
+
+<p class="underline-text"># Using limit option to limit the request body size :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.use(express.json({ limit: "500kb" }))
+  # Supported units all case-insensitive :-
+  ----------------------------------------
+  b for bytes
+  kb for kilobytes
+  mb for megabytes
+  gb for gigabytes
+  tb for terabytes
+  pb for petabytes
+  ----------------------------------------
+</code></pre>
+</div>
+
+<p class="sub-sub-title get-title"># reviver : Function (key, value)</p>
+
+<p class="text">used to output json properties, so we can edit them before return them</p>
+
+<p class="underline-text"># Using reviver option to edit properties :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.use(express.json({ reviver: (key, value) => {
+    console.log("the key", key , "the value", value)
+    // the key name the value Adam
+    // the key age the value 45
+    // the key job the value Programming
+  }}))
+</code></pre>
+</div>
+
+<p class="sub-sub-title get-title"># strict : Boolean (default is true)</p>
+
+<p class="text">When you set it to <green>true</green>, the parser will only accept objects and arrays, but when you set it to false our parser will accept anything.</p>
+
+<p class="underline-text"># Using strict option to Accept values :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.use(express.json({ strict: true }))
+  # Accept the following :-
+  body: JSON.stringify({name: "Adam"})
+  body: JSON.stringify(["adam"])
+
+  app.use(express.json({ strict: true }))
+  # Accept the following :-
+  body: JSON.stringify({name: "Adam"})
+  body: JSON.stringify(["adam"])
+  body: JSON.stringify("adam") // Wont work
+
+  app.use(express.json({ strict: false }))
+  # Accept the following :-
+  body: JSON.stringify({name: "Adam"})
+  body: JSON.stringify(["adam"])
+  body: JSON.stringify("adam") // will work
+</code></pre>
+</div>
+
+<p class="sub-sub-title get-title"># type : string (default is "application/json")</p>
+
+<p class="text">The type option is used to determine what media type the middleware will parse. This option can be a string, array of strings, or a function.</p>
+
+<p class="underline-text"># Using type option to Accept types :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.use(express.json({ type: "application/json" }))
+  app.use(express.json({ type: "json" }))
+  app.use(express.json({ type: ["application/json", "*/json"] }))
+</code></pre>
+</div>
+
+<p class="sub-sub-title get-title"># verify : function (req, res, buf, encoding)</p>
+
+<p class="text">
+ The verify option, if supplied, is called as verify(req, res, buf, encoding), where buf is a Buffer of the raw request body and encoding is the encoding of the request.
+ The parsing can be aborted by throwing an error.
+</p>
+
+<p class="underline-text"># Using type verify :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  app.use(express.json({ verify: (req, res, buf, encoding)=> {
+    console.log(req); // Request Object {}
+    console.log(res) // Response Object {}
+    console.log(buf); // &lt;Buffer 7b 22 6e 61 6d 65 22 3a 22 41 64 61 6d 22 7d />  
+    console.log(encoding); // utf-8 
+  }}))
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">C - Error Handling The Parser</p>
+
+<p class="text">
+ We handle error by using "Middleware Error Handler". An error shown as a property called "type" property is used to determine the of error name, and match it. The
+ following are the common errors created, though any error can come through for various reasons.
+</p>
+
+<p class="underline-text"># The most common error :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>
+   <span class="blue bold font-code">type: "encoding.unsupported" </span> : This error will occur when the request had a Content-Encoding header that contained an
+   encoding but the “inflation” option was set to false. The status property is set to 415
+  </li>
+  <li>
+   <span class="blue bold font-code">type: "entity.parse.failed" </span> : This error will occur when the request contained an entity that could not be parsed by the
+   middleware. The status property is set to 400
+  </li>
+  <li>
+   <span class="blue bold font-code">type: "entity.verify.failed" </span> : This error will occur when the request contained an entity that could not be failed
+   verification by the defined verify option. The status property is set to 403
+  </li>
+  <li>
+   <span class="blue bold font-code">type: "request.aborted" </span> : This error will occur when the request is aborted by the client before reading the body has
+   finished. The status property is set to 400
+  </li>
+  <li>
+   <span class="blue bold font-code">type: "entity.too.large" </span> : This error will occur when the request body’s size is larger than the “limit” option. The status
+   property is set to 413
+  </li>
+  <li>
+   <span class="blue bold font-code">type: "request.size.invalid" </span> : This error will occur when the request’s length did not match the length from the
+   Content-Length header. The status property is set to 400
+  </li>
+  <li>
+   <span class="blue bold font-code">type: "stream.encoding.set" </span> : This error will occur when something called the req.setEncoding method prior to this
+   middleware. The status property is set to 500
+  </li>
+  <li>
+   <span class="blue bold font-code">type: "parameters.too.many" </span> : This error will occur when the content of the request exceeds the configured parameterLimit for
+   the urlencoded parser. The status property is set to 413
+  </li>
+  <li>
+   <span class="blue bold font-code">type: "charset.unsupported" </span> : This error will occur when the request had a charset parameter in the Content-Type header, but
+   the iconv-lite module does not support it OR the parser does not support it. The status property is set to 415
+  </li>
+  <li>
+   <span class="blue bold font-code">type: "encoding.unsupported" </span> : This error will occur when the request had a Content-Encoding header that contained an
+   unsupported encoding. The status property is set to 415
+  </li>
+ </ul>
+</div>
+
+<p class="underline-text"># We are going to handle error using middleware error handler :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express")
+  const app = express()
+  const cors = require("cors")
+  
+  app.use(cors())
+  
+  app.use(express.json({ limit: 1 }))
+  
+  app.post("/user", (req, res) => {
+    console.log(req.body)
+    res.status(200).end()
+  })
+  
+  app.use((err, req, res, next) => {
+    console.log(err)
+    if (err.type == "entity.too.large") {
+      console.log("Large Entity")
+    }
+    res.status(500)
+  })
+  
+  app.listen(3000, () => {
+    console.log("Listening on port 3000")
+  })
+</code></pre>
+</div>

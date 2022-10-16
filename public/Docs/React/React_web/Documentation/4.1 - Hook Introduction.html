@@ -1,0 +1,140 @@
+<p class="main-title">4.1 - Hook Introduction</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">1 - What is React Hook</p>
+
+<p class="text">
+ <red>Hooks</red> are a new addition introduced in the React <green>16.8</green> version. It allows you to use state and other React features without writing a class. It
+ an alternative to class-based components, and offer an alternative approach to state management and lifecycle methods. It does not work inside classes.
+</p>
+
+<p class="text">
+ <red>Hooks</red> are the functions that we can do thing with them like once we were only able to do with classes, like being able to work with React local
+ <green>state</green>, <green>effects</green> and <green>context</green> through <red>useState</red>, <red>useEffect</red> and <red>useContext</red>.
+</p>
+
+<p class="underline-text"># Additional Hooks include :-</p>
+
+<div class="list-content normal number">
+ <ul>
+  <li><code>useState()</code></li>
+  <li><code>useEffect()</code></li>
+  <li><code>useContext()</code></li>
+  <li><code>useReducer()</code></li>
+  <li><code>useCallback()</code></li>
+  <li><code>useMemo()</code></li>
+  <li><code>useRef()</code></li>
+  <li><code>useImperativeHandle()</code></li>
+  <li><code>useLayoutEffect()</code></li>
+  <li><code>useDebugValue()</code></li>
+ </ul>
+</div>
+
+<p class="underline-text"># Hook System :-</p>
+
+<img path="/img/image023.png" height="300px" id="image" alt="" />
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">2 - When to use a Hooks & what are the Benefits</p>
+
+<p class="text">
+ If you write a function component, and then you want to add some state to it, previously you do this by converting it to a class. But, now you can do it by using a Hook
+ inside the existing function component.
+</p>
+
+<p class="text">
+ <red>Hooks</red> have a lot of benefit to us as developers, and they are going to change the way we write components for the better. They will help us to write clearer
+ and more concise code - it's like we went on a code diet and we lost a lot of weight and we look better and feel better. It brings out our jawline and makes us feel
+ lighter on our toes. It's the one change that works for us.
+</p>
+
+<p class="text">
+ If we compare side-by-side the class and functional component using hooks, you will see that our code lost a little weight. We not only save about five lines of code,
+ but the readability and test-ability also improve with the change over to Hooks. Switching existing code over to Hooks could have a big impact on the sheer volume of
+ code and readability
+</p>
+
+<p class="underline-text"># Compare Side-By-Side of Class Component and functional component with using hooks :</p>
+
+<img path="/img/image016.PNG" id="image" alt="" />
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">3 - Rules of Hooks</p>
+
+<p class="text">
+ <red>Hooks</red> are JavaScript functions, but you need to follow two rules when using them. <red>Hooks</red> rule ensures that all the stateful logic in a component is
+ visible in its source code. Before we create our own <red>Hook</red>, let's review a few of the major rules we must always follow.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-sub-title mark">1. Only Call Hooks at the Top Level</p>
+
+<p class="text">
+ Do not call Hooks inside <green>loops</green>, <green>conditions</green>, or <green>nested functions</green>. <red>Hooks</red> should always be used at the top level of
+ the <blue>React functions</blue>. This rule ensures that Hooks are called in the same order each time a <blue>components renders</blue>.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-sub-title mark">2. Only call Hooks from React functions</p>
+
+<p class="text">
+ You cannot call Hooks from <green>regular JavaScript</green> functions. Instead, you can call Hooks from React <blue>function components</blue>. Hooks can also be called
+ from <blue>custom Hooks</blue>.
+</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">4 - React Hooks Requirement and Installation</p>
+
+<p class="text">
+ React Hooks works with Node version 6 or above, and also NPM version 5.2 or above. To start using React Hooks you need to create a React app using
+ <code>Create-react-app</code> tool for running the React App, it will install the latest react libraries. If you want to install a specific React version like 16.8.0 in
+ order to use Hooks, we need to run the following commands
+</p>
+
+<p class="underline-text"># Install React 16.8.0 version to start using hooks :-</p>
+
+<section terminal-content>
+ <pre>
+  npm install react@16.8.0-alpha.1 --save  
+  npm install react-dom@16.8.0-alpha.1 --save  
+</pre
+ >
+</section>
+
+<p class="text">
+ The command above will install React and React-DOM alpha versions which support <red>React Hooks.</red> Make sure the <green>package.json</green> file lists the React
+ and React-DOM dependencies as given below.
+</p>
+
+<p class="underline-text"># Under dependencies you will find both react & react-dom :-</p>
+
+<section json-content title-header="./package.json" no-line-num>
+ <pre>
+  "dependencies": {
+    "react": "^16.8.0-alpha.1",  
+    "react-dom": "^16.8.0-alpha.1",  
+  }
+</pre
+ >
+</section>
+
+<p class="underline-text"># To the last react version use the following command :-</p>
+
+<section terminal-content>
+ <pre>
+ npm install react react-dom react-scripts
+  "react": "^17.0.2",
+  "react-dom": "^17.0.2",
+  "react-scripts": "^4.0.3"
+</pre
+ >
+</section>
+
+<p class="underline-text"># The <code>create-react-app</code> will install all react libraries latest versions and a full react project to start :-</p>
+
+<section terminal-content>
+ <pre>
+  npx create-react-app &lt;Folder_Name> 
+</pre
+ >
+</section>

@@ -1,0 +1,154 @@
+<p class="main-title">8.1 - Working With HTTP Request Headers - Adding And Getting Headers</p>
+
+<p class="text">
+ Request Header is set by the browser, we can access and change these these header using Express. The client sends an http request that contain all kinds headers that
+ tell the server useful information about what the client browser preferences and other things.
+</p>
+
+<p class="underline-text"># The most common request header send from the client browser :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Request Headers</p>
+ <pre><code class="js language-js">
+  {
+    user-agent: "PostmanRuntime/7.25.0",   //On which application you Send the request  
+    accept: "*/*",  // mean the browser accept anything content type
+    cache-control: "no-cache", // cache is disabled on the client side  
+    postman-token: "4a68d83d-4ba6-410a-b9b0-3158d78e8c97", 
+    origin: "http://localhost:3000",
+    host: "localhost:3000",   // google.com domain name
+    accept-encoding: "gzip, deflate, br", 
+    connection: "keep-alive",   // we can get multiple http request and response  
+    content-length: "0"   // the size of the content 
+  }   
+</code></pre>
+</div>
+
+<p class="text">
+ Request headers depend on the method of the request such as <blue>GET</blue>, and <blue>POST</blue>. A <blue>POST</blue> request header for example will contain a
+ content-type header to tell the server the type of content that it is being given in the body of the request. However a GET request would not contain such a header,
+ because it is just simply requesting whatever there is at a given location. Also It goes without saying that response headers differ slightly from request headers.
+</p>
+
+<p class="underline-text"># The Request Object contain URL, methods, headers and body :-</p>
+
+<img path="/img/image027.PNG" id="image" alt="" />
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">A - Access All Request Headers Using <span class="red bold font-code">req.headers</span></p>
+
+<p class="text">You can access all the HTTP headers using the <span class="red bold font-code">Request.headers</span> property</p>
+
+<p class="underline-text"># Access All HTTP headers using req.headers :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Request Headers</p>
+ <pre><code class="js language-js">
+  app.get("/", (req, res) => {
+    console.log(req.headers); // { user-agent: "", connection: "", accept: "" .... } 
+    console.log(req.headers.host); // localhost:3000
+    console.log(req.headers["user-agent"]) // Mozilla/5.0 (Windows NT 10.0; Win64; x64) 
+    console.log(req.headers.connection); // keep-alive
+    console.log(req.headers.accept); // text/html,application/xhtml+xml,application/xml;...
+    res.end()
+  })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">
+ B - Access One individual Request Header Values Using <span class="red bold font-code">req.header()</span> Or <span class="red bold font-code">req.get()</span>
+</p>
+
+<p class="text">
+ Use the <span class="red bold font-code">req.header()</span> or <span class="red bold font-code">req.get()</span> methods to access one individual request header’s value
+</p>
+
+<p class="underline-text"># Access individual HTTP header using req.header() Or req.get():-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Request Headers</p>
+ <pre><code class="js language-js">
+  app.get("/", (req, res) => {
+    console.log(req.header("connection")) // keep-alive 
+    console.log(req.get("connection")) // keep-alive
+  
+    res.json({
+      headers: req.headers,
+      userAgent: req.get("user-agent"),
+    })
+  })
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">C - Add Custom Headers into Request Headers</p>
+
+<p class="text">
+ You can add new headers into request headers from the server, for later use like authorization to store user data like username or id, and also you can edit an existed
+ request header maybe to filter some header values.
+</p>
+
+<p class="underline-text"># Add new request headers :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Request Headers</p>
+ <pre><code class="js language-js">
+  app.post("/", function (req, res) {
+    // edit cookie value 
+        req.headers["cookie"] = "ga=GA1.1.1007487929.1483993436";
+
+    // add new property into the headers
+        req.headers.userdata = {
+          _id: "pl4fi94jf",
+          username: "max william",
+        };
+
+        res.json({
+          headers: req.headers,
+          userAgent: req.get("user-agent"),
+        });
+      });    
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example of adding new header into request header, when user verify it's credentials :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Request Headers</p>
+ <pre><code class="js language-js">
+  const protectAccess = async (req, res, next)  => {
+    const token;
+
+    // 1. check if token exist in request header
+    if(req.cookies.JWT) {
+      token = req.cookies.JWT;
+    }
+
+    // 2. token Verification - check expire data & check if someone manipulated the data
+    let decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET, { audience: "mywebsite_URL" });
+
+    // 3. user Deleted but still have token . check user if still exist
+    const currentUser = await user.findById(decoded.id);
+    if (!currentUser) return next(new httpError("token not belong to this user . user not Exist ...", 404));
+
+    // 4. Attach user information into request headers 
+    req.<orange>headers</orange>.userInfo = currentUser;
+
+    // 5. Jump to the next route 
+    next()
+  }
+
+  app.get("/", protectAccess,  (req, res) => {
+    const _id = req.<orange>headers</orange>.userInfo.<blue>_id</blue>;
+
+    const result = await user.findByIdAndUpdate({ _id }, { userActive: false }, { new: true });
+
+    res.status(200).json({
+      status: "success",
+      message: 'User Deleted successfully . . .',
+      result
+    });
+  })
+</code></pre>
+</div>

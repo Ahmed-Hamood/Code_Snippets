@@ -1,0 +1,826 @@
+<p class="main-title">2.1 - What's JSX, Declaring JSX Elements and Writing JSX Comment</p>
+
+<!-- ######################################################### -->
+<p class="sub-title get-title">1 - What is JSX ?</p>
+
+<p class="text">
+ <red>JSX</red> is a syntax extension to javascript that produce React elements. It is a template script where you will have the power of using <blue>HTML</blue> and
+ <blue>Javascript</blue> together. As you know, your web apps are made up of <green3>HTML, CSS</green3>, and <green3>JavaScript</green3> It doesn't matter if your web app
+ was written using React or some other library like Angular or jQuery. The end result has to be some combination of <green3>HTML, CSS,</green3> and
+ <green3>JavaScript</green3>.
+</p>
+
+<p class="underline-text"># Why using JSX ?</p>
+
+<div class="list-content custom">
+ <ul>
+  <li class="blue-3">It is faster than normal JavaScript as it performs optimizations while translating to regular JavaScript.</li>
+  <li class="blue-3">It makes it easier for us to create templates.</li>
+  <li class="blue-3">Instead of separating the markup and logic in separated files, React uses components for this purpose.</li>
+ </ul>
+</div>
+
+<p class="text">
+ <red>JSX</red> is a language that allows you to easily mix JavaScript and HTML-like tags to define user interface (UI) elements and their functionality. React uses
+ <red>JSX</red> to handle rendering logic, events, state change in the DOM, and how the data is prepared for display.
+</p>
+
+<p class="underline-text"># Here is a simple example of a JSX code :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ Example</p>
+ <pre><code class="js language-jsx">
+  const element = &lt;h1> Hello, world! &lt;/h1>;
+</code></pre>
+</div>
+
+<!-- ######################################################### -->
+<p class="sub-title get-title">2 - Ways of Declaring JSX</p>
+
+<p class="text">
+ <red>JSX</red> allows us to write HTML elements in JavaScript and place them in the DOM without any <blue>createElement()</blue> and/or
+ <blue>appendChild()</blue> methods. You can declare JSX elements or tags in many ways as a <green3>Variable</green3>, <green3>Regular Function</green3>,
+ <green3>Arrow Function </green3>and <green3>Anonymous Function</green3>
+</p>
+
+<p class="underline-text"># Declare JSX Elements with variable :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react";
+  import ReactDOM from "react-dom";
+
+  const element = &lt;h1> Hello, world! &lt;/h1>;
+  ReactDOM.render(element, document.getElementById("root"));
+  &lt;del>ReactDOM.render(&lt;element />, document.getElementById("root"));&lt;/del>  // Error
+</code></pre>
+</div>
+
+<p class="underline-text"># Add JSX HTML Element inside a Render Method :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react";
+  import ReactDOM from "react-dom";
+
+  ReactDOM.render( &lt;h1> Hello, world! &lt;/h1>, document.getElementById("root"));
+</code></pre>
+</div>
+
+<p class="underline-text"># JSX As Regular Function Component :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react";
+  import ReactDOM from "react-dom";
+  
+  function App() {
+    return &lt;h1> Hello, world! &lt;/h1>;
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"));
+  <del>ReactDOM.render(App, document.getElementById("root"));</del>  // Error
+</code></pre>
+</div>
+
+<p class="underline-text"># JSX As Anonymous Function Component :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react";
+  import ReactDOM from "react-dom";
+  
+  let App = function() {
+    return &lt;h1> Hello, world! &lt;/h1>;
+  }
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"));
+</code></pre>
+</div>
+
+<p class="underline-text"># JSX As Arrow Function Component :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react";
+  import ReactDOM from "react-dom";
+  
+  let App = () => {
+    return &lt;h1> Hello, world! &lt;/h1>;
+  } 
+
+  // OR
+
+  let App = () => &lt;h1> Hello, world! &lt;/h1>;
+  
+  ReactDOM.render(&lt;App />, document.getElementById("root"));
+</code></pre>
+</div>
+
+<!-- ######################################################### -->
+<p class="sub-title get-title">3 - Single/Multi Line JSX with Function Return</p>
+
+<p class="text">
+ <red>JSX</red> will throw an error if the HTML JSX is not correct. you assign or return a JSX element either on a single line after the <blue>return</blue> keyword. And
+ you must write your single line JSX element using <red>"( )"</red>. But if you are writing multiple lines JSX element then <red>"( )"</red> is optional but you must
+ begin your JSX tag element after the <blue>return</blue> keyword not in a new line otherwise you are gonna get an error. Check the following example.
+</p>
+
+<p class="underline-text"># Using a single line element JSX :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  let App = () => {
+    return &lt;h1> Hello, world! &lt;/h1>
+  } 
+
+  ## Compiled successfully! ##
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  let App = () => {
+    return 
+    &lt;h1> Hello, world! &lt;/h1>
+  } 
+
+  ## Failed to compile ##
+</code></pre>
+</div>
+
+<p class="underline-text"># Using a multi line elements JSX and using <red>"()"</red> :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  let App = () => {
+    return &lt;div>
+      &lt;h1>Hello there.&lt;/h1>
+      &lt;p>what is your name?&lt;/p>
+    &lt;/div>
+  }
+
+  ## Compiled successfully! ##
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  let App = () => {
+    return 
+    &lt;div>
+      &lt;h1>Hello there.&lt;/h1>
+      &lt;p>what is your name?&lt;/p>
+    &lt;/div>
+  }
+
+  ## Failed to compile ##
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  let App = () => {
+    return (
+      &lt;div>
+        &lt;h1>Hello there.&lt;/h1>
+        &lt;p>what is your name?&lt;/p>
+      &lt;/div>
+    );
+  };
+
+  ## Compiled successfully! ##
+</code></pre>
+</div>
+
+<!-- ######################################################### -->
+<p class="sub-title get-title">4 - Wrapped on One Top Level Element</p>
+
+<p class="text">
+ The JSX HTML code must be wrapped in one top level element like div. you can have two element tags you must wrap them inside a parent element like a
+ <blue>&lt;div></blue> element tag. But with a single element is not an issue.
+</p>
+
+<p class="underline-text"># The following we have one elements :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  let App = () => {
+    return &lt;h1> Hello &lt;/h1>
+  };
+
+    Compiled successfully!  
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  let App = &lt;h1> Hello &lt;/h1>
+
+  ## Compiled successfully! ##
+</code></pre>
+</div>
+
+<p class="underline-text"># The following we have two elements which are not wrapped with a parent element :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  let App = () => {
+    return &lt;h1> Hello &lt;/h1> &lt;p> welcome &lt;/p> 
+  };
+
+  ## Failed to compile ##
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  let App = &lt;h1> Hello &lt;/h1> &lt;h1> welcome &lt;/h1> 
+
+  ## Failed to compile ##
+</code></pre>
+</div>
+
+<p class="text">
+ As you see in above examples, JSX only allow you to have one element at a time So if you want many HTML element you have to wrap them inside a
+ <blue>&lt;div></blue> element tag. If you like to write two headers, you must put them inside a parent element.
+</p>
+
+<p class="underline-text"># An Example of Wrap two headers inside a div element: :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  const Element = (
+    &lt;div>
+      &lt;h1> This is Header &lt;/h1>
+      &lt;h1> This is Header &lt;/h1>
+    &lt;/div>
+  );
+
+  ## Compiled successfully! ##
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  const App = () => {
+    return &lt;div>
+      &lt;h1> This is Header One &lt;/h1>
+      &lt;h2> This is Header Two &lt;/h2>
+    &lt;/div>
+  }
+
+  ## Compiled successfully! ##
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  const App = () => {
+    return (
+      &lt;div>
+        &lt;h1> This is Header One &lt;/h1>
+        &lt;h2> This is Header Two &lt;/h2>
+      &lt;/div>
+    );
+  }
+
+  ## Compiled successfully! ##
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  let App = () => {
+    return ( &lt;div>
+      &lt;h1>Hello there.&lt;/h1>
+      &lt;p>what is your name?&lt;/p>
+    &lt;/div> 
+    )
+  }
+  
+  ## Compiled successfully! ##
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  let App = () => {
+    return
+    &lt;div>
+      &lt;h1> Hello there. &lt;/h1>
+      &lt;p> what is your name? &lt;/p>
+    &lt;/div> 
+  }
+  
+  ## Failed to compile ##
+</code></pre>
+</div>
+
+<!-- ######################################################### -->
+<p class="sub-title get-title">5 - Using JSX Fragment Return Multiple Elements Without Wrapping</p>
+
+<p class="text">
+ Most of the time we may need to return multiple elements from a component, without wrapping them around <blue>&lt;div></blue>. So that why fragment exist to not produce
+ any extra elements in the DOM. The <red>React Fragment</red> helps in returning multiple elements. It's alternative way to use elements like
+ <blue>&lt;div>, &lt;section>, &lt;header></blue> and more. as the following example.
+</p>
+
+<p class="underline-text"># Error must wrap elements a round div :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  let App = &lt;h1> Hello &lt;/h1> &lt;h1> welcome &lt;/h1> 
+  let App = &lt;h1> Hello &lt;/h1> &lt;p> Hey &lt;/p> 
+
+  ## Failed to compile must wrap elements around div element ##
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example of wrapping multiple elements a round <red>&lt;div></red> :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  function App() {
+    return(
+      &lt;div>
+        &lt;h1> Welcome &lt;/h1>
+        &lt;p> Hey There. &lt;/p>
+      &lt;/div> 
+    )
+  }
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+ <pre><code class="js language-jsx">
+  &lt;div>
+    &lt;h1> Welcome &lt;/h1>
+    &lt;p> Hey There  &lt;/p>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="text">
+ <red>Fragments</red> let you group a list of children without adding extra nodes to the DOM a round them, and serve as a cleaner alternative to using unnecessary
+ <blue>div's</blue> in your code. We can import <red>React Fragment</red> from <blue>React</blue> library.
+</p>
+
+<p class="underline-text"># We can use React Fragment as the following ways :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  // Import Fragment from React Library at the beginning
+  import React , { Fragment } from "react";
+
+  function App() 
+  { 
+    return (
+      &lt;Fragment> 
+        &lt;h1> Welcome &lt;/h1>
+        &lt;p> Hey There. &lt;/p>
+      &lt;/Fragment> 
+    )
+  }
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  // Or reference to Fragment from React Library
+  import React from "react";
+
+  function App() 
+  { 
+    return (
+      &lt;React.Fragment> 
+        &lt;h1> Welcome &lt;/h1>
+        &lt;p> Hey There. &lt;/p>
+      &lt;/React.Fragment> 
+    )
+  }
+</code></pre>
+</div>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  // Using a short Syntax &lt;> &lt;/> It looks like empty tags. You don't have to use it   
+  import React from "react";
+
+  function App() 
+  { 
+    return (
+      &lt;> 
+        &lt;h1> Welcome &lt;/h1>
+        &lt;p> Hey There. &lt;/p>
+      &lt;/> 
+    )
+  }
+</code></pre>
+</div>
+
+<p class="underline-text"># Fragment render demonstration :-</p>
+
+<img path="/img/image008.PNG" id="image" alt="" />
+
+<p class="text">
+ As you see <red>Fragment</red> let you group a list of elements without adding extra nodes to the DOM because fragments are not rendered to the DOM. So basically we use
+ React.Fragment where we would normally use a wrapper <blue>div</blue>. We are going to have more examples.
+</p>
+
+<p class="underline-text"># Example 1 - Using Fragment with tables :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React, { Fragment } from "react";
+  import ReactDOM from "react-dom";
+
+  function App() {
+    return (
+      &lt;Fragment>
+        &lt;Table />
+      &lt;/Fragment>
+    );
+  }
+
+  function Table() {
+    return (
+      &lt;table>
+        &lt;thead>
+          &lt;tr>
+            &lt;Column />
+          &lt;/tr>
+        &lt;/thead>
+      &lt;/table>
+    );
+  }
+
+  function Column() {
+    return (
+      &lt;React.Fragment>
+        &lt;td>ID&lt;/td>
+        &lt;td>Name&lt;/td>
+        &lt;td>Age&lt;/td>
+      &lt;/React.Fragment>
+    );
+  }
+
+  ReactDOM.render(&lt;App />, document.getElementById("root"));
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+ <pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;table>
+      &lt;thead>
+        &lt;tr>
+          &lt;td>ID&lt;/td>
+          &lt;td>Name&lt;/td>
+          &lt;td>Age&lt;/td>
+        &lt;/tr>
+      &lt;/thead>
+    &lt;/table>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="underline-text"># Example 2 - Using <red>Fragment</red> directly from <green3>ReactDOM.render()</green3> :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react";
+  import ReactDOM from "react-dom";
+
+  function Greet() {
+    return &lt;h1> Welcome to React&lt;/h1>;
+  }
+
+  function SayName() {
+    return &lt;p>My name is Adam&lt;/p>;
+  }
+
+  ReactDOM.render(
+    &lt;React.Fragment>
+      &lt;Greet />
+      &lt;SayName />
+    &lt;/React.Fragment>,
+    document.getElementById("root")
+  );
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+ <pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;h1> Welcome to React &lt;/h1>
+    &lt;p> My name is Adam &lt;/p>
+  &lt;/div>
+</code></pre>
+</div>
+
+<!-- ######################################################### -->
+<p class="sub-title get-title">6 - Elements that must be Closed</p>
+
+<p class="text">
+ JSX follows XML rules, and therefore HTML elements must be properly closed. You have to make sure that every element is written properly before compiling you react
+ application, therefore HTML elements without a closing tag must be properly closed with JSX syntax, You must close every empty element that does not have an a closing
+ tag like <green3>input</green3>, <green3>input</green3>, <green3>br</green3>, <green3>input</green3>, <green3>meta</green3> and more. let see how to close our JSX tag
+ Elements
+</p>
+
+<p class="underline-text"># An Example of closing an Html elements without a closing tag using JSX syntax :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  HTML :- &lt;<red2>meta</red2> <purple2>charset</purple2>="UTF-8" >  
+  JSX  :- &lt;<red2>meta</red2> <purple2>charset</purple2>="UTF-8" />  
+  ----------------------------------------------------------------
+  HTML :- &lt;input type="text" name="" id="" >  
+  JSX  :- &lt;input type="text" name="" id="" />  
+  ----------------------------------------------------------------
+  HTML :-  &lt;img alt="my_img" path="/img/pic-1256" alt="" id="image" > 
+  JSX  :-  &lt;img alt="my_img" path="/img/pic-1256" alt="" id="image"  />
+  ----------------------------------------------------------------
+  HTML :-  &lt;<red2>i</red2> class="fa fa-12" > 
+  JSX  :-  &lt;<red2>i</red2> class="fa fa-12" />
+  ----------------------------------------------------------------
+  HTML :- &lt;br>
+  JSX  :- &lt;br />
+</code></pre>
+</div>
+
+<!-- ######################################################### -->
+<p class="sub-title get-title">7 - JSX Comment</p>
+
+<p class="text">
+ <red>JSX</red> allows us to use comments that begin with <green3>/*</green3> and ends with <green3>*/</green3> then wrapping them with curly braces <code>"{}"</code>.
+ You can't just use HTML comments inside of <red>JSX</red> because it thinks they are real DOM Nodes
+</p>
+
+<p class="underline-text"># An Example shows how to use A single line comment in JSX :- :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  const App = () => {
+    return (
+      &lt;div>
+        &lt;h1> I am a Header &lt;/h1>
+        { <green2>/* This is JSX Comment */</green2> }  
+        &lt;p> Welcome &lt;/p>
+        { <green2>/* This is another JSX Comment */</green2> }  
+      &lt;/div>
+    );
+  };
+
+  // This is a JavaScript Comment 
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example shows how to use A MultiLine comment in JSX :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  const App = () => {
+    return (
+      &lt;div>
+        &lt;h1>I am a Header &lt;/h1>
+        { <green2>/* 
+          Multi
+          line
+          comment
+        */</green2> }
+        &lt;p>Welcome&lt;/p>
+      &lt;/div>
+    );
+  };
+
+  // This is a JavaScript Comment 
+</code></pre>
+</div>
+
+<!-- ######################################################### -->
+<p class="sub-title get-title">8 - React.createElement() Vs JSX</p>
+
+<p class="text">
+ <blue>JSX</blue> allows us to write HTML elements in JavaScript and place them in the DOM without any <code>createElement()</code> and/or
+ <code>appendChild()</code> methods. <blue>JSX</blue> Element will be translate into <code>React.createElement()</code>
+ in the background.
+</p>
+
+<p class="underline-text"># The <code>createElement()</code> method parameters Syntax :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ Syntax</p>
+ <pre><code class="js language-jsx">
+  React.createElement(
+    type,
+    { attributes || props },
+    [...children]
+  )
+</code></pre>
+</div>
+
+<p class="underline-text"># The <code>createElement()</code> method takes three parameters :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>First Parameter - String which specify the HTML tag to be rendered</li>
+  <li>Second Parameter - Pass attributes like <blue>class, id, href</blue> and also <blue>Props</blue>. This parameter is optional</li>
+  <li>Third Parameter - The Children of the HTML Element it can be string or an array of elements</li>
+ </ul>
+</div>
+
+<p class="text">
+ The first parameter is the type of element we are creating, it can be another react component. If we are creating an HTML element, we pass in the tag name as a string.
+ The second argument is is an object containing properties, it can be attributes like style, class, id's and href. And also we can pass props that get passed to the
+ component.
+</p>
+
+<p class="text">
+ Finally the last argument is the children of that component it can be a text type string, or another nested element and components within each other. So let's create our
+ first <code>createElement()</code> component then after that we add attributes and props and nested elements as children.
+</p>
+
+<p class="underline-text"># An example of using createElement without using jsx :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  let myElement = &lt;h1> I Love JSX! &lt;/h1>;
+  myElement = React.createElement("h1", {}, "I do not use JSX!");
+
+  ReactDOM.render(myElement, document.getElementById("root"));
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+ <pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;h1> I do not use JSX! &lt;/h1>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="underline-text"># An example of adding createElement within another createElement :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from &lt;react&lt;;
+  import ReactDOM from &lt;react-dom&lt;;
+
+  const title = React.createElement(&lt;h1&lt;, {}, &lt;My First React Code&lt;);
+  const container = React.createElement(&lt;div&lt;, {}, title);
+
+  ReactDOM.render(
+    container,
+    document.getElementById(&lt;root&lt;)
+  );
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+ <pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div>
+      &lt;h1>My First React Code &lt;/h1>
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="underline-text"># An example of adding a title and paragraph into our container :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const title = React.createElement("h1", {}, "My First React Code")
+  const paragraph = React.createElement("p", {}, "Writing some more HTML. Cool stuff!")
+
+  const container = React.createElement("div", {}, [title, paragraph])
+  
+  ReactDOM.render(container, document.getElementById("root"))  
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+ <pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div>
+      &lt;h1> My First React Code &lt;/h1>
+      &lt;p> Writing some more HTML. Cool stuff! &lt;/p>
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="underline-text"># An example of nesting children using inline nesting :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react"
+  import ReactDOM from "react-dom"
+  
+  const list = React.createElement(
+   "div",
+   {},
+   React.createElement("h1", {}, "My favorite ice cream flavors"),
+   React.createElement("ul", {}, 
+      [ React.createElement("li", {}, "Chocolate"), 
+        React.createElement("li", {}, "Vanilla"), 
+        React.createElement("li", {}, "Banana")
+      ]
+    )
+  )
+  
+  ReactDOM.render(list, document.getElementById("root"))  
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+ <pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div>
+      &lt;h1> My favorite ice cream flavors &lt;/h1>
+      &lt;ul>
+        &lt;li> Chocolate &lt;/li>
+        &lt;li> Vanilla &lt;/li>
+        &lt;li> Banana &lt;/li>
+      &lt;/ul>
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>
+
+<p class="underline-text"># An example of Adding attributes into our elements :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ An Example</p>
+ <pre><code class="js language-jsx">
+  import React from "react";
+  import ReactDOM from "react-dom";
+
+  const list =
+    React.createElement("div", { id: "main-container" },
+      React.createElement("h1", { style: { color: "red", backgroundColor:'red' } }, "My favorite ice cream flavors"),
+      React.createElement("ul", {},
+        [
+          React.createElement("li", { className: "brown" }, React.createElement("a", { href: "/link1"}, "Chocolate") ),
+          React.createElement("li", { className: "white" }, React.createElement("a", { href: "/link2"}, "Vanilla") ),
+          React.createElement("li", { className: "yellow" }, React.createElement("a", { href: "/link3"}, "Banana") )
+        ]
+      )
+    );
+
+  ReactDOM.render(list, document.getElementById("root"));
+</code></pre>
+</div>
+
+<div class="html-block html-text code">
+ <pre><code class="js language-jsx">
+  &lt;div id=<green3>"root"</green3>>
+    &lt;div id=<green3>"main-container"</green3>>
+      &lt;h1 <blue>style</blue>=<green3>"color: red;background-color:red;"</green3>> My favorite ice cream flavors &lt;/h1>
+      &lt;ul>
+        &lt;li <blue>class</blue>=<green3>"brown"</green3>>  &lt;<red>a</red> href=<green3>"/link1"</green3>> Chocolate &lt;/a> &lt;/li>
+        &lt;li <blue>class</blue>=<green3>"white"</green3>>  &lt;<red>a</red> href=<green3>"/link2"</green3>> Vanilla &lt;/a> &lt;/li>
+        &lt;li <blue>class</blue>=<green3>"yellow"</green3>> &lt;<red>a</red> href=<green3>"/link3"</green3>> Banana &lt;/a> &lt;/li>
+      &lt;/ul>
+    &lt;/div>
+  &lt;/div>
+</code></pre>
+</div>

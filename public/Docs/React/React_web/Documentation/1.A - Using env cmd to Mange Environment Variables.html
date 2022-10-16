@@ -1,0 +1,160 @@
+<p class="main-title">1.A - Using <red>env.cmd</red> to Manage and Load Environment Variables</p>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">1 - What is <code>env.cmd</code> Script And Installing with NPM</p>
+
+<p class="text">
+ The <code>env.cmd</code> is a simple node package program for executing commands using an environment from an env file. So first you have to install it in your machine
+ as following.
+</p>
+
+<p class="underline-text"># Installing <code>env.cmd</code> package using NPM :-</p>
+
+<div class="terminal-block terminal code pre-block">
+ <pre><code class="js language-jsx">
+> npm install env-cmd
+  @"env-cmd": "^10.1.0"
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">2 - Using <code>env.cmd</code> to Load a Specific Environment Variables</p>
+
+<p class="text">
+ We are going to use <code>env.cmd</code> by creating two <red>.env</red> files for each environment <blue>"development"</blue> and <blue>"production"</blue>. So let's
+ create these files then later we will learn how to use them or load them into our environment variables into react application
+</p>
+
+<p class="underline-text"># Create <red>.env.development</red> and <red>.env.production</red> file in your project root directory :-</p>
+
+<div class="terminal-block code">
+ <p class="block-title">➤ ./.env.development</p>
+ <pre><code class="js language-jsx">
+REACT_APP_NOT_SECRET_CODE=".env.development"
+</code></pre>
+</div>
+
+<div class="terminal-block code">
+ <p class="block-title">➤ ./.env.production</p>
+ <pre><code class="js language-jsx">
+REACT_APP_NOT_SECRET_CODE=".env.production"
+</code></pre>
+</div>
+
+<p class="underline-text"># Our react application that has a placeholder for environment variables :-</p>
+
+<div class="js-block js-code react-code code code pre-block">
+ <p class="block-title">➤ ./src/index.js</p>
+ <pre><code class="js language-jsx">
+  import React from "react";
+
+  function App() {
+    console.log(process.env.REACT_APP_CLIENT_ID); // printing it to console
+    console.log(process.env.REACT_APP_KEY); // printing it to console
+
+    return (
+      &lt;div className="app">
+        &lt;p>{process.env.REACT_APP_KEY}&lt;/p> // printing it to screen
+      &lt;/div>
+    );
+  }
+  
+  export default App;
+</code></pre>
+</div>
+
+<p class="text">
+ After creating <red>.env</red> files for each environment. Now will configure <code>env.cmd</code> program from the <green>package.json</green> and we will write some
+ commands into the scripts section that will run our application with a specific environment.
+</p>
+
+<p class="underline-text"># Specify our environment node properties with <red>env-cmd</red> and their file names :-</p>
+
+<div class="terminal-block terminal code pre-block">
+ <p class="block-title">➤ ./package.json</p>
+ <pre><code class="js language-jsx">
+  ....
+  "scripts": {
+    "start": "react-scripts start",
+    "start:dev": "env-cmd -f .env.development react-scripts start",
+    "start:prod": "env-cmd -f .env.production react-scripts start",
+  },
+  ....
+</code></pre>
+</div>
+
+<p class="text">
+ We define two scripts properties <blue>"start:dev"</blue> and <blue>"start:prod"</blue> that we will use to describe and run the node environment. then we add
+ <blue>env-cmd</blue> at the beginning of each script command to tell react that we are going to use the <blue>env-cmd</blue> program. after that we specify the file
+ using <red>"-f"</red> that we want to run that exist in our root directory, then finally our react script execution. Now if we run our react app with both command the
+ result as following.
+</p>
+
+<p class="underline-text"># We will run both commands :-</p>
+
+<div class="terminal-block terminal code pre-block">
+ <pre><code class="js language-jsx">
+> npm run start:dev // Load '.env.development' environment variables file
+> npm run start:prod // Load '.env.production' environment variables file
+</code></pre>
+</div>
+
+<!-- ##################################################################################### -->
+<p class="sub-title get-title">3 - Using <code>env.cmd</code> Create a Custom <red>.env</red> JSON File</p>
+
+<p class="text">
+ The <code>env.cmd</code> allow us to create a custom json file for more complex projects that we can add in our root directory and supports as many environments as you
+ want. Simply we add a file in our root directory name <red>.env-cmdrc.json</red> that has multiple environment names will merge the environment variables together. Later
+ environments overwrite earlier ones in the list if conflicting environment variables are found.
+</p>
+
+<p class="underline-text"># Create our custom <red>env.cmd</red> and call it <red>.env-cmdrc.json</red> as following :-</p>
+
+<div class="terminal-block terminal code pre-block">
+ <p class="block-title">➤ ./.env-cmdrc.json</p>
+ <pre><code class="js language-jsx">
+  {
+    "development":{
+      "REACT_APP_NOT_SECRET_CODE": "CMDRC.env.development"
+    },
+    "production":{
+      "REACT_APP_NOT_SECRET_CODE": "CMDRC.env.production"
+    },
+    "test":{
+      "REACT_APP_NOT_SECRET_CODE": "CMDRC.env.test"
+    }
+  }
+</code></pre>
+</div>
+
+<p class="text">
+ In our <blue>package.json</blue> file, we define our environment node properties <green>"start:cmd-dev"</green>, <green>"start:cmd-prod"</green> and
+ <green>"start:cmd-test"</green>. On each property we add <red>env-cmd</red> then we add <red>-e</red> flag to specific the property name that exist within
+ <red>.env-cmdrc.json</red> custom file, then finally our react script execution.
+</p>
+
+<p class="underline-text"># Our Start script runner :-</p>
+
+<div class="terminal-block terminal code pre-block">
+ <p class="block-title">➤ ./package.json</p>
+ <pre><code class="js language-jsx">
+   ....
+   "scripts": {
+    "start": "react-scripts start",
+    "start:cmd-dev": "env-cmd -e development react-scripts start",
+    "start:cmd-prod": "env-cmd -e production react-scripts start",
+    "start:cmd-test": "env-cmd -e test react-scripts start",
+   },
+   ....
+</code></pre>
+</div>
+
+<p class="underline-text"># We will run both commands :-</p>
+
+<div class="terminal-block terminal code pre-block">
+ <pre><code class="js language-jsx">
+> npm run start:cmd-dev // Load all development property fields
+> npm run start:cmd-prod // Load all production property fields
+> npm run start:cmd-test // Load all test property fields 
+</code></pre>
+</div>

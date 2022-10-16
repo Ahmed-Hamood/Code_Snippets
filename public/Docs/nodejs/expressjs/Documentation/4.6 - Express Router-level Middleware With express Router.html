@@ -1,0 +1,289 @@
+<p class="main-title">4.6 - Express Router-level Middleware With <span class="red bold font-code">express.Router()</span></p>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">A - What is <span class="red bold font-code">express.Router()</span> ?</p>
+
+<p class="text">
+ The <span class="red bold font-code">Router()</span> class is a mini Express.js application. We use <span class="red bold font-code">express.Router()</span> to create
+ mountable routes from A Router instance, and attach it to main middleware with endpoint path in the main app.
+</p>
+
+<p class="underline-text"># Define express router syntax :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">➤ Syntax</p>
+ <pre><code class="js language-js">
+  express.Router( [options] ) : Return New Router Object
+
+  // # Optional Parameters  
+  // case-sensitive: This enables case sensitivity.
+  // mergeParams: It preserves the req.params values from the parent router.
+  // strict: This enables strict routing.
+</code></pre>
+</div>
+
+<p class="text">
+ <span class="blue bold">For example,</span> all <span class="red bold font-code">"/user"</span> routes can be defined in one router, and all
+ <span class="red bold font-code">"/post"</span> routes can be defined in another. The benefit is that, after we define a portion of the URL in the router with
+ <span class="green bold font-code">router.method("url", Function Handler)</span>
+</p>
+
+<p class="underline-text"># In image below showing that creating many routes from a single or main route endpoint :-</p>
+
+<img path="/img/image013.PNG" alt="" id="image" />
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">B - Set-up Express Router</p>
+
+<p class="text"><span class="round-number">1</span> - Create Your Routes file into A separate Folder call it "./routes", to keep routes on each file.</p>
+
+<p class="text">
+ <span class="round-number">2</span> -Now start using <span class="red bold font-code">express.Router()</span> in our <blue>UserRoute</blue> to link all routes into it.
+</p>
+
+<p class="underline-text">
+ # In our <green>UserRoute</green> File we going to link all the following url routes with http Methods for user Account into express.Routes() all routes relate to main
+ "/user" in server.js file:- :-
+</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>GET - <span class="blue bold font-code">"/"</span> - <green>Get User information</green></li>
+  <li>POST - <span class="blue bold font-code">"/signin"</span> - <green>Create New User Account</green></li>
+  <li>POST - <span class="blue bold font-code">"/login"</span> - <green>Access Existing User Account</green></li>
+  <li>PATCH - <span class="blue bold font-code">"/update"</span> - <green>Update User Account</green></li>
+  <li>DELETE - <span class="blue bold font-code">"/delete"</span> -<green>Delete User Account</green></li>
+ </ul>
+</div>
+
+<p class="underline-text"># An Example of creating user routes :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./routes/user_routes.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const UserRoute  = express.Router(); // link all routes into UserRoute 
+  
+  UserRoute.get("/" , (req, res) => {});        
+  UserRoute.post("/signin" , (req, res) => {});   
+  UserRoute.post("/login" , (req, res) => {});  
+  UserRoute.patch("/update" , (req, res) => {}); 
+  UserRoute.delete("/delete" , (req, res) => {});
+  
+  module.exports = UserRoute; // Export UserRoute to use it in our main server.js
+</code></pre>
+</div>
+
+<p class="text">
+ <span class="round-number">3</span> - in our server.js main application we link all user_routes into our main route by requiring user_routes into the main server.js. You
+ can access all user_routes without endpoint "user" any incoming request will check all user_routes directly
+</p>
+
+<p class="underline-text"># An Example of binding all user routes into one main route :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  
+  const UserRouter = require("./routes/user_routes"); // Require all user_routes from module.exports = userRoute;  
+  
+  app.use("/user", UserRouter);
+  #############################
+  // localhost:3000/user/ 
+  // localhost:3000/user/signin
+  // localhost:3000/user/login
+  // localhost:3000/user/update
+  // localhost:3000/user/delete
+  #############################
+  
+  app.listen(3000, () => {  console.log('connecting to server ....');   });
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example of executing stack of middlewares :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express();
+  const router = express.Router();
+
+  // simple logger for this router's requests
+  // all requests to this router will first hit this middleware
+  router.use( (req, res, next) => {
+    console.log("%s %s %s", req.method, req.url, req.path);
+    next();
+  });
+
+  // this will only be invoked if the path starts with /bar from the mount point
+  router.use("/bar", (req, res, next) => {
+    // ... maybe some additional /bar logging ...
+    next();
+  });
+
+  // always invoked
+  router.use( (req, res, next) => {
+    res.send("Hello World");
+  });
+
+  app.use("/foo", router);
+
+  app.listen(3000);
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example of invoking series of middlewares :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const logger = require("morgan");
+
+  router.use(logger());
+  router.use(express.static(__dirname + '/public'));
+  router.use(function(req, res){
+    res.send('Hello');
+  });
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">C - Express Router Examples</p>
+
+<p class="underline-text">1 - Nested Routes Example :-</p>
+
+<img path="/img/image014.PNG" height="377px" alt="" id="image" />
+
+<p class="underline-text">2 - Use middleware inside user routes Router :-</p>
+
+<img path="/img/image015.PNG" height="533px" alt="" id="image" />
+
+<p class="underline-text">3 - Use middleware inside main app before userRoutes :-</p>
+
+<img path="/img/image016.PNG" height="633px" alt="" id="image" />
+
+<p class="underline-text">4 - Three routers file Example :-</p>
+
+<img path="/img/image017.PNG" height="666px" alt="" id="image" />
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./server.js</p>
+ <pre><code class="js language-js">
+  const express = require("express");
+  const app = express(); 
+  const helmet = require("helmet");
+
+  app.use(helmet());
+  app.use(express.urlencoded()); 
+  app.use(express.json());
+  app.use(express.static("public"));  
+    
+  const user_router = require('./users');
+  ######################################
+  app.use("/", user_router); 
+  ----------------------------------------------------
+  <blue>// http://localhost:3000/</blue>
+  <blue>// http://localhost:3000/3</blue>
+  <blue>// http://localhost:3000/confirm</blue>
+  ----------------------------------------------------
+
+  app.use("/select", user_router); 
+  ----------------------------------------------------
+  <blue>// http://localhost:3000/select</blue>
+  <blue>// http://localhost:3000/select/3</blue>
+  <blue>// http://localhost:3000/select/confirm</blue>
+  ----------------------------------------------------
+
+
+  const admin_router = require("./admins");
+  ######################################
+  app.use("/admin", admin_router); 
+  ----------------------------------------------------
+  <blue>// http://localhost:3000/admin</blue>
+  <blue>// http://localhost:3000/admin/setting</blue>
+  ----------------------------------------------------
+
+
+  const movie_router = require("./movies");
+  ######################################
+  app.use("/movie", movie_router); 
+  ----------------------------------------------------
+  <blue>// http://localhost:3000/movie</blue>
+  <blue>// http://localhost:3000/movie/comedy</blue>
+  <blue>// http://localhost:3000/movie/romance</blue>
+  <blue>// http://localhost:3000/movie/romance/33</blue>
+  ----------------------------------------------------
+
+  app.listen(3000 , ()=>{
+      console.log("Listen On Port 3000");
+  });
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-title get-title">D - Express Router Options - <span class="red bold font-code">mergeParams, caseSensitive, strict</span></p>
+
+<!-- ########################################################################## -->
+<p class="sub-sub-title get-title">1 - <span class="red bold font-code">mergeParams</span></p>
+
+<p class="text">
+ We use it to get the <span class="red bold font-code">req.params</span> values from the parent router. If the parent and child have conflicting param names, the child's
+ value will take precedence
+</p>
+
+<p class="underline-text"># Applying mergeParams with express Router :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./User_Router.js</p>
+ <pre><code class="js language-js">
+  const UserRoute = express.Router( { mergeParams:true } );
+</code></pre>
+</div>
+
+<p class="underline-text"># An Example of using mergeParams to get the travelId from the parent middleware router to the child Router :-</p>
+
+<img path="/img/image018.PNG" alt="" id="image" />
+
+<p class="text mgt-20">
+ As you see below reviewRoutes.js can get travelid params from travelRoutes.js using mergeParams option . \ once we get the travel id our reviews with be retrieved
+</p>
+
+<p class="underline-text"># An Example all child's routers get the travelId from the parent router :-</p>
+
+<img path="/img/image019.PNG" alt="" id="image" />
+
+<!-- ########################################################################## -->
+<p class="sub-sub-title get-title">2 - <span class="red bold font-code">caseSensitive</span></p>
+
+<p class="text">
+ Enable case sensitivity. Disabled by default, treating <span class="red bold font-code">"/Foo"</span> and <span class="red bold font-code">"/foo"</span> as the same.
+</p>
+
+<p class="underline-text"># Enabling caseSensitive with express Router :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./User_Router.js</p>
+ <pre><code class="js language-js">
+  const UserRoute = express.Router( { caseSensitive:true } );
+</code></pre>
+</div>
+
+<!-- ########################################################################## -->
+<p class="sub-sub-title get-title">3 - <span class="red bold font-code">strict</span></p>
+
+<p class="text">
+ Enable strict routing. Disabled by default, <span class="red bold font-code">"/foo"</span> and <span class="red bold font-code">"/foo/"</span> are treated the same by
+ the router.
+</p>
+
+<p class="underline-text"># Enabling strict routing with express Router :-</p>
+
+<div class="express-block js-code express-code code language-javascript pre-block">
+ <p class="block-title">./User_Router.js</p>
+ <pre><code class="js language-js">
+  const UserRoute = express.Router( { strict:true } );
+</code></pre>
+</div>
