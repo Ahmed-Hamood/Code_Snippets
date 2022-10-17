@@ -42,9 +42,10 @@ html {
  --hierarchy-line-color: #3f3f3f;
  --sub-title-highlight-bg-color: #007acc3b;
 
- --menuList-background-color: #00000023;
+ --menuList-background-color: #11111123;
  --menuList-background-active-color: #25252600;
  --menuList-background-hover-color: #0404041d;
+ --menuList-border-color: #333232;
 
  --title-link-menu-bg-active-color: #0c0c0c8f;
 

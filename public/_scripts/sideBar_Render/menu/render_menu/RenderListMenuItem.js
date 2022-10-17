@@ -50,7 +50,7 @@ export default function RenderListMenuItem(main_data, filename) {
         event="false"
         id="menu-list"
         >
-          <i class="arrow svg arrow-svg"></i>
+          <i class="svg arrow-svg"></i>
           ${MainSubject_IconPath}
           <span class="subject-name">${main_subjectName}</span>
           

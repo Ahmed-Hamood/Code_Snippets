@@ -77,6 +77,10 @@ body[api-system='false'] .sideBar-subjects-menu .content-wrapper .menu-title-sec
  margin-top: 0.6rem;
 }
 
+.subject-title-link.main-folder{ 
+  border: 1px solid transparent;
+}
+
 .subject-title-link {
  position: relative;
  display: block;
@@ -85,7 +89,6 @@ body[api-system='false'] .sideBar-subjects-menu .content-wrapper .menu-title-sec
  border-radius: 3px;
  cursor: pointer;
  transition: 200ms padding, 0.2s margin;
-
  display: flex;
  flex-direction: row;
  justify-content: flex-start;
@@ -94,8 +97,11 @@ body[api-system='false'] .sideBar-subjects-menu .content-wrapper .menu-title-sec
 
 .subject-title-link.folder-type.menu-enable:not(.subject-title-link.sub-level.folder-type.menu-enable) {
  background: var(--menuList-background-color);
- border-bottom: 2px solid #222020;
+ border: 1px solid var(--menuList-border-color);
+ border-bottom: none;
+
  padding-bottom: 12px;
+ border-radius: 3px 3px 0 0;
 }
 
 .subject-title-link.sub-level {
@@ -231,7 +237,7 @@ body[api-system='false'] .sideBar-subjects-menu .content-wrapper .menu-title-sec
  height: 22px;
 }
 
-.subject-title-link .arrow {
+.subject-title-link .arrow-svg {
  pointer-events: none;
  transform-origin: center;
  transform: rotate(0deg);
@@ -243,22 +249,22 @@ body[api-system='false'] .sideBar-subjects-menu .content-wrapper .menu-title-sec
  transition: 0.2s transform, 0.4s opacity;
 }
 
-.disable-main-folder .arrow,
-.empty-folder .arrow {
+.disable-main-folder .arrow-svg,
+.empty-folder .arrow-svg {
  opacity: 0 !important;
 }
 
-.subject-title-link:hover .arrow:not(.arrow-open, .arrow-none, .hierarchy-line) {
+.subject-title-link:hover .arrow-svg:not(.arrow-open, .arrow-none, .hierarchy-line) {
  opacity: 0.8;
 }
 
-.arrow-open {
+.subject-title-link .arrow-svg.arrow-open {
  transform: rotate(90deg);
  opacity: 0.8;
  bottom: 0px;
 }
 
-.arrow-none {
+.subject-title-link .arrow-svg.arrow-none {
  border-color: transparent;
 }
 
@@ -321,7 +327,7 @@ body[api-system='false'] .sideBar-subjects-menu .content-wrapper .menu-title-sec
 
 .subject-list-menu.one-level-menu.menu-open {
  margin-bottom: 18px;
- border: 1px solid #333232;
+ border: 1px solid var(--menuList-border-color);
  border-top: none;
  border-radius: 0 0 8px 8px;
 }
