@@ -14,7 +14,7 @@ export const Azure_Subject_Menu = {
      subject_name: 'Documentation',
      subject_icon_name: '',
      type: 'file',
-     subject_path: '/Documentation.html',
+     subject_path: '/Documentation/Documentation.html',
      page_content_type: 'documentation',
      subject_list_menu: [],
     },

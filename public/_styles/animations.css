@@ -121,6 +121,16 @@
  }
 }
 
+@keyframes main_list_titles {
+ from {
+  transform: translateX(-15px);
+ }
+ to {
+  transform: translateX(0);
+  opacity: 1;
+ }
+}
+
 @keyframes cv_main_title_name {
  0% {
   opacity: 0;
@@ -132,12 +142,12 @@
  }
 }
 
-@keyframes main_list_titles {
- from {
-  transform: translateX(-15px);
+@keyframes cv_personal_img {
+ 0% {
+  transform: translateY(-30px);
  }
- to {
-  transform: translateX(0);
+ 100% {
   opacity: 1;
+  transform: translateY(0);
  }
 }

@@ -13,7 +13,7 @@ export default async function appendRefLinks() {
  if (getAllOnlyLinks.length != 0) {
   getAllOnlyLinks.forEach((element) => {
    element.target = '_blank';
-   element.innerHTML += `<p class='tooltiptext'><span class="link-text">Click to visit the link . . .</span></p>`;
+  //  element.innerHTML += `<p class='tooltiptext'><span class="link-text">Click to visit the link</span></p>`;
   });
  }
 

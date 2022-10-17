@@ -11,6 +11,7 @@ let navTitleHeader = document.querySelector('.nav-title-header');
 let pathViewContentHeader = document.querySelector('.path-view-content-header');
 
 let page_path = '';
+let vs_code_opener_svg_btn = document.querySelector('.vs-code-opener-svg-btn');
 
 let BackBtn = document.querySelector('.go-back-btn');
 let ForwardBtn = document.querySelector('.go-forward-btn');
@@ -81,7 +82,6 @@ function ActiveTitleHeaderPathLinkCopy() {
 
 function setup_vscode_opener() {
  let vs_code_path = '';
- let vs_code_opener_svg_btn = document.querySelector('.vs-code-opener-svg-btn');
 
  vs_code_opener_svg_btn.addEventListener('click', async () => {
   vs_code_path = page_path;
@@ -327,31 +327,38 @@ export async function RenderPageContent(
   if (window.innerWidth <= 1000 && !urlSearchParams.has('newTab') && bodyElement.getAttribute('sidebar') != 'false') InvokeClickEvent('close-sideMenu-btn');
 
   try {
-   console.log('loading page', urlHrefLink);
    let responseData = await fetch(urlHrefLink);
    let contentText = await responseData.text();
    DocContentInnerHTML = contentText;
 
+   vs_code_opener_svg_btn.children[1].innerHTML = 'Open file with vscode';
+
    if (responseData.status == 404) {
-    DocContentInnerHTML = '<h1 class="content-text-error"><span>No Content - Maybe File Doesn\'t Exist</span></h1>';
+    DocContentInnerHTML = '<h1 class="content-text-error"><span>No Content, Maybe File Doesn\'t Exist - <blue>Click on vscode to create file ➟</blue></span></h1>';
     UrlPathsHistory.splice(UrlPathsHistory.length - 1, 1);
     currentUrlPathsHistoryIndex--;
     console.log('Not Found');
+
+    vs_code_opener_svg_btn.children[1].innerHTML = 'Create file with vscode';
    }
 
-   if (DocContentInnerHTML) {
-    DocContentRender.setAttribute('id', '');
-    void DocContentRender.offsetWidth;
-    DocContentRender.setAttribute('id', 'page-content-wrapper');
-
-    DocContentRender.innerHTML = DocContentInnerHTML;
-    DocContentRender.innerHTML += '<br/> <br/> <br/> <br/>';
-    storePreviousHTMLContentOnError = '';
-
-    // vs_code_path = getHashedPath;
-    page_path = getHashedPath;
-    startup_contentRender(refPos);
+   if (!DocContentInnerHTML) {
+    DocContentInnerHTML = "<br> <p class='text center'> <blue bold>Click on VSCode to edit this file ➟</blue> </p>";
    }
+
+   //  if (DocContentInnerHTML) {
+   DocContentRender.setAttribute('id', '');
+   void DocContentRender.offsetWidth;
+   DocContentRender.setAttribute('id', 'page-content-wrapper');
+
+   DocContentRender.innerHTML = DocContentInnerHTML;
+   DocContentRender.innerHTML += '<br/> <br/> <br/> <br/>';
+   storePreviousHTMLContentOnError = '';
+
+   page_path = getHashedPath;
+   
+   startup_contentRender(refPos);
+   //  }
   } catch (error) {
    console.log('Error: ', error);
 

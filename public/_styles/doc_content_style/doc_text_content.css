@@ -383,7 +383,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  font-weight: 600;
  line-height: 120%;
  max-width: 100%;
- white-space: pre-wrap;
+ white-space: wrap;
  word-break: break-word;
  caret-color: rgba(255, 255, 255, 0.81);
  padding-top: calc(1.2 * 1.5rem);
