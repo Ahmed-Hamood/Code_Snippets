@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function StartUp() {
  let urlSearchParams = new URLSearchParams(window.location.search);
-
+ 
  startup_SideBarRender();
  Startup_PageLoader();
  modal_interact_manage()
@@ -19,5 +19,9 @@ function StartUp() {
   Startup_api();
  }
 
+
+  
+
+ 
 
 }

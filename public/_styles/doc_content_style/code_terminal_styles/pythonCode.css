@@ -8,8 +8,7 @@
  position: relative;
  display: block;
  background: var(--python-code-block-primary-bg-color);
- opacity: 0;
- animation: var(--pre-block-animation);
+ 
 }
 
 .python-block::-webkit-scrollbar {

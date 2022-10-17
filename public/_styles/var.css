@@ -57,7 +57,8 @@ html {
  --python-code-block-primary-bg-color: #21242a;
  /* --python-code-block-primary-bg-color: #0b1222; */
 
- --pre-block-animation: FadeInAnimation 0.2s ease-in 0.6s forwards;
+ /* --pre-block-animation: FadeInAnimation 0.2s ease-in 0.5s forwards; */
+ /* --pre-block-animation: none; */
 }
 
 body[max-content='true'] {

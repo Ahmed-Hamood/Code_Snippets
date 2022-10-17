@@ -77,8 +77,6 @@ export default function appendCodeContent() {
 
   if (lineBreaks.length < 3) vsCodeElement = '';
 
-  console.log(lineBreaks.length);
-
   codeContent = codeContent ?? 'Nothing Here...';
 
   codeContent = codeContent.replace(/</g, '&lt;');

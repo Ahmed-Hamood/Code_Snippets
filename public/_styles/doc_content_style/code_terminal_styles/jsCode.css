@@ -9,8 +9,7 @@
  border: 1px solid rgb(29 29 29);
  background: var(--js-code-block-primary-bg-color);
 
- opacity: 0;
- animation: var(--pre-block-animation);
+ 
 }
 
 .js-block[full-height] {

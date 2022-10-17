@@ -20,10 +20,10 @@ export default function tabSwitchContentRender() {
    tabHasActive = false;
 
    for (let i = 0; i < tabSectionContent.length; i++) {
-    tab_title = tabSectionContent[i].getAttribute('tab-title');
+    tab_title = tabSectionContent[i].getAttribute('tab-title') || "Example " + (i + 1);
     isActive = tabSectionContent[i].hasAttribute('active');
 
-    tab_title = tab_title ? tab_title : tabSectionContent[i].children[0].getAttribute(' title-header');
+    tab_title = tab_title ? tab_title : tabSectionContent[i].children[0].getAttribute('title-header');
     tab_title = tab_title ? tab_title : 'Example';
 
     if (!tabHasActive) {

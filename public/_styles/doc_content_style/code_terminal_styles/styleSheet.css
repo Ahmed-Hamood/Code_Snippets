@@ -9,8 +9,6 @@
  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
  background: var(--styleSheet-block-primary-bg-color);
  display: block;
- opacity: 0;
- animation: var(--pre-block-animation);
 }
 
 .css-block[full-height] {

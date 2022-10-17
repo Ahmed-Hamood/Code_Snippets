@@ -47,10 +47,19 @@ a {
 .pre-block,
 .terminal-output,
 .tab-container {
+ opacity: 0;
  transition: 400ms max-width;
 }
 
-.pre-block::-webkit-scrollbar  {
+body[codeLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
+ animation: FadeInAnimation 0.4s ease-in 0.6s forwards;
+}
+
+body[codeLoading='false'] .tab-container .pre-block {
+ animation-delay: 0s;
+}
+
+.pre-block::-webkit-scrollbar {
  width: 2px;
  height: 2px;
 }
@@ -154,7 +163,7 @@ a {
  body,
  html {
   zoom: var(--zoom-body);
- /* font-size: 12px;  */
+  /* font-size: 12px;  */
  }
 
  .svg.vscode-svg-btn {

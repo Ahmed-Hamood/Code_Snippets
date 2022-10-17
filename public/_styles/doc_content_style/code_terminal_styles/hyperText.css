@@ -5,9 +5,8 @@
  max-height: 500px;
  overflow: auto;
  position: relative;
- display: block;
- opacity: 0;
- animation: var(--pre-block-animation);
+ display: block; 
+ 
 }
 
 

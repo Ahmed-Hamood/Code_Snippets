@@ -4,13 +4,13 @@
  "files.exclude": {
   "myDataBase.json": true,
   "server.js": true,
-  "*.json": true,
-  "*.http": true,
-  "*.bat": true,
-  "*.md": true,
-  ".prettierrc": true,
-  ".gitignore": true,
-  ".gitignore": true,
-  "vs_temp": true
+  // "*.json": true,
+  // "*.http": true,
+  // "*.bat": true,
+  // "*.md": true,
+  // ".prettierrc": true,
+  // ".gitignore": true,
+  // ".gitignore": true,
+  // "vs_temp": true
  }
 }
