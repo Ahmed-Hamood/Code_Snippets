@@ -28,6 +28,6 @@ export default async function Run_Highlight_Coloring() {
  } catch (err) {
   console.error(err);
  }
-
+ 
  // here we are going to style sign character
 }
