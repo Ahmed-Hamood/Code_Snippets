@@ -30,14 +30,14 @@ app.use(
 );
 
 app.post('/open_page', (req, res) => {
- let { vs_code_path } = req.body;
+ let { page_path } = req.body;
 
- if (vs_code_path == '/') vs_code_path = '/Docs/index.html';
+ if (page_path == '/') page_path = '/Docs/index.html';
 
- console.log(`code -n ./public${vs_code_path}`);
+ console.log(`code -n ./public${page_path}`);
 
  // 1. open vscode with your newly created file
- exec(`code -n "./public${vs_code_path}"`);
+ exec(`code -n "./public${page_path}"`);
 
  res.json({
   msg: 'your page is opened in vscode',

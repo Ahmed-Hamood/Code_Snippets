@@ -13,45 +13,39 @@ export default async function appendRefLinks() {
  if (getAllOnlyLinks.length != 0) {
   getAllOnlyLinks.forEach((element) => {
    element.target = '_blank';
-  //  element.innerHTML += `<p class='tooltiptext'><span class="link-text">Click to visit the link</span></p>`;
+   //  element.innerHTML += `<p class='tooltiptext'><span class="link-text">Click to visit the link</span></p>`;
   });
  }
 
  if (getAllLinks.length != 0) {
   const urlSearchParams = new URLSearchParams(window.location.search);
-  let getPathUrl = location.hash;
+  let get_current_path = document.body.getAttribute('current_path');
+
   let getDataRef;
-  let ref_name;
+  let ref_text_content;
   let ref_href;
+  let ref_subject_title;
   let ref_info;
-  let refHashPos;
-  let refQs;
+  let refHashTitlePos;
+  let queryString;
   let ref_description;
   let hasMatch;
 
-  getPathUrl = getPathUrl.split('#');
-  // ['', 'Docs', 'nodejs', 'expressjs', 'Authentication', 'Helmet', '3%20-%20topic%20three.html'] // new tab topic link
-  // ['', 'Docs', 'nodejs', 'expressjs', 'Authentication', 'Helmet.html'] // topic link
-
-  if (urlSearchParams.has('newTab') && urlSearchParams.has('topicLink')) getPathUrl.pop();
-  else getPathUrl[getPathUrl.length - 1] = getPathUrl[getPathUrl.length - 1].slice(0, -5);
-
-  if (page_content_type) if (page_content_type.getAttribute('page_content_type') == 'topic') getPathUrl.pop();
-
-  if (urlSearchParams.has('page_content_type')) if (urlSearchParams.get('page_content_type') == 'topic') getPathUrl.pop();
-
-  getPathUrl = getPathUrl.join('/');
+  get_current_path = get_current_path.split('/');
+  get_current_path.pop();
+  get_current_path = get_current_path.join('/');
 
   try {
-   getDataRef = await LoadRefJSON(getPathUrl);
+   getDataRef = await LoadRefJSON(get_current_path);
 
    getAllLinks.forEach((element) => {
     get_href = element.getAttribute('href');
-    ref_name = '';
+    ref_text_content = '';
     ref_href = '';
+    ref_subject_title = '';
     ref_info = '';
-    refHashPos = '';
-    refQs = '';
+    refHashTitlePos = '';
+    queryString = '';
     ref_description = '';
     hasMatch = false;
 
@@ -59,20 +53,28 @@ export default async function appendRefLinks() {
      getDataRef.forEach((data) => {
       if (get_href == data.ref_id) {
        hasMatch = true;
-       ref_name = data.ref_name?.trim();
+       ref_text_content = data.ref_text_content?.trim();
        ref_href = data.ref_href?.trim();
+       ref_subject_title = data.ref_subject_title?.trim();
        ref_info = data.ref_info?.trim();
-       refHashPos = data.hashPos.substring(1);
-       refQs = data.qs;
+       refHashTitlePos = data.hashPos.substring(1);
        ref_description = data.ref_description;
 
-       refHashPos = refHashPos ? `refPos=${refHashPos}` : '';
-       ref_href = location.origin + `/?${refHashPos}&${refQs}` + ref_href;
+       ref_href = ref_href.replace(/\//g, '#');
+
+       if (!ref_subject_title) {
+        ref_subject_title = ref_href.split('#');
+        ref_subject_title = ref_subject_title[ref_subject_title.length - 1];
+        ref_subject_title = ref_subject_title.replace(/.html/, '');
+       }
+
+       refHashTitlePos = refHashTitlePos ? `refPos=${refHashTitlePos}` : '';
+       queryString = `/?${refHashTitlePos}&newTab&subjectTitle=${ref_subject_title}__`;
+       ref_href = location.origin + queryString + ref_href;
 
        element.href = ref_href;
        element.target = '_blank';
-       element.textContent = ref_name;
-
+       element.textContent = ref_text_content ? ref_text_content : element.textContent;
        element.innerHTML += `<p class='tooltiptext'> ${ref_description} <span class="link-text ${ref_description ? 'mt' : ''}">Click for more information</span></p>`;
       }
      });

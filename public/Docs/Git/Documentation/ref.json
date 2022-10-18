@@ -1,7 +1,7 @@
 [
   {
     "ref_id": "ref_001",
-    "ref_name": "connection_buffering",
+    "ref_text_content": "connection_buffering",
     "ref_href": "#Docs#Reactjs#Documentation#3.1%20-%20Creating%20React%20Functional%20Components%20And%20Rendering%20Elements.html",
     "ref_description": "", 
     "hashPos": "#2",
@@ -9,7 +9,7 @@
   },
   {
     "ref_id": "ref_002",
-    "ref_name": "XXX",
+    "ref_text_content": "XXX",
     "ref_href": "#Docs#nodejs#expressjs#Installation.html",
     "ref_description": "",
     "hashPos": "#3",

@@ -12,9 +12,9 @@ export default async function Run_Highlight_Coloring() {
  let PythonCode = [...document.querySelectorAll('.python-code pre code')];
  let NpmCommand = [...document.querySelectorAll('.npm-command pre')];
 
- bodyElm.setAttribute('codeLoading', true);
-
  try {
+  bodyElm.setAttribute('codeLoading', true);
+  
   if (HtmlCode || CssCode) await import('../../../prime_library/prism_html_css.js');
   if (JsCode) await import('../../../prime_library/prism_js_ts_json_jsx.js');
   if (PyCode) await import('../../../prime_library/prism_python.js');
@@ -28,6 +28,6 @@ export default async function Run_Highlight_Coloring() {
  } catch (err) {
   console.error(err);
  }
- 
+
  // here we are going to style sign character
 }

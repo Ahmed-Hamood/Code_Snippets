@@ -1,11 +1,10 @@
 [
   {
     "ref_id": "ref_001",
-    "ref_name": "Repository",
+    "ref_text_content": "Repository",
     "ref_href": "",
- 
     "ref_description": "A Git repository tracks and saves the history of all changes made to the files in a Git project.", 
     "hashPos": "#",
-    "qs": "newTab&topic"
+    "ref_subject_title": "Creating React Functional Components"
   }
 ]

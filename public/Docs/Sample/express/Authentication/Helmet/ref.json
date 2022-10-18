@@ -1,18 +1,29 @@
 [
   {
     "ref_id": "ref_001",
-    "ref_name": "Creating Functional component",
+    "ref_text_content": "",
     "ref_description": "",
-    "ref_href": "#Docs#React#React_web#Documentation#3.1%20-%20Creating%20React%20Functional%20Components%20And%20Rendering%20Elements.html",
-    "hashPos": "#3",
-    "qs": "newTab&subjectTitle=Creating%20Functional%20component__"
+    "ref_href": "/Docs/React/React_web/Documentation/3.1 - Creating React Functional Components And Rendering Elements.html",
+    "ref_subject_title": "",
+    "hashPos": "#3" 
+ 
   },
   {
     "ref_id": "ref_002",
-    "ref_name": "Learn about it",
+    "ref_text_content": "Learn about it",
     "ref_description": "It helps you write applications that behave consistently, run in different environments (client, server, and native), and are easy to test. On top of that, it provides a great developer experience, such as live code editing combined with a time traveling debugger.",
-    "ref_href": "#Docs#React#React_web#Documentation#3.1%20-%20Creating%20React%20Functional%20Components%20And%20Rendering%20Elements.html",
-    "hashPos": "#3",
-    "qs": "newTab&subjectTitle=Creating%20Functional%20component__"
+    "ref_href": "#Docs#React#React_web#Documentation#3.1 - Creating React Functional Components And Rendering Elements.html",
+    "ref_subject_title": "Creating React Functional Components",
+    "hashPos": "#3" 
+
+  },
+  {
+    "ref_id": "ref_003",
+    "ref_text_content": "Azure",
+    "ref_description": "",
+    "ref_href": "/Docs/azure/az-900/Documentation/Documentation.html",
+    "ref_subject_title": "Azure Documentation",
+    "hashPos": "" 
+ 
   }
 ]

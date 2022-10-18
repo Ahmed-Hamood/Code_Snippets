@@ -55,7 +55,7 @@
  margin-top: 20px;
  border-radius: 100%;
  opacity: 0;
- animation: cv_personal_img 1s ease-out 2.2s forwards;
+ animation: cv_personal_img 0.7s ease-out 2.2s forwards;
 }
 
 .main-user-container + .sub-title {

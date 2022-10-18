@@ -81,21 +81,15 @@ function ActiveTitleHeaderPathLinkCopy() {
 }
 
 function setup_vscode_opener() {
- let vs_code_path = '';
-
  vs_code_opener_svg_btn.addEventListener('click', async () => {
-  vs_code_path = page_path;
-  vs_code_path = decodeURIComponent(vs_code_path);
-  vs_code_path = vs_code_path.replace(/\#/g, '/');
-
-  if (vs_code_path != '') {
+  if (page_path != '') {
    let result = await fetch('http://localhost:3331/open_page', {
     headers: {
      Accept: 'application/json',
      'Content-Type': 'application/json',
     },
     method: 'POST',
-    body: JSON.stringify({ vs_code_path }),
+    body: JSON.stringify({ page_path }),
    });
 
    result = await result.json();
@@ -355,8 +349,11 @@ export async function RenderPageContent(
    DocContentRender.innerHTML += '<br/> <br/> <br/> <br/>';
    storePreviousHTMLContentOnError = '';
 
-   page_path = getHashedPath;
-   
+   // prepare page path
+   page_path = getHashedPath.replace(/\#/g, '/');
+   page_path = decodeURIComponent(page_path);
+   bodyElement.setAttribute('current_path', page_path);
+
    startup_contentRender(refPos);
    //  }
   } catch (error) {

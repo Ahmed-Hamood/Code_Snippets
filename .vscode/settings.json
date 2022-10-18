@@ -3,7 +3,7 @@
  "liveServer.settings.port": 5501,
  "files.exclude": {
   "myDataBase.json": true,
-  "server.js": true,
+  // "server.js": true,
   // "*.json": true,
   // "*.http": true,
   // "*.bat": true,
