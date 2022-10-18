@@ -1,6 +1,4 @@
 export default function tooltip() {
- console.log('tooltip is running');
-
  const all_tooltips = document.querySelectorAll('tooltip');
  let contentRender = document.getElementById('page-content-wrapper');
  let blank_modal = document.getElementById('blank-modal');
@@ -20,8 +18,7 @@ export default function tooltip() {
  let format_text = (element) => {
   textContent = element.textContent;
   tooltip_text = element.getAttribute('text');
-  tooltip_text = tooltip_text.trim(); 
-  
+  tooltip_text = tooltip_text.trim();
 
   tooltip_text = tooltip_text.replace(/([0-9A-Z])[\s]*[\.\-]/g, '$1.'); // replace 'A .' or  'A -' or 'A-' (with) =>  A.
   tooltip_text = tooltip_text.replace(/\s([0-9A-Z])\./g, '<hr>$1.'); // add <hr> line break before 'A.' or '1.'

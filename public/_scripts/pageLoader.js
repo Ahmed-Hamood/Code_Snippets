@@ -2,6 +2,7 @@ import startup_contentRender from './main_page_content_render/main.js';
 
 import { ConvertPathFromSlashToHashes, ConvertPathFromHashToSlash, GetLocationPathPart } from './utilities/url_path_utility.js';
 import { setSidebarSubjectFilesLink, OpenFolderAndFileSideBarMenuAutomatically } from './sideBar_Render/menu/setSidebarSubjectFilesLink.js';
+import modal_interact_manage from './modal_interact_manage.js';
 
 let UrlPathsHistory = ['/'];
 
@@ -24,7 +25,7 @@ let urlSearchParams = new URLSearchParams(window.location.search);
 let currentUrlPathsHistoryIndex = 0;
 let _isPageTopicLinkSelected = false;
 
-let DocContentInnerHTML = '';
+// let DocContentInnerHTML = '';
 let ErrorMsgHTMLContent = `
 <div class="content-text-error"> 
   <h1>Page Error</h1>
@@ -42,6 +43,7 @@ export default function Startup_PageLoader() {
  Start_RenderPageContent();
  setupNavigationBackAndForwardHistoryButtons();
  ActiveTitleHeaderPathLinkCopy();
+ modal_interact_manage();
  setup_vscode_opener();
  if (!urlSearchParams.has('newTab')) {
   setSidebarSubjectFilesLink();
@@ -208,7 +210,7 @@ function RenderPathHeaderView(paths, isPageTopicLinkSelected, isFileLinkSelected
   navTitleHeader.innerHTML = 'Main Page';
  }
 
- console.log('ArrayOfPaths:', ArrayOfPaths);
+ //  console.log('ArrayOfPaths:', ArrayOfPaths);
 
  ArrayOfPaths.forEach((path, index) => {
   addArrowPath = ArrayOfPaths.length - 1 != index ? '<i class="svg arrow-svg path-arrow-svg"></i>' : '';
@@ -323,7 +325,7 @@ export async function RenderPageContent(
   try {
    let responseData = await fetch(urlHrefLink);
    let contentText = await responseData.text();
-   DocContentInnerHTML = contentText;
+   let DocContentInnerHTML = contentText;
 
    vs_code_opener_svg_btn.children[1].innerHTML = 'Open file with vscode';
 
@@ -345,7 +347,9 @@ export async function RenderPageContent(
    void DocContentRender.offsetWidth;
    DocContentRender.setAttribute('id', 'page-content-wrapper');
 
-   DocContentRender.innerHTML = DocContentInnerHTML;
+   DocContentRender.innerHTML = titleContentWrapper(DocContentInnerHTML);
+   //  DocContentRender.innerHTML = DocContentInnerHTML;
+
    DocContentRender.innerHTML += '<br/> <br/> <br/> <br/>';
    storePreviousHTMLContentOnError = '';
 
@@ -367,4 +371,33 @@ export async function RenderPageContent(
    }, 3000);
   }
  }
+}
+
+function titleContentWrapper(htmlContent) {
+ const parser = new DOMParser();
+ // 1. convert text/string into HTMLDocument
+ let doc = parser.parseFromString(htmlContent, 'text/html');
+
+ //  2. get all sub-titles
+ const all_titles = doc.querySelectorAll('.sub-title');
+
+ // 3. loop thru each sub-title and add ##start## and ##end## text
+ // first sub-title will only have ##start## text next to it.
+ all_titles.forEach((element, index) => {
+  if (index == 0) {
+   element.insertAdjacentHTML('afterend', '##start##');
+  } else {
+   element.insertAdjacentHTML('beforebegin', '##end##');
+   element.insertAdjacentHTML('afterend', '##start##');
+  }
+ });
+
+ // 4. convert HTMLDocument to text/string
+ doc = new XMLSerializer().serializeToString(doc);
+
+ // 5. now, replace All ##start##/ and ##end##
+ doc = doc.replace(/##start##/g, "<div class='start-wrapper'>");
+ doc = doc.replace(/##end##/g, '</div>');
+
+ return doc;
 }

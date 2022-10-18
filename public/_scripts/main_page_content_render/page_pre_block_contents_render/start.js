@@ -26,7 +26,7 @@ export default function start() {
   view_code_in_vscode();
  }
 
- // can't initialize variable here bz pre_block need to wait for each block render  
+ // can't initialize variable here bz pre_block need to wait for each block render
  // Here double click tp expand code content height
  document.querySelectorAll('.pre-block').forEach((element) => {
   element.addEventListener('dblclick', (ev) => {
@@ -35,7 +35,7 @@ export default function start() {
 
   // mouse middle click to enable and disable point event on num
   // On double/middle click tp disable code-num-list pointer event
-  // so we can manually highlight line for copy and drag code  content horizontal 
+  // so we can manually highlight line for copy and drag code  content horizontal
   element.addEventListener('mouseup', (el) => {
    preBlock_EventPointer = element.children[1].children[0];
    if (el.button == 1) {

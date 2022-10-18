@@ -2,7 +2,7 @@ export default function appendCodeContent() {
  let AllQuery = document.querySelectorAll('[python-content]');
 
  AllQuery.forEach((el) => {
-  let dataTitle = el.getAttribute(' title-header') || 'Example';
+  let dataTitle = el.getAttribute('title-header') || 'Example';
   let highlightCodeByNumber = el.getAttribute('line-num') || '0';
   let codeContent = el.firstElementChild.innerHTML.trim() || null;
   let lineBreaks = [];

@@ -9,7 +9,7 @@
  align-items: center;
 
  z-index: 1;
- user-select: none;
+ /* user-select: none; */
  animation-name: FadeInAnimation;
  animation-duration: 0.2s;
  transition: var(--screen-width-animation-duration) max-width;

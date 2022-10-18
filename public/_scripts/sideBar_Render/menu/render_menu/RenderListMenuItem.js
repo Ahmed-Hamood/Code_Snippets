@@ -48,12 +48,10 @@ export default function RenderListMenuItem(main_data, filename) {
         dir_entry_path="${main_subjectPath}" json_entry_path="/data/subject_list_menu[]" 
         json_file="${filename}" 
         event="false"
-        id="menu-list"
-        >
+        id="menu-list">
           <i class="svg arrow-svg"></i>
           ${MainSubject_IconPath}
           <span class="subject-name">${main_subjectName}</span>
-          
           <div class="options-menu-btn"> 
             <i class="svg options-svg option-svg-btn"></i>  
           </div>
@@ -171,6 +169,7 @@ export default function RenderListMenuItem(main_data, filename) {
                                   return createSubjectTitleLink({ ...elLvl6 }, { idx1, idx2, idx3, idx4, idx5, idx6 }, { elLvl1, elLvl2, elLvl3, elLvl4, elLvl5 });
                                  } else {
                                   alert('Limit is six levels');
+                                  return;
                                  }
                                 })
                                 .join('')}

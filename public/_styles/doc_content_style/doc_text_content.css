@@ -18,8 +18,6 @@
 
 .main-list-titles-nav-content {
  background: var(--body-container);
-
- /* width: fit-content; */
  width: 100%;
  margin: calc(2 * 1.2rem) 0;
  z-index: 10;
@@ -27,9 +25,9 @@
  animation-name: FadeInAnimation;
  animation-duration: 0.3s;
  /* border-left: 3px solid rgb(43, 43, 43); */
+ /* border-bottom: 1px solid rgb(43, 43, 43); */
 
  padding: 22px 0;
- border-bottom: 1px solid rgb(43, 43, 43);
 }
 
 .main-list-titles-nav-content:hover {
@@ -39,7 +37,7 @@
 .main-list-titles-nav-content .main-titles-list {
  font-family: 'Segoe UI', 'Optimistic Display', 'Source Sans Pro', 'Open Sans', sans-serif;
  font-weight: 400;
- padding: 0 12px 0 22px;
+ padding: 0 12px 0 12px;
 }
 
 .main-list-titles-nav-content.sticky {
@@ -72,14 +70,31 @@
  overflow-y: auto;
 }
 
+.main-list-titles-nav-content.sticky .main-titles-list::-webkit-scrollbar-track {
+ background: var(--sideBar-sidebar-bg-color);
+}
+
 .main-list-titles-nav-content h1 {
  color: #576574;
  font-size: 150%;
  font-weight: 400;
- margin-bottom: 22px;
- border-bottom: 1px solid rgb(41, 40, 40);
+ margin-bottom: 28px;
+ /* border-bottom: 1px solid rgb(41, 40, 40); */
  padding-bottom: 14px;
- padding-left: 5px;
+ padding-left: 2px;
+ height: 100%;
+ position: relative;
+}
+
+.main-list-titles-nav-content h1:before {
+ background: #5765743c;
+ border-radius: 5px;
+ content: '';
+ margin-left: -0.2rem;
+ position: absolute;
+ bottom: 1px;
+ height: 4px;
+ width: 100%;
 }
 
 .main-list-titles-nav-content.sticky h1 {
@@ -88,7 +103,13 @@
  margin-left: 0;
  padding: 12px 0;
  padding-left: 12px;
- border-bottom: 1px solid rgb(42, 42, 42);
+}
+
+.main-list-titles-nav-content.sticky h1::before {
+ height: 2px;
+ width: 95%;
+ margin-left: 0rem;
+ bottom: -2px;
 }
 
 .main-list-titles-nav-content + .sub-title {
@@ -99,7 +120,6 @@
  position: relative;
  opacity: 0;
  animation: main_list_titles 0.5s forwards var(--delay);
-
 }
 
 .main-list-titles-nav-content .main-titles-list li a {
@@ -332,21 +352,22 @@ body[max-content='true'] .side-list-titles-nav-content.show {
  background-color: var(--main-doc-header-content-bg-color);
  position: relative;
  display: inline-block;
- height: 15px;
+ height: 17px;
  width: 3px;
+ border-radius: 3px;
  transition: 0.3s all;
 }
 
 .side-titles-list li.nav-sub-title::before {
- top: -4px;
+ top: -3px;
  right: 35px;
 }
 .side-titles-list li.nav-sub-sub-title::before {
- top: -3px;
+ top: -2px;
  right: 47px;
 }
 .side-titles-list li.nav-sub-sub-sub-title::before {
- top: 0px;
+ top: -1px;
  right: 52px;
 }
 
@@ -406,9 +427,9 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  caret-color: rgba(255, 255, 255, 0.81);
  padding-top: calc(1.2 * 1.2rem);
  margin-bottom: calc(1.2 * 1.5rem);
-
  position: relative;
  cursor: default;
+ user-select: none;
  /* transition: 0.5s all; */
 }
 
@@ -444,6 +465,42 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  margin-top: 0;
 }
 
+/* content wrapper */
+
+#page-content-wrapper .sub-title:hover {
+ text-decoration: underline;
+ text-decoration-thickness: 1px;
+ text-decoration-color: #686868;
+ text-underline-offset: 5px;
+ cursor: pointer;
+}
+
+#page-content-wrapper .start-wrapper {
+ display: block;
+ animation: sub_title_wrapper_content 0.2s ease-in-out;
+}
+
+#page-content-wrapper .sub-title.hide-content + .start-wrapper {
+ display: none;
+}
+
+#page-content-wrapper .sub-title::before {
+ color: rgba(255, 255, 255, 0.127);
+ font-size: 60%;
+ content: '▼';
+ position: absolute;
+ left: -35px;
+ transition: 400ms color;
+}
+
+#page-content-wrapper .sub-title.hide-content::before {
+ content: '▶';
+}
+
+#page-content-wrapper .sub-title:hover::before {
+ color: #eeee;
+}
+
 /* #endregion */
 
 /* #region >>> text content <<< */
@@ -458,18 +515,6 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 
  max-width: 100%;
  width: 100%;
-}
-
-#page-content-wrapper .text.center {
- text-align: center;
-}
-
-#page-content-wrapper .text.justify {
- text-align: justify;
-}
-
-#page-content-wrapper .text.bold {
- font-weight: 600 !important;
 }
 
 #page-content-wrapper > hr {
@@ -769,39 +814,52 @@ tooltip .tooltiptext span {
 /* #region >>> Quote text <<< */
 
 .quote-text {
+ position: relative;
  margin: 33px 0;
  font-weight: inherit;
  line-height: 160%;
- border-left: 5px solid #ffff;
- padding: 4px 3px 4px 16px;
+ /* border-left: 5px solid #ffff; */
+ padding: 4px 3px 6px 16px;
  width: 100%;
+ margin-left: 3px;
  transition: 0.3s background-color;
+}
+
+.quote-text::before {
+ content: '';
+ position: absolute;
+ background: var(--text-color);
+ border-radius: 4px;
+ height: 100%;
+ width: 5px;
+ left: -5px;
+ top: 0;
 }
 
 .quote-text:hover {
  background: rgba(255, 255, 255, 0.039);
 }
 
-.quote-text.red {
- border-color: #e74c3c;
+.quote-text.red-border::before {
+ background: #e74c3c;
 }
-.quote-text.blue {
- border-color: #339fe7;
+.quote-text.blue-border::before {
+ background: #339fe7;
 }
-.quote-text.green {
- border-color: #2ecc71;
+.quote-text.green-border::before {
+ background: #2ecc71;
 }
-.quote-text.yellow {
- border-color: #f1c40f;
+.quote-text.yellow-border::before {
+ background: #f1c40f;
 }
-.quote-text.orange {
- border-color: #e67e22;
+.quote-text.orange-border::before {
+ background: #e67e22;
 }
-.quote-text.purple {
- border-color: #d980fa;
+.quote-text.purple-border::before {
+ background: #d980fa;
 }
-.quote-text.white {
- border-color: var(--text-color);
+.quote-text.white-border::before {
+ background: rgb(255, 255, 255);
 }
 
 .quote-text p {

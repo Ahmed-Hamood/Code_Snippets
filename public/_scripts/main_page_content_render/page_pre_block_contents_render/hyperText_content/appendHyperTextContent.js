@@ -1,6 +1,6 @@
 export default function appendHyperHyperTextContent() {
  document.querySelectorAll('[html-content]').forEach((el) => {
-  let dataTitle = el.getAttribute(' title-header') || 'An Example';
+  let dataTitle = el.getAttribute('title-header') || 'An Example';
   let highlightLineByNumber = el.getAttribute('line-num') || '0';
   let HyperTextContent = el.firstElementChild.innerHTML.trim() || null;
   let svgLockElement = '';

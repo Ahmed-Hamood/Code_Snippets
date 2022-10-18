@@ -1,6 +1,6 @@
 export default function appendTerminalContent() {
  document.querySelectorAll('[terminal-content]').forEach((el) => {
-  let dataTitle = el.getAttribute(' title-header') || 'Example';
+  let dataTitle = el.getAttribute('title-header') || 'Example';
   let TextContent = el.firstElementChild.innerHTML.trim() || null;
   let highlightTerminalByNumber = el.getAttribute('line-num') || '0';
   let getPreferredSign = el.getAttribute('preferred-sign') || '>';

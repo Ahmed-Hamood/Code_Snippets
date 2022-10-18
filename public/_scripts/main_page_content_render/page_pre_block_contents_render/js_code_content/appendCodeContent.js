@@ -2,7 +2,7 @@ export default function appendCodeContent() {
  let AllQuery = ['[js-content]', '[js-jsx-content]', '[json-content]', '[ts-content]', '[ts-jsx-content]'];
 
  document.querySelectorAll(AllQuery).forEach((el) => {
-  let dataTitle = el.getAttribute(' title-header') || 'Example';
+  let dataTitle = el.getAttribute('title-header') || 'Example';
   let highlightCodeByNumber = el.getAttribute('line-num') || '0';
   let codeContent = el.firstElementChild.innerHTML.trim() || null;
   let language_type = '';
@@ -77,10 +77,11 @@ export default function appendCodeContent() {
 
   if (lineBreaks.length < 3) vsCodeElement = '';
 
+  console.log(el.firstElementChild.innerHTML)
+
   codeContent = codeContent ?? 'Nothing Here...';
-
   codeContent = codeContent.replace(/</g, '&lt;');
-
+  
   // #################################################################################################################
   el.innerHTML = `
     <div class="block-header" style="${dataTitle ? '' : 'padding: 0'}">

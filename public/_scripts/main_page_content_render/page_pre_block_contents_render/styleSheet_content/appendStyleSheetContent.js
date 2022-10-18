@@ -1,6 +1,6 @@
 export default function appendStyleSheetContent() {
  document.querySelectorAll('[css-content]').forEach((el) => {
-  let dataTitle = el.getAttribute(' title-header') || 'Example';
+  let dataTitle = el.getAttribute('title-header') || 'Example';
   let highlightCssByNumber = el.getAttribute('line-num') || '0';
   let styleSheetContent = el.firstElementChild.innerHTML.trim() || null;
 

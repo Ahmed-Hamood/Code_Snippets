@@ -16,8 +16,10 @@
  padding: 2px 6px;
  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
  cursor: default;
+ pointer-events: none;
  transition: all 0.3s;
  vertical-align: initial;
+ text-decoration: none !important;
 }
 
 /* #region code | terminal style */
@@ -59,13 +61,13 @@
 /* #region text and number tag with color style */
 
 :is(p, li, .block-title) text {
- color: #ffffff;
+ /* color: #ffffff; */
  background: #c6ae1500;
  border: 0.1rem solid rgb(182, 182, 182);
 }
 
 :is(p, li, .block-title) number {
- color: #ffffff;
+ /* color: #ffffff; */
  background: #242323;
  border: 0.1rem solid rgba(236, 236, 236, 0.38);
  border-radius: 0;
@@ -101,144 +103,199 @@ number[blue] {
  border: 0.1rem solid #32adff;
 }
 
-/* #endregion */
-
-/* #region <code|terminal|text|number [...]> style color attribute */
-
-[red] {
- color: #eb5757 !important;
+text[pink],
+number[pink] {
+ border: 0.1rem solid #c32672;
 }
 
-[green] {
- color: #2ecc71 !important;
-}
-
-[yellow] {
- color: #ddd09a !important;
-}
-
-[orange] {
- color: #e67e22 !important;
-}
-
-[purple] {
- color: #d980fa !important;
-}
-
-[blue] {
- color: #339fe7 !important;
-}
-
-[white] {
- color: var(--text-color) !important;
-}
-
-[inherit] {
- color: inherit !important;
+text[inherit],
+number[inherit] {
+ border: 0.1rem solid inherit;
 }
 
 /* #endregion */
 
 /* #region colors with styles  */
+/* colors :- */
+/* inherit,red,green,yellow,orange,purple,pink,blue,sky,white,black,gray,lightblue,lightgreen */
 
-red {
+/*  <code|terminal|text|number [...]> style color attribute */
+/*  <color styles> <color> */
+/*  <p class="color styles"> <p> */
+
+red,
+.red,
+[red] {
  color: #eb5757 !important;
 }
 
-blue {
- color: #4dbbf7 !important;
+green,
+.green,
+[green] {
+ color: #2ecc71 !important;
 }
 
-lightblue {
- color: #9cdcfe !important;
+yellow,
+.yellow,
+[yellow] {
+ color: #ddd09a !important;
 }
 
-green {
- color: #27ae60 !important;
+orange,
+.orange,
+[orange] {
+ color: #e67e22 !important;
 }
 
-lightgreen {
- color: rgb(171, 186, 104) !important;
+purple,
+.purple,
+[purple] {
+ color: #d980fa !important;
 }
-
+.pink,
+[pink],
 pink {
  color: #c32672 !important;
 }
 
-orange {
- color: rgb(212, 156, 50) !important;
+blue,
+.blue,
+[blue] {
+ color: #339fe7 !important;
 }
-
-purple {
- color: #d980fa !important;
-}
-
+.sky,
+[sky],
 sky {
  color: #4ebef8 !important;
 }
 
-black {
- color: black !important;
-}
-
-white {
+white,
+.white,
+[white] {
  color: var(--text-color) !important;
 }
-
-inherit {
- color: inherit !important;
+black,
+.black,
+[black] {
+ color: #242323 !important;
 }
-
+.gray,
+[gray],
 gray {
  color: #80807a !important;
 }
 
-brown {
- color: rgb(171, 77, 0) !important;
+inherit,
+.inherit,
+[inherit] {
+ color: inherit !important;
 }
 
-yellow {
- color: #ddd09a !important;
+.lightblue,
+[lightblue],
+lightblue {
+ color: #9cdcfe !important;
+}
+.lightgreen,
+[lightgreen],
+lightgreen {
+ color: rgb(171, 186, 104) !important;
 }
 
-[bold] {
- font-weight: 600 !important;
-}
-
-[cap] {
- text-transform: capitalize;
-}
-
-[consolas] {
- font-family: Consolas, monospace, 'Segoe UI', 'Source Sans Pro', sans-serif;
-}
-
-[underline],
-underline {
- text-decoration: underline;
- text-decoration-color: inherit;
- text-underline-offset: 3px;
-}
+/* Text Styles */
+/* styles :- */
+/* center,left,right,justify,bold,capitalize,consolas,underline,small,smaller */
 
 [bold],
-bold {
+bold,
+.bold {
  font-weight: 600 !important;
+}
+
+[cap],
+[capitalize],
+capitalize,
+cap,
+.capitalize,
+.cap {
+ text-transform: capitalize !important;
 }
 
 [consolas],
 consolas,
 .consolas {
- font-family: Consolas, monospace, 'Segoe UI', 'Source Sans Pro', sans-serif;
+ font-family: Consolas, 'JetBrains Mono', monospace !important;
+}
+
+[underline],
+underline,
+.underline {
+ text-decoration: underline;
+ text-decoration-color: inherit;
+ text-underline-offset: 4px;
+}
+
+[underline-red],
+underline-red,
+.underline-red {
+ text-decoration: underline;
+ text-underline-offset: 4px;
+ text-decoration-color: #eb5757;
+}
+
+[underline-green],
+underline-green,
+.underline-green {
+ text-decoration: underline;
+ text-underline-offset: 4px;
+ text-decoration-color: #2ecc71;
+}
+
+[underline-blue],
+underline-blue,
+.underline-blue {
+ text-decoration: underline;
+ text-underline-offset: 4px;
+ text-decoration-color: #339fe7;
+}
+
+[center],
+center,
+.center {
+ text-align: center !important;
+}
+[left],
+left,
+.left {
+ text-align: left !important;
+}
+[right],
+right,
+.right {
+ text-align: right !important;
+}
+
+[justify],
+justify,
+.justify {
+ text-align: justify !important;
+}
+
+small,
+[small],
+.small {
+ font-size: 80% !important;
+}
+smaller,
+[smaller],
+.smaller {
+ font-size: 50% !important;
 }
 
 /* #endregion */
 
 highlight {
  border-bottom: 1px solid yellow;
-}
-
-small {
- font-size: 0.9rem !important;
 }
 
 .view-border {

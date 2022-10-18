@@ -56,8 +56,6 @@ export default function startup_contentRender(ref_Pos = null) {
   // -------------------------------------
   // -------------------------------------
 
-
-
   // here we replace all tooltip
   tooltip();
 
@@ -75,8 +73,14 @@ export default function startup_contentRender(ref_Pos = null) {
 
   // on link ref open navigate to certain topic title
   navToHashPos(ref_Pos);
- }  
- 
+ }
+
  // document title header active
-  doc_title_header_active();
+ doc_title_header_active();
+
+ document.querySelectorAll('.sub-title').forEach((element) => {
+  element.addEventListener('click', () => {
+   element.classList.toggle('hide-content');
+  });
+ });
 }
