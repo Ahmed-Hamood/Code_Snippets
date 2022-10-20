@@ -7,7 +7,7 @@ export const Docker_Subject_Menu = {
   {
    subject_name: 'Getting Started',
    subject_icon_name: '',
-   type: 'folder',
+   type: 'file',
    subject_path: '/Getting_Started.html',
    subject_list_menu: [],
   },
@@ -15,7 +15,8 @@ export const Docker_Subject_Menu = {
    subject_name: 'Documentation',
    subject_icon_name: '',
    type: 'file',
-   subject_path: '/Documentation.html',
+   page_content_type: 'documentation',
+   subject_path: '/Documentation/Documentation.html',
    subject_list_menu: [],
   },
  ],

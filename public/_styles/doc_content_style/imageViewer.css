@@ -50,11 +50,8 @@
 .modal-image-content {
  display: block;
  border-radius: 5px;
- /* box-shadow: rgba(253, 253, 253, 0.097) 0px 20px 30px -10px; */
- animation-name: zoom;
+ animation: ImageZoomPopUpAnimation 0.4s ease-out;
  transform: scale(0.7);
- animation-duration: 0.5s;
- animation-timing-function: ease-out;
  transition: 0.3s transform;
 }
 

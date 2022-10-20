@@ -1,20 +1,21 @@
-:is(p, a, li, .block-title) code:not(code[class]),
-:is(p, a, li, .block-title) terminal,
-:is(p, a, li, .block-title) file,
-:is(p, a, li, .block-title) folder,
-:is(p, a, li, .block-title) text,
-:is(p, a, li, .block-title) number {
+:is(div, p, a, li, .block-title) code:not(code[class]),
+terminal,
+file,
+folder,
+keyboard,
+text,
+number {
  font-size: 90%;
  font-weight: 400;
+ line-height: normal;
  font-family: consolas, 'JetBrains Mono', monospace, 'Menlo', monospace;
  vertical-align: middle;
  margin: 0 0.2rem;
- white-space: nowrap;
- position: relative;
- bottom: 1px;
+ white-space: wrap;
+ /* position: relative; */
  border-radius: 3px;
  padding: 2px 6px;
- box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+ /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
  cursor: default;
  pointer-events: none;
  transition: all 0.3s;
@@ -24,16 +25,23 @@
 
 /* #region code | terminal style */
 
-:is(p, a, li, .block-title) code:not(code[class]),
-:is(p, a, li, .block-title) terminal {
+/* :is(div, p, a, li, .block-title) code:not(code[class]) { */
+code:not(code[class]) {
  color: #eeee;
- background: #434343;
  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+ background: rgba(135, 131, 120, 0.15);
 }
 
-:is(p, a, li, .block-title) terminal {
+terminal {
  color: #eeee;
- background: #434343;
+ border: 0.1rem solid rgba(0, 0, 0, 0.1);
+ background: rgba(135, 131, 120, 0.15);
+}
+
+keyboard {
+ color: rgb(232, 232, 232);
+ border: 1px solid #5d5d5d;
+ background: rgba(27, 26, 26, 0.411);
 }
 
 /* #endregion */

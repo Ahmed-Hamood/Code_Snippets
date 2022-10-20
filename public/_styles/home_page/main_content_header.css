@@ -130,8 +130,6 @@ body[max-content='true'] .main-content-header .nav-header-container .nav-content
  display: inline-block;
 }
 
-
-
 .main-content-header .nav-header-container .path-view-content-header ul li {
  display: inline-block;
  position: relative;
@@ -140,7 +138,7 @@ body[max-content='true'] .main-content-header .nav-header-container .nav-content
 .main-content-header .nav-header-container .path-view-content-header ul li .path-view-title {
  font-size: 1rem;
  font-weight: 500;
- color: rgb(198, 197, 197);
+ color: var(--main-doc-header-path-view-text-color);
  margin-right: 0.3rem;
 }
 
@@ -246,7 +244,7 @@ body[max-content='true'] .main-content-header .nav-header-container .nav-content
  opacity: 0.5;
  overflow: hidden;
 
- animation-name: transOutIn;
+ animation-name: translateFromUpToDown;
  animation-duration: 0.5s;
  animation-delay: 1.5s;
  animation-fill-mode: backwards;

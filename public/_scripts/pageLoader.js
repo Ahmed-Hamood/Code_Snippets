@@ -3,6 +3,8 @@ import startup_contentRender from './main_page_content_render/main.js';
 import { ConvertPathFromSlashToHashes, ConvertPathFromHashToSlash, GetLocationPathPart } from './utilities/url_path_utility.js';
 import { setSidebarSubjectFilesLink, OpenFolderAndFileSideBarMenuAutomatically } from './sideBar_Render/menu/setSidebarSubjectFilesLink.js';
 import modal_interact_manage from './modal_interact_manage.js';
+import EmbeddingHTMLPage from './main_page_content_render/main.js';
+import doc_nav_header_active from './main_page_content_render/page_document_render/doc_nav_header_expander.js';
 
 let UrlPathsHistory = ['/'];
 
@@ -25,29 +27,19 @@ let urlSearchParams = new URLSearchParams(window.location.search);
 let currentUrlPathsHistoryIndex = 0;
 let _isPageTopicLinkSelected = false;
 
-// let DocContentInnerHTML = '';
-let ErrorMsgHTMLContent = `
-<div class="content-text-error"> 
-  <h1>Page Error</h1>
-  <span>Retrieving Last Page, Please Wait . . .</span>
-</div> `;
-
 let LoadingHTML = `<div class="spinner-content">
 <div class="spinner-wheel"></div>
 <p class="spinner-message"></p>
 </div>`;
 
-let storePreviousHTMLContentOnError = '';
-
 export default function Startup_PageLoader() {
- Start_RenderPageContent();
+ if (!urlSearchParams.has('newTab')) setSidebarSubjectFilesLink();
+ setup_PageLoaderURLPath();
  setupNavigationBackAndForwardHistoryButtons();
  ActiveTitleHeaderPathLinkCopy();
  modal_interact_manage();
  setup_vscode_opener();
- if (!urlSearchParams.has('newTab')) {
-  setSidebarSubjectFilesLink();
- }
+ doc_nav_header_active();
 }
 
 // ########################################################################################
@@ -108,7 +100,7 @@ function setup_vscode_opener() {
 }
 
 // when page load get url path and render the content
-function Start_RenderPageContent() {
+function setup_PageLoaderURLPath() {
  let getUrlPath = ConvertPathFromHashToSlash(location) || '';
 
  if (getUrlPath != '') currentUrlPathsHistoryIndex++;
@@ -121,9 +113,9 @@ function Start_RenderPageContent() {
   UrlPathsHistory.shift();
   bodyElement.setAttribute('newTab', '');
   bodyElement.setAttribute('sidebar', 'off');
-  RenderPageContent(getUrlPath, false, false, false, false, null, false, false);
+  runPageLoader(getUrlPath, false, false, false, false, null, false, false);
  } else {
-  RenderPageContent(getUrlPath, false, true, false, false, null, false, true);
+  runPageLoader(getUrlPath, false, true, false, false, null, false, true);
  }
 }
 
@@ -138,7 +130,7 @@ function setupNavigationBackAndForwardHistoryButtons() {
 
    _getUrlPath = location.origin + ConvertPathFromHashToSlash(location.origin + extractHistoryPath);
 
-   RenderPageContent(_getUrlPath, true, true, false, false, null, false, true);
+   runPageLoader(_getUrlPath, true, true, false, false, null, false, true);
   }
  });
 
@@ -151,7 +143,7 @@ function setupNavigationBackAndForwardHistoryButtons() {
    extractHistoryPath = UrlPathsHistory[++currentUrlPathsHistoryIndex];
    _getUrlPath = location.origin + ConvertPathFromHashToSlash(location.origin + extractHistoryPath);
 
-   RenderPageContent(_getUrlPath, true, true, false, false, null, false, true);
+   runPageLoader(_getUrlPath, true, true, false, false, null, false, true);
   }
  });
 
@@ -238,7 +230,7 @@ function RenderPathHeaderView(paths, isPageTopicLinkSelected, isFileLinkSelected
 // ######################
 // ######################
 
-export async function RenderPageContent(
+export async function runPageLoader(
  urlHrefLink,
  disableHistoryPathPush = false,
  isSubjectFileLinkSelected = false,
@@ -314,90 +306,42 @@ export async function RenderPageContent(
   // #############################################################
   // #############################################################
 
-  storePreviousHTMLContentOnError = DocContentRender.innerHTML;
   DocContentRender.innerHTML = LoadingHTML;
 
-  let getLastPositionPath = currentActivePath.split('/');
-  getLastPositionPath = getLastPositionPath[getLastPositionPath.length - 1];
+  // let getLastPositionPath = currentActivePath.split('/');
+  // getLastPositionPath = getLastPositionPath[getLastPositionPath.length - 1];
 
   if (window.innerWidth <= 1000 && !urlSearchParams.has('newTab') && bodyElement.getAttribute('sidebar') != 'false') InvokeClickEvent('close-sideMenu-btn');
+
+  let DocContentHTMLText;
+  let ResStatus;
 
   try {
    let responseData = await fetch(urlHrefLink);
    let contentText = await responseData.text();
-   let DocContentInnerHTML = contentText;
+   DocContentHTMLText = contentText.trim();
+   ResStatus = responseData.status;
 
    vs_code_opener_svg_btn.children[1].innerHTML = 'Open file with vscode';
 
-   if (responseData.status == 404) {
-    DocContentInnerHTML = '<h1 class="content-text-error"><span>No Content, Maybe File Doesn\'t Exist - <blue>Click on vscode to create file ➟</blue></span></h1>';
+   if (ResStatus == 404) {
+    console.log('Not Found');
     UrlPathsHistory.splice(UrlPathsHistory.length - 1, 1);
     currentUrlPathsHistoryIndex--;
-    console.log('Not Found');
-
     vs_code_opener_svg_btn.children[1].innerHTML = 'Create file with vscode';
    }
-
-   if (!DocContentInnerHTML) {
-    DocContentInnerHTML = "<br> <p class='text center'> <blue bold>Click on VSCode to edit this file ➟</blue> </p>";
-   }
-
-   //  if (DocContentInnerHTML) {
-   DocContentRender.setAttribute('id', '');
-   void DocContentRender.offsetWidth;
-   DocContentRender.setAttribute('id', 'page-content-wrapper');
-
-   DocContentRender.innerHTML = titleContentWrapper(DocContentInnerHTML);
-   //  DocContentRender.innerHTML = DocContentInnerHTML;
-
-   DocContentRender.innerHTML += '<br/> <br/> <br/> <br/>';
-   storePreviousHTMLContentOnError = '';
 
    // prepare page path
    page_path = getHashedPath.replace(/\#/g, '/');
    page_path = decodeURIComponent(page_path);
    bodyElement.setAttribute('current_path', page_path);
-
-   startup_contentRender(refPos);
-   //  }
   } catch (error) {
    console.log('Error: ', error);
-
-   setTimeout(() => {
-    DocContentRender.innerHTML = ErrorMsgHTMLContent;
-    setTimeout(() => {
-     DocContentRender.innerHTML = storePreviousHTMLContentOnError;
-    }, 4000);
-   }, 3000);
+   ResStatus = 400;
   }
+
+  EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, refPos);
+
+  // startup_contentRender();
  }
-}
-
-function titleContentWrapper(htmlContent) {
- const parser = new DOMParser();
- // 1. convert text/string into HTMLDocument
- let doc = parser.parseFromString(htmlContent, 'text/html');
-
- //  2. get all sub-titles
- const all_titles = doc.querySelectorAll('.sub-title');
-
- // 3. loop thru each sub-title and add ##start## and ##end## text
- // first sub-title will only have ##start## text next to it.
- all_titles.forEach((element, index) => {
-  if (index == 0) {
-   element.insertAdjacentHTML('afterend', '##start##');
-  } else {
-   element.insertAdjacentHTML('beforebegin', '##end##');
-   element.insertAdjacentHTML('afterend', '##start##');
-  }
- });
-
- // 4. convert HTMLDocument to text/string
- doc = new XMLSerializer().serializeToString(doc);
-
- // 5. now, replace All ##start##/ and ##end##
- doc = doc.replace(/##start##/g, "<div class='start-wrapper'>");
- doc = doc.replace(/##end##/g, '</div>');
-
- return doc;
 }

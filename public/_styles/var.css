@@ -1,8 +1,8 @@
 html {
  --text-color: #fff;
- --sideBar-sidebar-bg-color: #201c29;
- --sideBar-footer-bg-color: var(--sideBar-sidebar-bg-color);
- --body-container: #1a1721;
+ --sideBar-bg-color: #161b22;
+ --sideBar-footer-bg-color: var(--sideBar-bg-color);
+ --body-container: #0d1117;
  /* --body-container: #1b1a1d; */
 
  --zoom-body: 0.92;
@@ -24,10 +24,11 @@ html {
 
  --sub-title-link-hover-bg-color: rgba(61, 61, 61, 0.22);
 
- --main-doc-header-content-bg-color: #221e2c;
- --main-doc-header-content-border-bottom-color: #2b2637;
+ --main-doc-header-content-bg-color: var(--sideBar-bg-color);
+ --main-doc-header-content-border-bottom-color: #1b2533;
 
  --main-doc-header-path-view-content-bg-color: var(--body-container);
+ --main-doc-header-path-view-text-color: #f6f6f6;
 
  --main-doc-content-width: 1200px;
  --main-doc-title-header-content-height: 55px;
@@ -57,14 +58,12 @@ html {
  --python-code-block-primary-bg-color: #21242a;
  /* --python-code-block-primary-bg-color: #0b1222; */
 
- /* --pre-block-animation: FadeInAnimation 0.2s ease-in 0.5s forwards; */
- /* --pre-block-animation: none; */
+ --tooltip-bg: #1a2432;
 }
 
 body[max-content='true'] {
  --main-doc-content-width: 1800px;
 }
-
 
 @media screen and (max-width: 1920px) {
  html {

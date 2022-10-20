@@ -1,21 +1,24 @@
 export default function appendStyleSheetContent() {
- document.querySelectorAll('[css-content]').forEach((el) => {
-  let dataTitle = el.getAttribute('title-header') || 'Example';
-  let highlightCssByNumber = el.getAttribute('line-num') || '0';
-  let styleSheetContent = el.firstElementChild.innerHTML.trim() || null;
+ let AllQuery = document.querySelectorAll("[css-content]");
 
-  let vsCodeElement = '';
+ if ([...AllQuery].length != 0) {
+  AllQuery.forEach((el) => {
+   let dataTitle = el.getAttribute('title-header') || 'Example';
+   let highlightCssByNumber = el.getAttribute('line-num') || '0';
+   let styleSheetContent = el.firstElementChild.innerHTML.trim() || null;
 
-  el.className = 'css-block css-code css-content pre-block';
+   let vsCodeElement = '';
 
-  if (el.hasAttribute('no-title-header')) dataTitle = null;
+   el.className = 'css-block css-code css-content pre-block';
 
-  styleSheetContent = styleSheetContent ?? 'Nothing Here...';
+   if (el.hasAttribute('no-title-header')) dataTitle = null;
 
-  styleSheetContent = styleSheetContent.replace(/</g, '&lt;');
+   styleSheetContent = styleSheetContent ?? 'Nothing Here...';
 
-  // #################################################################################################################
-  el.innerHTML = `
+   styleSheetContent = styleSheetContent.replace(/</g, '&lt;');
+
+   // #################################################################################################################
+   el.innerHTML = `
     <div class="block-header" style="${dataTitle ? '' : 'padding: 4px'}">
       <div class="block-title" style="${dataTitle ? '' : 'display: none'}"> ${dataTitle}</div> 
       <i title="copy" class="copyCssTextClipboard svg copy-svg " style="${dataTitle ? '' : 'top:0.8rem'}"> </i>
@@ -27,5 +30,6 @@ export default function appendStyleSheetContent() {
       <pre>
         <code class="language-css">
                     ${styleSheetContent}</code></pre></div>`;
- });
+  });
+ }
 }

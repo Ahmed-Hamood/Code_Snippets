@@ -1,20 +1,23 @@
 export default function appendTerminalContent() {
- document.querySelectorAll('[terminal-content]').forEach((el) => {
-  let dataTitle = el.getAttribute('title-header') || 'Example';
-  let TextContent = el.firstElementChild.innerHTML.trim() || null;
-  let highlightTerminalByNumber = el.getAttribute('line-num') || '0';
-  let getPreferredSign = el.getAttribute('preferred-sign') || '>';
+ let AllQuery = document.querySelectorAll('[terminal-content]');
 
-  el.className = 'terminal-block npm-command terminal-content pre-block';
+ if ([...AllQuery].length != 0) {
+  AllQuery.forEach((el) => {
+   let dataTitle = el.getAttribute('title-header') || 'Example';
+   let TextContent = el.firstElementChild.innerHTML.trim() || null;
+   let highlightTerminalByNumber = el.getAttribute('line-num') || '0';
+   let getPreferredSign = el.getAttribute('preferred-sign') || '>';
 
-  if (el.hasAttribute('no-title-header')) dataTitle = null;
+   el.className = 'terminal-block npm-command terminal-content pre-block';
 
-  TextContent = TextContent ?? 'Nothing Here...';
+   if (el.hasAttribute('no-title-header')) dataTitle = null;
 
-  TextContent = TextContent.replace(/</g, '&lt;');
+   TextContent = TextContent ?? 'Nothing Here...';
 
-  // #################################################################################################################
-  el.innerHTML = `
+   TextContent = TextContent.replace(/</g, '&lt;');
+
+   // #################################################################################################################
+   el.innerHTML = `
       <div class="block-header"  style="${dataTitle ? '' : 'padding: 0'}">
         <div class="block-title" style="${dataTitle ? '' : 'display: none'}"> - ${dataTitle}</div> 
         <i title="copy" class="copyTerminalClipboard svg copy-svg " style="${dataTitle ? '' : 'top:0.8rem'}"> </i>
@@ -28,5 +31,6 @@ export default function appendTerminalContent() {
 </pre>
     </div>
     `;
- });
+  });
+ }
 }

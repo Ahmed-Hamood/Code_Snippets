@@ -13,8 +13,6 @@ export default async function Run_Highlight_Coloring() {
  let NpmCommand = [...document.querySelectorAll('.npm-command pre')];
 
  try {
-  bodyElm.setAttribute('codeLoading', true);
-
   if (HtmlCode || CssCode) await import('../../../prime_library/prism_html_css.js');
   if (JsCode) await import('../../../prime_library/prism_js_ts_json_jsx.js');
   if (PyCode) await import('../../../prime_library/prism_python.js');
@@ -23,8 +21,6 @@ export default async function Run_Highlight_Coloring() {
 
   if (PythonCode.length != 0) python_highlight(PythonCode);
   if (NpmCommand.length != 0) npm_highlight(NpmCommand);
-
-  bodyElm.setAttribute('codeLoading', false);
  } catch (err) {
   console.error(err);
  }

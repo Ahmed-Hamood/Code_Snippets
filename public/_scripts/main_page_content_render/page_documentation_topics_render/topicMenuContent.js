@@ -1,4 +1,4 @@
-import { RenderPageContent } from '../../pageLoader.js';
+import { runPageLoader } from '../../pageLoader.js';
 
 export default function topicMenuContent() {
  let getAllTitleLinkTopics = document.querySelectorAll('.topic-title-link');
@@ -38,15 +38,15 @@ export default function topicMenuContent() {
    urlPath = location.origin + '/' + getCurrentUrlHash.join('/') + el.getAttribute('path');
 
    if (element.target.getAttribute('ref_pos')) {
-    RenderPageContent(urlPath, true, false, true, false, element.target.getAttribute('ref_pos'));
+    runPageLoader(urlPath, true, false, true, false, element.target.getAttribute('ref_pos'));
    } else {
-    RenderPageContent(urlPath, true, false, true);
+    runPageLoader(urlPath, true, false, true);
    }
-
-
   });
  });
 
- // add menu table content active btn into subject-topics-list-container
- document.querySelector('.subject-topics-list-container').insertAdjacentHTML('afterbegin', "<button id='menu-table-content-active-btn'> Enable ListView Content </button>");
+ // add menu table content active btn into documentation-topics-list-container
+ document
+  .querySelector('.documentation-topics-list-container')
+  .insertAdjacentHTML('afterbegin', "<button id='menu-table-content-active-btn'> Enable ListView Content </button>");
 }

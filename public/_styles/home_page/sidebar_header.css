@@ -1,7 +1,7 @@
 /* ############# Header content ############# */
 
 .sideBar-header {
- background: var(--sideBar-sidebar-bg-color);
+ background: var(--sideBar-bg-color);
  height: var(--sidebar-header-height);
  display: flex;
  justify-content: space-between;
@@ -62,7 +62,7 @@
 /* open menu button */
 
 .body-container .open-sidebar-btn {
- background: var(--main-doc-header-content-bg-color);;
+ background: var(--main-doc-header-content-bg-color);
  border: 1px solid #2c2b2b;
  border-bottom: 7px solid var(--main-doc-header-content-border-bottom-color);
  border-radius: 12px;
@@ -95,7 +95,7 @@ body[sidebar='false'] .body-container .open-sidebar-btn {
 }
 
 body[newTab] .body-container .open-sidebar-btn {
-    display: none;
+ display: none;
 }
 
 /* close menu button */

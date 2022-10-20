@@ -1,7 +1,7 @@
 export default function appendCliContent() {
  let getAllCliElements = document.querySelectorAll('[cli-content]');
 
- if (getAllCliElements.length != 0) {
+ if ([...getAllCliElements].length != 0) {
   let header_title = '';
   let username_cli = '';
   let pc_name_cli = '';

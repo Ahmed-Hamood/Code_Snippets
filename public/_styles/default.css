@@ -5,8 +5,8 @@ html {
  /* font-size: 16px; */
  background: var(--body-container);
  zoom: var(--zoom-body);
- -webkit-filter: contrast(106%);
- filter: contrast(106%);
+ /* -webkit-filter: contrast(106%);
+ filter: contrast(106%); */
  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
  font-style: normal;
  font-stretch: 100%;
@@ -44,19 +44,8 @@ a {
  background: #8aad0d;
 }
 
-.pre-block,
-.terminal-output,
-.tab-container {
- opacity: 0;
- transition: 400ms max-width;
-}
-
-body[codeLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
- animation: FadeInAnimation 0.4s ease-in 0.6s forwards;
-}
-
-body[codeLoading='false'] .tab-container .pre-block {
- animation-delay: 0s;
+body[pageLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
+ animation: FadeInAnimation 0.3s ease-in-out 0.8s forwards;
 }
 
 .pre-block::-webkit-scrollbar {
@@ -80,31 +69,62 @@ body[codeLoading='false'] .tab-container .pre-block {
  max-height: none !important;
 }
 
-.content-text-error {
+.page-msg-content {
  font-size: 1.4rem;
+ line-height: 120%;
+ border-radius: 5px;
  text-align: center;
  margin-top: 33px;
+}
+
+.page-msg-content {
+ border-style: solid;
+ border-width: 1px;
+}
+
+.page-msg-content.guide {
+ color: #0984e3;
+ border-color: #0984e3;
+ background: rgba(17, 132, 255, 0.08);
+}
+
+.page-msg-content.warning {
+ color: #f1c100;
+ border-color: #f1c100;
+ background: rgba(241, 193, 0, 0.08);
+}
+
+.page-msg-content.error {
  color: #ea2611;
- border: 1px solid #ca3e2e;
+ border-color: #ea2611;
+ background: rgba(233, 17, 17, 0.08);
 }
 
-.content-text-error h1 {
- border-bottom: 1px solid #a52214;
+.page-msg-content .msg-title {
+ border-bottom: 1px solid inherit;
+ border-color: inherit;
  font-weight: 500;
+ padding: 12px 0;
 }
 
-.content-text-error span {
+.page-msg-content.guide .msg-title {
+ border-bottom: 1px solid #1a486c;
+}
+.page-msg-content.warning .msg-title {
+ border-bottom: 1px solid #6f5d16;
+}
+.page-msg-content.error .msg-title {
+ border-bottom: 1px solid #5b1a12;
+}
+
+.page-msg-content .msg-info {
+ padding: 12px 0;
  font-size: 1rem;
  font-weight: 500;
- color: #ffffff;
  display: block;
- background: #82130779;
 }
 
-.content-text-error h1,
-.content-text-error span {
- padding: 10px 0;
-}
+/* VSCODE Button */
 
 .vscode-svg-btn {
  position: absolute;

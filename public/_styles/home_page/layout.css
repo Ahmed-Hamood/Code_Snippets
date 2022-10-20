@@ -8,8 +8,7 @@
 
 .sideBar {
  width: var(--sidebar-width);
- background: var(--sideBar-sidebar-bg-color);
- border-right: 1px solid rgb(37, 37, 37);
+ background: var(--sideBar-bg-color);
  display: block;
  z-index: 10;
  position: relative;
@@ -21,8 +20,6 @@
 
  /* box-shadow: inset 7px 0px 12px #282c34; */
 }
-
- 
 
 .sideBar.no-sideBar {
  width: 0;
@@ -63,5 +60,4 @@
   overflow: hidden;
   position: absolute;
  }
-
 }

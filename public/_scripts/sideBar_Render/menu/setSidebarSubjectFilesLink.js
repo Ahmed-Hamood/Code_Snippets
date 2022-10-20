@@ -1,4 +1,4 @@
-import { currentActivePath, RenderPageContent } from '../../pageLoader.js';
+import { currentActivePath, runPageLoader } from '../../pageLoader.js';
 import { AddEventListenersToSubFolders, AddEventListenerToFilesOnOpenedFolder } from './EnableSidebarMenuList.js';
 import { ConvertPathFromSlashToHashes, GetLocationPathPart } from '../../utilities/url_path_utility.js';
 
@@ -35,7 +35,7 @@ export function setFileWithLinkForPageContentRender(targetElement) {
  SelectedUrlPath = targetElement.getAttribute('urlPath');
  if (SelectedUrlPath != currentActivePath) {
   SelectedUrlPath = location.origin + SelectedUrlPath;
-  RenderPageContent(SelectedUrlPath, false, true, false, false, null, isDocumentation, false);
+  runPageLoader(SelectedUrlPath, false, true, false, false, null, isDocumentation, false);
   Sounds().Play_press();
  }
 }
@@ -43,7 +43,7 @@ export function setFileWithLinkForPageContentRender(targetElement) {
 export function OpenFolderAndFileSideBarMenuAutomatically(urlPath) {
  const mergePaths = [];
  let UrlPathName = GetLocationPathPart(urlPath) == '/Docs' ? '/' : GetLocationPathPart(urlPath);
-  let navTitleHeader = document.querySelector('.nav-title-header');
+ let navTitleHeader = document.querySelector('.nav-title-header');
 
  let folders = UrlPathName.split('/'); //  ['', 'Docs', 'nodejs', 'expressjs', 'Authentication', 'Helmet.html']
  let File_highlighted = false;
@@ -55,7 +55,7 @@ export function OpenFolderAndFileSideBarMenuAutomatically(urlPath) {
   getAllFiles.forEach((el) => {
    if (el.getAttribute('urlPath') == UrlPathName && !File_highlighted) {
     el.classList.add('highlight-menu');
-      navTitleHeader.innerHTML = el.children[2].textContent;
+    navTitleHeader.innerHTML = el.children[2].textContent;
     File_highlighted = true;
    } else {
     el.classList.remove('highlight-menu');

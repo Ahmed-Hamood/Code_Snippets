@@ -26,7 +26,7 @@
  background: rgb(64, 64, 64);
 }
 .sideBar-subjects-menu .content-wrapper::-webkit-scrollbar-track {
- background: var(--sideBar-sidebar-bg-color);
+ background: var(--sideBar-bg-color);
 }
 
 body[api-system='false'] .sideBar-subjects-menu .content-wrapper {
@@ -47,7 +47,7 @@ body[api-system='false'] .sideBar-subjects-menu .content-wrapper {
  margin-top: 1.6rem;
  margin-bottom: 0.8rem;
  display: flex;
- pointer-events: none;
+ user-select: none;
  position: relative;
 }
 
@@ -77,8 +77,8 @@ body[api-system='false'] .sideBar-subjects-menu .content-wrapper .menu-title-sec
  margin-top: 0.6rem;
 }
 
-.subject-title-link.main-folder{ 
-  border: 1px solid transparent;
+.subject-title-link.main-folder {
+ border: 1px solid transparent;
 }
 
 .subject-title-link {

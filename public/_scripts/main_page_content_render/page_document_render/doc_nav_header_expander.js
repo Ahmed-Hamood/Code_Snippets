@@ -1,4 +1,4 @@
-export default function doc_title_header_active() {
+export default function doc_nav_header_active() {
  const expand_width_svg_btn = document.querySelector('.expand-width-svg-btn');
  const bodyElm = document.body;
  let DocContentRender = document.getElementById('page-content-wrapper');
