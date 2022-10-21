@@ -326,7 +326,8 @@
 
 <p class="text">
  <yellow underline>Durability</yellow> is the ability of an object to withstand physical damage from normal use over a long period. This may include wear and tear,
- corrosion, impact, etc. In some cases, durability is also referred to as "endurance."
+ corrosion, impact, etc. In some cases, durability is also referred to as
+ <tooltip text="The ability to endure an unpleasant or difficult process or situation without giving way.">"endurance"</tooltip>.
 </p>
 
 <p class="text">
@@ -334,19 +335,25 @@
  have built-in fault tolerance feature which means if you use these services, you will not notice those localized failures affecting your system
 </p>
 
-<div class="quote-text red-border">
+<div class="text-box warning">
  <p>
-  <yellow underline>Fault tolerance</yellow> might scale to become a disaster caused by natural (flood, earthquakes or under storm power gird failures) or human induced
-  like damaging or causing system error.
+  <underline>Fault tolerance</underline> might scale to become a disaster caused by natural (flood, earthquakes or under storm power gird failures) or human induced like
+  damaging or causing system error.
  </p>
 </div>
- 
+
 <p class="text">
-  <yellow underline>Disaster recovery</yellow underline> is the ability to recover from an event that has taken down the service. With disaster recovery we create two copies of the same application/data into separate azure regions. 
+ <yellow underline>Disaster recovery</yellow> is the ability to recover from an event that has taken down the service. With disaster recovery we create two copies of the
+ same application/data into separate azure regions.
 </p>
 
 <div class="text-box note">
-<p>
-  Setting up replications between two regions with identical copies of your application, along with those replicated applications you need to set up a simple DNS routing, so that your users are automatically redirected to the working version of your application till the local application version recover.
-</p>
+ <p>
+  Setting up replications between two regions with identical copies of your application, along with those replicated applications you need to set up a simple
+  <tooltip green bold
+   text="- DNS routing policies steer traffic based on query - DNS servers translate requests for names into IP addresses, controlling which server an end user will reach when they type a domain name into their web browser."
+   >DNS routing</tooltip
+  >
+  , so that your users are automatically redirected to the working version of your application till the local application version recover.
+ </p>
 </div>

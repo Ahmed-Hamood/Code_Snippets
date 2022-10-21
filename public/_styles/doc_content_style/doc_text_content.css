@@ -624,6 +624,9 @@ tooltip:hover {
 /* -------------- */
 /* ToolTip */
 /* -------------- */
+tooltip {
+ cursor: pointer;
+}
 
 tooltip .tooltiptext,
 #link-ref .tooltiptext,
@@ -728,18 +731,15 @@ tooltip .tooltiptext::before {
 .tooltiptext .link-text.mt {
  margin-top: 12px;
 }
-/* ################ */
-/* tooltip 2 */
-/* ################ */
-
-tooltip {
- cursor: pointer;
-}
 
 tooltip .tooltiptext.left,
 .mb-tooltip-content p.left {
  text-align: left;
 }
+
+/* ################ */
+/* mobile tooltip */
+/* ################ */
 
 .tooltiptext hr,
 .mb-tooltip-content p hr {
@@ -753,8 +753,8 @@ tooltip .tooltiptext.left,
  width: 95%;
  max-width: 700px;
  height: fit-content;
- background: rgb(50, 50, 50);
- border: 1px solid whitesmoke;
+ background-color: var(--tooltip-bg);
+ border: 1px solid rgb(153, 153, 153);
  border-radius: 12px;
  top: 50%;
  left: 50%;
