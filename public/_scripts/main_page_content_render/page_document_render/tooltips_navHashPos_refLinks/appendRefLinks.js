@@ -23,9 +23,8 @@ export default async function appendRefLinks() {
    element.innerHTML += `<p class='tooltiptext'><span class="link-text">Go to ${element.textContent} title</span></p>`;
   });
  }
-
+ 
  if ([...getAllLinksRef].length != 0) {
-  // const urlSearchParams = new URLSearchParams(window.location.search);
   let get_current_path = document.body.getAttribute('current_path');
 
   let getDataRef;

@@ -290,9 +290,63 @@
 </div>
 
 <!-- ######################################################### -->
-<p class="sub-sub-title">D - Reliable/fault tolerance/Disaster Recovery</p>
+<p class="sub-sub-title">D - Reliable/Durable/fault tolerance/Disaster Recovery</p>
 <!-- ######################################################### -->
 
-<p class="text">Cloud provider offers data backup, disaster recovery, and data replication services <a id="link-nav" href="#title-5">(Global)</a> ,</p>
+<p class="text">
+ Cloud provider offers data backup, disaster recovery, and <a id="link-nav" href="#title-5">Global</a> data replication services, and fault tolerance. Azure cloud
+ infrastructure is built in order to accommodate disasters; If one component fails, a backup component will seamlessly take ownership, assuring services availability.
+</p>
 
+<div class="quote-text blue-border">
+ <p>
+  Data in your azure storage account is replicated to ensure
+  <tooltip
+   text="- Durability refers to the ability of the object or system to endure physical damage from normal use. - A system that is durable is able to perform its responsibilities over time, even when unexpected events may occur. For example, a durable storage system will reliably store data without data loss."
+   >durability</tooltip
+  >
+  and high availability.
+ </p>
+</div>
+
+<div class="list-content normal star">
+ <ul>
+  <li>
+   Data backup if one component fails, a backup component takes its place, this is referred to as fault tolerance and it ensures that your customers aren't impacted when
+   a disaster occurs.
+  </li>
+  <li>Data replication services and Redundancy is often built into cloud services architecture.</li>
+ </ul>
+</div>
+
+<p class="text">
+ <yellow underline>Reliability</yellow> is the ability of an item to perform its function under specified conditions over a given period. usually expressed in terms of
+ mean time between failures (MTBF), which is the average length of time that a device will operate without failure.
+</p>
+
+<p class="text">
+ <yellow underline>Durability</yellow> is the ability of an object to withstand physical damage from normal use over a long period. This may include wear and tear,
+ corrosion, impact, etc. In some cases, durability is also referred to as "endurance."
+</p>
+
+<p class="text">
+ <yellow underline>Fault tolerance</yellow> is the ability to remain up and running during component and service failures, without interrupt your services. Most services
+ have built-in fault tolerance feature which means if you use these services, you will not notice those localized failures affecting your system
+</p>
+
+<div class="quote-text red-border">
+ <p>
+  <yellow underline>Fault tolerance</yellow> might scale to become a disaster caused by natural (flood, earthquakes or under storm power gird failures) or human induced
+  like damaging or causing system error.
+ </p>
+</div>
  
+<p class="text">
+  <yellow underline>Disaster recovery</yellow underline> is the ability to recover from an event that has taken down the service. With disaster recovery we create two copies of the same application/data into separate azure regions. 
+</p>
+
+<div class="text-box note">
+<p>
+  Setting up replications between two regions with identical copies of your application, along with those replicated applications you need to set up a simple DNS routing, so that your users are automatically redirected to the working version of your application till the local application version recover.
+</p>
+</div>
