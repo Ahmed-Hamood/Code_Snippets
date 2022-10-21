@@ -216,6 +216,12 @@ lightgreen {
 [bold],
 bold,
 .bold {
+ font-weight: 500 !important;
+}
+
+[bolder],
+bolder,
+.bolder {
  font-weight: 600 !important;
 }
 

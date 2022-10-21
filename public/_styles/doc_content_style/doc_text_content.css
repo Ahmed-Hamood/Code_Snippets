@@ -597,10 +597,11 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 
 /* #region  >>> links and tooltip <<< >>> */
 
-#ref-link,
-#only-link,
+#link-ref,
+#link-nav,
+#link-url,
 tooltip {
- font-size: 95%; 
+ font-size: 95%;
  /* vertical-align: top; */
  position: relative;
  text-decoration: none;
@@ -613,8 +614,8 @@ tooltip {
  cursor: pointer;
 }
 
-#ref-link:hover,
-#only-link:hover,
+#link-ref:hover,
+#link-url:hover,
 tooltip:hover {
  background-color: rgba(97, 218, 251, 0.4);
  border-bottom-color: #61dafb;
@@ -625,8 +626,9 @@ tooltip:hover {
 /* -------------- */
 
 tooltip .tooltiptext,
-#ref-link .tooltiptext,
-#only-link .tooltiptext {
+#link-ref .tooltiptext,
+#link-nav .tooltiptext,
+#link-url .tooltiptext {
  font-size: 1.1rem;
  font-weight: 500;
  visibility: hidden;
@@ -655,15 +657,17 @@ tooltip .tooltiptext,
 }
 
 tooltip:hover .tooltiptext,
-#ref-link:hover .tooltiptext,
-#only-link:hover .tooltiptext {
+#link-ref:hover .tooltiptext,
+#link-nav:hover .tooltiptext,
+#link-url:hover .tooltiptext {
  visibility: visible;
  opacity: 1;
  margin-top: 0px;
 }
 
-#ref-link::before,
-#only-link::before,
+#link-ref::before,
+#link-nav::before,
+#link-url::before,
 tooltip::before {
  color: #ffffff30;
  font-size: 0.6rem;
@@ -672,18 +676,24 @@ tooltip::before {
  left: -10px;
 }
 
-#ref-link::before {
+#link-ref::before {
  content: '🔗';
+}
+#link-nav::before {
+ content: '⬆️';
+ bottom: 12px;
+ left: -9px;
 }
 
 tooltip::before {
  content: '?';
- bottom: 12px;
+ bottom: 13px;
  left: -5px;
 }
 
-#ref-link .tooltiptext::before,
-#only-link .tooltiptext::before,
+#link-ref .tooltiptext::before,
+#link-nav .tooltiptext::before,
+#link-url .tooltiptext::before,
 tooltip .tooltiptext::before {
  content: '';
  position: absolute;
@@ -1379,11 +1389,11 @@ tooltip .tooltiptext span {
   left: 20px;
  }
 
- #ref-link .tooltiptext {
+ #link-ref .tooltiptext {
   width: 270px;
  }
 
- #ref-link .tooltiptext::before {
+ #link-ref .tooltiptext::before {
   /* left: 22%; */
  }
 

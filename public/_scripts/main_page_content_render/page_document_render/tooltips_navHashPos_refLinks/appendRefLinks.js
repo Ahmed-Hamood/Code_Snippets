@@ -1,6 +1,8 @@
 export default async function appendRefLinks() {
- const getAllLinks = document.querySelectorAll('#ref-link');
- const getAllOnlyLinks = document.querySelectorAll('#only-link');
+ const getAllLinksRef = document.querySelectorAll('#link-ref');
+ const getAllLinksUrl = document.querySelectorAll('#link-url');
+ const getAllLinksNav = document.querySelectorAll('#link-nav');
+
  const page_content_type = document.querySelector('.highlight-menu');
  let get_href = '';
 
@@ -10,15 +12,20 @@ export default async function appendRefLinks() {
   return getData;
  };
 
- if (getAllOnlyLinks.length != 0) {
-  getAllOnlyLinks.forEach((element) => {
+ if ([...getAllLinksUrl].length != 0) {
+  getAllLinksUrl.forEach((element) => {
    element.target = '_blank';
-   //  element.innerHTML += `<p class='tooltiptext'><span class="link-text">Click to visit the link</span></p>`;
   });
  }
 
- if (getAllLinks.length != 0) {
-  const urlSearchParams = new URLSearchParams(window.location.search);
+ if ([...getAllLinksNav].length != 0) {
+  getAllLinksNav.forEach((element) => {
+   element.innerHTML += `<p class='tooltiptext'><span class="link-text">Go to ${element.textContent} title</span></p>`;
+  });
+ }
+
+ if ([...getAllLinksRef].length != 0) {
+  // const urlSearchParams = new URLSearchParams(window.location.search);
   let get_current_path = document.body.getAttribute('current_path');
 
   let getDataRef;
@@ -38,7 +45,7 @@ export default async function appendRefLinks() {
   try {
    getDataRef = await LoadRefJSON(get_current_path);
 
-   getAllLinks.forEach((element) => {
+   getAllLinksRef.forEach((element) => {
     get_href = element.getAttribute('href');
     ref_text_content = '';
     ref_href = '';

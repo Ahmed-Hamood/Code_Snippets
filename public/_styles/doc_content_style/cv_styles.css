@@ -37,7 +37,7 @@
  border: none;
 }
 
-.cv-user-info-container ul li #only-link,
+.cv-user-info-container ul li #link-url,
 .cv-user-info-container ul li .text-val {
  font-size: 1.1rem;
  font-weight: 500;
@@ -46,8 +46,6 @@
 .cv-user-info-container ul li .text-val {
  margin-left: 9px;
 }
-
-
 
 .cv-user-image-container img {
  width: 350px;

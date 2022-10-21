@@ -20,9 +20,11 @@ export default function tooltip() {
   tooltip_text = element.getAttribute('text');
   tooltip_text = tooltip_text.trim();
 
-  tooltip_text = tooltip_text.replace(/([0-9A-Z])[\s]*[\.\-]/g, '$1.'); // replace 'A .' or  'A -' or 'A-' (with) =>  A.
+  tooltip_text = tooltip_text.replace(/\b([0-9]{1,2}|[A-Z])\b[\s]*[\.\-]/g, '$1.'); // replace 'A .' or  'A -' or 'A-' (with) =>  A. || "0-99 ." or "0-99 -" with => [0-99].
   tooltip_text = tooltip_text.replace(/\s([0-9A-Z])\./g, '<hr>$1.'); // add <hr> line break before 'A.' or '1.'
   tooltip_text = tooltip_text.replace(/([0-9A-Z])\./g, '<span>$1.</span>'); // style letter | number
+
+  tooltip_text = tooltip_text.replace(/\s\-\s/g, ' <hr>- '); // replace ' - ' with ' <hr>- '
  };
 
  if (all_tooltips.length != 0) {

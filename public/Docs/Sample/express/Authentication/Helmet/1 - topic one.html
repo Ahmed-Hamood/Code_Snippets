@@ -654,8 +654,8 @@
     margin-top: calc(1.2 * 1rem);
    }
    
-   #ref-link,
-   #only-link {
+   #link-ref,
+   #link-url {
     position: relative;
     text-decoration: none;
     font-weight: 500;
@@ -666,19 +666,19 @@
     transition: 0.2s background-color, border;
    }
    
-   #ref-link:not([href]) {
+   #link-ref:not([href]) {
     cursor: default;
    }
    
-   #ref-link:hover,
-   #only-link:hover {
+   #link-ref:hover,
+   #link-url:hover {
     background-color: rgba(97, 218, 251, 0.4);
     border-bottom-color: #61dafb;
    }
    
    /* ToolTip */
    
-   #ref-link::after {
+   #link-ref::after {
     color: #ffffff30;
     font-size: 0.6rem;
     position: absolute;
@@ -687,7 +687,7 @@
     left: -12px;
    }
    
-   #ref-link .tooltiptext {
+   #link-ref .tooltiptext {
     position: absolute;
     visibility: hidden;
     font-weight: 400;
@@ -706,7 +706,7 @@
     max-width: 500px;
    }
    
-   #ref-link .tooltiptext::after {
+   #link-ref .tooltiptext::after {
     content: '';
     position: absolute;
     bottom: 100%;
@@ -717,7 +717,7 @@
     border-color: rgba(0, 0, 0, 0);
    }
    
-   #ref-link .tooltiptext::before {
+   #link-ref .tooltiptext::before {
     content: '';
     position: absolute;
     bottom: 100%;
@@ -728,7 +728,7 @@
     border-color: transparent transparent #2c3e50 transparent;
    }
    
-   #ref-link:hover .tooltiptext {
+   #link-ref:hover .tooltiptext {
     visibility: visible;
    }
    
@@ -1203,11 +1203,11 @@
      left: 20px;
     }
    
-    #ref-link .tooltiptext {
+    #link-ref .tooltiptext {
      width: 250px;
     }
    
-    #ref-link .tooltiptext::before {
+    #link-ref .tooltiptext::before {
      left: 22%;
     }
    
