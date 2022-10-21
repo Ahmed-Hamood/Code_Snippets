@@ -1,4 +1,4 @@
-import { runPageLoader } from '../../pageLoader.js';
+import { RunPageLoader } from '../../pageLoader.js';
 
 export default function topicMenuContent() {
  let getAllTitleLinkTopics = document.querySelectorAll('.topic-title-link');
@@ -38,9 +38,9 @@ export default function topicMenuContent() {
    urlPath = location.origin + '/' + getCurrentUrlHash.join('/') + el.getAttribute('path');
 
    if (element.target.getAttribute('ref_pos')) {
-    runPageLoader(urlPath, true, false, true, false, element.target.getAttribute('ref_pos'));
+    RunPageLoader(urlPath, true, false, true, false, element.target.getAttribute('ref_pos'));
    } else {
-    runPageLoader(urlPath, true, false, true);
+    RunPageLoader(urlPath, true, false, true);
    }
   });
  });

@@ -1,5 +1,3 @@
-import startup_contentRender from './main_page_content_render/main.js';
-
 import { ConvertPathFromSlashToHashes, ConvertPathFromHashToSlash, GetLocationPathPart } from './utilities/url_path_utility.js';
 import { setSidebarSubjectFilesLink, OpenFolderAndFileSideBarMenuAutomatically } from './sideBar_Render/menu/setSidebarSubjectFilesLink.js';
 import modal_interact_manage from './modal_interact_manage.js';
@@ -113,9 +111,9 @@ function setup_PageLoaderURLPath() {
   UrlPathsHistory.shift();
   bodyElement.setAttribute('newTab', '');
   bodyElement.setAttribute('sidebar', 'off');
-  runPageLoader(getUrlPath, false, false, false, false, null, false, false);
+  RunPageLoader(getUrlPath, false, false, false, false, null, false, false);
  } else {
-  runPageLoader(getUrlPath, false, true, false, false, null, false, true);
+  RunPageLoader(getUrlPath, false, true, false, false, null, false, true);
  }
 }
 
@@ -130,7 +128,7 @@ function setupNavigationBackAndForwardHistoryButtons() {
 
    _getUrlPath = location.origin + ConvertPathFromHashToSlash(location.origin + extractHistoryPath);
 
-   runPageLoader(_getUrlPath, true, true, false, false, null, false, true);
+   RunPageLoader(_getUrlPath, true, true, false, false, null, false, true);
   }
  });
 
@@ -143,7 +141,7 @@ function setupNavigationBackAndForwardHistoryButtons() {
    extractHistoryPath = UrlPathsHistory[++currentUrlPathsHistoryIndex];
    _getUrlPath = location.origin + ConvertPathFromHashToSlash(location.origin + extractHistoryPath);
 
-   runPageLoader(_getUrlPath, true, true, false, false, null, false, true);
+   RunPageLoader(_getUrlPath, true, true, false, false, null, false, true);
   }
  });
 
@@ -230,7 +228,7 @@ function RenderPathHeaderView(paths, isPageTopicLinkSelected, isFileLinkSelected
 // ######################
 // ######################
 
-export async function runPageLoader(
+export async function RunPageLoader(
  urlHrefLink,
  disableHistoryPathPush = false,
  isSubjectFileLinkSelected = false,
@@ -319,6 +317,7 @@ export async function runPageLoader(
   try {
    let responseData = await fetch(urlHrefLink);
    let contentText = await responseData.text();
+
    DocContentHTMLText = contentText.trim();
    ResStatus = responseData.status;
 
@@ -335,13 +334,15 @@ export async function runPageLoader(
    page_path = getHashedPath.replace(/\#/g, '/');
    page_path = decodeURIComponent(page_path);
    bodyElement.setAttribute('current_path', page_path);
+
+   EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, refPos);
   } catch (error) {
    console.log('Error: ', error);
-   ResStatus = 400;
+   DocContentRender.innerHTML = `
+   <div class='page-msg-content error'>
+    <p class="msg-title">Page Error</p>
+    <p class="msg-info">404 Error</p>
+  </div>`;
   }
-
-  EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, refPos);
-
-  // startup_contentRender();
  }
 }

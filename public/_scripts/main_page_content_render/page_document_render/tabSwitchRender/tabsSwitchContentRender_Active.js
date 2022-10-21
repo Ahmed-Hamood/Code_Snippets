@@ -6,8 +6,6 @@ export default function tabsSwitchContentRender_Active() {
    let el = e.target.parentElement.parentElement.lastElementChild.children;
    let codeContainerChildren = e.target.parentElement.children;
 
-   // if (!e.target.classList.contains('active')) SideBar_Close.play();
-
    // Remove active class from every Tab-Btn
    for (let index = 0; index < codeContainerChildren.length; index++) {
     codeContainerChildren[index].classList.remove('active');

@@ -46,7 +46,7 @@
  content: '';
  position: absolute;
  height: 2px;
- background: rgba(255, 255, 255, 0.854);
+ background: rgba(82, 82, 82, 0.854);
  border-radius: 5px;
  margin-left: -0.2rem;
  width: 100%;
@@ -54,7 +54,7 @@
 }
 
 .main-list-titles-nav-content .main-titles-list:before {
- top: -30px;
+ top: -24px;
 }
 
 .main-list-titles-nav-content .main-titles-list:after {
@@ -101,7 +101,8 @@
 .main-list-titles-nav-content h1 {
  color: rgba(255, 255, 255, 0.8);
  font-size: 150%;
- font-weight: 400;
+ text-shadow: 1px 1px 1px #000;
+ font-weight: 500;
  margin-bottom: 28px;
  padding-bottom: 14px;
  padding-left: 2px;
@@ -436,10 +437,11 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  font-weight: 500;
  line-height: 120%;
  max-width: 100%;
- white-space: pre-wrap;
+ white-space: wrap;
  word-break: break-word;
  caret-color: rgba(255, 255, 255, 0.81);
- padding-top: calc(1.2 * 1.2rem);
+ padding-top: calc(1.2 * 0.2rem);
+ margin-top: calc(1.2 * 2.2rem);
  margin-bottom: calc(1.2 * 1.5rem);
  position: relative;
  cursor: default;
@@ -452,12 +454,12 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 
 #page-content-wrapper .sub-sub-title {
  color: #e1b12c;
- font-size: 1.4rem;
+ font-size: 1.8rem;
 }
 
 #page-content-wrapper .sub-sub-sub-title {
- color: #e1b12c;
- font-size: 1.2rem;
+ color: #f24223;
+ font-size: 1.5rem;
 }
 
 #page-content-wrapper .sub-sub-title,
@@ -598,12 +600,12 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 #ref-link,
 #only-link,
 tooltip {
- font-size: 95%;
+ font-size: 95%; 
+ /* vertical-align: top; */
  position: relative;
  text-decoration: none;
  font-weight: 400;
  padding: 0 2px;
- padding-top: 1px;
  display: inline;
  background-color: rgba(97, 218, 251, 0.12);
  border-bottom: 1px solid rgba(97, 218, 251, 0.3);
@@ -943,7 +945,7 @@ tooltip .tooltiptext span {
  position: relative;
  margin-bottom: 16px;
  margin-left: 1.9rem;
- padding: 5px 9px 10px 9px;
+ padding: 8px 9px 8px 9px;
  background: #221e2c7e;
  border: 1px solid #373737;
  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
@@ -1044,7 +1046,6 @@ tooltip .tooltiptext span {
  padding: 0;
  margin-bottom: 14px;
 }
-
 .list-content.normal.alpha li {
  list-style-type: upper-alpha;
 }

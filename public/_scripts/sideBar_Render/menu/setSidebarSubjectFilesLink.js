@@ -1,4 +1,4 @@
-import { currentActivePath, runPageLoader } from '../../pageLoader.js';
+import { currentActivePath, RunPageLoader } from '../../pageLoader.js';
 import { AddEventListenersToSubFolders, AddEventListenerToFilesOnOpenedFolder } from './EnableSidebarMenuList.js';
 import { ConvertPathFromSlashToHashes, GetLocationPathPart } from '../../utilities/url_path_utility.js';
 
@@ -35,7 +35,7 @@ export function setFileWithLinkForPageContentRender(targetElement) {
  SelectedUrlPath = targetElement.getAttribute('urlPath');
  if (SelectedUrlPath != currentActivePath) {
   SelectedUrlPath = location.origin + SelectedUrlPath;
-  runPageLoader(SelectedUrlPath, false, true, false, false, null, isDocumentation, false);
+  RunPageLoader(SelectedUrlPath, false, true, false, false, null, isDocumentation, false);
   Sounds().Play_press();
  }
 }

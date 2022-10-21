@@ -1,6 +1,5 @@
 import CreateSubjectsMenuList from '../../Subjects_list/import_create_menu_list.js';
 import EnableSidebarMenuList from './menu/EnableSidebarMenuList.js';
-import sidebarSearchBtn from './header/sidebarSearchBtn.js';
 import sideBarMenuShrinkBtn from './header/sideBarMenuShrinkBtn.js';
 
 const urlSearchParams = new URLSearchParams(window.location.search);
@@ -9,7 +8,6 @@ export default function startup_SideBarRender() {
  if (!urlSearchParams.has('newTab')) {
   CreateSubjectsMenuList();
   EnableSidebarMenuList();
-  // sidebarSearchBtn();
   sideBarMenuShrinkBtn();
   console.log('Startup SideBar Render');
  }

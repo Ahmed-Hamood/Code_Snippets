@@ -1,4 +1,4 @@
-import { runPageLoader } from '../../pageLoader.js';
+import { RunPageLoader } from '../../pageLoader.js';
 
 export default function sideBarMenuShrinkBtn() {
  // on application startup with screen size less than 1000 hide the main content
@@ -45,7 +45,7 @@ export default function sideBarMenuShrinkBtn() {
 
  HomeBtn.addEventListener('click', () => {
   if (location.href != `${location.origin}/`) {
-   runPageLoader(location.origin, false, false, false, true);
+   RunPageLoader(location.origin, false, false, false, true);
   }
  });
 }

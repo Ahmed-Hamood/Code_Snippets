@@ -9,7 +9,6 @@ number {
  font-weight: 400;
  line-height: normal;
  font-family: consolas, 'JetBrains Mono', monospace, 'Menlo', monospace;
- vertical-align: middle;
  margin: 0 0.2rem;
  white-space: wrap;
  /* position: relative; */
@@ -19,7 +18,7 @@ number {
  cursor: default;
  pointer-events: none;
  transition: all 0.3s;
- vertical-align: initial;
+ /* vertical-align: bottom; */
  text-decoration: none !important;
 }
 

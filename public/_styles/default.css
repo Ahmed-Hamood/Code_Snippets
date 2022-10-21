@@ -33,7 +33,6 @@ a {
 ::-webkit-scrollbar-track {
  background: var(--body-container);
  border-radius: 0px;
- /* box-shadow: inset 7px 0px 12px #282c34; */
 }
 
 ::-webkit-scrollbar-thumb {
@@ -45,6 +44,7 @@ a {
 }
 
 body[pageLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
+ opacity: 0;
  animation: FadeInAnimation 0.3s ease-in-out 0.8s forwards;
 }
 
@@ -98,6 +98,7 @@ body[pageLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
  color: #ea2611;
  border-color: #ea2611;
  background: rgba(233, 17, 17, 0.08);
+ animation: FadeInAnimation 0.4s ease-in 0.2s backwards;
 }
 
 .page-msg-content .msg-title {
@@ -122,6 +123,13 @@ body[pageLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
  font-size: 1rem;
  font-weight: 500;
  display: block;
+}
+
+.page-msg-content .msg-info .vscode-icon {
+ width: 22px;
+ height: 22px;
+ margin: 0 6px;
+ vertical-align: top;
 }
 
 /* VSCODE Button */

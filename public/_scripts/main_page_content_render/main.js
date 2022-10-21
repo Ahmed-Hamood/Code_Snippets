@@ -21,23 +21,21 @@ import tooltip from './page_document_render/tooltips_navHashPos_refLinks/tooltip
 import content_section_wrapper from './page_document_render/content_section_wrapper.js';
 
 let page_content = document.getElementById('page-content-wrapper');
-let bodyElm = document.body;
+let bodyElement = document.body;
 
 export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, refPos = null) {
  let isPageLoadSuccess = true;
+
  let HTMLEditTextMsg = `
  <p class="msg-title">File is Empty</p>
  <p class="msg-info">Click on VSCode to edit this file ➟ </p>
  `;
- let FileMayNotExistTextMsg = `<p class="msg-title">No Content, Maybe File Does not Exist </p> 
-   <p class="msg-info">
-    Click on <blue>vscode ➟ </blue> to create file Press <keyboard>Ctrl + S</keyboard> to save the file. 
-   </p> `;
 
- let ErrorMsgHTMLContent = `
-    <p class="msg-title">Page Error</p>
-    <p class="msg-info">404 Error</p>
-   `;
+ let FileMayNotExistTextMsg = `
+ <p class="msg-title">No Content, Maybe File Does not Exist </p> 
+   <p class="msg-info">
+    Click on <i class="svg vscode-svg vscode-icon"></i> to create file.
+   </p> `;
 
  const titlesContentWrapper = (htmlContent) => {
   const parser = new DOMParser();
@@ -86,24 +84,18 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
 
  if (ResStatus == 404) {
   isPageLoadSuccess = false;
-  DocContentHTMLText = `<div class='page-msg-content warning'>
+  DocContentHTMLText = `
+  <div class='page-msg-content warning'>
    ${FileMayNotExistTextMsg}
   </div>`;
  }
 
  if (!DocContentHTMLText) {
   isPageLoadSuccess = false;
-  DocContentHTMLText = `<div class='page-msg-content guide'>
-  ${HTMLEditTextMsg}
- </div>`;
- }
-
- if (ResStatus == 400) {
-  isPageLoadSuccess = false;
   DocContentHTMLText = `
-   <div class='page-msg-content error'>
-    ${ErrorMsgHTMLContent}
-   </div>`;
+  <div class='page-msg-content guide'>
+   ${HTMLEditTextMsg}
+  </div>`;
  }
 
  page_content.setAttribute('id', '');
@@ -119,7 +111,7 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
 function startup_pageRender(isPageLoadSuccess, refPos = null) {
  if (isPageLoadSuccess) {
   let has_documentation_topics_list_container = document.querySelector('.documentation-topics-list-container');
-  bodyElm.setAttribute('pageLoading', true);
+  bodyElement.setAttribute('pageLoading', true);
 
   if (has_documentation_topics_list_container) {
    // get all topic menu links
@@ -176,6 +168,6 @@ function startup_pageRender(isPageLoadSuccess, refPos = null) {
    content_section_wrapper();
   }
 
-  bodyElm.setAttribute('pageLoading', false);
+  bodyElement.setAttribute('pageLoading', false);
  }
 }
