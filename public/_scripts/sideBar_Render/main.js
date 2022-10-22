@@ -1,14 +1,16 @@
-import CreateSubjectsMenuList from '../../Subjects_list/import_create_menu_list.js';
-import EnableSidebarMenuList from './menu/EnableSidebarMenuList.js';
+import EmbeddingAllSubjectsIntoSidebarMenuList from '../../Subjects_list/import_create_menu_list.js';
+import EnableSidebarMenuListEventListener from './menu/EnableSidebarMenuListEventListener.js';
 import sideBarMenuShrinkBtn from './header/sideBarMenuShrinkBtn.js';
+import homeBtnActive from './menu/homeBtnActive.js';
 
 const urlSearchParams = new URLSearchParams(window.location.search);
 
 export default function startup_SideBarRender() {
  if (!urlSearchParams.has('newTab')) {
-  CreateSubjectsMenuList();
-  EnableSidebarMenuList();
+  EmbeddingAllSubjectsIntoSidebarMenuList();
+  EnableSidebarMenuListEventListener();
   sideBarMenuShrinkBtn();
+  homeBtnActive();
   console.log('Startup SideBar Render');
  }
 }

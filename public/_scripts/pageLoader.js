@@ -3,10 +3,14 @@ import { setSidebarSubjectFilesLink, OpenFolderAndFileSideBarMenuAutomatically }
 import modal_interact_manage from './modal_interact_manage.js';
 import EmbeddingHTMLPage from './main_page_content_render/main.js';
 import doc_nav_header_active from './main_page_content_render/page_document_render/doc_nav_header_expander.js';
+import _urlPathDBStore from './_urlPathDBStore.js';
 
-let UrlPathsHistory = ['/'];
+// let UrlPathsHistory = ['/'];
+// let currentUrlPathsHistoryIndex = 0;
 
-export let currentActivePath = '';
+const db = _urlPathDBStore();
+
+// export let currentActivePath = '';
 let DocContentRender = document.getElementById('page-content-wrapper');
 let navTitleHeader = document.querySelector('.nav-title-header');
 let pathViewContentHeader = document.querySelector('.path-view-content-header');
@@ -19,18 +23,20 @@ let ForwardBtn = document.querySelector('.go-forward-btn');
 let HomeBtn = document.querySelector('.home-btn-content');
 
 let sideBar = document.querySelector('.sideBar');
+let allSidebarFiles = [];
 let bodyElement = document.body;
 
 let urlSearchParams = new URLSearchParams(window.location.search);
-let currentUrlPathsHistoryIndex = 0;
-let _isPageTopicLinkSelected = false;
+let _isDocumentationPageLinkSelected = false;
 
-let LoadingHTML = `<div class="spinner-content">
+let LoadingSpinnerHTML = `<div class="spinner-content">
 <div class="spinner-wheel"></div>
 <p class="spinner-message"></p>
 </div>`;
 
 export default function Startup_PageLoader() {
+ allSidebarFiles = document.querySelectorAll('.file-type');
+
  if (!urlSearchParams.has('newTab')) setSidebarSubjectFilesLink();
  setup_PageLoaderURLPath();
  setupNavigationBackAndForwardHistoryButtons();
@@ -101,14 +107,17 @@ function setup_vscode_opener() {
 function setup_PageLoaderURLPath() {
  let getUrlPath = ConvertPathFromHashToSlash(location) || '';
 
- if (getUrlPath != '') currentUrlPathsHistoryIndex++;
+ //  if (getUrlPath != '') currentUrlPathsHistoryIndex++;
+ if (getUrlPath != '') db.IncreaseUrlPathIndex();
 
  getUrlPath = location.origin + getUrlPath;
 
  if (urlSearchParams.has('newTab')) {
   sideBar.remove();
-  currentUrlPathsHistoryIndex = 0;
-  UrlPathsHistory.shift();
+  // currentUrlPathsHistoryIndex = 0;
+  db.ResetCurrentUrlPathHistoryIndex();
+  // UrlPathsHistory.shift();
+  db.shiftUrlPathHistory();
   bodyElement.setAttribute('newTab', '');
   bodyElement.setAttribute('sidebar', 'off');
   RunPageLoader(getUrlPath, false, false, false, false, null, false, false);
@@ -120,11 +129,13 @@ function setup_PageLoaderURLPath() {
 // Setup Navigate back and forward Buttons
 function setupNavigationBackAndForwardHistoryButtons() {
  BackBtn.addEventListener('click', () => {
-  if (currentUrlPathsHistoryIndex != 0) {
+  // if (currentUrlPathsHistoryIndex != 0) {
+  if (db.getCurrentUrlPathsHistoryIndex() != 0) {
    let extractHistoryPath,
     _getUrlPath = '';
 
-   extractHistoryPath = UrlPathsHistory[--currentUrlPathsHistoryIndex];
+   //  extractHistoryPath = UrlPathsHistory[--currentUrlPathsHistoryIndex];
+   extractHistoryPath = db.getPreviousHistoryPath();
 
    _getUrlPath = location.origin + ConvertPathFromHashToSlash(location.origin + extractHistoryPath);
 
@@ -134,11 +145,13 @@ function setupNavigationBackAndForwardHistoryButtons() {
 
  ForwardBtn.addEventListener('click', (e) => {
   // disable forward button when history length is in last page, and disable it also when entering a topic link
-  if (currentUrlPathsHistoryIndex < UrlPathsHistory.length - 1 && !_isPageTopicLinkSelected) {
+  // if (currentUrlPathsHistoryIndex < UrlPathsHistory.length - 1 && !_isDocumentationPageLinkSelected) {
+  if (db.getCurrentUrlPathsHistoryIndex() < db.getLastUrlPathIndex() && !_isDocumentationPageLinkSelected) {
    let extractHistoryPath = '';
    let _getUrlPath = '';
 
-   extractHistoryPath = UrlPathsHistory[++currentUrlPathsHistoryIndex];
+   //  extractHistoryPath = UrlPathsHistory[++currentUrlPathsHistoryIndex];
+   extractHistoryPath = db.getNextPathHistory();
    _getUrlPath = location.origin + ConvertPathFromHashToSlash(location.origin + extractHistoryPath);
 
    RunPageLoader(_getUrlPath, true, true, false, false, null, false, true);
@@ -146,13 +159,14 @@ function setupNavigationBackAndForwardHistoryButtons() {
  });
 
  window.onpopstate = function () {
-  if (currentActivePath.includes('%20')) {
-   let currentMenuPath = currentActivePath.split('/');
+  // if (currentActivePath.includes('%20')) {
+  if (db.getCurrentActivePath().includes('%20')) {
+   let currentMenuPath = db.getCurrentActivePath().split('/');
    currentMenuPath.pop();
    currentMenuPath = currentMenuPath.join('/').concat('.html');
    window.history.pushState('page', null, ConvertPathFromSlashToHashes(location.origin + currentMenuPath));
   } else {
-   window.history.pushState('page', null, ConvertPathFromSlashToHashes(location.origin + currentActivePath));
+   window.history.pushState('page', null, ConvertPathFromSlashToHashes(location.origin + db.getCurrentActivePath()));
   }
  };
 }
@@ -162,18 +176,7 @@ function setupNavigationBackAndForwardHistoryButtons() {
 // ########################################################################################
 // ########################################################################################
 
-function InvokeClickEvent(className) {
- let menuIconClickEvent = new Event('click');
- let IconClick = document.querySelector(`.${className}`);
- IconClick.dispatchEvent(menuIconClickEvent);
-}
-
-// ########################################################################################
-// ########################################################################################
-// ########################################################################################
-// ########################################################################################
-
-function RenderPathHeaderView(paths, isPageTopicLinkSelected, isFileLinkSelected) {
+function RenderPathHeaderView(paths, isFileLinkSelected) {
  let pathViewContent = '';
  let headerTitle = '';
  let ArrayOfPaths = paths.split('#'); // ['', 'Docs', 'nodejs', 'expressjs', 'Installation.html']
@@ -190,7 +193,8 @@ function RenderPathHeaderView(paths, isPageTopicLinkSelected, isFileLinkSelected
 
   headerTitle = HtmlFile.replace(/.html/g, '');
 
-  if (!isPageTopicLinkSelected && urlSearchParams.has('subjectTitle')) headerTitle = urlSearchParams.get('subjectTitle').replace('__', '');
+  // if (!isDocumentationPageLinkSelected && urlSearchParams.has('subjectTitle')) headerTitle = urlSearchParams.get('subjectTitle').replace('__', '');
+  if (urlSearchParams.has('subjectTitle')) headerTitle = urlSearchParams.get('subjectTitle').replace('__', '');
 
   if (!isFileLinkSelected) navTitleHeader.innerHTML = headerTitle;
  }
@@ -229,93 +233,101 @@ function RenderPathHeaderView(paths, isPageTopicLinkSelected, isFileLinkSelected
 // ######################
 
 export async function RunPageLoader(
- urlHrefLink,
- disableHistoryPathPush = false,
+ urlPathLink,
+ isHistoryPathPushDisabled = false,
  isSubjectFileLinkSelected = false,
- isPageTopicLinkSelected = false,
- homeBtnClicked = false,
- refPos = null,
- isDocumentation = false,
- automaticFolderFileOpen = false
+ isDocumentationPageLinkSelected = false,
+ isHomeBtnSelected = false,
+ refTitlePos = null,
+ isDocumentationPage = false,
+ automaticFolderFileOpenOnPageReload = false
 ) {
- let getHashedPath = ConvertPathFromSlashToHashes(urlHrefLink);
+ let DocContentHTMLText;
+ let ResStatus;
+ let getUrlPathHashedLink = ConvertPathFromSlashToHashes(urlPathLink);
 
- if (automaticFolderFileOpen) {
-  OpenFolderAndFileSideBarMenuAutomatically(urlHrefLink);
+ if (automaticFolderFileOpenOnPageReload) {
+  OpenFolderAndFileSideBarMenuAutomatically(urlPathLink);
  }
 
- if (homeBtnClicked) {
-  currentUrlPathsHistoryIndex++;
+ if (isHomeBtnSelected) {
+  // currentUrlPathsHistoryIndex++;
+  db.IncreaseUrlPathIndex();
   ForwardBtn.classList.add('disable');
-  document.querySelectorAll('.file-type').forEach((el) => el.classList.remove('highlight-menu'));
+  allSidebarFiles.forEach((el) => el.classList.remove('highlight-menu'));
  }
 
- if (urlHrefLink.slice(-4) === 'html' || urlHrefLink == location.origin) {
-  currentActivePath = GetLocationPathPart(urlHrefLink);
+ console.log(urlPathLink);
 
-  if (urlHrefLink == location.origin) {
-   getHashedPath = '/';
-   currentActivePath = '';
-   urlHrefLink = location.origin + '/Docs';
+ if (urlPathLink.slice(-4) === 'html' || urlPathLink == location.origin) {
+  // currentActivePath = GetLocationPathPart(urlPathLink);
+  db.setCurrentActivePath(GetLocationPathPart(urlPathLink));
+
+  if (urlPathLink == location.origin) {
+   getUrlPathHashedLink = '/';
+   //  currentActivePath = '';
+   db.setCurrentActivePath('');
+   isHistoryPathPushDisabled = true;
+   urlPathLink = location.origin + '/Docs';
    // on home page disable home btn
    HomeBtn.classList.add('disable');
   } else {
    HomeBtn.classList.remove('disable');
   }
 
-  if (getHashedPath.slice(-4) === 'html' && !disableHistoryPathPush) {
-   if (UrlPathsHistory[UrlPathsHistory.length - 1] != getHashedPath) UrlPathsHistory.push(getHashedPath);
-   currentUrlPathsHistoryIndex = UrlPathsHistory.length - 1;
+  // if (getUrlPathHashedLink.slice(-4) === 'html' && !isHistoryPathPushDisabled) {
+  if (!isHistoryPathPushDisabled) {
+   // if last history path does not match our current path then add urlPath
+   //  if (UrlPathsHistory[UrlPathsHistory.length - 1] != getUrlPathHashedLink) UrlPathsHistory.push(getUrlPathHashedLink);
+   if (db.getLastUrlPathHistory() != getUrlPathHashedLink) db.pushUrlPathHistory(getUrlPathHashedLink);
+   //  set the last path history index and save it as the currentUrlPathsHistoryIndex
+   //  currentUrlPathsHistoryIndex = UrlPathsHistory.length - 1;
+   //  currentUrlPathsHistoryIndex = db.getLastUrlPathIndex();
   }
 
   // if current index path is 0 then set go-back button opacity to disable state
-  if (currentUrlPathsHistoryIndex == 0) {
+  // if (currentUrlPathsHistoryIndex == 0) {
+  if (db.getCurrentUrlPathsHistoryIndex() == 0) {
    BackBtn.classList.add('disable');
   } else {
    BackBtn.classList.remove('disable');
   }
 
   // if current index path is equal to UrlPathsHistory length then set forward-back button opacity disable state
-  if (!homeBtnClicked) {
-   if (currentUrlPathsHistoryIndex == UrlPathsHistory.length - 1) {
+  if (!isHomeBtnSelected) {
+   //  if (currentUrlPathsHistoryIndex == UrlPathsHistory.length - 1) {
+   if (db.getCurrentUrlPathsHistoryIndex() == db.getLastUrlPathIndex()) {
     ForwardBtn.classList.add('disable');
    } else {
     ForwardBtn.classList.remove('disable');
    }
   }
 
-  if (isPageTopicLinkSelected) {
-   _isPageTopicLinkSelected = isPageTopicLinkSelected;
-   currentUrlPathsHistoryIndex++;
+  if (isDocumentationPageLinkSelected) {
+   //  currentUrlPathsHistoryIndex++;
+   db.IncreaseUrlPathIndex();
    BackBtn.classList.remove('disable');
    ForwardBtn.classList.add('disable');
   } else {
-   window.history.pushState('page', null, getHashedPath);
-   _isPageTopicLinkSelected = isPageTopicLinkSelected;
+   window.history.pushState('page', null, getUrlPathHashedLink);
   }
 
-  RenderPathHeaderView(getHashedPath, _isPageTopicLinkSelected, isSubjectFileLinkSelected);
+  _isDocumentationPageLinkSelected = isDocumentationPageLinkSelected;
 
-  // console.log('Url Paths History: ', UrlPathsHistory);
-  // console.log('current history index: ', currentUrlPathsHistoryIndex);
-  // console.log('current Active Link: ', currentActivePath);
+  RenderPathHeaderView(getUrlPathHashedLink, isSubjectFileLinkSelected);
+
+  // console.log('Url Paths History: ', db.getArrayPathsHistory());
+  // console.log('current history index: ', db.getCurrentUrlPathsHistoryIndex());
+  // console.log('current Active Link: ', db.getCurrentActivePath());
 
   // #############################################################
   // #############################################################
   // #############################################################
 
-  DocContentRender.innerHTML = LoadingHTML;
-
-  // let getLastPositionPath = currentActivePath.split('/');
-  // getLastPositionPath = getLastPositionPath[getLastPositionPath.length - 1];
-
-  if (window.innerWidth <= 1000 && !urlSearchParams.has('newTab') && bodyElement.getAttribute('sidebar') != 'false') InvokeClickEvent('close-sideMenu-btn');
-
-  let DocContentHTMLText;
-  let ResStatus;
+  DocContentRender.innerHTML = LoadingSpinnerHTML;
 
   try {
-   let responseData = await fetch(urlHrefLink);
+   let responseData = await fetch(urlPathLink);
    let contentText = await responseData.text();
 
    DocContentHTMLText = contentText.trim();
@@ -331,11 +343,11 @@ export async function RunPageLoader(
    }
 
    // prepare page path
-   page_path = getHashedPath.replace(/\#/g, '/');
+   page_path = getUrlPathHashedLink.replace(/\#/g, '/');
    page_path = decodeURIComponent(page_path);
    bodyElement.setAttribute('current_path', page_path);
 
-   EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, refPos);
+   EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, refTitlePos);
   } catch (error) {
    console.log('Error: ', error);
    DocContentRender.innerHTML = `

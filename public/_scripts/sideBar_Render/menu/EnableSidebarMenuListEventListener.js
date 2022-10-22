@@ -1,11 +1,11 @@
-import { setFileWithLinkForPageContentRender } from './setSidebarSubjectFilesLink.js';
+import { setSidebarFileLinkForPageLoader } from './setSidebarSubjectFilesLink.js';
 
 let allMainTopFolders;
 let allSubjectFiles;
 
-let subject_lvl_section_children = null;
+// letlet subject_lvl_section_children = null;
 
-export default function EnableSidebarMenuList() {
+export default function EnableSidebarMenuListEventListener() {
  allSubjectFiles = document.querySelectorAll('.subject-title-link.file-type');
  allMainTopFolders = document.querySelectorAll('.main-folder');
 
@@ -26,7 +26,7 @@ export function AddEventListenersToSubFolders(targetElement) {
  // targetElement.parentElement.nextElementSibling = a.subject-title-link -> subject-content-link -> target subject-list-menu.###-level
  if (targetElement.parentElement.nextElementSibling) {
   //
-  subject_lvl_section_children = targetElement.parentElement.nextElementSibling.children;
+  let subject_lvl_section_children = targetElement.parentElement.nextElementSibling.children;
   // loop inside subject-list-menu.###-level on each children
   for (let index = 0; index < subject_lvl_section_children.length; index++) {
    // if the child element has a .subject-content-link.folder-content class then target it
@@ -47,7 +47,7 @@ export function AddEventListenerToFilesOnOpenedFolder(targetElement, is_nav_acce
  // targetElement = a.subject-title-link
  // targetElement.parentElement.nextElementSibling = a.subject-title-link -> subject-content-link -> target subject-list-menu.###-level
  if (targetElement.parentElement.nextElementSibling) {
-  subject_lvl_section_children = targetElement.parentElement.nextElementSibling.children;
+  let subject_lvl_section_children = targetElement.parentElement.nextElementSibling.children;
 
   if (targetElement.classList.contains('subject-title-link') && !targetElement.classList.contains('empty-folder')) {
    if (targetElement.getAttribute('event') == 'false' || is_nav_access) {
@@ -84,7 +84,7 @@ function AddEventListenerToFile(event) {
  allSubjectFiles.forEach((el) => el.classList.remove('highlight-menu'));
  if (event.target.classList.contains('file-type')) {
   event.target.classList.add('highlight-menu');
-  setFileWithLinkForPageContentRender(event);
+  setSidebarFileLinkForPageLoader(event);
  }
 }
 

@@ -1,8 +1,12 @@
-import { currentActivePath, RunPageLoader } from '../../pageLoader.js';
-import { AddEventListenersToSubFolders, AddEventListenerToFilesOnOpenedFolder } from './EnableSidebarMenuList.js';
+import { RunPageLoader } from '../../pageLoader.js';
+import { AddEventListenersToSubFolders, AddEventListenerToFilesOnOpenedFolder } from './EnableSidebarMenuListEventListener.js';
 import { ConvertPathFromSlashToHashes, GetLocationPathPart } from '../../utilities/url_path_utility.js';
 
 import Sounds from '../../sounds.js';
+import eventInvoker from '../../utilities/eventInvoker.js';
+import _urlPathDBStore from '../../_urlPathDBStore.js';
+
+const { getCurrentActivePath } = _urlPathDBStore();
 
 // Active render content on every url link change
 export function setSidebarSubjectFilesLink() {
@@ -22,7 +26,7 @@ export function setSidebarSubjectFilesLink() {
  });
 }
 
-export function setFileWithLinkForPageContentRender(targetElement) {
+export function setSidebarFileLinkForPageLoader(targetElement) {
  let navTitleHeader = document.querySelector('.nav-title-header');
  let SelectedUrlPath = null;
  let isDocumentation = false;
@@ -33,8 +37,10 @@ export function setFileWithLinkForPageContentRender(targetElement) {
 
  navTitleHeader.innerHTML = targetElement.children[2].textContent;
  SelectedUrlPath = targetElement.getAttribute('urlPath');
- if (SelectedUrlPath != currentActivePath) {
+ if (SelectedUrlPath != getCurrentActivePath()) {
   SelectedUrlPath = location.origin + SelectedUrlPath;
+
+  if (window.innerWidth <= 1000) eventInvoker('.close-sideMenu-btn');
   RunPageLoader(SelectedUrlPath, false, true, false, false, null, isDocumentation, false);
   Sounds().Play_press();
  }

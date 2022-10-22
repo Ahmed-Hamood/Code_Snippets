@@ -137,7 +137,8 @@
 }
 
 .main-list-titles-nav-content .main-titles-list li a {
- line-height: 140%;
+ line-height: 140%; 
+ font-weight: 500;
  cursor: pointer;
 }
 
@@ -151,20 +152,17 @@
 
 .main-list-titles-nav-content .main-titles-list li.nav-sub-title {
  font-size: 1.2rem;
- font-weight: 500;
  margin-bottom: 1rem;
 }
 
 .main-list-titles-nav-content .main-titles-list li.nav-sub-sub-title {
  font-size: 1.1rem;
- font-weight: 400;
  margin-left: 1rem;
  margin-bottom: 0.7rem;
 }
 
 .main-list-titles-nav-content .main-titles-list li.nav-sub-sub-sub-title {
  font-size: 0.9rem;
- font-weight: 400;
  margin-left: 2rem;
  margin-bottom: 0.5rem;
 }

@@ -1,6 +1,4 @@
-import { RunPageLoader } from '../../pageLoader.js';
-
-export default function sideBarMenuShrinkBtn() {
+ export default function sideBarMenuShrinkBtn() {
  // on application startup with screen size less than 1000 hide the main content
  let sideBar = document.querySelector('.sideBar');
  let sideBarContainer = document.querySelector('.sideBar-container');
@@ -8,8 +6,7 @@ export default function sideBarMenuShrinkBtn() {
 
  let close_sideMenu_btn = document.querySelector('.close-sideMenu-btn');
  let open_sideMenu_btn = document.querySelector('.open-sidebar-btn');
- let HomeBtn = document.querySelector('.home-btn-content');
-
+ 
  let blank_modal = document.getElementById('blank-modal');
 
  close_sideMenu_btn.addEventListener('click', () => {
@@ -43,9 +40,5 @@ export default function sideBarMenuShrinkBtn() {
   navigator.vibrate(3);
  });
 
- HomeBtn.addEventListener('click', () => {
-  if (location.href != `${location.origin}/`) {
-   RunPageLoader(location.origin, false, false, false, true);
-  }
- });
+ 
 }

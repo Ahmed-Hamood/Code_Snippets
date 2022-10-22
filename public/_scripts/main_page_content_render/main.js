@@ -28,7 +28,7 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
 
  let HTMLEditTextMsg = `
  <p class="msg-title">File is Empty</p>
- <p class="msg-info">Click on VSCode to edit this file ➟ </p>
+ <p class="msg-info">Click on <i class="svg vscode-svg vscode-icon"></i> to edit this file ➟ </p>
  `;
 
  let FileMayNotExistTextMsg = `
