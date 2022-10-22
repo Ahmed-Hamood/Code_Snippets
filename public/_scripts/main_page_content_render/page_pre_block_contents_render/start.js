@@ -18,9 +18,9 @@ export default function start() {
  build_terminal_block();
  build_cli_block();
 
- setTimeout(() => {
+  // setTimeout(() => {
   Run_Highlight_Coloring();
- }, 400);
+  //  }, 400);
 
  if (window.innerWidth > 700) {
   view_code_in_vscode();

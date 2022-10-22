@@ -12,10 +12,12 @@ export default function auto_top_scroll() {
   }
 
   // double click on doc_content_render_container to scroll to the maximum bottom
-  doc_content_render_container.addEventListener('dblclick', (ev) => {
-   if (ev.target.id == 'page-content-render-container') {
-    doc_content_render_container.scrollTo(0, doc_content_render_container.scrollHeight);
-   }
-  });
+  if (window.innerWidth > 800) {
+   doc_content_render_container.addEventListener('dblclick', (ev) => {
+    if (ev.target.id == 'page-content-render-container') {
+     doc_content_render_container.scrollTo(0, doc_content_render_container.scrollHeight);
+    }
+   });
+  }
  }
 }

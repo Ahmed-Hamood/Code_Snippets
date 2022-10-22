@@ -137,7 +137,7 @@
 }
 
 .main-list-titles-nav-content .main-titles-list li a {
- line-height: 140%; 
+ line-height: 140%;
  font-weight: 500;
  cursor: pointer;
 }
@@ -600,7 +600,6 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 #link-url,
 tooltip {
  font-size: 95%;
- /* vertical-align: top; */
  position: relative;
  text-decoration: none;
  font-weight: 400;
@@ -622,14 +621,9 @@ tooltip:hover {
 /* -------------- */
 /* ToolTip */
 /* -------------- */
-tooltip {
- cursor: pointer;
-}
 
 tooltip .tooltiptext,
-#link-ref .tooltiptext,
-#link-nav .tooltiptext,
-#link-url .tooltiptext {
+#link-ref .tooltiptext {
  font-size: 1.1rem;
  font-weight: 500;
  visibility: hidden;
@@ -657,33 +651,29 @@ tooltip .tooltiptext,
  transition-duration: 0.3s;
 }
 
+tooltip .tooltiptext:hover {
+ cursor: pointer;
+}
+
+tooltip .tooltiptext * {
+ pointer-events: none;
+}
+
 tooltip:hover .tooltiptext,
-#link-ref:hover .tooltiptext,
-#link-nav:hover .tooltiptext,
-#link-url:hover .tooltiptext {
+#link-ref:hover .tooltiptext {
  visibility: visible;
  opacity: 1;
  margin-top: 0px;
 }
 
+tooltip::before,
 #link-ref::before,
-#link-nav::before,
-#link-url::before,
-tooltip::before {
+#link-nav::before {
  color: #ffffff30;
  font-size: 0.6rem;
  position: absolute;
  bottom: 16px;
  left: -10px;
-}
-
-#link-ref::before {
- content: '🔗';
-}
-#link-nav::before {
- content: '⬆️';
- bottom: 12px;
- left: -9px;
 }
 
 tooltip::before {
@@ -692,10 +682,18 @@ tooltip::before {
  left: -5px;
 }
 
-#link-ref .tooltiptext::before,
-#link-nav .tooltiptext::before,
-#link-url .tooltiptext::before,
-tooltip .tooltiptext::before {
+#link-ref::before {
+ content: '🔗';
+}
+
+#link-nav::before {
+ content: '⬆️';
+ bottom: 12px;
+ left: -9px;
+}
+
+tooltip .tooltiptext::before,
+#link-ref .tooltiptext::before {
  content: '';
  position: absolute;
  left: 50%;
@@ -705,7 +703,7 @@ tooltip .tooltiptext::before {
  width: 100%;
 }
 
-.tooltiptext .link-text {
+#link-ref .tooltiptext .link-text {
  cursor: pointer;
  font-size: 1rem;
  line-height: 1.5rem;
@@ -716,40 +714,33 @@ tooltip .tooltiptext::before {
  border-radius: 8px;
  padding: 5px 12px;
  border: 3px solid #3498db72;
-
  transition-property: color, background-color;
  transition-duration: 0.6s;
 }
 
-.tooltiptext .link-text:hover {
+#link-ref .tooltiptext .link-text:hover {
  background: #3498db;
  color: #fff;
 }
 
-.tooltiptext .link-text.mt {
+#link-ref .tooltiptext .link-text.mt {
  margin-top: 12px;
 }
 
 tooltip .tooltiptext.left,
-.mb-tooltip-content p.left {
+.tooltip-modal p.left {
  text-align: left;
 }
 
 /* ################ */
-/* mobile tooltip */
+/* tooltip modal */
 /* ################ */
 
-.tooltiptext hr,
-.mb-tooltip-content p hr {
- border: none;
- margin: 6px 0;
-}
-
-.mb-tooltip-content {
+.tooltip-modal {
  display: none;
  position: fixed;
  width: 95%;
- max-width: 700px;
+ max-width: 800px;
  height: fit-content;
  background-color: var(--tooltip-bg);
  border: 1px solid rgb(153, 153, 153);
@@ -758,35 +749,53 @@ tooltip .tooltiptext.left,
  left: 50%;
  transform: translate(-50%, -50%);
 
- padding: 8px 15px 15px 15px;
+ padding: 10px 15px 15px 15px;
 }
 
-.mb-tooltip-content.show {
+.tooltip-modal.show {
  z-index: 12;
  display: block;
 }
 
-.mb-tooltip-content h1 {
- font-size: 1.4rem;
+.tooltip-modal h1 {
+ color: #2ecc71;
+ font-size: 1.6rem;
+ text-transform: capitalize;
  font-weight: 600;
  line-height: 170%;
- margin-bottom: 8px;
- padding-bottom: 2px;
+ margin-bottom: 6px;
+ padding-bottom: 8px;
  border-bottom: 1px dotted rgb(84, 84, 84);
 }
 
-.mb-tooltip-content p {
- font-size: 1rem;
+.tooltip-modal p {
+ font-size: 1.2rem;
  font-weight: 500;
  line-height: 170%;
  padding: 4px 0;
+ margin-left: 4px;
 }
 
-.mb-tooltip-content p span,
-tooltip .tooltiptext span {
+tooltip .tooltiptext span,
+.tooltip-modal p span {
  color: #ffffff;
  font-weight: 700;
  margin-right: 2px;
+}
+
+tooltip .tooltiptext hr,
+.tooltip-modal p hr {
+ border: none;
+ margin: 6px 0;
+}
+
+@media screen and (max-width: 1000px) {
+ .tooltip-modal h1 {
+  font-size: 1.4rem;
+ }
+ .tooltip-modal p {
+  font-size: 1rem;
+ }
 }
 
 /* #endregion */

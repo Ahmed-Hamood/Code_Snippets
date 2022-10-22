@@ -182,19 +182,19 @@ body[max-content='true'] .main-content-header .nav-header-container .nav-content
 }
 
 .go-back-btn {
- margin-left: 12px;
+ padding: 0 12px 0 10px;
 }
 
 .go-forward-btn {
- margin-right: 12px;
+ padding: 0 10px 0 12px;
 }
 
-.historyBtn {
+.historyBtn-style {
  width: 20px;
  height: 20px;
 }
 
-.historyBtn.forward {
+.historyBtn-style.forward {
  transform: rotate(180deg);
 }
 

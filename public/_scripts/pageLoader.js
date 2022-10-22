@@ -4,13 +4,10 @@ import modal_interact_manage from './modal_interact_manage.js';
 import EmbeddingHTMLPage from './main_page_content_render/main.js';
 import doc_nav_header_active from './main_page_content_render/page_document_render/doc_nav_header_expander.js';
 import _urlPathDBStore from './_urlPathDBStore.js';
-
-// let UrlPathsHistory = ['/'];
-// let currentUrlPathsHistoryIndex = 0;
+import { eventInvoker } from './utilities/other_utilities.js';
 
 const db = _urlPathDBStore();
 
-// export let currentActivePath = '';
 let DocContentRender = document.getElementById('page-content-wrapper');
 let navTitleHeader = document.querySelector('.nav-title-header');
 let pathViewContentHeader = document.querySelector('.path-view-content-header');
@@ -107,21 +104,19 @@ function setup_vscode_opener() {
 function setup_PageLoaderURLPath() {
  let getUrlPath = ConvertPathFromHashToSlash(location) || '';
 
- //  if (getUrlPath != '') currentUrlPathsHistoryIndex++;
- if (getUrlPath != '') db.IncreaseUrlPathIndex();
+ if (getUrlPath != '') db.IncreaseUrlPathHistoryIndex();
 
  getUrlPath = location.origin + getUrlPath;
 
  if (urlSearchParams.has('newTab')) {
   sideBar.remove();
-  // currentUrlPathsHistoryIndex = 0;
   db.ResetCurrentUrlPathHistoryIndex();
-  // UrlPathsHistory.shift();
   db.shiftUrlPathHistory();
   bodyElement.setAttribute('newTab', '');
   bodyElement.setAttribute('sidebar', 'off');
   RunPageLoader(getUrlPath, false, false, false, false, null, false, false);
  } else {
+  if (window.innerWidth <= 1000) eventInvoker('.close-sideMenu-btn');
   RunPageLoader(getUrlPath, false, true, false, false, null, false, true);
  }
 }
@@ -129,12 +124,10 @@ function setup_PageLoaderURLPath() {
 // Setup Navigate back and forward Buttons
 function setupNavigationBackAndForwardHistoryButtons() {
  BackBtn.addEventListener('click', () => {
-  // if (currentUrlPathsHistoryIndex != 0) {
   if (db.getCurrentUrlPathsHistoryIndex() != 0) {
    let extractHistoryPath,
     _getUrlPath = '';
 
-   //  extractHistoryPath = UrlPathsHistory[--currentUrlPathsHistoryIndex];
    extractHistoryPath = db.getPreviousHistoryPath();
 
    _getUrlPath = location.origin + ConvertPathFromHashToSlash(location.origin + extractHistoryPath);
@@ -145,12 +138,10 @@ function setupNavigationBackAndForwardHistoryButtons() {
 
  ForwardBtn.addEventListener('click', (e) => {
   // disable forward button when history length is in last page, and disable it also when entering a topic link
-  // if (currentUrlPathsHistoryIndex < UrlPathsHistory.length - 1 && !_isDocumentationPageLinkSelected) {
   if (db.getCurrentUrlPathsHistoryIndex() < db.getLastUrlPathIndex() && !_isDocumentationPageLinkSelected) {
    let extractHistoryPath = '';
    let _getUrlPath = '';
 
-   //  extractHistoryPath = UrlPathsHistory[++currentUrlPathsHistoryIndex];
    extractHistoryPath = db.getNextPathHistory();
    _getUrlPath = location.origin + ConvertPathFromHashToSlash(location.origin + extractHistoryPath);
 
@@ -159,7 +150,6 @@ function setupNavigationBackAndForwardHistoryButtons() {
  });
 
  window.onpopstate = function () {
-  // if (currentActivePath.includes('%20')) {
   if (db.getCurrentActivePath().includes('%20')) {
    let currentMenuPath = db.getCurrentActivePath().split('/');
    currentMenuPath.pop();
@@ -176,7 +166,7 @@ function setupNavigationBackAndForwardHistoryButtons() {
 // ########################################################################################
 // ########################################################################################
 
-function RenderPathHeaderView(paths, isFileLinkSelected) {
+function RenderPathHeaderView(paths, isSubjectFileLinkSelected) {
  let pathViewContent = '';
  let headerTitle = '';
  let ArrayOfPaths = paths.split('#'); // ['', 'Docs', 'nodejs', 'expressjs', 'Installation.html']
@@ -193,10 +183,11 @@ function RenderPathHeaderView(paths, isFileLinkSelected) {
 
   headerTitle = HtmlFile.replace(/.html/g, '');
 
-  // if (!isDocumentationPageLinkSelected && urlSearchParams.has('subjectTitle')) headerTitle = urlSearchParams.get('subjectTitle').replace('__', '');
-  if (urlSearchParams.has('subjectTitle')) headerTitle = urlSearchParams.get('subjectTitle').replace('__', '');
+  if (urlSearchParams.has('newTab')) isSubjectFileLinkSelected = false;
 
-  if (!isFileLinkSelected) navTitleHeader.innerHTML = headerTitle;
+  if (urlSearchParams.has('subjectTitle') && !_isDocumentationPageLinkSelected) headerTitle = urlSearchParams.get('subjectTitle').replace('__', '');
+
+  if (!isSubjectFileLinkSelected) navTitleHeader.innerHTML = headerTitle;
  }
 
  if (ArrayOfPaths.length == 0) {
@@ -251,21 +242,16 @@ export async function RunPageLoader(
  }
 
  if (isHomeBtnSelected) {
-  // currentUrlPathsHistoryIndex++;
-  db.IncreaseUrlPathIndex();
+  db.IncreaseUrlPathHistoryIndex();
   ForwardBtn.classList.add('disable');
   allSidebarFiles.forEach((el) => el.classList.remove('highlight-menu'));
  }
 
- console.log(urlPathLink);
-
  if (urlPathLink.slice(-4) === 'html' || urlPathLink == location.origin) {
-  // currentActivePath = GetLocationPathPart(urlPathLink);
   db.setCurrentActivePath(GetLocationPathPart(urlPathLink));
 
   if (urlPathLink == location.origin) {
    getUrlPathHashedLink = '/';
-   //  currentActivePath = '';
    db.setCurrentActivePath('');
    isHistoryPathPushDisabled = true;
    urlPathLink = location.origin + '/Docs';
@@ -275,18 +261,14 @@ export async function RunPageLoader(
    HomeBtn.classList.remove('disable');
   }
 
-  // if (getUrlPathHashedLink.slice(-4) === 'html' && !isHistoryPathPushDisabled) {
   if (!isHistoryPathPushDisabled) {
    // if last history path does not match our current path then add urlPath
-   //  if (UrlPathsHistory[UrlPathsHistory.length - 1] != getUrlPathHashedLink) UrlPathsHistory.push(getUrlPathHashedLink);
    if (db.getLastUrlPathHistory() != getUrlPathHashedLink) db.pushUrlPathHistory(getUrlPathHashedLink);
    //  set the last path history index and save it as the currentUrlPathsHistoryIndex
-   //  currentUrlPathsHistoryIndex = UrlPathsHistory.length - 1;
-   //  currentUrlPathsHistoryIndex = db.getLastUrlPathIndex();
+   db.setCurrentUrlPathHistoryAsLastIndex();
   }
 
   // if current index path is 0 then set go-back button opacity to disable state
-  // if (currentUrlPathsHistoryIndex == 0) {
   if (db.getCurrentUrlPathsHistoryIndex() == 0) {
    BackBtn.classList.add('disable');
   } else {
@@ -295,7 +277,6 @@ export async function RunPageLoader(
 
   // if current index path is equal to UrlPathsHistory length then set forward-back button opacity disable state
   if (!isHomeBtnSelected) {
-   //  if (currentUrlPathsHistoryIndex == UrlPathsHistory.length - 1) {
    if (db.getCurrentUrlPathsHistoryIndex() == db.getLastUrlPathIndex()) {
     ForwardBtn.classList.add('disable');
    } else {
@@ -304,8 +285,7 @@ export async function RunPageLoader(
   }
 
   if (isDocumentationPageLinkSelected) {
-   //  currentUrlPathsHistoryIndex++;
-   db.IncreaseUrlPathIndex();
+   db.IncreaseUrlPathHistoryIndex();
    BackBtn.classList.remove('disable');
    ForwardBtn.classList.add('disable');
   } else {
@@ -333,20 +313,21 @@ export async function RunPageLoader(
    DocContentHTMLText = contentText.trim();
    ResStatus = responseData.status;
 
+   
    vs_code_opener_svg_btn.children[1].innerHTML = 'Open file with vscode';
-
+   
    if (ResStatus == 404) {
-    console.log('Not Found');
-    UrlPathsHistory.splice(UrlPathsHistory.length - 1, 1);
-    currentUrlPathsHistoryIndex--;
-    vs_code_opener_svg_btn.children[1].innerHTML = 'Create file with vscode';
-   }
-
-   // prepare page path
-   page_path = getUrlPathHashedLink.replace(/\#/g, '/');
-   page_path = decodeURIComponent(page_path);
-   bodyElement.setAttribute('current_path', page_path);
-
+     console.log('Not Found');
+     db.RemoveLastUrlPathHistory();
+     db.DecreaseUrlPathHistoryIndex();
+     vs_code_opener_svg_btn.children[1].innerHTML = 'Create file with vscode';
+    }
+    
+    // prepare page path
+    page_path = getUrlPathHashedLink.replace(/\#/g, '/');
+    page_path = decodeURIComponent(page_path);
+    bodyElement.setAttribute('current_path', page_path);
+ 
    EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, refTitlePos);
   } catch (error) {
    console.log('Error: ', error);

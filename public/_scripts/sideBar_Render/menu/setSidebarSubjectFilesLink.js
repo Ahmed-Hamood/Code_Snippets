@@ -3,8 +3,8 @@ import { AddEventListenersToSubFolders, AddEventListenerToFilesOnOpenedFolder } 
 import { ConvertPathFromSlashToHashes, GetLocationPathPart } from '../../utilities/url_path_utility.js';
 
 import Sounds from '../../sounds.js';
-import eventInvoker from '../../utilities/eventInvoker.js';
 import _urlPathDBStore from '../../_urlPathDBStore.js';
+import { eventInvoker } from '../../utilities/other_utilities.js';
 
 const { getCurrentActivePath } = _urlPathDBStore();
 
@@ -40,7 +40,8 @@ export function setSidebarFileLinkForPageLoader(targetElement) {
  if (SelectedUrlPath != getCurrentActivePath()) {
   SelectedUrlPath = location.origin + SelectedUrlPath;
 
-  if (window.innerWidth <= 1000) eventInvoker('.close-sideMenu-btn');
+  if (window.innerWidth <= 1000 ) eventInvoker('.close-sideMenu-btn')
+
   RunPageLoader(SelectedUrlPath, false, true, false, false, null, isDocumentation, false);
   Sounds().Play_press();
  }

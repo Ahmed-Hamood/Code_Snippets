@@ -12,6 +12,7 @@ export default function appendCodeContent() {
    if (codeContent) {
     lineBreaks = codeContent.match(/\n/gi) || [];
    }
+
    // set lock position if we have a single line code only
    let lockPosition = lineBreaks.length == 0 ? 'top: 0.7rem;right:2.4rem;' : 'top: 2.9rem;';
 

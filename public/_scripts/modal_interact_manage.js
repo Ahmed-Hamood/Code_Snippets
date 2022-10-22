@@ -23,7 +23,7 @@ export default function modal_interact_manage() {
   if (body.getAttribute('blank-current-active') == 'tooltip') {
    body.setAttribute('blank-current-active', '');
    blank_modal.classList.remove('show-tooltip');
-   document.querySelector('.mb-tooltip-content').classList.remove('show');
+   document.querySelector('.tooltip-modal').classList.remove('show');
   }
  });
 }

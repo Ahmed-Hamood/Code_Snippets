@@ -44,6 +44,7 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
 
   //  2. get all sub-titles
   const all_titles = HTMLContent.querySelectorAll(['.sub-title', '.sub-sub-title']);
+
   let subSubTitleIndex = 0;
 
   // 3. loop thru each sub-title and add ##start## and ##end## text
@@ -108,6 +109,10 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
  startup_pageRender(isPageLoadSuccess, refPos);
 }
 
+// ++++++++++++++++++++++++++++++++++
+// ++++++++++++++++++++++++++++++++++
+// ++++++++++++++++++++++++++++++++++
+
 function startup_pageRender(isPageLoadSuccess, refPos = null) {
  if (isPageLoadSuccess) {
   let has_documentation_topics_list_container = document.querySelector('.documentation-topics-list-container');
@@ -135,7 +140,6 @@ function startup_pageRender(isPageLoadSuccess, refPos = null) {
 
    // tab content switch and render
    tabsSwitchContentRender_Active();
-
 
    // create a Collapsible content
    collapsible_content_render();

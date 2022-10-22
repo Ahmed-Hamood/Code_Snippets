@@ -3,7 +3,6 @@ export default async function appendRefLinks() {
  const getAllLinksUrl = document.querySelectorAll('#link-url');
  const getAllLinksNav = document.querySelectorAll('#link-nav');
 
- const page_content_type = document.querySelector('.highlight-menu');
  let get_href = '';
 
  let LoadRefJSON = async (url_link) => {
@@ -14,16 +13,17 @@ export default async function appendRefLinks() {
 
  if ([...getAllLinksUrl].length != 0) {
   getAllLinksUrl.forEach((element) => {
-   element.target = '_blank';
+   element.setAttribute('title', `Visit URL Link, open in a new tab.`);
+   element.setAttribute('target', `_blank`);
   });
  }
 
  if ([...getAllLinksNav].length != 0) {
   getAllLinksNav.forEach((element) => {
-   element.innerHTML += `<p class='tooltiptext'><span class="link-text">Go to ${element.textContent} title</span></p>`;
+   element.setAttribute('title', `Scroll to [${element.textContent}] title`);
   });
  }
- 
+
  if ([...getAllLinksRef].length != 0) {
   let get_current_path = document.body.getAttribute('current_path');
 

@@ -26,7 +26,7 @@ a {
 
 /* Scroll bar style */
 ::-webkit-scrollbar {
- width: 5px;
+ width: 8px;
  height: 3px;
 }
 
@@ -174,7 +174,7 @@ body[pageLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
 }
 
 #blank-modal.show-tooltip {
- background-color: rgba(0, 0, 0, 0.596);
+ background-color: rgba(0, 0, 0, 0.744);
  z-index: 10;
  display: block;
 }
@@ -194,7 +194,16 @@ body[pageLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
   /* font-size: 12px;  */
  }
 
+ ::-webkit-scrollbar {
+  width: 2px;
+  height: 3px;
+ }
+
  .svg.vscode-svg-btn {
   display: none;
+ }
+
+ #blank-modal {
+  height: var(--content-render-height);
  }
 }

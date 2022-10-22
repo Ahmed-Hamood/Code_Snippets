@@ -12,12 +12,11 @@ export default function enable_scrollVisible_sideListTitlesNav(active) {
   titleSections = document.querySelectorAll(allTitleInDocumentContent);
 
   if (main_list_titles_nav_content) tablePosition = main_list_titles_nav_content.offsetTop + main_list_titles_nav_content.offsetHeight;
-  
-  console.log("added")
+
+  // console.log('added');
   document.getElementById('page-content-render-container').addEventListener('scroll', EnableScrollVisibleSideListTitleNavContent);
  } else {
-    
-console.log("removed")
+  // console.log('removed');
   document.getElementById('page-content-render-container').removeEventListener('scroll', EnableScrollVisibleSideListTitleNavContent);
  }
 }
