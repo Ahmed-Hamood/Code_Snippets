@@ -157,8 +157,8 @@
 }
 
 #menu-table-content-active-btn:hover {
- background: #1dd1a1;
- color: #0d1117;
+ background: #1dd1a152;
+ color: #ffffff;
 }
 
 @media screen and (max-width: 800px) {
