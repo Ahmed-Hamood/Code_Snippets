@@ -12,6 +12,7 @@ let DocContentRender = document.getElementById('page-content-wrapper');
 let navTitleHeader = document.querySelector('.nav-title-header');
 let pathViewContentHeader = document.querySelector('.path-view-content-header');
 
+
 let page_path = '';
 let vs_code_opener_svg_btn = document.querySelector('.vs-code-opener-svg-btn');
 
@@ -166,7 +167,7 @@ function setupNavigationBackAndForwardHistoryButtons() {
 // ########################################################################################
 // ########################################################################################
 
-function RenderPathHeaderView(paths, isSubjectFileLinkSelected) {
+function RenderTitleAndPathHeaderView(paths, isSubjectFileLinkSelected) {
  let pathViewContent = '';
  let headerTitle = '';
  let ArrayOfPaths = paths.split('#'); // ['', 'Docs', 'nodejs', 'expressjs', 'Installation.html']
@@ -294,7 +295,7 @@ export async function RunPageLoader(
 
   _isDocumentationPageLinkSelected = isDocumentationPageLinkSelected;
 
-  RenderPathHeaderView(getUrlPathHashedLink, isSubjectFileLinkSelected);
+  RenderTitleAndPathHeaderView(getUrlPathHashedLink, isSubjectFileLinkSelected);
 
   // console.log('Url Paths History: ', db.getArrayPathsHistory());
   // console.log('current history index: ', db.getCurrentUrlPathsHistoryIndex());
@@ -308,12 +309,11 @@ export async function RunPageLoader(
 
   try {
    let responseData = await fetch(urlPathLink);
-   let contentText = await responseData.text();
+   let DocContentHTMLText = await responseData.text();
+   DocContentHTMLText = DocContentHTMLText.trim();
 
-   DocContentHTMLText = contentText.trim();
    ResStatus = responseData.status;
 
-   
    vs_code_opener_svg_btn.children[1].innerHTML = 'Open file with vscode';
    
    if (ResStatus == 404) {

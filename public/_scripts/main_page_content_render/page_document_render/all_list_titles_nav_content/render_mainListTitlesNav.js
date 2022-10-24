@@ -72,9 +72,9 @@ export default function render_mainListTitlesNav(active) {
   setTimeout(() => {
    // animation effect
    document.querySelectorAll('.main-titles-list li').forEach((element, index) => {
-    element.style.setProperty('--delay', `${index * 150}ms`)
+    element.style.setProperty('--delay', `${index * 150}ms`);
    });
-  }, 1000);
+  }, 1200);
 
   // enable topic doc content menu button - view
 

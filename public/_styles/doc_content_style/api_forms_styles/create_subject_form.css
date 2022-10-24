@@ -14,12 +14,12 @@
 }
 
 .subject-form-container-wrapper {
- background: rgb(32, 32, 32);
+ background: var(--sideBar-bg-color);
  width: 95%;
  max-width: 950px;
  height: fit-content;
- border: 1px solid rgb(56, 56, 56);
- border-radius: 5px;
+ border: 1px solid rgb(48, 45, 45);
+ border-radius: 12px;
  opacity: 0;
  animation-name: FadeInAnimation;
  animation-delay: 0.2s;

@@ -15,6 +15,20 @@
  animation: FadeInAnimation 0.3s;
 }
 
+@media screen and (max-width: 1200px) {
+ .sideBar {
+  overflow: hidden;
+  position: absolute;
+ }
+}
+
+.main-content-container {
+ flex: 2;
+ background: var(--body-container);
+ width: var(--content-render-width);
+ height: var(--content-render-height);
+}
+
 .sideBar ::-webkit-scrollbar-track {
  background: var(--sideBar-header-bg-color);
 
@@ -28,6 +42,7 @@
 
 .sideBar .sideBar-container {
  opacity: 1;
+ width: 100%;
 }
 .sideBar-container.hide {
  opacity: 0;
@@ -45,19 +60,7 @@
  animation-fill-mode: forwards;
 }
 
-.main-content-container {
- background: var(--body-container);
- width: var(--content-render-width);
- height: var(--content-render-height);
-}
-
 .no-display {
  display: none !important;
 }
 
-@media screen and (max-width: 1100px) {
- .sideBar {
-  overflow: hidden;
-  position: absolute;
- }
-}

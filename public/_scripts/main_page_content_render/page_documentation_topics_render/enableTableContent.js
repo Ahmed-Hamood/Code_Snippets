@@ -183,7 +183,7 @@ export default function enableTableContent() {
  function EnableTextMsgContent(msgType) {
   msgTextContent.style['display'] = 'flex';
   docTableContent.style['display'] = 'none';
-  docMenuTableContentSubjectViewer.style['background'] = '#1c1d1f';
+  docMenuTableContentSubjectViewer.classList.add("msg")
 
   if (msgType) msgTextParagraph.innerHTML = msgType;
   doc_content_render_container.scrollTop = 0;
@@ -192,7 +192,7 @@ export default function enableTableContent() {
  function EnableTableContentList() {
   msgTextContent.style['display'] = 'none';
   docTableContent.style['display'] = 'block';
-  docMenuTableContentSubjectViewer.style['background'] = '';
+  docMenuTableContentSubjectViewer.classList.remove("msg")
   doc_content_render_container.scrollTop = 0;
  }
 

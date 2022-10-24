@@ -22,11 +22,10 @@
  padding-left: 15px;
  position: relative;
  transition: 400ms max-width;
-
 }
 
 body[pageLoading='false'] #page-content-wrapper {
-   animation: FadeInAnimation 0.4s ease-in 0.2s backwards;
+ animation: FadeInAnimation 0.4s ease-in 0.2s backwards;
 }
 
 @media screen and (max-width: 1000px) {
@@ -67,15 +66,6 @@ body[max-content='true'] .nav-content-header {
  position: relative;
 }
 
-/* .spinner-message { */
-/* color: #718093;
- font-family: Arial;
- font-size: 0.4rem;
- font-weight: 700;
- position: absolute;
- top:67px; */
-/* } */
-
 /* ########################################################### */
 /* Button Merge */
 /* ########################################################### */
@@ -109,9 +99,3 @@ body[max-content='true'] .nav-content-header {
 /* ########################################################### */
 /* ########################################################### */
 /* ########################################################### */
-
-@media screen and (max-width: 1366px) {
- #page-content-render-container {
-  /* height: calc(var(--content-render-height) - var(--nav-header-height)); */
- }
-}

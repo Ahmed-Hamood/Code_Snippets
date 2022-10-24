@@ -3,10 +3,10 @@
 #image {
  cursor: pointer;
  display: block;
- margin-bottom: calc(1.2 * 1.4rem);
+ margin-bottom: calc(1.2 * 1.8rem);
  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
  border-radius: 8px;
- width: 60%;
+ width: 70%;
  opacity: 0;
  transition: 0.3s;
  animation-name: FadeInAnimation;
@@ -20,14 +20,20 @@
  transform: scale(1.01);
 }
 
-.modal-container {
+@media screen and (max-width: 1000px) {
+ #image {
+  width: 95%;
+  margin: inherit auto;
+ }
+}
+
+.modal-image-view-container {
  background-color: rgba(0, 0, 0, 0.878);
  width: 100%;
- height: var(--content-render-height);
+ /* height: var(--content-render-height); */
+ inset: 0;
  display: none;
  flex-direction: column;
- align-items: center;
- justify-content: center;
  position: fixed;
  left: 0;
  top: 0;
@@ -35,27 +41,37 @@
  overflow: auto;
 }
 
+@media screen and (max-width: 1366px) {
+ .modal-image-view-container {
+  width: var(--content-render-width);
+  height: var(--content-render-height);
+ }
+}
+
+.modal-image-view-container .modal-content-wrapper {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ height: var(--content-render-height);
+}
+
 .modal-image-title {
  display: none;
  font-size: 1.5rem;
  color: #fff;
  margin-top: 30px;
- animation-name: FadeInAnimation;
- animation-duration: 0.3s;
- animation-iteration-count: infinite;
- animation-direction: alternate-reverse;
- animation-timing-function: ease-in-out;
+ animation: FadeInAnimation 0.5s ease-in-out alternate-reverse infinite;
 }
 
 .modal-image-content {
  display: block;
  border-radius: 5px;
- animation: ImageZoomPopUpAnimation 0.4s ease-out;
- transform: scale(0.7);
- transition: 0.3s transform;
+ animation: ImageZoomPopUpAnimation 0.4s ease-in-out;
+ transition: 400ms transform;
 }
 
-.close-image {
+.close-modal-image-btn {
  opacity: 0.5;
  width: 80px;
  height: 80px;
@@ -65,20 +81,6 @@
  transition: 0.3s;
 }
 
-.close-image:hover {
+.close-modal-image-btn:hover {
  opacity: 1;
-}
-
-@media screen and (max-width: 1366px) {
- .modal-container {
-  width: var(--content-render-width);
-  height: var(--content-render-height);
- }
-}
-
-@media screen and (max-width: 1000px) {
- #image {
-  width: 95%;
-  margin-left: 5px;
- }
 }

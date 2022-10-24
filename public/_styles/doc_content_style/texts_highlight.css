@@ -297,12 +297,18 @@ justify,
 small,
 [small],
 .small {
- font-size: 80% !important;
+ font-size: 85% !important;
 }
 smaller,
 [smaller],
 .smaller {
- font-size: 50% !important;
+ font-size: 60% !important;
+}
+
+smallest,
+[smallest],
+.smallest {
+  font-size: 35% !important;
 }
 
 /* #endregion */

@@ -13,7 +13,8 @@
 .sideBar-subjects-menu .content-wrapper {
  height: calc(var(--content-render-height) - var(--sidebar-header-height) - var(--sidebar-footer-height) - var(--sidebar-create-content));
  /* user-select: none; */
- width: 328px;
+ /* width: 328px;
+ width: 100%; */
  overflow-x: hidden;
  overflow-y: auto;
  padding: 0 6px;
@@ -78,6 +79,7 @@ body[api-system='false'] .sideBar-subjects-menu .content-wrapper .menu-title-sec
 }
 
 .subject-title-link.main-folder {
+
  border: 1px solid transparent;
 }
 
@@ -154,15 +156,17 @@ body[api-system='false'] .sideBar-subjects-menu .content-wrapper .menu-title-sec
 
 /* #region >>> Icon & Subject name & Arrow Menu Styling <<< */
 
+.subject-title-link.main-folder .subject-name {
+ font-size: 1rem;
+}
+
 .subject-title-link.sub-level .subject-name,
 .subject-title-link .svg-folder-style + .subject-name,
 .subject-title-link .svg-file-style + .subject-name {
- font-size: 14px;
+ font-size: 0.9rem;
 }
 
-.subject-title-link.main-folder .subject-name {
- font-size: 16px;
-}
+
 .subject-title-link.menu-enable .subject-name,
 .subject-title-link.highlight-menu .subject-name {
  color: #ffff;
@@ -228,7 +232,6 @@ body[api-system='false'] .sideBar-subjects-menu .content-wrapper .menu-title-sec
 .svg-folder-style.main-folder {
  width: 20px;
  height: 20px;
- /* padding: 10px; */
 }
 
 .svg-file-style {
@@ -243,7 +246,7 @@ body[api-system='false'] .sideBar-subjects-menu .content-wrapper .menu-title-sec
  transform: rotate(0deg);
  width: 10px;
  height: 10px;
- margin-right: 15px;
+ margin-right: 1rem;
  opacity: 0.3;
  cursor: pointer;
  transition: 0.2s transform, 0.4s opacity;

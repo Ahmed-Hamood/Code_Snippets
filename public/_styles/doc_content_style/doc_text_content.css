@@ -1,6 +1,6 @@
 #page-content-wrapper {
  color: var(--text-color);
- font-size: 1.4rem;
+ font-size: 1.2rem;
  font-weight: 400;
 }
 
@@ -319,7 +319,7 @@ body[max-content='true'] .side-list-titles-nav-content.show {
  font-weight: 500;
 } */
 .side-titles-list li a {
- color: rgb(175, 175, 175);
+ color: rgb(216, 216, 216);
  margin-left: -15px;
  vertical-align: super;
 }
@@ -338,21 +338,21 @@ body[max-content='true'] .side-list-titles-nav-content.show {
 
 .side-titles-list li.nav-sub-title {
  font-size: 1rem;
- font-weight: 600;
+ font-weight: 500;
  margin-left: 16px;
  margin-bottom: 8px;
 }
 
 .side-titles-list li.nav-sub-sub-title {
- font-size: 0.9rem;
- font-weight: 400;
+ font-size: 0.95rem;
+ font-weight: 500;
  margin-left: 28px;
  margin-bottom: 8px;
 }
 
 .side-titles-list li.nav-sub-sub-sub-title {
- font-size: 0.8rem;
- font-weight: 400;
+ font-size: 0.9rem;
+ font-weight: 500;
  margin-left: 33px;
  margin-bottom: 8px;
 }
@@ -672,13 +672,13 @@ tooltip::before,
  color: #ffffff30;
  font-size: 0.6rem;
  position: absolute;
- bottom: 16px;
+ bottom: 12px;
  left: -10px;
 }
 
 tooltip::before {
  content: '?';
- bottom: 13px;
+ bottom: 10px;
  left: -5px;
 }
 
@@ -740,16 +740,17 @@ tooltip .tooltiptext.left,
  display: none;
  position: fixed;
  width: 95%;
- max-width: 800px;
+ max-width: 900px;
  height: fit-content;
  background-color: var(--tooltip-bg);
- border: 1px solid rgb(153, 153, 153);
- border-radius: 12px;
+ border: 1px solid rgb(71, 71, 71);
+ box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+ border-radius: 8px;
  top: 50%;
  left: 50%;
  transform: translate(-50%, -50%);
 
- padding: 10px 15px 15px 15px;
+ /* padding: 10px 1px 15px 15px; */
 }
 
 .tooltip-modal.show {
@@ -757,44 +758,47 @@ tooltip .tooltiptext.left,
  display: block;
 }
 
-.tooltip-modal h1 {
+.tooltip-modal .tooltip-title {
  color: #2ecc71;
- font-size: 1.6rem;
+ font-size: 2rem;
  text-transform: capitalize;
  font-weight: 600;
- line-height: 170%;
- margin-bottom: 6px;
- padding-bottom: 8px;
- border-bottom: 1px dotted rgb(84, 84, 84);
+ line-height: 120%;
+ margin-bottom: 8px;
+ padding: 12px 0 15px 12px;
+ border-bottom: 1px dotted rgb(107, 103, 143);
 }
 
-.tooltip-modal p {
+.tooltip-modal .tooltip-content {
  font-size: 1.2rem;
  font-weight: 500;
  line-height: 170%;
- padding: 4px 0;
- margin-left: 4px;
+ margin: 0px 3px 8px 11px;
+ padding-bottom: 8px;
+ padding-right: 3px;
 }
 
 tooltip .tooltiptext span,
-.tooltip-modal p span {
- color: #ffffff;
+.tooltip-modal .tooltip-content span {
+ color: #fffd8a;
  font-weight: 700;
  margin-right: 2px;
 }
 
 tooltip .tooltiptext hr,
-.tooltip-modal p hr {
+.tooltip-modal .tooltip-content hr {
  border: none;
- margin: 6px 0;
+ margin: 7px 0;
 }
 
 @media screen and (max-width: 1000px) {
- .tooltip-modal h1 {
+ .tooltip-modal .tooltip-title {
   font-size: 1.4rem;
  }
- .tooltip-modal p {
+ .tooltip-modal .tooltip-content {
   font-size: 1rem;
+  overflow-y: auto;
+  max-height: 400px;
  }
 }
 

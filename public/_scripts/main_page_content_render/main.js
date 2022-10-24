@@ -22,6 +22,7 @@ import content_section_wrapper from './page_document_render/content_section_wrap
 
 let page_content = document.getElementById('page-content-wrapper');
 let bodyElement = document.body;
+const parser = new DOMParser();
 
 export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, refPos = null) {
  let isPageLoadSuccess = true;
@@ -34,17 +35,15 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
  let FileMayNotExistTextMsg = `
  <p class="msg-title">No Content, Maybe File Does not Exist </p> 
    <p class="msg-info">
-    Click on <i class="svg vscode-svg vscode-icon"></i> to create file.
+    Click on <i class="svg vscode-svg vscode-icon"></i> to create the file.
    </p> `;
 
- const titlesContentWrapper = (htmlContent) => {
-  const parser = new DOMParser();
+ const titlesContentWrapper = (HTMLContent) => {
   // 1. convert text/string into HTMLDocument
-  let HTMLContent = parser.parseFromString(htmlContent, 'text/html');
+  HTMLContent = parser.parseFromString(HTMLContent, 'text/html');
 
   //  2. get all sub-titles
   const all_titles = HTMLContent.querySelectorAll(['.sub-title', '.sub-sub-title']);
-
   let subSubTitleIndex = 0;
 
   // 3. loop thru each sub-title and add ##start## and ##end## text

@@ -9,7 +9,9 @@
  font-size: 2.5rem;
  font-weight: 500;
  line-height: 1.2;
+ text-shadow: 1px 1px 1px #000;
  margin-top: calc(1.2 * 1.5rem);
+ margin-bottom: calc(1.2 * 2rem);
  display: flex;
  align-items: center;
  width: 100%;
@@ -21,7 +23,8 @@
 .documentation-topics-list-container .subject-title {
  font-size: 1.4rem;
  font-weight: 500;
- margin-top: calc(1.2 * 1.8rem);
+ /* margin-top: calc(1.2 * 1.5rem); */
+ margin-bottom: 18px;
  line-height: 1.4;
  user-select: none;
 }
@@ -36,18 +39,22 @@
 
 .documentation-topics-list-container .subject-topics-content {
  line-height: 140%;
- margin-top: calc(1.2 * 0.3rem);
- margin-bottom: calc(1.2 * 1rem);
+ margin-bottom: calc(1.2 * 1.2rem);
+}
+
+@media screen and (max-width: 800px) {
+ .documentation-topics-list-container .subject-topics-content {
+  margin-bottom: calc(1.2 * 1.7rem);
+ }
 }
 
 .documentation-topics-list-container .subject-topics-content .sub-subject-title {
  color: #95a5a6;
  font-size: 0.9rem;
  font-weight: 500;
- margin-top: calc(1.2 * 1.2rem);
  margin-bottom: calc(1.2 * 0.7rem);
  border-bottom: 1px dotted rgb(51, 51, 51);
- padding-bottom: 0.5rem;
+ padding-bottom: 0.1rem;
  display: flex;
  align-items: center;
  width: 100%;
@@ -55,12 +62,16 @@
 }
 
 .documentation-topics-list-container .subject-topics-content li {
- margin-bottom: calc(1.2 * 0.4rem);
- margin-left: 0.2rem;
+ margin-bottom: calc(1.2 * 0.3rem);
+ /* margin-left: 0.2rem; */
  list-style-type: none;
  display: flex;
  justify-content: start;
  align-items: flex-start;
+}
+
+.documentation-topics-list-container .subject-topics-content li:last-child {
+ margin-bottom: calc(1.2 * 0.8rem);
 }
 
 .documentation-topics-list-container .subject-topics-content li .topic-title-link {
@@ -109,7 +120,7 @@
  }
 
  .documentation-topics-list-container .subject-topics-content .two-columns .sub-subject-title {
-  margin-top: calc(1.2 * 0.6rem);
+  /* margin-top: calc(1.2 * 0.6rem); */
   margin-bottom: calc(1.2 * 0.7rem);
  }
 
@@ -131,24 +142,23 @@
 /* #region Topic buttons */
 
 #menu-table-content-active-btn {
- font-size: 0.8rem;
+ font-size: 0.9rem;
  font-weight: 600;
  position: absolute;
  top: 0;
  right: 40px;
- color: #fff;
+ color: #1dd1a1;
  background: rgba(0, 0, 0, 0);
- border: 1px solid rgb(192, 192, 192);
- border-radius: 5px;
+ border: 1px solid #1dd1a1;
+ border-radius: 3px;
  padding: 8px 12px;
  cursor: pointer;
- transition: 0.2s all;
+ transition: 300ms all;
 }
 
 #menu-table-content-active-btn:hover {
- background: rgb(195, 195, 195);
- color: rgb(0, 0, 0);
- border-bottom: 2px solid gray;
+ background: #1dd1a1;
+ color: #0d1117;
 }
 
 @media screen and (max-width: 800px) {
@@ -239,6 +249,10 @@
  animation-fill-mode: forwards;
 }
 
+.doc-subject-list-titles-content-viewer.view.msg {
+ background: #13171f;
+}
+
 .doc-subject-list-titles-content-viewer.view + .subject-title {
  margin-top: calc(1.2 * 1.2rem);
 }
@@ -296,8 +310,8 @@
 }
 
 .doc-table-content h1 {
-  color: #ffff;
-  text-shadow: 1px 1px 1px #000;
+ color: #ffff;
+ text-shadow: 1px 1px 1px #000;
  font-size: 1.6rem;
  font-weight: 500;
  line-height: 140%;
@@ -320,14 +334,12 @@
  background: rgb(39, 43, 40);
  width: 100%;
  height: 3px;
- border-radius: 8px; 
+ border-radius: 8px;
  left: -5px;
 }
 
-
 .doc-menu-table-list-content::before {
  top: -18px;
-
 }
 .doc-menu-table-list-content::after {
  bottom: -15px;
@@ -363,8 +375,8 @@
  margin-bottom: 0.8rem;
 }
 
-.doc-menu-table-list-content li.menu-nav-sub-sub-title:last-child{
-  margin-bottom: 0;
+.doc-menu-table-list-content li.menu-nav-sub-sub-title:last-child {
+ margin-bottom: 0;
 }
 
 .doc-menu-table-list-content li.menu-nav-sub-sub-sub-title {

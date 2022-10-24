@@ -72,12 +72,35 @@
  <p class="list-title">- Cloud computing common services :-</p>
  <ul>
   <li>
-   <yellow underline>Compute power</yellow>: is how much processing your computer can do. compute power is a server consist of CPU, RAM and storage. we use virtual
-   machines or containers that run different OS like windows, linux/unix or web container, and with them we can create apps for web, AI, machine learning and more.
+   <yellow underline>Compute power</yellow>: is how much processing your computer can do. compute power is a server consist of CPU, RAM and storage. we use
+   <tooltip
+    desc="is an Emulation of a computer, like your desktop/laptop. Includes operating system and hardware, you can install any software on it. 
+   1 - VM has more control and responsibility over maintenance. 
+   2 - Cloud provider runs it for you in one of its data-center, often sharing that server with other VMs"
+    >virtual machines</tooltip
+   >
+   or
+   <tooltip
+    desc="is isolated execution environment for application and its consistent. 
+    1 - Similar to VM but they don't require guest operating system because they run on different guest systems.
+    2 - Its Highly portable, can run on-premises or in the cloud with often no changes to application.
+    3 - Container takes few seconds/lesser time to start up as there's no OS to initialize.
+    4 - Application and its dependencies are packaged into a container. Container application/platform like Docker its an open source and its the leading platform for managing containers."
+    >containers</tooltip
+   >
+   that run different OS like windows, linux/unix or web container, and with them we can create apps for web, AI, machine learning and more. Also we have a
+   <tooltip
+    desc="It lets you run application code without creating, configuring, or maintaining a server. Here your application is broken
+   into separate functions that runs when triggered by some action/event. Its good for automation e.g. serverless process that automatically sends an email confirmation
+   after a customer makes an online purchase. You only pay for the processing time used by each function as it execute, but still you pay for VMs/containers because they
+   still running even if the applications on them are idle."
+    >Serverless computing</tooltip
+   >.
   </li>
   <li>
    <yellow underline>Storage</yellow>: is a volume of data you can store, with unlimited data storage that you need/request overtime. We store structured or unstructured
-   data like files and databases. Cloud delivers a thousand of popular DB technologies. Also azure provides tools that allow you to migrate your data/app to the cloud
+   data like files and databases. Cloud delivers a thousand of popular DB technologies. Also azure provides tools that allow you to migrate your data/app to the cloud.
+   Advantage of a cloud-based data storage is you can scale to meet your needs.
   </li>
   <li>
    <yellow underline>Networking</yellow>: After gathering your components, we need to connect them to each other securely which our cloud provide a secure networking
@@ -93,8 +116,8 @@
 <img id="image" path="/img/image002.PNG" alt="image" />
 
 <p class="text">
- We know that Cloud computing is really bunch of servers that our application and IT services runs on. Servers are comprised of CPU Processor, RAM Memory and storage HDD
- or SSD. An Example of Applications and IT services like:
+ We know that Cloud computing is really bunch of servers with VMs/containers that our application and IT services runs on. Servers are comprised of CPU Processor, RAM
+ Memory and storage HDD or SSD. An Example of Applications and IT services like:
 </p>
 
 <div class="list-content normal arrow">

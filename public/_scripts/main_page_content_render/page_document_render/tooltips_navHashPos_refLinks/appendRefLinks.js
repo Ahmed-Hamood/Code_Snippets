@@ -81,7 +81,7 @@ export default async function appendRefLinks() {
        element.href = ref_href;
        element.target = '_blank';
        element.textContent = ref_text_content ? ref_text_content : element.textContent;
-       element.innerHTML += `<p class='tooltiptext'> ${ref_description} <span class="link-text ${ref_description ? 'mt' : ''}">Click for more information</span></p>`;
+       element.innerHTML += `<div class='tooltiptext'> ${ref_description} <span class="link-text ${ref_description ? 'mt' : ''}">Click for more information</span></div>`;
       }
      });
      if (!hasMatch) element.innerHTML = `<red>[Error]</red>`;
