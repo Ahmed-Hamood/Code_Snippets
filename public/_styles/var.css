@@ -16,7 +16,7 @@ html {
 --content-render-height: 100vh;
  --content-render-width: 100vw; */
 
- --sidebar-width: 300px;
+ --sidebar-width: 320px;
 
  --sidebar-header-height: 50px;
  --sidebar-footer-height: 50px;
@@ -94,7 +94,7 @@ body[max-content='true'] {
   --nav-header-height: 79.98px;
 
   --scroll-width: 2px;
-  --scroll-height: 3px;
+  --scroll-height: 3px; --sidebar-width: 350px;
  }
 }
 

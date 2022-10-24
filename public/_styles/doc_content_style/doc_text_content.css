@@ -30,6 +30,10 @@
  padding: 22px 0;
 }
 
+.main-list-titles-nav-content + .text {
+ margin-top: 33px;
+}
+
 .main-list-titles-nav-content:hover {
  border-color: rgb(66, 66, 66);
 }
@@ -439,7 +443,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  word-break: break-word;
  caret-color: rgba(255, 255, 255, 0.81);
  padding-top: calc(1.2 * 0.2rem);
- margin-top: calc(1.2 * 2.0rem);
+ margin-top: calc(1.2 * 2rem);
  margin-bottom: calc(1.2 * 1.5rem);
  position: relative;
  cursor: default;
@@ -967,7 +971,7 @@ tooltip .tooltiptext hr,
  margin-bottom: 16px;
  margin-left: 1.9rem;
  padding: 8px 9px 8px 9px;
- background: #221e2c7e;
+ background: var(--sideBar-bg-color);
  border: 1px solid #373737;
  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
  border-radius: 5px;
@@ -1058,56 +1062,57 @@ tooltip .tooltiptext hr,
 
 /* normal list */
 
-.list-content.normal li {
+.list-content.normal ul li {
  line-height: 160%;
  position: relative;
  background-color: #ecf0f100;
  border: none;
  box-shadow: none;
  padding: 0;
- margin-bottom: 14px;
+ margin-bottom: 1rem;
 }
-.list-content.normal.alpha li {
+
+.list-content.normal.alpha ul li {
  list-style-type: upper-alpha;
 }
 
-.list-content.normal.none li {
+.list-content.normal.none ul li {
  list-style-type: none;
 }
 
-.list-content.normal.number li {
+.list-content.normal.number ul li {
  list-style-type: decimal;
 }
 
-.list-content.normal.disc li {
+.list-content.normal.disc ul li {
  list-style-type: disc;
 }
 
-.list-content.normal.none li {
+.list-content.normal.none ul li {
  margin-left: 0.5rem;
 }
 
-.list-content.normal.number li,
-.list-content.normal.dash li,
-.list-content.normal.disc li,
-.list-content.normal.alpha li {
+.list-content.normal.number ul li,
+.list-content.normal.dash ul li,
+.list-content.normal.disc ul li,
+.list-content.normal.alpha ul li {
  margin-left: 1.5rem;
 }
 
-.list-content.normal.star li,
-.list-content.normal.boom li,
-.list-content.normal.arrow li,
-.list-content.normal.red_cross li,
-.list-content.normal.check li {
+.list-content.normal.star ul li,
+.list-content.normal.boom ul li,
+.list-content.normal.arrow ul li,
+.list-content.normal.red_cross ul li,
+.list-content.normal.check ul li {
  margin-left: 2rem;
 }
 
-.list-content.normal.dash li::before,
-.list-content.normal.check li::before,
-.list-content.normal.red_cross li::before,
-.list-content.normal.boom li::before,
-.list-content.normal.star li::before,
-.list-content.normal.arrow li::before {
+.list-content.normal.dash ul li::before,
+.list-content.normal.check ul li::before,
+.list-content.normal.red_cross ul li::before,
+.list-content.normal.boom ul li::before,
+.list-content.normal.star ul li::before,
+.list-content.normal.arrow ul li::before {
  display: block;
  background: transparent;
  box-shadow: none;
@@ -1115,51 +1120,123 @@ tooltip .tooltiptext hr,
  border: none;
 }
 
-.list-content.normal.dash li::before {
+.list-content.normal ul ul[dash] li::before,
+.list-content.normal ul ul li[dash]::before,
+.list-content.normal.dash ul li::before {
  content: '-';
  top: -2px;
  left: -18px;
 }
 
-.list-content.normal.boom li::before {
+.list-content.normal ul li[dash]::before {
+ content: '-' !important;
+ left: -24px !important;
+}
+
+.list-content.normal ul ul[boom] li::before,
+.list-content.normal ul ul li[boom]::before,
+.list-content.normal.boom ul li::before {
  font-size: 1rem;
  content: '💥';
  top: -1px;
- left: -28px;
+ left: -32px;
 }
 
-.list-content.normal.check li::before {
+.list-content.normal ul li[boom]::before {
+ content: '💥' !important;
+}
+
+.list-content.normal ul ul[check] li::before,
+.list-content.normal ul ul li[check]::before,
+.list-content.normal.check ul li::before {
  font-size: 1rem;
  content: '✅';
  top: -1px;
- left: -30px;
+ left: -32px;
 }
 
-.list-content.normal.red_cross li::before {
+.list-content.normal ul li[check]::before {
+ content: '✅' !important;
+}
+
+.list-content.normal ul ul[red_cross] li::before,
+.list-content.normal ul ul li[red_cross]::before,
+.list-content.normal.red_cross ul li::before {
  font-size: 1rem;
  content: '❌';
  top: -1px;
  left: -33px;
 }
 
-.list-content.normal.arrow li::before {
+.list-content.normal ul li[red_cross]::before {
+ content: '❌' !important;
+}
+
+.list-content.normal ul ul[arrow] li::before,
+.list-content.normal ul ul li[arrow]::before,
+.list-content.normal.arrow ul li::before {
  content: '▶';
  top: -1px;
  left: -28px;
 }
 
-.list-content.normal.star li::before {
+.list-content.normal ul li[arrow]::before {
+ content: '▶' !important;
+ left: -27px !important;
+}
+
+.list-content.normal ul li[star]::before,
+.list-content.normal ul ul[star] li::before,
+.list-content.normal ul ul li[star]::before,
+.list-content.normal.star ul li::before {
  content: '⭐';
  top: -1px;
  left: -33px;
 }
 
-.list-content.normal li:last-child {
+.list-content.normal ul li[star]::before {
+ content: '⭐' !important;
+}
+
+.list-content.normal ul li:last-child {
  margin-bottom: 0;
 }
 
-.list-content.normal li::before {
+.list-content.normal ul li::before {
  display: none;
+}
+
+/* nested list */
+
+.list-content ul ul {
+ margin-left: 1.3rem;
+ margin-bottom: 1.2rem;
+}
+
+.list-content ul ul:last-child {
+ margin-bottom: 0;
+}
+
+.list-content ul ul[alpha] li::before,
+.list-content ul ul[number] li::before,
+.list-content ul ul[disc] li::before {
+ content: '' !important;
+}
+
+.list-content ul ul[alpha] li {
+ list-style-type: upper-alpha !important;
+}
+
+.list-content ul ul[number] li {
+ list-style-type: decimal !important;
+}
+
+.list-content ul ul[disc] li{
+ list-style-type: disc !important;
+}
+
+.list-content ul ul[none] li {
+ list-style-type: '' !important;
 }
 
 /* #endregion */

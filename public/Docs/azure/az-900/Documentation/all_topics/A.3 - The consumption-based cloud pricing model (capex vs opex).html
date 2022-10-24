@@ -1,4 +1,244 @@
 <p class="main-title">
-  A.3 - The consumption-based Model - Total Cost of Ownership <small>(<red>CAPEX</red> vs <red>OPEX</red>)</small>
+ A.3 - The consumption-based Model - Total Cost of Ownership <small>(<red>CAPEX</red> vs <red>OPEX</red>)</small>
 </p>
- 
+
+<!-- ######################################################### -->
+<p class="sub-title">- What is a consumption-based model ?</p>
+<!-- ######################################################### -->
+
+<p class="text">
+ The consumption-based model is a pricing model used in the cloud so that customers are only charged based on their resource usage, just like electricity bill you only
+ pay for what you use/consume. With this model you don't have to worry about the following.
+</p>
+
+<p class="underline-text">- This model is characterized by :-</p>
+
+<div class="list-content normal boom">
+ <ul>
+  <li arrow>No associated upfront cost</li>
+  <li>No wasted resources as such no charges are incurred for .</li>
+  <li>No need to purchase and manage costly infrastructure that users might not use to its fullest potential.</li>
+  <li>Pay for what you need:</li>
+  <ul>
+   <li check>The ability to pay for more resources when they're needed.</li>
+   <li red_cross>The ability to stop paying for resources that are no longer needed.</li>
+  </ul>
+  <li>No associated upfront cost</li>
+  <li dash>Pay for what you need:</li>
+ </ul>
+</div>
+<!-- <div class="list-content normal star">
+ <ul>
+  <li>No associated upfront cost</li>
+  <li>
+   No wasted resources as such no charges are incurred for
+   <tooltip
+    desc="Unused in this case is different per service. For instance, blob storage that stores any data is considered to be used, as it consumes the storage space. Virtual Machines that are running consume CPU, memory and other resources even if there isn't any traffic. Hence they are considered to be used and will incur charges."
+    >unused resources</tooltip
+   >.
+  </li>
+  <li>No need to purchase and manage costly infrastructure that users might not use to its fullest potential.</li>
+  <li>Pay for what you need:</li>
+  <ul red_cross>
+   <li>The ability to pay for more resources when they're needed.</li>
+   <li>The ability to stop paying for resources that are no longer needed.</li>
+  </ul>
+ </ul>
+</div> -->
+
+<div class="quote-text blue-border">
+ <p>
+  <underline yellow>Consumption</underline> is the virtual metric used to calculate how much each resource/service in Azure was used. Each service has many smaller
+  metrics that track its consumption to offer best possible pricing model. Those metrics are tracked on very granular level.
+ </p>
+</div>
+
+<div class="list-content normal">
+ <p class="list-title">- There are two types of expenses that IT infrastructure model base on :-</p>
+ <ul>
+  <li red_cross>
+   <red>Capital expenditure (<text red>CapEx</text>) - (spend money)</red>
+  </li>
+  <li check>
+   <green>Operational expenditure (<text green>OpEx</text>) - (save money)</green>
+  </li>
+ </ul>
+</div>
+
+<img id="image" path="/img/image006.PNG" alt="image" />
+
+<!-- ######################################################### -->
+<p class="sub-sub-title">A - CapEx - Capital Expenditure <small>(on-premises - traditional data-center)</small></p>
+<!-- ######################################################### -->
+
+<p class="text">
+ <text red>CAPEX</text> is spending money on a physical infrastructure and hardware up-front and then deducting that expense from your tax bill over time. CapEx is
+ up-front cost in hardware and infrastructure to start or grow a business.
+</p>
+
+<div class="text-box transparent">
+ <p>
+  A tax deduction is an item you can subtract from your
+  <tooltip desc=" is the portion of your gross income used to calculate how much tax you owe in a given tax year.">taxable income </tooltip> to lower the amount of taxes
+  you owe.
+ </p>
+</div>
+
+<div class="quote-text blue-border">
+ <p>
+  <text red>CapEx</text> is typically a one-time, up-front expenditure to purchase or secure tangible resources. A new building, repaving the parking lot (rent space),
+  building a data-center infrastructure, or buying a company vehicle, cooling and physical security are examples of CapEx.
+ </p>
+</div>
+
+<div class="list-content normal red_cross">
+ <p class="list-title">- Costs of CapEx :-</p>
+ <ul>
+  <li>Server Costs (Computers)</li>
+  <li>Storage Costs (hard-drive)</li>
+  <li>Network Costs (Routers, Cables, Switches)</li>
+  <li>Backup and Archive Costs</li>
+  <li>Disaster Recovery Costs - buying power supply</li>
+  <li>Data-center (Rent, Cooling, Physical security)</li>
+  <li>Hiring Technical Personal</li>
+ </ul>
+</div>
+
+<p class="text">With Capital expenditure you have to guess upfront what you plan to spend. In traditional data-center you estimate the future resource needs :-</p>
+
+<div class="list-content normal boom">
+ <ul>
+  <li>If you <underline yellow>overestimate</underline> then you spend more on your data-center than you need to and potentially waste money.</li>
+  <li>
+   If you <underline yellow>underestimate</underline> then your data-center will quickly reach capacity and your applications and services may suffer from decreased
+   performance.
+  </li>
+ </ul>
+</div>
+
+<div class="text-box note">
+ <p>
+  You should know that fixing an under-provisioned data-center can take a long time. You may need to order, receive, and install more hardware. You'll also need to add
+  power, cooling, and networking for the extra hardware.
+ </p>
+</div>
+
+<div class="list-content custom number">
+ <p class="list-title">- Benefits of CapEx :-</p>
+ <ul>
+  <li>Plan your expenses at the start of a project or budget period.</li>
+  <li>Your costs are fixed, meaning you know exactly how much is being spent.</li>
+  <li>Appealing when you need to predict the expenses before a project starts due to a limited budget.</li>
+ </ul>
+</div>
+
+<!-- ######################################################### -->
+<p class="sub-sub-title">B - OpEx - Operational Expenditure <small>(cloud provider)</small></p>
+<!-- ######################################################### -->
+
+<p class="text">
+ <text green>OpEx</text> is spending money on services or products overtime, no up-front cost you pay as you go. You only pay for a service or product as you use it
+ <small>(Deduct expense from your tax bill in the same year)</small>. Some example of OpEx like Renting a convention center, leasing a company vehicle, or signing up for
+ cloud services.
+</p>
+
+<div class="list-content normal dash">
+ <p class="list-title">- OpEx Examples :-</p>
+ <ul>
+  <li>Leasing Software and Customizing features</li>
+  <li>Training Employees in cloud service</li>
+  <li>Paying for cloud support</li>
+  <li>Billing based on cloud metrics for Example Compute and storage usage</li>
+ </ul>
+</div>
+
+<p class="text">
+ The cost associated with an on-premises data-center that has shifted the cost to the service provider. The customer only has to be concerned with non-physical cost. With
+ Operational Expenditure you can try a product or service without investing in equipment.
+</p>
+
+<div class="list-content normal star">
+ <p class="list-title">- Cloud computing falls under <green>OpEx</green> because cloud computing operates on a consumption-based model. With cloud computing :-</p>
+ <ul>
+  <li>You don't pay for the physical infrastructure, the electricity, the security, or anything else associated with maintaining a data-center</li>
+  <li>You only pay for the IT resources you use. If you don't use any IT resources this month, you don't pay for any IT resources.</li>
+ </ul>
+</div>
+
+<p class="text">
+ In a cloud-based model, you don't have to worry about getting the resource needs just right. If you find that you need more virtual machines, then you can add more. If
+ the demand drops and you don't need as many virtual machines, you remove machines as needed. Either way, you're only paying for the virtual machines that you use, not
+ the “extra capacity” that the cloud provider has on hand.
+</p>
+
+<div class="list-content normal number">
+ <p class="list-title">- cost of OpEx :-</p>
+ <ul>
+  <li>Leasing software and customized features</li>
+  <li>Scaling charges based on usage/demand instead of fixed hardware or capacity.</li>
+  <li>Plan for backup traffic and disaster recovery traffic to determine the bandwidth needed.</li>
+ </ul>
+</div>
+
+<div class="list-content normal star">
+ <p class="list-title">- Benefits of OpEx :-</p>
+ <ul>
+  <li>CapEx challange: Demand and growth can be unpredictable and can outpace expectation</li>
+  <li>Companies wanting to try a new product or service don't need to invest in equipment. Instead, they pay as much or as little for the infrastructure as required.</li>
+  <li>OpEx is particularly appealing if the demand fluctuates or is unknown</li>
+  <li>
+   Enables cloud agility, Ability to rapidly change an IT infrastructure to adapt to the evolving needs of the business. Manage your costs dynamically, optimizing
+   spending as requirements change. E.g. service peaks one month => pay more, demand drops next month => pay less
+  </li>
+ </ul>
+</div>
+
+<div class="list-content normal check">
+ <p class="list-title">- Billing of OpEx:-</p>
+ <ul>
+  <li>
+   As soon as the provider provisions resources, billing starts, your responsibility to de-provision the resources when they aren't in use so that you can minimize costs.
+  </li>
+  <li>
+   Cloud computing can bill in various ways - <underline yellow>Number of users</underline>, <underline yellow>CPU usage time</underline>,
+   <underline yellow>allocated RAM</underline>, <underline yellow>I/O operations per second (IOPS)</underline>, and <underline yellow>storage space</underline>.
+  </li>
+  <li>Billing at the user or organization level. You pay-per-use (or subscription model)</li>
+  <ul disc>
+   <li>Designed for both organizations and users</li>
+   <li>Billed for the services used, typically on a recurring basis</li>
+   <li>For example, when using a dedicated cloud service, you could pay based on server hardware and usage.</li>
+  </ul>
+ </ul>
+</div>
+
+<!-- ######################################################### -->
+<p class="sub-title">- Compare cloud pricing models</p>
+<!-- ######################################################### -->
+
+<p class="text">
+ As we know, cloud computing is the delivery of computing services over the internet by using a <text green>pay-as-you-go</text> pricing model. You typically pay only for
+ the cloud services you use, which helps you:
+</p>
+
+<div class="list-content normal star">
+ <ul>
+  <li>Plan and manage your operating costs.</li>
+  <li>Run your infrastructure more efficiently.</li>
+  <li>Scale as your business needs change.</li>
+ </ul>
+</div>
+
+<div class="quote-text blue-border">
+ <p>
+  cloud computing is a way to rent compute power and storage from someone else's data-center. You can treat cloud resources like you would resources in your own
+  data-center. However, unlike in your own data-center, when you're done using cloud resources, you give them back. You're billed only for what you use.
+ </p>
+</div>
+
+<div class="quote-text blue-border">
+ <p>
+  Instead of maintaining CPUs and storage in your data-center, you rent them for the time that you need them. The cloud provider takes care of maintaining the underlying
+  infrastructure for you. The cloud enables you to quickly solve your toughest business challenges and bring cutting-edge solutions to your users.
+ </p>
+</div>

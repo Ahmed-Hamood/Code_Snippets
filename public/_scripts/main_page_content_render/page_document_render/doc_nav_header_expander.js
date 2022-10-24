@@ -3,8 +3,8 @@ export default function doc_nav_header_active() {
  const bodyElm = document.body;
  let DocContentRender = document.getElementById('page-content-wrapper');
 
- if (bodyElm.getAttribute('max-content') == 'disabled') {
-  bodyElm.setAttribute('max-content', 'enabled');
+//  if (bodyElm.getAttribute('max-content') == 'disabled') {
+//   bodyElm.setAttribute('max-content', 'enabled');
   expand_width_svg_btn.addEventListener('click', (element) => {
    bodyElm.setAttribute('max-content', bodyElm.getAttribute('max-content') == 'true' ? 'false' : 'true');
    element.target.children[0].classList.toggle('shrink-width-svg');
@@ -13,5 +13,5 @@ export default function doc_nav_header_active() {
    void DocContentRender.offsetWidth;
    DocContentRender.setAttribute('id', 'page-content-wrapper');
   });
- }
+//  }
 }
