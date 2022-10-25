@@ -43,10 +43,8 @@ export default function tooltip() {
    }
 
    element.addEventListener('click', (ev) => {
-    console.log(ev.target);
     if (ev.target.tagName == 'TOOLTIP' || ev.target.tagName == 'DIV') {
      element = ev.target.tagName == 'DIV' ? ev.target.parentElement : ev.target;
-     console.log(element);
      format_text(element);
      if (tooltip_text.includes('<hr>')) getTooltipModalElement.children[0].classList.add('left');
      getTooltipModalElement.children[0].innerHTML = keyword;

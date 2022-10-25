@@ -95,6 +95,11 @@ body[max-content='true'] {
 
   --scroll-width: 2px;
   --scroll-height: 3px; --sidebar-width: 350px;
+
+  --zoom-body: 1;
+
+  --content-render-height: 100vh;
+  --content-render-width: 100vw;
  }
 }
 

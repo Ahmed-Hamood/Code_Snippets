@@ -1,5 +1,24 @@
 <p class="main-title">4 - The benefits of using cloud services with cloud architecture terminologies</p>
 
+<p class="text">
+ The Cloud Architecture Terminologies are very important to help you conceptualize the advantages of the cloud. We will introduce some of the benefits that cloud
+ computing offers.
+</p>
+<div class="list-content normal">
+ <ul>
+  <li><underline yellow>Availability</underline> <small>(Ensure service availability)</small> - Your ability to ensure a service remain available.</li>
+  <li>
+   <underline yellow>Scalability</underline> <small>(scaling Up/Down - In/Out)</small> - Your ability to grow rapidly or
+   <tooltip desc="not slowed, blocked, or interfered with">unimpeded</tooltip>
+  </li>
+  <li><underline yellow>Elasticity</underline> <small>(Automatic scaling)</small> - Your ability to shrink and grow to meet the demand</li>
+  <li><underline yellow>Durability/Reliability</underline> <small>(Disaster Recovery)</small> - Your ability to recover from a failure.</li>
+  <li><underline yellow>Fault Tolerance</underline> <small>(Data recovery/Replication)</small> - Your ability to prevent failure</li>
+ </ul>
+</div>
+
+<div class="table-content"></div>
+
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <p class="sub-title">A - High availability and scalability in the cloud</p>
@@ -7,8 +26,53 @@
 <!-- ######################################################### -->
 
 <!-- ---------------------------------------------------------------- -->
-<p class="sub-sub-title">1. High Availability <small red>(Ensure service availability)</small></p>
+<p class="sub-sub-title">1. High Availability - <red>Your ability to ensure a service remains available</red></p>
 <!-- ---------------------------------------------------------------- -->
+
+<p class="text">
+ Azure makes sure that your application or service must be available when it needed, high availability ensure that your resources is on maximum availability, regardless
+ of disruptions or events that may occur.
+</p>
+
+<p class="text">
+ Your ability for your service to remain available by ensuring there is no single point of failure and/or ensure a certain level of performance. Azure makes sure that
+ your application or service runs on redundant servers, if anything happen to a single server traffic could always be routed to other servers, this way your service would
+ remain available.
+</p>
+
+<div class="quote-text blue-border">
+ <p>
+  Having multiple servers is great, but what even better is having multiple servers in multiple data centers, because something could happen to a data center, it could
+  become unavailable because of networking issue, this way we can route traffic to another data center servers.
+ </p>
+</div>
+
+<p class="text">
+ Azure calls their data centers as
+ <tooltip
+  desc="Azure availability zones are physically and logically separated data-centers with their own independent power source, network, and cooling. Connected with an extremely low-latency network, they become a building block to delivering high availability applications."
+  >Availability Zones</tooltip
+ >
+ . We are running our application workload across multiple availability zones, If AZ1 and AZ2 is not available, you application or service will remain available on AZ3.
+</p>
+
+<p class="text">
+ To distribute the traffic or mange the traffic to all three AZ, here <green>Azure Load balancer</green> allows you to evenly distribute traffic to multiple servers in
+ one or more data-center. If a data-center or server becomes unavailable (unhealthy) the load balancer will route the traffic to only available data-centers with servers.
+</p>
+
+<img id="image" path="/img/image007.PNG" alt="image" />
+
+<p class="text">
+ Service availability in azure cloud environment with uptime guarantees depending on the service, these guarantees are part of the
+ <tooltip
+  desc="- Microsoft Azure is designed to minimize downtime, and Microsoft offers guarantees about the maximum amount of downtime service users should expect in the form of Service Level Agreements. It provides services and guidance that help Azure users to decrease downtime and offers better SLAs when Azure users take advantage of redundancy features built into the platform. - Availability is often expressed as a percentage of a period of time. A service might be available for 99 percent of the time in a given month; on Azure, it’s usually the uptime percentage for a billing month. - It’s not easy to get an idea about how much downtime to expect when we’re talking about nines or percentages, so it’s useful to convert them into days, hours, and minutes. We’ve rounded these figures to the nearest minute. "
+  >service-level agreements</tooltip
+ >
+ (SLAs).
+</p>
+
+<img id="image" path="/img/image008.PNG" alt="image" />
 
 <!-- ---------------------------------------------------------------- -->
 <p class="sub-sub-title">
@@ -52,8 +116,6 @@
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 
-
-
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <p class="sub-title">D - Manageability in the cloud</p>
@@ -61,13 +123,9 @@
 <!-- ######################################################### -->
 
 <!-- ---------------------------------------------------------------- -->
-<p class="sub-sub-title">
-  1. Management of the cloud
-</p>
+<p class="sub-sub-title">1. Management of the cloud</p>
 <!-- ---------------------------------------------------------------- -->
 
 <!-- ---------------------------------------------------------------- -->
-<p class="sub-sub-title">
-  2. Management in the cloud
-</p>
+<p class="sub-sub-title">2. Management in the cloud</p>
 <!-- ---------------------------------------------------------------- -->

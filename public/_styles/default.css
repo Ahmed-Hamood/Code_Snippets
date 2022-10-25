@@ -178,6 +178,11 @@ body[pageLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
  z-index: 10;
  display: block;
 }
+#blank-modal.show-table-content {
+ background-color: rgba(0, 0, 0, 0.744);
+ z-index: 10;
+ display: block;
+}
 
 @media screen and (max-width: 1366px) {
  body,

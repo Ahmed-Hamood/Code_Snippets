@@ -104,7 +104,7 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
 
  page_content.innerHTML = titlesContentWrapper(DocContentHTMLText);
  page_content.innerHTML += '<br/> <br/> <br/> <br/>';
- 
+
  bodyElement.setAttribute('pageLoading', true);
  startup_pageRender(isPageLoadSuccess, refPos);
  bodyElement.setAttribute('pageLoading', false);
