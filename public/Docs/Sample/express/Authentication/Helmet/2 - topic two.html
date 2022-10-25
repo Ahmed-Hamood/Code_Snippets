@@ -1,38 +1,67 @@
 <p class="main-title">1. Main title</p>
 
+<!-- 
+<div class="list-content normal star">
+ <p class="list-title">- List as the following :-</p>
+ <ul>
+  <li>Level 1 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+  <li>Level 2 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
 
+  <ul number>
+    <li>Level 3-A - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+    <li>Level 3-B - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+  </ul>
+
+  <li>Level 4 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+  <li>Level 5 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+
+  <ul check>
+    <li number>Level 6-A - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+    <li>Level 6-B - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+      <ul red_cross>
+        <li>Level ## - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+        <li check>Level ## - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+      </ul>
+  </ul>
+
+  <li>Level 7 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+ </ul>
+</div> -->
+
+<!-- 
 <img id="image" path="/img/image022.PNG" alt="image" />
 <img id="image" path="/img/image016.GIF" alt="image" />
 <img id="image" path="/img/image016.GIF" alt="image" />
 <img id="image" path="/img/image016.GIF" alt="image" />
 <img id="image" path="/img/image016.GIF" alt="image" />
-
+ -->
 
 <section js-jsx-content title-header="An Example" full-height line-num="">
 <pre>
-  import React from "react"
-  import ReactDOM from "react-dom"
-  import { useDispatch, useSelector } from "react-redux"
-  import { setProducts } from "./redux-store/actions-creator/productActions"
-  import { GetUser } from "./app.js"
-
-  ReactDOM.render(&lt;App />, document.getElementById("root"))
-  ReactDOM.render(&lt;Welcome />, document.getElementById("root"));  
-
-  return(
-    &lt;div>
-      &lt;p> You clicked 5 {count++} times &lt;/p>
-      &lt;p> You clicked 5 {count} times &lt;/p>
-      &lt;p> You clicked 5 {count + 1} times &lt;/p>
-      &lt;button> You clicked 5 {count + 1} times &lt;/button>
-      &lt;Welcome>
-        Children - 12.25 sdfsdf {count} s48f74s8f sf84fsf8 498489
-        fffffffffffffff
-        ##fgffffff##
-      &lt;/Welcome>
-      &lt;button onClick={(event, xyz) => setCount(1 + count + 6 + count)} type="heee"> &lt;/button>
-      &lt;button onClick={() => setCount(count - 1)}> &lt;/button>
-    </div>)
+    import React from "react"
+    import ReactDOM from "react-dom"
+    import { useDispatch, useSelector } from "react-redux"
+    import { setProducts } from "./redux-store/actions-creator/productActions"
+    import { GetUser } from "./app.js"
+  
+    ReactDOM.render(<App />, document.getElementById("root"))
+    ReactDOM.render(<Welcome />, document.getElementById("root"));  
+  
+    return(
+      <div>
+        <p> You clicked 5 {count++} times </p>
+        <p> You clicked 5 {count} times </p>
+        <p> You clicked 5 {count + 1} times </p>
+        <button> You clicked 5 {count + 1} times </button>
+        <Welcome>
+          Children - 12.25 sdfsdf {count} s48f74s8f sf84fsf8 498489
+          fffffffffffffff
+          ##fgffffff##
+        </Welcome>
+        <button onClick={(event, xyz) => setCount(1 + count + 6 + count)} type="heee"> </button>
+        <button onClick={() => setCount(count - 1)}> </button>
+      </div>
+    )
 </pre>
 </section>
 

@@ -91,7 +91,7 @@ body[max-content='true'] .main-content-header .nav-header-container .nav-content
  z-index: 3;
  background: var(--main-doc-header-path-view-content-bg-color);
  height: var(--main-doc-header-pathView-content-height);
- border-bottom: 2px dotted #2a292e;
+ border-bottom: 1px solid #202020;
  width: 100%;
  max-width: calc(var(--content-render-width) - var(--sidebar-width) - var(--scroll-width));
  align-self: flex-start;
@@ -143,7 +143,7 @@ body[sidebar='false'] .main-content-header .nav-header-container .path-view-cont
 
 .main-content-header .nav-header-container .path-view-content-header ul li .path-view-title {
  font-size: 1rem;
- font-weight: 500;
+ font-weight: 400;
  color: var(--main-doc-header-path-view-text-color);
  margin-right: 0.3rem;
 }

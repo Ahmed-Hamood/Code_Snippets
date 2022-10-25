@@ -3,9 +3,9 @@
 #image {
  cursor: pointer;
  display: block;
- margin-bottom: calc(1.2 * 1.8rem);
- box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 12px 0 rgba(0, 0, 0, 0.19);
- border-radius: 8px;
+ margin: calc(1.2 * 2.2rem) 0;
+ border: 1px solid rgb(65, 65, 65);
+ border-radius: 12px;
  width: 70%;
  opacity: 0;
  transition: 0.3s;

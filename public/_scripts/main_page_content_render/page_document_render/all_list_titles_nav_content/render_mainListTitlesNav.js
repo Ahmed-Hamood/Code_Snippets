@@ -13,11 +13,13 @@ export default function render_mainListTitlesNav(active) {
 
   let topic_menu_btn = null;
   let main_list_titles_nav_sticky_content = null;
+  let main_titles_list = null;
 
   let mainListTitlesContentHTML = '';
 
   let allList = '';
   let navTitle_className = '';
+  let delayTitleMS = 140;
 
   getAllTitleInSubject.forEach((element, index) => {
    if (element.classList.contains('sub-title')) navTitle_className = 'nav-sub-title';
@@ -30,7 +32,7 @@ export default function render_mainListTitlesNav(active) {
   mainListTitlesContentHTML = `
    <div class="main-list-titles-nav-content">
       <h1>Table Content</h1>
-      <ul class="main-titles-list">
+      <ul class="main-titles-list main">
         ${allList}
       </ul>
     </div>
@@ -51,12 +53,14 @@ export default function render_mainListTitlesNav(active) {
 
   topic_menu_btn = document.querySelector('.titles-list-menu-active-btn');
   main_list_titles_nav_sticky_content = document.querySelector('.main-list-titles-nav-content.sticky');
+  main_titles_list = document.querySelectorAll('.main-titles-list.main li');
 
-  // disable middle click on table content list
-  document.querySelectorAll('.main-titles-list li a').forEach((element) => {
+  // disable middle click on table content list > ul.main-titles-list.main li a
+  main_titles_list.forEach((element) => {
+   element = element.children[0];
    // disable middle click
    element.addEventListener('auxclick', (ev) => {
-    if (ev.button === 1) ev.preventDefault();
+   if (ev.button === 1) ev.preventDefault();
    });
 
    // Hide top topic menu on small device when you click on any topic links
@@ -69,10 +73,12 @@ export default function render_mainListTitlesNav(active) {
    });
   });
 
+  delayTitleMS = main_titles_list.length > 20 ? 70 : delayTitleMS
+
   setTimeout(() => {
    // animation effect
-   document.querySelectorAll('.main-titles-list li').forEach((element, index) => {
-    element.style.setProperty('--delay', `${index * 150}ms`);
+   main_titles_list.forEach((element, index) => {
+    element.style.setProperty('--delay', `${index * delayTitleMS}ms`);
    });
   }, 1200);
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const reload = require('reload');
-const { JsonDB, Config } = require('node-json-db');
+// const { JsonDB, Config } = require('node-json-db');
 const app = express();
 const fs = require('fs');
 
@@ -14,7 +14,7 @@ app.use((req, res, next) => {
  //  console.log('Request IP incoming: ' + req.ip);
  //  console.log('Request URL: ' + req.url);
 
- if (req.ip != '::1' && req.ip != '::ffff:127.0.0.1' && !req.ip.startsWith('::ffff:192.168.0')) return res.send('UnAuthorize Access');
+//  if (req.ip != '::1' && req.ip != '::ffff:127.0.0.1' && !req.ip.startsWith('::ffff:192.168.0')) return res.send('UnAuthorize Access');
 
  next();
 });

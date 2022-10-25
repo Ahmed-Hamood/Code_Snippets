@@ -11,7 +11,7 @@ const db = _urlPathDBStore();
 let DocContentRender = document.getElementById('page-content-wrapper');
 let navTitleHeader = document.querySelector('.nav-title-header');
 let pathViewContentHeader = document.querySelector('.path-view-content-header');
-
+let bodyElement = document.body;
 
 let page_path = '';
 let vs_code_opener_svg_btn = document.querySelector('.vs-code-opener-svg-btn');
@@ -22,7 +22,6 @@ let HomeBtn = document.querySelector('.home-btn-content');
 
 let sideBar = document.querySelector('.sideBar');
 let allSidebarFiles = [];
-let bodyElement = document.body;
 
 let urlSearchParams = new URLSearchParams(window.location.search);
 let _isDocumentationPageLinkSelected = false;
@@ -315,19 +314,19 @@ export async function RunPageLoader(
    ResStatus = responseData.status;
 
    vs_code_opener_svg_btn.children[1].innerHTML = 'Open file with vscode';
-   
+
    if (ResStatus == 404) {
-     console.log('Not Found');
-     db.RemoveLastUrlPathHistory();
-     db.DecreaseUrlPathHistoryIndex();
-     vs_code_opener_svg_btn.children[1].innerHTML = 'Create file with vscode';
-    }
-    
-    // prepare page path
-    page_path = getUrlPathHashedLink.replace(/\#/g, '/');
-    page_path = decodeURIComponent(page_path);
-    bodyElement.setAttribute('current_path', page_path);
- 
+    console.log('Not Found');
+    db.RemoveLastUrlPathHistory();
+    db.DecreaseUrlPathHistoryIndex();
+    vs_code_opener_svg_btn.children[1].innerHTML = 'Create file with vscode';
+   }
+
+   // prepare page path
+   page_path = getUrlPathHashedLink.replace(/\#/g, '/');
+   page_path = decodeURIComponent(page_path);
+   bodyElement.setAttribute('current_path', page_path);
+
    EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, refTitlePos);
   } catch (error) {
    console.log('Error: ', error);

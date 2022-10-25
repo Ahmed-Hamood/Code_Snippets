@@ -11,7 +11,7 @@
 }
 
 #page-content-wrapper {
- /* opacity: 0; */
+ opacity: 0;
  color: #f5f2f2;
  width: 100%;
  max-width: var(--main-doc-content-width);
@@ -25,7 +25,7 @@
 }
 
 body[pageLoading='false'] #page-content-wrapper {
- animation: FadeInAnimation 0.4s ease-in 0.2s backwards;
+ animation: FadeInAnimation 0.4s ease-in 0.2s forwards;
 }
 
 @media screen and (max-width: 1000px) {

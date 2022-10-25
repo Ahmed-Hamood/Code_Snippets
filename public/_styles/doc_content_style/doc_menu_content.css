@@ -71,7 +71,7 @@
 }
 
 .documentation-topics-list-container .subject-topics-content li:last-child {
- margin-bottom: calc(1.2 * 0.8rem);
+ margin-bottom: calc(1.2 * 1rem);
 }
 
 .documentation-topics-list-container .subject-topics-content li .topic-title-link {

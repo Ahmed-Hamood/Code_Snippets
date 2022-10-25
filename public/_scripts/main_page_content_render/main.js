@@ -104,8 +104,10 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
 
  page_content.innerHTML = titlesContentWrapper(DocContentHTMLText);
  page_content.innerHTML += '<br/> <br/> <br/> <br/>';
-
+ 
+ bodyElement.setAttribute('pageLoading', true);
  startup_pageRender(isPageLoadSuccess, refPos);
+ bodyElement.setAttribute('pageLoading', false);
 }
 
 // ++++++++++++++++++++++++++++++++++
@@ -115,7 +117,6 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
 function startup_pageRender(isPageLoadSuccess, refPos = null) {
  if (isPageLoadSuccess) {
   let has_documentation_topics_list_container = document.querySelector('.documentation-topics-list-container');
-  bodyElement.setAttribute('pageLoading', true);
 
   if (has_documentation_topics_list_container) {
    // get all topic menu links
@@ -170,7 +171,5 @@ function startup_pageRender(isPageLoadSuccess, refPos = null) {
    // wrap sections after each title
    content_section_wrapper();
   }
-
-  bodyElement.setAttribute('pageLoading', false);
  }
 }

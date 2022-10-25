@@ -7,8 +7,6 @@ export default async function Run_Highlight_Coloring() {
  let JsCode = document.querySelector('.js-code'); // react, json and typescript
  let PyCode = document.querySelector('.python-code');
 
- let bodyElm = document.body;
-
  let PythonCode = [...document.querySelectorAll('.python-code pre code')];
  let NpmCommand = [...document.querySelectorAll('.npm-command pre')];
 

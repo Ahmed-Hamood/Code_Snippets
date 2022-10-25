@@ -691,7 +691,7 @@
  >
 </section>
 
-<div class="list-content normal disc">
+<div class="list-content normal">
  <p class="list-title">- The patterns and tools provided by Redux make it easier to understand :-</p>
  <ul>
   <li>It helps to understand what this "Redux" thing is in the first place</li>
@@ -893,5 +893,78 @@
   <li>What does it do? What problems does it help <code>createStore()</code> me solve What does it do?</li>
   <li>These docs were written for all learners, no matter their experience level or background.</li>
   <li>While we do our best to assume no prior knowledge of React</li>
+ </ul>
+</div>
+
+<!-- ###################################################### -->
+<p class="sub-sub-title">- Normal List - Nested list</p>
+
+<section html-content title-header="An Example" line-num="">
+ <pre>
+  &lt;!-- This is all list types you can have -->
+  &lt;!-- > dash,boom,check,red_cross,arrow,star -->
+  &lt;!-- > none,alpha,number,disc -->
+  &lt;!-- > Default style is disc -->
+
+  &lt;!-- ul > li - Apply star to all direct list  -->
+  &lt;div class="list-content normal star">
+    &lt;p class="list-title">- List as the following :-&lt;/p>
+    &lt;ul>
+     &lt;!-- sepecify this list with check -->
+     &lt;li check>Level 1 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!&lt;/li>
+     &lt;li>Level 2 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!&lt;/li>
+
+     &lt;!-- here we sepecify number to all ls inside ul -->
+     &lt;ul number>
+       &lt;li>Level 3-A - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!&lt;/li>
+       &lt;li>Level 3-B - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!&lt;/li>
+     &lt;/ul>
+   
+     &lt;li>Level 4 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!&lt;/li>
+     &lt;li>Level 5 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!&lt;/li>
+   
+     &lt;!-- here we sepecify check to all ls directly inside ul -->
+     &lt;ul check>
+       &lt;!-- sepecify this list with number  -->
+       &lt;li number>Level 6-A - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!&lt;/li>
+       &lt;li>Level 6-B - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!&lt;/li>
+         &lt;!-- here we sepecify red_cross to all ls directly inside ul -->
+         &lt;ul red_cross>
+           &lt;li>Level 6-B-A - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!&lt;/li>
+           &lt;!-- sepecify this list with check -->
+           &lt;li check>Level 6-B-B  - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!&lt;/li>
+         &lt;/ul>
+     &lt;/ul>
+   
+     &lt;li>Level 7 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!&lt;/li>
+    &lt;/ul>
+   &lt;/div>
+</pre>
+</section>
+
+<div class="list-content normal star">
+ <p class="list-title">- List as the following :-</p>
+ <ul>
+  <li check>Level 1 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+  <li>Level 2 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+
+  <ul number>
+   <li>Level 3-A - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+   <li>Level 3-B - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+  </ul>
+
+  <li>Level 4 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+  <li>Level 5 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+
+  <ul check>
+   <li number>Level 6-A - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+   <li>Level 6-B - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+   <ul red_cross>
+    <li>Level 6-B-A  - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+    <li check>Level 6-B-B  - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
+   </ul>
+  </ul>
+
+  <li>Level 7 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita ad est veritatis!</li>
  </ul>
 </div>
