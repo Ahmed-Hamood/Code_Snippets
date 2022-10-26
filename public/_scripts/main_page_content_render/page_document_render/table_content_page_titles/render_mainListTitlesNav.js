@@ -11,15 +11,19 @@ export default function render_mainListTitlesNav(active) {
  const disableTableContent = document.querySelector('.no-table-content');
  const hasTableContent = document.querySelector('.table-content');
 
+ // if (window.innerWidth < 1800) {
+ setTimeout(() => enable_scrollVisible_MainListTitlesNav(active), 1000);
+ // }
+
  if (!active || disableTableContent) return;
 
  if ([...getAllTitleInSubject].length != 0) {
   const doc_content_render_container = document.getElementById('page-content-render-container');
   const mainTitle = document.querySelector('.main-title');
   let selectedTitleElement = null;
-  let main_list_titles_nav_sticky_content = null;
-  let main_titles_list = null;
-  let main_titles_list_sticky = null;
+  let get_sticky_table_content_topic_page = null;
+  let get_all_list_titles = null;
+  let get_list_titles_length = null;
 
   let mainListTitlesContentHTML = '';
 
@@ -38,16 +42,16 @@ export default function render_mainListTitlesNav(active) {
   });
 
   mainListTitlesContentHTML = `
-   <div class="main-list-titles-nav-content">
+   <div class="main_table_content_topic_page">
       <h1>Table Content</h1>
-      <ul class="main-titles-list">
+      <ul class="titles_list_content">
         ${allList}
       </ul>
     </div>
 
-    <div class="main-list-titles-nav-content sticky">
+    <div class="sticky_table_content_topic_page">
       <h1>Table Content</h1>
-      <ul class="main-titles-list">
+      <ul class="titles_list_content">
         ${allList}
       </ul>
    </div>
@@ -60,12 +64,12 @@ export default function render_mainListTitlesNav(active) {
    mainTitle.insertAdjacentHTML('afterend', mainListTitlesContentHTML);
   }
 
-  main_list_titles_nav_sticky_content = document.querySelector('.main-list-titles-nav-content.sticky');
-  main_titles_list = document.querySelectorAll('.main-titles-list li');
-  main_titles_list_sticky = document.querySelectorAll('.main-titles-list.sticky li');
+  get_sticky_table_content_topic_page = document.querySelector('.sticky_table_content_topic_page');
+  get_all_list_titles = document.querySelectorAll('.titles_list_content li');
+  get_list_titles_length = document.querySelectorAll('.main_table_content_topic_page li').length;
 
-  // disable middle click on table content list > ul.main-titles-list.main li a
-  main_titles_list.forEach((element) => {
+  // disable middle click on table content list > ul.titles_list.main li a
+  get_all_list_titles.forEach((element) => {
    element = element.children[0];
    // disable middle click
    element.addEventListener('auxclick', (ev) => {
@@ -76,18 +80,18 @@ export default function render_mainListTitlesNav(active) {
    // Active scroll to position when selecting a title link from nav
    element.addEventListener('click', (ev) => {
     ev.preventDefault();
-    // main_list_titles_nav_sticky_content.classList.remove('view-topics-list-menu');
+    // get_sticky_table_content_topic_page.classList.remove('view_sticky_table_content');
     eventInvoker('#blank-modal');
     selectedTitleElement = document.getElementById(`title-${ev.target.id}`);
     doc_content_render_container.scrollTo(0, selectedTitleElement.offsetTop);
    });
   });
 
-  delayTitleMS = main_titles_list_sticky.length > 20 ? 70 : delayTitleMS;
+  delayTitleMS = get_list_titles_length > 20 ? 70 : delayTitleMS;
 
   setTimeout(() => {
    // animation effect
-   main_titles_list.forEach((element, index) => {
+   get_all_list_titles.forEach((element, index) => {
     element.style.setProperty('--delay', `${index * delayTitleMS}ms`);
    });
   }, 1200);
@@ -95,16 +99,10 @@ export default function render_mainListTitlesNav(active) {
   // enable topic doc content menu button - view
 
   topic_menu_btn.addEventListener('click', () => {
-   main_list_titles_nav_sticky_content.classList.toggle('view-topics-list-menu');
+   get_sticky_table_content_topic_page.classList.toggle('view_sticky_table_content');
    blank_modal.classList.add('show-table-content');
    bodyElement.setAttribute('blank-current-active', 'table-content');
    navigator.vibrate(1);
   });
  }
-
- // if (window.innerWidth < 1800) {
- setTimeout(() => {
-  enable_scrollVisible_MainListTitlesNav(active);
- }, 1000);
- // }
 }

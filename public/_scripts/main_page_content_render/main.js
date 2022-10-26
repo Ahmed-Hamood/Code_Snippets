@@ -3,8 +3,8 @@ import tabsSwitchContentRender_Active from './page_document_render/tabSwitchRend
 import topicMenuContentActive from './page_documentation_topics_render/topicMenuContent.js';
 import enableTableContent from './page_documentation_topics_render/enableTableContent.js';
 
-import render_mainListTitlesNav from './page_document_render/all_list_titles_nav_content/render_mainListTitlesNav.js';
-import render_sideListTitlesNav from './page_document_render/all_list_titles_nav_content/render_sideListTitlesNav.js';
+import render_mainListTitlesNav from './page_document_render/table_content_page_titles/render_mainListTitlesNav.js';
+import render_sideListTitlesNav from './page_document_render/table_content_page_titles/render_sideListTitlesNav.js';
 
 import appendRefLinks from './page_document_render/tooltips_navHashPos_refLinks/appendRefLinks.js';
 import imageLinkChange from './page_document_render/image-content/imageLinkChange.js';

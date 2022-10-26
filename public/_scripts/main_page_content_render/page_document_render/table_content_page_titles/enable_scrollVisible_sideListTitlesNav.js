@@ -6,7 +6,7 @@ export default function enable_scrollVisible_sideListTitlesNav(active) {
  if (active) {
   const allTitleInSideMenu = ['.nav-sub-title', '.nav-sub-sub-title', '.nav-sub-sub-sub-title'];
   const allTitleInDocumentContent = ['.sub-title', '.sub-sub-title', '.sub-sub-sub-title', 'get-title'];
-  const main_list_titles_nav_content = document.querySelector('.main-list-titles-nav-content');
+  const main_list_titles_nav_content = document.querySelector('.main_table_content_topic_page');
 
   getAllSideTableTitles = document.querySelectorAll(allTitleInSideMenu);
   titleSections = document.querySelectorAll(allTitleInDocumentContent);
