@@ -332,8 +332,8 @@ export async function RunPageLoader(
    console.log('Error: ', error);
    DocContentRender.innerHTML = `
    <div class='page-msg-content error'>
-    <p class="msg-title">Page Error</p>
-    <p class="msg-info">404 Error</p>
+    <p class="msg-title">404 Error</p>
+    <p class="msg-info">Error while loading the page</p>
   </div>`;
   }
  }

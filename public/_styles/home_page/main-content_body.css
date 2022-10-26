@@ -16,7 +16,7 @@
  max-width: var(--main-doc-content-width);
  margin: 0 auto;
  margin-top: 160px;
- padding: 0 1rem;
+ /* padding: 0 1rem; */
  margin-bottom: 0px;
  /* padding: 9px;
  padding-left: 15px; */
@@ -31,6 +31,7 @@ body[pageLoading='false'] #page-content-wrapper {
 
 @media screen and (max-width: 1000px) {
  #page-content-wrapper {
+  padding: 0 1.2rem;
   /* padding-left: 9px; */
   /* margin-top: 110px; */
  }
