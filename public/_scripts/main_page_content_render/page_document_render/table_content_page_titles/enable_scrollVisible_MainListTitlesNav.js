@@ -15,7 +15,7 @@ export default function enable_scrollVisible_MainListTitlesNav(active) {
  }
 }
 
-function EnableScrollVisibleStickyMainListTitleNavContent(e) {
+function EnableScrollVisibleStickyMainListTitleNavContent(event) {
   if (tablePosition <= event.target.scrollTop) {
     document.querySelector('.titles-list-menu-active-btn')?.classList.add('view');
    } else {
