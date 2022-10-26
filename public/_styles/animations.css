@@ -59,6 +59,16 @@
   transform: translateY(0px);
  }
 }
+@keyframes stickyTableContent {
+ 0% {
+  opacity: 0;
+  transform: translate(-50%, -70%);
+ }
+ 100% {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+ }
+}
 
 @keyframes rotate_reload {
  0% {
@@ -89,7 +99,7 @@
 
 @keyframes table_content_list_slide {
  from {
-  transform: translateX(-15px);
+  transform: translateX(-10px);
  }
  to {
   transform: translateX(0);

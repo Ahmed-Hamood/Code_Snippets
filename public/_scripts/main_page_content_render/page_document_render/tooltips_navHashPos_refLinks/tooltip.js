@@ -42,6 +42,12 @@ export default function tooltip() {
     element.innerHTML = `${keyword}<div class="tooltiptext ${tooltip_text.includes('<hr>') ? 'left' : ''}">${tooltip_text}</div>`;
    }
 
+  //  element.setAttribute("onmouseover", "console.dir(window.scrollX + this.getBoundingClientRect().left)")
+
+  //  element.addEventListener("mouseover", () => {
+  //   // console.log("hover");
+  //  })
+
    element.addEventListener('click', (ev) => {
     if (ev.target.tagName == 'TOOLTIP' || ev.target.tagName == 'DIV') {
      element = ev.target.tagName == 'DIV' ? ev.target.parentElement : ev.target;
