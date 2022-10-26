@@ -15,10 +15,11 @@
  width: 100%;
  max-width: var(--main-doc-content-width);
  margin: 0 auto;
- margin-top: 150px;
+ margin-top: 130px;
+ padding: 0 1rem;
  margin-bottom: 0px;
- padding: 9px;
- padding-left: 15px;
+ /* padding: 9px;
+ padding-left: 15px; */
  position: relative;
  transition: 400ms max-width;
  animation: FadeInAnimation 0.4s ease-in-out 0.2s backwards;
@@ -30,8 +31,8 @@ body[pageLoading='false'] #page-content-wrapper {
 
 @media screen and (max-width: 1000px) {
  #page-content-wrapper {
-  padding-left: 9px;
-  margin-top: 110px;
+  /* padding-left: 9px; */
+  /* margin-top: 110px; */
  }
 }
 

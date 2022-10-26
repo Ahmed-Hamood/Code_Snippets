@@ -1,6 +1,6 @@
 #page-content-wrapper {
  color: var(--text-color);
- font-size: 1.4rem;
+ font-size: 1rem;
  font-weight: 400;
 }
 
@@ -27,7 +27,8 @@
  /* border-left: 3px solid rgb(43, 43, 43); */
  /* border-bottom: 1px solid rgb(43, 43, 43); */
 
- padding: 22px 0;
+ padding: 22px 0 12px 0;
+ /* padding: 0; */
 }
 
 .main-list-titles-nav-content + .text {
@@ -69,22 +70,20 @@
  display: none;
  background: var(--sideBar-bg-color);
  position: fixed;
- /* top: 158px; */
- /* top: 50%; */
- /* left: 50%; */
  top: 130px;
+
  /* transform: translate(-50%, -50%); */
+ /* margin-left: -0.6rem; */
+ padding: 0px 0 4px 0;
+ margin-left: 0.43rem;
  transition: 0.6s all;
- width: 97%;
- max-width: calc(var(--main-doc-content-width));
- margin-left: -1px;
+ width: 95%;
+ max-width: var(--main-doc-content-width);
  max-height: 60vh;
  overflow: hidden;
- /* z-index: 12; */
- padding: 0px 0 16px 0;
- border: 2px solid rgb(34, 34, 34);
- border-left: 5px solid rgb(54, 77, 115);
- border-radius: 3px 12px 12px 3px;
+ border: 1px solid rgb(54, 77, 115);
+ /* border-radius: 3px 12px 12px 3px; */
+ border-radius: 12px;
  animation: translateFromUpToDown 0.2s forwards;
 }
 
@@ -101,6 +100,7 @@
 .main-list-titles-nav-content.sticky .main-titles-list {
  max-height: 40vh;
  overflow-y: auto;
+ padding-top: 16px;
 }
 
 .main-list-titles-nav-content.sticky .main-titles-list::-webkit-scrollbar-track {
@@ -120,9 +120,10 @@
 }
 
 .main-list-titles-nav-content.sticky h1 {
- color: #ffff;
+ color: rgb(82, 255, 88);
  border-bottom: 1px solid rgb(66, 64, 86);
- margin-bottom: 18px;
+ /* margin-bottom: 15px; */
+ margin-bottom: 2px;
  margin-left: 0;
  padding: 12px 0;
  padding-left: 12px;
@@ -160,18 +161,21 @@
 }
 
 .main-list-titles-nav-content .main-titles-list li.nav-sub-title {
- font-size: 1.2rem;
+ /* font-size: 1.2rem; */
+ font-size: 1rem;
  margin-bottom: 1rem;
 }
 
 .main-list-titles-nav-content .main-titles-list li.nav-sub-sub-title {
- font-size: 1.1rem;
+ /* font-size: 1.1rem; */
+ font-size: 0.9rem;
  margin-left: 1rem;
  margin-bottom: 0.7rem;
 }
 
 .main-list-titles-nav-content .main-titles-list li.nav-sub-sub-sub-title {
- font-size: 1rem;
+ /* font-size: 1rem; */
+ font-size: 0.8rem;
  margin-left: 2rem;
  margin-bottom: 0.6rem;
 }
@@ -426,9 +430,12 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 /* #region >>> titles contents <<< */
 
 #page-content-wrapper .main-title {
- font-size: 2.4rem;
+ font-size: clamp(1.875rem, 22.1053px + 1.64474vw, 2.5rem);
+ /* font-size: 2.4rem; */
+
  font-weight: 600;
- line-height: 120%;
+ line-height: 130%;
+ /* line-height: 1.3; */
  max-width: 100%;
  white-space: wrap;
  word-break: break-word;
@@ -442,31 +449,35 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 #page-content-wrapper .sub-sub-title,
 #page-content-wrapper .sub-sub-sub-title {
  font-weight: 500;
- line-height: 120%;
+ line-height: 130%;
  max-width: 100%;
  white-space: wrap;
  word-break: break-word;
  caret-color: rgba(255, 255, 255, 0.81);
  padding-top: calc(1.2 * 0.2rem);
  margin-top: calc(1.2 * 2rem);
- margin-bottom: calc(1.2 * 1.5rem);
+ /* margin-bottom: calc(1.2 * 1.5rem); */
+ margin-bottom: 1.4rem;
  position: relative;
  cursor: default;
  user-select: none;
 }
 
 #page-content-wrapper .sub-title {
- font-size: 2.2rem;
+ /* font-size: 2.2rem; */
+ font-size: clamp(1.59375rem, 18.7895px + 1.39803vw, 2.125rem);
 }
 
 #page-content-wrapper .sub-sub-title {
+ font-size: clamp(1.3125rem, 15.4737px + 1.15132vw, 1.75rem);
+ /* font-size: 1.8rem; */
  color: #e1b12c;
- font-size: 1.8rem;
 }
 
 #page-content-wrapper .sub-sub-sub-title {
+ font-size: clamp(1.1125rem, 12.4737px + 0.99132vw, 1.4rem);
+ /* font-size: 1.6rem; */
  color: #2ecc71;
- font-size: 1.6rem;
 }
 
 #page-content-wrapper .sub-sub-title,
@@ -548,9 +559,11 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  caret-color: rgba(255, 255, 255, 0.81);
  line-height: 190%;
  font-weight: inherit;
- margin-bottom: calc(1.2 * 1.2rem);
+ /* margin-bottom: calc(1.2 * 0.832rem); */
+ margin-bottom: 1rem;
  white-space: wrap;
  word-break: break-word;
+ word-wrap: break-word;
 
  max-width: 100%;
  width: 100%;
@@ -633,13 +646,14 @@ tooltip:hover {
 
 tooltip .tooltiptext,
 #link-ref .tooltiptext {
- font-size: 1.1rem;
+ /* font-size: 1.1rem; */
  font-weight: 500;
  visibility: hidden;
  cursor: default;
  color: #fff;
  text-align: center;
- line-height: 170%;
+ /* line-height: 170%; */
+ line-height: 190%;
  width: max-content;
  max-width: 400px;
  padding: 15px 12px;
@@ -769,7 +783,8 @@ tooltip .tooltiptext.left,
 
 .tooltip-modal .tooltip-title {
  color: #2ecc71;
- font-size: 2rem;
+ /* font-size: 2rem; */
+ font-size: clamp(1.59375rem, 18.7895px + 1.39803vw, 2.125rem);
  text-transform: capitalize;
  font-weight: 600;
  line-height: 120%;
@@ -781,7 +796,8 @@ tooltip .tooltiptext.left,
 .tooltip-modal .tooltip-content {
  font-size: 1.2rem;
  font-weight: 500;
- line-height: 170%;
+ /* line-height: 170%; */
+ line-height: 180%;
  margin: 0px 3px 8px 11px;
  padding-bottom: 8px;
  padding-right: 3px;
@@ -816,8 +832,8 @@ tooltip .tooltiptext hr,
 /* #region >>> Note and Warning text box <<<*/
 
 #page-content-wrapper .text-box {
- font-size: 1.2rem;
- font-weight: inherit;
+ /* font-size: 1.2rem; */
+ font-weight: 500;
  line-height: 180%;
  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
  cursor: default;
@@ -877,7 +893,7 @@ tooltip .tooltiptext hr,
 
 .quote-text {
  position: relative;
- margin: 33px 0;
+ margin: calc(1.2 * 1.5rem) 0;
  font-weight: inherit;
  line-height: 160%;
  /* border-left: 5px solid #ffff; */
@@ -942,9 +958,9 @@ tooltip .tooltiptext hr,
 
 .list-content {
  font-family: 'Optimistic Display', 'Open Sans', 'Source Sans Pro', sans-serif;
- font-size: 1.2rem;
+ /* font-size: 1.2rem; */
  font-weight: inherit;
- margin-bottom: calc(1.2 * 1.6rem);
+ margin-bottom: calc(1.2 * 1.2rem);
  padding: 5px;
  padding-left: 0;
 }
@@ -955,7 +971,8 @@ tooltip .tooltiptext hr,
  position: relative;
  border-bottom: 1px dotted #525252cb;
  padding-bottom: 5px;
- margin-bottom: calc(1.4 * 1rem);
+ /* margin-bottom: calc(1.4 * 1rem); */
+ margin-bottom: 1rem;
 }
 
 .list-content .list-title::after {
@@ -1076,7 +1093,8 @@ tooltip .tooltiptext hr,
  border: none;
  box-shadow: none;
  padding: 0;
- margin-bottom: 1rem;
+ /* margin-bottom: 1rem; */
+ margin-bottom: 8px;
 }
 
 /* default */

@@ -12,9 +12,9 @@ html {
  --content-render-height: 123.4vh;
  --content-render-width: 123.4vw;
 
- /* --zoom-body: 1; 
+  --zoom-body: 1; 
 --content-render-height: 100vh;
- --content-render-width: 100vw; */
+ --content-render-width: 100vw;  
 
  --sidebar-width: 320px;
 
@@ -74,10 +74,10 @@ body[max-content='true'] {
 
 @media screen and (max-width: 1920px) {
  html {
-  --zoom-body: 0.85;
+  /* --zoom-body: 0.85;
 
   --content-render-height: 138.4vh;
-  --content-render-width: 138.4vw;
+  --content-render-width: 138.4vw; */
  }
 }
 

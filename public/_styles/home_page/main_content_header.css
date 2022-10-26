@@ -63,7 +63,7 @@ body[max-content='true'] .main-content-header .nav-header-container .nav-content
 
 .nav-title-header {
  text-transform: capitalize;
- font-size: 16px;
+ font-size: 1rem;
  font-weight: 500;
  line-height: 120%;
  text-align: center;
