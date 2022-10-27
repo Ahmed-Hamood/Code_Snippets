@@ -10,7 +10,7 @@ export default function sideBarMenuShrinkBtn() {
  let blank_modal = document.getElementById('blank-modal');
 
  let open_sideMenu_btn_cb = () => {
-  console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+ 
   sideBar.classList.toggle('no-sideBar');
   sideBar.classList.add('sideBar-slide');
   sideBar.classList.remove('sideBar-slide-reverse');
