@@ -27,7 +27,7 @@ a {
 /* Scroll bar style */
 ::-webkit-scrollbar {
  width: var(--scroll-width);
- height:  var(--scroll-height)
+ height: var(--scroll-height);
 }
 
 ::-webkit-scrollbar-track {
@@ -162,7 +162,7 @@ body[pageLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
  inset: 0;
 }
 
-#blank-modal.show-menu {
+#blank-modal.show-sidebar-menu {
  background-color: rgba(0, 0, 0, 0.388);
  display: block;
  z-index: 2;
