@@ -10,40 +10,48 @@ export default function sideBarMenuShrinkBtn() {
  let blank_modal = document.getElementById('blank-modal');
 
  let open_sideMenu_btn_cb = () => {
- 
-  sideBar.classList.toggle('no-sideBar');
+  sideBar.classList.remove('no-sideBar');
   sideBar.classList.add('sideBar-slide');
   sideBar.classList.remove('sideBar-slide-reverse');
   bodyElement.setAttribute('sidebar', 'true');
 
-  if (window.innerWidth < 900) {
+  if (window.innerWidth < 1200) {
+   sideBar.style['display'] = 'block';
    bodyElement.setAttribute('blank-current-active', 'sidebar');
    setTimeout(() => blank_modal.classList.add('show-sidebar-menu'), 50);
+   open_sideMenu_btn.style['pointer-events'] = 'none';
+   open_sideMenu_btn.style['display'] = 'none';
+   navigator.vibrate(3);
   }
 
-  setTimeout(() => sideBarContainer.classList.remove('hide'), 400);
-  navigator.vibrate(3);
+  sideBarContainer.classList.remove('hide');
  };
 
  let close_sideMenu_btn_cb = () => {
-  sideBarContainer.classList.add('hide');
   sideBar.classList.add('sideBar-slide-reverse');
   sideBar.classList.remove('sideBar-slide');
-
   bodyElement.setAttribute('sidebar', 'false');
 
-  if (window.innerWidth < 900) {
+  if (window.innerWidth < 1200) {
    blank_modal.classList.remove('show-sidebar-menu');
    bodyElement.setAttribute('blank-current-active', '');
+   navigator.vibrate(1);
+  } else {
+   sideBarContainer.classList.add('hide');
   }
 
-  setTimeout(() => sideBar.classList.toggle('no-sideBar'), 400);
-  navigator.vibrate(1);
+  open_sideMenu_btn.style['display'] = '';
+
+  setTimeout(() => {
+   sideBar.classList.add('no-sideBar');
+   open_sideMenu_btn.style['pointer-events'] = '';
+  }, 500);
  };
 
  if (window.innerWidth > 1000) {
   open_sideMenu_btn.addEventListener('click', open_sideMenu_btn_cb);
  } else {
+  open_sideMenu_btn.addEventListener('click', open_sideMenu_btn_cb);
   open_sideMenu_btn.addEventListener('touchend', open_sideMenu_btn_cb);
  }
 

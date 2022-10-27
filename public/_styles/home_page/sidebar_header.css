@@ -7,7 +7,7 @@
  justify-content: space-between;
  align-items: center;
  position: relative;
- /* border-bottom: 1px solid rgb(50, 49, 49); */
+ margin-bottom: 3px;
 }
 
 .sideBar-header .search-content {
@@ -77,9 +77,13 @@
  display: none;
  justify-content: center;
  align-items: center;
- transition: 0.3s all;
+ /* transition: 0.3s all; */
  cursor: pointer;
+ animation: FadeInAnimation 1s 0.4s backwards;
 }
+
+
+
 
 .body-container .open-sidebar-btn:hover,
 .body-container .open-sidebar-btn:hover .open-menu-style {
@@ -93,7 +97,7 @@
 
 body[sidebar='false'] .body-container .open-sidebar-btn {
  display: flex;
- animation: FadeInAnimation 0.6s 0.4s backwards;
+ /* animation: FadeInAnimation 1s 0.4s backwards; */
 }
 
 body[newTab] .body-container .open-sidebar-btn {
@@ -102,27 +106,37 @@ body[newTab] .body-container .open-sidebar-btn {
 
 @media screen and (max-width: 1460px) {
  body[max-content='true'] .body-container .open-sidebar-btn {
-  top: 125px;
- }
-}
-
-@media screen and (max-width: 1020px) {
- body[max-content='false'] .body-container .open-sidebar-btn {
-  opacity: 0.3;
   border: 3px solid #212933;
   border-radius: 0 200px 200px 0;
+  height: 200px;
+  justify-content: flex-end;
   top: 50%;
   transform: translateY(-50%);
   left: -20px;
+ }
+}
+
+@media screen and (max-width: 1100px) {
+ body[max-content='false'] .body-container .open-sidebar-btn {
+  border: 3px solid #212933;
+  border-radius: 0 200px 200px 0;
   height: 200px;
   justify-content: flex-end;
+  top: 50%;
+  transform: translateY(-50%);
+  left: -20px;
  }
 
- body[max-content='false'] .body-container .open-sidebar-btn .open-menu-style {
+ .body-container .open-sidebar-btn.hide .open-menu-style,
+ .body-container .open-sidebar-btn .open-menu-style {
   transform: rotate(90deg);
   margin-right: 1px;
   width: 30px;
   height: 30px;
+ }
+ 
+ body[sidebar="true"] .body-container .open-sidebar-btn {
+  display: flex;
  }
 }
 
@@ -201,11 +215,11 @@ body[api-system='false'] .create-new-subject-btn {
 
 .create-new-subject-btn:hover {
  cursor: pointer;
- background: #79797960;
+ background: #34354f60;
 }
 
 .create-new-subject-btn:active {
- background: rgb(41, 41, 41);
+ background: rgb(32, 32, 41);
  border: 3px solid rgb(39, 38, 38);
 }
 

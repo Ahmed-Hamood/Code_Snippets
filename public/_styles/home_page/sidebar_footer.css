@@ -1,9 +1,16 @@
 .sideBar-footer {
  background: var(--sideBar-footer-bg-color);
  height: var(--sidebar-footer-height);
- /* padding-bottom: 5px; */
+ padding: 22px 2px 22px 0;
  display: block;
- border-top: 1px solid #363535;
+ border-top: 1px solid #36353564;
+ display: flex;
+ justify-content: space-around;
+ flex-direction: column;
+}
+
+.sideBar-footer .content-wrapper {
+  height: 100%;
  display: flex;
  justify-content: space-between;
  align-items: center;
@@ -13,12 +20,10 @@
  display: flex;
  justify-content: center;
  align-items: center;
- height: 100%;
- width: 40px;
- opacity: 0.7;
- margin-left: 0.1rem;
- margin-top: 2px;
- border-radius: 10px;
+ height: 2.6rem;
+ width: 2.6rem;
+ opacity: 0.8;
+ border-radius: 12px;
  transition: 0.3s all;
 }
 
@@ -34,17 +39,8 @@
 
 .sideBar-footer .home-btn {
  position: relative;
- padding: 12px;
-}
-
-.sideBar-footer .home-btn::before {
- background: rgb(78, 78, 78);
- content: '';
- position: absolute;
- width: 2px;
- height: 25px;
- left: -15px;
- top: 0px;
+  width: 22px;
+  height: 22px;
 }
 
 .sideBar-footer .footer-title {

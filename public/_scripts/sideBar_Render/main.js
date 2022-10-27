@@ -36,11 +36,11 @@ window.addEventListener('keyup', function (event) {
  // When press Shift + S Key
  // SideBar will shrink
  if (event.shiftKey && event.key == 'M') {
-  let menuIconClickEvent = new Event('click');
-  let close_side_btn = document.querySelector('.close-sideMenu-btn');
-  let open_sidebar_btn = document.querySelector('.open-sidebar-btn');
+  // let menuIconClickEvent = new Event('click');
+  // let close_side_btn = document.querySelector('.close-sideMenu-btn');
+  // let open_sidebar_btn = document.querySelector('.open-sidebar-btn');
 
-  if (document.body.getAttribute('sidebar') == 'true') close_side_btn.dispatchEvent(menuIconClickEvent);
-  else open_sidebar_btn.dispatchEvent(menuIconClickEvent);
+  // if (document.body.getAttribute('sidebar') == 'true') close_side_btn.dispatchEvent(menuIconClickEvent);
+  // else open_sidebar_btn.dispatchEvent(menuIconClickEvent);
  }
 });

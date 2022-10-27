@@ -40,7 +40,7 @@ export function setSidebarFileLinkForPageLoader(targetElement) {
  if (SelectedUrlPath != getCurrentActivePath()) {
   SelectedUrlPath = location.origin + SelectedUrlPath;
 
-  if (window.innerWidth <= 1000 ) eventInvoker('.close-sideMenu-btn')
+ if (window.innerWidth <= 1000 ) eventInvoker('.close-sideMenu-btn')
 
   RunPageLoader(SelectedUrlPath, false, true, false, false, null, isDocumentation, false);
   Sounds().Play_press();
