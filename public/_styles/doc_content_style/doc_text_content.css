@@ -793,26 +793,28 @@ tooltip .tooltiptext.left,
 .tooltip-modal.show {
  z-index: 12;
  display: block;
+ animation: stickyTableContent 0.2s forwards;
 }
 
 .tooltip-modal .tooltip-title {
  color: #2ecc71;
  /* font-size: 2rem; */
- font-size: clamp(1.59375rem, 18.7895px + 1.39803vw, 2.125rem);
+ font-size: clamp(2rem, 8vw, 2.5rem);
  text-transform: capitalize;
  font-weight: 600;
  line-height: 120%;
  margin-bottom: 8px;
  padding: 12px 0 15px 12px;
  border-bottom: 1px dotted rgb(107, 103, 143);
+
 }
 
 .tooltip-modal .tooltip-content {
- font-size: 1.2rem;
+ font-size: 1.4rem;
  font-weight: 500;
  /* line-height: 170%; */
  line-height: 180%;
- margin: 0px 3px 8px 11px;
+ margin: 0px 3px 8px 15px;
  padding-bottom: 8px;
  padding-right: 3px;
 }
