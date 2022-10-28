@@ -5,6 +5,7 @@ export default function tooltip() {
  let body = document.body;
 
  if ([...all_tooltips].length != 0) {
+ 
   let tooltip_text = '';
   let keyword = '';
   let getTooltipModalElement = null;

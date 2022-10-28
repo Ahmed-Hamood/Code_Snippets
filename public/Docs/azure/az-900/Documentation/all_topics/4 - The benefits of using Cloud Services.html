@@ -148,6 +148,44 @@
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
 
+<p class="text">
+ Elasticity is your ability to automatically/dynamically increase or decrease your capacity based on the current demand of traffic, memory and computing power.
+</p>
+
+<div class="quote-text green-border">
+ <p>The key different between High Scalability and High Elasticity is you can increase or decrease the demand automatically.</p>
+</div>
+
+<img id="image" path="/img/image009.PNG" alt="image" />
+
+<p class="text">
+ To achieve high elasticity we need to use vertical scaling instead of horizontal scaling, because if you have to increase the number of storage drive and then decrease
+ it, you could lose data. .That is not a good idea, so its easier and better to do vertical scaling with high elasticity.
+</p>
+
+<p class="text">
+ Azure accomplishes by being elastic, using
+ <tooltip
+  orange
+  desc="- Virtual machine scale sets can be distributed within a single data-center or across multiple data centers. You can only add a virtual machine to the availability set when it is created. Scale sets can increase the number of virtual machines based on demand. Availability set has no additional charge. - What is difference between VM and VM scale set?
+  Key Differences between Virtual Machines and Virtual Machine Scale Sets. Scale sets are built from VMs. If we want to add additional VM instances, VM Scale sets automatically create it from central configuration, traffic balancing and distribution, high availability and redundancy, and scaling of the VM."
+  >Azure VM scale Sets</tooltip
+ >
+ which is automatically increase or decrease in response to demand or define schedule.
+</p>
+
+<p class="text">
+ And also, we have
+ <tooltip
+  yellow
+  desc="After you enable Stretch Database for a SQL Server instance and a database, and select at least one table, Stretch Database silently begins to migrate your cold data to Azure. 1. If you store cold data in a separate table, you can migrate the entire table. 2. If your table contains both hot and cold data, you can specify a filter function to select the rows to migrate. 3. Stretch Database ensures that no data is lost if a failure occurs during migration. It also has retry logic to handle connection issues that may occur during migration. A dynamic management view provides the status of migration."
+  >SQL Server Stretch Database</tooltip
+ >
+ which dynamically stretch <tooltip red desc="Hot tier-An online storage tier optimized for storing data that is accessed or modified frequently. - ">hot</tooltip> and
+ <tooltip sky desc="Cool tier-An online storage tier optimized for storing data that is infrequently accessed or modified.">cold</tooltip> transactional data from
+ Microsoft SQL Server 2016 to Microsoft Azure.
+</p>
+
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <p class="sub-title">B - Reliability and Predictability in the cloud</p>
@@ -159,6 +197,36 @@
 <p class="sub-sub-title">1. High Durability - Reliability <small red>(The ability to recover from failures/disaster)</small></p>
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
+
+<p class="text">
+ Your ability to recover from a disaster and to prevent the loss of data solutions that recover from a disaster is known as
+ <tooltip desc="is the process and design principle which allows a system to recovers from natural or human induced disasters">Disaster Recovery (DR)</tooltip> .
+</p>
+
+<div class="list-content normal">
+ <p class="list-title yellow">- How to be highly Durability :-</p>
+ <ul>
+  <li>Do you have a backup?</li>
+  <li>How fast can you restore that backup?</li>
+  <li>Does your backup still work?</li>
+  <li>How do you ensure current live data is not corrupt?</li>
+ </ul>
+</div>
+
+<p class="text">
+ Reliability is the ability of a system to recover from failures and continue to function, the cloud enables you to have resources deployed in regions around the world.
+ With this global scale, even if one region has a
+ <tooltip
+  desc="involving or causing sudden great damage or suffering or devastating things like Tornadoes, hurricanes, earthquakes, and tsunamis are catastrophic weather events."
+  >catastrophic</tooltip
+ >
+ event other region are still up and running.
+</p>
+
+<p class="text">
+ You can design your applications to automatically take advantage of this increased reliability. In some cases, your cloud environment itself will automatically shift to
+ a different region for you, with no action needed on your part.
+</p>
 
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
