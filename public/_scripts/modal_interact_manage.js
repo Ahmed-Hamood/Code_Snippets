@@ -9,6 +9,7 @@ export default function modal_interact_manage() {
 
  blank_modal.addEventListener('click', () => {
   if (body.getAttribute('blank-current-active') == 'sidebar') {
+   blank_modal.classList.remove('show-sidebar-menu');
    eventInvoker('.close-sideMenu-btn');
   }
 

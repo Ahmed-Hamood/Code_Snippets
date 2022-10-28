@@ -1,5 +1,5 @@
 html {
- --scroll-width: 8px;
+ --scroll-width: 10px;
  --scroll-height: 3px;
 
  --text-color: #fff;
@@ -97,7 +97,7 @@ body[max-content='true'] {
 
   --sidebar-border-edge-radius: 12px;
 
-  --screen-width-animation-duration: 500ms;
+  --screen-width-animation-duration: 400ms;
  }
 }
 

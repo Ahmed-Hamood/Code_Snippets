@@ -12,7 +12,7 @@
  display: block;
  z-index: 10;
  position: relative;
- animation: FadeInAnimation 0.3s;
+ animation: FadeInAnimation 0.5s backwards;
  overflow-y: hidden;
  max-height: var(--sidebar-height);
  height: 100%;
@@ -28,6 +28,7 @@
 @media screen and (max-width: 1200px) {
  .sideBar {
   /* display: none; */
+  animation: none;
   position: absolute;
   max-height: calc(var(--sidebar-height) - 150px);
   margin-left: 22px;
@@ -44,7 +45,7 @@
  align-content: stretch;
  align-items: stretch;
  height: 100%;
- animation: FadeInAnimation 0.8s 0.3s forwards;
+ animation: FadeInAnimation 300ms forwards;
  overflow-y: hidden;
 }
 
@@ -58,7 +59,7 @@
   max-height: calc(var(--sidebar-height) - 50px);
  }
  .sideBar .sideBar-container {
-  transition: 0.8s opacity;
+  /* transition: 0.8s opacity; */
  }
 }
 

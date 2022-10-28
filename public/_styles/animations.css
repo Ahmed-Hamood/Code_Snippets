@@ -29,6 +29,17 @@
  }
 } 
 
+@keyframes menuBtnAnimation { 
+  0% {
+    left: 10px;
+    opacity: 0;
+   }
+   100% {
+    left: -20px;
+    opacity: 1;
+   }
+}
+
 @media screen and (max-width: 1200px) {
  @keyframes sideBarSlideAnimation {
   0% {

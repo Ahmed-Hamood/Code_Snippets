@@ -37,7 +37,7 @@ a {
 
 ::-webkit-scrollbar-thumb {
  background: #383248;
- border-radius: 0;
+ border-radius: 12px;
 }
 ::-webkit-scrollbar-thumb:hover {
  background: #8aad0d;
@@ -163,7 +163,7 @@ body[pageLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
 }
 
 #blank-modal.show-sidebar-menu {
- background-color: rgba(0, 0, 0, 0.544);
+ background-color: rgba(0, 0, 0, 0.679);
  display: block;
  z-index: 2;
 }
