@@ -1052,7 +1052,7 @@ tooltip .tooltiptext hr,
  position: absolute;
  content: counter(step-counter);
  left: -38px;
- top: 0px;
+ top: 8px;
  width: 1.8rem;
  height: 1.9rem;
 }
