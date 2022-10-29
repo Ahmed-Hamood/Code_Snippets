@@ -72,12 +72,6 @@ export default function sideBarMenuShrinkBtn() {
     open_sideMenu_btn.style['left'] = '';
     isDragCompleted = false;
    }
-
-   //  if (e.changedTouches[0].clientX < 80) {
-   //    open_sideMenu_btn.style['left'] = '';
-   //    isDragCompleted = false;
-
-   //  }
   });
  }
 

@@ -5,7 +5,6 @@ export default function tooltip() {
  let body = document.body;
 
  if ([...all_tooltips].length != 0) {
- 
   let tooltip_text = '';
   let keyword = '';
   let getTooltipModalElement = null;
@@ -18,10 +17,10 @@ export default function tooltip() {
 
    tooltip_text = tooltip_text.replace(/\b([0-9]{1,2}|[A-Z])\b[\s]*[\.\-]/g, '$1.'); // replace 'A .' or  'A -' or 'A-' (with) =>  A. || "0-99 ." or "0-99 -" with => [0-99].
    tooltip_text = tooltip_text.replace(/\s([0-9A-Z])\./g, '<hr>$1.'); // add <hr> line break before 'A.' or '1.'
-   tooltip_text = tooltip_text.replace(/([0-9A-Z])\./g, '<span>$1.</span>'); // style letter | number
+   tooltip_text = tooltip_text.replace(/([0-9A-Z]|[A-Z])\./g, '<span>$1.</span>'); // style letter | number
 
    tooltip_text = tooltip_text.replace(/\s\-\s/g, ' <hr>- '); // replace ' - ' with ' <hr>- '
-   tooltip_text = tooltip_text.replace(/\\-/g, '-'); // replace '\-' with '-' escape '-'
+   tooltip_text = tooltip_text.replace(/\\(\-|\.)/g, '$1'); // escape replace '\-' with '-' , escape replace '\.' with '.' escape '.'
   };
 
   let tooltip_content = `
@@ -43,11 +42,11 @@ export default function tooltip() {
     element.innerHTML = `${keyword}<div class="tooltiptext ${tooltip_text.includes('<hr>') ? 'left' : ''}">${tooltip_text}</div>`;
    }
 
-  //  element.setAttribute("onmouseover", "console.dir(window.scrollX + this.getBoundingClientRect().left)")
+   //  element.setAttribute("onmouseover", "console.dir(window.scrollX + this.getBoundingClientRect().left)")
 
-  //  element.addEventListener("mouseover", () => {
-  //   // console.log("hover");
-  //  })
+   //  element.addEventListener("mouseover", () => {
+   //   // console.log("hover");
+   //  })
 
    element.addEventListener('click', (ev) => {
     if (ev.target.tagName == 'TOOLTIP' || ev.target.tagName == 'DIV') {
