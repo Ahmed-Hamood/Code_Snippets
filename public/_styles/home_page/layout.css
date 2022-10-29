@@ -54,13 +54,11 @@
  display: none;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 700px) {
  .sideBar {
   display: none;
-  max-height: calc(var(--sidebar-height) - 50px);
- }
- .sideBar .sideBar-container {
-  /* transition: 0.8s opacity; */
+  max-height: calc(var(--sidebar-height) - 10%);
+  margin-bottom: 9vh;
  }
 }
 

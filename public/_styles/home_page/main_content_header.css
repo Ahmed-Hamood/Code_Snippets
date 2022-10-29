@@ -93,7 +93,7 @@ body[max-content='true'] .main-content-header .nav-header-container .nav-content
  z-index: 3;
  background: var(--main-doc-header-path-view-content-bg-color);
  height: var(--main-doc-header-pathView-content-height);
- /* border-bottom: 1px solid #202020; */
+ border-bottom: 1px solid #202020;
  width: 100%;
  max-width: calc(var(--content-render-width) - var(--sidebar-width) - var(--scroll-width));
  align-self: flex-start;

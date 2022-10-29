@@ -7,6 +7,7 @@
  background: var(--body-container);
  display: flex;
  justify-content: end;
+ padding-top: 122px;
 }
 
 #page-content-wrapper {
@@ -15,7 +16,8 @@
  width: 100%;
  max-width: var(--main-doc-content-width);
  margin: 0 auto;
- margin-top: 160px;
+ /* margin-top: 160px; */
+ margin-top: 14px;
  padding: 0 1rem;
  margin-bottom: 0px;
  position: relative;
