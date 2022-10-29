@@ -3,12 +3,18 @@ import enable_scrollVisible_sideListTitlesNav from './enable_scrollVisible_sideL
 export default function render_sideListTitlesNav(active) {
  const allTitleInSubject = ['.sub-title', '.sub-sub-title', '.sub-sub-sub-title'];
  const getAllTitleInSubject = document.querySelectorAll(allTitleInSubject);
- const notTableContent = document.querySelector('.no-table-content');
+ const disableTableContent = document.querySelector('.no-table-content');
  const sideListTopicNavContent = document.querySelector('.side-list-titles-nav-content');
 
  sideListTopicNavContent.innerHTML = '';
 
- if (getAllTitleInSubject.length != 0 && !notTableContent && active) {
+ if ([...getAllTitleInSubject].length == 0 || disableTableContent) active = false
+
+ setTimeout(() => enable_scrollVisible_sideListTitlesNav(active), 1000);
+
+ if (!active || disableTableContent) return;
+
+//  if ([...getAllTitleInSubject].length != 0) {
   const doc_content_render_container = document.getElementById('page-content-render-container');
   const mainTitle = document.querySelector('.main-title');
   let selectedTitleElement = null;
@@ -54,11 +60,5 @@ export default function render_sideListTitlesNav(active) {
     doc_content_render_container.scrollTo(0, selectedTitleElement.offsetTop);
    });
   });
- }
-
- // if (window.innerWidth > 1800) {
- setTimeout(() => {
-  enable_scrollVisible_sideListTitlesNav(active);
- }, 1000);
- // }
+//  }
 }

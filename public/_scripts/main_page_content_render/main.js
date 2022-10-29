@@ -107,7 +107,7 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
 
  bodyElement.setAttribute('pageLoading', true);
  startup_pageRender(isPageLoadSuccess, refPos);
- bodyElement.setAttribute('pageLoading', false);
+ setTimeout(() => bodyElement.setAttribute('pageLoading', false), 300);
 }
 
 // ++++++++++++++++++++++++++++++++++

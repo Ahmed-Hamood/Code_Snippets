@@ -4,6 +4,7 @@
  display: flex;
  flex-flow: row nowrap;
  align-items: center;
+ position: relative;
 }
 
 .sideBar {
@@ -80,12 +81,20 @@
 
 .sideBar.sideBar-slide {
  animation: sideBarSlideAnimation var(--screen-width-animation-duration) forwards;
- animation-timing-function: cubic-bezier(0.33, 0.37, 0.31, 1.42);
 }
 
 .sideBar.sideBar-slide-reverse {
  animation: sideBarSlideAnimation2 var(--screen-width-animation-duration) forwards;
- animation-timing-function: cubic-bezier(0.69, -0.26, 0.89, 0.5);
+}
+
+@media screen and (max-width: 1200px) {
+ .sideBar.sideBar-slide {
+  animation-timing-function: cubic-bezier(0.33, 0.37, 0.31, 1.42);
+ }
+
+ .sideBar.sideBar-slide-reverse {
+  animation-timing-function: cubic-bezier(0.69, -0.26, 0.89, 0.5);
+ }
 }
 
 .no-display {

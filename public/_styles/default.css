@@ -44,8 +44,8 @@ a {
 }
 
 body[pageLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
- opacity: 0;
- animation: FadeInAnimation 0.3s ease-in-out 0.8s forwards;
+ /* opacity: 0; */
+ /* animation: FadeInAnimation 0.3s ease-in-out 0.8s forwards; */
 }
 
 .pre-block::-webkit-scrollbar {

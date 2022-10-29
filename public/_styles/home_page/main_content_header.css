@@ -2,7 +2,8 @@
  position: fixed;
  width: 100%;
  max-width: calc(var(--content-render-width) - var(--sidebar-width));
- z-index: 1;
+ /* z-index: 1;  */
+ z-index: 5;
  animation: FadeInAnimation 0.2s;
  transition: var(--screen-width-animation-duration) max-width;
 }
@@ -19,8 +20,9 @@ body[sidebar='false'] .main-content-header {
 }
 
 .main-content-header .nav-header-container {
+
  position: relative;
- z-index: 1;
+ /* z-index: 1; */
  width: 100%;
  display: flex;
  flex-direction: column;
@@ -30,7 +32,7 @@ body[sidebar='false'] .main-content-header {
 }
 
 .main-content-header .nav-header-container .nav-content-header {
- z-index: 2;
+ /* z-index: 5; */
  position: relative;
  display: flex;
  flex-direction: column;

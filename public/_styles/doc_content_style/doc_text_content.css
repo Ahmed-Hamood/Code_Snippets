@@ -477,20 +477,20 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 }
 
 #page-content-wrapper .main-title {
- font-size: clamp(2rem, 8vw, 3rem);
+ font-size: clamp(2rem, 6vw, 3rem);
 }
 
 #page-content-wrapper .sub-title {
- font-size: clamp(2rem, 8vw, 2.5rem);
+ font-size: clamp(2rem, 6vw, 2.5rem);
 }
 
 #page-content-wrapper .sub-sub-title {
- font-size: clamp(1.5rem, 8vw, 2rem);
+ font-size: clamp(1.5rem, 6vw, 2rem);
  color: #e1b12c;
 }
 
 #page-content-wrapper .sub-sub-sub-title {
- font-size: clamp(1rem, 8vw, 1.8rem);
+ font-size: clamp(1rem, 6vw, 1.8rem);
  color: #2ecc71;
 }
 
@@ -575,7 +575,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  font-weight: inherit;
  /* margin-bottom: calc(1.2 * 0.832rem); */
  margin-bottom: 1rem;
- white-space: wrap;
+ /* white-space: wrap; */
  word-break: break-word;
  word-wrap: break-word;
 
@@ -660,7 +660,7 @@ tooltip:hover {
 
 tooltip .tooltiptext,
 #link-ref .tooltiptext {
- /* font-size: 1.1rem; */
+ font-size: 1.1rem;
  font-weight: 500;
  visibility: hidden;
  cursor: default;
@@ -806,7 +806,6 @@ tooltip .tooltiptext.left,
  margin-bottom: 8px;
  padding: 12px 0 15px 12px;
  border-bottom: 1px dotted rgb(107, 103, 143);
-
 }
 
 .tooltip-modal .tooltip-content {

@@ -8,14 +8,14 @@ export default function sideBarMenuShrinkBtn() {
  let open_sideMenu_btn = document.querySelector('.open-sidebar-btn');
 
  let blank_modal = document.getElementById('blank-modal');
+ let isDragCompleted = false;
 
- let open_sideMenu_btn_cb = () => {
+ let open_sideMenu_btn_cb = (e) => {
   sideBar.classList.add('sideBar-slide');
   sideBar.classList.remove('sideBar-slide-reverse');
   sideBar.classList.remove('no-sideBar');
   bodyElement.setAttribute('sidebar', 'true');
   sideBarContainer.classList.remove('hide');
-
   if (window.innerWidth < 1200) {
    sideBar.style['display'] = 'block';
    open_sideMenu_btn.style['display'] = 'none';
@@ -34,6 +34,7 @@ export default function sideBarMenuShrinkBtn() {
    blank_modal.classList.remove('show-sidebar-menu'); // for close button
    bodyElement.setAttribute('blank-current-active', '');
    navigator.vibrate(1);
+   open_sideMenu_btn.style['left'] = '';
   } else {
    sideBarContainer.classList.add('hide');
   }
@@ -52,8 +53,41 @@ export default function sideBarMenuShrinkBtn() {
   open_sideMenu_btn.addEventListener('click', open_sideMenu_btn_cb);
  } else {
   open_sideMenu_btn.addEventListener('click', open_sideMenu_btn_cb);
-  open_sideMenu_btn.addEventListener('touchend', open_sideMenu_btn_cb);
+
+  open_sideMenu_btn.addEventListener('touchend', () => {
+   if (isDragCompleted) {
+    open_sideMenu_btn_cb();
+    isDragCompleted = false;
+    open_sideMenu_btn.style['left'] = '';
+   }
+  });
+
+  open_sideMenu_btn.addEventListener('touchmove', (e) => {
+   open_sideMenu_btn.style['left'] = 0;
+   if (e.changedTouches[0].clientX > 25) {
+    open_sideMenu_btn.style['left'] = 0;
+    isDragCompleted = true;
+   }
+   if (e.changedTouches[0].clientX < 50)  {
+    open_sideMenu_btn.style['left'] = '';
+    isDragCompleted = false;
+   }
+
+   //  if (e.changedTouches[0].clientX < 80) {
+   //    open_sideMenu_btn.style['left'] = '';
+   //    isDragCompleted = false;
+
+   //  }
+  });
  }
 
  close_sideMenu_btn.addEventListener('click', close_sideMenu_btn_cb);
+}
+
+function isMobile() {
+ const toMatch = [/Android/i, /webOS/i, /iPhone/i, /iPad/i, /iPod/i, /BlackBerry/i, /Windows Phone/i];
+
+ return toMatch.some((toMatchItem) => {
+  return navigator.userAgent.match(toMatchItem);
+ });
 }
