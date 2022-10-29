@@ -269,7 +269,7 @@ body[max-content='true'] .titles-list-menu-active-btn.view {
 .side-list-titles-nav-content {
  border-right: 1px dotted rgb(41, 41, 41);
  position: relative;
- margin-left: 32px;
+ margin-left: 40px;
  top: 80px;
  width: calc(calc(var(--content-render-width) - 328px) - 83vw);
  z-index: 1;
@@ -477,21 +477,23 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 }
 
 #page-content-wrapper .main-title {
- font-size: clamp(2rem, 6vw, 3rem);
+ font-size: clamp(2.5rem, 6vw, 3.2rem);
 }
 
 #page-content-wrapper .sub-title {
- font-size: clamp(2rem, 6vw, 2.5rem);
+ font-size: clamp(2.4rem, 6vw, 2.8rem);
 }
 
 #page-content-wrapper .sub-sub-title {
- font-size: clamp(1.5rem, 6vw, 2rem);
+ font-size: clamp(1.8rem, 6vw, 2rem);
  color: #e1b12c;
 }
 
 #page-content-wrapper .sub-sub-sub-title {
- font-size: clamp(1rem, 6vw, 1.8rem);
+ font-size: clamp(1.5rem, 6vw, 1.8rem);
  color: #2ecc71;
+ border-bottom: 1px solid #2ecc71;
+ padding-bottom: 8px;
 }
 
 #page-content-wrapper .sub-sub-title,
@@ -981,6 +983,7 @@ tooltip .tooltiptext hr,
 }
 
 .list-content .list-title {
+ font-weight: 500;
  line-height: 160%;
  display: block;
  position: relative;

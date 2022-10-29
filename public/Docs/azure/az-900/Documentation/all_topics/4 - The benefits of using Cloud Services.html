@@ -28,8 +28,9 @@
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
 <p class="sub-sub-title">
-1. High Availability   
-<red>Your ability to ensure a service remains available</red></p>
+ 1. High Availability
+ <red>Your ability to ensure a service remains available</red>
+</p>
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
 
@@ -196,7 +197,29 @@
 
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
-<p class="sub-sub-title">1. High Durability - Reliability <small red>(The ability to recover from failures/disaster)</small></p>
+<p class="sub-sub-title">1. Fault Tolerance <small red>(Data recovery/Replication)</small></p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+
+<p class="text">
+ Cloud provider offers data backup, disaster recovery, and data replication services, and fault tolerance. Azure cloud infrastructure is built in order to accommodate
+ disasters; If one component fails, a backup component will seamlessly take ownership, assuring services availability.
+</p>
+
+<div class="list-content normal star">
+ <p class="list-title yellow">- Data in your azure storage account is replicated to ensure durability and high availability by providing :-</p>
+ <ul>
+  <li>
+   Data backup if one component fails, a backup component takes its place, this is referred to as fault tolerance and it ensures that your customers aren't impacted when
+   a disaster occurs.
+  </li>
+  <li>Data replication services and Redundancy is often built into cloud services architecture.</li>
+ </ul>
+</div>
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">2. High Durability - Reliability <small red>(The ability to recover from failures/disaster)</small></p>
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
 
@@ -232,29 +255,119 @@
 
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
-<p class="sub-sub-title">2. Fault Tolerance <small red>(Data recovery/Replication)</small></p>
-<!-- ---------------------------------------------------------------- -->
-<!-- ---------------------------------------------------------------- -->
-
-<!-- ---------------------------------------------------------------- -->
-<!-- ---------------------------------------------------------------- -->
 <p class="sub-sub-title">3. Predictability</p>
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
+
+<p class="text">
+ Azure framework provide tools and solutions that cost and performance are predictable. Both cost and performance predictability are heavily influenced by the Microsoft
+ Azure Well-Architected Framework. So Predictability in the cloud lets you move forward with confidence.
+</p>
 
 <!-- ************************************************************** -->
 <p class="sub-sub-sub-title">- Performance</p>
 <!-- ************************************************************** -->
 
+<p class="text">
+ Azure provides performance predictability that allow you to focus on predicting the resources needed to deliver a positive experience for your customers. Azure uses
+ Autoscaling,
+ <tooltip
+  yellow
+  desc="Load balancing is a core networking solution used to distribute traffic across multiple servers in a server farm. Load balancers improve application availability and responsiveness and prevent server overload."
+  >load balancing</tooltip
+ >
+ , and high availability concepts that support performance predictability.
+</p>
+
+<p class="text">
+ If you suddenly need more resources while traffic is heavy, autoscaling can deploy additional resources to meet the demand, then it automatically scale back when the
+ demand drops. Or if the traffic is heavily focused on one area, load balancing will help redirect some of the overload to less stressed areas.
+</p>
+
 <!-- ************************************************************** -->
 <p class="sub-sub-sub-title">- Cost</p>
 <!-- ************************************************************** -->
+
+<p class="text">
+ Cost predictability is focused on predicting or <tooltip desc="predict or estimate (a future event or trend).">forecasting</tooltip> the cost of the cloud spend. You can
+ track and monitor your resources in real time to ensure that you're using them in the most efficient way
+</p>
+
+<div class="quote-text white-border">
+ <p>
+  Azure provide tools that predict future costs like the
+  <tooltip
+   green
+   desc="The TCO Calculator lets you create a customized business case to justify migration to Azure. - The idea is to take into consideration the total cost that a business will incur to operate an asset, not just the upfront acquisition cost. - TCO analyses are more comprehensive than pricing calculators, but they can take more time to complete. - TCO analyses can also be helpful in comparing the cost of different products, even if those products are not exactly the same. However, TCO analyses may be more difficult to understand than pricing calculators."
+   >Total Cost of Ownership (TCO)</tooltip
+  >
+  or
+  <tooltip
+   yellow
+   desc="The Azure Pricing Calculator can help you understand the costs of moving workloads to the Azure cloud. It estimates Azure pricing once all your data and applications are in Azure."
+   >Pricing Calculator</tooltip
+  >
+  to get an estimate of potential cloud spend.
+ </p>
+</div>
+
+<p class="text">Monitoring resources will help you to apply data analytics information to find patterns and trends that help better plan resource deployments.</p>
 
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <p class="sub-title">C - Security and Governance in the cloud</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
+
+<p class="text">
+ cloud features support
+ <tooltip
+  desc=" Governance \- Aligning processes and actions with the organization's business goals - What is included in Azure governance model? 1. Enforce and audit your policies for any Azure service. 2. Create compliant environments using Azure Blueprints, including resources, policies, and role-access controls. 3. Ensure that you're compliant with external regulations by using built-in compliance controls."
+  >governance</tooltip
+ >
+ and <tooltip desc="Compliance \- Ensuring all activities meet legal and regulatory requirements.">compliance</tooltip> Whether you're deploying IaaS or SaaS. Things like
+ set
+ <tooltip
+  yellow
+  desc="The template is a JavaScript Object Notation (JSON) file that defines the infrastructure and configuration for your project. - The template uses declarative syntax, which lets you state what you intend to deploy without having to write the sequence of programming commands to create it"
+ >
+  templates</tooltip
+ >
+ help ensure that all your deployed resources meet corporate standards and government regulatory requirements. Plus, you can update all your deployed resources to new
+ standards as standards change.
+</p>
+
+<div class="quote-text green-border">
+<p>
+  By establishing a good governance footprint early, you can keep your cloud footprint updated, secure, and well managed.
+</p>
+</div>
+
+<p class="text">
+ Cloud-based <tooltip desc="examination or inspection">auditing</tooltip> helps flag any resource that's out of compliance with your corporate standards and provides
+ mitigation strategies. Software patches and updates may also automatically be applied, which helps with both governance and security depending on your operating model.
+</p>
+
+<p class="text">
+ Azure provide cloud solutions that matches your security needs, like maximum control with infrastructure as a service provides you with physical resources but lets you
+ manage the operating systems and installed software, including patches and maintenance.
+</p>
+
+<div class="text-box note">
+ <p>
+  If you want patches and maintenance taken care of automatically, platform as a service or software as a service deployments may be the best cloud strategies for you.
+ </p>
+</div>
+
+<p class="text">
+ Azure security things like
+ <tooltip
+  red
+  desc="- A distributed denial-of-service (DDoS) attack is a malicious attempt to disrupt the normal traffic of a targeted server, service or network by overwhelming the target or its surrounding infrastructure with a flood of Internet traffic. - A Denial-of-Service (DoS) attack is an attack meant to shut down a machine or network, making it inaccessible to its intended users. DoS attacks accomplish this by flooding the target with traffic, or sending it information that triggers a crash."
+  >distributed denial of service (DDoS)</tooltip
+ >
+ attacks, making your network more <tooltip desc="strong and healthy;">robust</tooltip> and secure.
+</p>
 
 <!-- ######################################################### -->
 <!-- ######################################################### -->

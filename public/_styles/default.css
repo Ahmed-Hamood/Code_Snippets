@@ -165,11 +165,11 @@ body[pageLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
 #blank-modal.show-sidebar-menu {
  background-color: rgba(0, 0, 0, 0.679);
  display: block;
- z-index: 2;
+ z-index: 10;
 }
 
 #blank-modal.show-options {
- z-index: 11;
+ z-index: 12;
  display: block;
 }
 
