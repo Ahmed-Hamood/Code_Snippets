@@ -1,8 +1,7 @@
 <p class="main-title">5 - Cloud Service Types Models - <green>IaaS</green>, <green>PaaS</green>, <green>SaaS</green></p>
 
-<p class="text">As a service means which party will manage the particular layer and all the layers below.</p>
-
 <div class="list-content normal">
+ <p class="list-title">- As a service means which party will manage the particular layer and all the layers below. :-</p>
  <ul>
   <li>Infrastructure layer consists hardware the infrastructure and virtualization required to host the platform</li>
   <li>Platform layer means all the supporting software and the operating system required to host the application</li>
@@ -10,7 +9,22 @@
  </ul>
 </div>
 
-<div class="table-content"></div>
+<div class="list-content normal star">
+ <p class="list-title">- The following each layer with it service (These categories are layers on top of each other) :-</p>
+ <ul>
+  <li>Application - Software as a Service - SaaS</li>
+  <li>Data - Software as a Service - SaaS</li>
+  <li>Runtime - Platform as a Service - PaaS</li>
+  <li>Middleware - Platform as a Service - PaaS</li>
+  <li>Operating System -Platform as a Service - PaaS</li>
+  <li>Virtualization - Infrastructure as a Service - IaaS</li>
+  <li>Servers - Infrastructure as a Service - IaaS</li>
+  <li>Networking - Infrastructure as a Service - IaaS</li>
+  <li>Storage - Infrastructure as a Service - IaaS</li>
+ </ul>
+</div>
+
+<!-- <div class="table-content"></div> -->
 
 <!-- #endregion -->
 <!-- ######################################################### -->
@@ -29,6 +43,10 @@
  IaaS Aims to give you the most control over the provided hardware that runs your application, and instant computing infrastructure, provisioned and managed over the
  internet. You rent hardware instead of buying.
 </p>
+
+<div class="quote-text orange-border">
+ <p>An Example of Infrastructure as a Service like <text blue>Microsoft Azure</text>, <text orange>AWS</text>, <text red>Oracle Cloud</text> and more.</p>
+</div>
 
 <p class="text">
  Cloud provider ensure that a service is available up and running, and configure and functioning correctly is a shared responsibility that should provide to their
@@ -85,6 +103,93 @@
 <!-- ######################################################### -->
 <!-- #region start -->
 
+<p class="text">
+ In PaaS, we focus on the development and management of your applications. Azure provide an environment for building, testing, and deploying software applications. It
+ aims to help creating an application quickly without managing the underlying infrastructure.
+</p>
+
+<div class="list-content normal number">
+ <p class="list-title">- An Examples of PaaS - Platform as a Service is :-</p>
+ <ul>
+  <li>Beanstalk AWS</li>
+  <li>Heroku</li>
+  <li>Google App Engine</li>
+ </ul>
+</div>
+
+<div class="quote-text green-border">
+ <p>
+  With PaaS we don't worry about, provisioning, configuring or understanding the hardware and licensing or patching for Operating system and database. This is really for
+  people that are building apps, only they can access it over a secure internet connection
+ </p>
+</div>
+
+<div class="text-box note">
+ <p><underline blue>For Example</underline>, for a web app / Azure SQL database you don't need to install an operating system, web server, or even system updates.</p>
+</div>
+
+<div class="list-content normal star">
+ <p class="list-title yellow">- The cloud provider maintains :-</p>
+ <ul>
+  <li>The physical infrastructure and <tooltip desc="Physical security refers to the protection of building sites and equipment ">security</tooltip></li>
+  <li>The connection to the internet</li>
+  <li>
+   And also maintain the Servers, operating systems,
+   <tooltip
+    desc="- Middleware is software that lies between an operating system and the applications running on it. Essentially functioning as hidden translation layer, middleware enables communication and data management for distributed applications. - It’s sometimes called plumbing, as it connects two applications together so data and databases can be easily passed between the 'pipe' - Using middleware allows users to perform such requests as submitting forms on a web browser, or allowing the web server to return dynamic web pages based on a user's profile."
+    >middleware</tooltip
+   >
+   ,
+   <tooltip
+    desc="- Virtualization creates a simulated, it allow you to have more than one OS in a single server. - An Azure virtual machine gives you the flexibility of virtualization without having to buy and maintain the physical hardware that runs it. "
+    >Virtualization</tooltip
+   >
+   ,
+   <tooltip
+    desc="Run time is a phase of a computer program in which the program is run or executed on a computer system. Run time is part of the program life cycle, and it describes the time between when the program begins running within the memory until it is terminated or closed by the user or the operating system. - What is compile time vs runtime ? <br> Compile time is the period when the programming code (such as C#, Java, C, Python) is converted to the machine code (i.e. binary code). Runtime is the period of time when a program is running and generally occurs after compile time."
+    >Runtime</tooltip
+   >
+   , Networking, Storage and
+   <tooltip desc="Compilers, code editors, GUI designers, assemblers, debuggers, and performance analysis tools are examples of development tools."
+    >development tools</tooltip
+   >
+  </li>
+  <li>
+   The
+   <tooltip
+    desc="- Business intelligence (BI) services are offerings to design, develop and deploy enterprise processes and to integrate, support and manage the related technology applications and platforms. - Business intelligence (BI) refers to the procedural and technical infrastructure that collects, stores, and analyzes the data produced by a company's activities. BI is a broad term that encompasses data mining, process analysis, performance benchmarking, and descriptive analytics."
+    >business intelligence services</tooltip
+   >
+   that make up a cloud solution.
+  </li>
+ </ul>
+</div>
+
+<p class="text">
+ PaaS is mostly used by developer; quickly create web or mobile apps, without taking care of underlying infrastructure of servers, storage network, DBs, etc. You only
+ purchase resources on a <text green>pay-as-you-go</text> basis and accessed them over a secure Internet connection to start working on your applications.
+</p>
+
+<div class="list-content normal star">
+ <p class="list-title">- Common PaaS use cases :-</p>
+ <ul>
+  <li>Development framework :-</li>
+  <ul number>
+   <li>Lets developers create applications using built-in software components.</li>
+   <li>Cloud features such as scalability, high-availability, and multi-tenant capability are included</li>
+   <li>Reducing the amount of coding that developers must do.</li>
+  </ul>
+  <li>Analytics or business intelligence :-</li>
+  <ul number>
+   <li>Tools provided as a service with PaaS allow organizations to analyze and mine their data.</li>
+   <li>
+    organizations can find insights and patterns, and predict outcomes to improve business decisions such as
+    <tooltip desc="predict or estimate (a future event or trend).">forecasting</tooltip> ,product design, and investment returns.
+   </li>
+  </ul>
+ </ul>
+</div>
+
 <!-- #endregion -->
 <!-- ######################################################### -->
 <!-- ######################################################### -->
@@ -96,7 +201,27 @@
 <!-- #endregion -->
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-title">- Types of cloud computing Overview</p>
+<p class="sub-title">- Cloud Service types responsibility</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
+
+<div class="list-content normal">
+ <ul>
+  <li><text>IaaS</text>: user is responsible for managing the operating systems, data, and applications.</li>
+  <li><text>PaaS</text>: user is responsible for the applications and data they run and store.</li>
+  <li><text>SaaS</text>: user just uses the software.</li>
+ </ul>
+</div>
+
+<p class="underline-text">
+  # As such following table represents responsibilities :-
+</p>
+
+<img id="image" path="/img/image010.PNG" alt="image" />
+
+<p class="underline-text">
+  # Cost and Ownership :-
+</p>
+
+<img id="image" class="no-border" path="/img/image011.PNG" alt="image" />

@@ -7,11 +7,11 @@
 
 .documentation-topics-list-container .subject-main-title {
  /* font-size: 2.5rem; */
- font-size: clamp(1.875rem, 22.1053px + 1.64474vw, 2.5rem);
+ font-size: clamp(2rem, 6vw, 2.5rem);
  font-weight: 500;
  line-height: 1.2;
  text-shadow: 1px 1px 1px #000;
- margin-top: calc(1.2 * 4rem);
+ margin-top: clamp(1.5rem, 6vw, 4.5rem);
  margin-bottom: calc(1.2 * 2rem);
  display: flex;
  align-items: center;
@@ -23,14 +23,14 @@
 
 .documentation-topics-list-container .subject-title {
  /* font-size: 1.4rem; */
- font-size: clamp(1.3125rem, 15.4737px + 1.15132vw, 1.75rem);
+ font-size: clamp(1.5rem, 6vw, 1.8rem);
  font-weight: 500;
  margin-bottom: 18px;
  line-height: 1.4;
  user-select: none;
 }
 
-.documentation-topics-list-container .content-wrapper .subject-topics-content div{
+.documentation-topics-list-container .content-wrapper .subject-topics-content div {
  margin-left: 8px;
 }
 
@@ -130,6 +130,14 @@
   margin-left: 0.294rem;
  }
 
+ body[max-content="true"] .two-columns {
+  justify-content: flex-start
+ }
+
+ body[max-content="true"] .two-columns .subject-topics-content {
+  margin-right: 5rem;
+ }
+
  .documentation-topics-list-container .subject-topics-content .two-columns .sub-subject-title {
   margin-bottom: calc(1.2 * 0.7rem);
  }
@@ -172,24 +180,16 @@
 }
 
 @media screen and (max-width: 800px) {
- .documentation-topics-list-container .subject-main-title {
-  margin-top: calc(1.2 * 0.6rem);
- }
-
- .documentation-topics-list-container .subject-topics-content li .topic-title-link {
-  /* line-height: 160%; */
- }
-
  #menu-table-content-active-btn {
-  border-radius: 0;
-  font-size: 1rem;
+  /* border-radius: 0; */
+  font-size: 1.2rem;
   display: block;
   position: relative;
   top: -0.2rem;
   left: 0;
   width: 100%;
-  margin: 26px 0 22px 0px;
-  padding: 10px;
+  margin: 33px 0 22px 0px;
+  padding: 14px;
  }
 }
 

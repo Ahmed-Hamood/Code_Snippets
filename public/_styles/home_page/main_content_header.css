@@ -45,10 +45,10 @@ body[sidebar='false'] .main-content-header {
  /* border-radius: 14px; */
  /* border: 1px solid var(--main-doc-header-content-border-bottom-color);
  border-bottom: 7px solid var(--main-doc-header-content-border-bottom-color); */
- /* width: 98%; */
- border-top: 1px solid #677794;
- border-bottom: 1px solid #677794;
- width: 99%;
+ border-top: 1px solid #313947;
+ border-bottom: 1px solid #313947;
+ width: 98%;
+
  max-width: calc(var(--main-doc-content-width) + 50px);
 
  animation: nav_header 0.7s ease-in-out 0.4s backwards;

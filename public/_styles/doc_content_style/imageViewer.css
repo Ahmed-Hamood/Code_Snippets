@@ -21,6 +21,10 @@
  animation-fill-mode: forwards;
 }
 
+#image.no-border {
+  border: none;
+}
+
 .underline-text + #image {
   margin-top: 0px;
 }

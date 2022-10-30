@@ -56,7 +56,6 @@
  font-size: 150%;
  text-shadow: 1px 1px 1px #000;
  font-weight: 600;
- margin-bottom: 28px;
  padding-bottom: 9px;
  padding-left: 2px;
  height: 100%;
@@ -65,7 +64,7 @@
 
 .main_table_content_topic_page .titles_list_content {
  font-family: 'Open Sans', 'Segoe UI', 'Optimistic Display', 'Source Sans Pro', sans-serif;
- padding: 5px 0 12px 0;
+ padding: 33px 0 22px 0;
  overflow-y: hidden;
  overflow-x: auto;
 }
@@ -116,7 +115,7 @@
  max-height: 430px;
 
  overflow: auto;
- padding: 16px 5px 6px 9px;
+ padding: 16px 5px 22px 9px;
  margin: 2px 1px 0 0;
 }
 
@@ -181,6 +180,12 @@
  font-size: 1.2rem;
  margin-bottom: 0.7rem;
  margin-left: 1rem;
+}
+
+:is(.sticky_table_content_topic_page, .main_table_content_topic_page) .titles_list_content li.nav-sub-title:last-child,
+:is(.sticky_table_content_topic_page, .main_table_content_topic_page) .titles_list_content li.nav-sub-sub-title:last-child,
+:is(.sticky_table_content_topic_page, .main_table_content_topic_page) .titles_list_content li.nav-sub-sub-sub-title:last-child{
+  margin-bottom: 0;
 }
 
 .sticky_table_content_topic_page .titles_list_content li.nav-sub-sub-sub-title,
@@ -475,7 +480,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 }
 
 #page-content-wrapper .main-title {
- font-size: clamp(2.5rem, 6vw, 3rem);
+ font-size: clamp(2.5rem, 5vw, 3rem);
 }
 
 #page-content-wrapper .sub-title {
