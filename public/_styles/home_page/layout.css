@@ -28,7 +28,7 @@
 
 @media screen and (max-width: 1200px) {
  .sideBar {
-  /* display: none; */
+  display: none;
   animation: none;
   position: absolute;
   max-height: calc(var(--sidebar-height) - 150px);

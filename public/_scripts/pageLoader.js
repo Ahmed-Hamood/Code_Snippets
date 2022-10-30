@@ -296,9 +296,9 @@ export async function RunPageLoader(
 
   RenderTitleAndPathHeaderView(getUrlPathHashedLink, isSubjectFileLinkSelected);
 
-  // console.log('Url Paths History: ', db.getArrayPathsHistory());
-  // console.log('current history index: ', db.getCurrentUrlPathsHistoryIndex());
-  // console.log('current Active Link: ', db.getCurrentActivePath());
+   console.log('Url Paths History: ', db.getArrayPathsHistory());
+  console.log('current history index: ', db.getCurrentUrlPathsHistoryIndex());
+    console.log('current Active Link: ', db.getCurrentActivePath());
 
   // #############################################################
   // #############################################################
@@ -317,8 +317,8 @@ export async function RunPageLoader(
 
    if (ResStatus == 404) {
     console.log('Not Found');
-    db.RemoveLastUrlPathHistory();
-    db.DecreaseUrlPathHistoryIndex();
+    // db.RemoveLastUrlPathHistory();
+    //  db.DecreaseUrlPathHistoryIndex();
     vs_code_opener_svg_btn.children[1].innerHTML = 'Create file with vscode';
    }
 

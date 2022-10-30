@@ -17,8 +17,8 @@
  max-width: var(--main-doc-content-width);
  margin: 0 auto;
  /* margin-top: 160px; */
- margin-top: 14px;
- padding: 0 1rem;
+ margin-top: 44px;
+  padding: 0 1rem;  
  margin-bottom: 0px;
  position: relative;
  transition: 400ms max-width;
