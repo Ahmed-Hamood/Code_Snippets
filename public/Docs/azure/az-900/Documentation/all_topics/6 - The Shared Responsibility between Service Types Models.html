@@ -1,1 +1,144 @@
 <p class="main-title">6 - The Shared Responsibility between Service Types Models</p>
+
+<!-- #endregion -->
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">
+ - Shared responsibility model Intro
+</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ In your company you have on premises data-center, the company is responsible for maintaining the physical space, ensuring security, and maintaining or replacing the
+ servers if anything happens.
+</p>
+
+<p class="text">
+ The IT department in your company is responsible for maintaining all the infrastructure and software needed to keep the data-center up and running. They're also likely
+ to be responsible for keeping all systems patched and on the correct version.
+</p>
+
+<p class="text">
+ With <underline yellow>the shared responsibility model</underline>, these responsibilities get shared between the cloud provider and the consumer. Using cloud computing,
+ you don't need to build a traditional corporate data-center and make large upfront investments in hardware and spend a lot of time provisioning the hardware with exactly
+ the right type and size of computing resources you need to power and run your services.
+</p>
+
+<p class="text">
+ The Cloud provider is responsible for Physical security, power, cooling, and network connectivity. The consumer isn't
+ <tooltip desc="set or place together">collocated</tooltip> with the data-center, so it wouldn't make sense for the consumer to have any of those responsibilities.
+</p>
+
+<p class="text">
+ The consumer is responsible for the data and information stored in the cloud. And also, responsible access security to give access to those who need it. On-premises
+ data-center, you're responsible for everything. But with cloud provider those responsibilities shift
+</p>
+
+<div class="list-content normal">
+ <p class="list-title">- Cloud service types consumer and cloud provider responsibilities :-</p>
+ <ul>
+  <li>
+   <underline yellow>IaaS - infrastructure as a service</underline>: places the most responsibilities on the consumer, the cloud provider only responsible for the basics
+   of physical security, power, and connectivity.
+  </li>
+  <li>
+   <underline yellow>PaaS - Platform as a service</underline>: being a middle ground between IaaS and SaaS in the middle it evenly distributes responsibility between the
+   cloud provider and the consumer.
+  </li>
+  <li>
+   <underline yellow>SaaS - Software as a service</underline>: most of the responsibility with the cloud provider, and the consumer only responsible for data information
+   and account access. It places most of the responsibility with the cloud provider.
+  </li>
+ </ul>
+</div>
+
+<p class="underline-text">
+ # The following diagram highlights how the Shared Responsibility Model informs who is responsible for what, depending on the cloud service type :-
+</p>
+
+<img id="image" path="/img/image013.PNG" alt="image" />
+
+<div class="list-content custom">
+ <p class="list-title">- You as a consumer/admin user always be responsible for :-</p>
+ <ul>
+  <li>The information and data stored in the cloud</li>
+  <li>Devices that are allowed to connect to your cloud (cell phones, computers, and so on)</li>
+  <li>The accounts and identities of the people, services, and devices within your organization></li>
+ </ul>
+</div>
+
+<div class="list-content custom">
+ <p class="list-title">- The cloud provider is always responsible for :-</p>
+ <ul>
+  <li>The physical data-center</li>
+  <li>The physical network</li>
+  <li>The physical hosts</li>
+ </ul>
+</div>
+
+<div class="list-content custom">
+ <p class="list-title">- Your service model will determine responsibility for things like :-</p>
+ <ul>
+  <li>Operating systems</li>
+  <li>Network controls</li>
+  <li>Applications</li>
+  <li>Identity and infrastructure</li>
+ </ul>
+</div>
+
+
+<!-- #endregion -->
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-sub-title">IaaS - Shared responsibility model</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ IaaS places the largest share of responsibility with you as consumer. The cloud provider is responsible for maintaining the physical infrastructure and its access to the
+ internet. Also you're responsible for installation and configuration, patching and updates, and security.
+</p>
+
+<!-- #endregion -->
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-sub-title">PaaS - Shared responsibility model</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ PaaS splits the responsibility between you and the cloud provider. The cloud provider is responsible for maintaining the physical infrastructure and its access to the
+ internet, just like in IaaS.
+</p>
+
+<p class="text">
+ In the PaaS model, the cloud provider will also maintain the operating systems, databases, and development tools. Think of PaaS like using a domain joined machine: IT
+ maintains the device with regular updates, patches, and refreshes.
+</p>
+
+<p class="text">
+ Depending on the configuration, you or the cloud provider may be responsible for networking settings and connectivity within your cloud environment, network and
+ application security, and the directory infrastructure.
+</p>
+
+<!-- #endregion -->
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-sub-title">SaaS - Shared responsibility model</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ SaaS is the model that places the most responsibility with the cloud provider and the least responsibility with the user. You're responsible for the data that you put
+ into the system, the devices that you allow to connect to the system, and the users that have access.
+</p>
+
+<p class="text">
+ Nearly everything else falls to the cloud provider. The cloud provider is responsible for physical security of the data-centers, power, network connectivity, and
+ application development and patching.
+</p>
