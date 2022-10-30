@@ -11,7 +11,7 @@
  font-weight: 500;
  line-height: 1.2;
  text-shadow: 1px 1px 1px #000;
- margin-top: calc(1.2 * 2.5rem);
+ margin-top: calc(1.2 * 4rem);
  margin-bottom: calc(1.2 * 2rem);
  display: flex;
  align-items: center;
@@ -155,7 +155,7 @@
  font-size: 0.9rem;
  font-weight: 600;
  position: absolute;
- top: 7px;
+ top: 0px;
  right: 40px;
  color: #1dd1a1;
  background: rgba(0, 0, 0, 0);
