@@ -36,11 +36,11 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
- background: #383248;
+ background: #24c144;
  border-radius: 12px;
 }
 ::-webkit-scrollbar-thumb:hover {
- background: #8aad0d;
+ background: #085608;
 }
 
 body[pageLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
@@ -175,7 +175,7 @@ body[pageLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
 
 #blank-modal.show-tooltip {
  background-color: rgba(0, 0, 0, 0.744);
- z-index: 10;
+ z-index: 11;
  display: block;
 }
 #blank-modal.show-table-content {

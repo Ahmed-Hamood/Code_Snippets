@@ -38,15 +38,17 @@ body[sidebar='false'] .main-content-header {
  flex-direction: column;
  flex-wrap: wrap;
 
- background: var(--main-doc-header-content-bg-color);
  height: var(--main-doc-title-header-content-height);
- border-radius: 14px;
  margin-top: 15px;
-
- border: 1px solid var(--main-doc-header-content-border-bottom-color);
- border-bottom: 7px solid var(--main-doc-header-content-border-bottom-color);
-
- width: 98%;
+ background: var(--main-doc-header-content-bg-color);
+ 
+ /* border-radius: 14px; */
+ /* border: 1px solid var(--main-doc-header-content-border-bottom-color);
+ border-bottom: 7px solid var(--main-doc-header-content-border-bottom-color); */
+ /* width: 98%; */
+ border-top: 1px solid #677794;
+ border-bottom: 1px solid #677794;
+ width: 99%;
  max-width: calc(var(--main-doc-content-width) + 50px);
 
  animation: nav_header 0.7s ease-in-out 0.4s backwards;
