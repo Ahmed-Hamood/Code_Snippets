@@ -11,7 +11,8 @@
  font-weight: 500;
  line-height: 1.2;
  text-shadow: 1px 1px 1px #000;
- margin-top: clamp(1.5rem, 6vw, 4.5rem);
+ margin-top: clamp(1.5rem, 5vw, 4rem); 
+ /* if 15vw or less start minimize */
  margin-bottom: calc(1.2 * 2rem);
  display: flex;
  align-items: center;
@@ -163,7 +164,7 @@
  font-size: 0.9rem;
  font-weight: 600;
  position: absolute;
- top: 0px;
+ top: 8px;
  right: 40px;
  color: #1dd1a1;
  background: rgba(0, 0, 0, 0);
