@@ -9,30 +9,27 @@
  max-width: 90%;
  height: auto;
 
-
- margin: calc(1.2 * 1.5rem) 0;
+ margin-bottom: calc(1.2 * 1.5rem);
  border: 1px solid rgb(65, 65, 65);
  border-radius: 12px;
  opacity: 0;
  transition: 0.3s;
- animation-name: FadeInAnimation;
- animation-duration: 1.5s;
- animation-delay: 0.2s;
- animation-fill-mode: forwards;
-}
-
-#image.no-border {
-  border: none;
-}
-
-.underline-text + #image {
-  margin-top: 0px;
+ animation: FadeInAnimation 1.5s forwards 0.2s;
 }
 
 #image:hover {
  opacity: 0.9;
  transform: scale(1.01);
 }
+
+#image.no-border {
+ border: none;
+}
+
+.underline-text + #image {
+ margin-top: 0px;
+}
+
 
 @media screen and (max-width: 1000px) {
  #image {

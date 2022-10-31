@@ -982,7 +982,7 @@ tooltip .tooltiptext hr,
  font-family: 'Optimistic Display', 'Open Sans', 'Source Sans Pro', sans-serif;
  /* font-size: 1.2rem; */
  font-weight: inherit;
- margin-bottom: calc(1.2 * 2rem);
+ margin-bottom: calc(1.2 * 1.8rem);
  padding: 5px;
  padding-left: 0;
 }
