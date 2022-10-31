@@ -184,8 +184,8 @@
 
 :is(.sticky_table_content_topic_page, .main_table_content_topic_page) .titles_list_content li.nav-sub-title:last-child,
 :is(.sticky_table_content_topic_page, .main_table_content_topic_page) .titles_list_content li.nav-sub-sub-title:last-child,
-:is(.sticky_table_content_topic_page, .main_table_content_topic_page) .titles_list_content li.nav-sub-sub-sub-title:last-child{
-  margin-bottom: 0;
+:is(.sticky_table_content_topic_page, .main_table_content_topic_page) .titles_list_content li.nav-sub-sub-sub-title:last-child {
+ margin-bottom: 0;
 }
 
 .sticky_table_content_topic_page .titles_list_content li.nav-sub-sub-sub-title,
@@ -459,6 +459,15 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  margin-top: calc(1.2 * 2.4rem);
  margin-bottom: calc(1.2 * 1.5rem);
  cursor: pointer;
+}
+
+#page-content-wrapper .min-read {
+ cursor: default;
+ font-weight: 500;
+ color: gray;
+ position: relative;
+ bottom: 20px;
+ font-size: 1rem;
 }
 
 #page-content-wrapper .sub-title,
