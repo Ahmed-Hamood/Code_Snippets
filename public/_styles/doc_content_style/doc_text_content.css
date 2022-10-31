@@ -835,7 +835,7 @@ tooltip .tooltiptext span,
 tooltip .tooltiptext hr,
 .tooltip-modal .tooltip-content hr {
  border: none;
- margin: 7px 0;
+ margin: 5px 0;
 }
 
 @media screen and (max-width: 1000px) {
