@@ -462,11 +462,11 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 }
 
 #page-content-wrapper .min-read {
+ height: 30px;
+ display: block;
  cursor: default;
  font-weight: 500;
  color: #7b7b7b;
- position: relative;
- bottom: 20px;
  font-size: 1rem;
 }
 
@@ -650,11 +650,12 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 #link-url,
 tooltip {
  font-size: 95%;
+ line-height: 140%;
  position: relative;
  text-decoration: none;
  font-weight: 400;
  padding: 0 2px;
- display: inline;
+ display: inline-block;
  background-color: rgba(97, 218, 251, 0.12);
  border-bottom: 1px solid rgba(97, 218, 251, 0.3);
  transition: 0.2s background-color, border;
@@ -729,7 +730,7 @@ tooltip::before,
 
 tooltip::before {
  content: '?';
- bottom: 10px;
+ bottom: 15px;
  left: -5px;
 }
 
@@ -871,7 +872,7 @@ tooltip .tooltiptext hr,
  background: #3b3b3b73;
  border-radius: 3px;
  padding: 0.8rem 1.47rem 0.8rem 0.882rem;
- margin: 2rem 0;
+ margin: 1.5rem 0;
  border: 1px solid #504c4c;
  transition: 0.4s all;
 }

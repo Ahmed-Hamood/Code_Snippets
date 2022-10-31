@@ -1,14 +1,19 @@
 export default function read_time_calculation() {
  const mainTitle = document.querySelector('.main-title');
- let page_content = document.getElementById('page-content-wrapper');
- 
- const text = page_content.innerText;
- const wpm = 225;
- const words = text.trim().split(/\s+/).length;
- let min_msg = 'minutes';
- console.log(words / wpm);
- const time = Math.ceil(words / wpm);
+ const getAllTitleInSubject = document.querySelectorAll(['.sub-title', '.sub-sub-title', '.sub-sub-sub-title']);
+ const page_content_wrapper = document.getElementById('page-content-wrapper');
 
- if (time == 1) min_msg = 'minute or less';
- mainTitle.insertAdjacentHTML('afterend', `<span class="min-read"> ${time} ${min_msg} read time</span>`);
+ if (!mainTitle || [...getAllTitleInSubject].length == 0) return;
+
+ let text = '';
+ let getTime = 0;
+ const wpm = 225;
+ let wordsLength = 0;
+
+ text = page_content_wrapper.innerText;
+
+ wordsLength = text.trim().split(/\s+/).length;
+ getTime = Math.ceil(wordsLength / wpm);
+
+ mainTitle.insertAdjacentHTML('beforeend', `<span class="min-read"> ${getTime} ${getTime == 1 ? 'minute or less' : 'minutes'} read time</span>`);
 }

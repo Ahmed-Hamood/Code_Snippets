@@ -15,7 +15,7 @@
 
 <p class="text">
  Cloud computing lets you choose the power and features you need to run your software. All Servers/PCs are in a cloud provider's data-center instead of physically with
- you. Cloud only lets you pay fot only the services you use
+ you. Cloud only lets you pay for only the services you use
 </p>
 
 <div class="list-content normal star">
@@ -45,7 +45,12 @@
 </div>
 
 <p class="text">
- Cloud computing offers flexible resources and
+ Cloud computing offers
+ <tooltip
+  desc="By eliminating the restrictions of an on-site server, you can increase/decrease resource power or quantity. IaaS is the right option if you need control over the hardware infrastructure such as managing and customizing according to your requirements. "
+  >flexible resources</tooltip
+ >
+ and
  <tooltip
   desc="Through economies of scale, cloud providers save organizations money because they purchase computing resources in massive quantities at lower costs. When companies utilize these shared resources, they avoid the substantial up-front CAPEX costs of purchasing their own expensive infrastructure."
   >economies of scale</tooltip
@@ -88,10 +93,15 @@
     4 - Application and its dependencies are packaged into a container. Container application/platform like Docker its an open source and its the leading platform for managing containers."
     >containers</tooltip
    >
-   that run different OS like windows, linux/unix or web container, and with them we can create apps for web, AI, machine learning and more. Also we have a
+   that run different OS like windows, linux/unix or
    <tooltip
-    desc="It lets you run application code without creating, configuring, or maintaining a server. Here your application is broken
-   into separate functions that runs when triggered by some action/event. Its good for automation e.g. serverless process that automatically sends an email confirmation
+    desc="A web container is responsible for managing the lifecycle of servlets, mapping a URL to a particular servlet and ensuring that the URL requester has the correct access-rights. A web container handles requests to servlets, Jakarta Server Pages (JSP) files, and other types of files that include server-side code. - A servlet is a Java programming language class that is used to extend the capabilities of servers that host applications accessed by means of a request-response programming model."
+    >web container</tooltip
+   >
+   , and with them we can create apps for web, AI, machine learning and more. Also we have a
+   <tooltip
+    desc="- It lets you run application code without creating, configuring, or maintaining a server. Here your application is broken
+   into separate functions that runs when triggered by some action/event. - Its good for automation e.g. serverless process that automatically sends an email confirmation
    after a customer makes an online purchase. You only pay for the processing time used by each function as it execute, but still you pay for VMs/containers because they
    still running even if the applications on them are idle."
     >Serverless computing</tooltip
@@ -107,8 +117,12 @@
    functionality. You also can connect azure to your company network thru private connection <red>VPN</red> or <red>ExpressRoute</red>.
   </li>
   <li>
-   <yellow underline>Analytics</yellow>: cloud provide a Service for analytics capabilities to review your performance with virtualization and telemetry data of your
-   services.
+   <yellow underline>Analytics</yellow>: cloud provide a Service for analytics capabilities to review your performance with virtualization and
+   <tooltip
+    desc="Telemetry is the automated communication processes from multiple data sources. Telemetry data is used to improve customer experiences, monitor security, application health, quality, and performance."
+    >telemetry data</tooltip
+   >
+   of your services.
   </li>
  </ul>
 </div>
@@ -176,18 +190,24 @@
    <sky>Azure</sky> has a simple web service for hosting and managing your business software solution in virtualized computers fully running and presence in the cloud.
   </li>
   <li>
-   <sky>Azure</sky> provides a cloud-based services like remote storage, CPU compute power, database hosting and <tooltip
+   <sky>Azure</sky> provides a cloud-based services like <underline yellow>remote storage</underline>, <underline yellow>CPU compute power</underline>,
+   <underline yellow>database hosting</underline> and
+   <tooltip
+    yellow
     desc="Centralized user management allows IT the control and visibility over every device, application, or network across the organization, without dictating what resources are the right choice for each group. Central control over users ensures that digital assets stay within the organization."
     >centralized account management</tooltip
    >
    .
   </li>
-  <li><sky>Azure</sky> offers new capabilities like <text green>AI (Artificial Intelligence)</text> and <text green>IoT (Internet of Things)</text> services.</li>
+  <li>
+   <sky>Azure</sky> offers new capabilities like <underline green>AI (Artificial Intelligence)</underline> and
+   <underline green>IoT (Internet of Things)</underline> services.
+  </li>
  </ul>
 </div>
 
 <!-- ######################################################### -->
-<p class="sub-title">4. Benefits of Cloud Computing</p>
+<p class="sub-title">4. The benefits of using cloud computing</p>
 <!-- ######################################################### -->
 
 <p class="text">
@@ -196,20 +216,21 @@
   desc="1. Provisioning is the process of setting up IT infrastructure. 2.  It can also refer to the steps required to manage access to data and resources, and make them available to users and systems. 3. Provisioning is not the same thing as configuration, but they are both steps in the deployment process. 4. provisioning provide and supply hardware and software"
   >provisioning</tooltip
  >
- and configure the hardware and software. Also provision exactly the right type and size of computing resources you need to power and run your services. With cloud
+ and configure the hardware and software. Also provision exactly the right type and size of computing resources that you need to power and run your services.
 </p>
 
 <div class="quote-text green-border">
- <p>With cloud you don't need to do that, you can have <number>10</number> or <number>100</number> servers in minutes/instantly and pay for what your use.</p>
+ <p>With cloud you don't need to buy servers, you can rent <number>10</number> or <number>100</number> servers in minutes/instantly and pay for what your use.</p>
 </div>
 
 <p class="text">
- The company or on-premise data-center is responsible for maintaining the physical space, ensuring security, and maintaining or replacing the servers if anything happens.
+ The IT department <small sky>(Cloud provider)</small> is responsible for maintaining the physical space, ensuring security and maintaining or replacing the servers if
+ anything happens, just like your own on-premise data-center but without the need to investment in hardware and spend time maintenance.
 </p>
 
 <p class="text">
- The IT department <small sky>(Cloud provider)</small> is responsible for maintaining all the infrastructure and software needed to keep the data-center up and running,
- also they are likely to be responsible for keeping all systems patched and on the correct version. <red underline>(here some of the benefits of cloud computing )</red>
+ <underline sky>Cloud provider</underline> maintain all the infrastructure and software needed to keep the data-center up and running, also they are likely to be responsible for keeping all systems
+ patched and on the correct version. <red underline>(here some of the benefits of cloud computing)</red>
 </p>
 
 <!-- ######################################################### -->
@@ -218,10 +239,10 @@
 
 <p class="text">
  You pay for what you use, no up-front-cost. It provides <text green>pay-as-you-go - PAYG</text> or <text orange>consumption-based</text> pricing model. Cloud has a
- thousands of customers sharing the cost of resources, that why you are getting low cost.
+ thousands of customers sharing the cost of resources, that's why you are getting low cost.
 </p>
 
-<div class="list-content normal">
+<div class="list-content normal star">
  <ul>
   <li>No upfront infrastructure costs</li>
   <li>No need to purchase and manage costly infrastructure/hardware that you may not use to its fullest</li>
@@ -259,12 +280,12 @@
   <li>
    Select a specific region to ensure you meet
    <tooltip
-    desc="Data localization or data residency law requires data about a nation's citizens or residents to be collected, processed, and/or stored inside the country,"
+    desc="Data localization or data residency law requires data about a nation's citizens or residents to be collected, processed, and/or stored inside the country."
     >data-residency</tooltip
    >
    and
    <tooltip
-    desc="- Compliance policies detail the laws, industry regulations and government legislation around managing your business, employees and customers. - Data compliance policy refers to any regulations that a business must follow in order to ensure the sensitive digital assets it possesses, usually personally identifiable information and financial details are guarded against loss, theft and misuse."
+    desc="- compliance is when a business follows state, federal, and international laws and regulations relevant to its operations. - Compliance policies detail the laws, industry regulations and government legislation around managing your business, employees and customers. - Data compliance policy refers to any regulations that a business must follow in order to ensure the sensitive digital assets it possesses, usually personally identifiable information and financial details are guarded against loss, theft and misuse."
     >compliance laws</tooltip
    >
    for your customers.
@@ -340,14 +361,15 @@
 </div>
 
 <p class="text">
- <tooltip desc="the quality of being trustworthy or of performing consistently well.">Reliability</tooltip> is the ability of an item to perform its function under specified conditions over a given period. usually expressed in terms of
- mean time between failures (MTBF), which is the average length of time that a device will operate without failure.
+ <tooltip desc="the quality of being trustworthy or of performing consistently well.">Reliability</tooltip> is the ability of an item to perform its function under
+ specified conditions over a given period. usually expressed in terms of mean time between failures (MTBF), which is the average length of time that a device will operate
+ without failure.
 </p>
 
 <p class="text">
- <tooltip desc="- the ability to withstand wear, pressure, or damage. - the quality of being able to last a long time without becoming damaged">Durability</tooltip> is the ability of an object to withstand physical damage from normal use over a long period. This may include wear and tear,
- corrosion, impact, etc. In some cases, durability is also referred to as
- <tooltip desc="The ability to endure an unpleasant or difficult process or situation without giving way.">"endurance"</tooltip>.
+ <tooltip desc="- the ability to withstand wear, pressure, or damage. - the quality of being able to last a long time without becoming damaged">Durability</tooltip> is
+ the ability of an object to withstand physical damage from normal use over a long period. This may include wear and tear, corrosion, impact, etc. In some cases,
+ durability is also referred to as <tooltip desc="The ability to endure an unpleasant or difficult process or situation without giving way.">"endurance"</tooltip>.
 </p>
 
 <p class="text">

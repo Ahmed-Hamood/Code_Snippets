@@ -132,15 +132,17 @@ function startup_pageRender(isPageLoadSuccess, refPos = null) {
 
    return;
   }
-
   render_buttons();
-
-  // add top scroll button a
+  
+  // add top scroll button 
   auto_top_scroll();
-
+  
+  read_time_calculation()
+  
   // render all list titles content
   render_mainListTitlesNav(true);
   render_sideListTitlesNav(true);
+  
 
   // tab content switch and render
   tabsSwitchContentRender_Active();
@@ -175,7 +177,7 @@ function startup_pageRender(isPageLoadSuccess, refPos = null) {
   // wrap sections after each title
   content_section_wrapper();
 
-  read_time_calculation()
+ 
  
  }
 }
