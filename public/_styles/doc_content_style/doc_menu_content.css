@@ -12,8 +12,7 @@
  line-height: 1.2;
  text-shadow: 1px 1px 1px #000;
  margin-top: clamp(1.5rem, 5vw, 4rem); 
- /* if 15vw or less start minimize */
- margin-bottom: calc(1.2 * 2rem);
+ margin-bottom: calc(1.2 * 1.8rem);
  display: flex;
  align-items: center;
  width: 100%;
@@ -31,10 +30,6 @@
  user-select: none;
 }
 
-.documentation-topics-list-container .content-wrapper .subject-topics-content div {
- margin-left: 8px;
-}
-
 .documentation-topics-list-container .subject-title:first {
  margin-top: 133px;
 }
@@ -48,6 +43,10 @@
  margin-bottom: calc(1.2 * 1.2rem);
 }
 
+.documentation-topics-list-container .subject-topics-content .content-wrapper { 
+  margin-left: 8px;
+}
+
 .documentation-topics-list-container .subject-topics-content section {
  width: 100%;
 }
@@ -59,18 +58,17 @@
 }
 
 .documentation-topics-list-container .subject-topics-content .sub-subject-title {
- /* color: #95a5a6; */
+ display: block;
  color: #e4c332;
- font-size: 0.9rem;
+ font-size: 1.1rem;
  font-weight: 500;
- margin-bottom: calc(1.2 * 0.7rem);
- border-bottom: 1px dotted rgb(51, 51, 51);
+ margin-bottom: calc(1.2 * 0.6rem);
  padding-bottom: 0.1rem;
- display: flex;
- align-items: center;
  width: 100%;
  user-select: none;
+ position: relative;
 }
+
 
 .documentation-topics-list-container .subject-topics-content li {
  margin-bottom: calc(1.2 * 0.3rem);

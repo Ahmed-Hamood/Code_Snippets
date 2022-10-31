@@ -2,11 +2,6 @@
 
 .sideBar-subjects-menu {
  opacity: 0;
- animation-name: FadeInAnimation;
- animation-duration: 1s;
- animation-delay: 0.4s;
- animation-fill-mode: forwards;
- /* height: calc(var(--sidebar-height)- var(--sidebar-header-height) - var(--sidebar-footer-height) - var(--sidebar-create-content)); */
  overflow-y: scroll;
  color: rgba(255, 255, 255, 0.933);
 }
@@ -85,11 +80,11 @@ body[api-system='false'] .sideBar-subjects-menu .content-wrapper .menu-title-sec
  overflow: hidden;
  border-radius: 3px;
  cursor: pointer;
- transition: 200ms padding, 0.2s margin;
  display: flex;
  flex-direction: row;
  justify-content: flex-start;
  align-items: center;
+ transition: 200ms padding, 0.2s margin;
 }
 
 .subject-title-link.folder-type.menu-enable:not(.subject-title-link.sub-level.folder-type.menu-enable) {

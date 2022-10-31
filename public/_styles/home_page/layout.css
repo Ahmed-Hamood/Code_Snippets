@@ -13,7 +13,6 @@
  display: block;
  z-index: 11;
  position: relative;
- animation: FadeInAnimation 0.5s backwards;
  overflow-y: hidden;
  max-height: var(--sidebar-height);
  height: 100%;
@@ -46,8 +45,16 @@
  align-content: stretch;
  align-items: stretch;
  height: 100%;
- animation: FadeInAnimation 300ms forwards;
+ animation: FadeInAnimation 300ms forwards 0.5s;
  overflow-y: hidden;
+}
+
+body[sidebar='enabled'] .sideBar .sideBar-container {
+ animation-delay: 0.2s;
+}
+
+.sideBar-subjects-menu {
+ animation: FadeInAnimation 500ms forwards 0.9s;
 }
 
 .sideBar-container.hide {
@@ -59,6 +66,14 @@
   display: none;
   max-height: calc(var(--sidebar-height) - 10%);
   margin-bottom: 9vh;
+ }
+
+ .sideBar .sideBar-container {
+  animation-delay: 0s;
+ }
+
+ .sideBar-subjects-menu {
+  animation: FadeInAnimation 400ms forwards 0.4s;
  }
 }
 

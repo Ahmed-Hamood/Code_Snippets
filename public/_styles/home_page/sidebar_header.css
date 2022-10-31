@@ -11,16 +11,15 @@
 }
 
 .sideBar-header .search-content {
- display: flex;
+ /* display: flex;
  padding: 0px 5px;
  align-items: center;
- animation-name: FadeInAnimation;
- animation-duration: 1s;
- width: 100%;
+ animation-name: FadeInAnimation  1s;
+ width: 100%; */
 }
 
 .sideBar-header .search-content .search-input {
- font-size: 1rem;
+ /* font-size: 1rem;
  font-weight: 500;
  color: var(--input-search-input-color);
  padding: 6px 1px;
@@ -31,20 +30,20 @@
  opacity: 0;
  width: 0px;
  transition: 200ms all;
- pointer-events: none;
+ pointer-events: none; */
 }
 
 .sideBar-header .search-content .search-svg,
 .sideBar-header .search-content .close-svg {
- padding: 0.8rem;
+ /* padding: 0.8rem; */
 }
 
 .search-content .search-input.view {
- opacity: 1;
+ /* opacity: 1;
  display: block;
  width: 90%;
  pointer-events: visible;
- margin-left: 5px;
+ margin-left: 5px; */
 }
 
 .sideBar-header .side-title-header {
@@ -55,8 +54,6 @@
  cursor: default;
  text-shadow: 0 1px 0 rgb(10 10 10 / 80%);
  user-select: none;
- opacity: 0;
- animation: FadeInAnimation 0.5s 0.5s forwards;
 }
 
 /* open menu button */
@@ -78,7 +75,7 @@
  align-items: center;
  transition: 0.3s opacity, 200ms left;
  cursor: pointer;
- animation: FadeInAnimation 0.8s 1s backwards;
+ animation: FadeInAnimation 0.8s 0.8s backwards;
 }
 
 @media screen and (min-width: 1200px) {
@@ -168,11 +165,6 @@ body[newTab] .body-container .open-sidebar-btn {
  justify-content: center;
  align-items: center;
  padding: 0 12px;
- opacity: 0;
- animation-name: FadeInAnimation;
- animation-duration: 0.5s;
- animation-delay: 0.7s;
- animation-fill-mode: forwards;
 }
 
 body[api-system='false'] .create-subject-container {

@@ -480,7 +480,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 }
 
 #page-content-wrapper .main-title {
- font-size: clamp(2.5rem, 5vw, 3rem);
+ font-size: clamp(2.4rem, 5vw, 2.8rem);
 }
 
 #page-content-wrapper .sub-title {

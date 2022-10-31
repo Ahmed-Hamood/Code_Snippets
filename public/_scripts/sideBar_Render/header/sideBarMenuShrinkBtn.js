@@ -11,11 +11,12 @@ export default function sideBarMenuShrinkBtn() {
  let isDragCompleted = false;
 
  let open_sideMenu_btn_cb = (e) => {
+  bodyElement.setAttribute('sidebar', 'true');
   sideBar.classList.add('sideBar-slide');
   sideBar.classList.remove('sideBar-slide-reverse');
   sideBar.classList.remove('no-sideBar');
-  bodyElement.setAttribute('sidebar', 'true');
   sideBarContainer.classList.remove('hide');
+  
   if (window.innerWidth < 1200) {
    sideBar.style['display'] = 'block';
    open_sideMenu_btn.style['display'] = 'none';
@@ -68,7 +69,7 @@ export default function sideBarMenuShrinkBtn() {
     open_sideMenu_btn.style['left'] = 0;
     isDragCompleted = true;
    }
-   if (e.changedTouches[0].clientX < 50)  {
+   if (e.changedTouches[0].clientX < 50) {
     open_sideMenu_btn.style['left'] = '';
     isDragCompleted = false;
    }

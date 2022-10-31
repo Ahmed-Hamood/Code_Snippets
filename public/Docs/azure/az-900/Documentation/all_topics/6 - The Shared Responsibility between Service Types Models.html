@@ -3,9 +3,7 @@
 <!-- #endregion -->
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-title">
- - Shared responsibility model Intro
-</p>
+<p class="sub-title">1 - Shared responsibility model Intro</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
@@ -60,12 +58,32 @@
 
 <img id="image" path="/img/image013.PNG" alt="image" />
 
+<div class="quote-text green-border">
+ <p>
+  <underline yellow>Identity and directory infrastructure</underline>, where azure provide
+  <tooltip
+   desc="SSO where a user log-in once, and gains access to all systems without being prompted to log in again at each of them. it automatically signs users in when they are on their corporate devices connected to your corporate network."
+  >
+   single sign-on</tooltip
+  >,
+  <tooltip
+   desc="- Azure AD Multi-Factor Authentication works by requiring two or more of the following authentication methods: 1. Something you know, typically a password. 2. Something you have, such as a trusted device that's not easily duplicated, like a phone or hardware key. 3. Something you are, biometrics like a fingerprint or face scan."
+   >multi-factor authentication</tooltip
+  >
+  for cloud users.<tooltip
+   desc="Azure Active Directory (Azure AD) is a cloud-based identity and access management service. This service helps your employees access external resources, such as Microsoft 365, the Azure portal, and thousands of other SaaS applications. Azure Active Directory also helps them access internal resources like apps on your corporate intranet network, along with any cloud apps developed for your own organization."
+   > Azure AD</tooltip
+  >
+  helps employees sign up to multiple services and access them anywhere over the cloud with a single set of login credentials.
+ </p>
+</div>
+
 <div class="list-content custom">
  <p class="list-title">- You as a consumer/admin user always be responsible for :-</p>
  <ul>
   <li>The information and data stored in the cloud</li>
   <li>Devices that are allowed to connect to your cloud (cell phones, computers, and so on)</li>
-  <li>The accounts and identities of the people, services, and devices within your organization></li>
+  <li>The accounts and identities of the people, services, and devices within your organization</li>
  </ul>
 </div>
 
@@ -84,15 +102,14 @@
   <li>Operating systems</li>
   <li>Network controls</li>
   <li>Applications</li>
-  <li>Identity and infrastructure</li>
+  <li>Identity and directory infrastructure</li>
  </ul>
 </div>
-
 
 <!-- #endregion -->
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-sub-title">IaaS - Shared responsibility model</p>
+<p class="sub-sub-title">A - IaaS - Shared responsibility model</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
@@ -105,7 +122,7 @@
 <!-- #endregion -->
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-sub-title">PaaS - Shared responsibility model</p>
+<p class="sub-sub-title">B - PaaS - Shared responsibility model</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
@@ -128,7 +145,7 @@
 <!-- #endregion -->
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-sub-title">SaaS - Shared responsibility model</p>
+<p class="sub-sub-title">C - SaaS - Shared responsibility model</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
