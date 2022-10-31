@@ -464,7 +464,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 #page-content-wrapper .min-read {
  cursor: default;
  font-weight: 500;
- color: gray;
+ color: #7b7b7b;
  position: relative;
  bottom: 20px;
  font-size: 1rem;
@@ -493,7 +493,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 }
 
 #page-content-wrapper .sub-title {
- font-size: clamp(2.4rem, 6vw, 2.8rem);
+ font-size: clamp(2.2rem, 6vw, 2.5rem);
 }
 
 #page-content-wrapper .sub-sub-title {
@@ -549,7 +549,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 #page-content-wrapper .sub-title::before,
 #page-content-wrapper .sub-sub-title::before {
  color: rgba(255, 255, 255, 0.127);
- font-size: 50%;
+ font-size: 40%;
  content: '▼';
  position: absolute;
  left: -28px;

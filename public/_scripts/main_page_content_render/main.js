@@ -19,6 +19,7 @@ import navToHashPos from './page_document_render/tooltips_navHashPos_refLinks/na
 import render_buttons from './page_document_render/render_buttons.js';
 import tooltip from './page_document_render/tooltips_navHashPos_refLinks/tooltip.js';
 import content_section_wrapper from './page_document_render/content_section_wrapper.js';
+import read_time_calculation from './page_document_render/read_time_calculation.js';
 
 let page_content = document.getElementById('page-content-wrapper');
 let bodyElement = document.body;
@@ -128,60 +129,53 @@ function startup_pageRender(isPageLoadSuccess, refPos = null) {
    // render all list titles content
    render_mainListTitlesNav(false);
    render_sideListTitlesNav(false);
-  } else {
-   render_buttons();
 
-   // add top scroll button a
-   auto_top_scroll();
-
-   // render all list titles content
-   render_mainListTitlesNav(true);
-   render_sideListTitlesNav(true);
-
-   // tab content switch and render
-   tabsSwitchContentRender_Active();
-
-   // create a Collapsible content
-   collapsible_content_render();
-
-   // -------------------------------------
-   // -------------------------------------
-
-   start_all_code_blocks_and_highlight();
-
-   // -------------------------------------
-   // -------------------------------------
-   // -------------------------------------
-
-   // here we replace all tooltip
-   tooltip();
-
-   // add ref links to every link
-   appendRefLinks();
-
-   // set all images source with proper url path
-   imageLinkChange();
-
-   // create a view content for each image
-   imageViewer();
-
-   // on link ref open navigate to certain topic title
-   navToHashPos(refPos);
-
-   // wrap sections after each title
-   content_section_wrapper();
-
-   const text = page_content.innerText;
-   console.log(page_content.innerText);
-   const wpm = 225;
-   const words = text.trim().split(/\s+/).length;
-   let min_msg = 'minutes';
-   console.log(words / wpm);
-   const time = Math.ceil(words / wpm);
-
-   if (time == 1) min_msg = 'minute or less';
-   document.querySelector('.main-title').insertAdjacentHTML('afterend', `<span class="min-read"> ${time} ${min_msg} read time</span>`);
-
+   return;
   }
+
+  render_buttons();
+
+  // add top scroll button a
+  auto_top_scroll();
+
+  // render all list titles content
+  render_mainListTitlesNav(true);
+  render_sideListTitlesNav(true);
+
+  // tab content switch and render
+  tabsSwitchContentRender_Active();
+
+  // create a Collapsible content
+  collapsible_content_render();
+
+  // -------------------------------------
+  // -------------------------------------
+
+  start_all_code_blocks_and_highlight();
+
+  // -------------------------------------
+  // -------------------------------------
+  // -------------------------------------
+
+  // here we replace all tooltip
+  tooltip();
+
+  // add ref links to every link
+  appendRefLinks();
+
+  // set all images source with proper url path
+  imageLinkChange();
+
+  // create a view content for each image
+  imageViewer();
+
+  // on link ref open navigate to certain topic title
+  navToHashPos(refPos);
+
+  // wrap sections after each title
+  content_section_wrapper();
+
+  read_time_calculation()
+ 
  }
 }
