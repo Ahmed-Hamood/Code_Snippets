@@ -31,7 +31,7 @@ body[pageLoading='false'] #page-content-wrapper {
 
 @media screen and (max-width: 1000px) {
  #page-content-wrapper {
-  padding: 0 1.2rem;
+  padding: 0 1.5rem;
  }
 }
 

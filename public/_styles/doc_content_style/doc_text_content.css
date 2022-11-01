@@ -89,9 +89,9 @@
  height: 95%;
  max-height: 500px;
  /* overflow: hidden; */
- border: 1px solid rgb(142, 142, 142);
+ border: 2px solid #191818;
  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
- /* border-radius: 12px; */
+ border-radius: 12px;
  animation: stickyTableContent 0.2s forwards;
  overflow: hidden;
 }
@@ -105,7 +105,7 @@
  font-size: 150%;
  font-weight: 500;
  color: rgb(82, 255, 88);
- border-bottom: 2px solid rgb(63, 63, 63);
+ border-bottom: 2px solid #2c2b2b;
  margin-bottom: 2px;
  padding: 15px 12px;
 }
@@ -215,14 +215,15 @@
  display: none;
  /* position: fixed; */
  position: absolute;
- border: 1px solid #2c2b2b;
- border-bottom: 7px solid var(--main-doc-header-content-border-bottom-color);
+ border: 1px solid #283340;
+ background: var(--main-doc-header-content-bg-color);
+ box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+ /* border-bottom: 7px solid var(--main-doc-header-content-border-bottom-color); */
  border-radius: 10px;
  cursor: pointer;
  opacity: 0.5;
  width: 55px;
  height: 55px;
- background: var(--main-doc-header-content-bg-color);
  justify-content: center;
  align-items: center;
  transition: 0.5s all;
@@ -239,11 +240,7 @@
  top: 65px;
  right: 0;
  z-index: 2;
- animation-name: translateFromUpToDown;
- animation-duration: 0.5s;
- animation-delay: 0.2s;
- animation-fill-mode: backwards;
- animation-direction: normal;
+ animation: translateFromUpToDown 0.5s backwards 0.2s normal;
 }
 
 body[max-content='true'] .titles-list-menu-active-btn.view {
@@ -455,10 +452,16 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  white-space: wrap;
  word-break: break-word;
  caret-color: rgba(255, 255, 255, 0.81);
- padding-top: calc(1.2 * 0.5rem);
- margin-top: calc(1.2 * 2.4rem);
+ /* padding-top: calc(1.2 * 0.5rem); */
+ margin-top: calc(1.2 * 3rem);
  margin-bottom: calc(1.2 * 1.5rem);
  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+ #page-content-wrapper .main-title {
+  margin-top: calc(1.2 * 2rem);
+ }
 }
 
 #page-content-wrapper .min-read {
@@ -662,6 +665,15 @@ tooltip {
  cursor: pointer;
 }
 
+@media screen and (max-width: 700px) {
+ #link-ref,
+ #link-nav,
+ #link-url,
+ tooltip {
+  display: inline;
+ }
+}
+
 #link-ref:hover,
 #link-url:hover,
 tooltip:hover {
@@ -795,7 +807,7 @@ tooltip .tooltiptext.left,
  max-width: 900px;
  height: fit-content;
  background-color: var(--tooltip-bg);
- border: 1px solid rgb(71, 71, 71);
+ border: 1px solid #2c2b2b;
  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
  border-radius: 8px;
  top: 50%;
@@ -820,7 +832,7 @@ tooltip .tooltiptext.left,
  line-height: 120%;
  /* margin-bottom: 8px; */
  padding: 12px 0 15px 12px;
- border-bottom: 1px dotted rgb(107, 103, 143);
+ border-bottom: 1px dotted #2c2b2b;
 }
 
 .tooltip-modal .tooltip-content {
@@ -1398,9 +1410,10 @@ tooltip .tooltiptext hr,
  bottom: 1.176rem;
  right: 1.176rem;
  position: fixed;
- width: 45px;
- height: 45px;
- background: rgb(46, 46, 46);
+ width: 55px;
+ height: 55px;
+ background: var(--main-doc-header-content-bg-color);
+ box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
  border-radius: 10px;
  cursor: pointer;
  opacity: 0.4;

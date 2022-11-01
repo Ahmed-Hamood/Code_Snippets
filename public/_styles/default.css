@@ -200,7 +200,7 @@ body[pageLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
  }
 
  ::-webkit-scrollbar {
-  width: 2px;
+  width: 4px;
   height: 3px;
  }
 

@@ -67,7 +67,7 @@
  position: absolute;
 
  height: 55px;
- width: 55px;
+ width: 65px;
  z-index: 6;
  opacity: 0.8;
  display: none;
@@ -95,6 +95,7 @@
  height: 38px;
 }
 
+body[sidebar='enabled'] .body-container .open-sidebar-btn,
 body[sidebar='false'] .body-container .open-sidebar-btn {
  display: flex;
 }
@@ -105,8 +106,9 @@ body[newTab] .body-container .open-sidebar-btn {
 
 @media screen and (max-width: 1200px) {
  .body-container .open-sidebar-btn {
-  border: 3px solid #212933;
-  border-radius: 0 200px 200px 0;
+  border: 3px solid #171d24;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  border-radius: 0 50px 50px 0;
   height: 200px;
   justify-content: flex-end;
   top: 50%;
@@ -118,7 +120,7 @@ body[newTab] .body-container .open-sidebar-btn {
 
  .body-container .open-sidebar-btn .open-menu-style {
   transform: rotate(90deg);
-  margin-right: 1px;
+  margin-right: 5px;
   width: 30px;
   height: 30px;
  }

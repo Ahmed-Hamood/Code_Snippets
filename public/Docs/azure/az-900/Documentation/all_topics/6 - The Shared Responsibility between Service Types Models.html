@@ -58,11 +58,9 @@
 
 <img id="image" path="/img/image013.PNG" alt="image" />
 
-<p class="underline-text">
-  # The following is the cloud provider responsibility on each layer :-
- </p>
+<p class="underline-text"># The following is the cloud provider responsibility on each layer :-</p>
 
- <img id="image" path="/img/image015.PNG" alt="image" />
+<img id="image" path="/img/image015.PNG" alt="image" />
 
 <div class="quote-text green-border">
  <p>
@@ -78,7 +76,8 @@
   >
   for cloud users.<tooltip
    desc="Azure Active Directory (Azure AD) is a cloud-based identity and access management service. This service helps your employees access external resources, such as Microsoft 365, the Azure portal, and thousands of other SaaS applications. Azure Active Directory also helps them access internal resources like apps on your corporate intranet network, along with any cloud apps developed for your own organization."
-   > Azure AD</tooltip
+  >
+   Azure AD</tooltip
   >
   helps employees sign up to multiple services and access them anywhere over the cloud with a single set of login credentials.
  </p>
@@ -125,6 +124,24 @@
  internet. Also you're responsible for installation and configuration, patching and updates, and security.
 </p>
 
+<p class="text">
+ Ownership in IaaS, the Cloud provider manage infrastructure like networking, hardware and virtualization. You as a user/admin you manage platform and software.
+ IaaS means is having a lot of virtual machines, virtual networks and managed disks.
+</p>
+
+<div class="list-content normal">
+ <ul>
+  <li><underline yellow>Platform</underline> - operating system, middleware and runtime.</li>
+  <li><underline yellow>Software</underline> - data and application.</li>
+ </ul>
+</div>
+
+<p class="text">
+ The use case is migration of workloads from the on-premises environment, also you can use for testing and development. And having more capacity by extending your
+ on-premises environment by using storage with backups and recovery in case of any disasters.
+</p>
+
+
 <!-- #endregion -->
 <!-- ######################################################### -->
 <!-- ######################################################### -->
@@ -134,9 +151,16 @@
 <!-- #region start -->
 
 <p class="text">
- PaaS splits the responsibility between you and the cloud provider. The cloud provider is responsible for maintaining the physical infrastructure and its access to the
+ PaaS splits the responsibility between you and the cloud provider. The cloud provider is responsible for maintaining the physical infrastructure and platform and its access to the
  internet, just like in IaaS.
 </p>
+
+<div class="list-content normal">
+  <ul>
+   <li><underline yellow>Infrastructure</underline> - networking, hardware and virtualization</li>
+   <li><underline yellow>Platform</underline> - operating system, middleware and runtime</li>
+  </ul>
+ </div>
 
 <p class="text">
  In the PaaS model, the cloud provider will also maintain the operating systems, databases, and development tools. Think of PaaS like using a domain joined machine: IT
@@ -147,6 +171,19 @@
  Depending on the configuration, you or the cloud provider may be responsible for networking settings and connectivity within your cloud environment, network and
  application security, and the directory infrastructure.
 </p>
+
+<p class="text">
+ As a user/admin you manage software data and applications, you will only need to manage your own application, it is used whenever you're developing cloud applications like :
+</p>
+
+<div class="list-content normal">
+ <ul>
+  <li>building Web applications</li>
+  <li>Artificial intelligence (AI).</li>
+  <li>Machine learning (ML)</li>
+ </ul>
+</div>
+
 
 <!-- #endregion -->
 <!-- ######################################################### -->
@@ -161,7 +198,34 @@
  into the system, the devices that you allow to connect to the system, and the users that have access.
 </p>
 
+<div class="list-content normal">
+ <p class="list-title">- Cloud provider manages infrastructure, platform and software and you manage nothing :-</p>
+ <ul>
+  <li><underline yellow>Infrastructure</underline> - networking, hardware and virtualization</li>
+  <li><underline yellow>Platform</underline> - operating system middleware and runtime.</li>
+  <li><underline yellow>Software</underline> - data and applications</li>
+ </ul>
+</div>
+
 <p class="text">
  Nearly everything else falls to the cloud provider. The cloud provider is responsible for physical security of the data-centers, power, network connectivity, and
  application development and patching.
 </p>
+
+<!-- #endregion -->
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-sub-title">D - On-Premises</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">Here cloud provider manage nothing, you manage everything in your organization. You manage Infrastructure, platform and software.</p>
+
+<div class="list-content normal">
+ <ul>
+  <li><underline yellow>Infrastructure</underline> - networking, hardware and virtualization</li>
+  <li><underline yellow>Platform</underline> - Operating system, middleware and runtime</li>
+  <li><underline yellow>Software</underline> - data and applications</li>
+ </ul>
+</div>

@@ -60,17 +60,20 @@ export default function sideBarMenuShrinkBtn() {
     open_sideMenu_btn_cb();
     isDragCompleted = false;
     open_sideMenu_btn.style['left'] = '';
+    open_sideMenu_btn.style["opacity"] = ""
    }
   });
 
   open_sideMenu_btn.addEventListener('touchmove', (e) => {
    open_sideMenu_btn.style['left'] = 0;
    if (e.changedTouches[0].clientX > 25) {
-    open_sideMenu_btn.style['left'] = 0;
+    open_sideMenu_btn.style['left'] = "-3px";
     isDragCompleted = true;
+    open_sideMenu_btn.style["opacity"] = "1.0"
    }
    if (e.changedTouches[0].clientX < 50) {
     open_sideMenu_btn.style['left'] = '';
+    open_sideMenu_btn.style["opacity"] = ""
     isDragCompleted = false;
    }
   });
