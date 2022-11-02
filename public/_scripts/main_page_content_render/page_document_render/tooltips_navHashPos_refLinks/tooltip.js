@@ -7,6 +7,7 @@ export default function tooltip() {
  if ([...all_tooltips].length != 0) {
   let tooltip_text = '';
   let keyword = '';
+  let assignKeyword = ""
   let getTooltipModalElement = null;
 
   let format_text = (element) => {
@@ -34,7 +35,10 @@ export default function tooltip() {
   getTooltipModalElement = document.querySelector('.tooltip-modal');
 
   all_tooltips.forEach((element) => {
-   element.setAttribute('keyword', element.textContent);
+
+   assignKeyword = element.hasAttribute('keyword') ? element.getAttribute("keyword") : element.textContent;
+   element.setAttribute('keyword', assignKeyword);
+
    format_text(element);
 
    // add tooltips to all

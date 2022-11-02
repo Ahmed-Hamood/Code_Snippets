@@ -1,0 +1,205 @@
+<p class="main-title">7 - Azure data-centers, regions and geographies</p>
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">1- Azure Data Centers</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ Azure physical infrastructure is a large of many data-centers, more than 100 redundant & secure facilities worldwide linked or grouped with a network of servers.
+</p>
+
+<p class="text">
+ These facilities/building are <tooltip desc="resources like storage, processing power, databases, networking routers/switches">resources</tooltip> arranged in racks,
+ with dedicated <underline yellow>power</underline>, <underline yellow>cooling</underline>, and <underline yellow>networking infrastructure</underline>.
+</p>
+
+<div class="quote-text blue-border">
+ <p>
+  Azure is a cloud provider that has data-centers around the world as
+  <tooltip desc="region is an area, especially part of a country or the world having definable characteristics but not always fixed boundaries.">regions</tooltip>, these
+  data-centers aren't directly accessible and you can't select a specific data-center or location.
+ </p>
+</div>
+
+<div class="text-box note">
+ <p>You can pick the <text>region</text> and sometimes <text>availability zone</text> resources and deploy your application into.</p>
+</div>
+
+<div class="list-content normal star">
+ <p class="list-title">- Azure data-center facilities allow you to :-</p>
+ <ul>
+  <li>Gain global reach with local presence</li>
+  <li>Keep your data secure and compliant with local laws</li>
+ </ul>
+</div>
+
+<p class="text">Next, we are going to understand azure <text>regions</text>, <text>geographies</text> and <text>availability zones</text>.</p>
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">2 - Azure Region</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ A region is a geographical area on the planet that have at least one data-center or more, these data-centers can be near-by and networked together with dedicated
+ regional
+ <tooltip
+  desc="no delays, application is responding very fast, clients will get access to the nearest/local cloud from their location to give them the best response time."
+  >low latency</tooltip
+ >
+ network.
+</p>
+
+<img id="image" path="/img/image016.PNG" alt="image" />
+
+<p class="underline-text inherit"># Here some Regions from USA and Canada :-</p>
+<div class="list-content normal check">
+ <ul>
+  <li>
+   <text>United State</text> :- Central US, East US, East US 2, East US 3 <small>(coming Soon)</small>, North Central US, South Central US, West Central US, etc...
+  </li>
+  <li><text>Canada</text> :- Canada Central, Canada East</li>
+ </ul>
+</div>
+
+<img id="image" path="/img/image018.PNG" alt="image" />
+
+<p class="text">
+ A region is a grouping of multiple data-centers (Availability Zones), there are <number>54</number> Azure regions available in <number>140</number> countries. Up to
+ <number>1.6</number> <tooltip desc="Peta bit per second,  is equal to 1,000,000 Gigabits per second">Pbps</tooltip> of bandwidth in a region
+</p>
+
+<img id="image" path="/img/image017.PNG" alt="image" />
+
+<p class="text">When you deploy a resource in Azure, you'll often need to choose the region where you want your resource deployed.</p>
+
+<img id="image" path="/img/image019.PNG" alt="image" />
+
+<p class="text">
+ Azure assigns and controls the resources within each region to ensure workloads are appropriately balanced. Regions provide better scalability, redundancy, and
+ preserves/maintains data residency for your services.
+</p>
+
+<div class="list-content normal star">
+ <ul>
+  <li>Some services are only available in certain regions, such as virtual machine with specific sizes or storage types.</li>
+  <li>
+   There are some services are <mark>global services</mark> that don't require you to select a particular region for it, such as
+   <underline green>Azure Active Directory</underline>, <underline green>Azure Traffic Manager</underline>, and <underline green>Azure DNS</underline>.
+  </li>
+ </ul>
+</div>
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">A - Region types</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Not all azure services are available in every region, because of infrastructure and
+ <tooltip desc="Regulatory compliance is when a business follows the local and international laws and regulations that are relevant to its operations"
+  >compliance</tooltip
+ >
+ reasons. Azure has two types of regions, <underline yellow>Recommended Region</underline> and <underline yellow>Alternative/other Region</underline>.
+</p>
+
+<p class="text">
+ <underline yellow>Recommended Region</underline>, these are regions that provides the broadest range of service capability, which means is that the majority of services
+ are going to be available in this region.
+</p>
+
+<div class="quote-text blue-border">
+ <p>
+  The Recommended Regions is designed to support
+  <tooltip desc="Grouping of physically separate facilities or data-centers within an Azure region. Designed to protect from data center failures"
+   >availability zones</tooltip
+  >
+  now, or in the future.
+ </p>
+</div>
+
+<p class="text">
+ <underline yellow>Alternative/other Region</underline>, these are regions that are used for
+ <tooltip
+  desc="- Data localization or data residency law requires data about a nation's citizens or residents to be collected, processed, and/or stored inside the country. - Different countries and regions have different regulations around data security, and one major part is data residency. Ensuring your data stays securely stored in your local environment is very important when handling sensitive employee data."
+  >data residency</tooltip
+ >
+ boundary. these regions are label as Other in the Azure portal.
+ <tooltip
+  keyword="Alternate/Other regions"
+  desc="Alternate regions help to optimize latency and provide a second region for disaster recovery needs but don't support availability zones. Azure conducts regular assessments of alternate regions to determine if they should become recommended regions."
+  >(read more)</tooltip
+ >
+</p>
+
+<div class="quote-text blue-border">
+ <p>
+  The alternative regions not designed to supports availability zones, you still can deploy/launch resources within them, it just means you are not going to choose an
+  availability zone
+ </p>
+</div>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">B - Service general availability</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ <underline yellow>General availability (GA)</underline> is when a service is considered ready to be used publicly by everyone So, if you have a service or product and it
+ was in
+ <tooltip
+  desc="beta version is an early version of a program or application that contains most of the major features, but is not yet complete. Sometimes these versions are released only to a select group of people, or to the general public, for testing and feedback."
+  >beta</tooltip
+ >
+ , and now you're ready to sell it to people that means that its GA.
+</p>
+
+<p class="underline-text green"># General availability is determined available based on the following category :-</p>
+
+<div class="list-content normal">
+ <ul>
+  <li><underline yellow>Foundational</underline>:- its available immediately or in 12 months in both recommended and alternative regions when it goes GA.</li>
+  <li>
+   <underline yellow>Mainstream</underline>:- its available immediately or in 12 months in recommended regions when it goes GA, it may become available in alternative
+   region based on customer demand.
+  </li>
+  <li><underline yellow>Specialize</underline>:- its available in both recommended or alternative region based on customer demand</li>
+ </ul>
+</div>
+<!-- #endregion -->
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">3 - Sovereign/Special Regions</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">4 - Azure Geographies</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<!-- #endregion -->
+
+
+<!-- #endregion -->
