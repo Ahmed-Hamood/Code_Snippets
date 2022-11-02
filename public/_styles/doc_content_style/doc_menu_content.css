@@ -51,6 +51,10 @@
  width: 100%;
 }
 
+.documentation-topics-list-container .subject-topics-content .two-columns {
+  margin-bottom: 32px;
+}
+
 @media screen and (max-width: 800px) {
  .documentation-topics-list-container .subject-topics-content {
   margin-bottom: calc(1.2 * 1.7rem);
@@ -80,7 +84,7 @@
 }
 
 .documentation-topics-list-container .subject-topics-content li:last-child {
- margin-bottom: calc(1.2 * 1rem);
+ /* margin-bottom: calc(1.2 * 1rem); */
 }
 
 .documentation-topics-list-container .subject-topics-content li .topic-title-link {

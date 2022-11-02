@@ -8,8 +8,7 @@
  /* width: 70%; */
  max-width: 90%;
  height: auto;
-
- margin-bottom: calc(1.2 * 1.5rem);
+ margin: calc(1.2 * 1.2rem) 0;
  border: 1px solid rgb(65, 65, 65);
  border-radius: 12px;
  opacity: 0;

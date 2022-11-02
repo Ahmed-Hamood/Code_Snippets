@@ -43,6 +43,27 @@ keyboard {
  background: rgba(27, 26, 26, 0.411);
 }
 
+mark {
+ color: var(--text-color) !important;
+ background: rgba(255, 255, 0, 0.265);
+}
+
+mark[red],
+mark[green],
+mark[gray] {
+ color: var(--text-color) !important;
+}
+
+mark[red] {
+ background: rgba(255, 0, 0, 0.265);
+}
+mark[green] {
+ background: rgba(47, 255, 0, 0.265);
+}
+mark[gray] {
+ background: rgba(146, 146, 146, 0.265);
+}
+
 /* #endregion */
 
 /* #region folder and file style */
@@ -308,7 +329,7 @@ smaller,
 smallest,
 [smallest],
 .smallest {
-  font-size: 35% !important;
+ font-size: 35% !important;
 }
 
 /* #endregion */

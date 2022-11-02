@@ -61,20 +61,20 @@
 .body-container .open-sidebar-btn {
  background: var(--main-doc-header-content-bg-color);
  box-shadow: rgb(11 10 10 / 15%) 1.95px 1.95px 2.6px;
- border: 1px solid #2c2b2b;
- border-bottom: 7px solid var(--main-doc-header-content-border-bottom-color);
+ box-shadow: rgb(0 0 0 / 15%) 1.95px 1.95px 2.6px;
+ /* border-bottom: 7px solid var(--main-doc-header-content-border-bottom-color); */
  border-radius: 12px;
  position: absolute;
 
- height: 55px;
- width: 65px;
+ height: 60px;
+ width: 60px;
  z-index: 6;
  opacity: 0.8;
  display: none;
  justify-content: center;
  align-items: center;
- transition: 0.3s opacity, 200ms left;
  cursor: pointer;
+ transition: 0.3s opacity, 200ms left;
  animation: FadeInAnimation 0.8s 0.8s backwards;
 }
 
@@ -116,6 +116,15 @@ body[newTab] .body-container .open-sidebar-btn {
   opacity: 0.4;
   transform: translateY(-50%);
   animation: menuBtnAnimation 200ms ease-out 450ms backwards;
+ }
+
+ .body-container .open-sidebar-btn::after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 0, 0, 0);
+  width: 25px;
+  height: 100px;
+  right: -28px;
  }
 
  .body-container .open-sidebar-btn .open-menu-style {

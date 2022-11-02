@@ -54,7 +54,7 @@ body[sidebar='enabled'] .sideBar .sideBar-container {
 }
 
 .sideBar-subjects-menu {
- animation: FadeInAnimation 500ms forwards 0.9s;
+ animation: FadeInAnimation 800ms forwards 0.9s;
 }
 
 .sideBar-container.hide {

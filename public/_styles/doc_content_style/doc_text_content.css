@@ -465,12 +465,14 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 }
 
 #page-content-wrapper .min-read {
+ font-size: 1rem;
  height: 30px;
  display: block;
  cursor: default;
  font-weight: 500;
  color: #7b7b7b;
- font-size: 1rem;
+ position: relative;
+ top: -7px;
 }
 
 #page-content-wrapper .sub-title,
@@ -588,7 +590,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 
 #page-content-wrapper .text {
  caret-color: rgba(255, 255, 255, 0.81);
- line-height: 190%;
+ line-height: 180%;
  font-weight: inherit;
  /* margin-bottom: calc(1.2 * 0.832rem); */
  margin-bottom: 1rem;
@@ -614,7 +616,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  font-size: 1.2rem;
  line-height: 160%;
  font-weight: inherit;
- margin-bottom: calc(1.2 * 1rem);
+ margin-bottom: calc(1.2 * 0.8rem);
  text-decoration: underline;
  /* text-decoration-color: inherit;
  text-decoration-style: double;
@@ -833,6 +835,7 @@ tooltip .tooltiptext.left,
  /* margin-bottom: 8px; */
  padding: 12px 0 15px 12px;
  border-bottom: 1px dotted #2c2b2b;
+ background: #11131f;
 }
 
 .tooltip-modal .tooltip-content {

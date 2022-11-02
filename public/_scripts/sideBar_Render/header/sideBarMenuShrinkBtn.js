@@ -53,7 +53,7 @@ export default function sideBarMenuShrinkBtn() {
  if (window.innerWidth > 1000) {
   open_sideMenu_btn.addEventListener('click', open_sideMenu_btn_cb);
  } else {
-  open_sideMenu_btn.addEventListener('click', open_sideMenu_btn_cb);
+  // open_sideMenu_btn.addEventListener('click', open_sideMenu_btn_cb);
 
   open_sideMenu_btn.addEventListener('touchend', () => {
    if (isDragCompleted) {

@@ -36,11 +36,19 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
- background: #24c144;
+ background: #d7d7d7;
  border-radius: 12px;
 }
 ::-webkit-scrollbar-thumb:hover {
  background: #085608;
+}
+
+.scroll-touch {
+  -webkit-overflow-scrolling: touch; /* Lets it scroll lazy */
+}
+
+.scroll-auto {
+  -webkit-overflow-scrolling: auto; /* Stops scrolling immediately */
 }
 
 body[pageLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
