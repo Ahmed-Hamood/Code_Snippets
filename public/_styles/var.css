@@ -32,7 +32,7 @@ html {
  --main-doc-header-content-bg-color: var(--sideBar-bg-color);
  --main-doc-header-content-border-bottom-color: #0b0f15;
 
- --main-doc-header-path-view-content-bg-color: #161b22;
+ --main-doc-header-path-view-content-bg-color: #161b22a6;
  --main-doc-header-path-view-text-color: #f6f6f6;
 
  --main-doc-content-width: 1200px;

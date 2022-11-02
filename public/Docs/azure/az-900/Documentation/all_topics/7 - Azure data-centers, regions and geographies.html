@@ -1,4 +1,5 @@
 <p class="main-title">7 - Azure data-centers, regions and geographies</p>
+<!-- #region start -->
 
 <!-- ######################################################### -->
 <!-- ######################################################### -->
@@ -185,10 +186,41 @@
 
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-title">3 - Sovereign/Special Regions</p>
+<p class="sub-title">3 - Sovereign/Special/Specialized Regions</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
+
+<p class="text">
+ <underline yellow>Sovereign regions</underline> are instances of Azure that are isolated from the main instance of Azure. It also called
+ <underline yellow>special regions</underline>, it's used for compliance or legal purposes for governments in azure.
+</p>
+
+<div class="quote-text red-border">
+ <p>Azure provide physical and logical network-isolated instances of Azure for US government agencies and partners.</p>
+</div>
+
+<div class="list-content normal star">
+ <p class="list-title">- Here some special regions that belong to US government agencies and partners :-</p>
+ <ul>
+  <li>US DoD Central</li>
+  <li>US Gov Virginia</li>
+  <li>US Gov Iowa and more</li>
+ </ul>
+</div>
+
+<p class="text">
+ There are also <underline yellow>specialized regions</underline> or partnered regions in <text green>China East</text>, <text green>China North</text>, Unique
+ partnership between Microsoft and
+ <tooltip
+  desc="21Vianet Group is the largest carrier-neutral Internet and data center service provider in China. It is the exclusive operator of Microsoft Azure and Office 365 services in China, and also houses data centers for Alibaba and other Chinese companies."
+  >21Vianet</tooltip
+ >.
+</p>
+
+<div class="quote-text green-border">
+ <p>Microsoft does not directly maintain the data0centers. These specialized regions are generally for government contractors or employees.</p>
+</div>
 
 <!-- #endregion -->
 
@@ -199,7 +231,33 @@
 <!-- ######################################################### -->
 <!-- #region start -->
 
-<!-- #endregion -->
+<p class="text">
+ Azure cloud regions are organized into geographies, <mark>Each region belongs to a single geography</mark>, which defined by geopolitical boundaries or country borders.
+ It has specific service availability, compliance, and data residency/sovereignty rules applied to it
+</p>
 
+<p class="text">
+ A Geography is a discreet market of two or more regions that ensure <underline>data residency</underline> <underline>sovereignty</underline>,
+ <underline>resiliency</underline>, <underline>Fault tolerant</underline> and <underline>compliance boundaries</underline>. We have Geography for regular clients and governments.
+</p>
+
+<div class="quote-text green-border">
+ <p>
+  <underline yellow>Data residency</underline> defines the legal or regulatory requirements imposed on data, based on the country or region in which it resides. when you
+  want to guarantee that data remain within Canada, so you would want to use Canada Azure Geographies because you don't want data to leave Canadian soil.
+ </p>
+</div>
+
+<div class="list-content normal star">
+ <p class="list-title">- Geographies are broken up into the following areas :-</p>
+ <ul>
+  <li>Americas</li>
+  <li>Europe</li>
+  <li>Asia Pacific</li>
+  <li>Middle East and Africa</li>
+ </ul>
+</div>
+
+<!-- #endregion -->
 
 <!-- #endregion -->

@@ -92,7 +92,7 @@ body[max-content='true'] .main-content-header .nav-header-container .nav-content
 .main-content-header .nav-header-container .path-view-content-header {
  position: relative;
  z-index: 3;
- /* background: var(--main-doc-header-path-view-content-bg-color); */
+ background: var(--main-doc-header-path-view-content-bg-color);
  /* border-bottom: 1px solid #202020; */
  height: var(--main-doc-header-pathView-content-height);
  width: 100%;
