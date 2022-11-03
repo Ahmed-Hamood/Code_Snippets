@@ -87,6 +87,10 @@ export function OpenFolderAndFileSideBarMenuAutomatically(urlPath) {
    if (el.getAttribute('urlPath') == path) {
     el.classList.add('menu-enable');
 
+    if(el.classList.contains("main-folder")) {
+      el.parentElement.parentElement.classList.add('opened');
+    }
+
     AddEventListenersToSubFolders(el);
     AddEventListenerToFilesOnOpenedFolder(el, true);
 

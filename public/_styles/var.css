@@ -3,7 +3,7 @@ html {
  --scroll-height: 3px;
 
  --text-color: #fff;
- --sideBar-bg-color: #161b22;
+ --sideBar-bg-color: #111111;
  --sideBar-footer-bg-color: var(--sideBar-bg-color);
  /* --body-container: #0d1117; */
  --body-container: #0f0f0f;
@@ -52,7 +52,7 @@ html {
  --menuList-background-color: #11111123;
  --menuList-background-active-color: #25252600;
  --menuList-background-hover-color: #0404041d;
- --menuList-border-color: #333232;
+ --menuList-border-color: #242424;
 
  --title-link-menu-bg-active-color: #0c0c0c8f;
 
@@ -64,7 +64,7 @@ html {
  --python-code-block-primary-bg-color: #21242a;
  /* --python-code-block-primary-bg-color: #0b1222; */
 
- --tooltip-bg: #0d1117;
+ --tooltip-bg: var(--sideBar-bg-color);
 }
 
 body[max-content='true'] {

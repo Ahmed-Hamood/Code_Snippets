@@ -44,6 +44,10 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
   HTMLContent = parser.parseFromString(HTMLContent, 'text/html');
 
   //  2. get all sub-titles
+  const disable_titles_wrapper = HTMLContent.querySelector('.disable-titles-wrapper');
+  
+  if (disable_titles_wrapper) return new XMLSerializer().serializeToString(HTMLContent);
+
   const all_titles = HTMLContent.querySelectorAll(['.sub-title', '.sub-sub-title']);
   let subSubTitleIndex = 0;
 
@@ -133,16 +137,15 @@ function startup_pageRender(isPageLoadSuccess, refPos = null) {
    return;
   }
   render_buttons();
-  
-  // add top scroll button 
+
+  // add top scroll button
   auto_top_scroll();
-  
-  read_time_calculation()
-  
+
+  read_time_calculation();
+
   // render all list titles content
   render_mainListTitlesNav(true);
   render_sideListTitlesNav(true);
-  
 
   // tab content switch and render
   tabsSwitchContentRender_Active();
@@ -176,8 +179,5 @@ function startup_pageRender(isPageLoadSuccess, refPos = null) {
 
   // wrap sections after each title
   content_section_wrapper();
-
- 
- 
  }
 }

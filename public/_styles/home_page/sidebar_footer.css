@@ -1,9 +1,9 @@
 .sideBar-footer {
- background: var(--sideBar-footer-bg-color);
+ /* background: var(--sideBar-footer-bg-color); */
  height: var(--sidebar-footer-height);
  padding: 22px 2px 22px 0;
  display: block;
- border-top: 1px solid #36353564;
+ /* border-top: 1px solid #36353564; */
  display: flex;
  justify-content: space-around;
  flex-direction: column;

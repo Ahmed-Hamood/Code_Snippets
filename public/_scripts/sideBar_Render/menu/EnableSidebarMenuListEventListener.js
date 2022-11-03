@@ -11,12 +11,15 @@ export default function EnableSidebarMenuListEventListener() {
 
  allMainTopFolders.forEach((folders) => {
   folders.addEventListener('click', (main_folder) => {
+   main_folder = main_folder.target;
+
+   main_folder.parentElement.parentElement.classList.toggle('opened');
    // target all main folder and start nesting events when u open them
-   ArrowChange(main_folder.target); // Apply to main-folder
-   ToggleAndEnableMenu(main_folder.target); // Apply to main-folder
-   FolderIconChange(main_folder.target); // Apply to main-folder
-   AddEventListenersToSubFolders(main_folder.target);
-   AddEventListenerToFilesOnOpenedFolder(main_folder.target);
+   ArrowChange(main_folder); // Apply to main-folder
+   ToggleAndEnableMenu(main_folder); // Apply to main-folder
+   FolderIconChange(main_folder); // Apply to main-folder
+   AddEventListenersToSubFolders(main_folder);
+   AddEventListenerToFilesOnOpenedFolder(main_folder);
   });
  });
 }
