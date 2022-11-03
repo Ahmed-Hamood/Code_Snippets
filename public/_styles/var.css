@@ -5,7 +5,8 @@ html {
  --text-color: #fff;
  --sideBar-bg-color: #161b22;
  --sideBar-footer-bg-color: var(--sideBar-bg-color);
- --body-container: #0d1117;
+ /* --body-container: #0d1117; */
+ --body-container: #0f0f0f;
  /* --body-container: #1b1a1d; */
 
  --zoom-body: 0.9;
@@ -32,7 +33,7 @@ html {
  --main-doc-header-content-bg-color: var(--sideBar-bg-color);
  --main-doc-header-content-border-bottom-color: #0b0f15;
 
- --main-doc-header-path-view-content-bg-color: #161b22a6;
+ --main-doc-header-path-view-content-bg-color: #0f0f0fce;
  --main-doc-header-path-view-text-color: #f6f6f6;
 
  --main-doc-content-width: 1200px;

@@ -1,4 +1,167 @@
 <p class="main-title">8 - Azure availability zones and paired regions</p>
 <!-- #region start -->
 
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">1 - Availability zones</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ Availability zones - AZ are physical separated data-centers with an azure region, each availability zone is made up of one or more data-centers equipped with independent
+ <text>power</text>, <text>cooling</text>, and <text>networking</text>.
+</p>
+
+<div class="text-box note">
+ <p>
+  You don't have a control to which data-center are your services deploy to, thats why Availability zones were created. You can select a specific availability zones by
+  number AZ1, AZ2 or AZ3.
+ </p>
+</div>
+
+<p class="text">
+ An availability zone is set up to be an isolation boundary from each other (so different buildings). If one zone goes down, the other continues working.
+</p>
+
+<div class="quote-text yellow-border">
+ <p>
+  Availability zones are connected through high-speed, private
+  <tooltip
+   desc="Fiber optics is used for long-distance and high-performance data networking. It is also commonly used in telecommunication services, such as internet, television and telephones."
+   >fiber-optic</tooltip
+  >
+  networks, so they will be close enough to provide low-latency.
+ </p>
+</div>
+
+<p class="underline-text yellow"># here a region that has four availability zones :-</p>
+
+<img id="image" path="/img/image020.PNG" alt="image" />
+
+<p class="text">
+ A region will contain at least <number>3</number> Availability Zones or more, if region have less than <number>3</number>, then our region will not support availability
+ zones feature.
+</p>
+
+<img id="image" path="/img/image017.PNG" alt="image" />
+
+<p class="text">
+ Region that doesn't support availability zones is know as <text red>Alternative</text> or <text red>Other</text> regions.
+ <mark>When deploying a high available mission-critical apps, its good idea to use regions that support available zones</mark>
+</p>
+
+<div class="quote-text green-border">
+ <p>
+  Its common practice to run workload in at least <number>3</number> AZs to ensure services remain available in case <number>1</number> or <number>2</number> data-centers
+  fails (High Availability).
+ </p>
+</div>
+
+<img id="image" path="/img/image021.PNG" alt="image" />
+
+<p class="text">
+ Not all Azure Regions currently support availability zones. AZ costs more but it allows you to make applications highly available through redundancy, by replicating your
+ <underline yellow>compute</underline>, <underline yellow>storage</underline>, <underline yellow>networking</underline>, and <underline yellow>data</underline> resources
+</p>
+
+<div class="list-content normal check">
+ <p class="list-title">- The following regions have a minimum of <number>3</number> AZs :-</p>
+ <ul>
+  <li>Central US</li>
+  <li>East US 2</li>
+  <li>West US 2</li>
+  <li>West Europe</li>
+  <li>France Central</li>
+  <li>North Europe</li>
+  <li>Southeast Asia</li>
+ </ul>
+</div>
+
+<p class="underline-text"># The following region does not support availability zone :-</p>
+
+<img id="image" path="/img/image022.PNG" alt="image" />
+
+<p class="text">
+ <underline yellow>Availability zones</underline> are primarily for VMs, managed disks, load balancers, and SQL databases. Each service that support availability zones
+ fall into three categories.
+</p>
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">A - Zonal services</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Here you pin your resource to a specific region, resources/services like <underline yellow>VMs</underline>, <underline yellow>managed disks</underline>,
+ <underline yellow>IP addresses</underline>. With zonal services you can choose to which availability zone to deploy your service.
+</p>
+
+<p class="text">VMs are highly available environments, You can create a virtual machine and choose which availability zone that you want to deploy into.</p>
+
+<p class="underline-text"># In azure portal, creating a new virtual machine and select our availability zone :-</p>
+
+<img id="image" path="/img/image023.PNG" alt="image" />
+
+<p class="text">
+ <underline>For example</underline>, you can create two virtual machines for highly available, and specify that first VM goes to AZ <number>1</number>, and second one
+ goes to AZ <number>2</number> or <number>3</number>.
+</p>
+
+<img id="image" path="/img/image025.PNG" alt="image" />
+
+<div class="quote-text green-border">
+ <p>
+  Doing that will ensure that if case there's a data-center level failure, your virtual machine at least one them will continue working. Before without availability zones
+  your virtual machines in a bog regions could be deployed to the same data-center or even to the same physical server.
+ </p>
+</div>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">B - Zone-redundant services</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Azure platform replicates automatically across zones, this will automatically replicate your data a cross multiple availability zones. Zone-redundant service is enabled
+ with zone-redundant storage, SQL Database services.
+</p>
+
+<p class="underline-text"># In portal, creating a new storage account will allow you to choose Zone-redundant service :-</p>
+
+<img id="image" path="/img/image024.PNG" alt="image" />
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">C - Non-regional/Always-available services</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Services are always available across all Azure geographies and are resilient to zone-wide outages and region-wide outages. 
+ Non-regional is <mark>defined as where there is no dependency on a specific Azure region</mark>.
+</p>
+
+<!-- #endregion -->
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">2 - Availability Sets - Fault and Update Domains</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<!-- #endregion -->
+
 <!-- #endregion -->

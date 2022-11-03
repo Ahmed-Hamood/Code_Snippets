@@ -36,11 +36,11 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
- background: #d7d7d7;
+ background: #98989851;
  border-radius: 12px;
 }
 ::-webkit-scrollbar-thumb:hover {
- background: #085608;
+ background: #f7f8f7;
 }
 
 .scroll-touch {

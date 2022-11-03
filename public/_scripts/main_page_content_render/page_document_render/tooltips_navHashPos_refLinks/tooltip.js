@@ -6,14 +6,10 @@ export default function tooltip() {
 
  if ([...all_tooltips].length != 0) {
   let tooltip_text = '';
-  let keyword = '';
-  let assignKeyword = ""
   let getTooltipModalElement = null;
 
-  let format_text = (element) => {
-   keyword = element.getAttribute('keyword');
+  let format_description_text = (element) => {
    tooltip_text = element.getAttribute('desc');
-
    tooltip_text = tooltip_text.trim();
 
    tooltip_text = tooltip_text.replace(/\b([0-9]{1,2}|[A-Z])\b[\s]*[\.\-]/g, '$1.'); // replace 'A .' or  'A -' or 'A-' (with) =>  A. || "0-99 ." or "0-99 -" with => [0-99].
@@ -36,28 +32,24 @@ export default function tooltip() {
 
   all_tooltips.forEach((element) => {
 
-   assignKeyword = element.hasAttribute('keyword') ? element.getAttribute("keyword") : element.textContent;
-   element.setAttribute('keyword', assignKeyword);
+   if (!element.hasAttribute('title')) {
+    element.setAttribute('title', element.textContent);
+   }
 
-   format_text(element);
+   format_description_text(element);
 
    // add tooltips to all
    if (window.innerWidth > 1000) {
-    element.innerHTML = `${keyword}<div class="tooltiptext ${tooltip_text.includes('<hr>') ? 'left' : ''}">${tooltip_text}</div>`;
+    element.innerHTML = `${element.textContent}<div class="tooltiptext ${tooltip_text.includes('<hr>') ? 'left' : ''}">${tooltip_text}</div>`;
    }
-
-   //  element.setAttribute("onmouseover", "console.dir(window.scrollX + this.getBoundingClientRect().left)")
-
-   //  element.addEventListener("mouseover", () => {
-   //   // console.log("hover");
-   //  })
 
    element.addEventListener('click', (ev) => {
     if (ev.target.tagName == 'TOOLTIP' || ev.target.tagName == 'DIV') {
      element = ev.target.tagName == 'DIV' ? ev.target.parentElement : ev.target;
-     format_text(element);
+
+     format_description_text(element);
      if (tooltip_text.includes('<hr>')) getTooltipModalElement.children[0].classList.add('left');
-     getTooltipModalElement.children[0].innerHTML = keyword;
+     getTooltipModalElement.children[0].innerHTML = element.getAttribute('title');
      getTooltipModalElement.children[1].innerHTML = tooltip_text;
      getTooltipModalElement.classList.add('show');
      blank_modal.classList.add('show-tooltip');
