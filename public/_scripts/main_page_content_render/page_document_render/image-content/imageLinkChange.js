@@ -12,19 +12,7 @@ export default function imageLinkChange() {
 
    element.src = location.origin + get_current_path + image_name;
    element.setAttribute('alt', 'image');
-   element.setAttribute('loading', 'lazy');
-
-  //  element.addEventListener('load', (e) => {
-  //   if (e.target.width > 1000) {
-  //    element.setAttribute('width', '700px');
-  //   } else {
-  //    if (window.innerWidth > 1930) {
-  //     if (e.target.width > 800) element.setAttribute('width', '800px');
-  //    } else {
-  //     if (e.target.width > 700) element.setAttribute('width', '700px');
-  //    }
-  //   }
-  //  });
+  //  element.setAttribute('loading', 'lazy');
   });
 
  }
