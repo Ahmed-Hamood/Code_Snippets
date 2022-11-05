@@ -16,11 +16,11 @@
  width: 100%;
  max-width: var(--main-doc-content-width);
  margin: 0 auto;
- /* margin-top: 160px; */
- /* margin-top: 44px; */
-  padding: 0 1rem;  
+
+ padding: 0 1rem;
  margin-bottom: 0px;
  position: relative;
+
  transition: 400ms max-width;
  animation: FadeInAnimation 400ms ease-out 0.2s backwards;
 }

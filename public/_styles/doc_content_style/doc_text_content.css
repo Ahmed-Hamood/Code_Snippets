@@ -636,6 +636,18 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  text-underline-offset: 4px;
 }
 
+.title-text {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 160%;
+  margin-top: calc(1.2 * 1.4rem);
+  margin-bottom: calc(1.2 * 0.7rem);
+}
+
+.underline-text.no-underline {
+  text-decoration: none;
+}
+
 .underline-text.red {
  color: #e74c3c;
 }
@@ -718,7 +730,7 @@ tooltip .tooltiptext,
 
  /* Position the tooltip */
  position: absolute;
- z-index: 1;
+ z-index: 5;
  top: 38px;
  left: 50%;
  transform: translateX(-50%);

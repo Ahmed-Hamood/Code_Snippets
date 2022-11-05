@@ -19,6 +19,7 @@ html {
  letter-spacing: normal;
 }
 
+
 a {
  text-decoration: none;
  color: var(--text-color);
@@ -44,11 +45,11 @@ a {
 }
 
 .scroll-touch {
-  -webkit-overflow-scrolling: touch; /* Lets it scroll lazy */
+ -webkit-overflow-scrolling: touch; /* Lets it scroll lazy */
 }
 
 .scroll-auto {
-  -webkit-overflow-scrolling: auto; /* Stops scrolling immediately */
+ -webkit-overflow-scrolling: auto; /* Stops scrolling immediately */
 }
 
 body[pageLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
