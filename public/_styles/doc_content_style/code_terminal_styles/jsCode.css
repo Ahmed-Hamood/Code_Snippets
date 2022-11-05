@@ -138,7 +138,7 @@
 .js-block .block-content pre {
  /* font-size: 0.85rem; */
  color: #bfe9ff;
- font-size: 15px;
+ font-size: 1rem;
  font-weight: 600;
  /* -moz-tab-size: 2;
  tab-size: 2; */
@@ -337,7 +337,7 @@
 
  .js-block .block-content pre,
  .js-block .block-content .js-line-num li {
-  font-size: 12px;
+  /* font-size: 12px; */
  }
  .js-block pre {
   overflow-y: auto;

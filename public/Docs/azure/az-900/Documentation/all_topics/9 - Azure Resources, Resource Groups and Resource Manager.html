@@ -1,10 +1,80 @@
-<p class="main-title">9 - Azure Resources, Resource Groups and Resource Manager</p>
+<p class="main-title">- Azure Resources, Resource Groups and Resource Manager</p>
 <!-- #region start -->
 
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">1 - Azure Resource</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text"></p>
+
+<p class="text">
+ Resources are like an object that are used to represent a service in azure. All services are represented as generic object as
+ <text blue>Resources</text>, here some services within azure.
+</p>
+
+<div class="list-content normal star">
+ <ul>
+  <li>Virtual machines (VMs)</li>
+  <li>Storage accounts</li>
+  <li>Web apps</li>
+  <li>databases</li>
+  <li>Virtual networks</li>
+  <li>Application Gateways</li>
+  <li>CosmosDB instances</li>
+  <li>App service</li>
+  <li>Cognitive services</li>
+ </ul>
+</div>
+
+<p class="text">
+ The moment you purchase a service in azure you create a resource with it. Anything you create, provision, deploy, etc. is a resource, when you done with the service and
+ you delete it, the resource also deleted.
+</p>
+
+<div class="quote-text green-border">
+ <p>
+  Resources are also your contracts which represent a service
+  <tooltip desc="The product/service life cycle is a process used to identify the stage in which a product or service is encountering at that time.">life-cycle</tooltip>.
+ </p>
+</div>
+
+<p class="text">
+ Resource is an object saved as <code red>JSON</code> format, it is used to store and manage a service in azure. Azure use these resources to save the configurations
+ <small>(options)</small> that you make for your services.
+</p>
+
+<div class="text-box note">
+ <p>
+  These configurations are represented as a property on that resource, all resources in azure can be represented as
+  <tooltip
+   desc="JSON (JavaScript Object Notation) is a simple file that has properties and values. A- is a lightweight data-interchange format. B- It is easy for humans to read and write. C- It is easy for machines to parse and generate. "
+   >JSON</tooltip> template.
+ </p>
+</div>
+
+<p class="underline-text">
+  # There is four common properties a cross all resource, here a json file with these properties :-
+</p>
+
+<section json-content title-header="Common Properties" no-line-num>
+<pre>
+ {
+  "type": "Microsoft.storage",
+  "API_version": "2020-05-01",
+  "name": "My_Storage",
+  "locations": "US-West"
+ }
+</pre>
+</section>
+
+<p class="text">
+ <mark>Every resource has a different non-common properties that describe different resources/service with azure</mark> .
+</p>
 
 
-
-
-
+<!-- #endregion -->
 
 <!-- #endregion -->
