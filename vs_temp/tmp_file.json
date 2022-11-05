@@ -1,0 +1,7 @@
+{
+ "type": "Microsoft.storage",
+ "API_version": "2020-05-01",
+ "name": "My_Storage",
+ "locations": "US-West",
+ ......
+}

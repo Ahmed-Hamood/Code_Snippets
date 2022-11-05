@@ -1,4 +1,4 @@
-<p class="main-title">- Azure Resources, Resource Groups and Resource Manager</p>
+<p class="main-title">Azure Resources, Resource Groups & Resource Manager</p>
 <!-- #region start -->
 
 <!-- ######################################################### -->
@@ -7,10 +7,6 @@
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
-
-<p class="title-text red">
- # Microsoft Azure Services :-
-</p>
 
 <p class="text">
  Resources are like an object that are used to represent a service in azure. All services are represented as generic object as
@@ -31,9 +27,7 @@
  </ul>
 </div>
 
-<p class="title-text">
- # Microsoft Azure Services/Resources :-
-</p>
+<p class="title-text"># Microsoft Azure Services/Resources with their symbols :-</p>
 
 <img id="image" path="/img/image034.PNG" alt="image" />
 
@@ -59,16 +53,16 @@
   These configurations are represented as a property on that resource, all resources in azure can be represented as
   <tooltip
    desc="JSON (JavaScript Object Notation) is a simple file that has properties and values. A- is a lightweight data-interchange format. B- It is easy for humans to read and write. C- It is easy for machines to parse and generate. "
-   >JSON</tooltip> template.
+   >JSON</tooltip
+  >
+  template.
  </p>
 </div>
 
-<p class="underline-text">
-  # There is four common properties a cross all resource, here a json file with these properties :-
-</p>
+<p class="underline-text"># There is four common properties a cross all resource, here a json file with these properties :-</p>
 
 <section json-content title-header="Common Properties" no-line-num>
-<pre>
+ <pre>
  {
   "type": "Microsoft.storage",
   "API_version": "2020-05-01",
@@ -76,17 +70,227 @@
   "locations": "US-West",
   ......
  }
-</pre>
+</pre
+ >
 </section>
 
 <div class="quote-text yellow-border">
-<p>
-  Every resource has a different non-common properties that describe different services with azure.
-</p>
+ <p>Every resource has a different non-common properties that describe different services with azure.</p>
 </div>
 
+<p class="text">
+ In order to create a resource, we need to create a <text sky>resource group</text> (RG) first,
+ <mark>no resources in azure can be created without a resource group</mark>.
+</p>
 
+<!-- #endregion -->
 
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">2 - Resource Groups</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ <underline yellow>Resource groups</underline> is a logical container for only resources, it's simply used for grouping related resources. When you create a resource,
+ you're required to place it into a resource group.
+</p>
+
+<img id="image" path="/img/image035.PNG" alt="image" />
+
+<p class="text">
+ <underline yellow>Resource group</underline> is utility that provides a convenient way to group resources together to manage and organize them in a better way. 
+ You decide which resources belong in a resource group based on what makes the most sense for your organization.
+</p>
+
+<div class="quote-text blue-border">
+ <p>Resource group were created as a utility to manage other resources</p>
+</div>
+
+<div class="list-content normal star">
+ <p class="list-title">- More about group resources :-</p>
+ <ul>
+  <li>Each resource can exist in only one resource group.</li>
+  <li>You can add or remove a resource to a resource group at any time.</li>
+  <li>When you create a resource group, you need to provide a location for that resource group.</li>
+  <li>The resources in a resource group can be located in different regions than the resource group.</li>
+  <li>
+   You can move a resource <small gray>(if it supports move operation)</small> from one resource group to another group, but when you move a resource to a new group, it
+   will no longer be associated with the former group.
+  </li>
+  <li>Resource groups can't be nested, meaning you can't put resource <text>group B</text> inside of resource <text>group A</text>.</li>
+ </ul>
+</div>
+
+<p class="text">
+ A resource group has its own meta-data with certain attributes, when you create a resource group and pick that region, the resource group lives and its information data
+ stored in that particular region.
+ <tooltip
+  title="resource group"
+  desc="The resource group stores metadata about the resources. When you specify a location for the resource group, you're specifying where that metadata is stored. For compliance reasons, you may need to ensure that your data is stored in a particular region."
+  >(read more)</tooltip
+ >
+</p>
+
+<div class="text-box note">
+ <p>
+  If a resource group's region is temporarily unavailable, you can't update resources in the resource group because the metadata is unavailable. The resources in other
+  regions will still function as expected, but you can't update them. This condition doesn't apply to global resources like
+  <underline green>Azure Content Delivery Network</underline>, <underline green>Azure DNS</underline>, <underline green>Azure DNS Private Zones</underline>,
+  <underline green>Azure Traffic Manager</underline>, and <underline green>Azure Front Door</underline>.
+ </p>
+</div>
+
+<p class="title-text red">Q: Why we need to specify a location when we create a resource group ?</p>
+
+<p class="text">
+ Because, resources in a RG can be a part of any region, but RGs are tied to a specific region. Its about
+ <tooltip desc="Meta Data about resources could be different properties of the resources, and this information must be stored in a specific location.">meta data</tooltip>
+ of the resources, which has to be stored in a location.
+</p>
+
+<img id="image" path="/img/image036.PNG" alt="image" />
+
+<p class="text">
+ Inside the resource group you can have resources from many different regions in the same resource group. In resource group, you can have things mixed from multiple
+ regions and resource types.
+</p>
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">- Resource Group Example View</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ As you see, we have a bunch of different resource groups. We selected a resource group called "RG-DemoVM", that has a number of different types of resources in the
+ resource group. Our resource group resides in <text green>South Central US</text> region, and our resources are in the same region.
+ <mark>remember you can assign different regions for each resource</mark>.
+</p>
+
+<p class="underline-text"># here is a bunch of different resource groups in my subscription :-</p>
+
+<img id="image" path="/img/image037.PNG" alt="image" />
+
+<div class="list-content normal check">
+ <p class="list-title">- In our resource group we have the following resources :-</p>
+ <ul>
+  <li>Virtual Machine</li>
+  <li>Network Security Group</li>
+  <li>Network Interface</li>
+  <li>Disk</li>
+  <li>Public IP Address</li>
+ </ul>
+</div>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">- Resource Group Naming Convention</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Its good to have a consistent naming convention for your resource group, when deciding on a naming convention to standardize on, there are several different naming
+ components to keep in mind.
+</p>
+
+<p class="title-text yellow">- a consistent good naming convention for resource group for example :-</p>
+
+<div class="quote-text green-border">
+ <p>
+  <code red>cloudarchitecture-prod-infrastructure-rg</code>
+ </p>
+</div>
+
+<div class="list-content normal star">
+ <ul>
+  <li>what it's used for (cloudarchitecture)</li>
+  <li>environment (prod)</li>
+  <li>the types of resources contained within (infrastructure)</li>
+  <li>type of resource it is itself (rg = resource group)</li>
+  <li>another option is <code>&lt;Resource>-&lt;subscriptionType>-&lt;Region></code> like <green>VNET-Shared01-WestUS</green></li>
+ </ul>
+</div>
+
+<p class="title-text yellow">- Here are the most common naming convention components :-</p>
+
+<div class="list-content custom">
+ <ul>
+  <li>
+   <underline yellow>Azure Region</underline>: The Azure Region where the resource is deployed.Such as <text>East US 2</text> or <text>Central US</text>. An example
+   shorter abbreviation for these might be <text>E2</text> or <text>C1</text>.
+  </li>
+  <li>
+   <underline yellow>Environment</underline>: The application lifecycle for the workload the resource belongs to; such as <text>Development</text>, <text>UAT</text>,
+   <text>Test</text>, or <text>Production</text>. An example shorter abbreviation of these might be <text>DEV</text> or <text>PRD</text>.
+  </li>
+  <li><underline yellow>Organization</underline>: An abbreviation or moniker representing your organization.</li>
+  <li>
+   <underline yellow>Workload or Application Name</underline>: The name of the application or workload the resource belongs to. Such as <text>Jumpbox</text>,
+   <text>Data Lake</text>, <text>AKS</text>.
+  </li>
+  <li>
+   <underline yellow>Business Unit</underline>: The top-level department or business unit of your company that owns or is responsible for the resource. Such as
+   <text>HR</text>, <text>Marketing</text>, <text>IT</text>.
+  </li>
+  <li>
+   <underline yellow>Instance</underline>: A number or letter indicating uniqueness when you have multiple instances of this resources for the same workload. Such as
+   <number>01</number>.
+  </li>
+  <li>
+   <underline yellow>Resource Type</underline>: An abbreviation for the Azure Resource Type of this resource. Such as <text>rg</text>, <text>vm</text>, <text>sql</text>,
+   <text>aks</text>.
+  </li>
+ </ul>
+</div>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">- Resource Group Life Cycle</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ If you apply an action to a resource group, that action will apply to all the resources within the resource group. If you delete a resource group, all the resources will
+ be deleted. Also if you grant or deny access to a resource group, you've granted or denied access to all the resources within the resource group.
+</p>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">- Resource Group Authorization</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Resource groups are also a scope for applying
+ <tooltip
+  desc="- Azure role-based access control (Azure RBAC) helps you manage who has access to Azure resources, what they can do with those resources, and what areas they have access to. - Azure RBAC is an authorization system built on Azure Resource Manager that provides fine-grained access management to Azure resources."
+  >role-based access control (RBAC)</tooltip
+ >
+ permissions. By applying RBAC permissions to a resource group, you can ease administration and limit access to allow only what's needed.
+</p>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">- Resource Group Logical Grouping </p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<!-- #endregion -->
 
 <!-- #endregion -->
 

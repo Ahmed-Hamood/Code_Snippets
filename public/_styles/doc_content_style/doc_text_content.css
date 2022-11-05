@@ -545,9 +545,9 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  animation: title_wrapper_content 0.2s ease-in-out;
 }
 
-#page-content-wrapper .sub-sub-title + .start-wrapper ,
-#page-content-wrapper .sub-sub-sub-title + .start-wrapper {
- border-bottom: 2px solid rgb(59, 59, 59);
+#page-content-wrapper .sub-sub-title + .start-wrapper:last-child ,
+#page-content-wrapper .sub-sub-sub-title + .start-wrapper:last-child  {
+ border-bottom: 2px solid rgba(255, 255, 255, 0.038);
  padding-bottom: 18px;
  margin-bottom: 33px;
 }
@@ -637,11 +637,11 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 }
 
 .title-text {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 500;
   line-height: 160%;
-  margin-top: calc(1.2 * 1.4rem);
-  margin-bottom: calc(1.2 * 0.7rem);
+  margin-top: calc(1.2 * 1.2rem);
+  margin-bottom: calc(1.2 * 0.8rem);
 }
 
 .underline-text.no-underline {

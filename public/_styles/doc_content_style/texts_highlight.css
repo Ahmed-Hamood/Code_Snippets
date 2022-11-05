@@ -131,6 +131,11 @@ number[blue] {
  border: 0.1rem solid #32adff;
 }
 
+text[sky],
+number[sky] {
+ border: 0.1rem solid #46b0e6;
+}
+
 text[pink],
 number[pink] {
  border: 0.1rem solid #c32672;
