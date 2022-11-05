@@ -3,7 +3,7 @@ html {
  --scroll-height: 3px;
 
  --text-color: #fff;
- --sideBar-bg-color: #111111;
+ --sideBar-bg-color: #151515;
  --sideBar-footer-bg-color: var(--sideBar-bg-color);
  /* --body-container: #0d1117; */
  --body-container: #0f0f0f;
@@ -30,8 +30,8 @@ html {
 
  --sub-title-link-hover-bg-color: rgba(61, 61, 61, 0.22);
 
- --main-doc-header-content-bg-color: var(--sideBar-bg-color);
- --main-doc-header-content-border-bottom-color: #0b0f15;
+ --main-doc-header-content-bg-color: #232325;
+ --main-doc-header-content-border-bottom-color: #2f2f2f;
 
  --main-doc-header-path-view-content-bg-color: #0f0f0fce;
  --main-doc-header-path-view-text-color: #f6f6f6;
@@ -65,6 +65,9 @@ html {
  /* --python-code-block-primary-bg-color: #0b1222; */
 
  --tooltip-bg: var(--sideBar-bg-color);
+
+ --red_color: #EB5757;
+ --blue_color: #5e87c9;
 }
 
 body[max-content='true'] {

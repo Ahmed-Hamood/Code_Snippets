@@ -154,7 +154,7 @@ number[inherit] {
 red,
 .red,
 [red] {
- color: #eb5757 !important;
+ color: var(--red_color) !important;
 }
 
 green,
@@ -172,7 +172,7 @@ yellow,
 orange,
 .orange,
 [orange] {
- color: #e67e22 !important;
+ color: rgba(199, 125, 72, 1) !important;
 }
 
 purple,
@@ -189,7 +189,7 @@ pink {
 blue,
 .blue,
 [blue] {
- color: #339fe7 !important;
+ color: var(--blue_color) !important;
 }
 .sky,
 [sky],

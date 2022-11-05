@@ -1,6 +1,6 @@
 <div class="disable-titles-wrapper"></div>
 
-<p class="main-title">8 - Azure availability zones and paired regions</p>
+<p class="main-title">8 - Azure Availability Zones and Paired Regions</p>
 <!-- #region start -->
 <div class="start-wrapper">
  <!-- ######################################################### -->
@@ -24,7 +24,7 @@
   </div>
 
   <p class="text">
-   An availability zone is set up to be an isolation boundary from each other (so different buildings). If one zone goes down, the other continues working.
+   An availability zone is set up to be an isolation boundary from each other <small>(so different buildings)</small>. If one zone goes down, the other continues working.
   </p>
 
   <div class="list-content normal">
@@ -89,6 +89,12 @@
     <li>Southeast Asia</li>
    </ul>
   </div>
+
+  <p class="underline-text">
+   # Azure regions with availability zones :-
+  </p>
+
+  <img id="image" class="no-border" path="/img/image033.PNG" alt="image" />
 
   <p class="underline-text"># The following region does not support availability zone :-</p>
 
@@ -174,9 +180,6 @@
   </div>
   <!-- #endregion -->
 
-  <!-- ------------------------------------------ -->
-  <hr />
-  <!-- ------------------------------------------ -->
 
   <p class="text">
    Even with the additional
@@ -198,9 +201,107 @@
  <!-- ######################################################### -->
  <!-- #region start -->
  <div class="start-wrapper">
-  <p class="text">AAAAAAAAA</p>
- </div>
- <!-- #endregion -->
+  <p class="text">
+   Most Azure regions are paired with another region within the same geography <small>(such as US, Europe, or Asia)</small>. Each region is paired with another region
+   <number>300</number> miles (<number>500</number>
+   km) away.
+  </p>
 
-</div>
+  <img id="image" path="/img/image028.PNG" alt="image" />
+
+  <div class="quote-text green-border">
+   <p>
+    Some Azure services have platform-provided replication, which they rely on paired regions for disaster recovery. Also some services offer automatic
+    <tooltip
+     desc="- Geo-redundant storage (GRS) copies your data synchronously three times within a single physical location in the primary region using LRS\. - It then copies your data asynchronously to a single physical location in a secondary region that is hundreds of miles away from the primary region."
+     >geo-redundant storage</tooltip
+    >
+    using region pairs. And also offer
+    <tooltip
+     desc="Data in a GZRS storage account is copied across three Azure availability zones in the primary region and is also replicated to a secondary geographic region for protection from regional disasters."
+     >Geo-zone-redundant storage</tooltip
+    >
+    option.
+   </p>
+  </div>
+
+  <p class="text">
+   Not all Azure services automatically replicate data or automatically fall back from a failed region to cross-replicate to another enabled region. In these scenarios,
+   recovery and replication must be configured by the customer.
+  </p>
+
+  <p class="underline-text"># here a geography region pair between two regions :-</p>
+
+  <img id="image" path="/img/image027.PNG" alt="image" />
+
+  <p class="text">
+   Region pairing allows for the replication of resources like virtual machine storage across a geography that helps reduce the likelihood of interruptions because of
+   events such as <text red>natural disasters</text>, <text red>civil unrest</text>, <text red>power outages</text>, or <text red>physical network outages</text> that
+   affect an entire region.
+  </p>
+
+  <div class="text-box">
+   <p>
+    <underline>For example</underline>, if a region in a pair was affected by a natural disaster, services would automatically fail over to the other region in its region
+    pair.
+   </p>
+  </div>
+
+  <div class="list-content normal star">
+   <p class="list-title">- Additional advantages of region pairs :-</p>
+   <ul>
+    <li>
+     If an <tooltip desc="covering or affecting a large area.">extensive</tooltip> Azure outage occurs, one region out of every pair is prioritized to make sure at least
+     one is restored as quickly as possible for applications hosted in that region pair.
+    </li>
+    <li>Planned Azure updates are rolled out to paired regions one region at a time to minimize downtime and risk of application outage.</li>
+    <li>Data continues to reside within the same geography as its pair (except for Brazil South) for tax and law-enforcement jurisdiction purposes.</li>
+   </ul>
+  </div>
+
+  <p class="text">
+   Some organizations require high availability of availability zones and protection from large-scale phenomena and regional disasters. Azure regions are designed to
+   offer protection against localized disasters with availability zones and protection from regional or large geography disasters with disaster recovery, by making use of
+   another region.
+  </p>
+
+  <img id="image" path="/img/image026.PNG" alt="image" />
+
+  <p class="text">
+   Azure <underline yellow>Geo-Redundant Storage (GRS)</underline> replicates data to a secondary region automatically, ensuring that data is durable even in the event
+   that the primary region isn't recoverable.
+  </p>
+
+  <p class="underline-text red"># Geo-redundant storage :-</p>
+
+  <img id="image" path="/img/image030.PNG" alt="image" />
+
+  <p class="text">
+   Azure <underline yellow>Geo-zone-redundant storage (GZRS)</underline> combines the high availability provided by redundancy across availability zones with protection
+   from regional outages provided by geo-replication.
+  </p>
+
+  <p class="text">
+   Data in a <mark>GZRS</mark> storage account is copied across three Azure availability zones in the primary region and is also replicated to a secondary geographic
+   region for protection from regional disasters.
+  </p>
+
+  <p class="underline-text red"># Geo-zone-redundant storage :-</p>
+
+  <img id="image" path="/img/image029.PNG" alt="image" />
+
+  <p class="text">
+   Azure <underline yellow>Zone-redundant storage (ZRS)</underline> replicates your storage account synchronously across three Azure availability zones in the primary
+   region. Each availability zone is a separate physical location with independent power, cooling, and networking. ZRS offers durability for storage resources of at least
+   <number>99.9999999999%</number> (12 9's) over a given year.
+  </p>
+
+  <p class="underline-text red"># Zone-redundant storage :-</p>
+
+  <img id="image" path="/img/image031.PNG" alt="image" />
+ </div>
+
  <!-- #endregion -->
+</div>
+
+<!-- #endregion -->

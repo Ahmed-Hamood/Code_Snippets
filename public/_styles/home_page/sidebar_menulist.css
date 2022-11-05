@@ -26,6 +26,7 @@
 }
 
 .subject-menu-list-content {
+  border: 1px solid transparent;
  margin-bottom: 4px;
 }
 

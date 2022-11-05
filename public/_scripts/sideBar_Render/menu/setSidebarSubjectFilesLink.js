@@ -40,7 +40,7 @@ export function setSidebarFileLinkForPageLoader(targetElement) {
  if (SelectedUrlPath != getCurrentActivePath()) {
   SelectedUrlPath = location.origin + SelectedUrlPath;
 
- if (window.innerWidth <= 1000 ) eventInvoker('.close-sideMenu-btn')
+  if (window.innerWidth <= 1000) eventInvoker('.close-sideMenu-btn');
 
   RunPageLoader(SelectedUrlPath, false, true, false, false, null, isDocumentation, false);
   Sounds().Play_press();
@@ -83,18 +83,19 @@ export function OpenFolderAndFileSideBarMenuAutomatically(urlPath) {
  // mergePaths = ['/Docs/nodejs', '/Docs/nodejs/expressjs', '/Docs/nodejs/expressjs/Authentication']
 
  document.querySelectorAll('.subject-title-link.folder-type').forEach((el) => {
-  mergePaths.forEach((path) => {
+  mergePaths.forEach((path, index) => {
+   ++index;
+
    if (el.getAttribute('urlPath') == path) {
     el.classList.add('menu-enable');
 
-    if(el.classList.contains("main-folder")) {
-      el.parentElement.parentElement.classList.add('opened');
-    }
+    if (el.classList.contains('main-folder')) el.parentElement.parentElement.classList.add('opened');
 
     AddEventListenersToSubFolders(el);
     AddEventListenerToFilesOnOpenedFolder(el, true);
 
     el.children[0].classList.add('arrow-open');
+
     if (el.children[1].classList.contains('svg-folder-style')) el.children[1].classList.add('open-folder-svg');
     if (el.parentElement.nextElementSibling.classList.contains('subject-list-menu')) el.parentElement.nextElementSibling.classList.add('menu-open');
    }

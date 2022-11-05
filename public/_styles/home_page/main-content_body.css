@@ -22,7 +22,7 @@
  margin-bottom: 0px;
  position: relative;
  transition: 400ms max-width;
- animation: FadeInAnimation 0.4s ease-in-out 0.2s backwards;
+ animation: FadeInAnimation 400ms ease-out 0.2s backwards;
 }
 
 body[pageLoading='false'] #page-content-wrapper {

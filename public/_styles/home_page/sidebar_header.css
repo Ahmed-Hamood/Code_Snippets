@@ -78,6 +78,14 @@
  animation: FadeInAnimation 0.8s 0.8s backwards;
 }
 
+body[sidebar='enabled'] .body-container .open-sidebar-btn {
+ display: none;
+}
+
+body[sidebar='false'] .body-container .open-sidebar-btn {
+ display: flex;
+}
+
 @media screen and (min-width: 1200px) {
  .body-container .open-sidebar-btn {
   top: 60px;
@@ -95,16 +103,14 @@
  height: 38px;
 }
 
-body[sidebar='enabled'] .body-container .open-sidebar-btn,
-body[sidebar='false'] .body-container .open-sidebar-btn {
- display: flex;
-}
-
 body[newTab] .body-container .open-sidebar-btn {
  display: none;
 }
 
 @media screen and (max-width: 1200px) {
+ body[sidebar='enabled'] .body-container .open-sidebar-btn {
+  display: flex;
+ }
  .body-container .open-sidebar-btn {
   border: 3px solid #171d24;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;

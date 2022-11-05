@@ -16,7 +16,7 @@ export default function sideBarMenuShrinkBtn() {
   sideBar.classList.remove('sideBar-slide-reverse');
   sideBar.classList.remove('no-sideBar');
   sideBarContainer.classList.remove('hide');
-  
+
   if (window.innerWidth < 1200) {
    sideBar.style['display'] = 'block';
    open_sideMenu_btn.style['display'] = 'none';
@@ -53,27 +53,27 @@ export default function sideBarMenuShrinkBtn() {
  if (window.innerWidth > 1000) {
   open_sideMenu_btn.addEventListener('click', open_sideMenu_btn_cb);
  } else {
-  // open_sideMenu_btn.addEventListener('click', open_sideMenu_btn_cb);
+  if (!isMobile()) open_sideMenu_btn.addEventListener('click', open_sideMenu_btn_cb);
 
   open_sideMenu_btn.addEventListener('touchend', () => {
    if (isDragCompleted) {
     open_sideMenu_btn_cb();
     isDragCompleted = false;
     open_sideMenu_btn.style['left'] = '';
-    open_sideMenu_btn.style["opacity"] = ""
+    open_sideMenu_btn.style['opacity'] = '';
    }
   });
 
   open_sideMenu_btn.addEventListener('touchmove', (e) => {
    open_sideMenu_btn.style['left'] = 0;
    if (e.changedTouches[0].clientX > 25) {
-    open_sideMenu_btn.style['left'] = "-3px";
+    open_sideMenu_btn.style['left'] = '-3px';
     isDragCompleted = true;
-    open_sideMenu_btn.style["opacity"] = "1.0"
+    open_sideMenu_btn.style['opacity'] = '1.0';
    }
    if (e.changedTouches[0].clientX < 50) {
     open_sideMenu_btn.style['left'] = '';
-    open_sideMenu_btn.style["opacity"] = ""
+    open_sideMenu_btn.style['opacity'] = '';
     isDragCompleted = false;
    }
   });
