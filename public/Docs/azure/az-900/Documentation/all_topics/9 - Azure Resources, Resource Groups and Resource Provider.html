@@ -1,4 +1,4 @@
-<p class="main-title">Azure Resources, Resource Groups & Resource Manager</p>
+<p class="main-title">Azure Resources, Resource Groups & Resource Provider</p>
 <!-- #region start -->
 
 <!-- ######################################################### -->
@@ -68,7 +68,7 @@
   "API_version": "2020-05-01",
   "name": "My_Storage",
   "locations": "US-West",
-  ......
+   ......
  }
 </pre
  >
@@ -104,10 +104,6 @@
  decide which resources belong in a resource group based on what makes the most sense for your organization.
 </p>
 
-<div class="quote-text blue-border">
- <p>Resource group were created as a utility to manage other resources</p>
-</div>
-
 <div class="list-content normal star">
  <p class="list-title">- More about group resources :-</p>
  <ul>
@@ -120,10 +116,23 @@
    will no longer be associated with the former group.
   </li>
   <li>Resource groups can't be nested, meaning you can't put resource <text>group B</text> inside of resource <text>group A</text>.</li>
-  <li>You can apply <tooltip desc="- Tags are metadata elements that you apply to your Azure resources. They're key-value pairs that help you identify resources based on settings that are relevant to your organization. - Tags are user-defined key/value pairs which can be placed directly on a resource or a resource group. Azure currently supports up to 50 tags per resource and resource group - Tags may be placed on a resource at the time of creation or added to an existing resource.">tags</tooltip>  to a resource group. The resources in the resource group don't inherit those tags.</li>
-  <li>A resource can connect to resources in other resource groups. This scenario is common when the two resources are related but don't share the same lifecycle. For example, you can have a web app that connects to a database in a different resource group.</li>
+  <li>
+   You can apply
+   <tooltip
+    desc="- Tags are metadata elements that you apply to your Azure resources. They're key-value pairs that help you identify resources based on settings that are relevant to your organization. - Tags are user-defined key/value pairs which can be placed directly on a resource or a resource group. Azure currently supports up to 50 tags per resource and resource group - Tags may be placed on a resource at the time of creation or added to an existing resource."
+    >tags</tooltip
+   >
+   to a resource group. The resources in the resource group don't inherit those tags.
+  </li>
+  <li>
+   A resource can connect to resources in other resource groups. This scenario is common when the two resources are related but don't share the same lifecycle. For
+   example, you can have a web app that connects to a database in a different resource group.
+  </li>
   <li>You can deploy up to <number>800</number> instances of a resource type in each resource group. Some resources have a limit on the number instances per region.</li>
-  <li>Some resources can exist outside of a resource group. These resources are deployed to the subscription, management group, or tenant. Only specific resource types are supported at these scopes.</li>
+  <li>
+   Some resources can exist outside of a resource group. These resources are deployed to the subscription, management group, or tenant. Only specific resource types are
+   supported at these scopes.
+  </li>
  </ul>
 </div>
 
@@ -169,8 +178,12 @@
 <!-- #region start -->
 
 <p class="text">
- As you see, we have a bunch of different resource groups. We selected a resource group called "RG-DemoVM", that has a number of different types of resources in the
- resource group. Our resource group resides in <text green>South Central US</text> region, and our resources are in the same region.
+ As you see, we have a bunch of different resource groups. We selected a resource group called <yellow>"RG-DemoVM"</yellow>, that has a number of different types of
+ resources in the resource group.
+</p>
+
+<p class="text">
+ Our resource group resides in <text green>South Central US</text> region, and our resources are in the same region.
  <mark>remember you can assign different regions for each resource</mark>.
 </p>
 
@@ -207,7 +220,7 @@
 
 <div class="quote-text green-border">
  <p>
-  <code red>cloudarchitecture-prod-infrastructure-rg</code>
+  <code red>cloudarchitecture-prod-core-infrastructure-rg</code>
  </p>
 </div>
 
@@ -215,7 +228,7 @@
  <ul>
   <li>what it's used for (cloudarchitecture)</li>
   <li>environment (prod)</li>
-  <li>the types of resources contained within (infrastructure)</li>
+  <li>the types of resources contained within (core-infrastructure)</li>
   <li>type of resource it is itself (rg = resource group)</li>
   <li>another option is <code>&lt;Resource>-&lt;subscriptionType>-&lt;Region></code> like <green>VNET-Shared01-WestUS</green></li>
  </ul>
@@ -297,7 +310,7 @@
 
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
-<p class="sub-sub-title">- Resource Group Logical Grouping</p>
+<p class="sub-sub-title">- Resource Group Logical Grouping Principles</p>
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
 <!-- #region start -->
@@ -307,16 +320,27 @@
  groups, you organize them base on your organization needs there is no-policy on how we organize them.
 </p>
 
+<p class="text">
+ You might put all resources that are core infrastructure (VNET, VM, DB) into this resource group, but you could also organize resources strictly by resource type.
+</p>
+
 <div class="list-content normal">
  <p class="list-title">- Organize RG based on your organization but consider :-</p>
  <ul>
   <li><underline yellow>Billing</underline>: A way to filter and sort the data to better understand where costs are allocated.</li>
-  <li><underline yellow>Application Lifecycle</underline>: Allows you to for example, delete after experimentation</li>
+  <li><underline yellow>Application Lifecycle</underline>: Allows to apply an action to a resource group for example, delete RG after experimentation</li>
   <li>
    <underline yellow>Security and access management</underline>: Authorization who needs to administer them check RBAC. For example, databases in database administration
    group to give access to database administrators.
   </li>
  </ul>
+</div>
+
+<div class="text-box note">
+ <p>
+  Organize based on billing, placing resources in the same resource group is a way to group them for usage in billing reports. If you're trying to understand how your costs
+  are distributed in your Azure environment, grouping them by resource group is one way to filter and sort the data to better understand where costs are allocated.
+ </p>
 </div>
 
 <p class="text">
@@ -329,7 +353,7 @@
   <li>Scripts</li>
   <li>Policies</li>
   <li>Security rules</li>
-  <li>Access management policies</li>
+  <li>Access management</li>
  </ul>
 </div>
 
@@ -348,24 +372,49 @@
 </div>
 
 <p class="underline-text green">
- # Organize resource by resource type > <text white>vnet-rg</text>, <text white>vm-rg</text>, <text white>db-rg</text> (virtual networks, virtual machines, cosmos dbs) :-
+ # Organize resource by resource type - <text white>vnet-rg</text>, <text white>vm-rg</text>, <text white>db-rg</text> (virtual networks, virtual machines, cosmos dbs) :-
+</p>
+
+<p class="text">
+ You could also organize resources strictly by resource type. For example, put all virtual networks in one resource group, all virtual machines in another resource group,
+ and all Azure Cosmos DB instances in another resource group.
 </p>
 
 <img id="image" path="/img/image038.PNG" alt="image" />
 
-<p class="underline-text green"># Organize resource by environment > <text white>Prod-RG</text>, <text white>Dev/Ops-RG</text>, <text white>Testing-RG</text> :-</p>
+<p class="underline-text green"># Organize resources by environment :-</p>
+
+<p class="text">
+ You might put all resources that are core infrastructure (VNET, VM, DB) into this resource group, and organize them by environment (prod, qa, dev). In this case, all
+ production resources are in one resource group, all test resources are in another resource group, and so on.
+</p>
 
 <img id="image" path="/img/image039.PNG" alt="image" />
 
-<p class="underline-text green"># Organize resource by department (marketing, finance, human resources) :-</p>
+<p class="underline-text green"># Organize resource by department name :-</p>
+
+<p class="text">
+ You could organize them by department (marketing, finance, human resources). Marketing resources go in one resource group, finance in another resource group, and HR in a
+ third resource group.
+</p>
 
 <img id="image" path="/img/image040.PNG" alt="image" />
 
-<p class="underline-text green"># Organize resource by combining strategies like environment and department:-</p>
+<p class="underline-text green"># Organize resource by combining strategies :-</p>
+
+<p class="text">
+ You could even use a combination of these strategies and organize by environment and department. Put production finance resources in one resource group, dev finance
+ resources in another, and the same for the marketing resources.
+</p>
 
 <img id="image" path="/img/image041.PNG" alt="image" />
 
 <p class="underline-text green"># Organize resource by lifecycle like <text white>RG-Project1</text> and <text white>RG-Project2</text> :-</p>
+
+<p class="text">
+ Use this to your advantage, especially in areas where resources are more disposable, like non-production environments. If you deploy 10 servers for a project that you
+ know will only last a couple of months, you might put them all in a single resource group. One resource group is easier to clean up than 10 or more resource groups.
+</p>
 
 <img id="image" path="/img/image042.PNG" alt="image" />
 
@@ -373,11 +422,19 @@
  # Organize resource by Admin type like <text white>RG-Owner</text>, <text white>RG-Contributor</text> and <text white>RG-Reader</text> :-
 </p>
 
+<p class="text">
+ You can organize resources by who needs to administer them. If your database administration team is responsible for managing all of your Azure SQL Database instances,
+ putting them in the same resource group would simplify administration.
+</p>
+
+<p class="text">
+ You could give the team the proper permissions at the resource-group level to administer the databases within the resource group. Similarly, the database administration
+ team could be denied access to the resource group with virtual networks so they don't inadvertently make changes to resources outside the scope of their responsibility.
+</p>
+
 <img id="image" path="/img/image043.PNG" alt="image" />
 
-<p class="underline-text green">
- # Organize resource by location - region like <text white>RG-E1</text>, <text white>RG-E2</text> and <text white>RG-C1</text> :-
-</p>
+<p class="underline-text green"># Organize resource by location - region like <text white>RG-E1</text>, <text white>RG-E2</text> and <text white>RG-C1</text> :-</p>
 
 <img id="image" path="/img/image044.PNG" alt="image" />
 
@@ -387,7 +444,7 @@
 
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-title">3 - Resource Manager</p>
+<p class="sub-title">3 - Resource Provider</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
