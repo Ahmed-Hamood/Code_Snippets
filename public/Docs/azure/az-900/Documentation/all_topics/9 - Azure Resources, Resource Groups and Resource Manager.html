@@ -100,8 +100,8 @@
 <img id="image" path="/img/image035.PNG" alt="image" />
 
 <p class="text">
- <underline yellow>Resource group</underline> is utility that provides a convenient way to group resources together to manage and organize them in a better way. 
- You decide which resources belong in a resource group based on what makes the most sense for your organization.
+ <underline yellow>Resource group</underline> is utility that provides a convenient way to group resources together to manage and organize them in a better way. You
+ decide which resources belong in a resource group based on what makes the most sense for your organization.
 </p>
 
 <div class="quote-text blue-border">
@@ -120,6 +120,10 @@
    will no longer be associated with the former group.
   </li>
   <li>Resource groups can't be nested, meaning you can't put resource <text>group B</text> inside of resource <text>group A</text>.</li>
+  <li>You can apply <tooltip desc="- Tags are metadata elements that you apply to your Azure resources. They're key-value pairs that help you identify resources based on settings that are relevant to your organization. - Tags are user-defined key/value pairs which can be placed directly on a resource or a resource group. Azure currently supports up to 50 tags per resource and resource group - Tags may be placed on a resource at the time of creation or added to an existing resource.">tags</tooltip>  to a resource group. The resources in the resource group don't inherit those tags.</li>
+  <li>A resource can connect to resources in other resource groups. This scenario is common when the two resources are related but don't share the same lifecycle. For example, you can have a web app that connects to a database in a different resource group.</li>
+  <li>You can deploy up to <number>800</number> instances of a resource type in each resource group. Some resources have a limit on the number instances per region.</li>
+  <li>Some resources can exist outside of a resource group. These resources are deployed to the subscription, management group, or tenant. Only specific resource types are supported at these scopes.</li>
  </ul>
 </div>
 
@@ -273,24 +277,120 @@
 <!-- #region start -->
 
 <p class="text">
- Resource groups are also a scope for applying
- <tooltip
-  desc="- Azure role-based access control (Azure RBAC) helps you manage who has access to Azure resources, what they can do with those resources, and what areas they have access to. - Azure RBAC is an authorization system built on Azure Resource Manager that provides fine-grained access management to Azure resources."
-  >role-based access control (RBAC)</tooltip
- >
- permissions. By applying RBAC permissions to a resource group, you can ease administration and limit access to allow only what's needed.
+ Resource groups are also a scope for applying role-based access control (RBAC) permissions. By applying RBAC permissions to a resource group, you can ease administration
+ and limit access to allow only what's needed.
 </p>
+
+<div class="quote-text blue-border">
+ <p>
+  <underline yellow>role-based access control (RBAC) </underline>ia an azure role-based access control (Azure RBAC) helps you manage who has access to Azure resources,
+  what they can do with those resources, and what areas they have access to.
+  <tooltip
+   title="role-based access control - RBAC"
+   desc="Azure RBAC is an authorization system built on Azure Resource Manager that provides fine-grained access management to Azure resources."
+   >(read more)</tooltip
+  >
+ </p>
+</div>
 
 <!-- #endregion -->
 
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
-<p class="sub-sub-title">- Resource Group Logical Grouping </p>
+<p class="sub-sub-title">- Resource Group Logical Grouping</p>
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
 <!-- #region start -->
 
+<p class="text">
+ As we know resource groups exist to help you manage and organize your azure resources in many ways. There aren't hard rules about how you organize or use your resource
+ groups, you organize them base on your organization needs there is no-policy on how we organize them.
+</p>
+
+<div class="list-content normal">
+ <p class="list-title">- Organize RG based on your organization but consider :-</p>
+ <ul>
+  <li><underline yellow>Billing</underline>: A way to filter and sort the data to better understand where costs are allocated.</li>
+  <li><underline yellow>Application Lifecycle</underline>: Allows you to for example, delete after experimentation</li>
+  <li>
+   <underline yellow>Security and access management</underline>: Authorization who needs to administer them check RBAC. For example, databases in database administration
+   group to give access to database administrators.
+  </li>
+ </ul>
+</div>
+
+<p class="text">
+ We organize or place resources of a similar <text blue>usage</text>, <text blue>type</text>, or <text blue>location</text> in a resource group. You can have your
+ development resource groups separated from your production resource group so you can apply different.
+</p>
+
+<div class="list-content normal check">
+ <ul>
+  <li>Scripts</li>
+  <li>Policies</li>
+  <li>Security rules</li>
+  <li>Access management policies</li>
+ </ul>
+</div>
+
+<div class="text-box">
+ <p>
+  <text>example 1</text> - if you're setting up a temporary dev environment, grouping all the resources together means you can deprovision all of the associated resources
+  at once by deleting the resource group.
+ </p>
+</div>
+
+<div class="text-box">
+ <p>
+  <text>example 2</text> - lets say you're provisioning compute resources that will need three different access schemas, it may be best to group resources based on the
+  access schema, and then assign access at the resource group level.
+ </p>
+</div>
+
+<p class="underline-text green">
+ # Organize resource by resource type > <text white>vnet-rg</text>, <text white>vm-rg</text>, <text white>db-rg</text> (virtual networks, virtual machines, cosmos dbs) :-
+</p>
+
+<img id="image" path="/img/image038.PNG" alt="image" />
+
+<p class="underline-text green"># Organize resource by environment > <text white>Prod-RG</text>, <text white>Dev/Ops-RG</text>, <text white>Testing-RG</text> :-</p>
+
+<img id="image" path="/img/image039.PNG" alt="image" />
+
+<p class="underline-text green"># Organize resource by department (marketing, finance, human resources) :-</p>
+
+<img id="image" path="/img/image040.PNG" alt="image" />
+
+<p class="underline-text green"># Organize resource by combining strategies like environment and department:-</p>
+
+<img id="image" path="/img/image041.PNG" alt="image" />
+
+<p class="underline-text green"># Organize resource by lifecycle like <text white>RG-Project1</text> and <text white>RG-Project2</text> :-</p>
+
+<img id="image" path="/img/image042.PNG" alt="image" />
+
+<p class="underline-text green">
+ # Organize resource by Admin type like <text white>RG-Owner</text>, <text white>RG-Contributor</text> and <text white>RG-Reader</text> :-
+</p>
+
+<img id="image" path="/img/image043.PNG" alt="image" />
+
+<p class="underline-text green">
+ # Organize resource by location - region like <text white>RG-E1</text>, <text white>RG-E2</text> and <text white>RG-C1</text> :-
+</p>
+
+<img id="image" path="/img/image044.PNG" alt="image" />
+
 <!-- #endregion -->
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">3 - Resource Manager</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
 
 <!-- #endregion -->
 
