@@ -338,8 +338,8 @@
 
 <div class="text-box note">
  <p>
-  Organize based on billing, placing resources in the same resource group is a way to group them for usage in billing reports. If you're trying to understand how your costs
-  are distributed in your Azure environment, grouping them by resource group is one way to filter and sort the data to better understand where costs are allocated.
+  Organize based on billing, placing resources in the same resource group is a way to group them for usage in billing reports. If you're trying to understand how your
+  costs are distributed in your Azure environment, grouping them by resource group is one way to filter and sort the data to better understand where costs are allocated.
  </p>
 </div>
 
@@ -371,9 +371,7 @@
  </p>
 </div>
 
-<p class="underline-text green">
- # Organize resource by resource type - <text white>vnet-rg</text>, <text white>vm-rg</text>, <text white>db-rg</text> (virtual networks, virtual machines, cosmos dbs) :-
-</p>
+<p class="title-text green"># Organize resource by resource type (virtual networks, virtual machines, dbs) :-</p>
 
 <p class="text">
  You could also organize resources strictly by resource type. For example, put all virtual networks in one resource group, all virtual machines in another resource group,
@@ -382,7 +380,7 @@
 
 <img id="image" path="/img/image038.PNG" alt="image" />
 
-<p class="underline-text green"># Organize resources by environment :-</p>
+<p class="title-text green"># Organize resources by environment :-</p>
 
 <p class="text">
  You might put all resources that are core infrastructure (VNET, VM, DB) into this resource group, and organize them by environment (prod, qa, dev). In this case, all
@@ -391,7 +389,7 @@
 
 <img id="image" path="/img/image039.PNG" alt="image" />
 
-<p class="underline-text green"># Organize resource by department name :-</p>
+<p class="title-text green"># Organize resource by department name :-</p>
 
 <p class="text">
  You could organize them by department (marketing, finance, human resources). Marketing resources go in one resource group, finance in another resource group, and HR in a
@@ -400,7 +398,7 @@
 
 <img id="image" path="/img/image040.PNG" alt="image" />
 
-<p class="underline-text green"># Organize resource by combining strategies :-</p>
+<p class="title-text green"># Organize resource by combining strategies :-</p>
 
 <p class="text">
  You could even use a combination of these strategies and organize by environment and department. Put production finance resources in one resource group, dev finance
@@ -409,7 +407,7 @@
 
 <img id="image" path="/img/image041.PNG" alt="image" />
 
-<p class="underline-text green"># Organize resource by lifecycle like <text white>RG-Project1</text> and <text white>RG-Project2</text> :-</p>
+<p class="title-text green"># Organize resource by lifecycle :-</p>
 
 <p class="text">
  Use this to your advantage, especially in areas where resources are more disposable, like non-production environments. If you deploy 10 servers for a project that you
@@ -418,9 +416,7 @@
 
 <img id="image" path="/img/image042.PNG" alt="image" />
 
-<p class="underline-text green">
- # Organize resource by Admin type like <text white>RG-Owner</text>, <text white>RG-Contributor</text> and <text white>RG-Reader</text> :-
-</p>
+<p class="title-text green"># Organize resource by Admin type :-</p>
 
 <p class="text">
  You can organize resources by who needs to administer them. If your database administration team is responsible for managing all of your Azure SQL Database instances,
@@ -434,7 +430,7 @@
 
 <img id="image" path="/img/image043.PNG" alt="image" />
 
-<p class="underline-text green"># Organize resource by location - region like <text white>RG-E1</text>, <text white>RG-E2</text> and <text white>RG-C1</text> :-</p>
+<p class="title-text green"># Organize resource by location/region :-</p>
 
 <img id="image" path="/img/image044.PNG" alt="image" />
 
@@ -448,6 +444,177 @@
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
+
+<p class="text">
+ Resource provider is a service that supplies azure resources, it a collection of namespaces map to azure services. For example, the <text>Key Vault</text> service
+ consists of a resource provider named <code red>Microsoft.KeyVault</code>.
+</p>
+
+<p class="underline-text"># here some Resource provider namespaces :-</p>
+
+<div class="terminal-output">
+ <pre>
+  Microsoft.Compute
+  Microsoft.Storage
+  Microsoft.KeyVault
+  Microsoft.Advisor
+  Microsoft.Authorization
+  Microsoft.ContainerService
+  Microsoft.Kubernetes
+  Microsoft.DBforMySQL
+  Microsoft.MachineLearning
+  Microsoft.Network
+  Microsoft.VMware
+  ....
+</pre
+ >
+</div>
+
+<div class="quote-text green-border">
+ <p>
+  For example, a common resource provider is
+  <code red>Microsoft.Compute</code>, which supplies <text green>virtual machine - VM</text> and <text green>Virtual Machine Scale Sets - VMSS</text> resources.
+ </p>
+</div>
+
+<p class="text">
+ Resource provider is a collection of
+ <tooltip
+  desc="A REST service operation definition consists of general information about an operation, such as its name, description, request and response messages, and so on."
+  >REST operations</tooltip
+ >
+ that provide functionality for an Azure service. The resource provider defines REST operations for working with vaults, <underline yellow>secrets</underline>,
+ <underline yellow>keys</underline>, and <underline yellow>certificates</underline>.
+</p>
+
+<div class="quote-text white-border">
+ <p>
+  Some service providers are registered by default for your subscription. To use the other resource providers, you must register them. many resource providers are
+  registered for you when you take certain actions. For example, if you create a resource through the portal, the portal automatically registers any unregistered resource
+  providers that are needed. When deploy resources through an Azure Resource Manager template, any required resource providers are also registered.
+ </p>
+</div>
+
+<div class="text-box note">
+ <p>
+  Only register a resource provider when you're ready to use it. The registration step enables you to maintain least privileges within your subscription. A malicious user
+  can't use resource providers that aren't registered.
+ </p>
+</div>
+
+<p class="underline-text"># here an image of resource explorer that shows all resource providers :-</p>
+
+<img id="image" path="/img/image045.PNG" alt="image" />
+
+<p class="underline-text"># Here some of the resource provider json object :-</p>
+
+<section json-content title-header="Providers.Microsoft.Compute" line-num="">
+ <pre>
+  // providers/Microsoft.Storage?api-version=2019-08-01 
+  {
+    "namespace": "Microsoft.Compute",
+    "resourceTypes": [
+      {
+        "resourceType": "virtualMachines",
+        "locations": [
+          "East US",
+          "East US 2",
+          "West US",
+          "Central US",
+          "North Central US",
+          "........"
+        ],
+        "apiVersions": [
+          "2022-11-01",
+          "2022-08-01",
+          "2022-03-01",
+          "2021-11-01",
+          "........."
+        ],
+        "defaultApiVersion": "2021-07-01",
+        "apiProfiles": [
+            {
+                "profileVersion": "2017-03-09-profile",
+                "apiVersion": "2016-03-30"
+            },
+            {
+                "profileVersion": "2018-03-01-hybrid",
+                "apiVersion": "2017-03-30"
+            },
+            {
+                "profileVersion": "2018-06-01-profile",
+                "apiVersion": "2017-12-01"
+            },
+            {
+              "...................": ""
+            }
+          ]
+      },
+      // --------------------------------------------------------------------
+      {
+        "resourceType": "virtualMachineScaleSets",
+        "locations": [
+          "East US",
+          "East US 2",
+          "West US",
+          "Central US",
+          "North Central US",
+          "South Central US",
+          "North Europe",
+          "West Europe",
+          "East Asia",
+          "Southeast Asia",
+          ".................."
+        ],
+        "apiVersions": ["2022-11-01", "2022-08-01", "2022-03-01", "2021-11-01", "2021-07-01"],
+        "defaultApiVersion": "2021-07-01",
+        "apiProfiles": [
+          {
+            "profileVersion": "2017-03-09-profile",
+            "apiVersion": "2016-03-30"
+          },
+          {
+            "profileVersion": "2018-03-01-hybrid",
+            "apiVersion": "2017-03-30"
+          },
+          {
+            "profileVersion": "2018-06-01-profile",
+            "apiVersion": "2017-12-01"
+          },
+          {
+            "...................": ""
+          }
+        ]
+      }
+    ]
+  }  
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+  "Microsoft.Network": {
+    Application Gateway
+    Azure Bastion
+    Azure DDoS Protection
+    Azure DNS
+    Azure ExpressRoute
+    Azure Firewall
+    Azure Front Door Service
+    Azure Private Link
+    Azure Route Server
+    Load Balancer
+    Network Watcher
+    Traffic Manager
+    Virtual Network
+    Virtual Network NAT
+    Virtual WAN
+    VPN Gateway
+  }
+</pre
+ >
+</div>
 
 <!-- #endregion -->
 
