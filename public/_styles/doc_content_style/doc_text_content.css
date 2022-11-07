@@ -1185,7 +1185,7 @@ tooltip .tooltiptext hr,
 }
 
 .list-content.normal:is(.disc, .number, .alpha) > ul {
- margin-left: 1.5rem;
+ margin-left: 1.8rem;
 }
 .list-content.normal:is(.dash, .star, .red_cross, .boom, .check, .arrow) > ul {
  margin-left: 2.5rem;

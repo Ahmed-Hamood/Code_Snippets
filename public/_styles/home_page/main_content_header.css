@@ -291,6 +291,10 @@ body[max-content='true'] .titles-list-menu-active-btn.view + .vs-code-opener-svg
  width: calc(176px + 55px);
 }
 
+.vs-code-opener-svg-btn:active {
+  background: #1f9cf05f;
+} 
+
 .vscode-opener-svg-style {
  width: 25px;
  height: 25px;
