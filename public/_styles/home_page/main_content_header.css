@@ -40,7 +40,7 @@ body[sidebar='false'] .main-content-header {
  height: var(--main-doc-title-header-content-height);
  margin-top: 25px;
  background: var(--main-doc-header-content-bg-color);
- border: 1px solid var(--main-doc-header-content-border-bottom-color);
+ border: 1px solid var(--main-doc-header-content-border-color);
  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
  border-radius: 12px;
  /* border-bottom: 7px solid var(--main-doc-header-content-border-bottom-color); */
