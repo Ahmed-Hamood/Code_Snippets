@@ -128,7 +128,7 @@ number[purple] {
 
 text[blue],
 number[blue] {
- border: 0.1rem solid #32adff;
+ border: 0.1rem solid #5e87c9;
 }
 
 text[sky],
@@ -334,7 +334,7 @@ smaller,
 smallest,
 [smallest],
 .smallest {
- font-size: 35% !important;
+ font-size: 40% !important;
 }
 
 /* #endregion */

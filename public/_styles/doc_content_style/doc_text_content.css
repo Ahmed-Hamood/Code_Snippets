@@ -485,7 +485,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  word-break: break-word;
  caret-color: rgba(255, 255, 255, 0.81);
  padding-top: calc(1.2 * 0.2rem);
- margin-top: calc(1.2 * 2rem);
+ margin-top: calc(1.2 * 1.8rem);
  margin-bottom: 1.4rem;
  position: relative;
  cursor: default;
@@ -502,7 +502,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 }
 
 #page-content-wrapper .sticky_table_content_topic_page + .sub-title {
-  padding-top: 0;
+ padding-top: 0;
 }
 
 #page-content-wrapper .sub-sub-title {
@@ -553,8 +553,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 #page-content-wrapper .sub-sub-title + .start-wrapper:last-child,
 #page-content-wrapper .sub-sub-sub-title + .start-wrapper:last-child {
  border-bottom: 2px solid rgba(255, 255, 255, 0.038);
- padding-bottom: 18px;
- margin-bottom: 33px;
+ padding-bottom: 10px;
 }
 
 #page-content-wrapper .sub-title.hide-content + .start-wrapper,
@@ -604,7 +603,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  line-height: 180%;
  font-weight: inherit;
  /* margin-bottom: calc(1.2 * 0.832rem); */
- margin-bottom: 1rem;
+ margin-bottom: 1.2rem;
  /* white-space: wrap; */
  word-break: break-word;
  word-wrap: break-word;
@@ -633,7 +632,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  font-size: 1.2rem;
  line-height: 160%;
  font-weight: inherit;
- margin-bottom: calc(1.2 * 0.8rem);
+ margin-bottom: 1rem;
  text-decoration: underline;
  /* text-decoration-color: inherit;
  text-decoration-style: double;
@@ -645,8 +644,8 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  font-size: 1.4rem;
  font-weight: 500;
  line-height: 160%;
- margin-top: calc(1.2 * 1.2rem);
- margin-bottom: calc(1.2 * 0.8rem);
+ /* margin-top: calc(1.2 * 1.2rem); */
+ margin-bottom: 1rem;
 }
 
 .underline-text.no-underline {
@@ -1037,7 +1036,7 @@ tooltip .tooltiptext hr,
  /* font-size: 1.2rem; */
  font-weight: inherit;
  /* margin-bottom: calc(1.2 * 1.8rem); */
- margin-bottom: 1rem;
+ margin-bottom: 1.2rem;
  padding: 5px;
  padding-left: 0;
 }
@@ -1172,7 +1171,7 @@ tooltip .tooltiptext hr,
  box-shadow: none;
  padding: 0;
  /* margin-bottom: 1rem; */
- margin-bottom: 8px;
+ margin-bottom: 12px;
 }
 
 /* default */

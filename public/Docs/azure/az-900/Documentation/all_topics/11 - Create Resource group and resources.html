@@ -1,64 +1,95 @@
-<p class="main-title">- Create Resource group and resources</p>
+<p class="main-title">Create Resource group and resources</p>
 <!-- #region start -->
 
 <p class="text">We will use azure portal to create resource group and resources. First we will create a resource group so we can populate resources into it.</p>
 
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-title">1. Creating a Resource Group</p>
+<p class="sub-title">1. Creating a Resource Group - Using Portal</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
 
-<p class="text">
- You need a resource group to work with resources in azure, so lets go and create a resource group.
-</p>
+<p class="text">You need a resource group to work with resources in azure, so lets go and create a resource group.</p>
 
-<p class="title-text">
- 1. Go to the menu on the left and select resource groups or type <red>"resource groups"</red> on the search resources bar.
-</p>
+<p class="title-text">1. Go to the menu on the left and select resource groups or type <red>"resource groups"</red> on the search resources bar.</p>
 
 <img id="image" path="/img/image053.PNG" alt="image" />
 
-<p class="title-text">
- 2. The resource groups window will open, click on the <text blue>+Add</text> button to view <red>"Create resource group"</red> form.
-</p>
+<p class="title-text">2. The resource groups window will open, click on the <text blue>+Add</text> button to view <red>"Create resource group"</red> form.</p>
 
 <img id="image" path="/img/image054.PNG" alt="image" />
 
-<p class="title-text ">
-  3. The first property is subscription, select your subscription for your billing unit for your entire azure account. 
-</p>
-<p class="title-text ">
-  4. Second property is the resource group name, provide a name for your resource group, we are going to type <blue>"az-900"</blue> as the name of our resource group.
-</p>
-<p class="title-text ">
-  5. third property is the region, here we select where the meta data about the resource group is stored.
-</p>
-
+<p class="title-text">3. The first property is subscription, select your subscription for your billing unit for your entire azure account.</p>
 <p class="title-text">
- 6. Finally, we click create to start creating our resource group.
+ 4. Second property is the resource group name, provide a name for your resource group, we are going to type <blue>"az-900"</blue> as the name of our resource group.
 </p>
+<p class="title-text">5. third property is the region, here we select where the meta data about the resource group is stored.</p>
+
+<p class="title-text">6. Finally, we click create to start creating our resource group.</p>
 
 <img id="image" path="/img/image055.PNG" alt="image" />
 
-<p class="title-text">
-  7. As ypu see below our resource group have been created successfully.
- </p>
+<p class="title-text">7. As you see below our resource group have been created successfully.</p>
 
 <img id="image" path="/img/image056.PNG" alt="image" />
 
 <!-- #endregion -->
 
-
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-title">
-  2. Creating a VM Resource  
-</p>
+<p class="sub-title">2. Creating a Resource Group - Using CLI</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
+
+<p class="text">
+ Creating resource group thur command line is easy, we call it
+ <tooltip desc="Its a command line utility for azure with a set of commands used to create and manage azure resources">Azure CLI</tooltip>. To start working with azure
+ CLI you need to login first using the <command>az login</command> command which will redirect you to Microsoft azure login page.
+</p>
+
+<section terminal-content title-header="Login to Azure">
+ <pre>
+  az login
+</pre
+ >
+</section>
+
+<div class="terminal-output">
+ <pre>
+ <yellow>You have logged in. Now let us find all the subscription to which you have access...</yellow>
+</pre
+ >
+</div>
+
+<p class="title-text">
+ - To create a resource group we use the following command
+</p>
+
+
+<section terminal-content title-header="Create Azure Resource Group">
+<pre>
+  az group create --name az-900-RG --location "West US"
+</pre>
+</section>
+
+<section json-content title-header="response after creating resource group successfully" line-num="">
+<pre>
+ {
+  "id": "/subscriptions/1a2cde19-4dve-34jj-6fvd4-37d77074b9033/resourceGroups/az-900-RG"
+  "location": "West US",
+  "managedBy": null
+  "name": "az-900-RG",
+  "properties": {
+    "provisioningState": "Succeeded"
+  },
+  "tags": null,
+  "type": null
+ }
+</pre>
+</section>
+
 
  
 

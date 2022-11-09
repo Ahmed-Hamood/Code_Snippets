@@ -99,7 +99,7 @@
  font-family: 'JetBrains Mono', 'Consolas', monospace, 'Source Sans Pro', 'Menlo';
  font-weight: 500;
  width: 100%;
- color: #ffcc00;
+ color: #ffffff;
  background: var(--terminal-block-primary-bg-color);
  padding: 0.7rem 0;
  overflow-x: auto;
@@ -328,11 +328,11 @@ wordBetweenAngleBrackets {
 }
 
 npmAngleBracketColor {
- color: #5d5d5d;
+ color: #a2a2a2;
 }
 
 npmOptionColor {
- color: #0f87ff;
+ color: #cccccc;
 }
 
 npmDotColor {
