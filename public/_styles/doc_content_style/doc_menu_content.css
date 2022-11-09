@@ -12,12 +12,12 @@
  line-height: 1.2;
  text-shadow: 1px 1px 1px #000;
  margin-top: clamp(1.5rem, 5vw, 4rem); 
- margin-bottom: calc(1.2 * 1.8rem);
+ margin-bottom: calc(1.2 * 1.5rem);
  display: flex;
  align-items: center;
  width: 100%;
  user-select: none;
- border-bottom: 1px solid #313131;
+ /* border-bottom: 1px solid #313131; */
  padding-bottom: 0.4rem;
 }
 
@@ -167,10 +167,10 @@
  font-weight: 600;
  position: absolute;
  top: 8px;
- right: 40px;
+ right: 0;
  color: #1dd1a1;
  background: rgba(0, 0, 0, 0);
- border: 1px solid #1dd1a1;
+ border: 2px solid #1dd1a1;
  border-radius: 5px;
  padding: 8px 12px;
  cursor: pointer;
@@ -259,7 +259,7 @@
 }
 
 .doc-subject-list-titles-content-viewer.view.msg {
- background: #13171f;
+ background: var(--sideBar-bg-color);
 }
 
 .doc-subject-list-titles-content-viewer.view + .subject-title {
@@ -270,7 +270,7 @@
  display: flex;
  justify-content: center;
  align-items: center;
- border: 1px solid rgb(44, 44, 44);
+ box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
  border-radius: 8px;
  height: 100%;
  transition: 0.5s all;
