@@ -112,7 +112,7 @@ body[newTab] .body-container .open-sidebar-btn {
   display: flex;
  }
  .body-container .open-sidebar-btn {
-  border: 3px solid #171d24;
+  border: 3px solid #282b2e;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   border-radius: 0 50px 50px 0;
   height: 200px;

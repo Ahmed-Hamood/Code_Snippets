@@ -49,12 +49,10 @@ export default function render_mainListTitlesNav(active) {
     </div>
 
     <div class="sticky_table_content_topic_page">
-      <h1>Table Content</h1>
-    
+      <h1>Table Content</h1> 
         <ul class="titles_list_content">
           ${allList}
         </ul>
-   
    </div>
    `;
 

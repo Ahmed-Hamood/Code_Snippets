@@ -3,12 +3,112 @@
 
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-title">
-  A - What is Virtual machine
-</p>
+<p class="sub-title">A - What is Virtual Machine</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
+
+<p class="text">
+ <underline yellow>Virtual machine</underline> is a software emulation of physical computer that
+ <tooltip desc="Azure offers servers with powerful hardware that can host enormous amount of virtual machines.">azure offers</tooltip> . VMs provide
+ <a id="link-ref" href="ref_001">infrastructure as a service (IaaS)</a> in a form of a virtualized server with resources which is comprised of:
+</p>
+
+<div class="list-content normal check">
+ <ul>
+  <li>CPU Processor</li>
+  <li>RAM Memory</li>
+  <li>NIC - Network Interface card</li>
+  <li>HD or SSD storage</li>
+ </ul>
+</div>
+
+<div class="text-box info">
+ <p>
+  Virtualization is an emulation of physical machines that create virtual machines with different Operating System and virtual hardware. Each virtual machine has it's own
+  configuration and OS. We can say its a Total separation of OS environments.
+ </p>
+ <ul dash>
+  <li>
+   <tooltip
+    desc="- a file system \- sometimes written filesystem is the way in which files are named and where they are placed logically for storage and retrieval - file system is a method and data structure that the operating system uses to control how data is stored and retrieved. - Without a file system, stored information wouldn't be isolated into individual files and would be difficult to identify and retrieve. As data capacities increase, the organization and accessibility of individual files are becoming even more important in data storage."
+    >File systems</tooltip
+   >
+  </li>
+  <li>
+   <tooltip
+    desc="An Operating System provides services to both the users and to the programs. It provides programs an environment to execute, and it provides users the services to execute the programs in a convenient manner. - Here few common services provided by an operating system :- 
+    1. Program execution
+    2. I/O operations
+    3. File System manipulation
+    4. Communication
+    5. Error Detection
+    6. Resource Allocation
+    7. Protection"
+    >Services</tooltip
+   >
+  </li>
+  <li>
+   <tooltip
+    desc="a port is a number assigned to uniquely identify a connection endpoint and to direct data to a specific service. - A port is a virtual point where network connections start and end. Ports are software-based and managed by a computer's operating system. Each port is associated with a specific process or service. Ports allow computers to easily differentiate between different kinds of traffic: emails go to a different port than webpages, for instance, even though both reach a computer over the same Internet connection. - There are 65,535 possible port numbers, although not all are in common use. "
+    >Ports</tooltip
+   >
+  </li>
+  <li>
+   <tooltip
+    desc="- Middleware means all the software you need in order to run the system and the application itself - Middleware is software that lies between an operating system and the applications running on it. Essentially functioning as hidden translation layer, middleware enables communication and data management for distributed applications. - It’s sometimes called plumbing, as it connects two applications together so data and databases can be easily passed between the 'pipe' - Using middleware allows users to perform such requests as submitting forms on a web browser, or allowing the web server to return dynamic web pages based on a user's profile."
+    >Middleware</tooltip
+   >
+  </li>
+  <li><tooltip desc="Configuration is the manner in which components are arranged to make up the computer system.">Configuration</tooltip></li>
+ </ul>
+</div>
+
+<p class="text">
+ With VM you take a subset or smaller part of <underline yellow>CPU</underline>, <underline yellow>RAM</underline> or <underline yellow>HD/SSD</underline> to create a
+ virtual machine that will run a separate operating system from the actual server.
+</p>
+
+<div class="quote-text green-border">
+ <p>VMs like a physical computer they host an operating system and you can install, run and customize all of the software running on your VM.</p>
+</div>
+
+<p class="text">
+ Azure VMs gives you flexibility of virtualization without having to buy and maintain the physical hardware that runs the VM. As you know VMs provide IaaS offering, which
+ mean you still need to maintain the virtual machine by performing tasks, such as
+ <underline>configure</underline>, <underline>updating/patching</underline> and <underline>maintaining/installing</underline> the software that runs on it.
+</p>
+
+<div class="quote-text blue-border">
+ <p>
+  On VM you can run application like <underline yellow>web app</underline> and <underline yellow>web services</underline>, <underline yellow>databases</underline>,
+  <underline yellow>desktop application</underline>,
+  <tooltip
+   underline
+   yellow
+   desc="A jumpbox is a hardened machine for segregating administrator access. Many significant breaches begin by harvesting administrator credentials through phishing, either using malware or by obtaining credentials with a spoofed authentication prompt. While jump boxes alone aren’t going to solve the problems that phishing and ransomware present, they will help limit their impact if you are compromised."
+   >jumpboxes</tooltip
+  >,
+  <tooltip
+   underline
+   yellow
+   desc="- A gateway is a network node used in telecommunications that connects two networks with different transmission protocols together. Gateways serve as an entry and exit point for a network as all data must pass through or communicate with the gateway prior to being routed. -  A computer that sits between different networks or applications. The gateway converts information, data or other communications from one protocol or format to another. A router may perform some of the functions of a gateway."
+   >gateways</tooltip
+  >, etc.
+ </p>
+</div>
+
+<div class="list-content normal star">
+ <p class="list-title">VMs are great choice when you need here some use cases:</p>
+ <ul>
+  <li>Total control over the operating system (OS).</li>
+  <li>The ability to run custom software for developing and testing.</li>
+  <li>To use custom hosting configurations.</li>
+  <li>Extend your data-center with hybrid cloud</li>
+ </ul>
+</div>
+
+<p class="title-text green">- A virtual machine image </p>
 
 <!-- #endregion -->
 

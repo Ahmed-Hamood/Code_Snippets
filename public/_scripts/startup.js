@@ -5,8 +5,6 @@ import Startup_api from './api_system/start_api.js';
 document.addEventListener('DOMContentLoaded', () => StartUp());
 
 function StartUp() {
- //  let urlSearchParams = new URLSearchParams(window.location.search);
-
  startup_SideBarRender();
  Startup_PageLoader();
 
@@ -14,5 +12,4 @@ function StartUp() {
   document.body.setAttribute('api-system', 'true');
   Startup_api();
  }
- 
 }

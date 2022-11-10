@@ -12,7 +12,7 @@ html {
  font-stretch: 100%;
  vertical-align: baseline;
  overflow-wrap: break-word;
- overflow: hidden;
+ overflow-x: hidden;
  text-rendering: optimizelegibility;
  text-size-adjust: 100%;
  -webkit-font-smoothing: antialiased;
@@ -42,19 +42,6 @@ a {
 }
 ::-webkit-scrollbar-thumb:hover {
  background: #f7f8f7;
-}
-
-.scroll-touch {
- -webkit-overflow-scrolling: touch; /* Lets it scroll lazy */
-}
-
-.scroll-auto {
- -webkit-overflow-scrolling: auto; /* Stops scrolling immediately */
-}
-
-body[pageLoading='false'] :is(.pre-block, .terminal-output, .tab-container) {
- /* opacity: 0; */
- /* animation: FadeInAnimation 0.3s ease-in-out 0.8s forwards; */
 }
 
 .pre-block::-webkit-scrollbar {

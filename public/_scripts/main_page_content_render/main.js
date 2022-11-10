@@ -45,7 +45,7 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
 
   //  2. get all sub-titles
   const disable_titles_wrapper = HTMLContent.querySelector('.disable-titles-wrapper');
-  
+
   if (disable_titles_wrapper) return new XMLSerializer().serializeToString(HTMLContent);
 
   const all_titles = HTMLContent.querySelectorAll(['.sub-title', '.sub-sub-title']);
@@ -111,7 +111,7 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
  page_content.innerHTML += '<br/> <br/> <br/> <br/>';
 
  bodyElement.setAttribute('pageLoading', true);
- startup_pageRender(isPageLoadSuccess, refPos);
+ startup_pageRender(isPageLoadSuccess, page_content.innerText, refPos);
  setTimeout(() => bodyElement.setAttribute('pageLoading', false), 300);
 }
 
@@ -119,7 +119,7 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
 // ++++++++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++++++++
 
-function startup_pageRender(isPageLoadSuccess, refPos = null) {
+function startup_pageRender(isPageLoadSuccess, page_content_text, refPos = null) {
  if (isPageLoadSuccess) {
   let has_documentation_topics_list_container = document.querySelector('.documentation-topics-list-container');
 
@@ -136,16 +136,20 @@ function startup_pageRender(isPageLoadSuccess, refPos = null) {
 
    return;
   }
+
+  // ############################
+  // ############################
+
   render_buttons();
 
   // add top scroll button
   auto_top_scroll();
 
-  read_time_calculation();
-
   // render all list titles content
   render_mainListTitlesNav(true);
   render_sideListTitlesNav(true);
+
+  read_time_calculation(page_content_text);
 
   // tab content switch and render
   tabsSwitchContentRender_Active();
