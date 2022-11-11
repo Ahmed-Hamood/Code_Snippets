@@ -3,10 +3,20 @@
 
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-title">A - What is Virtual Machine</p>
+<p class="sub-title">1. What is Virtual Machine</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
+
+<div class="list-content normal arrow">
+ <p class="list-title">Virtualization is an emulation of physical machines that create virtual machines with different Operating System :-</p>
+ <ul>
+  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, ad dolores. Dicta similique magnam expedita saepe nihil quo aliquid eaque reprehenderit quam?</li>
+  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, ad dolores. Dicta similique magnam expedita saepe nihil quo aliquid eaque reprehenderit quam?</li>
+  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, ad dolores. Dicta similique magnam expedita saepe nihil quo aliquid eaque reprehenderit quam?</li>
+  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, ad dolores. Dicta similique magnam expedita saepe nihil quo aliquid eaque reprehenderit quam?</li>
+ </ul>
+</div>
 
 <p class="text">
  <underline yellow>Virtual machine</underline> is a software emulation of physical computer that
@@ -27,6 +37,12 @@
  <p>
   Virtualization is an emulation of physical machines that create virtual machines with different Operating System and virtual hardware. Each virtual machine has it's own
   configuration and OS. We can say its a Total separation of OS environments.
+  <tooltip
+   small
+   title="Virtualization"
+   desc="Virtualization is the process of creating a software-based, or 'virtual' version of a computer, with dedicated amounts of CPU, memory, and storage that are 'borrowed' from a physical host computer—such as your personal computer— and/or a remote server—such as a server in a cloud provider's data-center. - The virtual machine is partitioned from the rest of the system, meaning that the software inside a VM can't interfere with the host computer's primary operating system."
+   >(read more)</tooltip
+  >
  </p>
  <ul dash>
   <li>
@@ -65,13 +81,24 @@
 </div>
 
 <p class="text">
- With VM you take a subset or smaller part of <underline yellow>CPU</underline>, <underline yellow>RAM</underline> or <underline yellow>HD/SSD</underline> to create a
- virtual machine that will run a separate operating system from the actual server.
+ With VM you take a subset or smaller hardware part of <underline yellow>CPU</underline>, <underline yellow>RAM</underline> or <underline yellow>HD/SSD</underline> to
+ create a virtual machine that will run a separate operating system from the actual server.
 </p>
 
-<div class="quote-text green-border">
- <p>VMs like a physical computer they host an operating system and you can install, run and customize all of the software running on your VM.</p>
+<div class="text-box note">
+ <p>
+  A piece of software called a <underline>hypervisor</underline>, or <underline>virtual machine manager</underline>, lets you run different operating systems on different
+  virtual machines at the same time. This makes it possible to run Linux VMs, for example, on a Windows OS, or to run an earlier version of Windows on more current
+  Windows OS.
+ </p>
 </div>
+
+<p class="text">
+ VMs like a physical computer they host an operating system and you can install, run and customize all of the software running on your VM. VM are independent of each
+ other, and they are extremely portable. You can move a VM on a hypervisor to another hypervisor on a completely different machine almost instantaneously.
+</p>
+
+<img id="image" path="/img/image058.PNG" alt="image" />
 
 <p class="text">
  Azure VMs gives you flexibility of virtualization without having to buy and maintain the physical hardware that runs the VM. As you know VMs provide IaaS offering, which
@@ -98,17 +125,108 @@
  </p>
 </div>
 
-<div class="list-content normal star">
- <p class="list-title">VMs are great choice when you need here some use cases:</p>
+<div class="list-content normal check">
+ <p class="list-title">Some common examples or use cases for virtual machines include:</p>
  <ul>
-  <li>Total control over the operating system (OS).</li>
-  <li>The ability to run custom software for developing and testing.</li>
-  <li>To use custom hosting configurations.</li>
-  <li>Extend your data-center with hybrid cloud</li>
+  <li>
+   <underline yellow>Total control over the operating system (OS)</underline>: You can create or run your own custom software/environment for developing and testing and
+   use custom hosting configurations.
+  </li>
+  <li>
+   <underline yellow>During testing and development</underline>: We can easily create and delete VMs, with VMs we can create different OS and application configuration to
+   code and test an application.
+  </li>
+  <li>
+   <underline yellow>Running a traditional infrastructure app</underline>: we can run certain applications in the public cloud and run traditional app in your own
+   premises, you can use public cloud on demand, shutting down VMs when you don't need them or quickly starting them up to meet a sudden increase in demand means you pay
+   only for the resources you use.
+  </li>
+  <li>
+   <underline yellow>When extending your data-center to the cloud</underline>: An organization can extend the capabilities of its own on-premises network by creating a
+   virtual network in Azure and adding VMs to that virtual network.
+  </li>
+  <li>
+   <underline yellow>During disaster recovery (Backing up your existing OS)</underline>: As with running certain types of applications in the cloud and extending an
+   on-premises network to the cloud, you can get significant cost savings by using an IaaS-based approach to disaster recovery. If a primary data-center fails, you can
+   create VMs running on Azure to run your critical applications and then shut them down when the primary data-center becomes operational again.
+  </li>
  </ul>
 </div>
 
-<p class="title-text green">- A virtual machine image </p>
+<div class="list-content normal star">
+ <p class="list-title">virtual machines provide many benefits, such as :-</p>
+ <ul>
+  <li>
+   <underline yellow>Cost savings</underline> - running multiple virtual environments from one piece of infrastructure means that you can drastically reduce your physical
+   infrastructure footprint. This boosts your bottom line-decreasing the need to maintain nearly as many servers and saving on maintenance costs and electricity.
+  </li>
+  <li>
+   <underline yellow>Agility and speed</underline> - Spinning up a VM is relatively easy and quick and is much simpler than provisioning an entire new environment for
+   your developers. Virtualization makes the process of running dev-test scenarios a lot quicker.
+  </li>
+  <li>
+   <underline yellow>Lowered downtime</underline> - VMs are so portable and easy to move from one hypervisor to another on a different machine - this means that they are
+   a great solution for backup, in the event the host goes down unexpectedly.
+  </li>
+  <li>
+   <underline yellow>Scalability</underline> - VMs allow you to more easily scale your apps by adding more physical or virtual servers to distribute the workload across
+   multiple VMs. As a result you can increase the availability and performance of your apps.
+  </li>
+  <li>
+   <underline yellow>Security benefits</underline> - Because virtual machines run in multiple operating systems, using a guest operating system on a VM allows you to run
+   apps of questionable security and protects your host operating system. VMs also allow for better security forensics, and are often used to safely study computer
+   viruses, isolating the viruses to avoid risking their host computer.
+  </li>
+ </ul>
+</div>
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">- VM image</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ A virtual machine image
+ <mark>is a single file or template which contain a virtual disk that has a boot-able operating system installed on it with other software</mark> like
+ <underline yellow>development tools</underline> or <underline yellow>web hosting environment</underline>.
+</p>
+
+<p class="text">
+ With azure you can create or use/choose an already created image <small>(pre-configured)</small> from the
+ <tooltip
+  desc="microsoft market is a catalog of solutions from our independent software vendor (ISV) partners. As an ISV member of the Microsoft Cloud Partner Program, you can create, publish, and manage your commercial marketplace offers in Partner Center."
+  >microsoft market</tooltip
+ >
+ to rapidly provision VMs in minutes.
+</p>
+
+<div class="quote-text green-border">
+ <p>
+  Azure let you choose/use VM either from Microsoft virtual machine images from the Microsoft marketplace, or use your own VM system that include OS and other software,
+  with your own configuration, installed services and run-times <small>(create by developers)</small> for your company. And then you put this custom image in your custom
+  or marketplace storage.
+ </p>
+</div>
+
+<img id="image" path="/img/image059.PNG" alt="image" />
+
+<p class="text">
+ Azure virtual machine grabs those images either choose a custom or marketplace image to start creating a new virtual machine and exposing them to your users in just
+ couple of minutes a virtual machine will be provisioned and ready to use.
+</p>
+
+<!-- #endregion -->
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">2. VM Resources</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
 
 <!-- #endregion -->
 

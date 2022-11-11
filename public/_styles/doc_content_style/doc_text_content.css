@@ -1156,7 +1156,7 @@ tooltip .tooltiptext hr,
 
 .list-content .list-title {
  font-weight: 500;
- line-height: 160%;
+ line-height: 130%;
  display: block;
  position: relative;
  border-bottom: 1px dotted #525252cb;
@@ -1166,11 +1166,17 @@ tooltip .tooltiptext hr,
 }
 
 .list-content .list-title::after {
- top: -3px;
+ /* top: -3px; */
+ font-size: 0.8rem;
+ color: rgb(81, 81, 81);
+ content: "▶";
+ position: absolute;
+ left: -18px;
+ top: 0px;
 }
 
 .list-content .list-title::before {
- bottom: -3px;
+ /* bottom: -3px; */
 }
 
 .list-content.custom ul {
