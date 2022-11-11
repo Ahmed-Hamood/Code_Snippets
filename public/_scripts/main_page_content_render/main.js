@@ -111,7 +111,7 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
  page_content.innerHTML += '<br/> <br/> <br/> <br/>';
 
  bodyElement.setAttribute('pageLoading', true);
- startup_pageRender(isPageLoadSuccess, page_content.innerText, refPos);
+ startup_pageRender(isPageLoadSuccess, page_content, refPos);
  setTimeout(() => bodyElement.setAttribute('pageLoading', false), 300);
 }
 
@@ -119,7 +119,7 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
 // ++++++++++++++++++++++++++++++++++
 // ++++++++++++++++++++++++++++++++++
 
-function startup_pageRender(isPageLoadSuccess, page_content_text, refPos = null) {
+function startup_pageRender(isPageLoadSuccess, page_content, refPos = null) {
  if (isPageLoadSuccess) {
   let has_documentation_topics_list_container = document.querySelector('.documentation-topics-list-container');
 
@@ -137,6 +137,8 @@ function startup_pageRender(isPageLoadSuccess, page_content_text, refPos = null)
    return;
   }
 
+  page_content = page_content.innerText
+
   // ############################
   // ############################
 
@@ -149,7 +151,7 @@ function startup_pageRender(isPageLoadSuccess, page_content_text, refPos = null)
   render_mainListTitlesNav(true);
   render_sideListTitlesNav(true);
 
-  read_time_calculation(page_content_text);
+  read_time_calculation(page_content);
 
   // tab content switch and render
   tabsSwitchContentRender_Active();

@@ -19,7 +19,6 @@ html {
  letter-spacing: normal;
 }
 
-
 a {
  text-decoration: none;
  color: var(--text-color);
@@ -32,16 +31,17 @@ a {
 }
 
 ::-webkit-scrollbar-track {
- background: var(--body-container);
- border-radius: 0px;
+ background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
- background: #98989851;
+ background-color: #98989819;
  border-radius: 12px;
 }
-::-webkit-scrollbar-thumb:hover {
- background: #f7f8f7;
+
+::-webkit-scrollbar-thumb:hover,
+body[scrollActive='true'] ::-webkit-scrollbar-thumb {
+ background-color: #989898bc;
 }
 
 .pre-block::-webkit-scrollbar {

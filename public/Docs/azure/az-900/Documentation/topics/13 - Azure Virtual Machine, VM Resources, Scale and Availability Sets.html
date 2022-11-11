@@ -8,16 +8,6 @@
 <!-- ######################################################### -->
 <!-- #region start -->
 
-<div class="list-content normal arrow">
- <p class="list-title">Virtualization is an emulation of physical machines that create virtual machines with different Operating System :-</p>
- <ul>
-  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, ad dolores. Dicta similique magnam expedita saepe nihil quo aliquid eaque reprehenderit quam?</li>
-  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, ad dolores. Dicta similique magnam expedita saepe nihil quo aliquid eaque reprehenderit quam?</li>
-  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, ad dolores. Dicta similique magnam expedita saepe nihil quo aliquid eaque reprehenderit quam?</li>
-  <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, ad dolores. Dicta similique magnam expedita saepe nihil quo aliquid eaque reprehenderit quam?</li>
- </ul>
-</div>
-
 <p class="text">
  <underline yellow>Virtual machine</underline> is a software emulation of physical computer that
  <tooltip desc="Azure offers servers with powerful hardware that can host enormous amount of virtual machines.">azure offers</tooltip> . VMs provide
@@ -142,8 +132,11 @@
    only for the resources you use.
   </li>
   <li>
-   <underline yellow>When extending your data-center to the cloud</underline>: An organization can extend the capabilities of its own on-premises network by creating a
+   <underline yellow>When extending your data-center to the cloud </underline>: An organization can extend the capabilities of its own on-premises network by creating a
    virtual network in Azure and adding VMs to that virtual network.
+  </li>
+  <li>
+   <underline yellow>Lift and shift</underline>: Moving from physical data-center to cloud. You can take image of the server & run within a VM with little to no changes.
   </li>
   <li>
    <underline yellow>During disaster recovery (Backing up your existing OS)</underline>: As with running certain types of applications in the cloud and extending an
@@ -223,10 +216,126 @@
 
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-title">2. VM Resources</p>
+<p class="sub-title">2. VM Resources - Types, Sizes and Managed Disk Storage</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
+
+<p class="text">
+ Azure has limited number of VMs on per subscription, The current limit on a per subscription basis is <number>20</number> virtual machines per region. Limits can be
+ raised by filing a support ticket requesting an increase.
+</p>
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">- Types and Sizes in Azure</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Azure VMs are available in different sizes and types that able to serve you in different cases. When you provision a VM, you will have a chance to pick the resources
+ that are associated with that VM. resource types and sizes options like:
+</p>
+
+<div class="list-content normal star">
+ <ul>
+  <li><bold>Size</bold> <red>(like number of processor cores, and amount of RAM)</red></li>
+  <li><bold>Storage disks</bold> <red>(like hard disk drives, solid state drives, etc.)</red></li>
+  <li><bold>Networking</bold> <red>(like virtual network, public IP address, and port configuration)</red></li>
+ </ul>
+</div>
+
+<p class="text">
+ The size of the virtual machine that you use is determined by the workload that you want to run. The size that you choose then determines factors such as
+ <underline>processing power</underline>, <underline>memory</underline>, <underline>storage capacity</underline>, and <underline>network bandwidth</underline>. Azure
+ offers a wide variety of sizes to support many types of uses as you see below.
+</p>
+
+<p class="title-text">Here's the options for VM sizes and types :-</p>
+
+<div tab-switch-content>
+ <section tab-title="Type/sizes 1" active>
+  <img id="image" path="/img/image060.PNG" alt="image" />
+ </section>
+ <!-- ########################## -->
+ <section tab-title="Type/sizes 2">
+  <img id="image" path="/img/image061.PNG" alt="image" />
+ </section>
+ <!-- ########################## -->
+ <section tab-title="General purpose VM - B-series">
+  <img id="image" path="/img/image062.PNG" alt="image" />
+  <div class="list-content normal check">
+   <p class="list-title">The B-series VMs runs on the following processor :</p>
+   <ul>
+    <li>The 3rd Generation Intel® Xeon® Platinum 8370C (Ice Lake)</li>
+    <li>The Intel® Xeon® Platinum 8272CL (Cascade Lake),</li>
+    <li>The Intel® Xeon® 8171M 2.1 GHz (Skylake),</li>
+    <li>The Intel® Xeon® E5-2673 v4 2.3 GHz (Broadwell)</li>
+    <li>The Intel® Xeon® E5-2673 v3 2.4 GHz (Haswell) processors</li>
+   </ul>
+  </div>
+ </section>
+ <!-- ########################## -->
+ <section tab-title="Compute optimized VM - Fsv2-series">
+  <img id="image" path="/img/image063.PNG" alt="image" />
+  <div class="list-content normal check">
+   <p class="list-title">The Fsv2-series VMs runs on the following processor :</p>
+   <ul>
+    <li>The 3rd Generation Intel® Xeon® Platinum 8370C (Ice Lake),</li>
+    <li>The Intel® Xeon® Platinum 8272CL (Cascade Lake) processors,</li>
+    <li>The Intel® Xeon® Platinum 8168 (Skylake) processors.</li>
+    <li>All core Turbo clock speed of 3.4 GHz and a maximum single-core turbo frequency of 3.7 GHz.</li>
+   </ul>
+  </div>
+ </section>
+ <section tab-title="High performance compute VM - HBv4-series">
+  <img id="image" path="/img/image064.PNG" alt="image" />
+  <p class="text">
+   HBv4 VMs will feature up to 176 AMD EPYC™ 7004-series (Genoa) CPU cores, 688 GB of RAM, and no simultaneous multithreading. HBv4-series VMs also provide 800 GB/s of
+   DDR5 memory bandwidth and 768MB L3 cache per VM, up to 12 GB/s (reads) and 7 GB/s (writes) of block device SSD performance, and clock frequencies up to 3.7 GHz.
+  </p>
+ </section>
+</div>
+
+<p class="text">
+ Azure charges an hourly price based on the virtual machine's size and operating system. For partial hours, Azure charges only for the minutes used. Storage is priced and
+ charged separately.
+</p>
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">- Managed Disk Storage</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Azure managed disks are block-level storage volumes that are managed by azure and used with azure virtual machines. Managed disks are like a physical disk in an
+ on-premises server but they are virtualized; with managed disks, all you have to do is specify the disk size, the disk type like performance tier
+ <small>(Standard or Premium)</small> and azure will provision the disk.
+</p>
+
+<p class="title-text">The following table provide a comparison of ultra-disks, premium solid-state drives (SSD), standard SSD and standard hard-disk drive (HSS) :</p>
+
+<img id="image" path="/img/image065.PNG" alt="image" />
+<div class="text-box info">
+ <p>IOPS stands for Input/output operation per second</p>
+</div>
+<p class="text">
+ Managed Disks handles Azure Storage account creation and management in the background for you, and ensures that you do not have to worry about the scalability limits of
+ the storage account. If you're creating new virtual machines, use the Azure CLI or the Azure portal to create virtual machines with Managed OS and data disks.
+</p>
+
+<div class="text-box note">
+ <p>
+  If you have virtual machines with un-managed disks, you can convert your virtual machines to be backed with Managed Disks. Also you can also manage your custom images
+  in one storage account per Azure region, and use them to create hundreds of virtual machines in the same subscription.
+ </p>
+</div>
+
+<!-- #endregion -->
 
 <!-- #endregion -->
 
