@@ -42,7 +42,7 @@
  font-family: 'Open Sans', 'Segoe UI', 'Optimistic Display', 'Source Sans Pro', sans-serif;
  border-top: 2px dotted rgb(40, 40, 40);
  border-bottom: 2px dotted rgb(40, 40, 40);
- padding: 22px 0 22px 0;
+ padding: 14px 0 14px 0;
  overflow-y: hidden;
  overflow-x: auto;
 }
@@ -158,7 +158,7 @@
 .main_table_content_topic_page .titles_list_content li.nav-sub-sub-title {
  font-size: 1.2rem;
  margin-bottom: 0.7rem;
- margin-left: 1rem;
+ margin-left: 1.2rem;
 }
 
 :is(.sticky_table_content_topic_page, .main_table_content_topic_page) .titles_list_content li.nav-sub-title:last-child,
@@ -422,7 +422,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 
 /* #endregion */
 
-/* #region >>> titles contents <<< */
+/* #region >>> titles contents & content wrapper <<< */
 
 #page-content-wrapper .main-title {
  font-weight: 600;
@@ -521,19 +521,24 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  cursor: pointer;
 }
 
-#page-content-wrapper .start-wrapper {
+#page-content-wrapper .content-wrapper {
  display: block;
  animation: title_wrapper_content 0.2s ease-in-out;
 }
 
-#page-content-wrapper .sub-sub-title + .start-wrapper:last-child,
-#page-content-wrapper .sub-sub-sub-title + .start-wrapper:last-child {
+#page-content-wrapper .sub-sub-title,
+#page-content-wrapper .sub-sub-title + .content-wrapper {
+  margin-left: 12px;
+}
+
+#page-content-wrapper .sub-sub-title + .content-wrapper:last-child,
+#page-content-wrapper .sub-sub-sub-title + .content-wrapper:last-child {
  border-bottom: 2px solid rgba(255, 255, 255, 0.038);
  padding-bottom: 10px;
 }
 
-#page-content-wrapper .sub-title.hide-content + .start-wrapper,
-#page-content-wrapper .sub-sub-title.hide-content + .start-wrapper {
+#page-content-wrapper .sub-title.hide-content + .content-wrapper,
+#page-content-wrapper .sub-sub-title.hide-content + .content-wrapper {
  display: none;
 }
 
@@ -588,7 +593,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  width: 100%;
 }
 
-#page-content-wrapper .start-wrapper > hr {
+#page-content-wrapper .content-wrapper > hr {
  /* border: none;
  border-top: 1px solid rgba(255, 255, 255, 0.13);
  margin: 50px 0 28px 0; */
@@ -819,8 +824,6 @@ tooltip .tooltiptext.left,
  top: 50%;
  left: 50%;
  transform: translate(-50%, -50%);
-
- /* padding: 10px 1px 15px 15px; */
 }
 
 .tooltip-modal.show {

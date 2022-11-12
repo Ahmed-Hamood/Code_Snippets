@@ -81,7 +81,7 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
 
   // 5. now, replace All ##start##/ and ##end##
   HTMLContent = HTMLContent.replace(/##end##/g, '</div>');
-  HTMLContent = HTMLContent.replace(/##start##/g, "<div class='start-wrapper'>");
+  HTMLContent = HTMLContent.replace(/##start##/g, "<div class='content-wrapper'>");
   HTMLContent = HTMLContent.replace(/<\/body>/g, '</div></body>');
 
   return HTMLContent;
@@ -137,7 +137,7 @@ function startup_pageRender(isPageLoadSuccess, page_content, refPos = null) {
    return;
   }
 
-  page_content = page_content.innerText
+  page_content = page_content.innerText;
 
   // ############################
   // ############################

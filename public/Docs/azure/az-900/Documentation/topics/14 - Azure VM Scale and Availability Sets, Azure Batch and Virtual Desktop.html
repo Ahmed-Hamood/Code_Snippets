@@ -1,0 +1,161 @@
+<p class="main-title">Azure VM Scale and Availability Sets | Azure Batch | Azure Virtual Desktop</p>
+<!-- #region start -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">1. Azure Scale and Availability Sets</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ You can have multiple VMs grouped together to provide high availability, scalability, and redundancy. Also grouping and manage VMs provide features such as scale sets
+ and availability sets. There are multiple options to manage the availability of your virtual machines in Azure.
+</p>
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">Scale Set - Auto-scaling</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Virtual machine scale set - VMSS lets you create and manage a group of identical virtual machine from the same image. With <text>auto-scaled</text> feature the number of
+ VM instances can automatically increase or decrease in response to traffic demand or a defined schedule.
+</p>
+
+<p class="text">
+ Azure Scale set allow you to centrally manage, configure, and update a large number of VMs in minutes to provide highly available applications thru regional or multiple
+ Availability Zones deployment options.
+</p>
+
+<div class="text-box info">
+ <p>
+  To achieve high availability, a minimum of <number>2</number> VMs should be placed in <text>VMSS</text> (Scale Sets) with Azure SLA met of <number>99.95%</number>.
+ </p>
+</div>
+
+<p class="text">
+ If you have two VMs with the same purpose then you have to make sure that both of them are configured identically and then set up network routing parameters or requests
+ between multiple instances of the website. Virtual machine scale sets could do that work for you to ensure efficiency.
+</p>
+
+<div class="text-box note">
+ <p>Virtual machine scale set - VMSS is designed for manual and auto-scaled workloads like web services and batch processing.</p>
+</div>
+
+<p class="text">
+ Azure scale set also automatically deploy a <text green>load balancer</text> to balance or control traffic between VMs. It makes sure that your resources are being used
+ efficiently.
+</p>
+
+<p class="text">
+ The number of VM instances can automatically increase or decrease in response to demand or a defined schedule. With virtual machine scale sets , you can build
+ large-scale services for different workload areas such as <underline>compute</underline>, <underline>big data</underline>, and
+ <underline>container</underline> workloads.
+</p>
+
+<div class="text-box">
+ <p>
+  In the image below, Azure scale set allow you to pick an image either custom image or marketplace image, this image is automatically scaled across multiple virtual
+  machines.
+ </p>
+</div>
+
+<div class="text-box">
+ <p>
+  below, we have <number>3</number> virtual machine, they are hidden behind a load balancer, which redirect traffic from your users to one of those virtual machines
+  within the scale set.
+ </p>
+</div>
+
+<img id="image" path="/img/image067.PNG" alt="image" />
+
+<div class="text-box">
+ <p>
+  In the image above, we have defined a virtual network, with IP Address spaces of three VMs, these VMs are for serving web application all of them working and
+  functioning fine. The three VMs are a part of virtual machine scale sets, with public facing load balancer that receives connections from customers/users.
+ </p>
+</div>
+
+<div class="text-box">
+ <p>
+  When your customers want to connection to your website, first they will hit the public facing load balancer, then load balancer will take this connection or HTTP
+  connection and split the traffic to these three web servers. When traffic increases a web server will be added into the VMSS, and if the traffic decreases, then servers
+  will be extracted/removed from the <text red>VMSS</text>.
+ </p>
+</div>
+
+<p class="text">
+ Also azure provide you with tools that help you to monitor the utilization to determine if you need to increase or decrease the number of VMs but if you enable the scale
+ set feature then you don't need to do that.
+</p>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">Availability Sets - Fault and Update Domains</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ As you know when deploying a mission-critical apps, it's a good idea to use azure
+ <tooltip
+  desc="- Availability Zones are physical separate data-centers within an azure region, with independent power, network and cooling. -  Availability zones guarantee you will have virtual machine Connectivity to at least one instance at least 99.99% of the time when you have two or more instances deployed across two or more Availability Zones in the same Azure region."
+  >Availability Zones</tooltip
+ >. Here an example of availability zones.
+</p>
+
+<img id="image" path="/img/image068.PNG" alt="image" />
+
+<div class="text-box">
+ <p>
+  in west Europe region we have three availability zones <number>AZ-1</number>, <number>AZ-2</number> and <number>AZ-3</number>. They are inter-connected thru high
+  speed/low latency links. If <number>AZ-1</number> goes down, we still have <number>AZ-2</number> and <number>AZ-3 </number>that will be able to server the content and
+  maintain the critical application online.
+ </p>
+</div>
+
+<p class="text">
+ Availability sets is logical grouping of two or more VMs that help keep your application available during planned or unplanned maintenance to provide resilient, highly
+ available environment.
+</p>
+
+<p class="text">
+ Availability Sets ensure that VMs stagger updates and have varied power and network connectivity, preventing you from losing all your VMs with a single network or power
+ failure.
+</p>
+
+<p class="text">
+ An Availability Zone in azure is a combination of a <text>fault domain</text> and an <text>update domain</text>. With Availability Set azure ensure that the VMs you
+ place in the Availability Set are different fault/update domains to avoid downtime.
+</p>
+
+<p class="text">
+ With Availability Sets, azure will split your fleet of VMs on different racks of servers, which are called <underline yellow>Fault Domains</underline>; to prevent app outage in case of unplanned
+ maintenance events (power, hardware failure, etc)
+</p>
+
+<p class="text">
+ Also, with Availability Sets <underline yellow>Update Domain</underline>, azure will have a number or group of VMs to prevent application outage in case of VM reboot 
+ or planned maintenance window in azure.
+</p>
+
+<p class="title-text red">
+  Update domains - Planned maintenance events
+</p>
+
+
+
+<p class="title-text red">
+  Fault domains - Unplanned maintenance events
+</p>
+
+<!-- #endregion -->
+
+<!-- #endregion -->
+
+<!-- #endregion -->
