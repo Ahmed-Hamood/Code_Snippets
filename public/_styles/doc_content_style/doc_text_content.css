@@ -522,13 +522,10 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 #page-content-wrapper .content-wrapper {
  display: block;
  animation: title_wrapper_content 0.2s ease-in-out;
-}
-
-
-#page-content-wrapper .sub-sub-title + .content-wrapper:last-child,
-#page-content-wrapper .sub-sub-sub-title + .content-wrapper:last-child {
- border-bottom: 2px solid rgba(255, 255, 255, 0.038);
- padding-bottom: 10px;
+ /* border-left: 1px dotted rgba(255, 255, 255, 0.301);
+ border-bottom:1px dotted rgba(255, 255, 255, 0.301);
+ border-radius: 0 0 0 12px;
+ padding-left: 8px; */
 }
 
 #page-content-wrapper .sub-title.hide-content + .content-wrapper,

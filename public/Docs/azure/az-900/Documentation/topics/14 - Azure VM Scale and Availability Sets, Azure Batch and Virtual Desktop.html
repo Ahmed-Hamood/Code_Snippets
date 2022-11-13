@@ -279,8 +279,69 @@
 <!-- #region start -->
 
 <p class="text">
-
+ Azure batching is a service for distributing your workloads or a large scale of jobs within multiple nodes environment or pool of nodes which consist of VMs. You can
+ specify jobs that you want to run on these VMs.
 </p>
+
+<div class="text-box note">
+ <p>
+  Azure batch enables large scale job scheduling and compute management with the ability to scale to tens, hundreds or thousands of VMs. Good for cases where you need raw
+  computing power or supercomputer level compute power.
+ </p>
+</div>
+
+<p class="text">
+ You can basically break these jobs and distribute them among multiple nodes/VMs within the pool of nodes/VMs that you create. Also you can utilize jobs on-demand or
+ schedule them. often customers use azure batching for jobs like:
+</p>
+
+<div class="list-content normal star">
+ <ul>
+  <li>Software testing execution</li>
+  <li>
+   <tooltip
+    desc="- Transcoding is a digital-to-digital conversion of one type of encoded data (video or audio) to another, often because the target device that will be used to display the content requires a smaller file size. - Transcoding is the process in which one file, either a media file or object, is converted from one format to another."
+    >Media trans-coding</tooltip
+   >
+  </li>
+  <li>
+   <tooltip
+    desc="- rendering is the process where the data in a 3D scene is converted into a series of 2D images, as seen from the digital camera's point of view. - Visual effects (sometimes abbreviated VFX) is the process by which imagery is created or manipulated outside the context of a live-action shot in filmmaking and video production. The integration of live-action footage and other live-action footage or CGI elements to create realistic imagery is called VFX."
+    >VFX rendering</tooltip
+   >
+  </li>
+ </ul>
+</div>
+
+<p class="text">
+ Azure batch service is involved with components like <underline yellow>Storage Account</underline>, its for uploading data file in the blob storage like VFX project
+ file. And <underline yellow>Batch account</underline>, here you would have the batch configuration for batch pool settings and configurations like batch pool settings
+ you can specify the low limit or upper limit or max limit of VMs inside your batch pool.
+</p>
+
+<div class="text-box info">
+ <p>
+  The good thing about the batch service that there is no cost associate with it, the API batch service is free. You will only charge for VMs deployments and also charge
+  for the storage account like how mush data you will be uploading.
+ </p>
+</div>
+
+<p class="text">
+ For example, you can have <number>5</number> VMs, you can use them to run parallel jobs on all these machines. Each job has multiple tasks. If you want to run high
+ compute parallel jobs a cross multiple nodes within the environments then the batch service is what you need.
+</p>
+
+<div class="list-content normal check">
+ <p class="list-title">When running a job, batch :</p>
+ <ul>
+  <li>Initiate pool of VMs - Starts a pool of compute VMs for you</li>
+  <li>Configure them as needed - Installs applications and staging data</li>
+  <li>Run jobs with as many tasks as you have</li>
+  <li>Identifies failures</li>
+  <li>Requeues work</li>
+  <li>Scale down the pool - Scales down the pool as work completes</li>
+ </ul>
+</div>
 
 <!-- #endregion -->
 
@@ -292,7 +353,22 @@
 <!-- #region start -->
 
 <p class="text">
+ Azure Virtual Desktop is a desktop and application virtualization service that runs on the cloud. It enables you to use a cloud-hosted version of Windows from any
+ location.
+</p>
 
+<div class="text-box note">
+ <p>Azure Virtual Desktop works across devices and operating systems, and works with apps that you can use to access remote desktops or most modern browsers.</p>
+</div>
+
+<p class="text">
+ Azure Virtual Desktop provides centralized security management for users' desktops with Azure Active Directory (Azure AD). You can enable multifactor authentication to
+ secure user sign-ins. You can also secure access to data by assigning granular role-based access controls (RBACs) to users.
+</p>
+
+<p class="text">
+ With Azure Virtual Desktop, the data and apps are separated from the local hardware. The actual desktop and apps are running in the cloud, meaning the risk of
+ confidential data being left on a personal device is reduced. Additionally, user sessions are isolated in both single and multi-session environments.
 </p>
 
 <!-- #endregion -->

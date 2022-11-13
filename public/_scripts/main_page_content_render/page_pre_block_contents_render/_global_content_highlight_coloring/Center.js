@@ -19,6 +19,7 @@ export default async function Run_Highlight_Coloring() {
 
   if (PythonCode.length != 0) python_highlight(PythonCode);
   if (NpmCommand.length != 0) npm_highlight(NpmCommand);
+
  } catch (err) {
   console.error(err);
  }

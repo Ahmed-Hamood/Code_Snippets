@@ -14,7 +14,9 @@
  top: 0;
  z-index: 4;
  position: sticky;
- background: var(--terminal-block-primary-bg-color);
+ /* background: var(--terminal-block-primary-bg-color); */
+ background: #151516;
+ border-bottom: 1px solid rgb(32, 32, 32);
  display: flex;
  flex-direction: row;
  justify-content: space-between;
@@ -34,14 +36,14 @@
 }
 
 .terminal-block .block-header .block-title::after {
- position: absolute;
+ /* position: absolute;
  content: '';
  height: 1px;
  border-radius: 50px;
  width: min(930px, 100%);
  background: rgba(49, 49, 49, 0.6);
  left: 0;
- bottom: 0;
+ bottom: 0; */
 }
 
 .terminal-block .block-header .copyTerminalClipboard {
@@ -99,7 +101,7 @@
  font-family: 'JetBrains Mono', 'Consolas', monospace, 'Source Sans Pro', 'Menlo';
  font-weight: 500;
  width: 100%;
- color: #ffffff;
+ color: #569cd6;
  background: var(--terminal-block-primary-bg-color);
  padding: 0.7rem 0;
  overflow-x: auto;
@@ -332,7 +334,7 @@ npmAngleBracketColor {
 }
 
 npmOptionColor {
- color: #cccccc;
+ color: #01cfff;
 }
 
 npmDotColor {
