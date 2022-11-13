@@ -1,6 +1,6 @@
 export default function content_section_wrapper() {
  let main_title = document.querySelector('.main-title');
- let all_sub_titles = document.querySelectorAll(['.sub-title', '.sub-sub-title']);
+ let all_sub_titles = document.querySelectorAll(['.sub-title', '.sub-sub-title', '.sub-sub-sub-title']);
 
  if ([...all_sub_titles].length != 0) {
   if (main_title) {

@@ -48,8 +48,9 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
 
   if (disable_titles_wrapper) return new XMLSerializer().serializeToString(HTMLContent);
 
-  const all_titles = HTMLContent.querySelectorAll(['.sub-title', '.sub-sub-title']);
+  const all_titles = HTMLContent.querySelectorAll(['.sub-title', '.sub-sub-title', '.sub-sub-sub-title']);
   let subSubTitleIndex = 0;
+  let subSubSubTitleIndex = 0;
 
   // 3. loop thru each sub-title and add ##start## and ##end## text
   // first sub-title will only have ##start## text next to it.
@@ -59,7 +60,7 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
    } else {
     if (element.classList.contains('sub-title')) {
      subSubTitleIndex = 0;
-     element.insertAdjacentHTML('beforebegin', '##end## ##end##');
+     element.insertAdjacentHTML('beforebegin', '##end## ##end## ##end##');
      element.insertAdjacentHTML('afterend', '##start##');
     }
 
@@ -67,12 +68,30 @@ export default function EmbeddingHTMLPage({ DocContentHTMLText, ResStatus }, ref
      // every first sub-sub-title element will only have ##start## after
      if (subSubTitleIndex == 0) {
       subSubTitleIndex = 1;
+      subSubSubTitleIndex = 0
       element.insertAdjacentHTML('afterend', '##start##');
       return;
      }
      element.insertAdjacentHTML('beforebegin', '##end##');
      element.insertAdjacentHTML('afterend', '##start##');
     }
+
+
+    if (element.classList.contains('sub-sub-sub-title')) {
+     // every first sub-sub-sub-title element will only have ##start## after
+     if (subSubSubTitleIndex == 0) {
+      subSubSubTitleIndex = 1
+      element.insertAdjacentHTML('afterend', '##start##');
+      return;
+     }
+     element.insertAdjacentHTML('beforebegin', '##end##');
+     element.insertAdjacentHTML('afterend', '##start##');
+    }
+
+
+
+
+
    }
   });
 

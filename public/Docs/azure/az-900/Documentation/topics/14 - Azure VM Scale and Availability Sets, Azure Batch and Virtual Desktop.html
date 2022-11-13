@@ -15,7 +15,7 @@
 
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
-<p class="sub-sub-title">Scale Set - Auto-scaling</p>
+<p class="sub-sub-title">A - Scale Set - Auto-scaling</p>
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
 <!-- #region start -->
@@ -96,7 +96,7 @@
 
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
-<p class="sub-sub-title">Availability Sets - Fault and Update Domains</p>
+<p class="sub-sub-title">B - Availability Sets - Fault and Update Domains</p>
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
 <!-- #region start -->
@@ -135,26 +135,165 @@
 </p>
 
 <p class="text">
- With Availability Sets, azure will split your fleet of VMs on different racks of servers, which are called <underline yellow>Fault Domains</underline>; to prevent app outage in case of unplanned
- maintenance events (power, hardware failure, etc)
+ With Availability Sets, azure will split your fleet of VMs on different racks of servers, which are called <underline yellow>Fault Domains</underline>; to prevent app
+ outage in case of unplanned maintenance events (power, hardware failure, etc)
 </p>
 
 <p class="text">
- Also, with Availability Sets <underline yellow>Update Domain</underline>, azure will have a number or group of VMs to prevent application outage in case of VM reboot 
- or planned maintenance window in azure.
+ Also, with Availability Sets <underline yellow>Update Domain</underline>, azure will have a number or group of VMs to prevent application outage in case of VM reboot or
+ planned maintenance window in azure.
 </p>
 
-<p class="title-text red">
-  Update domains - Planned maintenance events
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-sub-title">- Update domains (UD) - Planned maintenance events</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ The update domain groups VMs that can be rebooted for update at the same time, azure make sure that the underlying hardware and software or your resources do not go
+ offline.
 </p>
 
+<p class="text">
+ The update domain feature allow you to apply updates while knowing that only one update domain grouping will be offline at a time. So azure update domain makes sure that
+ there are other domains won't be offline or won;t be update at the same time.
+</p>
 
+<div class="text-box info">
+ <p>An update group going through the update process is given a <number>30</number> minute time to recover before maintenance on the next update domain starts.</p>
+</div>
 
-<p class="title-text red">
-  Fault domains - Unplanned maintenance events
+<div class="list-content normal disc">
+ <p class="list-title">Planned maintenance events :-</p>
+ <ul>
+  <li>
+   is when the underlying
+   <tooltip
+    desc="- Azure Service Fabric is a distributed systems platform that makes it easy to package, deploy, and manage scalable and reliable microservices and containers. -  Service Fabric is an open source project and it powers core Azure infrastructure as well as other Microsoft services such as Skype for Business, Intune, Azure Event Hubs, Azure Data Factory, Azure Cosmos DB, Azure SQL Database, Dynamics 365, and Cortana. "
+    >Azure fabric</tooltip
+   >
+   that hosts VMs is updated by Microsoft.
+  </li>
+  <li>Done to patch security vulnerabilities, improve performance, and add or update features.</li>
+  <li>Often no impact, sometimes requires reboot.</li>
+  <li>
+   When the VM is part of an availability set, the Azure fabric updates are sequenced so not all of the associated VMs are rebooted at the same time. Because VMs are put
+   into different update domains
+  </li>
+ </ul>
+</div>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-sub-title">- Fault domains (FD) - Unplanned maintenance events</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Fault domains is a logical grouping of hardware to a void a single point of failure within AZ, which mean azure groups your VMs by common power source and network switch
+ By default. Each VM's has it's own power and switch within two different racks in the data-center.
+</p>
+
+<div class="text-box note">
+ <p>The reason that azure does this if a part of the data-center fails, then the other servers will take charge because they don't share the same power source.</p>
+</div>
+
+<p class="text">
+ An availability set FD will split your VMs across up to three fault domains. This helps protect against a physical power or networking failure by having VMs in different
+ fault domains (thus being connected to different power and networking resources).
+</p>
+
+<div class="list-content normal disc">
+ <p class="list-title">Unplanned maintenance events :-</p>
+ <ul>
+  <li>Involve a hardware failure in the data center e.g. a power outage or disk failure</li>
+  <li>VMs that are part of an availability set automatically switch to a working physical server so the VM continues to run.</li>
+  <li>The group of virtual machines that share common hardware are in the same fault domain.</li>
+ </ul>
+</div>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-sub-title">- Apply Availability Sets with Example</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ In the example below, we we have two virtual machines that are a part of an availability Sets, so both of these virtual machines serve content. If something happens
+ planned or un-panned in <code>Fault Domain #1</code>, we still have a virtual machine sits in <code>Fault Domain #2</code> on different rack to server the content.
+</p>
+
+<img id="image" path="/img/image069.PNG" alt="image" />
+
+<p class="text">
+ Also, we also have two different update domains <number>1</number> and <number>2</number>, so if an update happens it will do that not in the same time. It will first
+ update domain <number>1</number> then update domain <number>2</number>. This helps for planned maintenance windows; we can have another two VMs sitting on a different
+ availability sets in different update domain.
+</p>
+
+<div class="text-box note">
+ <p>
+  With an availability set, you get, up to <number>3</number> fault domains each have a server rack with dedicated power and network resources.And also you get
+  <number>5</number> logical update domains can be increased to a maximum of <number>20</number>.
+ </p>
+</div>
+
+<img id="image" path="/img/image070.PNG" alt="image" />
+
+<p class="text">
+ <underline yellow>Fault domain</underline> if it set to three, mean you reserve three racks, and you must have at least <number>3</number> VMs or UD. All VMs gonna
+ spread across three different racks, so If a rack goes out the other racks are operational and your service will remain available.
+</p>
+
+<p class="text">
+ <underline yellow>Update Domain</underline> if you set it to <number>5</number>, then these machine in the same or different racks, they won't be updated at the same
+ time. As you see our VMs are spread in different racks, if VMs numbers more than the rack number then a single rack can have more than one.
+</p>
+
+<div class="text-box info">
+ <p>
+  There's no additional cost for configuring an availability set. You only pay for the VM instances you create. An Example of availability Sets. We have two fault domain
+  which means we have equipment's in two different racks in the data-center.
+ </p>
+</div>
+
+<!-- #endregion -->
+
+<!-- #endregion -->
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">2. Azure Batch</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+
 </p>
 
 <!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">3. Azure Virtual Desktop</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+
+</p>
 
 <!-- #endregion -->
 

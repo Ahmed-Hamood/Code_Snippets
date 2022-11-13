@@ -489,8 +489,6 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 #page-content-wrapper .sub-sub-sub-title {
  font-size: clamp(1.5rem, 6vw, 1.8rem);
  color: #2ecc71;
- border-bottom: 1px solid #2ecc71;
- padding-bottom: 8px;
 }
 
 #page-content-wrapper .sub-sub-title,
@@ -526,10 +524,6 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  animation: title_wrapper_content 0.2s ease-in-out;
 }
 
-#page-content-wrapper .sub-sub-title,
-#page-content-wrapper .sub-sub-title + .content-wrapper {
-  margin-left: 12px;
-}
 
 #page-content-wrapper .sub-sub-title + .content-wrapper:last-child,
 #page-content-wrapper .sub-sub-sub-title + .content-wrapper:last-child {
@@ -538,12 +532,14 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 }
 
 #page-content-wrapper .sub-title.hide-content + .content-wrapper,
-#page-content-wrapper .sub-sub-title.hide-content + .content-wrapper {
+#page-content-wrapper .sub-sub-title.hide-content + .content-wrapper ,
+#page-content-wrapper .sub-sub-sub-title.hide-content + .content-wrapper {
  display: none;
 }
 
 #page-content-wrapper .sub-title::before,
-#page-content-wrapper .sub-sub-title::before {
+#page-content-wrapper .sub-sub-title::before,
+#page-content-wrapper .sub-sub-sub-title::before {
  color: rgba(255, 255, 255, 0.127);
  font-size: 40%;
  content: '▼';
@@ -553,25 +549,32 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  transition: 400ms color;
 }
 
-#page-content-wrapper .sub-sub-title::before {
+#page-content-wrapper .sub-sub-title::before{
  left: -28px;
+}
+
+#page-content-wrapper .sub-sub-sub-title::before {
+ left: -24px;
 }
 
 @media screen and (max-width: 930px) {
  #page-content-wrapper .sub-title::before,
- #page-content-wrapper .sub-sub-title::before {
+ #page-content-wrapper .sub-sub-title::before ,
+ #page-content-wrapper .sub-sub-sub-title::before {
   display: none;
  }
 }
 
 #page-content-wrapper .sub-title.hide-content::before,
-#page-content-wrapper .sub-sub-title.hide-content::before {
+#page-content-wrapper .sub-sub-title.hide-content::before ,
+#page-content-wrapper .sub-sub-sub-title.hide-content::before {
  content: '▶';
  color: rgba(255, 255, 255, 0.09);
 }
 
 #page-content-wrapper .sub-title:hover::before,
-#page-content-wrapper .sub-sub-title:hover::before {
+#page-content-wrapper .sub-sub-title:hover::before ,
+#page-content-wrapper .sub-sub-sub-title:hover::before {
  color: #eeee;
 }
 
