@@ -511,7 +511,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 
 /* content wrapper */
 
-#page-content-wrapper :is(.sub-title:hover, .sub-sub-title:hover) {
+#page-content-wrapper :is(.sub-title:hover, .sub-sub-title:hover, .sub-sub-sub-title:hover) {
  text-decoration: underline;
  text-decoration-thickness: 1px;
  text-decoration-color: #505050;
