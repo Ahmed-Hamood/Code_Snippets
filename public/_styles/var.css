@@ -3,7 +3,7 @@ html {
  --scroll-height: 3px;
 
  --text-color: #fff;
- --sideBar-bg-color: #151515;
+ --sideBar-bg-color: #1c1c1c;
  --sideBar-footer-bg-color: var(--sideBar-bg-color);
  /* --body-container: #0d1117; */
  --body-container: #0f0f0f;
@@ -30,7 +30,7 @@ html {
 
  --sub-title-link-hover-bg-color: rgba(61, 61, 61, 0.22);
 
- --main-doc-header-content-bg-color: #171718;
+ --main-doc-header-content-bg-color: #1c1c1c;
  --main-doc-header-content-border-color: #1b1919;
 
  --main-doc-header-path-view-content-bg-color: #0f0f0fce;

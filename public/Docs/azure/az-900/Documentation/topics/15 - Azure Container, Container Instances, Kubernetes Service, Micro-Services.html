@@ -1,0 +1,93 @@
+<p class="main-title">Azure Container | Container Instances | Kubernetes Service | Micro-Services</p>
+<!-- #region start -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">1. What is Container ?</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ Container is a virtualization runtime environment for running apps, you can run multiple containers isolated and secured on a single physical or
+ <tooltip
+  desc="Virtual hosting is a method for hosting multiple domain names on a single server. This allows one server to share its resources, such as memory and processor cycles, without requiring all services provided to use the same host name."
+  >virtual</tooltip
+ >
+ host. Container Bundles apps within an operating system of a single physical server using container environment runtime.
+</p>
+
+<p class="text">Container doesn't have an operating system it emulates operating system by using the host's operating system (VMs emulate hardware).</p>
+
+<div class="text-box info">
+ <p>
+  Container Much more lightweight and faster than VMs <small>(seconds instead of minutes)</small> because with container you don't manage the operating system. Containers
+  they don't have their own operating system they use host's operating system
+ </p>
+</div>
+
+<p class="text">
+ Container is a
+ <tooltip
+  desc="- a sandbox environment is an isolated virtual machine in which potentially unsafe software code can execute without affecting network resources or local applications. - A sandbox is an isolated testing environment that enables users to run programs or open files without affecting the application, system or platform on which they run."
+  >sandbox environment</tooltip
+ >
+ for each application, you can have multiple containers within a single runtime. Container run on top of a host operating system like VMs.
+</p>
+
+<p class="text">
+ <mark
+  >The major different in container is there is not operating system replicated on each container, the footprint of the container is much smaller that the one of virtual
+  machine</mark
+ >
+</p>
+
+<img id="image" path="/img/image071.PNG" alt="image" />
+
+<p class="text">
+ Containers bundle the libraries and components needed to run the application and use the existing host OS to run the container. You can run multiple isolated
+ applications on each single container. You can use same server to host multiple container applications.
+</p>
+
+<div class="text-box note">
+ <p>If you have five containers running on a server with a specific Linux kernel, all five containers and the apps within them share that same Linux kernel.</p>
+</div>
+
+<p class="text">
+ Containers are lightweight and designed to be created, scaled out, and stopped dynamically, they are designed for almost any scenario. It's possible to create and deploy
+ virtual machines as application demand increases, but containers are a lighter weight, more <tooltip desc="able to move quickly and easily.">agile</tooltip> method.
+</p>
+
+<div class="list-content normal check">
+ <p class="list-title">containers are designed to allow you to provide :-</p>
+ <ul>
+  <li>less Development efforts for your team</li>
+  <li>less Maintenance, you don't need to maintain the operating system patches and updates</li>
+  <li>Less compute and storage requirement from these containers, because there is no operating system</li>
+  <li>Respond quicker to demand changes, so you can auto scale faster than with virtual machines</li>
+ </ul>
+</div>
+
+<p class="text">
+ Containers are designed to allow you to respond quicker to changes on demand. With containers, you can quickly restart if there's a crash or hardware interruption. One
+ of the most popular container engines is <text blue>Docker</text>, which is supported by Azure.
+</p>
+
+<div class="text-box info">
+ <p>
+  Containers are often used to create solutions by using a microservice architecture. This architecture is where you break solutions into smaller, independent pieces.
+  <underline yellow>For example</underline>, you might split a website into a container hosting your front end, another hosting your back end, and a third for storage.
+  This split allows you to separate portions of your app into logical sections that can be maintained, scaled, or updated independently.
+ </p>
+</div>
+
+<p class="text">
+ Imagine your website back-end has reached capacity but the front end and storage aren't being stressed. With containers, you could scale the back end separately to
+ improve performance. If something
+ <tooltip desc="- make (something) necessary as a result or consequence. - make it necessary for (someone) to do something.">necessitated</tooltip> such a change, you
+ could also choose to change the storage service or modify the front end without impacting any of the other components.
+</p>
+
+<!-- #endregion -->
+
+<!-- #endregion -->
