@@ -25,15 +25,15 @@
  animation-duration: 0.3s;
  position: relative;
  padding: 18px 0 12px 0;
- margin-bottom: 35px;
+ margin-bottom: 24px;
 }
 
 .main_table_content_topic_page h1 {
  color: rgba(255, 255, 255, 0.8);
- font-size: 130%;
+ font-size: 120%;
  text-shadow: 1px 1px 1px #000;
  font-weight: 600;
- margin-bottom: 16px;
+ margin-bottom: 14px;
  height: 100%;
  position: relative;
 }
@@ -524,6 +524,7 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  display: none;
 }
 
+
 #page-content-wrapper .sub-title::before,
 #page-content-wrapper .sub-sub-title::before,
 #page-content-wrapper .sub-sub-sub-title::before {
@@ -597,18 +598,18 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
 
 /* #endregion */
 
-/* #region >>> underline text <<< ### */
+/* #region >>> underline and title text <<< ### */
 
 .underline-text {
- font-size: 1.2rem;
+ /* font-size: 1.2rem; */
  line-height: 160%;
  font-weight: inherit;
- margin-bottom: 1rem;
+ margin-bottom: 9px;
  text-decoration: underline;
  /* text-decoration-color: inherit;
  text-decoration-style: double;
  text-decoration-line: underline; */
- text-underline-offset: 4px;
+ text-underline-offset: 5px;
 }
 
 .title-text {

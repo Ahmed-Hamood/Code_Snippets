@@ -1,9 +1,11 @@
 <p class="main-title">Azure Container | Container Instances | Kubernetes Service | Micro-Services</p>
 <!-- #region start -->
 
+<img id="image" path="/img/image073.PNG" alt="image" />
+
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-title">1. What is Container ?</p>
+<p class="sub-title hide-content">1. What is Container ?</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
@@ -12,10 +14,18 @@
  Container is a virtualization runtime environment for running apps, you can run multiple containers isolated and secured on a single physical or
  <tooltip
   desc="Virtual hosting is a method for hosting multiple domain names on a single server. This allows one server to share its resources, such as memory and processor cycles, without requiring all services provided to use the same host name."
-  >virtual</tooltip
- >
- host. Container Bundles apps within an operating system of a single physical server using container environment runtime.
+  >virtual host</tooltip
+ >.
 </p>
+
+<div class="text-box">
+ <p>
+  A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to
+  another.
+ </p>
+</div>
+
+<p class="text">Container Bundles apps within an operating system of a single physical server using container environment runtime.</p>
 
 <p class="text">Container doesn't have an operating system it emulates operating system by using the host's operating system (VMs emulate hardware).</p>
 
@@ -29,7 +39,7 @@
 <p class="text">
  Container is a
  <tooltip
-  desc="- a sandbox environment is an isolated virtual machine in which potentially unsafe software code can execute without affecting network resources or local applications. - A sandbox is an isolated testing environment that enables users to run programs or open files without affecting the application, system or platform on which they run."
+  desc="- A sandbox is an isolated environment that enables users to run programs or open files without affecting the application, system or platform on which they run. - a sandbox environment is an isolated virtual machine in which potentially unsafe software code can execute without affecting network resources or local applications. "
   >sandbox environment</tooltip
  >
  for each application, you can have multiple containers within a single runtime. Container run on top of a host operating system like VMs.
@@ -39,14 +49,14 @@
  <mark
   >The major different in container is there is not operating system replicated on each container, the footprint of the container is much smaller that the one of virtual
   machine</mark
- >
+ >.
 </p>
 
 <img id="image" path="/img/image071.PNG" alt="image" />
 
 <p class="text">
  Containers bundle the libraries and components needed to run the application and use the existing host OS to run the container. You can run multiple isolated
- applications on each single container. You can use same server to host multiple container applications.
+ applications on each container. You can use same server or VM to host multiple container applications.
 </p>
 
 <div class="text-box note">
@@ -61,8 +71,8 @@
 <div class="list-content normal check">
  <p class="list-title">containers are designed to allow you to provide :-</p>
  <ul>
-  <li>less Development efforts for your team</li>
-  <li>less Maintenance, you don't need to maintain the operating system patches and updates</li>
+  <li>Less Development efforts for your team</li>
+  <li>Less Maintenance, you don't need to maintain the operating system patches and updates</li>
   <li>Less compute and storage requirement from these containers, because there is no operating system</li>
   <li>Respond quicker to demand changes, so you can auto scale faster than with virtual machines</li>
  </ul>
@@ -76,17 +86,128 @@
 <div class="text-box info">
  <p>
   Containers are often used to create solutions by using a microservice architecture. This architecture is where you break solutions into smaller, independent pieces.
-  <underline yellow>For example</underline>, you might split a website into a container hosting your front end, another hosting your back end, and a third for storage.
-  This split allows you to separate portions of your app into logical sections that can be maintained, scaled, or updated independently.
+  <underline yellow>For example</underline>, you might split a website into a container hosting your front end, another hosting your back end, and a third for storage or
+  database. This split allows you to separate portions of your app into logical sections that can be maintained, scaled, or updated independently.
  </p>
 </div>
+
+<!-- ------------ -->
+<p class="underline-text">Why containers in your solutions ?</p>
+<!-- ------------ -->
 
 <p class="text">
  Imagine your website back-end has reached capacity but the front end and storage aren't being stressed. With containers, you could scale the back end separately to
  improve performance. If something
- <tooltip desc="- make (something) necessary as a result or consequence. - make it necessary for (someone) to do something.">necessitated</tooltip> such a change, you
+ <tooltip desc="1. make (something) necessary as a result or consequence. 2. make it necessary for (someone) to do something.">necessitated</tooltip> such a change, you
  could also choose to change the storage service or modify the front end without impacting any of the other components.
 </p>
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title hide-content">2. Azure Container Instances (ACI)</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ Azure Container Instances are a <underline yellow>platform as a service (PaaS)</underline> offering, the Simplest and fastest way to run a container immediately in
+ Azure; without having or the need to manage any virtual machines or any additional services. You just upload containers and <text>ACI</text> will run them with automatic
+ scaling.
+</p>
+
+<div class="text-box info">
+ <p>
+  Azure container instance is a serverless container because you don't need to manage the entire system like creating or configuring virtual machines or adopt to any
+  additional services. Simply serverless containers mean run containers without managing servers.
+ </p>
+</div>
+
+<img id="image" path="/img/image072.PNG" alt="image" />
+
+<p class="text">
+ In you company, you just ask your developers just to grab the application with configuration and other runtime middleware software that you need for this application to
+ run, and bundle this application into a container image and hosted or upload it into
+ <tooltip desc="Container repository is a simple storage service where you host your own images. ">container repository</tooltip>.
+</p>
+
+<div class="text-box">
+ <p>With container instances you don't need to run any servers zero nodes, you can have <number>20</number> container groups in a VM.</p>
+</div>
+
+<div class="text-box info">
+ <p>
+  Azure Container Instances allow you to upload your containers into <red>"container repository"</red> and then the container instance service will run the containers for
+  you.
+ </p>
+</div>
+
+<p class="text">
+ We have a marketplace for public repositories of other images for containers, we can just grab an image and push it to container instance which will create a container
+ for us.
+</p>
+
+<div class="text-box note">
+ <p>
+  <underline>Container instance</underline> will create a group of containers for you; underneath or behind the scene all containers are hosted inside a virtual machine.
+ </p>
+</div>
+
+<p class="text">
+ You can host your containers like use one of them for web application that will exposed to users, and one for database storage that will be hidden from public/users.
+</p>
+
+<!-- ------------ -->
+<p class="title-text green">- Instance container is designed for :-</p>
+<!-- ------------ -->
+
+<p class="text">
+ It’s designed for Small and simple web apps/services running background jobs maybe some schedule scripts. Azure container instance does not deliver scalability solution,
+ it only used for simple use case, if you need scalability then there are other services that deliver you that, services like
+ <underline yellow>Azure Kubernetes Service (AKS)</underline> next...
+</p>
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">3. What is Kubernetes ?</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ Kubernetes is a portable, extensible open-source platform for managing containerized workloads and services that facilitates both declarative configuration and
+ automation. It makes sure that our services are running smoothly the way an app developer wants.
+</p>
+
+<p class="text">
+ Kubernetes lets you run distributed system
+ <tooltip
+  desc=" Cloud resiliency is the term used to describe the ability of a server, storage system, data server, or entire network to both recover and continue operations without systems connected to the network going down, stopping their function, or losing their operational capabilities."
+  >resiliently</tooltip
+ >
+ ,with scaling and
+ <tooltip desc="its a procedure by which a system automatically transfers control to a duplicate system when it detects a fault or failure.">failover</tooltip> for your
+ applications.
+</p>
+
+<p class="text">
+ Kubernetes is a container orchestrator that helps make sure that each container where is suppose to be, and that the container can work together. We can say its a
+ conductor that managed everything.
+</p>
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">4. Azure Kubernetes Service (AKS)</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text"></p>
 
 <!-- #endregion -->
 
