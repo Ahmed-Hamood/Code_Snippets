@@ -1,11 +1,9 @@
 <p class="main-title">Azure Container | Container Instances | Kubernetes Service | Micro-Services</p>
 <!-- #region start -->
 
-<img id="image" path="/img/image073.PNG" alt="image" />
-
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-title hide-content">1. What is Container ?</p>
+<p class="sub-title">1. What is Container ?</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
@@ -106,7 +104,7 @@
 
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-title hide-content">2. Azure Container Instances (ACI)</p>
+<p class="sub-title">2. Azure Container Instances (ACI)</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
@@ -198,6 +196,41 @@
  conductor that managed everything.
 </p>
 
+<p class="text">Kubernetes can automatically remove failed containers, ot remove un-responsive ones, release an update and continuously check container health.</p>
+
+<p class="text">Kubernetes also handles storage, allowing admins to use varied storage types from local storage to cloud resources for containers data.</p>
+
+<p class="text">Also organizations can use Kubernetes to manage passwords, tokens, SSH keys amd other.</p>
+
+<p class="text">
+ Kubernetes can also use DNS names or IP addresses to control how containers are made available. Also it has management capabilities like load balancer which distribute
+ igh traffic volume a cross multiple container.
+</p>
+
+<p class="text">
+ Kubernetes has features like
+ <tooltip desc="Kubernetes rollout is a process of updating or replacing replicas with new replicas matching a new deployment template.">rollout</tooltip> and
+ <tooltip
+  desc="Bugs, container environment variables, and hardware limitations can dictate whether an application will run after it's deployed to a Kubernetes cluster. When a fix isn't easy or the application is unresponsive, you need to go back to the previous version."
+  >rollbacks</tooltip
+ >
+</p>
+
+<p class="text">
+ Kubernetes can set and modify the preferred state for containers deployment, this allow admins to create new container instances in desired state, and then migrate
+ existing containers to the new instances while removing the old ones.
+</p>
+
+<p class="text">
+ administrator can tell Kubernetes which nodes are available and which resources are required for containers, and platform will automatically fit containers into those
+ nodes to optimize resource use,
+</p>
+
+<p class="text">
+ Kubernetes doesn't provide middleware or application services, we can deploy our services into containers managed by Kubernetes and accessed by other applications
+ running thru Kubernetes.
+</p>
+
 <!-- #endregion -->
 
 <!-- ######################################################### -->
@@ -207,7 +240,312 @@
 <!-- ######################################################### -->
 <!-- #region start -->
 
-<p class="text"></p>
+<p class="text">
+ Azure Kubernetes Service is an open-source management platform, for managing and running a large number of containers by scheduling and running multiple containers.
+</p>
+
+<img id="image" path="/img/image073.PNG" alt="image" />
+
+<p class="text">
+ AKS is highly scalable and customizable; it is designed for high scale and highly customizable deployment of containers. It is used to automate container deployment and
+ manage containers life-cycle. AKS is the task of automating, managing, and interacting with a large number of containers.
+</p>
+
+<div class="text-box info">
+ <p>
+  As we know containers virtualize computer's resources abd provision those resources into instances that can run software services and applications. Containers might
+  exist only for a short duration, which makes it impossible to create, start, organize, destroy and monitor containers manually.
+ </p>
+</div>
+
+<p class="text">
+ Azure Kubernetes Service is a cloud-native available in any cloud provider like google cloud and AWS. Same as container principle you can either hosting with your own
+ container images within container repository or using marketplace public repository.
+</p>
+
+<img id="image" path="/img/image074.PNG" alt="image" />
+
+<p class="text">
+ As the deployment of container is finished Kubernetes exposes everything to users or applications thru a <text green>Load Balancer</text>, it gives you the same ability
+ like scales set either static scaling or auto scaling.
+</p>
+
+<p class="text">
+ With AKS you can use those images and spread them across nodes <small>(VMs underneath)</small>), these nodes are separated and abstracted from you. Kubernetes is
+ managing the deployment of containers a cross those nodes. We can have <number>3</number> nodes minimum and <number>100</number> nodes maximum.
+</p>
+
+<img id="image" path="/img/image075.PNG" alt="image" />
+
+<div class="text-box info">
+ <p>
+  Nodes is a set of IT resources as a physical or VMs that run one or more containers; A node supports a kubernetes
+  <tooltip desc="Pods are just a bunch of containers clustered together as a working unit">Pod</tooltip>, which is a group of containers we can say Pod is one or more
+  containers on a node, and pod is the smallest unit in kubernetes.
+ </p>
+</div>
+
+<p class="text">
+ If node is removed then Kubernetes move affected workloads to different node. And if one pod crashes then Kubernetes creates new instance. Pods can be scaled manually or
+ automatically (horizontal)
+</p>
+
+<div class="list-content normal star">
+ <p class="list-title">You can migrate existing apps to AKS :</p>
+ <ul>
+  <li>Convert an existing application to one or more containers and then publish one or more container images to the Azure Container Registry.</li>
+  <li>Deploy the containers to an AKS cluster using the Azure portal or the command line.</li>
+  <li>Azure AD controls access to AKS resources.</li>
+  <li>You access SLA-backed Azure services, such as Azure Database for MySQL, via OSBA.</li>
+  <li>Optionally, AKS is deployed with a virtual network.</li>
+ </ul>
+</div>
+
+<div class="list-content normal star">
+ <p class="list-title">With Kubernetes you can :</p>
+ <ul>
+  <li>
+   You can manage storage, Persistent volumes to represent data storage to one or more containers. Data can be persisted across many pod instances. You can utilize
+   cloud-based storage and data system e.g. Azure storage + Cosmos DB
+  </li>
+  <li>You can manage networking, by exposing pods to internet, network isolation, Load balances traffic across multiple replicas of a pod.</li>
+  <ul>
+   <li>Policy-driven network security.</li>
+   <li>Manage communication + name resolution between pods</li>
+  </ul>
+  <li>
+   It can be extended with additional capabilities, for example cloud events on pod creation, custom pod scheduling logic, on-demand provisioning of managed cloud
+   services.
+  </li>
+ </ul>
+</div>
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">- Access, security, and monitoring</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ AKS lets you integrate with Azure AD to improve security and management by uses role-based access control that controls access and permissions to Kubernetes resources
+ and namespaces to limit access to cluster resources.
+</p>
+
+<p class="text">
+ You can configure an AKS cluster to integrate with Azure AD. With Azure AD integration, you can set up Kubernetes access based on existing identity and group membership.
+ Your existing Azure AD users and groups can be provided with an integrated sign-on experience and access to AKS resources.
+</p>
+
+<!-- ------------ -->
+<p class="title-text red">- Integrated logging and monitoring</p>
+<!-- ------------ -->
+
+<p class="text">
+ Also AKS monitor the health of your cluster and resources. Azure monitor for Container Health collects memory and processor performance metrics from containers, nodes,
+ and controllers within your AKS cluster and deployed applications. The container health log are stored
+</p>
+
+<div class="list-content normal check">
+ <ul>
+  <li>Stored in an Azure Log Analytics workspace.</li>
+  <li>Available through the Azure portal, Azure CLI, or a REST endpoint.</li>
+ </ul>
+</div>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">- Clusters and nodes</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<!-- ------------ -->
+<p class="title-text red">- Cluster node and pod scaling</p>
+<!-- ------------ -->
+<p class="text">AKS nodes run on Azure virtual machines (VMs). With AKS nodes, you can connect storage to nodes and pods, upgrade cluster components, and use GPUs.</p>
+
+<div class="text-box info">
+ <p>
+  A Kubernetes cluster is a set of nodes that run containerized applications. Containerizing applications packages an app with its dependences and some necessary
+  services. They are more lightweight and flexible than virtual machines. In this way, Kubernetes clusters allow for applications to be more easily developed, moved and
+  managed.
+ </p>
+</div>
+
+<p class="text">AKS supports Kubernetes clusters that run multiple node pools to support mixed operating systems and Windows Server containers.</p>
+
+<p class="text">
+ As demand for resources change, the number of cluster nodes or pods that run your services automatically scales up or down. You can adjust both the horizontal pod
+ auto-scaler or the cluster auto-scaler to adjust to demands and only run necessary resources.
+</p>
+
+<!-- ------------ -->
+<p class="title-text red">- Cluster node upgrades</p>
+<!-- ------------ -->
+
+<p class="text">
+ AKS offers multiple Kubernetes versions. As new versions become available in AKS, you can upgrade your cluster using the Azure portal or Azure CLI. During the upgrade
+ process, nodes are carefully cordoned and drained to minimize disruption to running applications.
+</p>
+
+<!-- ------------ -->
+<p class="title-text red">- GPU-enabled nodes</p>
+<!-- ------------ -->
+
+<p class="text">
+ AKS supports the creation of GPU-enabled node pools. Azure currently provides single or multiple GPU-enabled VMs. GPU-enabled VMs are designed for compute-intensive,
+ graphics-intensive, and visualization workloads.
+</p>
+
+<!-- ------------ -->
+<p class="title-text red">- Confidential computing nodes (public preview)</p>
+<!-- ------------ -->
+
+<p class="text">
+ AKS supports the creation of
+ <tooltip
+  desc="Intel® SGX allows user-level code to allocate private regions of memory, called enclaves, which are designed to be protected from processes running at higher privilege levels."
+  >Intel SGX-based</tooltip
+ >
+ , confidential computing node pools (DCSv2 VMs). Confidential computing nodes allow containers to run in a hardware-based, trusted execution environment
+ <tooltip
+  title="Enclaves"
+  desc="- A secure enclave provides CPU hardware-level isolation and memory encryption on every server, by isolating application code and data from anyone with privileges - a part of a country that is surrounded by another country, or a group of people who are different from the people living in the surrounding area"
+  >(enclaves)</tooltip
+ >
+ . Isolation between containers
+</p>
+
+<!-- ------------ -->
+<p class="title-text red">- Mariner nodes</p>
+<!-- ------------ -->
+
+<p class="text">
+ Mariner is an open-source Linux distribution created by Microsoft, and it’s now available for preview as a container host on Azure Kubernetes Service (AKS).
+</p>
+
+<p class="text">
+ The Mariner container host provides reliability and consistency from cloud to edge across the AKS, AKS-HCI, and Arc products. You can deploy Mariner node pools in a new
+ cluster, add Mariner node pools to your existing Ubuntu clusters, or migrate your Ubuntu nodes to Mariner nodes.
+</p>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">- Storage volume support</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ To support application workloads, you can mount static or dynamic storage volumes for persistent data. Depending on the number of connected pods expected to share the
+ storage volumes, you can use storage backed by either:
+</p>
+
+<div class="list-content normal check">
+ <ul>
+  <li>Azure Disks for single pod access, or</li>
+  <li>Azure Files for multiple, concurrent pod access.</li>
+ </ul>
+</div>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">- Virtual networks</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ An AKS cluster can be deployed into an existing virtual network. In this configuration, every pod in the cluster is assigned an IP address in the virtual network, and
+ can directly communicate with:
+</p>
+
+<div class="list-content normal check">
+ <ul>
+  <li>Other pods in the cluster</li>
+  <li>Other nodes in the virtual network.</li>
+ </ul>
+</div>
+
+<p class="text">
+ Pods can also connect to other services in a peered virtual network and to on-premises networks over ExpressRoute or site-to-site (S2S) VPN connections.
+</p>
+
+<!-- ------------ -->
+<p class="title-text red">- HTTP application routing</p>
+<!-- ------------ -->
+
+<p class="text">
+ The HTTP application routing add-on helps you easily access applications deployed to your AKS cluster. When enabled, the HTTP application routing solution configures an
+ <tooltip desc="the act of entering : entrance">ingress</tooltip> controller in your AKS cluster.
+</p>
+
+<!-- #endregion -->
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">5. Micro-services</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ Micro-services us an architecture solution where you break your app logic into smaller sections, independent pieces. This Allows you to separate portions of your app
+ into logical sections that can be maintained, scaled, or updated independently.
+</p>
+
+<p class="text">
+ Each service has small code-base that can be managed by a small development team. You can have different libraries or frameworks technologies for different teams, each
+ team can choose the right tool for the job. Single development team can test & build & deploy a service.Each micro-service is completely
+ <tooltip desc="independent easy to control">autonomous</tooltip> with no cross-dependencies.
+</p>
+
+<p class="text">
+ Provides fault isolation: If one goes down, it does not take out all application. Communicates with each other using APIs, APIs encapsulate internal functionality.
+ Internal implementation details of each service are encapsulated behind their interface.
+</p>
+
+<div class="list-content normal check">
+ <p class="list-title">Micro-services is good for :</p>
+ <ul>
+  <li>High release velocity</li>
+  <li>Highly scalable applications</li>
+  <li>Applications with rich domains/subdomains</li>
+  <li>Organizations with small development teams</li>
+ </ul>
+</div>
+
+<!-- ------------ -->
+<p class="title-text red">- Micro-services deployment</p>
+<!-- ------------ -->
+
+<div class="list-content normal star">
+ <ul>
+  <li>Allows each microservice to be deployed independently of every other microservice.</li>
+  <li>A team can update an existing service without rebuilding/redeploying the entire application.</li>
+  <li>They can easily roll back & roll forward & update if something goes wrong.</li>
+  <li>Makes bug fixes + feature releases more manageable & less risky</li>
+  <li>Allows each microservice</li>
+  <ul>
+   <li>to be scaled independently</li>
+   <li>persist own data & external state without common repository layer</li>
+  </ul>
+  <li>For example, one for front-end, one for back-end and one for storage.</li>
+  <ul>
+   <li>If back-end reaches capacity but not others, you can scale it individually.</li>
+   <li>Allows you replace storage microservice without affecting rest of the application.</li>
+  </ul>
+ </ul>
+</div>
 
 <!-- #endregion -->
 

@@ -9,9 +9,14 @@ html {
  --body-container: #0f0f0f;
  /* --body-container: #1b1a1d; */
 
- --zoom-body: 0.9;
+ /* --zoom-body: 0.9;
  --content-render-height: 123.4vh;
- --content-render-width: 123.4vw;
+ --content-render-width: 123.4vw; */
+
+ --zoom-body: 0.85;
+
+ --content-render-height: 138.4vh;
+ --content-render-width: 138.4vw;
 
  --sidebar-width: 320px;
  --sidebar-height: var(--content-render-height);
@@ -76,10 +81,10 @@ body[max-content='true'] {
 
 @media screen and (max-width: 1920px) {
  html {
-  --zoom-body: 0.85;
+  /* --zoom-body: 0.85;
 
   --content-render-height: 138.4vh;
-  --content-render-width: 138.4vw;
+  --content-render-width: 138.4vw; */
  }
 }
 

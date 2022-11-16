@@ -97,7 +97,7 @@
 }
 
 .terminal-block .block-content pre {
- font-size: 0.8rem;
+ font-size: 16px;
  font-family: 'JetBrains Mono', 'Consolas', monospace, 'Source Sans Pro', 'Menlo';
  font-weight: 500;
  width: 100%;
