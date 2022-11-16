@@ -76,7 +76,7 @@
 
 .sticky_table_content_topic_page.view_sticky_table_content {
  display: block;
- z-index: 11;
+ z-index: 12;
 }
 
 .sticky_table_content_topic_page h1 {
@@ -441,14 +441,14 @@ li.nav-sub-sub-title + li.nav-sub-sub-sub-title {
  white-space: wrap;
  word-break: break-word;
  caret-color: rgba(255, 255, 255, 0.81);
- margin-top: calc(1.2 * 3rem);
+ margin-top: clamp(28px, 5vw, 55px);
  margin-bottom: 1rem;
  cursor: pointer;
 }
 
 @media screen and (max-width: 800px) {
  #page-content-wrapper .main-title {
-  margin-top: calc(1.2 * 2rem);
+  /* margin-top: calc(1.2 * 2rem); */
  }
 }
 

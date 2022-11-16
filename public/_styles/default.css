@@ -176,7 +176,7 @@ body[scrollActive='true'] ::-webkit-scrollbar-thumb {
 }
 #blank-modal.show-table-content {
  background-color: rgba(0, 0, 0, 0.744);
- z-index: 10;
+ z-index: 11;
  display: block;
 }
 
