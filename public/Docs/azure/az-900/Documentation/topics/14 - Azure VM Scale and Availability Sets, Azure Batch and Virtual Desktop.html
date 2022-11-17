@@ -352,23 +352,129 @@
 <!-- ######################################################### -->
 <!-- #region start -->
 
+<!-- ------------ -->
+<p class="sub-sub-title">- What is Azure Virtual Desktop ?</p>
+<!-- ------------ -->
+
 <p class="text">
  Azure Virtual Desktop is a desktop and application virtualization service that runs on the cloud. It enables you to use a cloud-hosted version of Windows from any
  location.
 </p>
 
+<!-- ------------ -->
+<p class="sub-sub-title">- Access Azure Virtual Desktop</p>
+<!-- ------------ -->
+
+<p class="text">
+ client can use a Azure Virtual Desktop client by using either a native application on the device or the Azure Virtual Desktop HTML5 web client to connect to their
+ published Windows desktop and applications.
+</p>
+
 <div class="text-box note">
- <p>Azure Virtual Desktop works across devices and operating systems, and works with apps that you can use to access remote desktops or most modern browsers.</p>
+ <p>
+  Azure Virtual Desktop works across devices and operating systems like Windows, Mac, iOS, Android, and Linux. It works with apps that you can use to access remote
+  desktops or most modern browsers.
+ </p>
 </div>
 
 <p class="text">
- Azure Virtual Desktop provides centralized security management for users' desktops with Azure Active Directory (Azure AD). You can enable multifactor authentication to
+ User sign-in to Azure Virtual Desktop is fast because user profiles are containerized by using
+ <tooltip
+  desc="FSLogix enhances and enables user profiles in Windows remote computing environments. FSLogix may also be used to create more portable computing sessions when using physical devices."
+  >FSLogix</tooltip
+ >
+ . At sign-in, the user profile container is dynamically attached to the computing environment. The user profile is immediately available and appears in the system
+ exactly like a native user profile.
+</p>
+
+<!-- ------------ -->
+<p class="sub-sub-title">- Centralized Security management</p>
+<!-- ------------ -->
+
+<p class="text">
+ Azure Virtual Desktop provides centralized security management for users' desktops with Azure Active Directory (Azure AD). You can enable multi-factor authentication to
  secure user sign-ins. You can also secure access to data by assigning granular role-based access controls (RBACs) to users.
 </p>
 
 <p class="text">
  With Azure Virtual Desktop, the data and apps are separated from the local hardware. The actual desktop and apps are running in the cloud, meaning the risk of
  confidential data being left on a personal device is reduced. Additionally, user sessions are isolated in both single and multi-session environments.
+</p>
+
+<p class="text">
+ You can provide individual ownership through personal (persistent) desktops. For example, you might want to provide personal remote desktops for members of an
+ engineering team. Then they can add or remove programs without impacting other users on that remote desktop.
+</p>
+
+<p class="text">
+ Azure Virtual Desktop also improves security by using reverse connect technology. This connection type is more secure than the Remote Desktop Protocol. We don't open
+ inbound ports to the session host VMs.
+</p>
+
+<!-- ------------ -->
+<p class="sub-sub-title">- Managing resources</p>
+<!-- ------------ -->
+
+<p class="text">
+ Azure Virtual Desktop is an Azure service, so it will be familiar to Azure administrators. You use Azure AD and RBACs to manage access to resources. With Azure, you also
+ get tools to automate VM deployments, manage VM updates, and provide disaster recovery.
+</p>
+
+<p class="text">
+ As with other Azure services, Azure Virtual Desktop uses Azure Monitor for monitoring and alerts. This standardization lets admins identify issues through a single
+ interface.
+</p>
+
+<!-- ------------ -->
+<p class="sub-sub-title">- Performance management</p>
+<!-- ------------ -->
+
+<p class="text">
+ Azure Virtual Desktop gives you options to load balance users on your VM
+ <tooltip desc="Host pools are collections of VMs with the same configuration assigned to multiple users.">host pools</tooltip>. For the best performance, you can
+ configure load balancing to occur as users sign in (breadth mode).
+</p>
+
+<p class="text">
+ With breadth mode, users are sequentially allocated across the host pool for your workload. To save costs, you can configure your VMs for depth mode load balancing where
+ users are fully allocated on one VM before moving to the next.
+</p>
+
+<div class="text-box note">
+ <p>Azure Virtual Desktop provides tools to automatically provision additional VMs when incoming demand exceeds a specified threshold.</p>
+</div>
+
+<!-- ------------ -->
+<p class="sub-sub-title">- Multi-session deployment</p>
+<!-- ------------ -->
+
+<p class="text">
+ Azure Virtual Desktop lets you use Windows 10 Enterprise multi-session, the only Windows client-based operating system that enables multiple concurrent users on a single
+ VM.
+</p>
+
+<!-- ------------ -->
+<p class="sub-sub-title">- Cost Saving</p>
+<!-- ------------ -->
+
+<p class="text">
+ Azure Virtual Desktop is available to you at no additional cost if you have an eligible Microsoft 365 license. Just pay for the Azure resources used by Azure Virtual
+ Desktop.
+</p>
+
+<div class="list-content normal star">
+ <ul>
+  <li>Bring your eligible Windows or Microsoft 365 license to get Windows 10 Enterprise and Windows 7 Enterprise desktops and apps at no additional cost.</li>
+  <li>
+   If you're an eligible Microsoft Remote Desktop Services Client Access License customer, Windows Server Remote Desktop Services desktops and apps are available at no
+   additional cost.
+  </li>
+ </ul>
+</div>
+
+<p class="text">
+ Also you can save on compute cost by Buying one-year or three-year Azure Reserved Virtual Machine Instances to save you up to 72 percent versus pay-as-you-go pricing.
+ You can pay for a reservation up front or monthly. Reservations provide a billing discount and don't affect the runtime state of your resources.
 </p>
 
 <!-- #endregion -->

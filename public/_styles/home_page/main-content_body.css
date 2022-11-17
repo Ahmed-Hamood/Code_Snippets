@@ -38,11 +38,11 @@ body[pageLoading='false'] #page-content-wrapper {
 }
 
 body[max-content='true'] #page-content-wrapper {
- max-width: var(--main-doc-content-width);
+ /* max-width: var(--main-doc-content-width); */
 }
 
 body[max-content='true'] .nav-content-header {
- max-width: calc(var(--main-doc-content-width) + 50px) !important;
+ /* max-width: calc(var(--main-doc-content-width) + 50px) !important; */
 }
 
 /* ########################################################### */
