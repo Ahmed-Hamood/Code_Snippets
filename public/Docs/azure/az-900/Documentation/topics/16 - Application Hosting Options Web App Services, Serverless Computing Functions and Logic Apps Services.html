@@ -3,7 +3,7 @@
 
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-title">1. Application Hosting Options</p>
+<p class="sub-title hide-content">1. Application Hosting Options</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
@@ -69,7 +69,7 @@
 </div>
 
 <div class="list-content normal star">
- <p class="list-title">Three Pricing Tier are currently available :-</p>
+ <p class="list-title">Three Pricing Tier categories are currently available :-</p>
  <ul>
   <li>
    <underline yellow>Shared Compute Dev/Test (Free and Shared)</underline> – The app is run on the same VM as other apps; scaling is not an option. This plan is good for
@@ -84,20 +84,19 @@
  </ul>
 </div>
 
+<div class="text-box note">
+ <p>Within each category, there are different pricing tiers.</p>
+</div>
 
 <!-- ------------ -->
 <p class="title-text green">- With App Service, you can host most common web app styles, such as :</p>
 <!-- ------------ -->
 
 <p class="text">
- <underline red>Web Apps</underline> - build and deploy web apps faster at scale. App Service includes full support for hosting web apps by using <text>ASP.NET</text>,
- <text>ASP.NET Core</text>, <text>Java</text>, <text>Ruby</text>, <text>Node.js</text>, <text>PHP</text>, or <text>Python</text>. You can choose either Windows or Linux
- as the host operating system.
+ <underline red>Web Apps</underline> - build and deploy web apps faster at scale. App Service supports different run-times and many programming languages hosting web apps
+ like <text>ASP.NET</text>, <text>ASP.NET Core</text>, <text>Java</text>, <text>Ruby</text>, <text>Node.js</text>, <text>PHP</text>, or <text>Python</text>. You can
+ choose either Windows or Linux as the host operating system.
 </p>
-
-<!-- ------------ -->
-<p class="underline-text">- Available run-times, programming languages and containers :</p>
-<!-- ------------ -->
 
 <img id="image" path="/img/image076.PNG" alt="image" />
 
@@ -106,15 +105,14 @@
 <p class="text"><underline red> Web App for containers</underline> - deploy and run containerized web apps.</p>
 
 <p class="text">
- <underline red>WebJobs</underline> - WebJobs are often used to run background tasks as part of your application logic. You can use the WebJobs feature to run a
- program (<text>.exe</text>, <text>Java</text>, <text>PHP</text>, <text>Python</text>, or <text>Node.js</text>) or script (<terminal>.cmd</terminal>,
- <terminal>.bat</terminal>, <terminal>PowerShell</terminal>, or <terminal>Bash</terminal>) in the same context as a web app, API app, or mobile app. They can be scheduled
- or run by a trigger.
+ <underline red>WebJobs</underline> - WebJobs are often used to run background tasks as part of your application logic. You can use the WebJobs feature to run a program
+ (<text>.exe</text>, <text>Java</text>, <text>PHP</text>, <text>Python</text>, or <text>Node.js</text>) or script (<terminal>.cmd</terminal>, <terminal>.bat</terminal>,
+ <terminal>PowerShell</terminal>, or <terminal>Bash</terminal>) in the same context as a web app, API app, or mobile app. They can be scheduled or run by a trigger.
 </p>
 
 <p class="text">
- <underline red>Mobile apps</underline> - Use the Mobile Apps feature of App Service to quickly build a back end for iOS and Android apps. With just a few actions in
- the Azure portal, you can:
+ <underline red>Mobile apps</underline> - Use the Mobile Apps feature of App Service to quickly build a back end for iOS and Android apps. With just a few actions in the
+ Azure portal, you can:
 </p>
 
 <div class="list-content normal">
@@ -127,6 +125,316 @@
 </div>
 
 <!-- #endregion -->
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">2. Serverless Computing</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ <bold>Serverless</bold> is a cloud-native development model that allows developers to build and run applications without having to manage Infrastructures servers. With
+ serverless computing you can build applications faster by eliminating the need to maintain virtual machines or containers.
+</p>
+
+<p class="text">With Azure, when talking about serverless computing, we need to refer to two azure services:</p>
+
+<div class="list-content normal star">
+ <ul>
+  <li><underline yellow>Azure Functions</underline>: Functions can execute code in almost any modern language.</li>
+  <li>
+   <underline yellow>Azure logic Apps</underline>: Logic apps are designed in a web-based designer and can execute logic triggered by Azure services without writing any
+   code.
+  </li>
+ </ul>
+</div>
+
+<div class="text-box note">
+ <p>
+  Serverless means that the infrastructure provision and management are invisible to the developer. There are still servers in serverless, but they are
+  <tooltip desc="detached or separated">abstracted</tooltip> away from app development.
+ </p>
+</div>
+
+<p class="text">Servers are still running the code, everything is run behind the scene by azure cloud. We have three main pillars of serverless computing.</p>
+
+<div class="text-box info">
+ <p>
+  Serverless computing is a method of providing backend services on an as-used basis. Servers are still used, but a company that gets backend services from a serverless
+  vendor is charged based on usage, not a fixed amount of bandwidth or number of servers.
+ </p>
+</div>
+
+<!-- ------------ -->
+<p class="title-text green">- Abstraction of servers</p>
+<!-- ------------ -->
+
+<p class="text">
+ Servers are completely abstracted from the underlying hosting environment. You don't need to configure or maintain the infrastructure you simply upload your code to
+ azure and it runs with assuring High Availability and scalability.
+</p>
+
+<p class="text">
+ Azure will automatically scale resources to maintain stable performance by allocation/deallocation of resources, You never explicitly reserve capacity.
+</p>
+
+<!-- ------------ -->
+<p class="title-text green">- Event-Driven Scale</p>
+<!-- ------------ -->
+
+<p class="text">
+ With serverless computing your code run based on trigger or events, for example it runs function when it receives an HTTP request, this process is good fit for workloads
+ that respond to incoming events like notification message when you order something.
+</p>
+
+<p class="text">
+ The platform automatically schedules the function to run and scales the number of compute instances based on the rate of incoming events. Either event invoked by users
+ or event that will run everyday at a specific time.
+</p>
+
+<div class="text-box info">
+ <p>
+  A function contains both code and metadata about its triggers and bindings. Triggers define how a function is invoked. And Bindings provide a declarative way to connect
+  to services from within the code. For example you order something the order function get triggered or called, within the function we have codes that binds with other
+  functions or services that will allow us to generate a reply message to customer
+ </p>
+</div>
+
+<div class="list-content normal number">
+ <p class="list-title">Event include trigger by :</p>
+ <ul>
+  <li>Timers For example, if a function needs to run every day at <number>10:00 AM</number> UTC.</li>
+  <li>
+   HTTP like API and
+   <tooltip
+    desc="Webhooks typically are used to connect two different applications. When an event happens on the trigger application, it serializes data about that event and sends it to a webhook URL from the action application—the one you want to do something based on the data from the first application. <red> - What is difference between API and webhook?</red> <br />
+    An application programming interface (API) is a software interface that serves as a bridge between computers and applications. A webhook is a way for one application to deliver data to another app in real-time."
+    >webhook</tooltip
+   >
+   scenarios
+  </li>
+  <li>Queues - with order processing</li>
+ </ul>
+</div>
+
+<!-- ------------ -->
+<p class="title-text green">- Micro-billing (Pay by the run time)</p>
+<!-- ------------ -->
+
+<p class="text">
+ You pay only for the duration your code runs, if your function is not active or no executions occur, then you are not charged. for example, if the code runs once a day
+ for two minutes, they're charged for one execution and two minutes of computing time.
+</p>
+
+<div class="list-content normal check">
+ <p class="list-title">We can simply say :-</p>
+ <ul>
+  <li>You only pay for the time the code runs.</li>
+  <li>No active function executions occur therefore there is not charge</li>
+  <li>For example, if the code runs once a day for two minutes, they're charged for one execution and two minutes of computing time.</li>
+ </ul>
+</div>
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">- Azure Functions Service</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Azure Functions is
+ <tooltip desc="An event-driven application is a computer program that is written to respond to actions generated by the user or the system.">an event-driven</tooltip>,
+ designed for Micro/Nano-services, it's a serverless compute option that doesn't require maintaining virtual machines or containers.
+</p>
+
+<p class="text">
+ If you build an app using VMs or containers, those resources have to be <text green>running</text> in order for your app to function. With Azure Functions, an event
+ wakes the function, <tooltip desc="make (suffering, deficiency, or a problem) less severe.">alleviating</tooltip> the need to keep resources provisioned when there are
+ no events.
+</p>
+
+<div class="text-box info">
+ <p>
+  Using a virtual machine-based approach, you'd incur costs even when the virtual machine is idle. With functions, Azure runs your code when it's triggered and
+  automatically deallocates resources when the function is finished. In this model, you're only charged for the CPU time used while your function runs.
+ </p>
+</div>
+
+<div class="list-content normal check">
+ <p class="list-title">Here some of trigger examples :-</p>
+ <ul>
+  <li>Respond to data change</li>
+  <li>Run a task on schedule</li>
+  <li>Run a function as response to HTTP request</li>
+ </ul>
+</div>
+
+<p class="text">Azure Functions can execute code in almost any modern language. it commonly used when you need to perform work in response to an event.</p>
+
+<p class="text">
+ Azure function is similar to app service, but the difference is in app service we were creating a full-fledged web services or web applications, but if we want to run a
+ small piece of code, let’s say we have a function that adds two numbers a and b and return for us the result. We can use azure function to run this small piece of code.
+</p>
+
+<img id="image" path="/img/image077.PNG" alt="image" />
+
+<p class="text">
+ We ask developers to prepare a small package and deploy our function up across multiple nodes (VMs underneath) and expose it as a web service. Here we host a small piece
+ of code very effectively.
+</p>
+
+<p class="text">
+ With Azure function service, auto-scaling feature is supported from <number>0</number> to <number>200</number> servers. It is one of the more scalable services in azure
+ with it pricing consumption mode, where you can build scalable and cheap web applications.
+</p>
+
+<div class="list-content normal check">
+ <p class="list-title">two hosting/pricing model :-</p>
+ <ul>
+  <li>Consumption based plan - pay exactly for what you use for example, 50 cents for one million execution.</li>
+  <li>Dedicated Plan using app services</li>
+ </ul>
+</div>
+
+<div class="text-box note">
+ <p>
+  Functions scale automatically based on demand, so they're a solid choice when demand is variable. For example, you might receive messages from an IoT solution that's
+  used to monitor a fleet of delivery vehicles. You'll likely have more data arriving during business hours.
+ </p>
+</div>
+
+<p class="text">
+ Azure Functions runs your code when it's triggered and automatically deallocates resources when the function is finished. In this model, you're only charged for the CPU
+ time used while your function runs.
+</p>
+
+<div class="list-content normal star">
+ <ul>
+  <li><underline yellow>Stateless (the default)</underline> - They behave as if they're restarted every time they respond to an event.</li>
+  <li><underline yellow>Stateful (called "Durable Functions")</underline> - A context is passed through the function to track prior activity..</li>
+  <li>
+   <tooltip
+    desc="
+    Stateless and stateful protocols are fundamentally different from each other. - A stateless system sends a request to the server and relays the response (or the state) back without storing any information. - stateful systems expect a response, track information, and resend the request if no response is received."
+    >Stateful vs stateless</tooltip
+   >
+  </li>
+ </ul>
+</div>
+
+<div class="list-content normal check">
+ <p class="list-title">Benefits of Azure Functions :-</p>
+ <ul>
+  <li>It's ideal when you're only concerned about the code running your service and not about the underlying platform or infrastructure.</li>
+  <li>We use it, when we want to perform work in response to an event often via a REST request, timer, or message from another Azure service.</li>
+  <li>Functions scale automatically based on demand, so they may be a good choice when demand is variable.</li>
+ </ul>
+</div>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">- Azure Logic Apps</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+  Azure Logic apps are similar to azure functions, Both enable you to trigger logic based on an event, but with logic app you write nothing you don't need to write code.
+  Azure functions execute code, while Azure logic apps executes workflows, using pre-built logic blocks that azure provide for us.
+ </p>
+ 
+ <div class="text-box">
+  <p>
+   For example, a ticket arrives in <tooltip desc="Zendesk is a complete customer service solution that's easy to use and scales with your business.">ZenDesk</tooltip>,
+   you could detect the intent of the message with cognitive services and then create an item in
+   <tooltip
+    desc="Organizations use Microsoft SharePoint to create websites. You can use it as a secure place to store, organize, share, and access information from any device. All you need is a web browser,"
+    >SharePoint</tooltip
+   >
+   to track the issue.
+   <ul>
+     <li>Also, you can add the customer to your Dynamics 365 CRM system if they aren't already in your database.</li>
+     <li>and Send a follow-up email to acknowledge their request.</li>
+    </ul>
+  </p>
+ </div>
+ 
+ <p class="text">
+  Every Azure logic app workflow starts with a trigger, which fires when a specific event happens or when newly available data meets specific criteria. Many triggers
+  include basic scheduling capabilities, so developers can specify how regularly their workloads will run. Each time the trigger fires, the Logic Apps engine creates a
+  logic app instance that runs the actions in the workflow. These actions can also include data conversions and flow controls, such as conditional statements, switch
+  statements, loops, and branching.
+ </p>
+ 
+ <div class="list-content normal star">
+  <p class="list-title">With Azure logic Apps you can :-</p>
+  <ul>
+   <li>Schedule - basic scheduling capabilities</li>
+   <li>Automate ad orchestrate tasks</li>
+   <li>Business processes and workflows</li>
+  </ul>
+ </div>
+ 
+ <p class="text">
+  When you need to integrate apps, data, systems and service across enterprises or organization. You create logic apps workflow using visual designer on azure portal or
+  virtual studio.
+ </p>
+ 
+ <p class="text">
+  Workflow like visualize, design, build, automate and deploy business processes as series of steps. Execute workflows designed to automate business scenarios and built
+  from predefined logic blocks. The workflows are persisted as a JSON file with a known workflow schema.
+ </p>
+ 
+ <p class="text">
+  Azure provides over <number>200</number> different connectors and processing blocks to interact with different services. You can also build custom connectors to
+  interact. These resources include the most popular enterprise apps.
+ </p>
+ 
+ <p class="text">
+  You can also build custom connectors and workflow steps if the service you need to interact with isn't covered. You then use the visual designer to link connectors and
+  blocks together. You pass data through the workflow to do custom processing, often all without writing any code.
+ </p>
+ 
+ <div class="text-box">
+  <p>
+   For example, when a customer opens the ticket to a service provider, ticket says “My TV Subscription is not working”. With Azure logic app, you could send an
+   acknowledgment email that you have received the customer message.
+  </p>
+ </div>
+
+<!-- #endregion -->
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">3. Functions vs. Logic Apps</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ Both Functions and Logic Apps can both create complex orchestrations. An orchestration is a collection of functions or steps that are executed to accomplish a complex task.
+</p>
+
+<div class="list-content normal star">
+ <ul>
+  <li>With Functions, you write code to complete each step.</li>
+  <li>With Logic Apps, you use a GUI to define the actions and how they relate to one another.</li>
+ </ul>
+</div>
+
+<p class="text">
+  You can mix and match services when you build an orchestration, calling functions from logic apps and calling logic apps from functions. Here are some common differences between the two.
+</p>
+
+<img id="image" path="/img/image078.PNG" alt="image" />
 
 <!-- #endregion -->
 

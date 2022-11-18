@@ -1165,9 +1165,14 @@ tooltip .tooltiptext hr,
  display: block;
  position: relative;
  /* border-bottom: 1px dotted #525252cb; */
- padding-bottom: 5px;
+ /* padding-bottom: 5px; */
  /* margin-bottom: calc(1.4 * 1rem); */
- margin-bottom: 1rem;
+ margin-bottom: 1.4rem;
+ padding: 9px 0;
+ padding-left: 9px;
+ background: #a8a8a808;
+ border-radius: 0 6px 6px 0;
+ box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
 .list-content .list-title::after {
@@ -1175,20 +1180,20 @@ tooltip .tooltiptext hr,
  /* font-size: 0.8rem; */
  /* color: rgb(81, 81, 81); */
  content: '';
- border-radius: 12px;
+ border-radius: 6px;
  height: 100%;
- width: 5px;
+ width: 6px;
  position: absolute;
- left: -20px;
+ left: -6px;
  top: 0px;
- background-color: #16a085;
- box-shadow: 0px 0px 15px 0px #16a085;
- /* animation: FadeInAnimation 1.2s 2s ease-out infinite alternate-reverse; */
+ background-color: #ffffff;
+ /* box-shadow: 0px 0px 10px 0px #16a085; */
+ animation: FadeInAnimation 1.2s 2s ease-out infinite alternate-reverse;
 }
 
 @media screen and (max-width: 800px) {
  .list-content .list-title::after {
-  left: -17px;
+  /* left: -17px; */
  }
 }
 
