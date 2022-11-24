@@ -1,0 +1,244 @@
+<p class="main-title">PLC Introduction</p>
+<!-- #region start -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">1 - What is PLC</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ PLC or programmable logic controller its a device that is used to wire machines or equipment like sensors/switches/motors together, and control them by writing
+ algorithms inside it. It will control whatever signal connected to it.
+</p>
+
+<!-- ------------ -->
+<p class="title-text">- Most popular PLCs in market :-</p>
+<!-- ------------ -->
+
+<img id="image" path="/img/image001.PNG" alt="image" />
+
+<p class="text">
+ A programmable logic controller (PLC) is a digital computer used to automate typically industrial electromechanical processes, such as machinery control on factory
+ assembly lines, amusement rides, or light fixtures.
+</p>
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">2 - PLC Types</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">- PLC Types Based on Size</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<!-- ------------ -->
+<p class="title-text green">Small PLC</p>
+<!-- ------------ -->
+
+<p class="text">
+ Small PLC computer can control smaller machines such as <tooltip image="/img/image002.PNG" desc="">conveyors</tooltip> and motors. It has less functionality and it
+ contains enough memory to store ladder logic programs for monitoring local I/O devices.
+</p>
+
+<p class="text">
+ They typically have serial communications ports configured to communicate with field
+ <tooltip
+  image="/img/image003.gif"
+  desc="An actuator is a device that uses a form of power to convert a control signal into mechanical motion. for example by opening and closing a valve. In simple terms."
+  >actuators</tooltip
+ >
+ and sensors over <tooltip image="/img/image004.PNG" desc="">RS-232 or RS-485</tooltip> links.
+</p>
+
+<!-- ------------ -->
+<p class="title-text green">Medium PLC</p>
+<!-- ------------ -->
+
+<p class="text">
+ A medium PLC is a computer that can control a large machines such as assembly lines and motors it has more functionality than small PLC, it includes a large memory size
+ expanded communication ports, higher processing speeds, and additional input/output devices.
+</p>
+
+<!-- ------------ -->
+<p class="title-text green">Large PLC</p>
+<!-- ------------ -->
+
+<p class="text">
+ A large PLC is a computer that can control very large machines such as whole building blocks or power-producing turbines. It has more functionality than previous PLCs
+ due to its high memory in size, expand communication ports, high processing speed and additional input/output devices.
+</p>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">- PLC Types Based on Hardware Setup</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<!-- ------------ -->
+<p class="title-text green">Fixed/Integrated/Compact PLC</p>
+<!-- ------------ -->
+
+<p class="text">
+ Compact PLC is a small, micros=processor controller designed to handle small automation tasks. It has a build-in primary components attached to it, like inputs, outputs,
+ power supply, processing unit, and terminals or connectors that link with devices such as sensors and switches.
+</p>
+
+<p class="text">
+ When you buy Compact PLCs, you will notice that the input section and the output sections of the PLC are integrated into the micro-controller itself. This means that
+ every type of output or input is fixed and is determined by the manufacturer.
+</p>
+
+<div class="text-box note">
+ <p>Furthermore, the number of inputs and outputs may not be expanded in this type of PLC.</p>
+</div>
+
+<p class="underline-text"># Here's a compact PLC :</p>
+
+<img id="image" path="/img/image005.PNG" alt="image" />
+
+<!-- ------------ -->
+<p class="title-text green">Modular PLC</p>
+<!-- ------------ -->
+
+<p class="text">
+ modular PLC is a type that allows multiple expansions of the PLC system through the use of modules. Modules give the programmable logic controller additional features
+ like increased number of I/O units, and they are usually easier to use because each component is independent of each other.
+</p>
+
+<p class="text">
+ The power supply, CPU, communications module, Input/Output module are all separate to the actual micro-controller so you have to manually connect them to each other to
+ create your PLC control system. You buy components separately depend on your requirement.
+</p>
+
+<p class="text">
+ A type of modular PLC is the rack-mounted or rack mount PLC. In a rack mount PLC, the communications module of the PLC resides in the rack itself, so all connections are
+ centralized.
+</p>
+
+<p class="underline-text"># Here's a modular PLC :</p>
+
+<img id="image" path="/img/image006.PNG" alt="image" />
+
+<!-- #endregion -->
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">3 - PLC Input/Output Module</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ PLC Input/Output modules are interfaces that connects the PLC-CPU System/Program to the outside world or to
+ <tooltip desc="connect to switches, sensors, valves, Relays and Contactor">machines</tooltip>. You need to understand how you get information into my PLC and how I
+ control things a round me.
+</p>
+
+<p class="text">
+ When you buy a PLC it typically comes with few channels of inputs and outputs, sometimes it comes with both analog and digital input/output. There are some PLC with I/O
+ interface, these types of PLC called module PLCs, you need to add on I/O modules.
+</p>
+
+<p class="text">
+ These I/O modules come in different shapes and sizes depend on the type of PLC and the manufacture that is behind it. There are a general modules that handle simple
+ digital inputs and digital outputs and there are more specialized modules like
+ <tooltip
+  desc="An RTD (Resistance Temperature Detector) is a sensor whose resistance changes as its temperature changes. The resistance increases as the temperature of the sensor increases."
+  >RTD signals </tooltip
+ >,
+ <tooltip
+  desc="A thermocouple is a device for measuring temperature. It comprises two dissimilar metallic wires joined together to form a junction. When the junction is heated or cooled, a small voltage is generated in the electrical circuit of the thermocouple which can be measured, and this corresponds to temperature"
+  >thermocouple signal</tooltip
+ >
+ and high speed inputs that have to be read at a much higher frequency that a typical module can handle.
+</p>
+
+<div class="text-box info">
+ <p>We also have a generic modules that can be attached to a several types of PLCs thru ethernet communication protocols</p>
+</div>
+ 
+
+<p class="text">
+ PLC Input/Output modules is responsible for taking signals from inputs like switches or sensors, and use these signal to output signal that will start machines like
+ <underline yellow>motor starter</underline>, <underline yellow>valves</underline>, <underline yellow>lights</underline>, <underline yellow>Relays</underline> and
+ <underline yellow>Contactor</underline>.
+</p>
+
+<div class="text-box info">
+ <p>
+  In a PLC system there will usually be dedicated modules for inputs and dedicated modules for outputs. An input module detects the status of input signals such as push
+  button, switches, temperature sensors, etc... An output module controls devices such as relays, motor starters, lights, etc.
+ </p>
+</div>
+
+<p class="text">
+ Signals comes into out PLC from various devices such as switches, buttons and instruments (sensors). These will tell the PLC what is happening within the process. The
+ PLC uses program to decide what actions to take, when and how in controlling the devices attached to it, and thus governing the greater process.
+</p>
+
+<p class="text">As the signals come in from switches or sensors, the more signal must go out to control devices such as pumps, drives, heaters, valves and etc.</p>
+
+<!-- ------------ -->
+<p class="title-text green">- There are two types of signals</p>
+<!-- ------------ -->
+
+<p class="text">
+ <underline yellow>Digital signals</underline>: Digital inputs a discrete input devices like buttons, pressure switches amd flow switches sends a boolean type signal into
+ the PLC the values is considered either:
+</p>
+
+<div class="list-content normal check">
+ <ul>
+  <li>One or Zero</li>
+  <li>On or Off</li>
+  <li>True or False</li>
+  <li>Closed or Oen</li>
+ </ul>
+</div>
+
+<p class="text">
+ Also we have digital output devices like relays, valve actuators and single speed pumps rely on a discrete from the PLC to energize them, also digital output work in a
+ boolean terms.
+</p>
+
+<p class="text">
+ <underline yellow>Analog signals</underline>: Analog input devices comes in a range expressing various levels of precision, like <underline>potentiometer</underline>,
+ <underline>RTD's</underline> and <underline>pH</underline> sensors send a
+ <tooltip desc="capable of or inclined to resistance; resisting. Electricity.">resistive</tooltip> or voltage signal to PLC. Typical analog signals include but are by no
+ mean limited to the following.
+</p>
+
+<div class="list-content normal check">
+ <ul>
+  <li>4-20mA</li>
+  <li>4.00-20.00mA</li>
+  <li>0-5 VDC</li>
+  <li>(-10)-(+10) VDC</li>
+ </ul>
+</div>
+
+<div class="text-box info">
+ <p>These analog signals can work with variable frequency, mostly you gonna work with milli-amps signals or DC voltages.</p>
+</div>
+
+<p class="text">
+ Also analog output devices like heater coils, motor drives nad variable speed dosing pumps rely on an analog signal from the PLC to control their heat, speed.
+</p>
+
+<!-- #endregion -->
+
+<!-- #endregion -->

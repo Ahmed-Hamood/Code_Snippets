@@ -705,7 +705,7 @@ tooltip .tooltiptext,
  visibility: hidden;
  cursor: default;
  color: #fff;
- text-align: center;
+ /* text-align: center; */
  /* line-height: 170%; */
  line-height: 190%;
  width: max-content;
@@ -848,13 +848,25 @@ tooltip .tooltiptext.left,
 }
 
 .tooltip-modal .tooltip-content {
- font-size: 1.4rem;
+ /* font-size: 1.4rem;
  font-weight: 500;
- line-height: 180%;
+ line-height: 180%; */
  margin-left: 15px;
  padding: 8px 5px 8px 0;
  overflow-y: auto;
  max-height: 500px;
+}
+.tooltip-modal .tooltip-content .text-content {
+ font-size: 1.4rem;
+ font-weight: 500;
+ line-height: 180%;
+}
+
+.tooltip-modal .tooltip-content .text-content + #tooltip-image {
+ /* display: block;
+ margin: 0 auto; */
+ margin-top: 12px;
+ margin-left: 14px;
 }
 
 .tooltip-modal .tooltip-content::-webkit-scrollbar-thumb {
@@ -1164,12 +1176,13 @@ tooltip .tooltiptext hr,
  line-height: 130%;
  display: block;
  position: relative;
+ color: var(--text-color) !important;
  /* border-bottom: 1px dotted #525252cb; */
  /* padding-bottom: 5px; */
  /* margin-bottom: calc(1.4 * 1rem); */
  margin-bottom: 1.4rem;
  padding: 9px 0;
- padding-left: 9px;
+ padding-left: 12px;
  background: #a8a8a808;
  border-radius: 0 6px 6px 0;
  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
@@ -1189,6 +1202,16 @@ tooltip .tooltiptext hr,
  background-color: #ffffff;
  /* box-shadow: 0px 0px 10px 0px #16a085; */
  animation: FadeInAnimation 1.2s 2s ease-out infinite alternate-reverse;
+}
+
+.list-content .list-title.green::after {
+ background-color: #1abc9c;
+}
+.list-content .list-title.red::after {
+ background-color: #e74c3c;
+}
+.list-content .list-title.blue::after {
+ background-color: #3498db;
 }
 
 @media screen and (max-width: 800px) {

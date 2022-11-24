@@ -51,8 +51,9 @@
  width: 100%;
 }
 
+.documentation-topics-list-container .subject-topics-content .column,
 .documentation-topics-list-container .subject-topics-content .two-columns {
-  margin-bottom: 32px;
+  margin-bottom: 22px;
 }
 
 @media screen and (max-width: 800px) {
@@ -66,7 +67,7 @@
  color: #e4c332;
  font-size: 1.1rem;
  font-weight: 500;
- margin-bottom: calc(1.2 * 0.6rem);
+ margin-bottom: calc(1.2 * 0.4rem);
  padding-bottom: 0.1rem;
  width: 100%;
  user-select: none;

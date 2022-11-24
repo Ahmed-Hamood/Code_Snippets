@@ -1,0 +1,81 @@
+<p class="main-title">Azure Networking Services Intro</p>
+<!-- #region start -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">- What is Azure Networking Services ?</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ Networking services in azure allow customers to connect cloud and on-premises resources together. Instead of managing/configuring network infrastructure in your company,
+ you can move your resources to the cloud. Azure provide capability to protect and monitor services to help with application delivery.
+</p>
+
+<div class="text-box info">
+ <p>
+  Your company needs to determine the correct approach to configure its network infrastructure t o help save costs, you convince your team to move your website and
+  several of your other networked resources to the cloud. With that in mind, you'll need to provide secure access to private company data for each of its branch
+  locations. You want to know how Azure can help you manage your network more effectively. As it turns out, managing networks on Azure isn't entirely different from
+  managing on-premises networks.
+ </p>
+</div>
+
+<p class="text">
+ Azure provide a secure connection to your company premises, with high performance optimization and scalability for your applications. You just need to connect azure
+ resources and access to applications.
+</p>
+
+<p class="text">
+ With azure you can control and configure traffic in/out of azure efficiently and securely <small>(from on-premises to azure and vise-versa)</small>, and allow you to
+ connect internal component together and managing them easily.
+</p>
+
+<div class="text-box note">
+ <p>
+  The Architecture behind Azure is
+  <tooltip
+   desc="-  a loosely coupled system is one in which components are weakly associated with each other (have breakable relationships), and thus changes in one component least affect existence or performance of another component. - Coupling refers to the degree of direct knowledge that one element has of another."
+   >Loosely Coupled</tooltip
+  >, Different components that sends and receives data from one another. Each components have no knowledge about each other.
+ </p>
+</div>
+
+<div class="list-content normal check">
+ <p class="list-title">This Loosely Coupled Architecture is recommended because :-</p>
+ <ul>
+  <li>Components/Networks Can be updated independently: Allows non-breaking changes as long as communication strategy is consistent.</li>
+  <li>Allows services to be changed without significant impact to the rest of the system.</li>
+  <li>Can be scaled proportionally; Scale up/down, out/in only services that are relevant.</li>
+ </ul>
+</div>
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">- N-tier Loosely Coupled Architecture</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ As we know azure networking is build under loosely coupled architecture, it divides an application into two or more logical tiers. A higher tier can access services from
+ a lower tier, but a lower tier should never access a higher tier <mark>(Observe that each tier can access services only from a lower tier)</mark>
+</p>
+
+<img id="image" path="/img/image079.PNG" alt="image" />
+
+<div class="list-content normal number">
+ <p class="list-title green">Three-tier refers to an n-tier application that has three :-</p>
+ <ul>
+  <li>Web tier (front-end)</li>
+  <li>Application tier (back-end that runs application logic)</li>
+  <li>Data tier (database)</li>
+ </ul>
+</div>
+
+<!-- #endregion -->
+
+<!-- #endregion -->
