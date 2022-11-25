@@ -37,7 +37,7 @@ export default function _ImageViewer() {
 
     if (checkGif.toUpperCase() == 'GIF') {
      element.addEventListener('click', (ev) => {
-      ev.target.setAttribute('src', imageGifUrl);
+      ev.target.setAttribute('src', ev.target.src);
      });
     }
    });

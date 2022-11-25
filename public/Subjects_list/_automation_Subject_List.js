@@ -20,5 +20,21 @@ export const Automation_Subject_Menu = {
     }
    ],
   },
+  {
+   subject_name: 'Electronics Basic',
+   subject_icon_name: '',
+   type: 'folder',
+   subject_path: '/Electronics_Basic',
+   subject_list_menu: [
+    {
+      subject_name: 'Documentation',
+      subject_icon_name: '',
+      type: 'file',
+      subject_path: '/Documentation.html',
+      page_content_type: 'documentation',
+      subject_list_menu: [],
+    }
+   ],
+  },
  ],
 };
