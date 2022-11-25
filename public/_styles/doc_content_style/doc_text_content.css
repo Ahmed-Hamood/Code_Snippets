@@ -866,7 +866,6 @@ tooltip .tooltiptext.left,
  /* display: block;
  margin: 0 auto; */
  margin-top: 12px;
- margin-left: 14px;
 }
 
 .tooltip-modal .tooltip-content::-webkit-scrollbar-thumb {

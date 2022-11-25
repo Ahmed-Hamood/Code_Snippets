@@ -91,7 +91,7 @@
 <!-- ------------ -->
 
 <p class="text">
- Compact PLC is a small, micros=processor controller designed to handle small automation tasks. It has a build-in primary components attached to it, like inputs, outputs,
+ Compact PLC is a small, micros-processor controller designed to handle small automation tasks. It has a build-in primary components attached to it, like inputs, outputs,
  power supply, processing unit, and terminals or connectors that link with devices such as sensors and switches.
 </p>
 
@@ -170,12 +170,28 @@
 <div class="text-box info">
  <p>We also have a generic modules that can be attached to a several types of PLCs thru ethernet communication protocols</p>
 </div>
- 
 
 <p class="text">
  PLC Input/Output modules is responsible for taking signals from inputs like switches or sensors, and use these signal to output signal that will start machines like
- <underline yellow>motor starter</underline>, <underline yellow>valves</underline>, <underline yellow>lights</underline>, <underline yellow>Relays</underline> and
- <underline yellow>Contactor</underline>.
+ <tooltip
+  yellow
+  desc="A motor starter is an electrical device that is used to start & stop a motor safely. Similar to a relay, the motor starter switches the power ON/OFF & unlike a relay, it also provides a low voltage & overcurrent protection."
+  >motor starter</tooltip
+ >,
+ <tooltip
+  yellow
+  desc="Regulating flow and pressure within a piping system. Controlling the direction of flow within a piping system. Throttling flow rates within a piping system. Improving safety through relieving pressure or vacuum in a piping system."
+  >valves</tooltip
+ >, <underline yellow>lights</underline>,
+ <tooltip
+  yellow
+  desc="A Relay is a simple electromechanical switch. While we use normal switches to close or open a circuit manually, a Relay is also a switch that connects or disconnects two circuits."
+  >Relays</tooltip
+ >
+ and
+ <tooltip yellow desc="A contactor is a special type of relay used for switching an electrical circuit on or off. it is used for high power applications"
+  >Contactor</tooltip
+ >.
 </p>
 
 <div class="text-box info">
@@ -196,9 +212,19 @@
 <p class="title-text green">- There are two types of signals</p>
 <!-- ------------ -->
 
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">- Digital signals - Digital Input/Output</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
 <p class="text">
- <underline yellow>Digital signals</underline>: Digital inputs a discrete input devices like buttons, pressure switches amd flow switches sends a boolean type signal into
- the PLC the values is considered either:
+ <underline yellow>Digital inputs</underline> a discrete input devices like push-buttons,
+ <tooltip desc="A proximity sensor is a device that can detect or sense the approach or presence of nearby objects and for this it does not need physical contact."
+  >a proximity switches</tooltip
+ >
+ , pressure switches and flow switches sends a boolean type signal into the PLC the values is considered either:
 </p>
 
 <div class="list-content normal check">
@@ -206,21 +232,42 @@
   <li>One or Zero</li>
   <li>On or Off</li>
   <li>True or False</li>
-  <li>Closed or Oen</li>
+  <li>Closed or Open</li>
  </ul>
 </div>
 
 <p class="text">
- Also we have digital output devices like relays, valve actuators and single speed pumps rely on a discrete from the PLC to energize them, also digital output work in a
- boolean terms.
+ Also we have <underline yellow>digital output</underline> devices like <underline sky>lights</underline>, <underline sky>relays</underline>,
+ <underline sky>motor starter</underline>, <underline sky>water valve actuators</underline>, <underline sky>heating elements</underline> and
+ <underline sky>single speed pumps</underline> rely on a discrete from the PLC to energize them, also digital output work in a boolean terms on or off.
 </p>
 
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">- Analog signals - Analog Input/Output</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
 <p class="text">
- <underline yellow>Analog signals</underline>: Analog input devices comes in a range expressing various levels of precision, like <underline>potentiometer</underline>,
- <underline>RTD's</underline> and <underline>pH</underline> sensors send a
- <tooltip desc="capable of or inclined to resistance; resisting. Electricity.">resistive</tooltip> or voltage signal to PLC. Typical analog signals include but are by no
- mean limited to the following.
+ <underline yellow>Analog signals</underline>: Analog input devices comes in a range of values much greater than just 1 or 0, it's expressing various levels of precision,
+ like <tooltip desc="A potentiometer is a three-terminal resistor with a sliding or rotating contact that forms an adjustable voltage divider.">potentiometer</tooltip>,
+ <tooltip
+  desc="An RTD (Resistance Temperature Detector) is a sensor whose resistance changes as its temperature changes. The resistance increases as the temperature of the sensor increases."
+  >RTD's</tooltip
+ >
+ and
+ <tooltip
+  desc="A pH sensor helps to measure the acidity or alkalinity of the water with a value between 0-14. When the pH value dips below seven, the water starts to become more acidic. Any number above seven equates to more alkaline. Each type of pH sensor works differently to measure the quality of the water."
+  >PH sensors</tooltip
+ >
+ send a <tooltip desc="capable of or inclined to resistance; resisting. Electricity.">resistive</tooltip> or voltage signal to PLC. Typical analog signals include but are
+ by no mean limited to the following.
 </p>
+
+<img id="image" path="/img/image007.PNG" alt="image" />
 
 <div class="list-content normal check">
  <ul>
@@ -236,8 +283,11 @@
 </div>
 
 <p class="text">
- Also analog output devices like heater coils, motor drives nad variable speed dosing pumps rely on an analog signal from the PLC to control their heat, speed.
+ Also we have <underline yellow>analog output</underline> devices like <underline sky>heater coils</underline>, <underline sky>motor drives</underline> and
+ <underline sky>variable speed dosing pumps</underline> rely on an analog signal from the PLC to control their heat, speed.
 </p>
+
+<!-- #endregion -->
 
 <!-- #endregion -->
 

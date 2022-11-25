@@ -26,9 +26,11 @@
  border-radius: 12px;
 }
 
-.tooltiptext #tooltip-image { 
-  float: left;
-  margin-top: 12px;
+.tooltiptext #tooltip-image {
+ display: block;
+ margin: 0 auto;
+ margin-top: 12px;
+ margin-top: 12px;
 }
 
 #image:hover {
