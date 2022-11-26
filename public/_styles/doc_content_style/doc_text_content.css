@@ -8,6 +8,11 @@
  line-height: 1.65;
 }
 
+#page-content-wrapper > hr {
+  margin-bottom: 18px;
+  border-color: rgb(86, 86, 86);
+}
+
 #page-content-wrapper :is(.side-list-titles-nav-content, .text, .text-box, .warning-text, .underline-text),
 .list-content li {
  font-family: 'Open Sans', 'Source Sans Pro', sans-serif;

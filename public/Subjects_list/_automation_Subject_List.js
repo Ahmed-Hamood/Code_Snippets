@@ -17,6 +17,14 @@ export const Automation_Subject_Menu = {
       subject_path: '/Getting_Started.html',
       page_content_type: 'topic',
       subject_list_menu: [],
+    },
+    {
+      subject_name: 'Documentation',
+      subject_icon_name: '',
+      type: 'file',
+      subject_path: '/Documentation/Documentation.html',
+      page_content_type: 'documentation',
+      subject_list_menu: [],
     }
    ],
   },
