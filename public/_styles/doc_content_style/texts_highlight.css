@@ -64,6 +64,14 @@ mark[gray] {
  background: rgba(146, 146, 146, 0.265);
 }
 
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+  top: -8px;
+}
+
 /* #endregion */
 
 /* #region folder and file style */

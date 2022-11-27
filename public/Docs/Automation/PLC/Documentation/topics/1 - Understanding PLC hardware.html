@@ -1,0 +1,143 @@
+<p class="main-title">Understanding PLC hardware</p>
+<!-- #region start -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">- What is PLC ?</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ PLC is short for programming logic controller, it consist of a computer with several additional hardware pieces that are a part to it or you can be attach to it at any
+ time.
+</p>
+
+<!-- ------------ -->
+<p class="title-text green">- Why PLC can we just use personal computer ?</p>
+<!-- ------------ -->
+
+<p class="text">
+ PLC is an industrial grade computer device designed which is used for automating/controlling production machines. PLC is a
+ <tooltip desc="designed or improved to be hard-wearing or shock-resistant.">ruggedized</tooltip> computer that has been designed to tolerate harsh amd noisy industrial
+ environments. That is the main difference compared to personal computer.
+</p>
+
+<!-- ------------ -->
+<p class="title-text green">- Where PLC is used ?</p>
+<!-- ------------ -->
+
+<p class="text">
+ PLC is commonly used to control motors, relays, fans, lights and other equipments in factories and industrial operations. You can find them in automotive manufacture and
+ plants, food and beverage factories, packaging machines. Here other places or manufacture industrials that our PLC utilized.
+</p>
+
+<div class="list-content normal check">
+ <ul>
+  <li>Car assembly</li>
+  <li>Oil and Gas</li>
+  <li>Power generation</li>
+  <li>minerals</li>
+  <li>Water processing</li>
+  <li>Cooling Systems</li>
+  <li>waste management</li>
+  <li>transportation</li>
+ </ul>
+</div>
+
+<!-- ------------ -->
+<p class="title-text green">- What is the PLC purpose ?</p>
+<!-- ------------ -->
+
+<p class="text">
+ PLC helps you to automate a sequence of process efficiently, and it provides a flexible way to connect different components together with an application software.
+</p>
+
+<p class="text">
+ PLCs have a leaner operating system that is intended mainly for processing inputs and outputs based on programmed logic. That means PLC will react much faster which is
+ essential for many applications.
+</p>
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">PLC Hardware</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">We are going to work with <underline>Siemens S7-1200 PLC</underline> and view its elements, so lets start.</p>
+
+<img id="image" path="/img/image008.PNG" alt="image" />
+
+<p class="text">
+ Our PLC has a <underline yellow>power supply</underline> with <number>120/220V</number> AC, this PLC has to be provided with <number>120V</number> or
+ <number>220V</number> AC from your power source. Some PLCs provide a 24V DC, but this PLC has an internal power supply inside.
+</p>
+
+<div class="text-box warning">
+ <p>If your PLC has a DC input source and you provide it with AC source, then it will burn out immediately.</p>
+</div>
+
+<p class="text">
+ Next beside power supply, we have <number>8</number> <underline yellow>digital inputs</underline> of <number>24V</number>, these inputs are digital controllers that
+ provide a signal and process that using your algorithms and it will give you some outputs.
+</p>
+
+<p class="text">
+ Below digital input, you will find some <underline yellow>input indicators</underline>, these LED indicators will tell you which input is <text green>on</text> or
+ <text red>off</text>. You will see some green light in these indicators which indicate the input is <text green>on</text>, and if there is no light then it mean the
+ input is <text red>off</text>.
+</p>
+
+<p class="text">
+ Below we have <underline yellow>digital outputs</underline>, its a <number>6</number> of output relay type, relay is a coil which has a high current amps ratings.
+ Generally PLC have two types one is transistor type and relay type. Relay type which has more current and capability than transistor type.
+</p>
+
+<p class="text">
+ Above digital output, we have <underline yellow>output indicators</underline> similar to digital input LED, when outputs like light or motor are on you can see their
+ status within these output indicators instead of the physical level.
+</p>
+
+<p class="text">
+ On left side of PLC, we have <underline yellow>PLC status indicators</underline>, these indicators tells us either the PLC is <text green>running</text>,
+ <text red>stop</text>, <text red>error</text> or <text orange>maint</text>. In run mode it will start executing the logic program that you give the PLC.
+</p>
+
+<img id="image" path="/img/image007.PNG" alt="image" />
+
+<p class="text">
+ here a close look of our inputs, starting with power supply section <number>L1</number> and <number>N</number>, the <number>N</number> symbol has an arrow goes down this
+ means you have to supply the power as it mention <number>120-240V</number> AC
+</p>
+
+<p class="text">
+ beside power supply input, we have two terminals <number>L+</number> and <number>M</number> they are the DC outputs which is <number>24VDC</number>, we will give you
+ <number>24V</number> output from this PLC. We can use this <number>24V</number> for wiring out inputs.
+</p>
+
+<p class="text">After that we have our terminals inputs to connect your additional inputs, and also we have <number>2</number> analog inputs as well.</p>
+
+<p class="text">
+ on right side we have a memory card slot to store information about your PLC like values in your PLC program, it helps you to have a record of your process
+</p>
+
+<img id="image" path="/img/image009.PNG" alt="image" />
+
+<p class="text">Below PLC, we have our output terminal of the PLC, as you see we have <number>6</number> relay outputs</p>
+
+<p class="text">
+ Left we have communication status indicators, if your PLC is connected to an HMI or some other device, this indicators are just insure that the communications are just
+ fine.
+</p>
+
+<p class="text">
+ Also we have LAN interface, this PLC has a feature S7-1200, here you can program your PLC in a standard LAN cable, you just need to use your standard LAN cable to start
+ programming your PLC.
+</p>
+
+<!-- #endregion -->
+
+<!-- #endregion -->
