@@ -1,0 +1,278 @@
+<p class="main-title">CPU and memory areas structure and function</p>
+<!-- #region start -->
+
+<p class="text">
+ The standard PLC system has three main parts input modules, CPU-Controller and output modules, you PLC system can work with or without a physical input/output. The CPU
+ and memory, utilize <number>5</number> volts.
+</p>
+
+<div class="list-content normal check">
+ <ul>
+  <li><underline yellow>Input Modules</underline>: Collect data from sensors, potentiometer or push buttons and convert them into digital/analog numbers</li>
+  <li>
+   <underline yellow>Controller/CPU</underline>: Controller updates the code loaded in the CPU with the data received from the input module, then execute the code and
+   generates a new results
+  </li>
+  <li>
+   <underline yellow>Output Modules</underline>: Our output module pick-up the updated results and converts them into different forms of electric signals to control
+   devices such relays and actuators
+  </li>
+ </ul>
+</div>
+
+<img id="image" path="/img/image016.PNG" alt="image" />
+
+<p class="text">
+ As we know our PLC/CPU is powered by <number>24VDC</number>, either is provided by internal or external power supply. For internal power supply you need
+ <number>120/220V AC</number> power source to power your PLC, this means you PLC has an internal power supply which our <number>120/220V AC</number> will be converted
+ into <number>24V DC</number>.
+</p>
+
+<p class="text">If your PLC need a <number>24VDC</number> then this means that you need to provide an external power supply that gives you <number>24VDC</number>.</p>
+
+<div class="text-box tip">
+ <p>
+  It's better to invest in a reliable power supply either buying an external module PS that your PLC vendor manufacture, or buy a PLC with internal power supply if the
+  PLC suits your requirement based on the consumption or PLC system design.
+ </p>
+</div>
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">- What is CPU ?</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ CPU stand for <text>Central Processing Unit</text> is the key part of the PLC system, it processes the input, executes the logic program code and base on that it
+ generates the outputs.
+</p>
+
+<div class="text-box note">
+ <p>Your CPU can run code with or without a direct physical input/output in a PLC system.</p>
+</div>
+
+<p class="text">
+ To run code program in PLC, you must connect the CPU via programming device, we connect to our PLC thru a connection to standard ethernet port using
+ <tooltip image="/img/image010.PNG" desc="">RJ-45</tooltip> ethernet cable.
+</p>
+
+<div class="text-box">
+ <p>Back-in a day every PLC has a special programmer and connecting cables, now everything has been simplified.</p>
+</div>
+
+<p class="text">
+ Every PLC has different <tooltip desc="It commonly refers to a list of things being offered, such as items for sale">catalog</tooltip> with multiple model of CPUs with
+ different capabilities like <underline>processing power</underline> and <underline>memory size</underline>. Various model will give you the flexibility and freedom to
+ select the right one for your application.
+</p>
+
+<div class="list-content normal check">
+ <p class="list-title">The CPU in PLC do the following operations :-</p>
+ <ul>
+  <li>Updating inputs and outputs. This function allows a PLC to read the status of its input terminals and energize or deenergize its output terminals.</li>
+  <li>Performing logic and arithmetic operations. A CPU conducts all the mathematic and logic operations involved in a PLC.</li>
+  <li>
+   Communicating with memory. The PLC's programs and data are stored in memory. When a PLC is operating, its CPU may read or change the contents of memory locations.
+  </li>
+  <li>
+   Scanning application programs. An application program, which is called a ladder logic program, is a set of instructions written by a PLC programmer. The scanning
+   function allows the PLC to execute the application program as specified by the programmer.
+  </li>
+  <li>Communicating with a programming terminal. The CPU transfers program and data between itself and the programming terminal.</li>
+ </ul>
+</div>
+
+<p class="text"></p>
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">- CPU Memory structure - Memory Areas</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">In the PLC, there are various type of CPU-Memory, you must understand how cpu memory in your PLC is organized and how to use it in tour program.</p>
+
+<p class="text">
+ To download our program into the PLC we use a spacing user memory like
+ <tooltip
+  image="/img/image011.PNG"
+  desc="A Secure Digital (SD) card is a tiny flash memory card designed for high-capacity memory and various portable devices, such as car navigation systems, cellular phones, e-books, PDAs, smartphones, digital cameras, music players, digital video camcorders and personal computers."
+  >SD-Card</tooltip
+ >
+ or
+ <tooltip image="/img/image012.PNG" desc="Flash storage is any type of drive, repository or system that uses flash memory to keep data for an extended period of time."
+  >flash storage</tooltip
+ >
+ to load your program into the CPU memory.
+</p>
+
+<p class="text">
+ Memory is the component that stores information, programs, and data in a PLC. The process of putting new information into a memory location is called writing. The
+ process of retrieving information from a memory location is called reading.
+</p>
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">1 - Program memory content</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Your program usually contains some <underline>program code blocks</underline> and <underline>data tables</underline>, our PLC store them into spacing user memory and
+ keep the code there when the power is <text red>off</text>.
+</p>
+
+<img id="image" path="/img/image013.PNG" alt="image" />
+
+<p class="text">
+ Our program executable code will execute when the CPU is on the <text green>RUN</text> mode. In RUN mode our PLC operating system will transfer a copy of executable
+ parts of the program into the <text>RAM</text>.
+</p>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">2 - RAM</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ <tooltip desc="its short term memory where data is stored as the processor needs it.">Ram</tooltip> stands for random access memory, its used to allocate memory for
+ variables and initialize them. Also it stores executable codes which refer to machine language and set of native instructions in order to execute them.
+</p>
+
+<img id="image" path="/img/image014.PNG" alt="image" />
+
+<div class="text-box note">
+ <p>
+  Keep in mind the moment you power cycling or restarting your PLC/Controller, all your <text>RAM</text> content will be erased. On the STOP mode all variables and
+  initializations will be reset.
+ </p>
+</div>
+
+<p class="text">
+ PLC comes with portable <text>RAM</text> which means you can't change the size of your <text>RAM</text> in your PLC.
+ <mark
+  >Make sure that pick PLC with the right <underline red>CPU Power</underline> and <underline red>Memory Size</underline> that fits your application and
+  requirements.</mark
+ >
+</p>
+
+<p class="text">
+ A RAM location can be read or written. This means the information stored in a RAM location can be retrieved and/or altered. Ladder logic programs are stored in RAM.
+</p>
+
+<div class="text-box note">
+ <p>When a new ladder logic program is loaded into a PLC's memory, the old program that was stored in the same locations is over-written and essentially erased.</p>
+</div>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">3 - CPU - Memory System</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ CPU has a dedicated memory space for inputs and outputs tables as well as timers and counters. All I/O signals are communicated to I/O cards by the memory system.
+</p>
+
+<img id="image" path="/img/image015.PNG" alt="image" />
+
+<p class="text">Also in the memory system our CPU record the status logs and system information such as.</p>
+
+<div class="list-content normal star">
+ <ul>
+  <li><underline yellow>Data and Time</underline></li>
+  <li>
+   <underline yellow>System variable</underline>: A Variable is a container that holds information; there are many different types, and it depends on the PLC in use. The
+   main Variable types (also known as Data Types) are:
+  </li>
+  <ul check>
+   <li><underline green>BOOL</underline>: Digital Data (True / False)</li>
+   <li><underline green>BYTE</underline>: Numerical Data / Bitwise Data (0 - 255)</li>
+   <li><underline green>INT</underline>: Numerical Data (-32768 - 32767)</li>
+   <li><underline green>UINT</underline>: Numerical Data (0 - 65535)</li>
+   <li><underline green>SINT</underline>: Numerical Data (-128 - 127)</li>
+   <li><underline green>USINT</underline>: Numerical Data (0 - 255)</li>
+   <li><underline green>DINT</underline>: Numerical Data (-2147483648 - 2147483647)</li>
+   <li><underline green>WORD</underline>: Numerical Data / Bitwise Data (0 - 65535)</li>
+   <li><underline green>DWORD</underline>: Numerical Data / Bitwise Data (0 - 4294967295)</li>
+   <li><underline green>REAL</underline>: Numerical Data (-3.402823e+38 - 3.402823e+38)</li>
+   <li><underline green>ARRAY</underline>: Array of Any Data type (Declared as "ARRAY [0..10] OF DataType)</li>
+  </ul>
+
+  <li arrow>Most PLCs support the above, and some PLCs will support a selection of the below also:</li>
+  <ul check>
+   <li><underline green>LWORD</underline>: Numerical Data / Bitwise Data (0 - 18446744073709551615)</li>
+   <li><underline green>UDINT</underline>: Numerical Data (0 - 4294967295)</li>
+   <li><underline green>LINT</underline>: Numerical Data ( -9,223,372,036,854,775,808 - 9,223,372,036,854,775,807)</li>
+   <li><underline green>ULINT</underline>: Numerical Data (0 - 18446744073709551615)</li>
+   <li><underline green>VARIANT</underline>: Object (Anything)</li>
+   <li><underline green>NULL</underline>: Object (Nothing)</li>
+  </ul>
+ </ul>
+</div>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">4 - Retentive Memory</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Some CPU memory may offer a certain pat of its memory in a retentive format, the content will be stored in a retentive memory which will not be erased or lost by CPU
+ restart or power cycle
+</p>
+
+<img id="image" path="/img/image017.PNG" alt="image" />
+
+<p class="text">
+ <tooltip
+  desc="Retentive memory is memory that is configured by the user to maintain values through a power cycle or a PROGRAM to RUN transition. Non-retentive memory is memory that is configured by the PLC user to clear data after a power cycle or a PROGRAM to RUN transition."
+  >Retentive Memory</tooltip
+ >
+ is a good choice to save
+ <tooltip
+  desc="Calibration is an adjustment or set of adjustments performed on a sensor or instrument to make that instrument function as accurately, or error free, as possible. Proper sensor calibration will yield accurate measurements, which in turn, makes good control of the process possible."
+  >calibration data</tooltip
+ >
+ and recipe parameter, production counter and also keeping track of machine working hours.
+</p>
+
+<div class="text-box info">
+ <p>Every time you download your application program into PLC, the content of retentive memory will be erased.</p>
+</div>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">5 - ROM</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ A ROM location can be read, but not written. ROM is used to store programs and data that should not be altered. For example, the PLC’s operating programs are stored in
+ ROM.
+</p>
+
+<!-- #endregion -->
+
+<!-- #endregion -->
+
+<!-- #endregion -->

@@ -28,8 +28,7 @@
 
 .tooltiptext #tooltip-image {
  display: block;
- margin: 0 auto;
- margin-top: 12px;
+ /* margin: 0 auto; */
  margin-top: 12px;
 }
 
