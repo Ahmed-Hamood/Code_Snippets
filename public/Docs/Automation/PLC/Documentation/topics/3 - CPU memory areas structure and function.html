@@ -1,4 +1,4 @@
-<p class="main-title">CPU and memory areas structure and function</p>
+<p class="main-title">CPU memory areas structure and function</p>
 <!-- #region start -->
 
 <p class="text">
@@ -234,7 +234,7 @@
 <!-- #region start -->
 
 <p class="text">
- Some CPU memory may offer a certain pat of its memory in a retentive format, the content will be stored in a retentive memory which will not be erased or lost by CPU
+ Some CPU memory may offer a certain part of its memory in a retentive format, the content will be stored in a retentive memory which will not be erased or lost by CPU
  restart or power cycle
 </p>
 
@@ -267,9 +267,109 @@
 <!-- #region start -->
 
 <p class="text">
- A ROM location can be read, but not written. ROM is used to store programs and data that should not be altered. For example, the PLC’s operating programs are stored in
+ A ROM location can be read, but not written. ROM is used to store programs and data that should not be altered. For example, the PLC's operating programs are stored in
  ROM.
 </p>
+
+<!-- #endregion -->
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">- Memory Areas in S7-1200</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">Input Memory - Process image input</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Here's a special memory area for physical inputs, this memory area is dedicated for inputs which will read the status of inputs and it will store its status in the
+ memory.
+</p>
+
+<p class="text">The CPU copies the status of the physical inputs to I-Memory at the beginning of the scan cycle.</p>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">1. Output Memory - Process image output</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">Here's a special memory area for physical outputs, this memory store the values of the outputs in the memory.</p>
+
+<p class="text">The CPU copies the status of Q-Memory to the physical outputs at the beginning of the scan cycle.</p>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">2. Bit Memory</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Its a special memory with two parts a general and specialized bit memories. The general memory is used for latching or making timer and also making bit memories.
+</p>
+
+<p class="text">The specialized bit memory has some functions like internal clocks which will be ON/OFF interval by itself and you can use it in your program logic.</p>
+
+<p class="text">
+ The user program reads and writes the data stored in M-Memory. Any code block can access the M-Memory. You can configure addresses within M-Memory to retain the values
+ of the data after a power cycle.
+</p>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">3. Temp Memory - Local memory</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">this memory store the inputs and outputs results in a stack, which is a group of memory allocated for making the logic for processing the information.</p>
+
+<p class="text">After the logic execution finish the stack is cleared and it can be used for other process of information.</p>
+
+<p class="text">
+ Whenever a code block is called, the CPU allocated the temporary or local memory to be used during execution of the block. When the execution of the code block finishes,
+ the CPU reallocates the local memory for the execution of other code block.
+</p>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">4. Data Block - DB</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Suppose my inputs is connected to a sensor and the sensor is used to read the number of block, boxed or bottles, we use data-block to store this information.
+</p>
+
+<p class="text">
+ With Data block we can use it to display information in HMI touch screen, like checking how many bottles are coming, this information is stored in data-block.
+</p>
+
+<p class="text">
+ Use the DB memory for storing various types of data, including intermediate status of an operation or other control information parameters for FBs and data structures
+ required for many instructions such as timer and counters.
+</p>
+
+<p class="text">You can specify a data block to be either read/write or read only. You can access data block memory in bits, bytes, words or double words.</p>
 
 <!-- #endregion -->
 
