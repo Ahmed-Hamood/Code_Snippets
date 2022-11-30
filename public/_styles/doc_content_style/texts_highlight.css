@@ -4,7 +4,8 @@ file,
 folder,
 keyboard,
 text,
-number {
+number,
+letter {
  font-size: 90%;
  font-weight: 400;
  line-height: normal;
@@ -65,11 +66,11 @@ mark[gray] {
 }
 
 sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-  top: -8px;
+ font-size: 75%;
+ line-height: 0;
+ position: relative;
+ vertical-align: baseline;
+ top: -8px;
 }
 
 /* #endregion */
@@ -102,7 +103,8 @@ sup {
  border: 0.1rem solid rgb(182, 182, 182);
 }
 
-:is(p, li, .block-title) number {
+:is(p, li, .block-title) number ,
+:is(p, li, .block-title) letter {
  /* color: #ffffff; */
  background: #242323;
  border: 0.1rem solid rgba(236, 236, 236, 0.38);
@@ -110,47 +112,56 @@ sup {
 }
 
 text[red],
-number[red] {
+number[red],
+letter[red] {
  border: 0.1rem solid #e74d3cb6;
 }
 
 text[yellow],
-number[yellow] {
+number[yellow],
+letter[yellow] {
  border: 0.1rem solid #ddd09a;
 }
 
 text[green],
-number[green] {
+number[green],
+letter[green] {
  border: 0.1rem solid #14a952;
 }
 
 text[orange],
-number[orange] {
+number[orange],
+letter[orange] {
  border: 0.1rem solid #cc6d1b;
 }
 
 text[purple],
-number[purple] {
+number[purple],
+letter[purple] {
  border: 0.1rem solid #8749a0;
 }
 
 text[blue],
-number[blue] {
+number[blue],
+letter[blue] {
  border: 0.1rem solid #5e87c9;
 }
 
 text[sky],
-number[sky] {
+number[sky],
+letter[sky] {
  border: 0.1rem solid #46b0e6;
 }
 
 text[pink],
-number[pink] {
+number[pink],
+letter[pink] {
  border: 0.1rem solid #c32672;
 }
 
 text[inherit],
-number[inherit] {
+number[inherit],
+letter[inherit] {
  border: 0.1rem solid inherit;
 }
 

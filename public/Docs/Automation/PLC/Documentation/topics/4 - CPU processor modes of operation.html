@@ -1,0 +1,242 @@
+<p class="main-title">CPU processor and its modes of operation</p>
+<!-- #region start -->
+
+<p class="text">
+ The standard PLC system has three main parts input modules, CPU-Controller and output modules, you PLC system can work with or without a physical input/output. The CPU
+ and memory is utilize with <number>5</number> volts.
+</p>
+
+<div class="list-content normal check">
+ <ul>
+  <li><underline yellow>Input Modules</underline>: Collect data from sensors, potentiometer or push buttons and convert them into digital/analog numbers</li>
+  <li>
+   <underline yellow>Controller/CPU</underline>: Controller updates the code loaded in the CPU with the data received from the input module, then execute the code and
+   generates a new results
+  </li>
+  <li>
+   <underline yellow>Output Modules</underline>: Our output module pick-up the updated results and converts them into different forms of electric signals to control
+   devices such relays and actuators
+  </li>
+ </ul>
+</div>
+
+<img id="image" path="/img/image016.PNG" alt="image" />
+
+<p class="text">
+ As we know our PLC/CPU is powered by <number>24VDC</number>, either is provided by internal or external power supply. For internal power supply you need
+ <number>120/220V AC</number> power source to power your PLC, this means you PLC has an internal power supply which our <number>120/220V AC</number> will be converted
+ into <number>24V DC</number>.
+</p>
+
+<p class="text">If your PLC need a <number>24VDC</number> then this means that you need to provide an external power supply that gives you <number>24VDC</number>.</p>
+
+<div class="text-box tip">
+ <p>
+  It's better to invest in a reliable power supply either buying an external module PS that your PLC vendor manufacture, or buy a PLC with internal power supply if the
+  PLC suits your requirement based on the consumption or PLC system design.
+ </p>
+</div>
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">- What is CPU ?</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ CPU stand for <text>Central Processing Unit</text> is the key part of the PLC system, it processes the input, executes the logic program code and base on that it
+ generates the outputs.
+</p>
+
+<div class="text-box note">
+ <p>Your CPU can run code with or without a direct physical input/output in a PLC system.</p>
+</div>
+
+<p class="text">
+ To run code program in PLC, you must connect the CPU via programming device, we connect to our PLC thru a connection to standard ethernet port using
+ <tooltip image="/img/image010.PNG" desc="">RJ-45</tooltip> ethernet cable.
+</p>
+
+<div class="text-box">
+ <p>Back-in a day every PLC has a special programmer and connecting cables, now everything has been simplified.</p>
+</div>
+
+<p class="text">
+ Every PLC has different <tooltip desc="It commonly refers to a list of things being offered, such as items for sale">catalog</tooltip> with multiple model of CPUs with
+ different capabilities like <underline>processing power</underline> and <underline>memory size</underline>. Various model will give you the flexibility and freedom to
+ select the right one for your application.
+</p>
+
+<div class="list-content normal check">
+ <p class="list-title">The CPU in PLC do the following operations :-</p>
+ <ul>
+  <li>Updating inputs and outputs. This function allows a PLC to read the status of its input terminals and energize or deenergize its output terminals.</li>
+  <li>Performing logic and arithmetic operations. A CPU conducts all the mathematic and logic operations involved in a PLC.</li>
+  <li>
+   Communicating with memory. The PLC's programs and data are stored in memory. When a PLC is operating, its CPU may read or change the contents of memory locations.
+  </li>
+  <li>
+   Scanning application programs. An application program, which is called a ladder logic program, is a set of instructions written by a PLC programmer. The scanning
+   function allows the PLC to execute the application program as specified by the programmer.
+  </li>
+  <li>Communicating with a programming terminal. The CPU transfers program and data between itself and the programming terminal.</li>
+ </ul>
+</div>
+
+<p class="text"></p>
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">- How processor works</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ First step is <text orange>Startup Mode</text> which is executed before the <text green>RUN Mode</text>. Lets see the following mode that our PLC goes thru.
+</p>
+
+<img id="image" path="/img/image018.PNG" alt="image" />
+
+<!-- ------------ -->
+<p class="title-text orange">
+ - Startup Mode
+</p>
+<!-- ------------ -->
+
+<p class="text"><letter>A</letter> - The process image input is cleared, all inputs are cleared and set to <number>0</number>.</p>
+
+<p class="text"><letter>B</letter> - Output are initilized with last value. If PLC goes off then ON, the last stored outputs values are restored.</p>
+
+<div class="text-box note">
+ <p>Restoring values only with PLCs that has a retentive memory, there are some memories which does not retain last values if the power goes OFF.</p>
+</div>
+
+<p class="text"><letter>C</letter> - Any startup logic is executed, there are some special startup bits which are executed before the run mode.</p>
+
+<p class="text">
+ <letter> D</letter> - Status of physical input is copied to I-Memory. Here will start writing the current input status into memory, all the inputs status will be updated
+ into memory.
+</p>
+
+<div class="text-box info">
+ <p>As we know PLC has a dedicated memory to store the status of inputs, this memory is called Process-Image-Input.</p>
+</div>
+
+<p class="text">
+ <letter>E</letter> - any interrupts presents are queued to execute. interrupts are some special instruction which has higher priority over normal PLC scan cycle. These instruction are
+ executed without caring about the PLC scan it will execute the instructions immediately.
+</p>
+
+<div class="text-box">
+ <p>
+  interrupts instruction are queued or lined-up in startup mode and they are not executed, only executed on the RUN Mode. execute is prioritize to prevent and avoid any
+  delays.
+ </p>
+</div>
+
+<p class="text">
+ <letter>F</letter> - At last, here PLC enables the process memory output for the physical outputs. Here the status of our outputs are stored or written in memory (its just enable not executed)
+</p>
+
+<!-- ------------ -->
+<p class="title-text green">
+  - Run Mode
+ </p>
+ <!-- ------------ -->
+
+<p class="text">
+  The <text green>Run mode</text green> starts after te <text orange>startup mode</text>
+</p>
+
+<p class="text">
+ <number>1</number> - In Run mode Q-Memory is written to physical output. When you have some logic in your PLC and this logic is solved then the answer of the output is stored in process memory, 
+ then the output result will have either a voltage or not. If the output is one then it will give a voltage which could be 24V or common to the terminal to start executing these physical outputs. 
+</p>
+
+<div class="text-box">
+<p>
+ Whatever information that you have in the memory of output is given to the output terminals.
+</p>
+</div> 
+
+<p class="text">
+ <number>2</number> - The state of physical input is written into I-Memory. here the state of physical inputs is written into the I-Memory.
+</p>
+
+<p class="text">
+ <number>3</number> - Then the logic is executed
+</p>
+
+<p class="text">
+ <number>4</number> - at last, self-test diagnostic is performed, if you have any errors in your PLC it will diagnose it and it will indicate the error in your computer or HMI.
+ This step is perform ny itself
+</p>
+
+<p class="text">
+ Then, again it will go back to first step and passing thru each step, this cycle keeps repeating this is called scan cycle. These scan cycle depends on three things
+</p>
+
+<div class="list-content normal number">
+ <ul>
+  <li>How many inputs do you have, PLC read those inputs </li>
+  <li>Logic execution time, it will depend upon the length of your logic</li>
+  <li>Also, it depends upon the number of the outputs</li>
+ </ul>
+</div>
+
+<div class="text-box note">
+<p>
+ Interrupts and <tooltip desc="read and write I/O in some external communication device like HMI">communication</tooltip> are processed during any part of cycle
+</p>
+</div>
+
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">- Operations mode of CPU</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ The CPU has three modes of operation: <text orange>STOP mode</text>, <text orange>Startup Mode</text> and <text green>RUN Mode</text>. Status LEDs on the front of the CPU indicate the current mode of operation
+</p>
+
+<p class="text">
+ In <text green>Run Mode</text>, the scan cycle is executed repeatedly. Interrupts events can occur and be processes at any point within rhe program cycle phase
+</p>
+
+<img id="image" path="/img/image019.PNG" alt="image" />
+
+<p class="text">
+ In <text orange>Stop Mode</text>, the CPU is not executing the program which mean there is no scan cycle, and in this mode you can download a project
+</p>
+
+<img id="image" path="/img/image020.PNG" alt="image" />
+
+<p class="text">
+ In <text orange>startup Mode</text>, the CPU executes any startup logic (If present). Interrupt events are not processed during the startup mode. Below we will show how startup mode is indicated by our PLC LED.
+ Its blinks in the startup mode then it goes into the Run Mode.
+</p>
+
+<img id="image" path="/img/image021.gif" alt="image" />
+
+<p class="text">
+ You can control these three modes of PLC using the software TIA, it provides options like Run, Stop and reset (for resetting the memory)
+</p>
+
+<div class="text-box note">
+<p>
+ You can download your project only when the CPU is in <red>STOP</red> Mode.
+</p>
+</div>
+
+<!-- #endregion -->
+
+<!-- #endregion -->
