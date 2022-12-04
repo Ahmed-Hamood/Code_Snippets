@@ -44,5 +44,21 @@ export const Automation_Subject_Menu = {
     }
    ],
   },
+  {
+   subject_name: 'Industrial Equipments',
+   subject_icon_name: '',
+   type: 'folder',
+   subject_path: '/Industrial_Equipments',
+   subject_list_menu: [
+    {
+      subject_name: 'Industrial Equipments',
+      subject_icon_name: '',
+      type: 'file',
+      subject_path: '/Documentation/Documentation.html',
+      page_content_type: 'documentation',
+      subject_list_menu: [],
+    }
+   ],
+  },
  ],
 };

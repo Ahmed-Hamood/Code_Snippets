@@ -1703,6 +1703,7 @@ tooltip .tooltiptext hr,
  justify-content: start;
  flex-wrap: wrap;
  width: 100%;
+ border-bottom: 1px solid #ffffff2b;
 }
 
 .tab-btn {
