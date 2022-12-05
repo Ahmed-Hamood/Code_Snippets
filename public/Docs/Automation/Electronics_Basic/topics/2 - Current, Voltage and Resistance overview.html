@@ -3,7 +3,7 @@
 
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-title">Current, Amperes and Amps</p>
+<p class="sub-title">1. Current, Amperes and Amps</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
@@ -56,11 +56,17 @@
  </ul>
 </div>
 
+<p class="text">
+ The amount number of the electron charges that travel or flow thru the wire. The amount of charges passing per unit time is the current. After the current pass the
+ resistance the output current will be less voltage (energy), and less electron charges (current). The higher the resistance the less current (charge flow decrease) going
+ to be
+</p>
+
 <!-- #endregion -->
 
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-title">Volts and Voltage</p>
+<p class="sub-title">2. Volts and Voltage</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
@@ -86,11 +92,16 @@
  of light and heat is produced by the bulb.
 </p>
 
+<p class="text">
+ The potential energy of the electrons charges or the amount of pressure on these charges thru wire. Higher voltage mean higher amount of current (electron charges) will
+ travel thru the wire.
+</p>
+
 <!-- #endregion -->
 
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-title">Resistance and Resistors</p>
+<p class="sub-title">3. Resistance and Resistors</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
@@ -101,8 +112,13 @@
 </p>
 
 <div class="text-box info">
- <p>Resistance is measured in ohms Ω</p>
+ <p>Resistance is measured in ohms Ω - Resistance consist of materials, that pushed the electrons back against the current flow</p>
 </div>
+
+<p class="text">
+ Resistance is used to decrease the electrons charges or Lower/Drop the voltage or decrease the potential energy of the electron charge. Mean lower potential energy and
+ less current (electron charges), after hitting the resistance the energy of the electron charge has been decreased that means the voltage is decreased;
+</p>
 
 <img id="image" path="/img/image017.PNG" alt="image" />
 
@@ -152,6 +168,121 @@
  <!-- ########################## -->
 </div>
 
+<div class="text-box info">
+ <p>
+  Always keep in mind that electricity always follows the path of least resistance to ground.
+  <tooltip
+   title="create path"
+   desc="What this means is that if you give positive voltage the choice to pass through a motor to ground, or follow a wire straight to ground, it will follow the wire because the wire provides the least resistance. This also means that by using the wire to bypass the source of resistance straight to ground, you have created a short circuit. Always make sure that you never accidentally connect positive voltage to ground while wiring things in parallel or series."
+   >read more</tooltip
+  >
+ </p>
+</div>
+
+<div class="text-box info">
+ <p>Also note that a switch does not add any resistance to a circuit and simply adding a switch between power and ground will create a short circuit.</p>
+</div>
+
+<div class="text-box note">
+ <p>
+  You should keep in mind is that electricity in a circuit must be used. In other word you should provide something wired between positive (+) and ground (-) that adds
+  resistance to the flow of electricity and uses it up.
+ </p>
+</div>
+
+<p class="text">There needs to be something wired between positive and ground that adds resistance to the flow of electricity and uses it up.</p>
+
+<p class="text">
+ If positive voltage is connected directly to ground and does not first pass through something that adds resistance, like a motor, this will result in a
+ <tooltip desc="Shorts are bad because they will result in your battery and/or circuit overheating, breaking, catching on fire, and/or exploding">short circuit</tooltip>
+ or wire overheating as you see below.
+</p>
+
+<p class="underline-text red"># This means that the positive voltage is connected directly to ground or no resistance is applied :-</p>
+
+<img id="image" path="/img/image020.gif" alt="image" />
+
+<div class="text-box warning">
+ <p>It is very important to prevent short circuits by making sure that the positive voltage is never wired directly to ground.</p>
+</div>
+
+<p class="text"></p>
+
 <!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">4. Calculate Current and Power</p>
+<!-- #region start -->
+
+<p class="text">Power is how much energy we used within a period of time. Less resistance, more voltage and more current means more power.</p>
+
+<div tab-switch-content>
+ <section tab-title="Voltage current and resistance formula" active>
+  <img id="image" path="/img/image021.PNG" alt="image" />
+ </section>
+ <!-- ########################## -->
+ <section tab-title="The Power Formula ">
+  <img id="image" path="/img/image022.PNG" alt="image" />
+ </section>
+</div>
+
+<!-- ------------ -->
+<p class="title-text green">- Example 1</p>
+<!-- ------------ -->
+
+<div class="text-box">
+ <p>We have battery with 5v attach to wire that has a resistance of 100 Ohms. Calculate the amount of current (electron charges) will pass ?</p>
+</div>
+
+<div class="list-content normal dash">
+ <ul>
+  <li>Voltage (V) = 5V</li>
+  <li>Resistance (R) = 100 Ohms</li>
+  <li>Current (I) = ?? Amps</li>
+  <li>Calculating the current is dividing voltage by resistance:</li>
+  <li><number>I = V / R</number> ➤ <number>I = 5/100</number> ➤ <number>I = 0.05Amps</number></li>
+ </ul>
+</div>
+
+<!-- ------------ -->
+<p class="title-text green">- Example 2</p>
+<!-- ------------ -->
+
+<div class="text-box">
+ <p>DC power supply with 0.05Amps output current and 10V output voltage, whats the power this device can supply?</p>
+</div>
+
+<div class="list-content normal dash">
+ <ul>
+  <li>Voltage (V) = 10V</li>
+  <li>Current (I) = 0.05Amps</li>
+  <li>Power (P) = ?? W</li>
+  <li>Calculate the power is multiply voltage with current</li>
+  <li><number>P = V x I</number> ➤ <number>P = 10 x 0.05</number> ➤ <number>P = 1W</number></li>
+ </ul>
+</div>
+
+<!-- ------------ -->
+<p class="title-text green">- Example 3</p>
+<!-- ------------ -->
+
+<div class="text-box">
+ <p>DC power supply with 5Amps output current and 24V output voltage, whats the power this device can supply?</p>
+</div>
+
+<div class="list-content normal dash">
+ <ul>
+  <li>Voltage (V) = 24V</li>
+  <li>Current (I) = 5Amps</li>
+  <li>Power (P) = ?? W</li>
+  <li>Calculate the power is multiply voltage with current</li>
+  <li><number>P = V x I</number> ➤ <number>P = 5 x 24</number> ➤ <number>P = 120W</number></li>
+ </ul>
+</div>
+
+<!-- #endregion -->
+<!-- ######################################################### -->
+<!-- ######################################################### -->
 
 <!-- #endregion -->
