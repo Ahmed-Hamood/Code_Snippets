@@ -1,4 +1,108 @@
 <p class="main-title">Circuit Breaker</p>
 <!-- #region start -->
 
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">1. What is Circuit breaker ?</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ A circuit breaker is an automatically or manually operated electrical switch designed to protect an electrical circuit from damage caused by excess current from an
+ overload or short circuit.
+</p>
+
+<div class="text-box info">
+ <p>You will find a circuit breaker in every automation control panel</p>
+</div>
+
+<p class="text">
+ The circuit breaker is a switching device which also offers protection by tripping and cutting off the supply to load in case of fault. Its like fuse but in circuit
+ breaker it will only trip so we can turn on again no need to replace anything.
+</p>
+
+<!-- ------------ -->
+<p class="title-text green">- These conditions are defined as <red>FAULTS</red> :-</p>
+<!-- ------------ -->
+
+<div class="list-content normal star">
+ <ul>
+  <li>
+   <underline yellow>Overload current</underline>: possible causes for over-current include short circuits, excessive load, incorrect design, an arc fault, or a ground
+   fault. Overload occurs when you exceed the current that your circuit breaker is setup with. Also occur when your load dis-function which lead to high current withdraw
+   that will cause overload to your circuit.
+  </li>
+  <li>
+   <underline yellow>Short Circuit</underline>: occurs when a “hot” wire carrying live current comes into contact with a neutral wire, either by touching it directly or
+   through arcing—allowing the current to jump from the live wire to the neutral one.
+  </li>
+  <li>
+   <underline yellow>Earth Leakage</underline>: when there is an electrical connection between the ground and a conductor, which has not been designed intentionally.
+  </li>
+ </ul>
+</div>
+
+<p class="text">
+ overload is just an excess of current—or amperage—in an electrical circuit. An over-current occurs when the current exceeds the rated amperage capacity of that circuit
+ or of the connected equipment (such as an appliance) on that circuit. An over-current can be caused by overloading the circuit or by a short circuit, a ground fault, or
+ an arc fault. Circuit breakers and fuses protect circuit wiring from damage caused by over-current.
+</p>
+
+<p class="text">
+ The best ways to prevent leakage current are to always use shielded cables on motor installations and to make sure that these cables are grounded at both ends. Also,
+ check cables and insulation for damage and replace ones that are broken or damaged.
+</p>
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">2. Types of Circuit Breakers</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">MCB - Miniature Circuit Breaker</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ MCB is used at homes to protect home appliances, and also it is used in industrial automation control panel. MCB can be used as a switch to turn ON/OFF Loads
+</p>
+
+<img id="image" path="/img/image001.PNG" alt="image" />
+
+<p class="text">
+ MCB will be effected by a <underline yellow>short circuit</underline>, <underline yellow>overload</underline> or <underline yellow>imperfect design</underline>. MCB
+ Circuit Breaker can take up to <number>100</number> Amps Maximum which protect from an over-current - overheat protection.
+</p>
+
+<div class="text-box">
+ <p>
+  Let imagine that an excessive current passing thru your cable. Let say you cable size is small can't handle over-current, this cable eventually going to heat up and
+  cause a fire. So we use circuit breaker to protect from overheat but it will take seconds or minutes to act or trip
+ </p>
+</div>
+
+<p class="underline-text inherit"># MCB has three types each on depend on how many cables/phase you are going to connect to it:</p>
+
+<img id="image" path="/img/image002.PNG" alt="image" />
+
+<div class="text-box warning">
+ <p>
+  If we use a three phase cable we better use three-pole Circuit breaker. but if we use single pole CB on each cable and any of them trip then your device is going to be
+  connected to two phases MCB this will cause problems on some equipment's
+ </p>
+</div>
+
+<img id="image" path="/img/image003.PNG" alt="image" />
+
+<!-- #endregion -->
+
+<!-- #endregion -->
+
 <!-- #endregion -->
