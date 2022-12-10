@@ -13,13 +13,20 @@
  overload or short circuit.
 </p>
 
+<p class="text">
+ A circuit breaker is an electrical device that provides protection against fault current. It breaks the circuit in case of overloading & short circuit. The fault
+ currents generated due to these fault conditions can damage the electrical devices as well as cause fire in a building that can also pose danger to human life.
+</p>
+
 <div class="text-box info">
- <p>You will find a circuit breaker in every automation control panel</p>
+ <p>You will find a circuit breaker in every automation control panel.</p>
 </div>
 
+<p class="text">The circuit breaker is a switching device which also offers protection by tripping and cutting off the supply to load in case of fault.</p>
+
 <p class="text">
- The circuit breaker is a switching device which also offers protection by tripping and cutting off the supply to load in case of fault. Its like fuse but in circuit
- breaker it will only trip so we can turn on again no need to replace anything.
+ Its like fuse but in circuit breaker it will only trip so we can turn on again no need to replace anything. The circuit breaker instantly cut off the power supply to
+ reduce further damage.
 </p>
 
 <!-- ------------ -->
@@ -54,6 +61,28 @@
  check cables and insulation for damage and replace ones that are broken or damaged.
 </p>
 
+<!-- ------------ -->
+<p class="title-text green">A circuit breaker has two types of tripping unit, it has thermal and magnetic tripping unit.</p>
+<!-- ------------ -->
+
+<p class="text">
+ <underline yellow>Thermal Tripping Unit</underline>: is used for protection against overloading. It uses a bi-metallic contact that bends with a change in temperature.
+ The current flowing through the bimetallic strip heats up contact & trip the circuit breaker.
+</p>
+
+<img id="image" path="/img/image007.PNG" alt="image" />
+
+<p class="text">
+ The rate of bending of the bi-metallic strip depends on the amount of current. Therefore, greater the overloading current, faster the circuit breaker trips.
+</p>
+
+<p class="text">
+ <underline yellow>Magnetic Tripping Unit</underline>: is used for protection against short circuit current. It includes a solenoid that produced a strong magnetic field
+ due to high short circuit current to instantly trip the circuit breaker.
+</p>
+
+<img id="image" path="/img/image008.PNG" alt="image" />
+
 <!-- #endregion -->
 
 <!-- ######################################################### -->
@@ -65,7 +94,7 @@
 
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
-<p class="sub-sub-title">MCB - Miniature Circuit Breaker</p>
+<p class="sub-sub-title">A - MCB - Miniature Circuit Breaker</p>
 <!-- ---------------------------------------------------------------- -->
 <!-- ---------------------------------------------------------------- -->
 <!-- #region start -->
@@ -102,6 +131,185 @@
 <img id="image" path="/img/image003.PNG" alt="image" />
 
 <!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">B - MCCB - Molded Case Circuit Breaker</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ The MCCB is used to control electric energy in distribution and in the main input power of large control panel. It has short circuit and overload protection, and it can
+ handle rated current upto <numbers>1000</numbers> Amps (1KAmper).
+</p>
+
+<div class="list-content normal star">
+ <p class="list-title">The characteristics of an MCCB mainly include the following :-</p>
+ <ul>
+  <li>The range of rated current us up to <number>1000</number> amperes</li>
+  <li>Trip current may be adjusted</li>
+  <li>Thermal magnetic operation</li>
+ </ul>
+</div>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">C - ELCB - Earth Leakage Circuit Breaker</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ You can find it on panel that is distribute power to your automation panels and it protect the whole factory. It monitors the three phases and monitor the current that
+ is going back thru the neutral
+</p>
+
+<p class="text">
+ The ELCB senses any earth leakage like any one touching the phase line by mistake then a leakage current is going to pass thru that phase line to the ground causing the
+ ELCB to detect a leakage so it will trip cutting power so fast within millisecond to prevent serious hazards
+</p>
+
+<p class="text">
+ The ELCB is used to protect the circuit from the electrical leakage. When someone gets an electric shock, then this circuit breaker cuts off the power at the time of
+ <number>0.1</number>
+ secs for protecting the personal safety and avoiding the gear from the circuit against short circuit and overload.
+</p>
+
+<div class="list-content normal star">
+ <p class="list-title">The characteristics of an ELCB mainly include the following :-</p>
+ <ul>
+  <li>This circuit breaker connects the phase, earth wire and neutral</li>
+  <li>The working of this circuit breaker depends on current leakage</li>
+ </ul>
+</div>
+
+<!-- #endregion -->
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">3. Circuit breaker Trip Curve</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ Trip Curve is about circuit protection from potential hazards that may occurs in your electrical panel at any time. Here some problems that will cause circuit breaker to
+ trip.
+</p>
+
+<div class="list-content normal star">
+ <ul>
+  <li><underline yellow>Short circuit</underline>: Device may malfunction (fail) causing a short circuit (device burn because of a hot wire cause by over-current)</li>
+  <li><underline yellow>Over-current</underline>: Main power source may have problem it will Send a high voltage (high current) to your equipment</li>
+  <li><underline yellow>Overload</underline>: problem occur on loads like motor may get stack and withdraw more current than it needs then it'll end up burned</li>
+ </ul>
+</div>
+
+<p class="text">Trip curve data-sheet graph is available on every circuit breaker, it explains how long a circuit breaker will take at a certain current to Trip</p>
+
+<div class="text-box info">
+ <p>Trip curve graph has two variable Time duration and Rated Current X n (6 or 10 times)</p>
+</div>
+
+<div class="text-box warning">
+ <p>Don't think it will trip when it reaches <number>10</number> Amps. No, it will take time to trip</p>
+</div>
+
+<p class="text">
+ It will take time because most of Circuit Breaker are thermal protection devices which mean it will take time to trip because of current overload. When it reaches a
+ certain amount of current it will take a certain amount of time until it trips, so its not an immediate reaction.
+</p>
+
+<p class="text">
+ Circuit Breaker with thermal protection, the rated current usually is multiply by <number>X1</number> times only. So if your circuit breaker has <number>10</number> Amps
+ rated current. here an example
+</p>
+
+<p class="text">
+ some circuit breaker has a magnetic protection which trip instantly, when a short circuit occurs this type of circuit breaker protection will trip immediately. This
+ current usually is in between <number>X6</number> and <number>X10</number> times larger than the rated current of that circuit breaker.
+</p>
+
+<!-- ------------ -->
+<p class="title-text green">- Example 1 :-</p>
+<!-- ------------ -->
+
+<div class="text-box">
+ <p>
+  Circuit breaker of <number>10</number> amps rated current. It reaches <number>10</number> amps which mean in trip curve Rated Current multiply by
+  <number>X10</number> or <number>X6</number> time, how long it will take, check the following graph. (our circuit breaker has a magnetic protection)
+ </p>
+</div>
+
+<p class="text">CB reaches between 60-100Amps how fast will the circuit breaker trip ?</p>
+
+<div class="list-content normal arrow">
+ <ul>
+  <li>60A / 10A = X6 trip Rated Current</li>
+  <li>100A / 10A = X10 trip Rated Current</li>
+ </ul>
+</div>
+
+<img id="image" path="/img/image004.PNG" alt="image" />
+
+<p class="text">As you see it will take an immediate between <number>0.7 - 0.9</number> seconds to trip</p>
+
+<!-- ------------ -->
+<p class="title-text green">- Example 2 :-</p>
+<!-- ------------ -->
+
+<div class="text-box">
+ <p>
+  We have a circuit breaker has a <number>20A</number> rating, the tripping curve extracted from its data-sheet is given at 80A, how fast will the circuit breaker trip ?
+ </p>
+</div>
+
+<div class="list-content normal check">
+ <ul>
+  <li>From the trip curve we know that <number>80</number> A is <number>x4</number> the rated current <number>80/20 = 40</number></li>
+  <li>So, at <number>4</number> multiple of the current, the corresponding time is <number>1.7</number> seconds</li>
+ </ul>
+</div>
+
+<img id="image" path="/img/image006.PNG" alt="image" />
+
+<p class="text">
+ Trip curve graph has a two sections for thermal response and short circuit (magnetic) response which mean our circuit breaker has both protection thermal and magnetic
+ response
+</p>
+
+<img id="image" path="/img/image005.PNG" alt="image" />
+
+<p class="text">
+ Thermal response as you see the slow portion response (more delay), and Short circuit or magnetic response it has a fast portion response (less delay) almost an
+ immediate tripping
+</p>
+
+<!-- ------------ -->
+<p class="title-text yellow">The big question why we need a delay in a thermal protection here why?</p>
+<!-- ------------ -->
+
+<p class="text">
+ In-Rush Current last for few second or few hundred milliseconds in order to give an over-current to our loads (motor) the circuit breaker will give a chance to the load,
+ to withdraw its In-Rush Current to start successfully.
+</p>
+
+<p class="text">Again the circuit breaker will give a few seconds chance for inrush current to pass without cutting the power</p>
+
+<p class="text">
+ <underline red>Problem Scenario 1</underline>, If the inrush Current lasted longer more than it should be, because there is a problem in our motor, then the circuit
+ breaker will trip therefor cutting the power because the wire heated (over-current) before we damage our motor
+</p>
+
+<p class="text">
+ <underline red>Problem Scenario 2</underline>, If a short circuit happened in our motor then huge amount 10X of current is going to pass thru the natural causing heat up
+ the circuit breaker with its magnetic property will trip immediately
+</p>
 
 <!-- #endregion -->
 
