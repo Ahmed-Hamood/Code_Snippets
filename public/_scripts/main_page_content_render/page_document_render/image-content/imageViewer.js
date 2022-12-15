@@ -14,6 +14,7 @@ export default function _ImageViewer() {
   let modal_image_content_wrapper = null;
   let modal_image_content = null;
   let modal_image_title = null;
+  let close_modal_image_btn = null;
 
   let modalContainer = `
   <div id="myModal" class="modal-image-view-container">
@@ -54,6 +55,7 @@ export default function _ImageViewer() {
   modal_image_content_wrapper = document.querySelector('.modal-content-wrapper');
   modal_image_content = document.querySelector('.modal-image-content');
   modal_image_title = document.querySelector('.modal-image-title');
+  close_modal_image_btn = document.querySelector('.close-modal-image-btn');
 
   // All listener callback
 
@@ -119,6 +121,9 @@ export default function _ImageViewer() {
   // image opener - when click on an image open it and then add the scroll image wheel listener
   AllImages.forEach((element) => element.addEventListener('click', OpenImageAndAddListeners));
   // close image will reset image src and style and remove any listener.
-  document.querySelector('.close-modal-image-btn').addEventListener('click', () => CloseAndResetImage());
+  // close_modal_image_btn.addEventListener('click', () => CloseAndResetImage());
+  modal_container.addEventListener('click', (ev) => {
+   if (ev.target.className != 'modal-image-content') CloseAndResetImage();
+  });
  }
 }

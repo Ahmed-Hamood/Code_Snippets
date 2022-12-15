@@ -18,6 +18,14 @@
  currents generated due to these fault conditions can damage the electrical devices as well as cause fire in a building that can also pose danger to human life.
 </p>
 
+<div class="list-content normal star">
+ <ul>
+  <li><underline yellow>Short circuit</underline>: Device may malfunction (fail) causing a short circuit (device burn because of a hot wire cause by over-current)</li>
+  <li><underline yellow>Over-current</underline>: Main power source may have problem it will Send a high voltage (high current) to your equipment</li>
+  <li><underline yellow>Overload</underline>: problem occur on loads like motor may get stack and withdraw more current than it needs then it'll end up burned</li>
+ </ul>
+</div>
+
 <div class="text-box info">
  <p>You will find a circuit breaker in every automation control panel.</p>
 </div>
@@ -87,7 +95,7 @@
 
 <!-- ######################################################### -->
 <!-- ######################################################### -->
-<p class="sub-title">2. Types of Circuit Breakers</p>
+<p class="sub-title">2. Types of Circuit Breakers Overview</p>
 <!-- ######################################################### -->
 <!-- ######################################################### -->
 <!-- #region start -->
@@ -202,14 +210,6 @@
  trip.
 </p>
 
-<div class="list-content normal star">
- <ul>
-  <li><underline yellow>Short circuit</underline>: Device may malfunction (fail) causing a short circuit (device burn because of a hot wire cause by over-current)</li>
-  <li><underline yellow>Over-current</underline>: Main power source may have problem it will Send a high voltage (high current) to your equipment</li>
-  <li><underline yellow>Overload</underline>: problem occur on loads like motor may get stack and withdraw more current than it needs then it'll end up burned</li>
- </ul>
-</div>
-
 <p class="text">Trip curve data-sheet graph is available on every circuit breaker, it explains how long a circuit breaker will take at a certain current to Trip</p>
 
 <div class="text-box info">
@@ -230,53 +230,79 @@
  rated current. here an example
 </p>
 
-<p class="text">
- some circuit breaker has a magnetic protection which trip instantly, when a short circuit occurs this type of circuit breaker protection will trip immediately. This
- current usually is in between <number>X6</number> and <number>X10</number> times larger than the rated current of that circuit breaker.
-</p>
-
 <!-- ------------ -->
 <p class="title-text green">- Example 1 :-</p>
 <!-- ------------ -->
 
 <div class="text-box">
- <p>
-  Circuit breaker of <number>10</number> amps rated current. It reaches <number>10</number> amps which mean in trip curve Rated Current multiply by
-  <number>X10</number> or <number>X6</number> time, how long it will take, check the following graph. (our circuit breaker has a magnetic protection)
- </p>
+ <p>Circuit breaker of <number>10A</number> rated current. It reaches <number>10A</number>, how long does it take for trip delay ?</p>
 </div>
-
-<p class="text">CB reaches between 60-100Amps how fast will the circuit breaker trip ?</p>
 
 <div class="list-content normal arrow">
  <ul>
-  <li>60A / 10A = X6 trip Rated Current</li>
-  <li>100A / 10A = X10 trip Rated Current</li>
+  <li>To know the trip curve rated current divide over-current value by CB rated Current as you see below</li>
+  <li>10A/10A = x1 Rated Current multiply</li>
+  <li>then it will take <number>2.2</number> seconds trip delay</li>
  </ul>
 </div>
 
 <img id="image" path="/img/image004.PNG" alt="image" />
-
-<p class="text">As you see it will take an immediate between <number>0.7 - 0.9</number> seconds to trip</p>
 
 <!-- ------------ -->
 <p class="title-text green">- Example 2 :-</p>
 <!-- ------------ -->
 
 <div class="text-box">
+ <p>Circuit breaker has a <number>20A</number> rating. And it reaches <number>60A</number>, how fast will the circuit breaker trip?</p>
+</div>
+
+<div class="list-content normal arrow">
+ <ul>
+  <li>To know the trip curve rated current divide over-current value by CB rated Current</li>
+  <li>60A/20A = x3 Rated Current multiply</li>
+  <li>then it will take <number>1.9</number> seconds trip delay</li>
+ </ul>
+</div>
+
+<!-- ------------ -->
+<p class="title-text green">- Example 3 :-</p>
+<!-- ------------ -->
+
+<div class="text-box">
  <p>
-  We have a circuit breaker has a <number>20A</number> rating, the tripping curve extracted from its data-sheet is given at 80A, how fast will the circuit breaker trip ?
+  We have a circuit breaker has a <number>20A</number> rating, the tripping curve extracted from its data-sheet is given at <number>80A</number>, how fast will the
+  circuit breaker trip ?
  </p>
 </div>
 
-<div class="list-content normal check">
+<div class="list-content normal arrow">
  <ul>
-  <li>From the trip curve we know that <number>80</number> A is <number>x4</number> the rated current <number>80/20 = 40</number></li>
-  <li>So, at <number>4</number> multiple of the current, the corresponding time is <number>1.7</number> seconds</li>
+  <li>To know the trip curve rated current divide over-current value by CB rated Current</li>
+  <li>80A/20A = x4 Rated Current multiply</li>
+  <li>then it will take <number>1.7</number> seconds trip delay</li>
  </ul>
 </div>
 
 <img id="image" path="/img/image006.PNG" alt="image" />
+
+<!-- ------------ -->
+<p class="title-text green">- Example 4 :-</p>
+<!-- ------------ -->
+
+<div class="text-box">
+ <p>If you have a 10Amps rated circuit breaker with magnetic protection equipment. CB reaches between 60-100Amps how fast will the circuit breaker trip?</p>
+</div>
+
+<div class="list-content normal arrow">
+ <ul>
+  <li>To know the trip curve rated current divide over-current value by CB rated Current</li>
+  <li>60A/10A = x6 Rated Current multiply</li>
+  <li>100A/10A = x10 Rated Current multiply</li>
+  <li>then it will take between <number>0.7 - 1.1</number> seconds trip delay</li>
+ </ul>
+</div>
+
+<img id="image" path="/img/image009.PNG" alt="image" />
 
 <p class="text">
  Trip curve graph has a two sections for thermal response and short circuit (magnetic) response which mean our circuit breaker has both protection thermal and magnetic
@@ -284,6 +310,11 @@
 </p>
 
 <img id="image" path="/img/image005.PNG" alt="image" />
+
+<p class="text">
+ some circuit breaker has a magnetic protection which trip instantly, when a short circuit occurs this type of circuit breaker protection will trip immediately. This
+ current usually is in between <number>X6</number> and <number>X10</number> times larger than the rated current of that circuit breaker.
+</p>
 
 <p class="text">
  Thermal response as you see the slow portion response (more delay), and Short circuit or magnetic response it has a fast portion response (less delay) almost an
