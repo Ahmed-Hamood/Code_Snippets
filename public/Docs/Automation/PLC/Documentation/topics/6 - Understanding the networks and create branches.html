@@ -1,0 +1,238 @@
+<p class="main-title">- Understanding the networks and create branches</p>
+<!-- #region start -->
+
+<p class="text">
+ Here some things you need to understand before we learn how to create branches, our motor will be <text green>ON</text> if it carries signal <number>1</number>.
+</p>
+
+<p class="text">Below we have three contact connected to a motor each will pass current if they follow certain conditions as following</p>
+
+<img id="image" path="/img/image022.PNG" alt="image" />
+
+<div class="list-content normal check">
+ <ul>
+  <li>Normally Opened Element - NO = <number>0</number> <small>(default)</small> ▶ current can't pass thru motor will be <text red>OFF</text></li>
+  <li>Normally Closed Element - NC = <number>0</number> <small>(default)</small> ▶ current can pass thru motor will be <text green>ON</text></li>
+ </ul>
+</div>
+
+<div class="list-content normal arrow">
+ <p class="list-title">Motor will be <text green>ON</text> or carries signal <number>1</number>, if :-</p>
+ <ul>
+  <li>S2 is <number>1</number> (change it)</li>
+  <li>S4 is <number>1</number> (change it)</li>
+  <li>S5 is <number>0</number> (as it is)</li>
+ </ul>
+</div>
+
+<div class="list-content normal arrow">
+ <p class="list-title">Motor will be <text red>OFF</text>, or carries signal <number>0</number>, if :-</p>
+ <ul>
+  <li>S2 is <number>0</number> (as it is)</li>
+  <li>S4 is <number>0</number> (as it is)</li>
+  <li>S5 is <number>1</number> (change it)</li>
+ </ul>
+</div>
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">1. Create branches</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ Branches are used to program parallel circuit with the ladder logic (LAD) programming language. You can insert several contact elements into the branch to achieve
+ parallel circuit of series connections.
+</p>
+
+<!-- ------------ -->
+<p class="title-text green"># Here we have three branches in our ladder logic connected to an output:</p>
+<!-- ------------ -->
+
+<img id="image" path="/img/image023.PNG" alt="image" />
+
+<p class="text">
+ Now, we are going to learn how to make these branches. Open your software <underline>TIA Siemens</underline> inside the network area we are going to add our branches
+ there.
+</p>
+
+<img id="image" path="/img/image024.PNG" alt="image" />
+
+<p class="text">To create our new branch, click on the power rail line and then select element called <red>"open branch"</red> as you see below</p>
+
+<!-- ------------ -->
+<p class="title-text green">A. Here we are going to create a new branch</p>
+<!-- ------------ -->
+
+<img id="image" path="/img/image025.gif" alt="image" />
+
+<p class="text">
+ Now, you can attach an element into this branch, lets add NO contact element first we select our branch arrow then select the NO element as you see below.
+</p>
+
+<!-- ------------ -->
+<p class="title-text green">B. Here we are attaching NO element into our newly created branch</p>
+<!-- ------------ -->
+
+<img id="image" path="/img/image026.gif" alt="image" />
+
+<p class="text">
+ Now we connect our <text>branch 2</text> with <text>branch 1</text> as parallel, all you do is click drag the <text>branch 2</text> double arrow and hover over branch 1
+ as you see below
+</p>
+
+<!-- ------------ -->
+<p class="title-text green">C. Here we are creating a parallel connection between branch 2 and branch 1</p>
+<!-- ------------ -->
+
+<img id="image" path="/img/image027.gif" alt="image" />
+
+<p class="text">
+ The moment you see green square on <text>branch 1</text>, you just release your mouse click and you parallel connection from <text>branch 1</text> to
+ <text>branch 2</text> will be created as you see above.
+</p>
+
+<p class="text">
+ Lets add another third branch, just like we did before click on the power rail then select <red>open brach</red> option, after that select
+ <underline yellow>NO element</underline> and at last drag and connect <text>branch 3</text> into <text>branch 2</text> to create parallel circuit connection as you see
+ below
+</p>
+
+<!-- ------------ -->
+<p class="title-text green">D. Here we are repeating all we did before</p>
+<!-- ------------ -->
+
+<img id="image" path="/img/image028.gif" alt="image" />
+
+<p class="text">There is another way to close your branch or to make your parallel connection, you can select <red>close branch</red> option as you see blow</p>
+
+<!-- ------------ -->
+<p class="title-text green">E. Here we are closing and creating a parallel branch connection</p>
+<!-- ------------ -->
+
+<img id="image" path="/img/image029.gif" alt="image" />
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">2. Branches Rules</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">We have some rules that you need to know while creating branches, lets start</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">A - Branch Opens downward</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ <mark>First branches are opened downwards</mark>, which mean when you click on power rail and create a new branch, the new branch it will be opened/created downward
+</p>
+
+<!-- ------------ -->
+<p class="title-text green">- branches always open downward, it will never open upwards, so it always comes downward</p>
+<!-- ------------ -->
+
+<img id="image" path="/img/image030.PNG" alt="image" />
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">B - Branch closed upward</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Another rules, our branch closes upward, you only can close branch with upper branch only. You can attach branch with the branch below but it won't considered as closed,
+ as you see below.
+</p>
+
+<img id="image" path="/img/image031.gif" alt="image" />
+
+<p class="text">
+ If you try to close from top to bottom, our branch automatically be closed upwards, and it will move the output upward. You can't create a path that comes from
+ <text>branch 1</text> down to <text>branch 2</text> to output as you see below.
+</p>
+
+<img id="image" path="/img/image032.gif" alt="image" />
+
+<!-- #endregion -->
+
+<!-- #endregion -->
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">3. Crossing in Ladder Logic</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">A crossing is a place in a LAD network where one branch is closed and at the same time another branch is opened.</p>
+
+<!-- ------------ -->
+<p class="title-text green">- The figure below shows an example of use of crossing :</p>
+<!-- ------------ -->
+
+<img id="image" path="/img/image033.PNG" alt="image" />
+
+<p class="text">
+ Where <text>Tagin_3</text> is connected at the power rail and another <text>Tagin_4</text> is connected to <text>Tagin_3</text> which is connected to rail power as you
+ see above.
+</p>
+
+<div class="list-content normal check">
+ <p class="list-title">The <green>"TagOut"</green> receives signal, if the following two condition are met :-</p>
+ <ul>
+  <li><red>"Tagin_1"</red> or <red>"Tagin_3"</red> has signal 1</li>
+  <li><red>"Tagin_2"</red> or <red>"Tagin_4"</red> has signal 0</li>
+ </ul>
+</div>
+
+<!-- ------------ -->
+<p class="title-text green">Here how to create a branch crossing :</p>
+<!-- ------------ -->
+
+<img id="image" path="/img/image034.gif" alt="image" />
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">4. Rungs in Ladder Logic</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ Our Ladder is mapped in one or more networks. A network contains power rail on the left where one or more rungs originated. Rungs consist of branches, crossing's, LED
+ elements.
+</p>
+
+<img id="image" path="/img/image035.PNG" alt="image" />
+
+<p class="text">
+ We can say lines with branches are the rang. the rang can be a series of element connections, or arrangement of branches with parallel connection. Our rang is closed by
+ a coil or a box which the result of logic operation will be written.
+</p>
+
+<img id="image" path="/img/image036.PNG" alt="image" />
+
+<p class="text">
+ Rungs and networks are executed from top to bottom and from left to right. This means the first instruction in the first rung of the first network is processed first.
+ All instructions of this rung are then processed.
+</p>
+
+<p class="text">
+ The next network is proceeded only after all rungs have been run.
+</p>
+
+<!-- #endregion -->
+
+<!-- #endregion -->
