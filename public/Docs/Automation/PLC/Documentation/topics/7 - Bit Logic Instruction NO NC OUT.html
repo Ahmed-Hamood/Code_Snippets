@@ -1,0 +1,237 @@
+<p class="main-title">Bit Logic Instruction - NO | NC | OUT Commands</p>
+<!-- #region start -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">1. Normally Open Contact in LAD & FBD</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ The normally open (NO) contact is <text red>Off</text> or <number>0</number> by default which mean there is no current coming thru it because its open. Our NO will be
+ <text green>ON</text> if it is closed or equal to 1 when it happen the current can pass thru it because it is closed.
+</p>
+
+<img id="image" path="/img/image037.PNG" alt="image" />
+
+<div class="list-content normal check">
+ <ul>
+  <li>
+   The Normally open contact is Closed (<green>ON</green>) when the assigned bit value <underline yellow>I0.0</underline> is <text green>True</text> or equal to
+   <number>1</number>.
+  </li>
+  <li>
+   The Normally open contact is Opened (<red>OFF</red>) when the assigned bit value <underline yellow>I0.0</underline> is <text red>False</text> or equal to
+   <number>0</number>.
+  </li>
+ </ul>
+</div>
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-sub-title">A. Add NO Contact in TIA Siemens</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ Our normally open contact button in Siemens TIA software is available in the block interface, to select NO you just click on power rail line and choose NO from the block
+ interface as you see below.
+</p>
+
+<img id="image" path="/img/image038.gif" alt="image" />
+
+<p class="text">
+ Also you can select your NO contact from the <underline yellow>Basic Instruction</underline> list which is located on the side, under
+ <underline green>Bit logic operation</underline> folder, select and drag Normally open contact and place it on the power rail line as you see below
+</p>
+
+<img id="image" path="/img/image039.gif" alt="image" />
+
+<p class="text">
+ FBD or functional block data is a programming language for PLC, FBD is widely used in semens most of the time. In FBD the contact symbol is different here it will be
+ displayed as a block box with <number>&</number> symbol.
+</p>
+
+<img id="image" path="/img/image042.PNG" alt="image" />
+
+<p class="text">
+ The block above is called <number>'&'</number> block. The block <text green>True</text> when the assigned bit value <underline yellow>I0.0</underline> is
+ <text green>True</text> or equal to 1. And <text red>False</text> wrn the assigned bit value <underline yellow>I0.0</underline> is <text red>False</text> or equal to 0.
+</p>
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-sub-title">B. NO Contact in Series - AND Logic</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ We can have two open contact in series, if we connect an output at the end with both contacts open then no current will pass into our output. To turn our output
+ <text green>ON</text> then both NO contacts must be closed or assigned to <number>1</number>.
+</p>
+
+<img id="image" path="/img/image040.PNG" alt="image" />
+
+<p class="text">If either of our contact is open then the output won't receive any current which mean it will be <text red>OFF</text>.</p>
+
+<p class="text">
+ In FBD, the <text>AND</text> block with <number>&</number> symbol as you see below, with two contacts both of them in series. Just when you see square box with
+ <number>&</number> symbol and two input contacts attach to it from the left immediately know its in series connection consist of two input contacts.
+</p>
+
+<img id="image" path="/img/image043.PNG" alt="image" />
+
+<p class="text">
+ As before if both contacts are <text green>true</text> or <number>1</number> signal, then our output will be <text green>ON</text>. And if one of them is
+ <text red>false</text> or <number>0</number> then our output will be <text red>OFF</text>.
+</p>
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">C. NO Contact in Parallel - OR Logic</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Here in parallel connection both contacts directly connected to the power rail, so if one of the contacts is <text>ON-Closed</text> then our output will be
+ <text green>ON</text>.
+</p>
+
+<img id="image" path="/img/image041.PNG" alt="image" />
+
+<p class="text">
+ If both contacts are <text>Open-OFF</text>, then our output will be OFF. If both contact is <text>ON-Closed</text> then both will transfer current to out output.
+</p>
+
+<p class="text">
+ Also in FBD, the <text>OR</text> block with <number>>=1</number> symbol as you see below, with two contacts, both contact will be on parallel, which mean both contacts
+ are directly connected the power rail.
+</p>
+
+<img id="image" path="/img/image044.PNG" alt="image" />
+
+<p class="text">
+ Similar to <text>OR</text> rule as before, output will be <text green>ON</text> if either of contacts is <text green>True</text> or <number>1</number>. If both input
+ contacts are <text red>False</text> or <number>0</number> then our output will be <text red>OFF</text>.
+</p>
+
+<div class="text-box info">
+ <p>
+  In FBD, both AND and OR boxes are similar, the only way to determine which is which is by the symbol above. Symbol <number>&</number> for <tex>AND</tex> and
+  <number>>=1</number> for <tex>OR</tex>.
+ </p>
+</div>
+
+<!-- #endregion -->
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">2. Normally Close Contact in LAD & FBD</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ Normally closed contact (NC) is the opposite of normally open contact, the NC contact is always <text green>ON</text> with a signal of <number>0</number>. When you
+ assign True or 1 to NC contact, it will be open which mean no signal or current pass thru it because it becomes open after it was closed.
+</p>
+
+<img id="image" path="/img/image045.PNG" alt="image" />
+
+<p class="text">
+ The Normally close contact is <green>Closed (ON)</green> when the assigned bit value <text>I0.0</text> is <text green>False</text> or equal to <number>0</number>. And
+ its <red>Open (OFF)</red> when the assigned bit value <text>I0.0</text> is <text green>True</text> or equal to <number>1</number>.
+</p>
+
+<p class="text">
+ In FBD. the block <number>&</number> is <green>True</green> when the assigned bit value <text>I0.0</text> is <red>False</red> or equal to <number>0</number>. Anf if
+ <red>False</red> when the assigned bit value <text>I0.0</text> is <green>True</green> or equal to <number>1</number>.
+</p>
+
+<img id="image" path="/img/image048.PNG" alt="image" />
+
+<p class="text">Normally close contact in FBD is similar to NO, but in NC you have a small circle as you see above</p>
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">A. NC Contact in Series - NAND Logic</p>
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">
+ Here both contact in series are closed by default without the need to turn them ON. If both inputs are <number>0</number> then our output will be <text green>ON</text>.
+ And If one of the inputs is one then our output will be <text red>OFF</text>.
+</p>
+
+<img id="image" path="/img/image046.PNG" alt="image" />
+
+<p class="text">
+ In FBD with <number>&</number> symbol, two contacts is series both are closed with assigned value I0.0 of 0 or False. If you turn one of them ON or assign 1 then the
+ output would be OFF.
+</p>
+
+<img id="image" path="/img/image049.PNG" alt="image" />
+
+<!-- #endregion -->
+
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<p class="sub-sub-title">B. NC Contact in Parallel - NOR Logic</p>
+v
+<!-- ---------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+<!-- #region start -->
+
+<p class="text">Here both contact are directly connected to the power rail, and by default both contacts are closed, so our output will be <text green>ON</text>.</p>
+
+<img id="image" path="/img/image047.PNG" alt="image" />
+
+<p class="text">
+ The only way to turn OFF the output is by assigning both contacts with <green>True</green> or <number>1</number> because it would turn them to <red>Open OFF</red> which
+ mean no current will pass thru one of them.
+</p>
+
+<p class="text">
+ In FBD with <number>>=1</number> symbol, our contact are in parallel and they are directly connected to the power rail, if one if them is closed or assigned with 0 then
+ our output will be ON. If both of them are ON or assigned with 1 then both will be Open and no current can pass thru them which mean our output will be OFF.
+</p>
+
+<img id="image" path="/img/image050.PNG" alt="image" />
+
+<!-- #endregion -->
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">3. The Output Coil in LAD & FBD</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ The output coil value will be True or ON if all contacts are closed in series. Also In parallel situation then you only need one of the contacts to be closed. 
+</p>
+
+<img id="image" path="/img/image051.PNG" alt="image" />
+
+
+
+<img id="image" path="/img/image052.PNG" alt="image" />
+
+
+
+<!-- #endregion -->
+
+<!-- #endregion -->
