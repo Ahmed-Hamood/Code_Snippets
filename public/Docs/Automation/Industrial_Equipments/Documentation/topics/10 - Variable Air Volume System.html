@@ -1,0 +1,188 @@
+<p class="main-title">Variable Air Volume - VAV System</p>
+<!-- #region start -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">1. What is Variable Air Volume ?</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ Every room in your building need a different amount of heating/cooling load. VAV system design allow you to control the amount of cooling and heating also, each room is
+ supplied by the same AUH and
+ <tooltip desc="Ducts are conduits or passages used in heating, ventilation, and air conditioning to deliver and remove air.">ducts</tooltip>.
+</p>
+
+<div class="text-box info">
+ <p>
+  Different parts of the building may have dedicated AHU's and ducts, for example the south and north sides of a building or selected floors depending on functionality.
+ </p>
+</div>
+
+<img id="image" path="/img/image114.PNG" alt="image" />
+
+<p class="text">
+ VAV allows zoning within the building, that's ideal for most situations because every room in a building will experience a slightly different heating/cooling load.
+</p>
+
+<img id="image" path="/img/image115.PNG" alt="image" />
+
+<p class="text">
+ Our AHU is located in the mechanical plant room with two ducts coming out of this room one for supply and one for return. The supply duct provides the air and the return
+ duct sucks out the dirty used air.
+</p>
+
+<p class="text">
+ Both ducts run thru the building, taking the shortest route to deliver conditioned air to the rooms. Our AHU supplies air of <number>13C-55F</number> degree to our VAV
+ system
+</p>
+
+<p class="text">
+ This air flow along the main supply duct and distributes into room. Once the air has provided heating/cooling it will be sucked back into the return duct and flow back
+ to the main AHU.
+</p>
+
+<div class="text-box info">
+ <p>
+  the main difference in a VAV system, compared to a CAV, our VAV is located on the main duct where branch comes out of it. Also in VAV you can easily provide air to
+  certain zone like room or group of rooms. The VAV box is connected via a cable to a thermostat which is located within the room or zone. The thermostat will indicate to
+  the VAV terminal if it needs to increase or decrease the flow rate to meet the cooling demand.
+ </p>
+</div>
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">2. Inside VAV box</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ Our VAV box is a pretty basic box, there is nothing complex happening inside. First inside our VAV box we have the Controller that is mounted on the actuator which
+ controls and rotates the shaft which is connected to the damper.
+</p>
+
+<div tab-switch-content>
+ <section tab-title="VAV Box" active>
+  <img id="image" path="/img/image116.PNG" alt="image" />
+ </section>
+ <!-- ########################## -->
+ <section tab-title="VAV Box - Side view">
+  <img id="image" path="/img/image120.PNG" alt="image" />
+ </section>
+ <!-- ########################## -->
+</div>
+
+<p class="text">
+ As you see below, the damper can <tooltip desc=" modifying or controlling or adjust">modulate</tooltip> its position to control the air flow rate and thus the amount of
+ air entering into the terminal box and into the zone.
+</p>
+
+<img id="image" path="/img/image117.gif" alt="image" />
+
+<p class="text">
+ The air enter a round <number>12C-55F</number> degrees, we can adjust out temperature by using BMS. We might warm up temperature using an
+ <underline yellow>electrical reheater</underline> inside which will switch on to warm the air up as it passes through.
+</p>
+
+<div class="text-box info">
+ <p>
+  Using electrical reheater to warm up air is fairly common They don't necessarily have to be electric either, they could also be fed from the building
+  <tooltip
+   desc="Low Temperature (or Pressure) Hot Water. In this system we have two large boilers which are connected in parallel. This means that both boilers can operate at the same time or individually. One of the boilers could be isolated and cut off and opened up for maintenance while the other boiler continues to run and provide heating to the building."
+   >LTHW</tooltip
+  >
+  hot water system or it could also be from say a heat pump or something like that.
+ </p>
+</div>
+
+<p class="text">
+ From the backside thru the inlet, we can find some tubes forming a cross shape as you see below. This is an air flow sensor, its used to measure the change in pressure a
+ cross the device
+</p>
+
+<img id="image" path="/img/image118.PNG" alt="image" />
+
+<p class="text">
+ With air flow sensor we can calculate the average air velocity and thus the flow rate into the VAV terminal. There are some pinholes on the front and also on the back of
+ the tubes.
+</p>
+
+<p class="text">
+ When the air start hitting the front side, its going to impact on our air flow sensor and cause pressure. Here the front is going to have a high pressure side and the
+ back side will be a low pressure point.
+</p>
+
+<div class="text-box info">
+ <p>
+  You can find the differential pressure across the device, and if you average that for the size of the duct, and calibrate it, then you can calculate the flow rate of
+  air entering into that box and zone.
+ </p>
+</div>
+
+<img id="image" path="/img/image119.PNG" alt="image" />
+
+<p class="text">Our dumper never closes fully, or typically it doesn't because we still need a certain amount of fresh air to enter into the space.</p>
+
+<img id="image" path="/img/image121.PNG" alt="image" />
+
+<p class="text">
+ If you suddenly got a higher heat gain within the room and the temperature of the room starts to rise above the desired set point, then the damper will start to open and
+ this will allow more air into the space.
+</p>
+
+<div class="text-box info">
+ <p>
+  Remember the air is about <number>13</number> degrees Celsius, <number>55</number> degrees Fahrenheit, so that will start to cool the room down and force all that hot
+  air off into the return duct.
+ </p>
+</div>
+
+<div class="text-box note">
+ <p>
+  In the middle of summer when you’ve have all the solar heat gains coming through the windows and maybe there’s a meeting room which is full of people, there’s a lot of
+  heat being generated in there, so the damper will open to 100% and this will let as much cold air in as possible. During the winter, or when there’s less people in the
+  room, the damper’s position is further towards the closed position, remember not fully, and this modulates the cooling.
+ </p>
+</div>
+
+<div class="text-box info">
+ <p>
+  As a buildings ventilation system is connected to multiple VAV terminals, the VAV terminals are going to vary their load throughout the day as the dampers open and
+  close. The fans in the AHU will be pushing the air into the supply duct, this will pressurized the duct. When many VAV dampers open the pressure in the duct will drop
+  and when many of the dampers close, the pressure will rise.
+ </p>
+</div>
+
+<p class="text">
+ To combat this, we will find a pressure sensor points in the main duct towards the furthest point in the system to get the most energy efficient operation. All pressure
+ sensors are connected to to a VSD (VFD) Variable Speed Drive or Variable Frequency Drive.
+</p>
+
+<img id="image" path="/img/image122.PNG" alt="image" />
+
+<p class="text">
+ The VSD/VFD will be connected to the supply and return fans. The speed of the fans will be increased or decreased in response to the pressure in the duct. This will
+ ensure an efficient operation. Our AHU cooling fans will use less energy and less cooling.
+</p>
+
+<img id="image" path="/img/image123.PNG" alt="image" />
+
+<p class="text">
+ You can also get some fan assisted VAV boxes. These boxes has an internal fan which will draw the air in from the space. That’s useful because the fan will keep a
+ constant volume coming through the box.
+</p>
+
+<p class="text">
+ If the damper closes then less air will be entering the space, but the fan will ensure a constant turn over of air within the room. When the dampers are open the fresh
+ air will be mixed with the recirculated air in the room.
+</p>
+
+<div class="text-box info">
+ <p>Additionally, the fan assisted VAV will prevent cold air being dumped directly into the space and onto staff. This could make the person sick.</p>
+</div>
+
+<!-- #endregion -->
