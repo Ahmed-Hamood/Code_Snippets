@@ -1,0 +1,154 @@
+<p class="main-title">Set and Reset Command - Latching/Unlatching</p>
+<!-- #region start -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">1. SET Instruction</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ The <text>SET</text> instruction is similar to the output symbol but with <number>S</number> letter inside. When <text green>ON</text> signal passes into the
+ <text>SET</text> instruction, the <text>SET</text> is activated, then the data value at the OUT address is set to <number>1</number>.
+</p>
+
+<img id="image" path="/img/image054.PNG" alt="image" />
+
+<p class="text">
+ As you see the moment you provide signal to <text>SET</text> instruction our output that you assign to it will be <text green>ON</text> or set to <number>1</number>. If
+ you turn off the signal to our <text>SET</text> instruction while its <number>ON</number>, then the output will remain the same as <text green>ON</text> or
+ <number>1</number>.
+</p>
+
+<div class="text-box note">
+ <p>When SET is not activated, or no signal is provided to it, then OUT is no changed. If the OUT is ON then it remains ON</p>
+</div>
+
+<p class="text">
+ You can turn off <number>Q0.0</number> output by resetting your Output address, if you cut the signal to it, it won't effect the output status and our output will still
+ remain <text green>ON</text>. To <text red>turn off</text> our output we can use the <underline yellow>RESET</underline> instruction signal.
+</p>
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">2. RESET Instruction</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ The RESET instruction is similar to output symbol but with <number>R</number> letter. Here if RESET is activated or ON, the the data value at the OUT address is set to
+ <number>0</number>. When R is not activated, out is not changed.
+</p>
+
+<img id="image" path="/img/image055.PNG" alt="image" />
+
+<p class="text">
+ Our Reset instruction works along with SET instruction, when you turn ON your <number>Q0.0</number> output using the SET signal, to turn <number>Q0.0</number> OFF then
+ you activate the RESET button to turn OFF <number>Q0.0</number>.
+</p>
+
+<div class="text-box info">
+ <p>With SET/RESET instruction you can use it multiple time no like the the output coil you only can use it once.</p>
+</div>
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">3. Example - SET and RESET Instruction</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ We have an example that contain NO - Normally open contact assigned with <text>I0.0</text> - <number>A</number> letter assign to it, this <text>I0.0</text> contact is
+ connected to the SET operation of <number>X</number> letter, Our SET is associated with <number>Q0.0</number> output.
+</p>
+
+<img id="image" path="/img/image056.PNG" alt="image" />
+
+<p class="text">
+ In the brunch below, we have another NO - Normally open contact with I0.1 - <number>B</number> letter assign to it, this this <text>I0.1</text> contact is connected to
+ the <text>RESET</text> operation of <number>X</number> letter, Our <text>RESET</text> is associated with <number>Q0.0</number> output also.
+</p>
+
+<div class="list-content normal check">
+ <ul>
+  <li>
+   If <number>A</number> is <red>False</red> | <number>0</number> and <number>B</number> is <red>False</red> | <number>0</number>, then our <text>Q0.0</text> output will
+   remain as the last state which <text red>OFF</text> | <number>0</number>.
+  </li>
+
+  <li>
+   If <number>A</number> is <red>False</red> | <number>0</number> and <number>B</number> is <green>True</green> | <number>1</number> (set the reset), then our
+   <text>Q0.0</text> output will be <text red>OFF</text> | <number>0</number>.
+  </li>
+  <li>
+   If <number>A</number> is <green>True</green> | 1 (set the SET) and <number>B</number> is <red>False</red> | <number>0</number> , then our <text>Q0.0</text> output will
+   be <text green>ON</text> | <number>1</number>.
+  </li>
+  <li>
+   If <number>A</number> is <red>False</red> | <number>0</number> and <number>B</number> is <red>False</red> | <number>0</number>, then our <text>Q0.0</text> output will
+   remain last state which is <text green>ON</text> | <number>1</number>.
+  </li>
+  <li>
+   If <number>A</number> is <green>True</green> | <number>1</number> (set the SET) and <number>B</number> is <green>True</green> | <number>1</number> (set the SET), then
+   our <text>Q0.0</text> output will be <text red>OFF</text> | <number>0</number>.
+  </li>
+ </ul>
+</div>
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">4. Example - Two SET and RESET with different Contacts</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ Here we have two outputs <text>Q0.0</text> and <text>Q0.1</text>, both are attached to <text>I0.0</text> NO contact that will latch both outputs of SET.
+</p>
+
+<img id="image" path="/img/image057.PNG" alt="image" />
+
+<p class="text">And For Unlatching both outputs we have a separate branch with both outputs attached to I0.1 - NO, this input will be attached to both output RESET.</p>
+
+<div class="list-content normal check">
+ <ul>
+  <li>If I0.0 is <red>False</red> | 0, then <text>Q0.0</text> and <text>Q0.1</text> will remain the same as last state which is OFF</li>
+  <li>If I0.0 is <green>True</green> | 1, then both outputs <text>Q0.0</text> and <text>Q0.1</text> will be ON</li>
+  <li>If I0.0 is <red>False</red> | 0, then <text>Q0.0</text> and <text>Q0.1</text> will remain the same as last state which is ON</li>
+  <li>If I0.1 is <green>True</green> | 1, then <text>Q0.0</text> and <text>Q0.1</text> will reset and will be OFF</li>
+  <li>If both I0.0 and I0.1 are <green>True</green> | 1, then both outputs <text>Q0.0</text> and <text>Q0.1</text> will RESET to be OFF</li>
+ </ul>
+</div>
+
+<!-- #endregion -->
+
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<p class="sub-title">5. Example - Only using contacts without SET and RESET</p>
+<!-- ######################################################### -->
+<!-- ######################################################### -->
+<!-- #region start -->
+
+<p class="text">
+ We can have an alternative way for output latching and unlatching logic, with only NO/NC contacts and normal output. 
+</p>
+
+<p class="text">
+ We can achieve that by using contacts in parallel
+ and an output coil that will latch our input contact (Check how it works below)
+</p>
+
+<img id="image" path="/img/image058.PNG" alt="image" />
+
+<!-- #endregion -->
+
+<!-- #endregion -->
