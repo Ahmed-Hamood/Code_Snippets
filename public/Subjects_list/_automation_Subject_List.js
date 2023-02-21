@@ -60,5 +60,21 @@ export const Automation_Subject_Menu = {
     }
    ],
   },
+  {
+   subject_name: 'District Cooling System',
+   subject_icon_name: '',
+   type: 'folder',
+   subject_path: '/District_Cooling_System',
+   subject_list_menu: [
+    {
+      subject_name: 'District Cooling',
+      subject_icon_name: '',
+      type: 'file',
+      subject_path: '/Documentation/Documentation.html',
+      page_content_type: 'documentation',
+      subject_list_menu: [],
+    }
+   ],
+  },
  ],
 };

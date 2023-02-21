@@ -138,7 +138,7 @@
 .js-block .block-content pre {
  /* font-size: 0.85rem; */
  color: #bfe9ff;
- font-size: 1rem;
+ font-size: 1.1rem;
  font-weight: 600;
  /* -moz-tab-size: 2;
  tab-size: 2; */
@@ -296,7 +296,7 @@
 .code pre,
 .terminal pre {
  color: rgb(182, 209, 245);
- font-size: 15px;
+ font-size: 17px;
  font-weight: 600;
  font-family: 'Consolas', 'JetBrains Mono', monospace, 'Menlo';
  line-height: 1.6rem;

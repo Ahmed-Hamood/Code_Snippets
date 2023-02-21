@@ -64,11 +64,12 @@
 
 .documentation-topics-list-container .subject-topics-content .sub-subject-title {
  display: block;
+ border-bottom: 1px solid rgb(32, 32, 32);
  color: #e4c332;
  font-size: 1.2rem;
  font-weight: 500;
- margin-bottom: calc(1.2 * 0.4rem);
- padding-bottom: 0.4rem;
+ margin-bottom: calc(1.2 * 0.6rem);
+ padding-bottom: 0.1rem;
  width: 100%;
  user-select: none;
  position: relative;
