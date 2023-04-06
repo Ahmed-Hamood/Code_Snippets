@@ -8,7 +8,8 @@
  display: block;
  border: 1px solid rgb(29 29 29);
  background: var(--js-code-block-primary-bg-color);
-
+ border-radius: 15px 0 0 15px;
+ border: 1px solid #252f35;
  
 }
 
@@ -38,7 +39,7 @@
 
 .js-block .block-header .block-title {
  font-family: 'Source Sans Pro', sans-serif;
- font-size: 0.85rem;
+ font-size: 1rem;
  letter-spacing: 1.2px;
  font-weight: 500;
  line-height: 1.5;
@@ -171,7 +172,7 @@
 }
 
 .js-block .block-content .js-line-num li {
- font-size: 14px;
+ font-size: 1rem;
  font-family: monospace, 'Source Sans Pro', sans-serif;
  color: #555555;
  font-weight: 300;
@@ -204,9 +205,16 @@
  position: absolute;
  content: '';
  height: 100%; /* block-content font-size  = 0.9375rem */
- left: 1.7rem;
+ left: 1.85rem;
  width: 300vh;
  border-radius: 1px;
+}
+
+.js-block .block-content .js-line-num.highlight-margin-hundred-left li::after {
+  left: 2.40rem;
+}
+.js-block .block-content .js-line-num.highlight-margin-thousand-left li::after {
+  left: 2.85rem;
 }
 
 .js-block .block-content .js-line-num li:hover::after {

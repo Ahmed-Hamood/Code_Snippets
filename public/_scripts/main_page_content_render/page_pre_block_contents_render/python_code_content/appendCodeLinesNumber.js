@@ -17,7 +17,19 @@ export default function appendCodeLinesNumber() {
   let getLineNumber = '';
   totalLines = lineBreaks.length ? lineBreaks.length + 1 : 1;
 
-  el.style['width'] = totalLines >= 1000 ? `${el.offsetWidth + 6}px` : "";
+  // el.style['width'] = totalLines >= 1000 ? `${el.offsetWidth + 45}px` : '';
+  // if (totalLines >= 1000) el.classList.add("highlight-margin-left")
+  // // console.log(totalLines);
+
+  if (totalLines >= 1000) {
+   el.style['width'] = `${el.offsetWidth + 42}px`;
+   el.classList.add('highlight-margin-thousand-left');
+  } else if (totalLines >= 100) {
+   el.style['width'] = `${el.offsetWidth + 32}px`;
+   el.classList.add('highlight-margin-hundred-left');
+  } else {
+   el.style['width'] = '';
+  }
 
   for (var num = 1; num < totalLines; num++) {
    ListNumberElement = document.createElement('li');

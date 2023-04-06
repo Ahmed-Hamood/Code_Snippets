@@ -11,13 +11,21 @@ export const React_Subject_ListMenu = {
    subject_path: '/React_web',
    subject_list_menu: [
     {
-     subject_name: 'Documentation',
+     subject_name: 'Documentation v1',
      subject_icon_name: '',
      type: 'file',
-     subject_path: '/Documentation.html',
+     subject_path: '/Documentation_v1.html',
      page_content_type: 'documentation',
      subject_list_menu: [],
     },
+    {
+     subject_name: 'Documentation v2',
+     subject_icon_name: '',
+     type: 'file',
+     subject_path: '/Documentation_v2.html',
+     page_content_type: 'documentation',
+     subject_list_menu: [],
+    }
    ],
   },
   {

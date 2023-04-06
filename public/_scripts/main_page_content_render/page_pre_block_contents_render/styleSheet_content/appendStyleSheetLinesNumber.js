@@ -16,7 +16,13 @@ export default function appendStyleSheetLinesNumber() {
 
   totalLines = lineBreaks.length ? lineBreaks.length + 1 : 1;
 
-  el.style['width'] = totalLines >= 1000 ? `${el.offsetWidth + 6}px` : "";
+  if (totalLines >= 1000) {
+   el.style['width'] = `${el.offsetWidth + 42}px`;
+  } else if (totalLines >= 100) {
+   el.style['width'] = `${el.offsetWidth + 32}px`;
+  } else {
+   el.style['width'] = '';
+  }
 
   for (var num = 1; num < totalLines; num++) {
    ListNumberElement = document.createElement('li');

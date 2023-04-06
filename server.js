@@ -11,8 +11,8 @@ const PORT = process.env.PORT || 3331;
 app.use(express.json());
 
 app.use((req, res, next) => {
- console.log('Request IP incoming: ' + req.ip);
- console.log('Request URL: ' + req.url);
+ //  console.log('Request IP incoming: ' + req.ip);
+ //  console.log('Request URL: ' + req.url);
 
  //  if (req.ip != '::1' && req.ip != '::ffff:127.0.0.1' && !req.ip.startsWith('::ffff:192.168.0')) return res.send('UnAuthorize Access');
 
@@ -87,6 +87,28 @@ app.post('/open_vs', async (req, res) => {
  });
 });
 
+// open subject file structure
+app.post('/open_subject_json_file', async (req, res) => {
+ let { file_name } = req.body;
+
+ console.log(`./public/Subjects_list/${file_name}`);
+
+ console.log('subject json active');
+
+ // 1. check "./vs_temp" if does not exist
+ if (await !fs.existsSync('./public/Subjects_list')) {
+  console.log('Subjects_list does not exist.....');
+ }
+
+ // 2. open vscode with your newly created file
+ exec(`code -n "./public/Subjects_list/${file_name}"`);
+
+ res.json({
+  msg: 'your subject folder is opened in vscode',
+  status: 200,
+ });
+});
+
 app.get('/open_icon_images_folder', (req, res) => {
  exec(`start ${__dirname}\\public\\_images\\subject_icons`);
 
@@ -94,6 +116,39 @@ app.get('/open_icon_images_folder', (req, res) => {
   msg: '_images folder is opened..',
   status: 200,
  });
+});
+
+// list all subjects
+app.get('/get_all_subjects_List', async (req, res) => {
+ // list all files in the directory
+ let data = [];
+ await fs.readdirSync('./public/Subjects_list').forEach((file) => {
+  data.push(file);
+ });
+
+ return res.json({
+  data,
+ });
+});
+
+// read subject file
+app.post('/get_all_subjects_List', async (req, res) => {
+ let { file_name } = req.body;
+ // list all files in the directory
+ fs.readFile(`./public/Subjects_list/${file_name}`, 'utf8', (err, data) => {
+  if (err) {
+   console.error(err);
+   return;
+  }
+  console.log(data);
+  return res.json({
+   data,
+  });
+ });
+
+ //  return res.json({
+ //   data,
+ //  });
 });
 
 app.listen(PORT, () => {

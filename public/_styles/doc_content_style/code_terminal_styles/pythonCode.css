@@ -8,7 +8,6 @@
  position: relative;
  display: block;
  background: var(--python-code-block-primary-bg-color);
- 
 }
 
 .python-block::-webkit-scrollbar {
@@ -216,6 +215,13 @@
  width: var(--main-doc-content-width);
  /* width: 300vw; */
  border-radius: 1px;
+}
+
+.python-block .block-content .python-line-num.highlight-margin-hundred-left li::after {
+  left: 2.40rem;
+}
+.python-block .block-content .python-line-num.highlight-margin-thousand-left li::after {
+ left: 2.85rem;
 }
 
 .python-block .block-content .python-line-num li:hover::after {

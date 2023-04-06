@@ -38,8 +38,8 @@
 /* ############# Subject Title/name & Icon ############# */
 
 .sideBar-subjects-menu .content-wrapper .menu-title-section-header {
- font-size: 0.9rem;
- font-weight: 400;
+ font-size: 1rem;
+ font-weight: 500;
  text-shadow: 0 1px 0 rgb(10 10 10 / 80%);
  color: rgb(121, 121, 121);
  margin-top: 1.6rem;
@@ -425,4 +425,16 @@ body[api-system='false'] .sideBar-subjects-menu .content-wrapper .menu-title-sec
  width: 6px;
  height: 16px;
  vertical-align: top;
+}
+
+.main-subject-folder-btn {
+ pointer-events: none;
+ width: 16px;
+ height: 16px;
+ opacity: 0.4;
+ /* vertical-align: top; */
+}
+
+.options-menu-btn:hover .main-subject-folder-btn {
+ opacity: 1.0;
 }

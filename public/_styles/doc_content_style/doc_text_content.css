@@ -9,8 +9,8 @@
 }
 
 #page-content-wrapper > hr {
-  margin-bottom: 18px;
-  border-color: rgb(86, 86, 86);
+ margin-bottom: 18px;
+ border-color: rgb(86, 86, 86);
 }
 
 #page-content-wrapper :is(.side-list-titles-nav-content, .text, .text-box, .warning-text, .underline-text),
@@ -325,7 +325,9 @@ body[max-content='true'] .side-list-titles-nav-content.show {
  font-size: 1rem;
  font-weight: 500;
  line-height: 140%;
+ overflow: auto;
  height: 100%;
+ max-height: 800px;
  /* border-left: 1px solid rgb(39, 39, 39); */
  padding: 0.5rem 0;
  padding-left: 25px;
@@ -334,6 +336,15 @@ body[max-content='true'] .side-list-titles-nav-content.show {
  animation-duration: 1.5s;
  animation-delay: 0.2s;
  animation-fill-mode: forwards;
+}
+
+.side-list-titles-nav-content .side-titles-list::-webkit-scrollbar {
+ width: 2px;
+}
+
+.side-list-titles-nav-content .side-titles-list::-webkit-scrollbar-thumb {
+ background-color: #00ff00b4;
+ border-radius: 12px;
 }
 
 /* .side-titles-list {
@@ -1680,7 +1691,7 @@ tooltip .tooltiptext hr,
 .tab-container {
  max-width: var(--main-doc-content-width);
  width: 100%;
- margin-bottom: 8px;
+ margin-bottom: 5px;
  /* opacity: 0; */
 }
 
@@ -1703,7 +1714,7 @@ tooltip .tooltiptext hr,
  justify-content: start;
  flex-wrap: wrap;
  width: 100%;
- border-bottom: 1px solid #ffffff2b;
+ /* border-bottom: 1px solid #ffffff2b; */
 }
 
 .tab-btn {
@@ -1713,13 +1724,12 @@ tooltip .tooltiptext hr,
  background: #1e1e1e;
  position: relative;
  text-align: center;
- margin-right: 2px;
+ margin-right: 8px;
  margin-bottom: 8px;
  border: 1px solid #212324;
- border-bottom: none;
- border-radius: 3px 3px 0 0;
+ border-radius: 100px;
  padding: 12px 16px;
- transition: 0.4s all;
+ transition: 0.2s all;
  user-select: none;
 }
 
@@ -1729,49 +1739,27 @@ tooltip .tooltiptext hr,
  }
 }
 
-.tab-btn::after {
- content: '';
- position: absolute;
- bottom: 0;
- left: 0;
- width: 100%;
- background: #646664;
- opacity: 0.5;
- height: 1px;
- transition: 200ms all;
-}
-
-.tab-btn.active::after {
- width: 100%;
- opacity: 1;
- height: 2.5px;
- background: #0be881;
- animation-name: FadeInAnimation;
- animation-duration: 1.3s;
- animation-iteration-count: infinite;
- animation-direction: alternate-reverse;
-}
-
 .tab-btn:hover {
- background: #222526;
+ background: #393c3f81;
+ border: 1px solid #006cfa98;
  cursor: pointer;
 }
 
 .tab-btn.active {
- background: #222526;
+ background: #006cfa57;
+ border: 1px solid #2b2828ab;
 }
 
 .tab-btn.active:hover {
- background: #222222;
+ cursor: default;
 }
 
 .disableTab {
  display: none;
-
 }
 
 .disableTab #image {
-   pointer-events: none;
+ pointer-events: none;
 }
 
 /* #endregion */

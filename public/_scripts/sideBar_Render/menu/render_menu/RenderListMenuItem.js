@@ -53,7 +53,7 @@ export default function RenderListMenuItem(main_data, filename) {
           ${MainSubject_IconPath}
           <span class="subject-name">${main_subjectName}</span>
           <div class="options-menu-btn"> 
-            <i class="svg options-svg option-svg-btn"></i>  
+            <i class="svg main-subject-folder-svg main-subject-folder-btn"></i>  
           </div>
         </a>
      </div>

@@ -28,7 +28,7 @@
 }
 
 .css-block .block-header .block-title {
- font-size: 0.8rem;
+ font-size: 1rem;
  letter-spacing: 1.2px;
  font-weight: 400;
  color: rgb(216, 216, 216);
@@ -124,7 +124,7 @@
 }
 
 .css-block .block-content .css-line-num li {
- font-size: 0.8rem;
+ font-size: 1rem;
  font-family: monospace, 'Source Sans Pro', sans-serif;
  color: #636363;
  font-weight: 400;

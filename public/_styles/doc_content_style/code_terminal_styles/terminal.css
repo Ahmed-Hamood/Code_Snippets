@@ -15,7 +15,7 @@
  z-index: 4;
  position: sticky;
  /* background: var(--terminal-block-primary-bg-color); */
- background: #151516;
+ background: #212b2f;
  border-bottom: 1px solid rgb(32, 32, 32);
  display: flex;
  flex-direction: row;
@@ -26,9 +26,9 @@
 }
 
 .terminal-block .block-header .block-title {
- font-size: 0.8rem;
+ font-size: 1rem;
  letter-spacing: 1.2px;
- font-weight: 400;
+ font-weight: 500;
  line-height: 1.5;
  color: rgb(169, 169, 169);
  user-select: none;
@@ -49,7 +49,7 @@
 .terminal-block .block-header .copyTerminalClipboard {
  position: absolute;
  padding: 0.75rem;
- top: 3rem;
+ top: 3.4rem;
  right: 0.6rem;
  z-index: 3;
  opacity: 0.3;
@@ -69,6 +69,7 @@
 
 .terminal-block .block-header .text-lang {
  font-size: 1rem;
+ font-weight: 600;
  color: #535353;
  cursor: default;
  position: relative;
@@ -146,6 +147,7 @@
  width: min(var(--main-doc-content-width), 100%);
  padding: 14px 6px 12px 0;
  margin-bottom: calc(1.2 * 1.5rem);
+ background: #141412;
  /* margin-top: 12px; */
  border: 1px solid #2b2b2b;
  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
