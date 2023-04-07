@@ -411,6 +411,12 @@ body[api-system='false'] .sideBar-subjects-menu .content-wrapper .menu-title-sec
  transition: 300ms all;
 }
 
+@media screen and (max-width: 1000px) { 
+  .options-menu-btn {
+    display: none;
+  }
+}
+
 .options-menu-btn:hover {
  opacity: 1;
  background: rgba(88, 88, 88, 0.436);

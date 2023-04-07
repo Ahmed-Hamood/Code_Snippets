@@ -7,61 +7,47 @@
  because we don't want to commit bad code, so lets check our changes below before we will have old and new changes.
 </p>
 
-<section class="tab-container">
- <div class="btn_tabs">
-  <button class="tab-btn active">file1.txt and file2.txt (Old)</button>
-  <button class="tab-btn">file1.txt and file2.txt (New)</button>
- </div>
- <div class="main-tab-content">
-  <!-- ########### Begin ########### -->
-
-  <!-- ************************ -->
-  <div class="tab-content">
-   <div class="terminal-output">
-    <pre>
+<div tab-switch-content>
+ <section tab-title="file1.txt and file2.txt (Old)" active>
+  <div class="terminal-output">
+   <pre>
   ./file1.txt
   ------------------------------
   File 1 Text line 1
   File 1 Text line 2
 </pre
-    >
-   </div>
-   <div class="terminal-output">
-    <pre>
+   >
+  </div>
+  <div class="terminal-output">
+   <pre>
   ./file2.txt
   ------------------------------
   File 2 Text line 1
   File 2 Text line 2
 </pre
-    >
-   </div>
+   >
   </div>
-  <!-- ************************ -->
-
-  <!-- ************************ -->
-  <div class="tab-content">
-   <div class="terminal-output">
-    <pre>
+ </section>
+ <!-- ########################## -->
+ <section tab-title="file1.txt and file2.txt (New)">
+  <div class="terminal-output">
+   <pre>
   ./file1.txt  <yellow>(here we added a new line)</yellow>
   ------------------------------
   File 1 Text line 1
   File 1 Text line 2
   File 1 Text line 3
 </pre>
-   </div>
-   <div class="terminal-output">
-    <pre>
+  </div>
+  <div class="terminal-output">
+   <pre>
   ./file2.txt <yellow>(here we removed last line)</yellow>
   ------------------------------
   File 2 Text line 1
 </pre>
-   </div>
   </div>
-  <!-- **************************** -->
-
-  <!-- ########### End ########### -->
- </div>
-</section>
+ </section>
+</div>
 
 <p class="text">
  Now, we need to stage these changes using the <terminal>git add .</terminal> command, then we will run <terminal>git status</terminal> to view that our changes been
@@ -250,44 +236,31 @@
  >
 </section>
 
-<section class="tab-container">
- <div class="btn_tabs">
-  <button class="tab-btn active">file1.txt (Old)</button>
-  <button class="tab-btn">file1.txt (New)</button>
- </div>
- <div class="main-tab-content">
-  <!-- ########### Begin ########### -->
-
-  <!-- ************************ -->
-  <div class="tab-content">
-   <div class="terminal-output">
-    <pre>
+<div tab-switch-content>
+ <section tab-title="file1.txt (Old)" active>
+  <div class="terminal-output">
+   <pre>
   ./file1.txt
   ------------------------------
   File 1 Text line 1
   File 1 Text line 2
 </pre
-    >
-   </div>
+   >
   </div>
-  <!-- ************************ -->
-
-  <!-- ************************ -->
-  <div class="tab-content">
-   <div class="terminal-output">
-    <pre>
+ </section>
+ <!-- ########################## -->
+ <section tab-title="file1.txt (New)">
+  <div class="terminal-output">
+   <pre>
   ./file1.txt  <yellow>(here we added a new line)</yellow>
   ------------------------------
   File 1 Text line 1
   File 1 Text line 2
   File 1 Text line 3
 </pre>
-   </div>
   </div>
-  <!-- **************************** -->
-  <!-- ########### End ########### -->
- </div>
-</section>
+ </section>
+</div>
 
 <p class="text">
  We have modified only a single file which is <file>file1.txt</file>, after you run <terminal>git difftool</terminal> command, Git is asking if you want to launch VSCode

@@ -6,7 +6,8 @@
  overflow: auto;
  position: relative;
  display: block; 
- 
+ border-radius: 12px 0 0 12px;
+ border: 1px solid #252f35;
 }
 
 
@@ -19,11 +20,11 @@
 /* ######################################### */
 
 .html-block .block-header {
- padding: 10px 12px 10px 8px;
+ padding: 10px 12px 10px 12px;
  font-family: Consolas, monospace, 'Segoe UI', 'Source Sans Pro', sans-serif;
  z-index: 4;
  position: sticky;
-
+ top: 0;
  background: var(--hyperText-block-primary-bg-color);
  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
  border-bottom: 1px solid rgba(65, 65, 65, 0.248);
@@ -34,7 +35,7 @@
 }
 
 .html-block .block-header .block-title {
- font-size: 0.8rem;
+ font-size: 0.9rem;
  letter-spacing: 1.2px;
  font-weight: 400;
  line-height: 1.5;
@@ -140,7 +141,7 @@
 }
 
 .html-block .block-content .hyperText-line-num li {
- font-size: 0.8rem;
+ font-size: 1rem;
  font-family: monospace, 'Source Sans Pro', sans-serif;
  color: #595959;
  font-weight: 300;

@@ -16,31 +16,30 @@ export default function Startup_api() {
  };
 
  // Open create new main subject form
- create_new_subject_btn.addEventListener('click', (ev) => {
-  bodyElement.setAttribute('active-form', 'create');
-  subject_form_input_content.innerHTML = api_html_create_form;
-  enable_create_new_main_subject_form();
- });
+//  create_new_subject_btn.addEventListener('click', (ev) => {
+//   bodyElement.setAttribute('active-form', 'create');
+//   subject_form_input_content.innerHTML = api_html_create_form;
+//   enable_create_new_main_subject_form();
+//  });
 
  //  Close any form
- cancel_form_button.addEventListener('click', (e) => {
-  closeForm();
- });
+//  cancel_form_button.addEventListener('click', (e) => {
+//   closeForm();
+//  });
 
- subject_form_container_blackBG.addEventListener('click', (ev) => {
-  if (ev.target.className == 'subject-form-container') closeForm();
- });
+//  subject_form_container_blackBG.addEventListener('click', (ev) => {
+//   if (ev.target.className == 'subject-form-container') closeForm();
+//  });
 
  //  ----------------------------------------
  //  ----------------------------------------
  //  ----------------------------------------
 
- const options_menu_container = document.querySelector('.options-menu-container');
+ //  const options_menu_container = document.querySelector('.options-menu-container');
+ //  let blank_modal = document.getElementById('blank-modal');
 
- let blank_modal = document.getElementById('blank-modal');
-
- let el_x = 0;
- let el_y = 0;
+ //  let el_x = 0;
+ //  let el_y = 0;
  let get_JSON_file_dir = '';
 
  document.querySelectorAll('.options-menu-btn').forEach((element) => {

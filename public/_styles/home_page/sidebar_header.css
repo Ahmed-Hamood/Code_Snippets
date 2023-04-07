@@ -193,9 +193,10 @@ body[api-system='false'] .create-subject-container {
 }
 
 .create-new-subject-btn {
+
  pointer-events: fill;
  user-select: none;
- opacity: 1;
+ opacity: 0.4;
  background: rgba(69, 69, 69, 0.046);
  padding: 5px 0;
  padding-left: 4px;
@@ -214,13 +215,13 @@ body[api-system='false'] .create-new-subject-btn {
 }
 
 .create-new-subject-btn:hover {
- cursor: pointer;
- background: #34354f60;
+ /* cursor: pointer; */
+ /* background: #34354f60; */
 }
 
 .create-new-subject-btn:active {
- background: rgb(32, 32, 41);
- border: 3px solid rgb(39, 38, 38);
+ /* background: rgb(32, 32, 41);
+ border: 3px solid rgb(39, 38, 38); */
 }
 
 .add-svg-style,
@@ -235,7 +236,7 @@ body[api-system='false'] .create-new-subject-btn {
 }
 
 .create-new-subject-btn:hover .add-svg-style {
- opacity: 1;
+ /* opacity: 1; */
 }
 
 .create-btn-text {
@@ -247,5 +248,5 @@ body[api-system='false'] .create-new-subject-btn {
 }
 
 .create-new-subject-btn:hover .create-btn-text {
- color: rgb(219, 219, 219);
+ /* color: rgb(219, 219, 219); */
 }

@@ -1674,8 +1674,8 @@ tooltip .tooltiptext hr,
  content: '';
  display: block;
  position: relative;
- top: 18px;
- left: 13px;
+ top: 22px;
+ left: 19px;
  border: 3px solid rgb(186, 186, 186);
  border-bottom: none;
  border-right: none;
@@ -1691,18 +1691,32 @@ tooltip .tooltiptext hr,
 .tab-container {
  max-width: var(--main-doc-content-width);
  width: 100%;
- margin-bottom: 5px;
- /* opacity: 0; */
+ margin-bottom: 22px;
+ background: #3b3b3b17;
+ box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+ border: 1px solid #1f1e1e;
+ padding: 22px 14px;
+ border-radius: 12px;
 }
 
 .tab-container .main-tab-content {
- padding-top: 8px;
+ padding-top: 14px;
 }
 
 .tab-content .pre-block,
 .tab-content .terminal-output {
- margin-top: 0;
- animation-delay: 0s !important;
+ /* margin-top: 0 !important; */
+ /* animation-delay: 0s !important; */
+}
+
+.tab-content > * {
+ margin-top: 0 !important;
+ animation: FadeInAnimation 0.2s cubic-bezier(1, 0.25, 1, 1);
+}
+
+.tab-content .pre-block:last-child,
+.tab-content .terminal-output:last-child {
+ margin-bottom: 0 !important;
 }
 
 .tab-content > p {
@@ -1720,7 +1734,7 @@ tooltip .tooltiptext hr,
 .tab-btn {
  color: var(--text-color);
  font-size: 1.2rem;
- font-weight: 400;
+ font-weight: 500;
  background: #1e1e1e;
  position: relative;
  text-align: center;
@@ -1741,7 +1755,7 @@ tooltip .tooltiptext hr,
 
 .tab-btn:hover {
  background: #393c3f81;
- border: 1px solid #006cfa98;
+ border: 1px solid #006cfa60;
  cursor: pointer;
 }
 

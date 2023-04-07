@@ -11,8 +11,8 @@ const PORT = process.env.PORT || 3331;
 app.use(express.json());
 
 app.use((req, res, next) => {
- //  console.log('Request IP incoming: ' + req.ip);
- //  console.log('Request URL: ' + req.url);
+  console.log('Request IP incoming: ' + req.ip);
+  console.log('Request URL: ' + req.url);
 
  //  if (req.ip != '::1' && req.ip != '::ffff:127.0.0.1' && !req.ip.startsWith('::ffff:192.168.0')) return res.send('UnAuthorize Access');
 

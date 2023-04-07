@@ -6,11 +6,16 @@
  overflow: auto;
  position: relative;
  display: block;
- border: 1px solid rgb(29 29 29);
+ border: 1px solid rgb(41, 41, 41);
  background: var(--js-code-block-primary-bg-color);
- border-radius: 15px 0 0 15px;
+ border-radius: 12px 0 0 12px;
  border: 1px solid #252f35;
- 
+}
+
+@media screen and (max-width: 1000px) {
+ .js-block {
+  border-radius: 8px 0 0 8px;
+ }
 }
 
 .js-block[full-height] {
@@ -140,11 +145,11 @@
  /* font-size: 0.85rem; */
  color: #bfe9ff;
  font-size: 1.1rem;
- font-weight: 600;
+ font-weight: 500;
  /* -moz-tab-size: 2;
  tab-size: 2; */
- /* font-family: 'JetBrains Mono', 'Consolas', monospace, 'Menlo'; */
- font-family: 'Consolas', 'JetBrains Mono', monospace, 'Menlo';
+ font-family: 'JetBrains Mono', 'Consolas', monospace, 'Menlo';
+ /* font-family: 'Consolas', 'JetBrains Mono', monospace, 'Menlo'; */
  /* letter-spacing: 0.01rem; */
  width: 100%;
  background: var(--js-code-block-primary-bg-color);
@@ -211,10 +216,10 @@
 }
 
 .js-block .block-content .js-line-num.highlight-margin-hundred-left li::after {
-  left: 2.40rem;
+ left: 2.4rem;
 }
 .js-block .block-content .js-line-num.highlight-margin-thousand-left li::after {
-  left: 2.85rem;
+ left: 2.85rem;
 }
 
 .js-block .block-content .js-line-num li:hover::after {
@@ -345,7 +350,7 @@
 
  .js-block .block-content pre,
  .js-block .block-content .js-line-num li {
-  /* font-size: 12px; */
+  font-size: 0.9rem;
  }
  .js-block pre {
   overflow-y: auto;
